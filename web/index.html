@@ -173,6 +173,132 @@
       });
     }
 
+    window.repertorioSpotify = {
+      open: async function (url) {
+        try {
+          const parsed = new URL(url);
+          const parts = parsed.pathname.split('/').filter(Boolean);
+          const episodeIndex = parts.indexOf('episode');
+
+          if (episodeIndex < 0 || !parts[episodeIndex + 1]) {
+            return false;
+          }
+
+          const episodeId = parts[episodeIndex + 1];
+
+          const previous = document.getElementById('repertorio-spotify-overlay');
+          if (previous) previous.remove();
+
+          const overlay = document.createElement('div');
+          overlay.id = 'repertorio-spotify-overlay';
+          overlay.setAttribute('role', 'dialog');
+          overlay.setAttribute('aria-modal', 'true');
+          overlay.setAttribute('aria-label', 'Player do Spotify');
+          overlay.style.position = 'fixed';
+          overlay.style.inset = '0';
+          overlay.style.zIndex = '2147483646';
+          overlay.style.background = 'rgba(10, 14, 28, 0.94)';
+          overlay.style.backdropFilter = 'blur(16px)';
+          overlay.style.webkitBackdropFilter = 'blur(16px)';
+          overlay.style.padding =
+            'calc(env(safe-area-inset-top) + 18px) 16px ' +
+            'calc(env(safe-area-inset-bottom) + 18px)';
+          overlay.style.boxSizing = 'border-box';
+          overlay.style.display = 'flex';
+          overlay.style.flexDirection = 'column';
+          overlay.style.alignItems = 'stretch';
+          overlay.style.justifyContent = 'center';
+
+          const shell = document.createElement('div');
+          shell.style.width = 'min(100%, 560px)';
+          shell.style.margin = '0 auto';
+          shell.style.background = '#F5F2EA';
+          shell.style.border = '1px solid rgba(255,255,255,.22)';
+          shell.style.borderRadius = '18px';
+          shell.style.overflow = 'hidden';
+          shell.style.boxShadow = '0 24px 80px rgba(0,0,0,.45)';
+
+          const header = document.createElement('div');
+          header.style.height = '54px';
+          header.style.display = 'flex';
+          header.style.alignItems = 'center';
+          header.style.padding = '0 14px 0 18px';
+          header.style.background = '#10265E';
+          header.style.color = '#fff';
+          header.style.fontFamily = 'Arial, sans-serif';
+
+          const title = document.createElement('div');
+          title.textContent = 'ouvir no Repertório';
+          title.style.fontSize = '13px';
+          title.style.fontWeight = '700';
+          title.style.letterSpacing = '.02em';
+          title.style.flex = '1';
+
+          const close = document.createElement('button');
+          close.type = 'button';
+          close.setAttribute('aria-label', 'Fechar player');
+          close.textContent = '×';
+          close.style.border = '0';
+          close.style.background = 'transparent';
+          close.style.color = '#fff';
+          close.style.fontSize = '32px';
+          close.style.lineHeight = '1';
+          close.style.width = '42px';
+          close.style.height = '42px';
+          close.style.cursor = 'pointer';
+
+          const iframe = document.createElement('iframe');
+          iframe.title = 'Spotify Embed';
+          iframe.src =
+            'https://open.spotify.com/embed/episode/' +
+            encodeURIComponent(episodeId) +
+            '?utm_source=repertorio';
+          iframe.width = '100%';
+          iframe.height = '352';
+          iframe.frameBorder = '0';
+          iframe.allowFullscreen = true;
+          iframe.allow =
+            'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+          iframe.loading = 'eager';
+          iframe.style.display = 'block';
+          iframe.style.background = '#121212';
+
+          const note = document.createElement('div');
+          note.textContent =
+            'O áudio toca aqui dentro. Feche quando quiser voltar ao artigo.';
+          note.style.padding = '12px 16px 16px';
+          note.style.color = '#575752';
+          note.style.font = '500 12px/1.4 Arial, sans-serif';
+
+          header.appendChild(title);
+          header.appendChild(close);
+          shell.appendChild(header);
+          shell.appendChild(iframe);
+          shell.appendChild(note);
+          overlay.appendChild(shell);
+
+          const previousOverflow = document.body.style.overflow;
+          const dismiss = function () {
+            overlay.remove();
+            document.body.style.overflow = previousOverflow;
+          };
+
+          close.addEventListener('click', dismiss);
+          overlay.addEventListener('click', function (event) {
+            if (event.target === overlay) dismiss();
+          });
+
+          document.body.style.overflow = 'hidden';
+          document.body.appendChild(overlay);
+          close.focus();
+
+          return true;
+        } catch (_) {
+          return false;
+        }
+      }
+    };
+
     window.repertorioOffline = {
       supported: function () {
         return 'caches' in window;
