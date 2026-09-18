@@ -638,6 +638,63 @@ class _ArticleScreenState extends State<ArticleScreen> {
     setState(() => _speaking = true);
   }
 
+  void _goBack() {
+    final navigator = Navigator.of(context);
+    if (navigator.canPop()) {
+      navigator.pop();
+      return;
+    }
+
+    navigator.pushReplacement(
+      MaterialPageRoute<void>(
+        builder: (_) => const AppShell(),
+      ),
+    );
+  }
+
+  PopupMenuItem<_ReaderMenuAction> _readerMenuItem(
+    _ReaderMenuAction action,
+    IconData icon,
+    String label,
+  ) {
+    return PopupMenuItem<_ReaderMenuAction>(
+      value: action,
+      child: Row(
+        children: [
+          Icon(icon, size: 20),
+          const SizedBox(width: 12),
+          Text(label),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _handleMenuAction(_ReaderMenuAction action) async {
+    final state = AppStateScope.read(context);
+
+    switch (action) {
+      case _ReaderMenuAction.save:
+        await _toggleSavedWithOffline();
+      case _ReaderMenuAction.queue:
+        await state.toggleReadLater(widget.topic.id);
+      case _ReaderMenuAction.offline:
+        await _toggleOffline();
+      case _ReaderMenuAction.note:
+        await _showNoteSheet(state.noteFor(widget.topic.id));
+      case _ReaderMenuAction.share:
+        await _shareLearning();
+      case _ReaderMenuAction.map:
+        if (!mounted) return;
+        await Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => KnowledgeMapScreen(
+              rootTopicId: widget.topic.id,
+            ),
+          ),
+        );
+    }
+  }
+
   Future<void> _shareLearning() async {
     final shared = await shareKnowledgeCard(
       title: widget.topic.title,
@@ -970,21 +1027,82 @@ class _Section extends StatelessWidget {
   }
 }
 
-class _RememberSection extends StatelessWidget {
-  const _RememberSection({
-    required this.topic,
+class _SimpleExplanationBlock extends StatelessWidget {
+  const _SimpleExplanationBlock({
+    required this.explanation,
+    required this.example,
     required this.palette,
     required this.bodyStyle,
   });
 
-  final KnowledgeTopic topic;
+  final String? explanation;
+  final String? example;
   final _ReaderPalette palette;
   final TextStyle bodyStyle;
 
   @override
   Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        color: palette.surface,
+        border: Border.all(color: palette.line),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (explanation case final text?) ...[
+            Text(
+              text,
+              style: bodyStyle.copyWith(
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+          if (example case final text?) ...[
+            if (explanation != null) const SizedBox(height: 18),
+            Text(
+              'EXEMPLO SIMPLES',
+              style: TextStyle(
+                color: palette.accent,
+                fontSize: 9,
+                fontWeight: FontWeight.w800,
+                letterSpacing: 1.1,
+              ),
+            ),
+            const SizedBox(height: 7),
+            Text(
+              text,
+              style: bodyStyle.copyWith(
+                color: palette.muted,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _RememberSection extends StatelessWidget {
+  const _RememberSection({
+    required this.topic,
+    required this.palette,
+    required this.bodyStyle,
+    this.number = '04',
+  });
+
+  final KnowledgeTopic topic;
+  final _ReaderPalette palette;
+  final TextStyle bodyStyle;
+  final String number;
+
+  @override
+  Widget build(BuildContext context) {
     return _Section(
-      number: '03',
+      number: number,
       title: 'o que você precisa lembrar',
       palette: palette,
       child: Column(
