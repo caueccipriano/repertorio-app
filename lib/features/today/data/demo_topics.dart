@@ -923,6 +923,22 @@ const urbanismoTopic = KnowledgeTopic(
  whyItMatters:'Amplia o repertório e conecta este assunto a temas históricos, científicos e culturais já presentes no app.', curiosity:'Planos urbanos frequentemente produzem efeitos diferentes dos previstos décadas depois.', connections:['Cidades', 'Metrô', 'Brasília', 'Arquitetura moderna'],
 );
 
+const barrocoTopic = KnowledgeTopic(
+ id:'barroco', eyebrow:'ARTE / HISTÓRIA', title:'POR QUE O BARROCO É TÃO DRAMÁTICO?', summary:'Contrastes, movimento e teatralidade transformaram arte e arquitetura dos séculos XVII e XVIII.', minutes:7, tags:['arte', 'história'], quickTake:'Barroco não é apenas excesso decorativo: luz, escala e composição eram usados para produzir emoção e presença.', simpleExplanation:'Uma igreja barroca pode dirigir o olhar com curvas, douramento e luz para transformar o espaço numa experiência quase teatral.', example:'Uma igreja barroca pode dirigir o olhar com curvas, douramento e luz para transformar o espaço numa experiência quase teatral.', body:['O estilo desenvolveu-se na Europa a partir do fim do século XVI.', 'Contrastes intensos de luz marcaram parte importante da pintura barroca.', 'Arquitetura explorou curvas, eixos e efeitos espaciais.', 'Igreja, monarquias e elites financiaram muitas obras.', 'Nas Américas, tradições locais transformaram modelos europeus.'], remember:['Drama é estrutural, não só decorativo.', 'Houve vários barrocos.', 'O Brasil criou expressões próprias.'], whyItMatters:'Amplia o repertório e cria novas conexões com assuntos já existentes no app.', curiosity:'O barroco ganhou linguagens próprias no Brasil, especialmente em Minas Gerais.', connections:['Rococó', 'Renascimento', 'Minas Gerais', 'Arquitetura'],
+);
+
+const turingTopic = KnowledgeTopic(
+ id:'turing', eyebrow:'TECNOLOGIA / HISTÓRIA', title:'QUEM FOI ALAN TURING E POR QUE ELE IMPORTA?', summary:'Suas ideias ajudaram a estabelecer fundamentos teóricos da computação e influenciaram criptografia e inteligência artificial.', minutes:7, tags:['tecnologia', 'ciência'], quickTake:'Turing não inventou sozinho o computador, mas formulou ideias fundamentais sobre o que significa computar.', simpleExplanation:'Uma máquina de Turing é um modelo abstrato extremamente simples capaz de representar a lógica de qualquer algoritmo computável.', example:'Uma máquina de Turing é um modelo abstrato extremamente simples capaz de representar a lógica de qualquer algoritmo computável.', body:['Em 1936, Turing publicou um trabalho fundamental sobre computabilidade.', 'Durante a Segunda Guerra, trabalhou em criptoanálise britânica em Bletchley Park.', 'Após a guerra, contribuiu para projetos de computadores eletrônicos.', 'Também pesquisou morfogênese matemática em biologia.', 'Foi perseguido pelo Estado britânico por sua homossexualidade e morreu em 1954.'], remember:['Computabilidade foi sua contribuição central.', 'Atuou também em criptografia e biologia.', 'Sua perseguição é parte importante de sua história.'], whyItMatters:'Amplia o repertório e cria novas conexões com assuntos já existentes no app.', curiosity:'O chamado Teste de Turing apareceu num artigo de 1950 sobre inteligência de máquinas.', connections:['Algoritmos', 'Criptografia', 'IA', 'Segunda Guerra'],
+);
+
+const sambaTopic = KnowledgeTopic(
+ id:'samba', eyebrow:'MÚSICA / BRASIL', title:'COMO O SAMBA VIROU UM SÍMBOLO DO BRASIL?', summary:'Tradições afro-brasileiras, urbanização, rádio e carnaval transformaram práticas diversas numa linguagem musical nacional.', minutes:7, tags:['música', 'brasil'], quickTake:'Samba nunca foi um único ritmo imutável: existem tradições, estilos e contextos muito diferentes.', simpleExplanation:'Rodas, terreiros, casas e depois estúdios e rádios ajudaram a música a circular por redes sociais muito diferentes.', example:'Rodas, terreiros, casas e depois estúdios e rádios ajudaram a música a circular por redes sociais muito diferentes.', body:['O samba possui raízes profundas em culturas afro-brasileiras.', 'No Rio de Janeiro, comunidades negras foram decisivas para sua formação urbana.', 'Gravação e rádio ampliaram sua circulação no século XX.', 'Escolas de samba transformaram o carnaval carioca.', 'Partido-alto, samba-canção, pagode e outras vertentes mostram sua diversidade.'], remember:['Raízes afro-brasileiras são centrais.', 'Rádio ampliou alcance.', 'Samba possui muitas vertentes.'], whyItMatters:'Amplia o repertório e cria novas conexões com assuntos já existentes no app.', curiosity:'Pelo Telefone, registrado em 1916, costuma aparecer como marco da história fonográfica do samba.', connections:['Bossa Nova', 'Jazz', 'Brasil', 'Carnaval'],
+);
+
+const imunidadeTopic = KnowledgeTopic(
+ id:'imunidade', eyebrow:'CIÊNCIA / CORPO', title:'COMO O CORPO RECONHECE O QUE É PERIGOSO?', summary:'Barreiras, células e moléculas do sistema imune detectam padrões, coordenam respostas e constroem memória.', minutes:7, tags:['ciência', 'saúde'], quickTake:'Imunidade não é um exército que simplesmente ataca tudo que é estrangeiro; ela precisa distinguir contextos e regular a própria resposta.', simpleExplanation:'A pele impede muitas invasões antes que células especializadas sequer precisem agir.', example:'A pele impede muitas invasões antes que células especializadas sequer precisem agir.', body:['Barreiras físicas e químicas formam uma primeira linha de proteção.', 'Imunidade inata responde rapidamente a padrões de perigo e infecção.', 'Imunidade adaptativa cria respostas altamente específicas.', 'Células B podem produzir anticorpos e células T exercem diferentes funções.', 'Mecanismos regulatórios evitam que a resposta cause dano excessivo ao próprio corpo.'], remember:['Inata e adaptativa cooperam.', 'Anticorpos são apenas uma parte.', 'Regulação é tão importante quanto ataque.'], whyItMatters:'Amplia o repertório e cria novas conexões com assuntos já existentes no app.', curiosity:'Febre e inflamação são respostas do organismo, não microrganismos em si.', connections:['Vacinas', 'Antibióticos', 'Microbioma', 'DNA'],
+);
+
 const allDemoTopics = <KnowledgeTopic>[
   bauhausTopic,
   modernismTopic,
@@ -1045,6 +1061,10 @@ const allDemoTopics = <KnowledgeTopic>[
   reggaeTopic,
   rococoTopic,
   urbanismoTopic,
+  barrocoTopic,
+  turingTopic,
+  sambaTopic,
+  imunidadeTopic,
 ];
 
 KnowledgeTopic? topicById(String id) {
