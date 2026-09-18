@@ -92,6 +92,14 @@ class _RepertorioAppState extends State<RepertorioApp> {
                   reduceMotion: state.reduceMotion,
                   largeTapTargets: state.largeTapTargets,
                 ),
+                darkTheme: AppTheme.darkWith(
+                  highContrast: state.highContrast,
+                  reduceMotion: state.reduceMotion,
+                  largeTapTargets: state.largeTapTargets,
+                ),
+                themeMode: state.appAppearance == AppAppearance.dark
+                    ? ThemeMode.dark
+                    : ThemeMode.light,
                 home: state.onboardingComplete
                     ? const AppShell()
                     : const OnboardingScreen(),
