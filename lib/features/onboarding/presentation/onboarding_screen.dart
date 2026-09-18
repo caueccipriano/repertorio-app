@@ -176,15 +176,13 @@ class _OnboardingPage extends StatelessWidget {
               right: 0,
               child: _MotifArtwork(motif: data.motif),
             ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
+            Positioned.fill(
+              child: SingleChildScrollView(
                 padding: EdgeInsets.only(
-                  top: compact ? 38 : 70,
-                  bottom: compact ? 24 : 52,
+                  top: compact ? 26 : 64,
+                  bottom: compact ? 16 : 42,
                 ),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
@@ -194,29 +192,29 @@ class _OnboardingPage extends StatelessWidget {
                             letterSpacing: 1.5,
                           ),
                     ),
-                    SizedBox(height: compact ? 16 : 24),
+                    SizedBox(height: compact ? 14 : 24),
                     ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 560),
                       child: Text(
                         data.title,
                         style:
                             Theme.of(context).textTheme.displayLarge?.copyWith(
-                                  fontSize: compact ? 54 : 72,
+                                  fontSize: compact ? 48 : 72,
                                   letterSpacing: -2.6,
                                 ),
                       ),
                     ),
-                    SizedBox(height: compact ? 20 : 30),
+                    SizedBox(height: compact ? 16 : 30),
                     ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 500),
                       child: Text(
                         data.body,
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              fontSize: compact ? 15 : 17,
+                              fontSize: compact ? 14 : 17,
                             ),
                       ),
                     ),
-                    SizedBox(height: compact ? 24 : 38),
+                    SizedBox(height: compact ? 18 : 38),
                     Transform.rotate(
                       angle: -.035,
                       child: DecoratedBox(
@@ -233,7 +231,7 @@ class _OnboardingPage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(12, 9, 12, 8),
                           child: HandNote(
                             data.note,
-                            fontSize: compact ? 20 : 24,
+                            fontSize: compact ? 19 : 24,
                           ),
                         ),
                       ),
