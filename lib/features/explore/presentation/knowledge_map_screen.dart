@@ -38,7 +38,7 @@ class KnowledgeMapScreen extends StatelessWidget {
                   Text(
                     'RABBIT HOLE',
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                          color: AppColors.blue,
+                          color: Theme.of(context).colorScheme.primary,
                           letterSpacing: 1.2,
                           fontSize: 10,
                         ),
@@ -52,7 +52,7 @@ class KnowledgeMapScreen extends StatelessWidget {
                   Text(
                     'Toque em qualquer nó para continuar explorando.',
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: AppColors.muted,
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
                         ),
                   ),
                 ],
@@ -102,7 +102,7 @@ class KnowledgeMapScreen extends StatelessWidget {
                 children: [
                   const Icon(
                     Icons.circle,
-                    color: AppColors.blue,
+                    color: Theme.of(context).colorScheme.primary,
                     size: 10,
                   ),
                   const SizedBox(width: 8),
@@ -110,7 +110,7 @@ class KnowledgeMapScreen extends StatelessWidget {
                     child: Text(
                       'Cada leitura abre novas conexões. O mapa cresce com seu repertório.',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: AppColors.muted,
+                            color: Theme.of(context).colorScheme.onSurfaceVariant,
                           ),
                     ),
                   ),
@@ -170,10 +170,10 @@ class _TopicNode extends StatelessWidget {
       width: width,
       height: height,
       child: Material(
-        color: emphasized ? AppColors.blue : AppColors.paperWhite,
+        color: emphasized ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.surface,
         shape: RoundedRectangleBorder(
           side: BorderSide(
-            color: AppColors.ink,
+            color: Theme.of(context).colorScheme.onSurface,
             width: emphasized ? 2 : 1,
           ),
           borderRadius: BorderRadius.circular(3),
@@ -195,7 +195,7 @@ class _TopicNode extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                        color: emphasized ? Colors.white : AppColors.ink,
+                        color: emphasized ? Colors.white : Theme.of(context).colorScheme.onSurface,
                         fontSize: emphasized ? 11 : 9,
                         height: 1.1,
                       ),
@@ -206,7 +206,7 @@ class _TopicNode extends StatelessWidget {
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
                         color: emphasized
                             ? Colors.white70
-                            : AppColors.muted,
+                            : Theme.of(context).colorScheme.onSurfaceVariant,
                         fontSize: 8,
                       ),
                 ),
@@ -231,12 +231,12 @@ class _MapPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final line = Paint()
-      ..color = AppColors.ink.withValues(alpha: .42)
+      ..color = Theme.of(context).colorScheme.onSurface.withValues(alpha: .42)
       ..strokeWidth = 1.3
       ..style = PaintingStyle.stroke;
 
     final accent = Paint()
-      ..color = AppColors.blue.withValues(alpha: .18)
+      ..color = Theme.of(context).colorScheme.primary.withValues(alpha: .18)
       ..strokeWidth = 12
       ..strokeCap = StrokeCap.round;
 
