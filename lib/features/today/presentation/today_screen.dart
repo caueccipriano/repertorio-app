@@ -59,7 +59,7 @@ class TodayScreen extends StatelessWidget {
                 const _Shelf(
                   title: 'coisas que vale saber',
                   subtitle: 'segure uma capa para ver em 30 segundos',
-                  topics: const [
+                  topics: [
                     brutalismTopic,
                     wineTopic,
                     helveticaTopic,
