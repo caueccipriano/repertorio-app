@@ -32,6 +32,9 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Sanitize generated topic media syntax
+        run: perl -0pi -e 's/\n,media:/\n media:/g' lib/features/today/data/demo_topics.dart
+
       - name: Analyze
         run: flutter analyze
 
