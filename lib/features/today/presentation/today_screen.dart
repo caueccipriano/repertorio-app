@@ -74,7 +74,7 @@ class TodayScreen extends StatelessWidget {
                 const SizedBox(height: 28),
                 const _ContinueShelf(),
                 const SizedBox(height: 28),
-                _Shelf(
+                const _Shelf(
                   title: 'coisas que vale saber',
                   subtitle: 'uma estante para ficar mais curioso',
                   entries: const [
