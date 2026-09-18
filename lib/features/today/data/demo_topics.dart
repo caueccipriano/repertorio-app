@@ -536,7 +536,16 @@ const bitcoinTopic = KnowledgeTopic(
   body: ['Bitcoin foi apresentado em 2008 sob o pseudônimo Satoshi Nakamoto.','Transações são agrupadas em blocos ligados criptograficamente.','Mineração usa prova de trabalho para participar do processo de consenso e emissão.','A oferta segue regras definidas pelo protocolo, mas o preço de mercado varia livremente.','Descentralização traz propriedades diferentes de sistemas tradicionais, mas também custos, volatilidade e desafios de uso.'],
   remember: ['Blockchain é parte do sistema, não sinônimo de Bitcoin.','Prova de trabalho protege o consenso.','Preço e funcionamento técnico são questões diferentes.'],
   whyItMatters: 'Ajuda a discutir criptoativos separando tecnologia, economia e especulação.', curiosity: 'O primeiro bloco da rede Bitcoin foi minerado em janeiro de 2009.',
-  connections: ['Blockchain', 'Criptografia', 'Moeda', 'Prova de trabalho'],
+  connections: ['Blockchain', 'Criptografia', 'Moeda', 'Prova de trabalho'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/4pcDM4cfBjoH1kEb84GlkX',
+      title: 'O QUE É BITCOIN E COMO FUNCIONA',
+      caption: '9 min 5 s · Pensador Desperto',
+      sourceLabel: 'Spotify · Pensador Desperto',
+      sourceUrl: 'https://open.spotify.com/episode/4pcDM4cfBjoH1kEb84GlkX',
+    ),
+  ],
 );
 
 const jazzTopic = KnowledgeTopic(
@@ -548,7 +557,16 @@ const jazzTopic = KnowledgeTopic(
   body: ['O jazz se desenvolveu no início do século XX com raízes especialmente fortes em comunidades negras de Nova Orleans.','Blues, ragtime, tradições africanas e música europeia contribuíram para sua formação.','Improvisação permite que músicos criem dentro de estruturas harmônicas e rítmicas.','Swing descreve tanto uma sensação rítmica quanto um período histórico específico do jazz.','Bebop, cool jazz, hard bop, free jazz e fusion mostram como o gênero se transformou continuamente.'],
   remember: ['Improvisação é central.','Jazz tem raízes afro-americanas.','Existem muitos estilos de jazz.'],
   whyItMatters: 'O jazz influenciou música popular, linguagem harmônica e a própria ideia moderna de improvisação.', curiosity: 'Louis Armstrong ajudou a transformar o solo improvisado em elemento central do jazz.',
-  connections: ['Blues', 'Louis Armstrong', 'Bebop', 'Improvisação'],
+  connections: ['Blues', 'Louis Armstrong', 'Bebop', 'Improvisação'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/3V55XT30rajKYpmDB1q1wI',
+      title: 'O Jazz e música instrumental no Brasil',
+      caption: '48 min 33 s · Marte Cultural',
+      sourceLabel: 'Spotify · Marte Cultural',
+      sourceUrl: 'https://open.spotify.com/episode/3V55XT30rajKYpmDB1q1wI',
+    ),
+  ],
 );
 
 const cinemaTopic = KnowledgeTopic(
@@ -560,7 +578,16 @@ const cinemaTopic = KnowledgeTopic(
   body: ['O cinema descobriu cedo que planos separados podiam formar uma continuidade compreensível.','Montagem controla tempo: pode condensar anos em segundos ou prolongar um instante.','O efeito Kuleshov ficou famoso por demonstrar como o contexto altera nossa leitura de uma expressão.','Eisenstein explorou colisões entre imagens para produzir ideias e emoção.','No cinema contemporâneo, montagem também organiza som, ritmo, ponto de vista e informação narrativa.'],
   remember: ['A ordem dos planos muda significado.','Montagem manipula tempo.','Ritmo também conta história.'],
   whyItMatters: 'Depois de perceber montagem, você passa a enxergar como filmes guiam atenção e emoção.', curiosity: 'Muitos princípios de montagem desenvolvidos no cinema hoje aparecem em vídeos curtos, publicidade e redes sociais.',
-  connections: ['Kuleshov', 'Eisenstein', 'Narrativa', 'Fotografia'],
+  connections: ['Kuleshov', 'Eisenstein', 'Narrativa', 'Fotografia'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/4wOEJkHuaIbuIRrqTf0kCy',
+      title: 'Reinecken (Cinema, Montagem, Direção e muito mais)',
+      caption: '1 h 48 min · Abrindo Cabeças Podcast',
+      sourceLabel: 'Spotify · Abrindo Cabeças Podcast',
+      sourceUrl: 'https://open.spotify.com/episode/4wOEJkHuaIbuIRrqTf0kCy',
+    ),
+  ],
 );
 
 const fashionTopic = KnowledgeTopic(
@@ -584,7 +611,16 @@ const coffeeTopic = KnowledgeTopic(
   body: ['Arabica e canephora são espécies comercialmente importantes com perfis diferentes.','Altitude, clima, solo e manejo influenciam o desenvolvimento do fruto.','Processamentos natural, lavado e outros mudam fermentação e secagem.','Torra cria centenas de compostos aromáticos e pode enfatizar ou mascarar características do grão.','Na extração, proporção, água, temperatura, moagem e tempo alteram equilíbrio entre acidez, doçura e amargor.'],
   remember: ['Origem é só uma parte.','Torra transforma o grão.','Extração muda a percepção final.'],
   whyItMatters: 'Dá vocabulário para escolher e preparar café pelo perfil que você realmente gosta.', curiosity: 'O que chamamos de “grão” de café é a semente de um fruto.',
-  connections: ['Fermentação', 'Torra', 'Espresso', 'Química dos aromas'],
+  connections: ['Fermentação', 'Torra', 'Espresso', 'Química dos aromas'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/03zgDkU5xwZIyOAXybeWud',
+      title: 'Qualidade e Inovação no Café',
+      caption: '30 min 23 s · Bourbon Cast',
+      sourceLabel: 'Spotify · Bourbon Cast',
+      sourceUrl: 'https://open.spotify.com/episode/03zgDkU5xwZIyOAXybeWud',
+    ),
+  ],
 );
 
 const mapsTopic = KnowledgeTopic(
@@ -608,7 +644,16 @@ const placeboTopic = KnowledgeTopic(
   body: ['O efeito placebo é estudado em ensaios clínicos e em pesquisas sobre expectativa e aprendizagem.','Sintomas subjetivos, como dor, podem responder ao contexto de forma mensurável.','Isso não significa que placebo elimine infecções, tumores ou qualquer doença de forma geral.','Ensaios controlados ajudam a estimar quanto benefício vem do tratamento específico.','Existe também o efeito nocebo, em que expectativas negativas podem aumentar sintomas ou efeitos percebidos.'],
   remember: ['Placebo não é cura universal.','Contexto pode alterar sintomas.','Controles ajudam a testar tratamentos.'],
   whyItMatters: 'Ajuda a entender por que bons estudos clínicos precisam comparar intervenções cuidadosamente.', curiosity: 'Placebos podem produzir respostas mesmo quando alguns participantes sabem que estão recebendo um placebo, em contextos específicos de pesquisa.',
-  connections: ['Ensaios clínicos', 'Nocebo', 'Dor', 'Expectativa'],
+  connections: ['Ensaios clínicos', 'Nocebo', 'Dor', 'Expectativa'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/1lVMiTfljH48pN222Kb4Wm',
+      title: 'How the Placebo Effect Works',
+      caption: '39 min 16 s · Stuff You Should Know',
+      sourceLabel: 'Spotify · Stuff You Should Know',
+      sourceUrl: 'https://open.spotify.com/episode/1lVMiTfljH48pN222Kb4Wm',
+    ),
+  ],
 );
 
 const languageTopic = KnowledgeTopic(
@@ -628,7 +673,16 @@ const illuminismoTopic = KnowledgeTopic(
   summary: 'Razão, crítica e debate sobre poder transformaram a política e a cultura europeias no século XVIII.', minutes: 7, tags: ['filosofia', 'história'],
   quickTake: 'O Iluminismo reuniu autores diferentes, não uma única doutrina.', simpleExplanation: 'Pense nele como uma grande conversa intelectual sobre como conhecimento, leis e governos poderiam ser examinados pela razão.', example: 'Questionar se um rei governa por direito divino ou se o poder precisa de justificativa pública é uma pergunta tipicamente iluminista.',
   body: ['Autores como Voltaire, Montesquieu, Rousseau e Diderot discordavam em muitos pontos.', 'Enciclopédias e uma esfera pública de livros, cafés e periódicos ajudaram ideias a circular.', 'Críticas ao absolutismo e aos privilégios influenciaram debates políticos dos séculos seguintes.', 'Ciência e empirismo reforçaram a confiança na investigação racional, embora o período também carregasse contradições sociais.'], remember: ['Não foi uma doutrina única.', 'Razão e crítica ganharam centralidade.', 'Suas ideias influenciaram revoluções e constituições.'],
-  whyItMatters: 'Ajuda a entender a origem de muitos debates modernos sobre direitos, Estado e conhecimento.', curiosity: 'A Encyclopédie francesa reuniu milhares de verbetes e se tornou símbolo do projeto de organizar o conhecimento.', connections: ['Revolução Francesa', 'Direitos', 'Enciclopédia', 'Montesquieu'],
+  whyItMatters: 'Ajuda a entender a origem de muitos debates modernos sobre direitos, Estado e conhecimento.', curiosity: 'A Encyclopédie francesa reuniu milhares de verbetes e se tornou símbolo do projeto de organizar o conhecimento.', connections: ['Revolução Francesa', 'Direitos', 'Enciclopédia', 'Montesquieu'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/3STQjc7NAIbDHz4t5vNir9',
+      title: 'Iluminismo: o que você precisa saber para entender',
+      caption: '2 h 32 min · História FM',
+      sourceLabel: 'Spotify · História FM',
+      sourceUrl: 'https://open.spotify.com/episode/3STQjc7NAIbDHz4t5vNir9',
+    ),
+  ],
 );
 
 const imperioOtomanoTopic = KnowledgeTopic(
@@ -636,7 +690,16 @@ const imperioOtomanoTopic = KnowledgeTopic(
   summary: 'Instituições flexíveis, posição estratégica e capacidade militar sustentaram um império por mais de seis séculos.', minutes: 7, tags: ['história', 'geopolítica'],
   quickTake: 'O Império Otomano não foi estático: sobreviveu justamente porque mudou muitas vezes.', simpleExplanation: 'Imagine administrar territórios em três continentes, com religiões, línguas e economias diferentes, adaptando regras e alianças conforme a época.', example: 'Constantinopla, conquistada em 1453 e depois conhecida como Istambul, tornou-se um centro político e comercial decisivo.',
   body: ['O Estado otomano surgiu na Anatólia no fim do século XIII e expandiu-se pelos Bálcãs e Oriente Médio.', 'Sua administração combinou autoridade central com diferentes arranjos locais.', 'Rotas comerciais, tributação e grandes cidades sustentaram sua economia em períodos distintos.', 'Reformas militares e administrativas ocorreram repetidamente diante de mudanças tecnológicas e rivais externos.', 'O império foi dissolvido após a Primeira Guerra Mundial e a República da Turquia foi fundada em 1923.'], remember: ['Durou mais de seis séculos.', 'Controlou territórios em três continentes.', 'Mudança institucional foi parte de sua longevidade.'],
-  whyItMatters: 'Ajuda a entender fronteiras, cidades e conflitos históricos do Mediterrâneo, dos Bálcãs e do Oriente Médio.', curiosity: 'O sultão Mehmed II tinha apenas 21 anos quando Constantinopla foi conquistada em 1453.', connections: ['Constantinopla', 'Turquia', 'Bálcãs', 'Primeira Guerra'],
+  whyItMatters: 'Ajuda a entender fronteiras, cidades e conflitos históricos do Mediterrâneo, dos Bálcãs e do Oriente Médio.', curiosity: 'O sultão Mehmed II tinha apenas 21 anos quando Constantinopla foi conquistada em 1453.', connections: ['Constantinopla', 'Turquia', 'Bálcãs', 'Primeira Guerra'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/4ikwwZKny6DzoFYb5CnHCb',
+      title: 'Império Otomano: ascensão e queda de um império',
+      caption: '1 h 30 min · História FM',
+      sourceLabel: 'Spotify · História FM',
+      sourceUrl: 'https://open.spotify.com/episode/4ikwwZKny6DzoFYb5CnHCb',
+    ),
+  ],
 );
 
 const guerraFriaTopic = KnowledgeTopic(
@@ -652,7 +715,16 @@ const relatividadeTopic = KnowledgeTopic(
   summary: 'A relatividade mostra que medidas de tempo e espaço dependem do movimento e da gravidade.', minutes: 7, tags: ['ciência', 'física'],
   quickTake: 'Tempo não é um relógio universal separado do universo físico.', simpleExplanation: 'Dois relógios extremamente precisos podem acumular tempos diferentes se viajarem em velocidades diferentes ou permanecerem sob gravidades diferentes.', example: 'Satélites de GPS precisam considerar efeitos relativísticos para que o posicionamento continue preciso.',
   body: ['Einstein apresentou a relatividade especial em 1905 e a relatividade geral em 1915.', 'Na relatividade especial, velocidade da luz e estrutura do espaço-tempo levam à dilatação temporal.', 'Na relatividade geral, gravidade é descrita pela geometria do espaço-tempo.', 'Esses efeitos parecem pequenos no cotidiano, mas tornam-se importantes em velocidades altas, campos gravitacionais intensos ou medições muito precisas.', 'Observações de lentes gravitacionais, órbitas e ondas gravitacionais testam previsões da teoria.'], remember: ['Tempo depende do referencial.', 'Gravidade afeta a passagem do tempo.', 'GPS usa correções relativísticas.'],
-  whyItMatters: 'Transforma nossa ideia de espaço, tempo e gravidade e sustenta tecnologias reais.', curiosity: 'Einstein não recebeu o Nobel pela relatividade, mas por sua explicação do efeito fotoelétrico.', connections: ['Einstein', 'Espaço-tempo', 'GPS', 'Quântica'],
+  whyItMatters: 'Transforma nossa ideia de espaço, tempo e gravidade e sustenta tecnologias reais.', curiosity: 'Einstein não recebeu o Nobel pela relatividade, mas por sua explicação do efeito fotoelétrico.', connections: ['Einstein', 'Espaço-tempo', 'GPS', 'Quântica'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/2Zs5w2yrP9FGzY3Uq81CdY',
+      title: 'Relatividade Geral (SciCast #321)',
+      caption: '2 h 3 min · SciCast',
+      sourceLabel: 'Spotify · SciCast',
+      sourceUrl: 'https://open.spotify.com/episode/2Zs5w2yrP9FGzY3Uq81CdY',
+    ),
+  ],
 );
 
 const buracosNegrosTopic = KnowledgeTopic(
@@ -660,7 +732,16 @@ const buracosNegrosTopic = KnowledgeTopic(
   summary: 'Sabemos muito sobre seus efeitos externos; o interior leva nossas teorias aos seus limites.', minutes: 7, tags: ['ciência', 'astronomia'],
   quickTake: 'Um buraco negro é uma região da qual, após o horizonte de eventos, nem a luz consegue escapar para longe.', simpleExplanation: 'Imagine um limite que pode ser atravessado para dentro, mas do qual nenhuma mensagem consegue voltar para um observador distante.', example: 'Em 2019, o Event Horizon Telescope publicou a primeira imagem da sombra de um buraco negro, no centro da galáxia M87.',
   body: ['Buracos negros podem se formar pelo colapso de estrelas massivas e também existem em escalas supermassivas no centro de galáxias.', 'O horizonte de eventos não é uma superfície sólida; é um limite causal.', 'A relatividade geral prevê uma singularidade em soluções simples, sinal de que nossa descrição física fica incompleta em condições extremas.', 'Matéria aquecida ao redor pode emitir enorme quantidade de radiação antes de cruzar o horizonte.', 'Ondas gravitacionais permitem observar fusões de buracos negros.'], remember: ['Horizonte não é superfície sólida.', 'Não vemos o buraco negro diretamente, mas seus efeitos.', 'O interior expõe limites da física atual.'],
-  whyItMatters: 'Eles são laboratórios naturais para gravidade extrema e evolução de galáxias.', curiosity: 'O buraco negro fotografado em M87 está a dezenas de milhões de anos-luz da Terra.', connections: ['Relatividade', 'Galáxias', 'Ondas gravitacionais', 'Event Horizon Telescope'],
+  whyItMatters: 'Eles são laboratórios naturais para gravidade extrema e evolução de galáxias.', curiosity: 'O buraco negro fotografado em M87 está a dezenas de milhões de anos-luz da Terra.', connections: ['Relatividade', 'Galáxias', 'Ondas gravitacionais', 'Event Horizon Telescope'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/3yP1xcoqxHjx7p1Wh2M6ha',
+      title: 'O mistério dos buracos negros',
+      caption: '1 h 13 min · Podcast Aylton do Amaral',
+      sourceLabel: 'Spotify · Podcast Aylton do Amaral',
+      sourceUrl: 'https://open.spotify.com/episode/3yP1xcoqxHjx7p1Wh2M6ha',
+    ),
+  ],
 );
 
 const vacinasTopic = KnowledgeTopic(
@@ -668,7 +749,16 @@ const vacinasTopic = KnowledgeTopic(
   summary: 'Vacinas apresentam ao organismo informações ou componentes que ajudam a preparar uma resposta futura.', minutes: 7, tags: ['ciência', 'saúde'],
   quickTake: 'Vacinação cria memória imunológica sem exigir que a pessoa enfrente todos os riscos da doença natural.', simpleExplanation: 'É como mostrar ao sistema imune um retrato ou uma versão segura de um invasor para que ele reconheça o alvo mais rapidamente depois.', example: 'Após vacinação, células de memória podem acelerar a produção de respostas específicas numa exposição posterior.',
   body: ['Vacinas podem usar tecnologias diferentes: vírus atenuados, inativados, proteínas, vetores ou material genético, entre outras.', 'O sistema imune reconhece antígenos e ativa respostas celulares e de anticorpos.', 'Memória imunológica permite reação mais rápida em exposições futuras.', 'Nenhuma intervenção médica é absolutamente livre de risco, por isso segurança e eficácia são avaliadas em estudos e vigilância.', 'Quando muitas pessoas estão protegidas, a circulação de determinados agentes pode cair e beneficiar também a comunidade.'], remember: ['Existem várias tecnologias de vacina.', 'Memória imunológica é central.', 'Benefícios e riscos são avaliados continuamente.'],
-  whyItMatters: 'Vacinação está entre as ferramentas de saúde pública que mais reduziram doença e mortalidade infecciosa.', curiosity: 'A varíola foi declarada erradicada mundialmente em 1980 após uma campanha global de vacinação.', connections: ['Imunidade', 'Vírus', 'Ensaios clínicos', 'Saúde pública'],
+  whyItMatters: 'Vacinação está entre as ferramentas de saúde pública que mais reduziram doença e mortalidade infecciosa.', curiosity: 'A varíola foi declarada erradicada mundialmente em 1980 após uma campanha global de vacinação.', connections: ['Imunidade', 'Vírus', 'Ensaios clínicos', 'Saúde pública'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/7fol54EJXNcHutpdor17PR',
+      title: 'Conexão Vacinas - Episódio 1',
+      caption: '5 min 49 s · Conexão Ciência C²',
+      sourceLabel: 'Spotify · Conexão Ciência C²',
+      sourceUrl: 'https://open.spotify.com/episode/7fol54EJXNcHutpdor17PR',
+    ),
+  ],
 );
 
 const sonoTopic = KnowledgeTopic(
