@@ -27,6 +27,8 @@ class KnowledgeTopic {
     required this.minutes,
     required this.tags,
     required this.quickTake,
+    this.simpleExplanation,
+    this.example,
     required this.body,
     required this.remember,
     required this.whyItMatters,
@@ -42,6 +44,8 @@ class KnowledgeTopic {
   final int minutes;
   final List<String> tags;
   final String quickTake;
+  final String? simpleExplanation;
+  final String? example;
   final List<String> body;
   final List<String> remember;
   final String whyItMatters;
