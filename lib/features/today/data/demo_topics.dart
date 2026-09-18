@@ -35,14 +35,11 @@ const bauhausTopic = KnowledgeTopic(
   media: [
     KnowledgeMedia(
       type: KnowledgeMediaType.image,
-      url:
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Bauhaus-Dessau_main_building.jpg/960px-Bauhaus-Dessau_main_building.jpg',
+      url: 'assets/media/bauhaus_dessau.svg',
       title: 'Bauhaus Dessau',
       caption:
-          'O edifício principal da Bauhaus em Dessau, referência central do movimento.',
-      sourceLabel: 'Wikimedia Commons',
-      sourceUrl:
-          'https://commons.wikimedia.org/wiki/File:Bauhaus-Dessau_main_building.jpg',
+          'Estudo visual editorial inspirado na geometria e na linguagem arquitetônica da Bauhaus.',
+      sourceLabel: 'Ilustração editorial do Repertório',
     ),
     KnowledgeMedia(
       type: KnowledgeMediaType.audio,
@@ -136,14 +133,11 @@ const fermiTopic = KnowledgeTopic(
   media: [
     KnowledgeMedia(
       type: KnowledgeMediaType.image,
-      url:
-          'https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Fermi-enrico.jpg/960px-Fermi-enrico.jpg',
-      title: 'Enrico Fermi',
+      url: 'assets/media/fermi_paradox.svg',
+      title: 'O paradoxo de Fermi',
       caption:
-          'Retrato de Enrico Fermi, físico cujo nome ficou associado ao paradoxo.',
-      sourceLabel: 'Wikimedia Commons / Los Alamos',
-      sourceUrl:
-          'https://commons.wikimedia.org/wiki/File:Fermi-enrico.jpg',
+          'Estudo visual editorial sobre a tensão entre a vastidão do universo e o silêncio observado.',
+      sourceLabel: 'Ilustração editorial do Repertório',
     ),
     KnowledgeMedia(
       type: KnowledgeMediaType.audio,
