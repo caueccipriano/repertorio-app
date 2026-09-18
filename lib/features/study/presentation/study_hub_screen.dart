@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../app/state/app_state.dart';
 import '../../../app/state/app_state_scope.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../review/presentation/review_screen.dart';
@@ -180,10 +181,10 @@ class StudyHubScreen extends StatelessWidget {
     return null;
   }
 
-  int _highlightCount(dynamic state) {
+  int _highlightCount(AppState state) {
     var count = 0;
     for (final set in state.highlightedPassages.values) {
-      count += set.length as int;
+      count += set.length;
     }
     return count;
   }
@@ -274,8 +275,9 @@ class _ToolCard extends StatelessWidget {
       color: AppColors.paperWhite,
       child: InkWell(
         onTap: tool.onTap,
-        child: Container(
-          constraints: const BoxConstraints(minHeight: 146),
+        child: SizedBox(
+          height: 146,
+          child: Container(
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
             border: Border.all(color: AppColors.ink),
@@ -327,6 +329,7 @@ class _ToolCard extends StatelessWidget {
               ),
             ],
           ),
+        ),
         ),
       ),
     );
