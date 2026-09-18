@@ -166,10 +166,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
             if (!state.readerFocusMode)
               PopupMenuButton<_ReaderMenuAction>(
                 tooltip: 'Mais ações',
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                  child: Text('•••', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, letterSpacing: 2)),
-                ),
+                icon: const Icon(Icons.more_horiz),
                 onSelected: _handleMenuAction,
                 itemBuilder: (context) => [
                   _readerMenuItem(
