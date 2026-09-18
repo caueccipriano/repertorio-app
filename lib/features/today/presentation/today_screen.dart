@@ -56,7 +56,7 @@ class TodayScreen extends StatelessWidget {
                   ),
                 ],
                 const SizedBox(height: 28),
-                _Shelf(
+                const _Shelf(
                   title: 'coisas que vale saber',
                   subtitle: 'segure uma capa para ver em 30 segundos',
                   topics: const [
@@ -170,7 +170,7 @@ class _LibraryStatusBar extends StatelessWidget {
       'DEZ',
     ];
     final dateLabel =
-        now.day.toString().padLeft(2, '0') + ' ' + months[now.month - 1];
+        '${now.day.toString().padLeft(2, '0')} ${months[now.month - 1]}';
 
     return Row(
       children: [
@@ -198,7 +198,7 @@ class _LibraryStatusBar extends StatelessWidget {
             border: Border.all(color: AppColors.line),
           ),
           child: Text(
-            read.toString() + ' lidos',
+            '$read lidos',
             style: Theme.of(context).textTheme.labelLarge?.copyWith(
                   fontSize: 9,
                   color: AppColors.muted,
@@ -301,7 +301,7 @@ class _FeaturedKnowledge extends StatelessWidget {
                             borderRadius: BorderRadius.circular(99),
                           ),
                           child: Text(
-                            topic.minutes.toString() + ' MIN',
+                            '${topic.minutes} MIN',
                             style:
                                 Theme.of(context).textTheme.labelLarge?.copyWith(
                                       fontSize: 9,
@@ -531,7 +531,7 @@ class _ShelfBook extends StatelessWidget {
           ),
           const SizedBox(height: 2),
           Text(
-            topic.minutes.toString() + ' min',
+            '${topic.minutes} min',
             style: Theme.of(context).textTheme.labelLarge?.copyWith(
                   fontSize: 9,
                   color: AppColors.muted,
@@ -603,10 +603,7 @@ class _ContinueShelf extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          topic.tags.join(' · ') +
-                              ' · ' +
-                              topic.minutes.toString() +
-                              ' min',
+                          '${topic.tags.join(' · ')} · ${topic.minutes} min',
                           style:
                               Theme.of(context).textTheme.labelLarge?.copyWith(
                                     color: AppColors.muted,
@@ -622,7 +619,7 @@ class _ContinueShelf extends StatelessWidget {
                         ),
                         const SizedBox(height: 6),
                         Text(
-                          percent.toString() + '% lido',
+                          '$percent% lido',
                           style:
                               Theme.of(context).textTheme.labelLarge?.copyWith(
                                     color: AppColors.blue,
@@ -745,7 +742,7 @@ class _RabbitHoleShelf extends StatelessWidget {
               const SizedBox(height: 12),
               Text(
                 hasHistory
-                    ? rootTopic.title + ' → veja as conexões'
+                    ? '${rootTopic.title} → veja as conexões'
                     : 'Bauhaus → Modernismo → Brutalismo → Helvetica',
                 style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                       color: Colors.white,
