@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -59,6 +60,41 @@ class PersonalConnection {
 class AppState extends ChangeNotifier {
   AppState._(this._prefs) {
     _load();
+    _publishEuBridge();
+  }
+
+  static const _euBridgeKey = 'eu_bridge_repertorio_v1';
+
+  void _publishEuBridge() {
+    final started = progressByTopic.values.where((progress) => progress > 0).length;
+    final studied = studiedDaysThisWeek();
+    final payload = <String, dynamic>{
+      'version': 1,
+      'app': 'repertorio',
+      'title': 'Repertório',
+      'updatedAt': DateTime.now().toIso8601String(),
+      'status': completedTopicIds.isEmpty ? 'começando' : 'em evolução',
+      'summary':
+          '${completedTopicIds.length} concluídos · $studied/$weeklyGoal dias estudados na semana',
+      'metrics': {
+        'completed': completedTopicIds.length,
+        'saved': savedTopicIds.length,
+        'started': started,
+        'studiedDaysThisWeek': studied,
+        'weeklyGoal': weeklyGoal,
+        'dueReviews': dueReviewTopicIds().length,
+        'studiedMinutesEstimate': studiedMinutesEstimate(),
+        'quizAttempts': totalQuizAttempts,
+      },
+    };
+
+    unawaited(_prefs.setString(_euBridgeKey, jsonEncode(payload)));
+  }
+
+  @override
+  void notifyListeners() {
+    _publishEuBridge();
+    super.notifyListeners();
   }
 
   static const _onboardingKey = 'onboarding_complete_v1';
