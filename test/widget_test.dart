@@ -5,6 +5,7 @@ import 'package:repertorio_app/app/state/app_state.dart';
 import 'package:repertorio_app/app/state/app_state_scope.dart';
 import 'package:repertorio_app/features/article/presentation/article_screen.dart';
 import 'package:repertorio_app/features/explore/presentation/topic_collection_screen.dart';
+import 'package:repertorio_app/features/study/data/personal_library_engine.dart';
 import 'package:repertorio_app/features/today/data/demo_topics.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -175,5 +176,68 @@ void main() {
     expect(restored.highContrast, isTrue);
     expect(restored.reduceMotion, isTrue);
     expect(restored.largeTapTargets, isTrue);
+  });
+
+  test('library intelligence persists collections connections and dark mode',
+      () async {
+    final state = await AppState.load();
+
+    await state.createCollection('Para conversar');
+    await state.toggleTopicInCollection('Para conversar', 'bauhaus');
+    await state.toggleTopicInCollection('Para conversar', 'fermi');
+    await state.addPersonalConnection(
+      fromTopicId: 'bauhaus',
+      toTopicId: 'helvetica',
+      note: 'As duas ajudam a entender o design moderno.',
+    );
+    await state.updateAppearance(AppAppearance.dark);
+    await state.updateProgress('bauhaus', .65);
+    await state.recordQuiz('bauhaus', score: 3, total: 3);
+    await state.saveExplanation(
+      'bauhaus',
+      'A Bauhaus aproximou função, arte e produção moderna.',
+    );
+
+    expect(state.masteryLevel('bauhaus'), MasteryLevel.understood);
+    expect(state.collectionsByName['Para conversar'], contains('fermi'));
+    expect(state.personalConnections, hasLength(1));
+    expect(state.appAppearance, AppAppearance.dark);
+
+    final backup = state.exportBackup();
+
+    SharedPreferences.setMockInitialValues({});
+    final restored = await AppState.load();
+    final success = await restored.importBackup(backup);
+
+    expect(success, isTrue);
+    expect(restored.appAppearance, AppAppearance.dark);
+    expect(
+      restored.collectionsByName['Para conversar'],
+      containsAll(['bauhaus', 'fermi']),
+    );
+    expect(restored.personalConnections, hasLength(1));
+    expect(
+      restored.personalConnections.first.note,
+      contains('design moderno'),
+    );
+  });
+
+  test('personal library engine explains and respects a time budget', () async {
+    final state = await AppState.load();
+    const engine = PersonalLibraryEngine();
+
+    final initialPlan = engine.dailyPlan(state, budgetMinutes: 10);
+    expect(initialPlan, isNotEmpty);
+    expect(
+      initialPlan.first.reason,
+      isNotEmpty,
+    );
+
+    await state.updateProgress('bauhaus', .4);
+    final reason = engine.reasonFor(state, helveticaTopic);
+    expect(reason, isNotEmpty);
+
+    final queue = engine.smartQueue(state, budgetMinutes: 10);
+    expect(queue, isNotEmpty);
   });
 }

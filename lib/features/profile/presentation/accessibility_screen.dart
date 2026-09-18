@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/state/app_state_scope.dart';
-import '../../../app/theme/app_colors.dart';
 
 class AccessibilityScreen extends StatelessWidget {
   const AccessibilityScreen({super.key});
@@ -24,7 +23,7 @@ class AccessibilityScreen extends StatelessWidget {
             Text(
               'Essas opções ficam salvas neste aparelho e também entram no backup.',
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: AppColors.muted,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
             ),
             const SizedBox(height: 24),
@@ -77,8 +76,8 @@ class _Toggle extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
-        color: AppColors.paperWhite,
-        border: Border.all(color: AppColors.line),
+        color: Theme.of(context).colorScheme.surface,
+        border: Border.all(color: Theme.of(context).colorScheme.outline),
       ),
       child: SwitchListTile.adaptive(
         title: Text(title),

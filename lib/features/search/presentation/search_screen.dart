@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/state/app_state_scope.dart';
-import '../../../app/theme/app_colors.dart';
 import '../../article/presentation/article_screen.dart';
 import '../../article/presentation/quick_peek.dart';
 import '../../today/data/demo_topics.dart';
@@ -130,16 +129,16 @@ class _SearchScreenState extends State<SearchScreen> {
                         icon: const Icon(Icons.close),
                       ),
                 filled: true,
-                fillColor: AppColors.paperWhite,
-                border: const OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.ink),
+                fillColor: Theme.of(context).colorScheme.surface,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(color: Theme.of(context).colorScheme.onSurface),
                 ),
-                enabledBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.ink),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Theme.of(context).colorScheme.onSurface),
                 ),
-                focusedBorder: const OutlineInputBorder(
+                focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
-                    color: AppColors.blue,
+                    color: Theme.of(context).colorScheme.primary,
                     width: 2,
                   ),
                 ),
@@ -162,7 +161,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 Text(
                   '${results.length} RESULTADO${results.length == 1 ? '' : 'S'}',
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                        color: AppColors.muted,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                         fontSize: 10,
                         letterSpacing: 1.1,
                       ),
@@ -261,9 +260,11 @@ class _SearchResult extends StatelessWidget {
       onLongPress: onPeek,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 16),
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           border: Border(
-            bottom: BorderSide(color: AppColors.line),
+            bottom: BorderSide(
+              color: Theme.of(context).colorScheme.outline,
+            ),
           ),
         ),
         child: Row(
@@ -273,8 +274,8 @@ class _SearchResult extends StatelessWidget {
               width: 42,
               height: 56,
               alignment: Alignment.center,
-              decoration: const BoxDecoration(
-                color: AppColors.blue,
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primary,
               ),
               child: Text(
                 topic.minutes.toString(),
@@ -302,7 +303,7 @@ class _SearchResult extends StatelessWidget {
                       Text(
                         topic.tags.join(' · '),
                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                              color: AppColors.muted,
+                              color: Theme.of(context).colorScheme.onSurfaceVariant,
                               fontSize: 9,
                             ),
                       ),
@@ -310,7 +311,7 @@ class _SearchResult extends StatelessWidget {
                         Text(
                           '${(progress * 100).round()}%',
                           style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                color: AppColors.blue,
+                                color: Theme.of(context).colorScheme.primary,
                                 fontSize: 9,
                               ),
                         ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/state/app_state_scope.dart';
-import '../../../app/theme/app_colors.dart';
 import '../../article/presentation/article_screen.dart';
 import '../../today/data/demo_topics.dart';
 import '../../today/domain/knowledge_topic.dart';
@@ -51,7 +50,7 @@ class _NoteCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: AppColors.paperWhite,
+      color: Theme.of(context).colorScheme.surface,
       child: InkWell(
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute<void>(
@@ -61,7 +60,7 @@ class _NoteCard extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(18),
           decoration: BoxDecoration(
-            border: Border.all(color: AppColors.ink),
+            border: Border.all(color: Theme.of(context).colorScheme.onSurface),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,7 +68,7 @@ class _NoteCard extends StatelessWidget {
               Text(
                 entry.topic.tags.join(' · ').toUpperCase(),
                 style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      color: AppColors.blue,
+                      color: Theme.of(context).colorScheme.primary,
                       fontSize: 9,
                       letterSpacing: 1,
                     ),
@@ -85,7 +84,7 @@ class _NoteCard extends StatelessWidget {
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(14),
-                color: AppColors.softBlue,
+                color: Theme.of(context).colorScheme.surfaceContainerHighest,
                 child: Text(
                   entry.note,
                   maxLines: 8,
@@ -101,7 +100,7 @@ class _NoteCard extends StatelessWidget {
                   Text(
                     'abrir assunto',
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                          color: AppColors.muted,
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
                           fontSize: 9,
                         ),
                   ),
@@ -141,7 +140,7 @@ class _EmptyNotes extends StatelessWidget {
               Text(
                 'Dentro de qualquer leitura, toque no ícone de nota para guardar uma ideia, conexão ou exemplo que queira lembrar.',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: AppColors.muted,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
               ),
             ],

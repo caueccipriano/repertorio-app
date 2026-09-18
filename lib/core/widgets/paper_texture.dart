@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../app/theme/app_colors.dart';
-
 class PaperTexture extends StatelessWidget {
   const PaperTexture({super.key, required this.child});
 
@@ -9,16 +7,19 @@ class PaperTexture extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final dark = theme.brightness == Brightness.dark;
+
     return Stack(
       fit: StackFit.expand,
       children: [
         ColoredBox(
-          color: AppColors.paper,
+          color: theme.scaffoldBackgroundColor,
           child: child,
         ),
-        const IgnorePointer(
+        IgnorePointer(
           child: CustomPaint(
-            painter: _PaperTexturePainter(),
+            painter: _PaperTexturePainter(dark: dark),
           ),
         ),
       ],
@@ -27,12 +28,15 @@ class PaperTexture extends StatelessWidget {
 }
 
 class _PaperTexturePainter extends CustomPainter {
-  const _PaperTexturePainter();
+  const _PaperTexturePainter({required this.dark});
+
+  final bool dark;
 
   @override
   void paint(Canvas canvas, Size size) {
     final grain = Paint()
-      ..color = const Color(0xFF1A1A1A).withValues(alpha: .025);
+      ..color = (dark ? Colors.white : const Color(0xFF1A1A1A))
+          .withValues(alpha: dark ? .018 : .025);
 
     for (var y = 7.0; y < size.height; y += 17) {
       for (var x = 11.0; x < size.width; x += 23) {
@@ -46,7 +50,8 @@ class _PaperTexturePainter extends CustomPainter {
     }
 
     final fibers = Paint()
-      ..color = const Color(0xFF6C6559).withValues(alpha: .018)
+      ..color = (dark ? const Color(0xFF9EA7C0) : const Color(0xFF6C6559))
+          .withValues(alpha: dark ? .012 : .018)
       ..strokeWidth = .6;
 
     for (var y = 14.0; y < size.height; y += 37) {
@@ -59,5 +64,6 @@ class _PaperTexturePainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+  bool shouldRepaint(covariant _PaperTexturePainter oldDelegate) =>
+      oldDelegate.dark != dark;
 }

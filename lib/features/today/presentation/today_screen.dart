@@ -11,6 +11,7 @@ import '../../article/presentation/quick_peek.dart';
 import '../../explore/presentation/knowledge_map_screen.dart';
 import '../../review/presentation/review_screen.dart';
 import '../../search/presentation/search_screen.dart';
+import '../../study/data/personal_library_engine.dart';
 import '../data/demo_topics.dart';
 import '../domain/knowledge_topic.dart';
 
@@ -20,11 +21,14 @@ class TodayScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = AppStateScope.of(context);
+    const engine = PersonalLibraryEngine();
     final featured = _featuredTopic(state.historyTopicIds);
     final dailyTopics = _dailyTopics();
     final continueTopic = _continueTopic(state.progressByTopic);
     final outsideBubble = _outsideBubble(state.historyTopicIds);
     final personalTrail = _personalTrail(state.historyTopicIds);
+    final dailyPlan = engine.dailyPlan(state, budgetMinutes: 12);
+    final featuredReason = engine.reasonFor(state, featured);
 
     return PaperTexture(
       child: SafeArea(
@@ -40,14 +44,14 @@ class TodayScreen extends StatelessWidget {
                   read: state.completedTopicIds.length,
                 ),
                 const SizedBox(height: 16),
-                _FeaturedKnowledge(topic: featured),
+                _FeaturedKnowledge(
+                  topic: featured,
+                  reason: featuredReason,
+                ),
                 const SizedBox(height: 14),
                 _QuickActions(rootTopic: featured),
                 const SizedBox(height: 18),
-                _DailyBrief(
-                  topics: dailyTopics.take(3).toList(),
-                  dueReviews: state.dueReviewTopicIds().length,
-                ),
+                _DailyPlanCard(tasks: dailyPlan),
                 const SizedBox(height: 26),
                 _Shelf(
                   title: 'para hoje',
@@ -84,11 +88,11 @@ class TodayScreen extends StatelessWidget {
                   hasHistory: state.historyTopicIds.isNotEmpty,
                 ),
                 const SizedBox(height: 18),
-                const Center(
+                Center(
                   child: HandNote(
                     'sua biblioteca mental cresce uma leitura por vez.',
                     fontSize: 20,
-                    color: AppColors.muted,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -211,7 +215,7 @@ class _LibraryStatusBar extends StatelessWidget {
         Text(
           'repertório*',
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                color: AppColors.blue,
+                color: Theme.of(context).colorScheme.primary,
                 fontWeight: FontWeight.w800,
                 letterSpacing: -.7,
               ),
@@ -221,7 +225,7 @@ class _LibraryStatusBar extends StatelessWidget {
           dateLabel,
           style: Theme.of(context).textTheme.labelLarge?.copyWith(
                 fontSize: 10,
-                color: AppColors.muted,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
                 letterSpacing: .7,
               ),
         ),
@@ -229,13 +233,13 @@ class _LibraryStatusBar extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
           decoration: BoxDecoration(
-            border: Border.all(color: AppColors.line),
+            border: Border.all(color: Theme.of(context).colorScheme.outline),
           ),
           child: Text(
             '$read lidos',
             style: Theme.of(context).textTheme.labelLarge?.copyWith(
                   fontSize: 9,
-                  color: AppColors.muted,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
           ),
         ),
@@ -245,9 +249,13 @@ class _LibraryStatusBar extends StatelessWidget {
 }
 
 class _FeaturedKnowledge extends StatelessWidget {
-  const _FeaturedKnowledge({required this.topic});
+  const _FeaturedKnowledge({
+    required this.topic,
+    required this.reason,
+  });
 
   final KnowledgeTopic topic;
+  final String reason;
 
   @override
   Widget build(BuildContext context) {
@@ -270,8 +278,11 @@ class _FeaturedKnowledge extends StatelessWidget {
           height: height,
           padding: EdgeInsets.all(wide ? 18 : 12),
           decoration: BoxDecoration(
-            color: AppColors.paperWhite,
-            border: Border.all(color: AppColors.ink, width: 1.2),
+            color: Theme.of(context).colorScheme.surface,
+            border: Border.all(
+              color: Theme.of(context).colorScheme.outline,
+              width: 1.2,
+            ),
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -300,7 +311,7 @@ class _FeaturedKnowledge extends StatelessWidget {
                       style: Theme.of(context).textTheme.labelLarge?.copyWith(
                             fontSize: 9,
                             letterSpacing: 1.3,
-                            color: AppColors.blue,
+                            color: Theme.of(context).colorScheme.primary,
                           ),
                     ),
                     SizedBox(height: wide ? 18 : 10),
@@ -316,9 +327,19 @@ class _FeaturedKnowledge extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
+                      reason,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: Theme.of(context).colorScheme.primary,
+                            fontWeight: FontWeight.w700,
+                          ),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
                       topic.tags.join(' · '),
                       style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                            color: AppColors.muted,
+                            color: Theme.of(context).colorScheme.onSurfaceVariant,
                             fontSize: 10,
                           ),
                     ),
@@ -331,7 +352,7 @@ class _FeaturedKnowledge extends StatelessWidget {
                             vertical: 5,
                           ),
                           decoration: BoxDecoration(
-                            border: Border.all(color: AppColors.ink),
+                            border: Border.all(color: Theme.of(context).colorScheme.onSurface),
                             borderRadius: BorderRadius.circular(99),
                           ),
                           child: Text(
@@ -421,7 +442,7 @@ class _QuickActions extends StatelessWidget {
     return Container(
       height: 44,
       decoration: BoxDecoration(
-        border: Border.all(color: AppColors.ink),
+        border: Border.all(color: Theme.of(context).colorScheme.onSurface),
       ),
       child: Row(
         children: actions.indexed.map((item) {
@@ -432,8 +453,10 @@ class _QuickActions extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: item.$1 == actions.length - 1
                       ? null
-                      : const Border(
-                          right: BorderSide(color: AppColors.ink),
+                      : Border(
+                          right: BorderSide(
+                            color: Theme.of(context).colorScheme.outline,
+                          ),
                         ),
                 ),
                 child: Row(
@@ -471,22 +494,24 @@ class _QuickAction {
   final VoidCallback onTap;
 }
 
-class _DailyBrief extends StatelessWidget {
-  const _DailyBrief({
-    required this.topics,
-    required this.dueReviews,
-  });
+class _DailyPlanCard extends StatelessWidget {
+  const _DailyPlanCard({required this.tasks});
 
-  final List<KnowledgeTopic> topics;
-  final int dueReviews;
+  final List<DailyTask> tasks;
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    final totalMinutes = tasks.fold<int>(
+      0,
+      (sum, task) => sum + task.minutes,
+    );
+
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: AppColors.paperWhite,
-        border: Border.all(color: AppColors.line),
+        color: colors.surface,
+        border: Border.all(color: colors.outline),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -494,64 +519,84 @@ class _DailyBrief extends StatelessWidget {
           Row(
             children: [
               Text(
-                'EDIÇÃO DO DIA',
+                'HOJE, FAÇA ISSO',
                 style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      color: AppColors.blue,
+                      color: colors.primary,
                       fontSize: 9,
                       letterSpacing: 1.1,
                     ),
               ),
               const Spacer(),
-              if (dueReviews > 0)
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 4,
-                  ),
-                  color: AppColors.softBlue,
-                  child: Text(
-                    '$dueReviews revisão${dueReviews == 1 ? '' : 'ões'}',
-                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                          color: AppColors.blue,
-                          fontSize: 9,
-                        ),
-                  ),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8,
+                  vertical: 4,
                 ),
+                color: colors.surfaceContainerHighest,
+                child: Text(
+                  '~$totalMinutes min',
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        color: colors.primary,
+                        fontSize: 9,
+                      ),
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 12),
-          ...topics.indexed.map(
+          ...tasks.indexed.map(
             (item) => InkWell(
-              onTap: () => showQuickPeek(context, item.$2),
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => ArticleScreen(topic: item.$2.topic),
+                ),
+              ),
               child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 9),
+                padding: const EdgeInsets.symmetric(vertical: 10),
                 decoration: BoxDecoration(
                   border: Border(
-                    bottom: item.$1 == topics.length - 1
+                    bottom: item.$1 == tasks.length - 1
                         ? BorderSide.none
-                        : const BorderSide(color: AppColors.line),
+                        : BorderSide(color: colors.outline),
                   ),
                 ),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      '0${item.$1 + 1}',
-                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                            color: AppColors.blue,
-                            fontSize: 9,
-                          ),
-                    ),
-                    const SizedBox(width: 12),
+                    _TaskIcon(type: item.$2.type),
+                    const SizedBox(width: 11),
                     Expanded(
-                      child: Text(
-                        item.$2.quickTake,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.bodyMedium,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            item.$2.topic.title,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style:
+                                Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                      fontWeight: FontWeight.w800,
+                                    ),
+                          ),
+                          const SizedBox(height: 3),
+                          Text(
+                            item.$2.reason,
+                            style:
+                                Theme.of(context).textTheme.bodySmall?.copyWith(
+                                      color: colors.onSurfaceVariant,
+                                    ),
+                          ),
+                        ],
                       ),
                     ),
                     const SizedBox(width: 8),
-                    const Icon(Icons.add_circle_outline, size: 18),
+                    Text(
+                      '${item.$2.minutes} min',
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                            color: colors.primary,
+                            fontSize: 9,
+                          ),
+                    ),
                   ],
                 ),
               ),
@@ -559,6 +604,34 @@ class _DailyBrief extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _TaskIcon extends StatelessWidget {
+  const _TaskIcon({required this.type});
+
+  final DailyTaskType type;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    final icon = switch (type) {
+      DailyTaskType.discovery => Icons.explore_outlined,
+      DailyTaskType.review => Icons.refresh,
+      DailyTaskType.connection => Icons.hub_outlined,
+      DailyTaskType.quick => Icons.bolt_outlined,
+    };
+
+    return Container(
+      width: 30,
+      height: 30,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: colors.surfaceContainerHighest,
+        shape: BoxShape.circle,
+      ),
+      child: Icon(icon, size: 16, color: colors.primary),
     );
   }
 }
@@ -573,8 +646,8 @@ class _PersonalTrailCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 18),
       decoration: BoxDecoration(
-        color: AppColors.softBlue,
-        border: Border.all(color: AppColors.blue),
+        color: Theme.of(context).colorScheme.surfaceContainerHighest,
+        border: Border.all(color: Theme.of(context).colorScheme.primary),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -582,7 +655,7 @@ class _PersonalTrailCard extends StatelessWidget {
           Text(
             'TRILHA PARA VOCÊ',
             style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                  color: AppColors.blue,
+                  color: Theme.of(context).colorScheme.primary,
                   fontSize: 9,
                   letterSpacing: 1.1,
                 ),
@@ -609,7 +682,7 @@ class _PersonalTrailCard extends StatelessWidget {
                     Text(
                       '0${item.$1 + 1}',
                       style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                            color: AppColors.blue,
+                            color: Theme.of(context).colorScheme.primary,
                             fontSize: 9,
                           ),
                     ),
@@ -699,7 +772,7 @@ class _ShelfHeader extends StatelessWidget {
               Text(
                 subtitle,
                 style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      color: AppColors.muted,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                       fontSize: 10,
                     ),
               ),
@@ -750,7 +823,7 @@ class _ShelfBook extends StatelessWidget {
             '${topic.minutes} min',
             style: Theme.of(context).textTheme.labelLarge?.copyWith(
                   fontSize: 9,
-                  color: AppColors.muted,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
           ),
         ],
@@ -791,8 +864,10 @@ class _ContinueShelf extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.fromLTRB(14, 14, 14, 12),
               decoration: BoxDecoration(
-                color: AppColors.paperWhite,
-                border: Border.all(color: AppColors.ink),
+                color: Theme.of(context).colorScheme.surface,
+                border: Border.all(
+                  color: Theme.of(context).colorScheme.outline,
+                ),
               ),
               child: Row(
                 children: [
@@ -822,7 +897,7 @@ class _ContinueShelf extends StatelessWidget {
                           '${topic.tags.join(' · ')} · ${topic.minutes} min',
                           style:
                               Theme.of(context).textTheme.labelLarge?.copyWith(
-                                    color: AppColors.muted,
+                                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                                     fontSize: 10,
                                   ),
                         ),
@@ -830,15 +905,15 @@ class _ContinueShelf extends StatelessWidget {
                         LinearProgressIndicator(
                           value: progress,
                           minHeight: 5,
-                          color: AppColors.blue,
-                          backgroundColor: AppColors.line,
+                          color: Theme.of(context).colorScheme.primary,
+                          backgroundColor: Theme.of(context).colorScheme.outline,
                         ),
                         const SizedBox(height: 6),
                         Text(
                           '$percent% lido',
                           style:
                               Theme.of(context).textTheme.labelLarge?.copyWith(
-                                    color: AppColors.blue,
+                                    color: Theme.of(context).colorScheme.primary,
                                     fontSize: 9,
                                   ),
                         ),
@@ -863,7 +938,7 @@ class _OutsideBubbleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: AppColors.paperWhite,
+      color: Theme.of(context).colorScheme.surface,
       child: InkWell(
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute<void>(
@@ -875,13 +950,13 @@ class _OutsideBubbleCard extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.all(18),
           decoration: BoxDecoration(
-            border: Border.all(color: AppColors.ink),
+            border: Border.all(color: Theme.of(context).colorScheme.onSurface),
           ),
           child: Row(
             children: [
-              const Icon(
+              Icon(
                 Icons.shuffle_rounded,
-                color: AppColors.blue,
+                color: Theme.of(context).colorScheme.primary,
                 size: 30,
               ),
               const SizedBox(width: 15),
@@ -892,7 +967,7 @@ class _OutsideBubbleCard extends StatelessWidget {
                     Text(
                       'SAIA DA SUA BOLHA',
                       style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                            color: AppColors.blue,
+                            color: Theme.of(context).colorScheme.primary,
                             fontSize: 9,
                             letterSpacing: 1.1,
                           ),
@@ -942,7 +1017,7 @@ class _RabbitHoleShelf extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 18),
           decoration: BoxDecoration(
-            border: Border.all(color: AppColors.ink),
+            border: Border.all(color: Theme.of(context).colorScheme.onSurface),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

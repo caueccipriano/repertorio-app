@@ -7,10 +7,13 @@ import '../../review/presentation/review_screen.dart';
 import '../../today/data/demo_topics.dart';
 import '../../today/domain/knowledge_topic.dart';
 import '../data/study_content.dart';
+import 'collections_screen.dart';
 import 'comparisons_screen.dart';
 import 'entities_screen.dart';
 import 'highlights_screen.dart';
 import 'history_screen.dart';
+import 'mastery_screen.dart';
+import 'personal_connections_screen.dart';
 import 'personal_knowledge_map_screen.dart';
 import 'quiz_screen.dart';
 import 'read_later_screen.dart';
@@ -26,6 +29,36 @@ class StudyHubScreen extends StatelessWidget {
     final quizTopic = _quizTopic(state.historyTopicIds);
 
     final tools = <_StudyTool>[
+      _StudyTool(
+        title: 'domínio',
+        subtitle: 'Novo → familiar → entendido → consolidado.',
+        icon: Icons.auto_graph_outlined,
+        badge: state.historyTopicIds.isEmpty
+            ? null
+            : '${state.historyTopicIds.length}',
+        onTap: () => _push(context, const MasteryScreen()),
+      ),
+      _StudyTool(
+        title: 'coleções',
+        subtitle: 'Prateleiras pessoais para organizar seu repertório.',
+        icon: Icons.collections_bookmark_outlined,
+        badge: state.collectionsByName.isEmpty
+            ? null
+            : '${state.collectionsByName.length}',
+        onTap: () => _push(context, const CollectionsScreen()),
+      ),
+      _StudyTool(
+        title: 'suas conexões',
+        subtitle: 'Registre relações que só você percebeu.',
+        icon: Icons.add_link,
+        badge: state.personalConnections.isEmpty
+            ? null
+            : '${state.personalConnections.length}',
+        onTap: () => _push(
+          context,
+          const PersonalConnectionsScreen(),
+        ),
+      ),
       _StudyTool(
         title: 'flashcards',
         subtitle: 'Revisão espaçada do que você já viu.',
@@ -113,8 +146,10 @@ class StudyHubScreen extends StatelessWidget {
       ),
     ];
 
+    final colors = Theme.of(context).colorScheme;
+
     return Scaffold(
-      backgroundColor: AppColors.paper,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         bottom: false,
         child: ListView(
@@ -128,7 +163,7 @@ class StudyHubScreen extends StatelessWidget {
             Text(
               'Consumir é só o começo. Aqui você transforma leitura em memória, conexão e repertório.',
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: AppColors.muted,
+                    color: colors.onSurfaceVariant,
                   ),
             ),
             const SizedBox(height: 24),
@@ -204,6 +239,7 @@ class _StudySummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
     final values = [
       (due, 'revisões'),
       (queue, 'na fila'),
@@ -213,7 +249,7 @@ class _StudySummary extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: AppColors.deepBlue,
-        border: Border.all(color: AppColors.ink),
+        border: Border.all(color: Theme.of(context).colorScheme.outline),
       ),
       child: Row(
         children: values.indexed
@@ -236,7 +272,7 @@ class _StudySummary extends StatelessWidget {
                             .textTheme
                             .displayMedium
                             ?.copyWith(
-                              color: Colors.white,
+                              color: colors.onPrimary,
                               fontSize: 34,
                             ),
                       ),
@@ -266,8 +302,10 @@ class _ToolCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
     return Material(
-      color: AppColors.paperWhite,
+      color: colors.surface,
       child: InkWell(
         onTap: tool.onTap,
         child: SizedBox(
@@ -275,7 +313,7 @@ class _ToolCard extends StatelessWidget {
           child: Container(
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
-            border: Border.all(color: AppColors.ink),
+            border: Border.all(color: colors.outline),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -290,8 +328,8 @@ class _ToolCard extends StatelessWidget {
                         horizontal: 7,
                         vertical: 3,
                       ),
-                      decoration: const BoxDecoration(
-                        color: AppColors.blue,
+                      decoration: BoxDecoration(
+                        color: colors.primary,
                         shape: BoxShape.circle,
                       ),
                       child: Text(
@@ -318,7 +356,7 @@ class _ToolCard extends StatelessWidget {
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.muted,
+                      color: colors.onSurfaceVariant,
                       height: 1.3,
                     ),
               ),

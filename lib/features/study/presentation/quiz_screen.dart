@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/state/app_state_scope.dart';
-import '../../../app/theme/app_colors.dart';
 import '../../today/domain/knowledge_topic.dart';
 import '../data/study_content.dart';
 
@@ -65,7 +64,7 @@ class _QuizScreenState extends State<QuizScreen> {
             Text(
               widget.topic.tags.join(' · ').toUpperCase(),
               style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                    color: AppColors.blue,
+                    color: Theme.of(context).colorScheme.primary,
                     fontSize: 9,
                     letterSpacing: 1.1,
                   ),
@@ -85,7 +84,7 @@ class _QuizScreenState extends State<QuizScreen> {
 
               Color? background;
               if (revealed && correct) {
-                background = AppColors.softBlue;
+                background = Theme.of(context).colorScheme.surfaceContainerHighest;
               } else if (revealed && selected && !correct) {
                 background = const Color(0xFFF3DFD7);
               }
@@ -93,7 +92,7 @@ class _QuizScreenState extends State<QuizScreen> {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 10),
                 child: Material(
-                  color: background ?? AppColors.paperWhite,
+                  color: background ?? Theme.of(context).colorScheme.surface,
                   child: InkWell(
                     onTap: revealed
                         ? null
@@ -108,8 +107,8 @@ class _QuizScreenState extends State<QuizScreen> {
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: selected || (revealed && correct)
-                              ? AppColors.blue
-                              : AppColors.ink,
+                              ? Theme.of(context).colorScheme.primary
+                              : Theme.of(context).colorScheme.onSurface,
                           width: selected || (revealed && correct) ? 2 : 1,
                         ),
                       ),
@@ -122,9 +121,9 @@ class _QuizScreenState extends State<QuizScreen> {
                             ),
                           ),
                           if (revealed && correct)
-                            const Icon(
+                            Icon(
                               Icons.check_circle,
-                              color: AppColors.blue,
+                              color: Theme.of(context).colorScheme.primary,
                             ),
                           if (revealed && selected && !correct)
                             const Icon(Icons.close),
@@ -139,7 +138,7 @@ class _QuizScreenState extends State<QuizScreen> {
               const SizedBox(height: 12),
               Container(
                 padding: const EdgeInsets.all(16),
-                color: AppColors.paperWhite,
+                color: Theme.of(context).colorScheme.surface,
                 child: Text(
                   question.explanation,
                   style: Theme.of(context).textTheme.bodyMedium,
@@ -210,7 +209,7 @@ class _Result extends StatelessWidget {
               Text(
                 '$score/$total',
                 style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                      color: AppColors.blue,
+                      color: Theme.of(context).colorScheme.primary,
                       fontSize: 78,
                     ),
               ),
@@ -222,7 +221,7 @@ class _Result extends StatelessWidget {
               Text(
                 'O resultado ficou salvo no seu repertório. O objetivo não é acertar tudo de primeira — é descobrir o que vale revisar.',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: AppColors.muted,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
               ),
               const Spacer(),

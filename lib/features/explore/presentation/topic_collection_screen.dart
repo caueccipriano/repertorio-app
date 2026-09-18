@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../app/theme/app_colors.dart';
 import '../../../core/widgets/editorial_frame.dart';
 import '../../../core/widgets/knowledge_cover.dart';
 import '../../../core/widgets/paper_texture.dart';
@@ -65,7 +64,7 @@ class TopicCollectionScreen extends StatelessWidget {
                   child: Text(
                     subtitle,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: AppColors.muted,
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
                           fontSize: 17,
                         ),
                   ),
@@ -146,7 +145,7 @@ class _CollectionMeta extends StatelessWidget {
     return Container(
       height: 42,
       decoration: BoxDecoration(
-        border: Border.all(color: AppColors.ink),
+        border: Border.all(color: Theme.of(context).colorScheme.onSurface),
       ),
       child: Row(
         children: [
@@ -161,7 +160,7 @@ class _CollectionMeta extends StatelessWidget {
               ),
             ),
           ),
-          const VerticalDivider(width: 1, color: AppColors.ink),
+          VerticalDivider(width: 1, color: Theme.of(context).colorScheme.onSurface),
           Expanded(
             child: Center(
               child: Text(
@@ -173,7 +172,7 @@ class _CollectionMeta extends StatelessWidget {
               ),
             ),
           ),
-          const VerticalDivider(width: 1, color: AppColors.ink),
+          VerticalDivider(width: 1, color: Theme.of(context).colorScheme.onSurface),
           Expanded(
             child: Center(
               child: Text(
@@ -236,7 +235,7 @@ class _TopicTile extends StatelessWidget {
           Text(
             '${topic.minutes} min · ${topic.tags.first}',
             style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                  color: AppColors.muted,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                   fontSize: 9,
                 ),
           ),
@@ -255,8 +254,8 @@ class _EmptyCollection extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: AppColors.paperWhite,
-        border: Border.all(color: AppColors.ink),
+        color: Theme.of(context).colorScheme.surface,
+        border: Border.all(color: Theme.of(context).colorScheme.onSurface),
       ),
       child: Text(
         'Esta estante ainda está sendo montada.',

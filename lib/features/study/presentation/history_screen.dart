@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/state/app_state_scope.dart';
-import '../../../app/theme/app_colors.dart';
 import '../../article/presentation/article_screen.dart';
 import '../../today/data/demo_topics.dart';
 import '../../today/domain/knowledge_topic.dart';
@@ -25,8 +24,10 @@ class HistoryScreen extends StatelessWidget {
             : ListView.separated(
                 padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
                 itemCount: topics.length,
-                separatorBuilder: (_, __) =>
-                    const Divider(height: 1, color: AppColors.line),
+                separatorBuilder: (_, __) => Divider(
+                  height: 1,
+                  color: Theme.of(context).colorScheme.outline,
+                ),
                 itemBuilder: (context, index) {
                   final topic = topics[index];
                   final opened = state.lastOpenedByTopic[topic.id];
@@ -38,8 +39,8 @@ class HistoryScreen extends StatelessWidget {
                       vertical: 8,
                     ),
                     leading: CircleAvatar(
-                      backgroundColor: AppColors.softBlue,
-                      foregroundColor: AppColors.blue,
+                      backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
+                      foregroundColor: Theme.of(context).colorScheme.primary,
                       child: Text(
                         '${(progress * 100).round()}',
                         style: const TextStyle(

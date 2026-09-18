@@ -34,8 +34,8 @@ class _ComparisonCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.paperWhite,
-        border: Border.all(color: AppColors.ink),
+        color: Theme.of(context).colorScheme.surface,
+        border: Border.all(color: Theme.of(context).colorScheme.onSurface),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,10 +48,10 @@ class _ComparisonCard extends StatelessWidget {
             ),
           ),
           Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               border: Border(
-                top: BorderSide(color: AppColors.ink),
-                bottom: BorderSide(color: AppColors.ink),
+                top: BorderSide(color: Theme.of(context).colorScheme.onSurface),
+                bottom: BorderSide(color: Theme.of(context).colorScheme.onSurface),
               ),
             ),
             child: Row(
@@ -71,9 +71,9 @@ class _ComparisonCard extends StatelessWidget {
           ),
           ...item.rows.map(
             (row) => Container(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 border: Border(
-                  bottom: BorderSide(color: AppColors.line),
+                  bottom: BorderSide(color: Theme.of(context).colorScheme.outline),
                 ),
               ),
               child: Row(
@@ -89,7 +89,7 @@ class _ComparisonCard extends StatelessWidget {
                             .textTheme
                             .labelLarge
                             ?.copyWith(
-                              color: AppColors.muted,
+                              color: Theme.of(context).colorScheme.onSurfaceVariant,
                               fontSize: 9,
                             ),
                       ),
@@ -124,12 +124,12 @@ class _HeaderCell extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(10),
-      color: dark ? AppColors.deepBlue : AppColors.softBlue,
+      color: dark ? AppColors.deepBlue : Theme.of(context).colorScheme.surfaceContainerHighest,
       child: Text(
         text,
         textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.labelLarge?.copyWith(
-              color: dark ? Colors.white : AppColors.ink,
+              color: dark ? Colors.white : Theme.of(context).colorScheme.onSurface,
               fontSize: 10,
             ),
       ),
@@ -146,9 +146,9 @@ class _ValueCell extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(10),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         border: Border(
-          left: BorderSide(color: AppColors.line),
+          left: BorderSide(color: Theme.of(context).colorScheme.outline),
         ),
       ),
       child: Text(

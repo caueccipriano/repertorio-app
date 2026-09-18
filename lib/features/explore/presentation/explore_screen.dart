@@ -137,7 +137,7 @@ class ExploreScreen extends StatelessWidget {
                 Text(
                   'Navegue como numa biblioteca. Cada tema abre uma estante de assuntos conectados.',
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: AppColors.muted,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
                 ),
                 const SizedBox(height: 22),
@@ -199,7 +199,7 @@ class _TrailRail extends StatelessWidget {
         Text(
           'Sequências curtas para estudar com contexto.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppColors.muted,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
               ),
         ),
         const SizedBox(height: 14),
@@ -216,7 +216,7 @@ class _TrailRail extends StatelessWidget {
                 child: Material(
                   color: index.isEven
                       ? AppColors.deepBlue
-                      : AppColors.paperWhite,
+                      : Theme.of(context).colorScheme.surface,
                   child: InkWell(
                     onTap: () => Navigator.of(context).push(
                       MaterialPageRoute<void>(
@@ -230,7 +230,7 @@ class _TrailRail extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        border: Border.all(color: AppColors.ink),
+                        border: Border.all(color: Theme.of(context).colorScheme.onSurface),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -241,7 +241,7 @@ class _TrailRail extends StatelessWidget {
                                 Theme.of(context).textTheme.labelLarge?.copyWith(
                                       color: index.isEven
                                           ? Colors.white60
-                                          : AppColors.blue,
+                                          : Theme.of(context).colorScheme.primary,
                                       fontSize: 9,
                                       letterSpacing: 1,
                                     ),
@@ -257,7 +257,7 @@ class _TrailRail extends StatelessWidget {
                                 ?.copyWith(
                                   color: index.isEven
                                       ? Colors.white
-                                      : AppColors.ink,
+                                      : Theme.of(context).colorScheme.onSurface,
                                   fontSize: 23,
                                   height: 1.02,
                                 ),
@@ -270,7 +270,7 @@ class _TrailRail extends StatelessWidget {
                                 style: TextStyle(
                                   color: index.isEven
                                       ? Colors.white70
-                                      : AppColors.muted,
+                                      : Theme.of(context).colorScheme.onSurfaceVariant,
                                   fontSize: 10,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -280,7 +280,7 @@ class _TrailRail extends StatelessWidget {
                                 Icons.arrow_forward,
                                 color: index.isEven
                                     ? Colors.white
-                                    : AppColors.ink,
+                                    : Theme.of(context).colorScheme.onSurface,
                                 size: 18,
                               ),
                             ],
@@ -331,13 +331,13 @@ class _FilterRail extends StatelessWidget {
             alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(horizontal: 14),
             decoration: BoxDecoration(
-              color: selected ? AppColors.ink : AppColors.paperWhite,
-              border: Border.all(color: AppColors.ink),
+              color: selected ? Theme.of(context).colorScheme.onSurface : Theme.of(context).colorScheme.surface,
+              border: Border.all(color: Theme.of(context).colorScheme.onSurface),
             ),
             child: Text(
               filters[index],
               style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                    color: selected ? AppColors.paperWhite : AppColors.ink,
+                    color: selected ? Theme.of(context).colorScheme.surface : Theme.of(context).colorScheme.onSurface,
                     fontSize: 9,
                     letterSpacing: .7,
                   ),
@@ -404,7 +404,7 @@ class _CatalogCard extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontSize: 11,
-                  color: AppColors.muted,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                   height: 1.3,
                 ),
           ),
