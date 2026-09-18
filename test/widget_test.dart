@@ -121,7 +121,7 @@ void main() {
 
     expect(find.byKey(const ValueKey('reader-audio')), findsOneWidget);
     expect(find.byKey(const ValueKey('reader-settings')), findsOneWidget);
-    expect(find.text('ÁUDIO'), findsOneWidget);
+    expect(find.text('▶'), findsOneWidget);
 
     await tester.tap(find.byKey(const ValueKey('reader-settings')));
     await tester.pumpAndSettle();
