@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -172,9 +174,9 @@ class _AsteriskPainter extends CustomPainter {
     final r = size.shortestSide * .42;
 
     for (var i = 0; i < 4; i++) {
-      final angle = i * .7853981634;
-      final dx = r * _cosApprox(angle);
-      final dy = r * _sinApprox(angle);
+      final angle = i * math.pi / 4;
+      final dx = r * math.cos(angle);
+      final dy = r * math.sin(angle);
 
       canvas.drawLine(
         Offset(center.dx - dx, center.dy - dy),
@@ -183,19 +185,6 @@ class _AsteriskPainter extends CustomPainter {
       );
     }
   }
-
-  double _sinApprox(double x) {
-    const pi = 3.141592653589793;
-    while (x > pi) {
-      x -= 2 * pi;
-    }
-    while (x < -pi) {
-      x += 2 * pi;
-    }
-    return x * (1 - (x.abs() / pi));
-  }
-
-  double _cosApprox(double x) => _sinApprox(x + 1.5707963267948966);
 
   @override
   bool shouldRepaint(covariant _AsteriskPainter oldDelegate) =>
@@ -222,9 +211,11 @@ class DoodleUnderline extends StatelessWidget {
           left: 0,
           right: 0,
           bottom: -4,
-          child: CustomPaint(
-            size: const Size(double.infinity, 8),
-            painter: _UnderlinePainter(color),
+          child: SizedBox(
+            height: 8,
+            child: CustomPaint(
+              painter: _UnderlinePainter(color),
+            ),
           ),
         ),
       ],
