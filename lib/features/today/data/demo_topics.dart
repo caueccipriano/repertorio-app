@@ -34,6 +34,14 @@ const bauhausTopic = KnowledgeTopic(
   connections: ['Modernismo', 'Brasília', 'Tipografia', 'Le Corbusier'],
   media: [
     KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/2CbfpKhrAIWYkN3zvywt53',
+      title: '52 | Bauhaus',
+      caption: '14 min 59 s · Arquitetura Objetiva',
+      sourceLabel: 'Spotify · Arquitetura Objetiva',
+      sourceUrl: 'https://open.spotify.com/episode/2CbfpKhrAIWYkN3zvywt53',
+    ),
+    KnowledgeMedia(
       type: KnowledgeMediaType.image,
       url:
           'https://thumb.wikimedia.org/wikipedia/commons/thumb/a/aa/Bauhaus_Dessau.jpg/960px-Bauhaus_Dessau.jpg',
