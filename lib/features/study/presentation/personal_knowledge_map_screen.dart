@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../app/state/app_state.dart';
 import '../../../app/state/app_state_scope.dart';
-import '../../../app/theme/app_colors.dart';
 import '../../article/presentation/article_screen.dart';
 import '../../explore/data/knowledge_graph.dart';
 import '../../today/data/demo_topics.dart';
@@ -13,6 +13,7 @@ class PersonalKnowledgeMapScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = AppStateScope.of(context);
+    final colors = Theme.of(context).colorScheme;
     final ids = {
       ...state.historyTopicIds,
       ...state.completedTopicIds,
@@ -49,6 +50,11 @@ class PersonalKnowledgeMapScreen extends StatelessWidget {
                               painter: _PersonalMapPainter(
                                 topics: topics,
                                 positions: positions,
+                                personalConnections:
+                                    state.personalConnections,
+                                staticLine: colors.primary.withValues(alpha: .23),
+                                personalLine:
+                                    colors.secondary.withValues(alpha: .8),
                               ),
                             ),
                           ),
@@ -56,10 +62,8 @@ class PersonalKnowledgeMapScreen extends StatelessWidget {
                             _Node(
                               topic: topics[i],
                               center: positions[i],
-                              progress:
-                                  state.progressFor(topics[i].id),
-                              completed: state.completedTopicIds
-                                  .contains(topics[i].id),
+                              mastery: state.masteryLevel(topics[i].id),
+                              score: state.masteryScore(topics[i].id),
                             ),
                         ],
                       ),
@@ -106,19 +110,28 @@ class _Node extends StatelessWidget {
   const _Node({
     required this.topic,
     required this.center,
-    required this.progress,
-    required this.completed,
+    required this.mastery,
+    required this.score,
   });
 
   final KnowledgeTopic topic;
   final Offset center;
-  final double progress;
-  final bool completed;
+  final MasteryLevel mastery;
+  final double score;
 
   @override
   Widget build(BuildContext context) {
     const width = 122.0;
-    const height = 74.0;
+    const height = 78.0;
+    final colors = Theme.of(context).colorScheme;
+    final consolidated = mastery == MasteryLevel.consolidated;
+    final background = switch (mastery) {
+      MasteryLevel.newTopic => colors.surface,
+      MasteryLevel.familiar => colors.surfaceContainerHighest,
+      MasteryLevel.understood => colors.primaryContainer,
+      MasteryLevel.consolidated => colors.primary,
+    };
+    final foreground = consolidated ? colors.onPrimary : colors.onSurface;
 
     return Positioned(
       left: center.dx - width / 2,
@@ -126,13 +139,9 @@ class _Node extends StatelessWidget {
       width: width,
       height: height,
       child: Material(
-        color: completed
-            ? AppColors.blue
-            : progress > 0
-                ? AppColors.softBlue
-                : AppColors.paperWhite,
+        color: background,
         shape: RoundedRectangleBorder(
-          side: const BorderSide(color: AppColors.ink),
+          side: BorderSide(color: colors.outline),
           borderRadius: BorderRadius.circular(3),
         ),
         child: InkWell(
@@ -152,23 +161,18 @@ class _Node extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                        color:
-                            completed ? Colors.white : AppColors.ink,
+                        color: foreground,
                         fontSize: 9,
                         height: 1.1,
                       ),
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  completed
-                      ? 'consolidado'
-                      : progress > 0
-                          ? '${(progress * 100).round()}%'
-                          : 'explorado',
+                  '${_label(mastery)} · ${(score * 100).round()}%',
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                        color: completed
-                            ? Colors.white70
-                            : AppColors.muted,
+                        color: consolidated
+                            ? colors.onPrimary.withValues(alpha: .75)
+                            : colors.onSurfaceVariant,
                         fontSize: 8,
                       ),
                 ),
@@ -179,22 +183,42 @@ class _Node extends StatelessWidget {
       ),
     );
   }
+
+  String _label(MasteryLevel level) {
+    return switch (level) {
+      MasteryLevel.newTopic => 'novo',
+      MasteryLevel.familiar => 'familiar',
+      MasteryLevel.understood => 'entendido',
+      MasteryLevel.consolidated => 'consolidado',
+    };
+  }
 }
 
 class _PersonalMapPainter extends CustomPainter {
   const _PersonalMapPainter({
     required this.topics,
     required this.positions,
+    required this.personalConnections,
+    required this.staticLine,
+    required this.personalLine,
   });
 
   final List<KnowledgeTopic> topics;
   final List<Offset> positions;
+  final List<PersonalConnection> personalConnections;
+  final Color staticLine;
+  final Color personalLine;
 
   @override
   void paint(Canvas canvas, Size size) {
     final line = Paint()
-      ..color = AppColors.blue.withValues(alpha: .25)
-      ..strokeWidth = 1.5;
+      ..color = staticLine
+      ..strokeWidth = 1.4;
+
+    final personal = Paint()
+      ..color = personalLine
+      ..strokeWidth = 2.4
+      ..strokeCap = StrokeCap.round;
 
     final indexById = <String, int>{
       for (var i = 0; i < topics.length; i++) topics[i].id: i,
@@ -206,6 +230,18 @@ class _PersonalMapPainter extends CustomPainter {
         if (j == null || j <= i) continue;
         canvas.drawLine(positions[i], positions[j], line);
       }
+    }
+
+    for (final connection in personalConnections) {
+      final from = indexById[connection.fromTopicId];
+      final to = indexById[connection.toTopicId];
+      if (from == null || to == null) continue;
+      canvas.drawLine(positions[from], positions[to], personal);
+      final midpoint = Offset(
+        (positions[from].dx + positions[to].dx) / 2,
+        (positions[from].dy + positions[to].dy) / 2,
+      );
+      canvas.drawCircle(midpoint, 4, personal);
     }
   }
 
