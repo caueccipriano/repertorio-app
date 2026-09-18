@@ -308,9 +308,6 @@ class AppState extends ChangeNotifier {
   }
 
   Future<void> reorderReadLater(int oldIndex, int newIndex) async {
-    if (oldIndex < newIndex) {
-      newIndex -= 1;
-    }
     final item = readLaterQueue.removeAt(oldIndex);
     readLaterQueue.insert(newIndex, item);
     await _prefs.setStringList(_queueKey, readLaterQueue);
