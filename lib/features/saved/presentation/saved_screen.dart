@@ -72,7 +72,7 @@ class _SavedScreenState extends State<SavedScreen> {
               Text(
                 'Assuntos que você realmente salvou aparecem aqui.',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: AppColors.muted,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
               ),
               const SizedBox(height: 20),
@@ -146,7 +146,7 @@ class _SavedTabs extends StatelessWidget {
     return Container(
       height: 40,
       decoration: BoxDecoration(
-        border: Border.all(color: AppColors.ink),
+        border: Border.all(color: Theme.of(context).colorScheme.onSurface),
       ),
       child: Row(
         children: tabs.indexed.map((item) {
@@ -159,19 +159,19 @@ class _SavedTabs extends StatelessWidget {
               child: Container(
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: isSelected ? AppColors.ink : Colors.transparent,
+                  color: isSelected ? Theme.of(context).colorScheme.onSurface : Colors.transparent,
                   border: item.$1 == tabs.length - 1
                       ? null
                       : const Border(
-                          right: BorderSide(color: AppColors.ink),
+                          right: BorderSide(color: Theme.of(context).colorScheme.onSurface),
                         ),
                 ),
                 child: Text(
                   item.$2.$2,
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
                         color: isSelected
-                            ? AppColors.paperWhite
-                            : AppColors.ink,
+                            ? Theme.of(context).colorScheme.surface
+                            : Theme.of(context).colorScheme.onSurface,
                         fontSize: 9,
                         letterSpacing: .6,
                       ),
@@ -214,8 +214,8 @@ class _EmptyLibrary extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
-            color: AppColors.paperWhite,
-            border: Border.all(color: AppColors.ink),
+            color: Theme.of(context).colorScheme.surface,
+            border: Border.all(color: Theme.of(context).colorScheme.onSurface),
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -286,7 +286,7 @@ class _SavedBook extends StatelessWidget {
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                color: AppColors.muted,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
                 fontSize: 9,
               ),
         ),
@@ -295,14 +295,14 @@ class _SavedBook extends StatelessWidget {
           LinearProgressIndicator(
             value: progress,
             minHeight: 4,
-            color: AppColors.blue,
-            backgroundColor: AppColors.line,
+            color: Theme.of(context).colorScheme.primary,
+            backgroundColor: Theme.of(context).colorScheme.outline,
           ),
           const SizedBox(height: 4),
           Text(
             '${(progress * 100).round()}%',
             style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                  color: AppColors.blue,
+                  color: Theme.of(context).colorScheme.primary,
                   fontSize: 9,
                 ),
           ),
