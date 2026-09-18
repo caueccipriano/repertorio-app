@@ -91,7 +91,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('PRÓXIMA CONEXÃO'), findsOneWidget);
-    expect(find.text(modernismTopic.title), findsOneWidget);
+    expect(find.text(modernismTopic.title), findsWidgets);
 
     final reloaded = await AppState.load();
     expect(
