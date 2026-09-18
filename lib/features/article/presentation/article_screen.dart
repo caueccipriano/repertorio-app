@@ -7,6 +7,8 @@ import '../../../app/state/app_state.dart';
 import '../../../app/state/app_state_scope.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../../core/audio/study_speech.dart';
+import '../../../core/offline/offline_cache.dart';
+import '../../../core/share/knowledge_card_share.dart';
 import '../../explore/data/knowledge_graph.dart';
 import '../../explore/presentation/knowledge_map_screen.dart';
 import '../../study/data/study_content.dart';
@@ -162,8 +164,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                 tooltip: offline
                     ? 'Remover disponibilidade offline'
                     : 'Disponível offline',
-                onPressed: () =>
-                    state.toggleOfflineTopic(widget.topic.id),
+                onPressed: _toggleOffline,
                 icon: Icon(
                   offline
                       ? Icons.offline_pin
@@ -601,6 +602,21 @@ class _ArticleScreenState extends State<ArticleScreen> {
   }
 
   Future<void> _shareLearning() async {
+    final shared = await shareKnowledgeCard(
+      title: widget.topic.title,
+      body: widget.topic.quickTake,
+    );
+    if (!mounted) return;
+
+    if (shared) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Seu cartão editorial foi preparado.'),
+        ),
+      );
+      return;
+    }
+
     final text =
         '${widget.topic.title}\n\n${widget.topic.quickTake}\n\n— Repertório';
     await Clipboard.setData(ClipboardData(text: text));
@@ -609,7 +625,40 @@ class _ArticleScreenState extends State<ArticleScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text(
-          'Cartão de conhecimento copiado. Agora é só colar onde quiser.',
+          'Imagem indisponível aqui; o conteúdo foi copiado como texto.',
+        ),
+      ),
+    );
+  }
+
+  Future<void> _toggleOffline() async {
+    final state = AppStateScope.read(context);
+    final topicId = widget.topic.id;
+    final wasOffline = state.isOfflineTopic(topicId);
+    final urls = widget.topic.media.map((item) => item.url).toList();
+
+    if (wasOffline) {
+      await removeOfflineMedia(urls);
+      await state.toggleOfflineTopic(topicId);
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Removido da biblioteca offline.')),
+      );
+      return;
+    }
+
+    final cached = urls.isEmpty
+        ? true
+        : await cacheOfflineMedia(urls);
+    await state.toggleOfflineTopic(topicId);
+    if (!mounted) return;
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          cached
+              ? 'Texto e mídia disponível foram preparados para offline.'
+              : 'O texto fica offline; algumas mídias externas podem precisar de internet.',
         ),
       ),
     );
