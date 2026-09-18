@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/state/app_state_scope.dart';
-import '../../../app/theme/app_colors.dart';
 import '../../article/presentation/article_screen.dart';
 import '../../today/data/demo_topics.dart';
 import '../../today/domain/knowledge_topic.dart';
