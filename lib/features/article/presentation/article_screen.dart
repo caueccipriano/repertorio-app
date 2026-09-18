@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../app/state/app_state.dart';
-import '../../../core/audio/study_speech.dart';
 import '../../../app/state/app_state_scope.dart';
 import '../../../app/theme/app_colors.dart';
+import '../../../core/audio/study_speech.dart';
 import '../../explore/data/knowledge_graph.dart';
 import '../../explore/presentation/knowledge_map_screen.dart';
+import '../../study/data/study_content.dart';
+import '../../study/presentation/quiz_screen.dart';
 import '../../today/data/demo_topics.dart';
 import '../../today/domain/knowledge_topic.dart';
 import 'reader_controls_sheet.dart';
@@ -41,9 +44,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (_bootstrapped) {
-      return;
-    }
+    if (_bootstrapped) return;
     _bootstrapped = true;
 
     final state = AppStateScope.read(context);
@@ -51,9 +52,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
     state.openTopic(widget.topic.id);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted || !_scrollController.hasClients) {
-        return;
-      }
+      if (!mounted || !_scrollController.hasClients) return;
       final extent = _scrollController.position.maxScrollExtent;
       if (extent > 0 && _progress > .03) {
         _scrollController.jumpTo(extent * _progress.clamp(0.0, .96));
@@ -62,13 +61,10 @@ class _ArticleScreenState extends State<ArticleScreen> {
   }
 
   void _onScroll() {
-    if (!_scrollController.hasClients) {
-      return;
-    }
+    if (!_scrollController.hasClients) return;
     final extent = _scrollController.position.maxScrollExtent;
-    if (extent <= 0) {
-      return;
-    }
+    if (extent <= 0) return;
+
     final next =
         (_scrollController.offset / extent).clamp(0.0, 1.0).toDouble();
     if ((next - _progress).abs() >= .01) {
@@ -79,9 +75,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
 
   @override
   void dispose() {
-    if (_speaking) {
-      stopStudySpeech();
-    }
+    if (_speaking) stopStudySpeech();
     _scrollController
       ..removeListener(_onScroll)
       ..dispose();
@@ -92,11 +86,27 @@ class _ArticleScreenState extends State<ArticleScreen> {
   @override
   Widget build(BuildContext context) {
     final state = AppStateScope.of(context);
-    final palette = _ReaderPalette.fromMode(state.readerTheme);
+    final palette = _ReaderPalette.fromMode(
+      state.readerTheme,
+      highContrast: state.highContrast,
+    );
     final bodyStyle = _bodyStyle(state, palette);
     final nextTopic = _nextTopic(widget.topic);
     final saved = state.isSaved(widget.topic.id);
+    final queued = state.isQueued(widget.topic.id);
+    final offline = state.isOfflineTopic(widget.topic.id);
     final note = state.noteFor(widget.topic.id);
+    final remaining = ((1 - _progress) * widget.topic.minutes)
+        .ceil()
+        .clamp(0, widget.topic.minutes);
+
+    final sections = _buildSections(
+      context,
+      state,
+      palette,
+      bodyStyle,
+      nextTopic,
+    );
 
     return Theme(
       data: Theme.of(context).copyWith(
@@ -111,12 +121,12 @@ class _ArticleScreenState extends State<ArticleScreen> {
         backgroundColor: palette.background,
         appBar: AppBar(
           title: Text(
-            '${(_progress * 100).round()}%',
+            '${(_progress * 100).round()}% · $remaining min',
             style: TextStyle(
               color: palette.muted,
               fontSize: 11,
               fontWeight: FontWeight.w700,
-              letterSpacing: .8,
+              letterSpacing: .7,
             ),
           ),
           bottom: PreferredSize(
@@ -129,61 +139,73 @@ class _ArticleScreenState extends State<ArticleScreen> {
             ),
           ),
           actions: [
-            IconButton(
-              tooltip: saved ? 'Remover dos salvos' : 'Salvar',
-              onPressed: () =>
-                  AppStateScope.read(context).toggleSaved(widget.topic.id),
-              icon: Icon(
-                saved ? Icons.bookmark : Icons.bookmark_border,
-              ),
-            ),
-            if (studySpeechSupported)
+            if (!state.readerFocusMode) ...[
               IconButton(
-                tooltip: _speaking ? 'Parar áudio' : 'Ouvir artigo',
-                onPressed: _toggleSpeech,
+                tooltip: saved ? 'Remover dos salvos' : 'Salvar',
+                onPressed: () =>
+                    state.toggleSaved(widget.topic.id),
                 icon: Icon(
-                  _speaking
-                      ? Icons.stop_circle_outlined
-                      : Icons.headphones_outlined,
+                  saved ? Icons.bookmark : Icons.bookmark_border,
                 ),
               ),
-            IconButton(
-              tooltip: note.isEmpty ? 'Adicionar nota' : 'Editar nota',
-              onPressed: () => _showNoteSheet(note),
-              icon: Icon(
-                note.isEmpty ? Icons.note_add_outlined : Icons.sticky_note_2,
+              IconButton(
+                tooltip: queued ? 'Remover da fila' : 'Ler depois',
+                onPressed: () =>
+                    state.toggleReadLater(widget.topic.id),
+                icon: Icon(
+                  queued
+                      ? Icons.playlist_add_check
+                      : Icons.playlist_add,
+                ),
               ),
-            ),
-            IconButton(
-              tooltip: 'Compartilhar aprendizado',
-              onPressed: () async {
-                final text =
-                    '${widget.topic.title}\n\n${widget.topic.quickTake}\n\n— Repertório';
-                await Clipboard.setData(ClipboardData(text: text));
-                if (!context.mounted) {
-                  return;
-                }
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text(
-                      'Cartão de conhecimento copiado. Agora é só colar onde quiser.',
+              IconButton(
+                tooltip: offline
+                    ? 'Remover disponibilidade offline'
+                    : 'Disponível offline',
+                onPressed: () =>
+                    state.toggleOfflineTopic(widget.topic.id),
+                icon: Icon(
+                  offline
+                      ? Icons.offline_pin
+                      : Icons.download_for_offline_outlined,
+                ),
+              ),
+              if (studySpeechSupported)
+                IconButton(
+                  tooltip: _speaking ? 'Parar áudio' : 'Ouvir artigo',
+                  onPressed: _toggleSpeech,
+                  icon: Icon(
+                    _speaking
+                        ? Icons.stop_circle_outlined
+                        : Icons.headphones_outlined,
+                  ),
+                ),
+              IconButton(
+                tooltip: note.isEmpty ? 'Adicionar nota' : 'Editar nota',
+                onPressed: () => _showNoteSheet(note),
+                icon: Icon(
+                  note.isEmpty
+                      ? Icons.note_add_outlined
+                      : Icons.sticky_note_2,
+                ),
+              ),
+              IconButton(
+                tooltip: 'Compartilhar aprendizado',
+                onPressed: _shareLearning,
+                icon: const Icon(Icons.ios_share_outlined),
+              ),
+              IconButton(
+                tooltip: 'Mapa',
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => KnowledgeMapScreen(
+                      rootTopicId: widget.topic.id,
                     ),
                   ),
-                );
-              },
-              icon: const Icon(Icons.ios_share_outlined),
-            ),
-            IconButton(
-              tooltip: 'Mapa',
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (_) => KnowledgeMapScreen(
-                    rootTopicId: widget.topic.id,
-                  ),
                 ),
+                icon: const Icon(Icons.hub_outlined),
               ),
-              icon: const Icon(Icons.hub_outlined),
-            ),
+            ],
             TextButton(
               onPressed: () => showReaderControls(context),
               child: Text(
@@ -198,30 +220,245 @@ class _ArticleScreenState extends State<ArticleScreen> {
           ],
         ),
         body: state.readerFlow == ReaderFlow.paged
-            ? _buildPagedReader(
-                context,
-                state,
-                palette,
-                bodyStyle,
-                nextTopic,
-              )
-            : _buildContinuousReader(
-                context,
-                state,
-                palette,
-                bodyStyle,
-                nextTopic,
-              ),
+            ? _buildPagedReader(state, palette, sections)
+            : _buildContinuousReader(state, palette, sections),
       ),
     );
   }
 
-  Widget _buildContinuousReader(
+  List<Widget> _buildSections(
     BuildContext context,
     AppState state,
     _ReaderPalette palette,
     TextStyle bodyStyle,
     KnowledgeTopic nextTopic,
+  ) {
+    final depth = state.readerDepth;
+    final standard = depth.index >= ContentDepth.standard.index;
+    final deep = depth.index >= ContentDepth.deep.index;
+    final immersion = depth == ContentDepth.immersion;
+    final topic = widget.topic;
+
+    final sections = <Widget>[
+      _Header(
+        topic: topic,
+        palette: palette,
+        bodyStyle: bodyStyle,
+        depth: depth,
+      ),
+      const SizedBox(height: 38),
+      _Section(
+        number: '01',
+        title: 'em 30 segundos',
+        palette: palette,
+        child: _PassageBlock(
+          topicId: topic.id,
+          passageId: 'quick',
+          text: topic.quickTake,
+          palette: palette,
+          bodyStyle: bodyStyle.copyWith(fontWeight: FontWeight.w600),
+        ),
+      ),
+    ];
+
+    if (depth == ContentDepth.quick) {
+      sections.addAll([
+        _RememberSection(
+          topic: topic,
+          palette: palette,
+          bodyStyle: bodyStyle,
+        ),
+        _NextConnection(nextTopic: nextTopic, palette: palette),
+      ]);
+      return sections;
+    }
+
+    if (topic.media.isNotEmpty && deep) {
+      sections.addAll([
+        TopicMediaSection(media: topic.media),
+        const SizedBox(height: 38),
+      ]);
+    }
+
+    if (standard) {
+      sections.add(
+        _Section(
+          number: '02',
+          title: 'entenda de verdade',
+          palette: palette,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: topic.body.indexed
+                .map(
+                  (item) => Padding(
+                    padding: const EdgeInsets.only(bottom: 16),
+                    child: _PassageBlock(
+                      topicId: topic.id,
+                      passageId: 'body:${item.$1}',
+                      text: item.$2,
+                      palette: palette,
+                      bodyStyle: bodyStyle,
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
+        ),
+      );
+      sections.add(
+        _RememberSection(
+          topic: topic,
+          palette: palette,
+          bodyStyle: bodyStyle,
+        ),
+      );
+      sections.add(
+        _Section(
+          number: '04',
+          title: 'por que isso importa',
+          palette: palette,
+          child: _PassageBlock(
+            topicId: topic.id,
+            passageId: 'why',
+            text: topic.whyItMatters,
+            palette: palette,
+            bodyStyle: bodyStyle,
+          ),
+        ),
+      );
+    }
+
+    if (deep) {
+      sections.add(
+        _Section(
+          number: '05',
+          title: 'uma coisa interessante',
+          palette: palette,
+          child: _PassageBlock(
+            topicId: topic.id,
+            passageId: 'curiosity',
+            text: topic.curiosity,
+            palette: palette,
+            bodyStyle: bodyStyle,
+          ),
+        ),
+      );
+
+      final glossary = glossaryFor(topic.id);
+      if (glossary.isNotEmpty) {
+        sections.add(
+          _Section(
+            number: '06',
+            title: 'glossário',
+            palette: palette,
+            child: _GlossarySection(
+              entries: glossary,
+              palette: palette,
+            ),
+          ),
+        );
+      }
+
+      sections.add(
+        _Section(
+          number: '07',
+          title: 'conecte os pontos',
+          palette: palette,
+          child: _Connections(
+            topic: topic,
+            palette: palette,
+          ),
+        ),
+      );
+    }
+
+    if (immersion) {
+      final entities = entitiesForTopic(topic.id);
+      if (entities.isNotEmpty) {
+        sections.add(
+          _Section(
+            number: '08',
+            title: 'pessoas · lugares · ideias',
+            palette: palette,
+            child: _EntitySection(
+              entities: entities,
+              palette: palette,
+            ),
+          ),
+        );
+      }
+
+      final sources = sourcesFor(topic.id);
+      if (sources.isNotEmpty) {
+        sections.add(
+          _Section(
+            number: '09',
+            title: 'fontes e aprofundamento',
+            palette: palette,
+            child: _SourcesSection(
+              sources: sources,
+              palette: palette,
+            ),
+          ),
+        );
+      }
+    }
+
+    if (standard) {
+      sections.add(
+        _ExplainCard(
+          explanation: state.explanationFor(topic.id),
+          palette: palette,
+          onEdit: () => _showExplanationSheet(
+            state.explanationFor(topic.id),
+          ),
+        ),
+      );
+      sections.add(const SizedBox(height: 14));
+
+      if (quizFor(topic.id).isNotEmpty) {
+        sections.add(
+          _QuizCard(
+            topic: topic,
+            score: state.quizScoreByTopic[topic.id],
+            total: state.quizTotalByTopic[topic.id],
+            palette: palette,
+          ),
+        );
+        sections.add(const SizedBox(height: 14));
+      }
+    }
+
+    sections.add(
+      _PersonalNote(
+        note: state.noteFor(topic.id),
+        palette: palette,
+        onEdit: () => _showNoteSheet(state.noteFor(topic.id)),
+      ),
+    );
+    sections.add(const SizedBox(height: 18));
+    sections.add(
+      _AboutContent(
+        topic: topic,
+        palette: palette,
+        offline: state.isOfflineTopic(topic.id),
+      ),
+    );
+    sections.add(const SizedBox(height: 28));
+    sections.add(
+      _NextConnection(
+        nextTopic: nextTopic,
+        palette: palette,
+      ),
+    );
+
+    return sections;
+  }
+
+  Widget _buildContinuousReader(
+    AppState state,
+    _ReaderPalette palette,
+    List<Widget> sections,
   ) {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
@@ -229,108 +466,21 @@ class _ArticleScreenState extends State<ArticleScreen> {
       child: SelectionArea(
         child: SingleChildScrollView(
           controller: _scrollController,
-          padding: const EdgeInsets.fromLTRB(20, 18, 20, 64),
+          padding: EdgeInsets.fromLTRB(
+            state.readerMargin,
+            18,
+            state.readerMargin,
+            64,
+          ),
           child: Align(
             alignment: Alignment.topCenter,
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 720),
+              constraints: BoxConstraints(
+                maxWidth: state.readerColumnWidth,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _Header(
-                    topic: widget.topic,
-                    palette: palette,
-                    bodyStyle: bodyStyle,
-                  ),
-                  const SizedBox(height: 42),
-                  _Section(
-                    number: '01',
-                    title: 'em 30 segundos',
-                    palette: palette,
-                    child: _Highlight(
-                      text: widget.topic.quickTake,
-                      palette: palette,
-                      bodyStyle: bodyStyle,
-                    ),
-                  ),
-                  if (widget.topic.media.isNotEmpty) ...[
-                    TopicMediaSection(media: widget.topic.media),
-                    const SizedBox(height: 42),
-                  ],
-                  _Section(
-                    number: '02',
-                    title: 'entenda de verdade',
-                    palette: palette,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        for (final paragraph in widget.topic.body)
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 22),
-                            child: Text(paragraph, style: bodyStyle),
-                          ),
-                      ],
-                    ),
-                  ),
-                  _Section(
-                    number: '03',
-                    title: 'o que você precisa lembrar',
-                    palette: palette,
-                    child: Column(
-                      children: widget.topic.remember.indexed
-                          .map(
-                            (item) => _RememberRow(
-                              number:
-                                  (item.$1 + 1).toString().padLeft(2, '0'),
-                              text: item.$2,
-                              palette: palette,
-                              bodyStyle: bodyStyle,
-                            ),
-                          )
-                          .toList(),
-                    ),
-                  ),
-                  _Section(
-                    number: '04',
-                    title: 'por que isso importa',
-                    palette: palette,
-                    child: Text(
-                      widget.topic.whyItMatters,
-                      style: bodyStyle,
-                    ),
-                  ),
-                  _Section(
-                    number: '05',
-                    title: 'uma coisa interessante',
-                    palette: palette,
-                    child: _Highlight(
-                      text: widget.topic.curiosity,
-                      palette: palette,
-                      bodyStyle: bodyStyle,
-                    ),
-                  ),
-                  _Section(
-                    number: '06',
-                    title: 'conecte os pontos',
-                    palette: palette,
-                    child: _Connections(
-                      topic: widget.topic,
-                      palette: palette,
-                    ),
-                  ),
-                  _PersonalNote(
-                    note: state.noteFor(widget.topic.id),
-                    palette: palette,
-                    onEdit: () => _showNoteSheet(
-                      state.noteFor(widget.topic.id),
-                    ),
-                  ),
-                  const SizedBox(height: 28),
-                  _NextConnection(
-                    nextTopic: nextTopic,
-                    palette: palette,
-                  ),
-                ],
+                children: sections,
               ),
             ),
           ),
@@ -340,130 +490,21 @@ class _ArticleScreenState extends State<ArticleScreen> {
   }
 
   Widget _buildPagedReader(
-    BuildContext context,
     AppState state,
     _ReaderPalette palette,
-    TextStyle bodyStyle,
-    KnowledgeTopic nextTopic,
+    List<Widget> sections,
   ) {
-    final pages = <Widget>[
-      _Page(
-        palette: palette,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _Header(
-              topic: widget.topic,
-              palette: palette,
-              bodyStyle: bodyStyle,
-            ),
-            const SizedBox(height: 30),
-            _Section(
-              number: '01',
-              title: 'em 30 segundos',
-              palette: palette,
-              child: _Highlight(
-                text: widget.topic.quickTake,
-                palette: palette,
-                bodyStyle: bodyStyle,
-              ),
-            ),
-          ],
-        ),
-      ),
-      if (widget.topic.media.isNotEmpty)
-        _Page(
-          palette: palette,
-          child: TopicMediaSection(media: widget.topic.media),
-        ),
-      _Page(
-        palette: palette,
-        child: _Section(
-          number: '02',
-          title: 'entenda de verdade',
-          palette: palette,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              for (final paragraph in widget.topic.body)
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 22),
-                  child: Text(paragraph, style: bodyStyle),
-                ),
-            ],
+    final pages = sections
+        .where((widget) => widget is! SizedBox)
+        .map(
+          (section) => _Page(
+            palette: palette,
+            columnWidth: state.readerColumnWidth,
+            margin: state.readerMargin,
+            child: section,
           ),
-        ),
-      ),
-      _Page(
-        palette: palette,
-        child: Column(
-          children: [
-            _Section(
-              number: '03',
-              title: 'o que você precisa lembrar',
-              palette: palette,
-              child: Column(
-                children: widget.topic.remember.indexed
-                    .map(
-                      (item) => _RememberRow(
-                        number:
-                            (item.$1 + 1).toString().padLeft(2, '0'),
-                        text: item.$2,
-                        palette: palette,
-                        bodyStyle: bodyStyle,
-                      ),
-                    )
-                    .toList(),
-              ),
-            ),
-            _Section(
-              number: '04',
-              title: 'por que isso importa',
-              palette: palette,
-              child: Text(widget.topic.whyItMatters, style: bodyStyle),
-            ),
-          ],
-        ),
-      ),
-      _Page(
-        palette: palette,
-        child: Column(
-          children: [
-            _Section(
-              number: '05',
-              title: 'uma coisa interessante',
-              palette: palette,
-              child: _Highlight(
-                text: widget.topic.curiosity,
-                palette: palette,
-                bodyStyle: bodyStyle,
-              ),
-            ),
-            _Section(
-              number: '06',
-              title: 'conecte os pontos',
-              palette: palette,
-              child: _Connections(
-                topic: widget.topic,
-                palette: palette,
-              ),
-            ),
-            _PersonalNote(
-              note: state.noteFor(widget.topic.id),
-              palette: palette,
-              onEdit: () => _showNoteSheet(
-                state.noteFor(widget.topic.id),
-              ),
-            ),
-            const SizedBox(height: 28),
-            _NextConnection(
-              nextTopic: nextTopic,
-              palette: palette,
-            ),
-          ],
-        ),
-      ),
-    ];
+        )
+        .toList();
 
     _pageController ??= PageController(
       initialPage:
@@ -486,41 +527,55 @@ class _ArticleScreenState extends State<ArticleScreen> {
             itemBuilder: (_, index) => pages[index],
           ),
         ),
-        Positioned(
-          left: 0,
-          right: 0,
-          bottom: 12,
-          child: IgnorePointer(
-            child: Center(
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 5,
-                ),
-                color: palette.surface.withValues(alpha: .92),
-                child: Text(
-                  'deslize para virar a página',
-                  style: TextStyle(
-                    color: palette.muted,
-                    fontSize: 9,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: .6,
+        if (!state.readerFocusMode)
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 12,
+            child: IgnorePointer(
+              child: Center(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 5,
+                  ),
+                  color: palette.surface.withValues(alpha: .92),
+                  child: Text(
+                    'deslize para virar a página',
+                    style: TextStyle(
+                      color: palette.muted,
+                      fontSize: 9,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: .6,
+                    ),
                   ),
                 ),
               ),
             ),
           ),
-        ),
       ],
+    );
+  }
+
+  TextStyle _bodyStyle(AppState state, _ReaderPalette palette) {
+    final base = switch (state.readerFont) {
+      ReaderFontFamily.editorial => GoogleFonts.literata(),
+      ReaderFontFamily.sans => GoogleFonts.manrope(),
+      ReaderFontFamily.readable => GoogleFonts.notoSans(),
+    };
+
+    return base.copyWith(
+      color: palette.text,
+      fontSize: state.readerFontSize,
+      height: state.readerLineHeight,
+      fontWeight: FontWeight.w400,
     );
   }
 
   Future<void> _toggleSpeech() async {
     if (_speaking) {
       stopStudySpeech();
-      if (mounted) {
-        setState(() => _speaking = false);
-      }
+      if (mounted) setState(() => _speaking = false);
       return;
     }
 
@@ -539,23 +594,71 @@ class _ArticleScreenState extends State<ArticleScreen> {
       topic.curiosity,
     ].join('\n\n');
 
+    final rate = AppStateScope.read(context).voiceRate;
     setState(() => _speaking = true);
-    await speakStudyText(text);
-    if (mounted) {
-      setState(() => _speaking = false);
-    }
+    await speakStudyText(text, rate: rate);
+    if (mounted) setState(() => _speaking = false);
+  }
+
+  Future<void> _shareLearning() async {
+    final text =
+        '${widget.topic.title}\n\n${widget.topic.quickTake}\n\n— Repertório';
+    await Clipboard.setData(ClipboardData(text: text));
+    if (!context.mounted) return;
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text(
+          'Cartão de conhecimento copiado. Agora é só colar onde quiser.',
+        ),
+      ),
+    );
   }
 
   Future<void> _showNoteSheet(String currentNote) async {
-    final controller = TextEditingController(text: currentNote);
+    final result = await _textSheet(
+      title: 'sua nota',
+      subtitle:
+          'Registre uma conexão, exemplo ou ideia que queira lembrar.',
+      initial: currentNote,
+      hint: 'O que vale lembrar? Que conexão você fez?',
+      deleteLabel: 'apagar nota',
+    );
+
+    if (result == null || !mounted) return;
+    await AppStateScope.read(context).saveNote(widget.topic.id, result);
+  }
+
+  Future<void> _showExplanationSheet(String current) async {
+    final result = await _textSheet(
+      title: 'explique com suas palavras',
+      subtitle:
+          'Tente explicar sem copiar o texto. Isso ajuda a descobrir se a ideia realmente ficou clara.',
+      initial: current,
+      hint: 'Como você explicaria isso para alguém?',
+      deleteLabel: 'apagar resposta',
+    );
+
+    if (result == null || !mounted) return;
+    await AppStateScope.read(context).saveExplanation(
+      widget.topic.id,
+      result,
+    );
+  }
+
+  Future<String?> _textSheet({
+    required String title,
+    required String subtitle,
+    required String initial,
+    required String hint,
+    required String deleteLabel,
+  }) async {
+    final controller = TextEditingController(text: initial);
 
     final result = await showModalBottomSheet<String>(
       context: context,
       useSafeArea: true,
       isScrollControlled: true,
-      backgroundColor: _ReaderPalette.fromMode(
-        AppStateScope.read(context).readerTheme,
-      ).surface,
       builder: (sheetContext) {
         final bottom = MediaQuery.viewInsetsOf(sheetContext).bottom;
         return Padding(
@@ -565,12 +668,12 @@ class _ArticleScreenState extends State<ArticleScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'sua nota',
+                title,
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
               const SizedBox(height: 7),
               Text(
-                'Escreva do seu jeito. Essa anotação fica ligada a este assunto e entra no backup.',
+                subtitle,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: AppColors.muted,
                     ),
@@ -581,18 +684,18 @@ class _ArticleScreenState extends State<ArticleScreen> {
                 autofocus: true,
                 minLines: 5,
                 maxLines: 10,
-                decoration: const InputDecoration(
-                  hintText: 'O que vale lembrar? Que conexão você fez?',
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  hintText: hint,
+                  border: const OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 14),
               Row(
                 children: [
-                  if (currentNote.isNotEmpty)
+                  if (initial.isNotEmpty)
                     TextButton(
                       onPressed: () => Navigator.of(sheetContext).pop(''),
-                      child: const Text('apagar nota'),
+                      child: Text(deleteLabel),
                     ),
                   const Spacer(),
                   FilledButton(
@@ -609,33 +712,14 @@ class _ArticleScreenState extends State<ArticleScreen> {
     );
 
     controller.dispose();
-
-    if (result == null || !mounted) {
-      return;
-    }
-    await AppStateScope.read(context).saveNote(widget.topic.id, result);
-  }
-
-  TextStyle _bodyStyle(AppState state, _ReaderPalette palette) {
-    final base = state.readerFont == ReaderFontFamily.editorial
-        ? GoogleFonts.literata()
-        : GoogleFonts.manrope();
-
-    return base.copyWith(
-      color: palette.text,
-      fontSize: state.readerFontSize,
-      height: state.readerLineHeight,
-      fontWeight: FontWeight.w400,
-    );
+    return result;
   }
 
   KnowledgeTopic _nextTopic(KnowledgeTopic topic) {
     final ids = neighborsFor(topic.id);
     if (ids.isNotEmpty) {
       final connected = topicById(ids.first);
-      if (connected != null) {
-        return connected;
-      }
+      if (connected != null) return connected;
     }
     return nextDemoTopic(topic);
   }
@@ -646,25 +730,49 @@ class _Header extends StatelessWidget {
     required this.topic,
     required this.palette,
     required this.bodyStyle,
+    required this.depth,
   });
 
   final KnowledgeTopic topic;
   final _ReaderPalette palette;
   final TextStyle bodyStyle;
+  final ContentDepth depth;
 
   @override
   Widget build(BuildContext context) {
+    final depthLabel = switch (depth) {
+      ContentDepth.quick => '30 SEGUNDOS',
+      ContentDepth.standard => '5 MIN',
+      ContentDepth.deep => '15 MIN',
+      ContentDepth.immersion => 'MERGULHO FUNDO',
+    };
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          topic.tags.join(' · ').toUpperCase(),
-          style: TextStyle(
-            color: palette.accent,
-            fontSize: 10,
-            fontWeight: FontWeight.w800,
-            letterSpacing: 1.2,
-          ),
+        Row(
+          children: [
+            Expanded(
+              child: Text(
+                topic.tags.join(' · ').toUpperCase(),
+                style: TextStyle(
+                  color: palette.accent,
+                  fontSize: 10,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: 1.2,
+                ),
+              ),
+            ),
+            Text(
+              depthLabel,
+              style: TextStyle(
+                color: palette.muted,
+                fontSize: 9,
+                fontWeight: FontWeight.w800,
+                letterSpacing: .8,
+              ),
+            ),
+          ],
         ),
         const SizedBox(height: 14),
         Text(
@@ -683,24 +791,6 @@ class _Header extends StatelessWidget {
             fontSize: bodyStyle.fontSize! + 1,
             color: palette.muted,
           ),
-        ),
-        const SizedBox(height: 18),
-        Row(
-          children: [
-            Text(
-              '${topic.minutes} MIN',
-              style: TextStyle(
-                color: palette.accent,
-                fontSize: 10,
-                fontWeight: FontWeight.w800,
-                letterSpacing: 1,
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Divider(color: palette.line),
-            ),
-          ],
         ),
       ],
     );
@@ -723,7 +813,7 @@ class _Section extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 44),
+      padding: const EdgeInsets.only(bottom: 42),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -757,7 +847,7 @@ class _Section extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 18),
           child,
         ],
       ),
@@ -765,80 +855,195 @@ class _Section extends StatelessWidget {
   }
 }
 
-class _Highlight extends StatelessWidget {
-  const _Highlight({
-    required this.text,
+class _RememberSection extends StatelessWidget {
+  const _RememberSection({
+    required this.topic,
     required this.palette,
     required this.bodyStyle,
   });
 
-  final String text;
+  final KnowledgeTopic topic;
   final _ReaderPalette palette;
   final TextStyle bodyStyle;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: palette.highlight,
-        border: Border(
-          left: BorderSide(
-            color: palette.accent,
-            width: 4,
-          ),
-        ),
-      ),
-      child: Text(
-        text,
-        style: bodyStyle.copyWith(
-          fontWeight: FontWeight.w600,
-        ),
+    return _Section(
+      number: '03',
+      title: 'o que você precisa lembrar',
+      palette: palette,
+      child: Column(
+        children: topic.remember.indexed
+            .map(
+              (item) => _PassageBlock(
+                topicId: topic.id,
+                passageId: 'remember:${item.$1}',
+                text: item.$2,
+                palette: palette,
+                bodyStyle: bodyStyle.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
+                prefix:
+                    (item.$1 + 1).toString().padLeft(2, '0'),
+              ),
+            )
+            .toList(),
       ),
     );
   }
 }
 
-class _RememberRow extends StatelessWidget {
-  const _RememberRow({
-    required this.number,
+class _PassageBlock extends StatelessWidget {
+  const _PassageBlock({
+    required this.topicId,
+    required this.passageId,
     required this.text,
     required this.palette,
     required this.bodyStyle,
+    this.prefix,
   });
 
-  final String number;
+  final String topicId;
+  final String passageId;
   final String text;
   final _ReaderPalette palette;
   final TextStyle bodyStyle;
+  final String? prefix;
 
   @override
   Widget build(BuildContext context) {
+    final state = AppStateScope.of(context);
+    final highlighted = state.isHighlighted(topicId, passageId);
+    final starred = state.isPassageStarred(topicId, passageId);
+
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 15),
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: EdgeInsets.fromLTRB(
+        prefix == null ? 14 : 10,
+        12,
+        8,
+        12,
+      ),
       decoration: BoxDecoration(
+        color: highlighted
+            ? (state.readerTheme == ReaderThemeMode.dark
+                ? const Color(0xFF594D19)
+                : const Color(0xFFFFF0A8))
+            : palette.surface,
         border: Border(
-          bottom: BorderSide(color: palette.line),
+          left: BorderSide(
+            color: highlighted ? palette.accent : palette.line,
+            width: highlighted ? 4 : 1,
+          ),
         ),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            width: 42,
-            child: Text(
-              number,
-              style: TextStyle(
-                color: palette.accent,
-                fontSize: 10,
-                fontWeight: FontWeight.w800,
+          if (prefix != null) ...[
+            SizedBox(
+              width: 34,
+              child: Text(
+                prefix!,
+                style: TextStyle(
+                  color: palette.accent,
+                  fontSize: 10,
+                  fontWeight: FontWeight.w800,
+                ),
               ),
             ),
+          ],
+          Expanded(
+            child: Text(
+              text,
+              textAlign:
+                  state.readerAlignment == ReaderTextAlignment.justify
+                      ? TextAlign.justify
+                      : TextAlign.left,
+              style: bodyStyle,
+            ),
           ),
-          Expanded(child: Text(text, style: bodyStyle)),
+          Column(
+            children: [
+              IconButton(
+                tooltip: highlighted
+                    ? 'Remover marca-texto'
+                    : 'Marcar trecho',
+                visualDensity: VisualDensity.compact,
+                onPressed: () =>
+                    state.toggleHighlight(topicId, passageId),
+                icon: Icon(
+                  highlighted
+                      ? Icons.format_color_fill
+                      : Icons.border_color_outlined,
+                  size: 18,
+                  color: highlighted ? palette.accent : palette.muted,
+                ),
+              ),
+              IconButton(
+                tooltip: starred
+                    ? 'Desfavoritar trecho'
+                    : 'Favoritar trecho',
+                visualDensity: VisualDensity.compact,
+                onPressed: () =>
+                    state.togglePassageStar(topicId, passageId),
+                icon: Icon(
+                  starred ? Icons.star : Icons.star_border,
+                  size: 18,
+                  color: starred ? palette.accent : palette.muted,
+                ),
+              ),
+            ],
+          ),
         ],
       ),
+    );
+  }
+}
+
+class _GlossarySection extends StatelessWidget {
+  const _GlossarySection({
+    required this.entries,
+    required this.palette,
+  });
+
+  final List<GlossaryEntry> entries;
+  final _ReaderPalette palette;
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      children: entries
+          .map(
+            (entry) => ActionChip(
+              label: Text(entry.term),
+              onPressed: () => showModalBottomSheet<void>(
+                context: context,
+                useSafeArea: true,
+                builder: (_) => Padding(
+                  padding: const EdgeInsets.all(22),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        entry.term,
+                        style: Theme.of(context).textTheme.headlineLarge,
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        entry.definition,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          )
+          .toList(),
     );
   }
 }
@@ -861,43 +1066,42 @@ class _Connections extends StatelessWidget {
 
     return Column(
       children: [
-        if (linked.isNotEmpty)
-          ...linked.map(
-            (connected) => InkWell(
-              onTap: () => Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (_) => ArticleScreen(topic: connected),
+        ...linked.map(
+          (connected) => InkWell(
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => ArticleScreen(topic: connected),
+              ),
+            ),
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 14),
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(color: palette.line),
                 ),
               ),
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 14),
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(color: palette.line),
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        connected.title,
-                        style: TextStyle(
-                          color: palette.text,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w700,
-                        ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      connected.title,
+                      style: TextStyle(
+                        color: palette.text,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
-                    Icon(
-                      Icons.north_east,
-                      size: 18,
-                      color: palette.text,
-                    ),
-                  ],
-                ),
+                  ),
+                  Icon(
+                    Icons.north_east,
+                    size: 18,
+                    color: palette.text,
+                  ),
+                ],
               ),
             ),
           ),
+        ),
         const SizedBox(height: 14),
         OutlinedButton.icon(
           onPressed: () => Navigator.of(context).push(
@@ -915,6 +1119,272 @@ class _Connections extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class _EntitySection extends StatelessWidget {
+  const _EntitySection({
+    required this.entities,
+    required this.palette,
+  });
+
+  final List<KnowledgeEntity> entities;
+  final _ReaderPalette palette;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: entities
+          .map(
+            (entity) => Container(
+              margin: const EdgeInsets.only(bottom: 10),
+              padding: const EdgeInsets.all(14),
+              decoration: BoxDecoration(
+                border: Border.all(color: palette.line),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Icon(
+                    entity.type == KnowledgeEntityType.person
+                        ? Icons.person_outline
+                        : entity.type == KnowledgeEntityType.place
+                            ? Icons.place_outlined
+                            : Icons.lightbulb_outline,
+                    color: palette.accent,
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          entity.name,
+                          style: TextStyle(
+                            color: palette.text,
+                            fontWeight: FontWeight.w800,
+                            fontSize: 15,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          entity.summary,
+                          style: TextStyle(
+                            color: palette.muted,
+                            height: 1.4,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
+          .toList(),
+    );
+  }
+}
+
+class _SourcesSection extends StatelessWidget {
+  const _SourcesSection({
+    required this.sources,
+    required this.palette,
+  });
+
+  final List<SourceEntry> sources;
+  final _ReaderPalette palette;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: sources
+          .map(
+            (source) => InkWell(
+              onTap: () async {
+                final uri = Uri.tryParse(source.url);
+                if (uri != null) {
+                  await launchUrl(
+                    uri,
+                    mode: LaunchMode.externalApplication,
+                  );
+                }
+              },
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 13),
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(color: palette.line),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            source.label,
+                            style: TextStyle(
+                              color: palette.text,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          if (source.note != null) ...[
+                            const SizedBox(height: 3),
+                            Text(
+                              source.note!,
+                              style: TextStyle(
+                                color: palette.muted,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ],
+                        ],
+                      ),
+                    ),
+                    Icon(
+                      Icons.open_in_new,
+                      size: 18,
+                      color: palette.muted,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          )
+          .toList(),
+    );
+  }
+}
+
+class _ExplainCard extends StatelessWidget {
+  const _ExplainCard({
+    required this.explanation,
+    required this.palette,
+    required this.onEdit,
+  });
+
+  final String explanation;
+  final _ReaderPalette palette;
+  final VoidCallback onEdit;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: palette.surface,
+      child: InkWell(
+        onTap: onEdit,
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(18),
+          decoration: BoxDecoration(
+            border: Border.all(color: palette.accent),
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Icon(Icons.record_voice_over_outlined, color: palette.accent),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'explique com suas palavras',
+                      style: TextStyle(
+                        color: palette.text,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      explanation.isEmpty
+                          ? 'Se você consegue explicar sem olhar, a ideia já começou a virar repertório.'
+                          : explanation,
+                      maxLines: 6,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: explanation.isEmpty
+                            ? palette.muted
+                            : palette.text,
+                        height: 1.4,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(Icons.edit_outlined, color: palette.muted, size: 18),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _QuizCard extends StatelessWidget {
+  const _QuizCard({
+    required this.topic,
+    required this.score,
+    required this.total,
+    required this.palette,
+  });
+
+  final KnowledgeTopic topic;
+  final int? score;
+  final int? total;
+  final _ReaderPalette palette;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: palette.nextCard,
+      child: InkWell(
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => QuizScreen(topic: topic),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(18),
+          child: Row(
+            children: [
+              const Icon(Icons.quiz_outlined, color: Colors.white),
+              const SizedBox(width: 13),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'VOCÊ ENTENDEU?',
+                      style: TextStyle(
+                        color: Colors.white60,
+                        fontSize: 9,
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: 1,
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      score == null || total == null
+                          ? 'Faça um quiz rápido'
+                          : 'Último resultado: $score/$total',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Icon(Icons.arrow_forward, color: Colors.white),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -961,7 +1431,6 @@ class _PersonalNote extends StatelessWidget {
                       style: TextStyle(
                         color: palette.text,
                         fontWeight: FontWeight.w800,
-                        fontSize: 14,
                       ),
                     ),
                     const SizedBox(height: 5),
@@ -969,22 +1438,75 @@ class _PersonalNote extends StatelessWidget {
                       note.isEmpty
                           ? 'Registre uma conexão, exemplo ou ideia que queira lembrar.'
                           : note,
-                      maxLines: note.isEmpty ? 3 : 8,
+                      maxLines: 8,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: note.isEmpty ? palette.muted : palette.text,
-                        fontSize: 14,
                         height: 1.45,
                       ),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(width: 8),
               Icon(Icons.edit_outlined, color: palette.muted, size: 18),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _AboutContent extends StatelessWidget {
+  const _AboutContent({
+    required this.topic,
+    required this.palette,
+    required this.offline,
+  });
+
+  final KnowledgeTopic topic;
+  final _ReaderPalette palette;
+  final bool offline;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        border: Border.all(color: palette.line),
+      ),
+      child: Wrap(
+        spacing: 12,
+        runSpacing: 8,
+        children: [
+          _Meta('revisão editorial · 2026', palette),
+          _Meta('nível · essencial → profundo', palette),
+          _Meta(
+            offline ? 'texto offline · ativo' : 'texto offline · disponível',
+            palette,
+          ),
+          _Meta('${sourcesFor(topic.id).length} fontes', palette),
+        ],
+      ),
+    );
+  }
+}
+
+class _Meta extends StatelessWidget {
+  const _Meta(this.text, this.palette);
+
+  final String text;
+  final _ReaderPalette palette;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: TextStyle(
+        color: palette.muted,
+        fontSize: 9,
+        fontWeight: FontWeight.w700,
       ),
     );
   }
@@ -1048,10 +1570,7 @@ class _NextConnection extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 14),
-              const Icon(
-                Icons.arrow_forward,
-                color: Colors.white,
-              ),
+              const Icon(Icons.arrow_forward, color: Colors.white),
             ],
           ),
         ),
@@ -1063,20 +1582,24 @@ class _NextConnection extends StatelessWidget {
 class _Page extends StatelessWidget {
   const _Page({
     required this.palette,
+    required this.columnWidth,
+    required this.margin,
     required this.child,
   });
 
   final _ReaderPalette palette;
+  final double columnWidth;
+  final double margin;
   final Widget child;
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.fromLTRB(20, 22, 20, 70),
+      padding: EdgeInsets.fromLTRB(margin, 22, margin, 70),
       child: Align(
         alignment: Alignment.topCenter,
         child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 720),
+          constraints: BoxConstraints(maxWidth: columnWidth),
           child: child,
         ),
       ),
@@ -1092,7 +1615,6 @@ class _ReaderPalette {
     required this.muted,
     required this.line,
     required this.accent,
-    required this.highlight,
     required this.nextCard,
   });
 
@@ -1102,10 +1624,24 @@ class _ReaderPalette {
   final Color muted;
   final Color line;
   final Color accent;
-  final Color highlight;
   final Color nextCard;
 
-  factory _ReaderPalette.fromMode(ReaderThemeMode mode) {
+  factory _ReaderPalette.fromMode(
+    ReaderThemeMode mode, {
+    required bool highContrast,
+  }) {
+    if (highContrast && mode != ReaderThemeMode.dark) {
+      return const _ReaderPalette(
+        background: Colors.white,
+        surface: Colors.white,
+        text: Colors.black,
+        muted: Color(0xFF444444),
+        line: Colors.black,
+        accent: Color(0xFF002F9E),
+        nextCard: Color(0xFF001B60),
+      );
+    }
+
     switch (mode) {
       case ReaderThemeMode.paper:
         return const _ReaderPalette(
@@ -1115,7 +1651,6 @@ class _ReaderPalette {
           muted: AppColors.muted,
           line: AppColors.line,
           accent: AppColors.blue,
-          highlight: AppColors.softBlue,
           nextCard: AppColors.deepBlue,
         );
       case ReaderThemeMode.sepia:
@@ -1126,7 +1661,6 @@ class _ReaderPalette {
           muted: Color(0xFF756B5F),
           line: Color(0xFFCBBDA4),
           accent: Color(0xFF3A4F85),
-          highlight: Color(0xFFD8D7CF),
           nextCard: Color(0xFF263860),
         );
       case ReaderThemeMode.dark:
@@ -1137,7 +1671,6 @@ class _ReaderPalette {
           muted: Color(0xFFAAA59B),
           line: Color(0xFF383838),
           accent: Color(0xFF7894DD),
-          highlight: Color(0xFF222C45),
           nextCard: Color(0xFF17254C),
         );
     }
