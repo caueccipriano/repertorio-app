@@ -171,6 +171,9 @@
     window.repertorioAudio = {
       open: async function (url, title, source) {
         try {
+          if (/^https?:\/\/(?:open\.)?spotify\.com\//i.test(String(url || '')) && window.repertorioSpotify) {
+            return await window.repertorioSpotify.open(url);
+          }
           const previous = document.getElementById('repertorio-audio-overlay');
           if (previous) previous.remove();
 
@@ -690,6 +693,7 @@
       });
     }
   </script>
-  <script src="flutter_bootstrap.js?v=20260918-1304" async></script>
+  <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+  <script src="flutter_bootstrap.js?v=20260918-1320" async></script>
 </body>
 </html>
