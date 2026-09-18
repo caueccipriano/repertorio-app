@@ -1,8 +1,9 @@
 bool get studySpeechSupported => false;
 
-Future<void> speakStudyText(
+Future<bool> speakStudyText(
   String text, {
   double rate = 1,
-}) async {}
+}) async =>
+    false;
 
 void stopStudySpeech() {}
