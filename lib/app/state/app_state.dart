@@ -13,6 +13,49 @@ enum ReaderTextAlignment { left, justify }
 
 enum ContentDepth { quick, standard, deep, immersion }
 
+enum AppAppearance { light, dark }
+
+enum MasteryLevel { newTopic, familiar, understood, consolidated }
+
+class PersonalConnection {
+  const PersonalConnection({
+    required this.fromTopicId,
+    required this.toTopicId,
+    required this.note,
+    required this.createdAt,
+  });
+
+  final String fromTopicId;
+  final String toTopicId;
+  final String note;
+  final DateTime createdAt;
+
+  Map<String, dynamic> toJson() => {
+        'from': fromTopicId,
+        'to': toTopicId,
+        'note': note,
+        'createdAt': createdAt.toIso8601String(),
+      };
+
+  static PersonalConnection? fromJson(dynamic raw) {
+    if (raw is! Map<String, dynamic>) {
+      return null;
+    }
+    final createdAt = DateTime.tryParse(raw['createdAt']?.toString() ?? '');
+    final from = raw['from']?.toString() ?? '';
+    final to = raw['to']?.toString() ?? '';
+    if (from.isEmpty || to.isEmpty || createdAt == null) {
+      return null;
+    }
+    return PersonalConnection(
+      fromTopicId: from,
+      toTopicId: to,
+      note: raw['note']?.toString() ?? '',
+      createdAt: createdAt,
+    );
+  }
+}
+
 class AppState extends ChangeNotifier {
   AppState._(this._prefs) {
     _load();
@@ -57,6 +100,9 @@ class AppState extends ChangeNotifier {
   static const _highContrastKey = 'access_high_contrast_v1';
   static const _reduceMotionKey = 'access_reduce_motion_v1';
   static const _largeTapTargetsKey = 'access_large_targets_v1';
+  static const _appAppearanceKey = 'app_appearance_v1';
+  static const _collectionsKey = 'personal_collections_v1';
+  static const _personalConnectionsKey = 'personal_connections_v1';
 
   final SharedPreferences _prefs;
 
@@ -83,6 +129,7 @@ class AppState extends ChangeNotifier {
   bool highContrast = false;
   bool reduceMotion = false;
   bool largeTapTargets = false;
+  AppAppearance appAppearance = AppAppearance.light;
 
   bool studyRemindersEnabled = false;
   bool reviewRemindersEnabled = true;
@@ -104,6 +151,8 @@ class AppState extends ChangeNotifier {
   final Map<String, String> explanationsByTopic = {};
   final Map<String, DateTime> lastOpenedByTopic = {};
   final Set<String> offlineTopicIds = {};
+  final Map<String, List<String>> collectionsByName = {};
+  final List<PersonalConnection> personalConnections = [];
 
   static Future<AppState> load() async {
     final prefs = await SharedPreferences.getInstance();
@@ -155,6 +204,11 @@ class AppState extends ChangeNotifier {
     highContrast = _prefs.getBool(_highContrastKey) ?? false;
     reduceMotion = _prefs.getBool(_reduceMotionKey) ?? false;
     largeTapTargets = _prefs.getBool(_largeTapTargetsKey) ?? false;
+    appAppearance = _enumByName(
+      AppAppearance.values,
+      _prefs.getString(_appAppearanceKey),
+      AppAppearance.light,
+    );
 
     studyRemindersEnabled = _prefs.getBool(_studyRemindersKey) ?? false;
     reviewRemindersEnabled = _prefs.getBool(_reviewRemindersKey) ?? true;
@@ -179,6 +233,27 @@ class AppState extends ChangeNotifier {
     offlineTopicIds.addAll(
       _prefs.getStringList(_offlineTopicsKey) ?? const [],
     );
+
+    final rawCollections = _prefs.getString(_collectionsKey);
+    if (rawCollections != null) {
+      final decoded = jsonDecode(rawCollections) as Map<String, dynamic>;
+      for (final entry in decoded.entries) {
+        collectionsByName[entry.key] = (entry.value as List<dynamic>)
+            .map((value) => value.toString())
+            .toList();
+      }
+    }
+
+    final rawConnections = _prefs.getString(_personalConnectionsKey);
+    if (rawConnections != null) {
+      final decoded = jsonDecode(rawConnections) as List<dynamic>;
+      for (final item in decoded) {
+        final connection = PersonalConnection.fromJson(item);
+        if (connection != null) {
+          personalConnections.add(connection);
+        }
+      }
+    }
   }
 
   void _loadDoubleMap(String key, Map<String, double> target) {
@@ -564,10 +639,120 @@ class AppState extends ChangeNotifier {
       _offlineTopicsKey,
       offlineTopicIds.toList(),
     );
+    await _persistCollections();
+    await _persistPersonalConnections();
     notifyListeners();
   }
 
   bool isOfflineTopic(String topicId) => offlineTopicIds.contains(topicId);
+
+  double masteryScore(String topicId) {
+    final progress = progressFor(topicId).clamp(0.0, 1.0);
+    final quiz = quizPercentFor(topicId) ?? 0;
+    final reviewLevel = (reviewLevelByTopic[topicId] ?? 0).clamp(0, 5) / 5;
+    final explained = explanationFor(topicId).trim().isNotEmpty ? 1.0 : 0.0;
+
+    final score = progress * .35 +
+        quiz * .30 +
+        reviewLevel * .25 +
+        explained * .10;
+    return score.clamp(0.0, 1.0).toDouble();
+  }
+
+  MasteryLevel masteryLevel(String topicId) {
+    final score = masteryScore(topicId);
+    if (score >= .78) {
+      return MasteryLevel.consolidated;
+    }
+    if (score >= .52) {
+      return MasteryLevel.understood;
+    }
+    if (score >= .16) {
+      return MasteryLevel.familiar;
+    }
+    return MasteryLevel.newTopic;
+  }
+
+  String masteryLabel(String topicId) {
+    return switch (masteryLevel(topicId)) {
+      MasteryLevel.newTopic => 'novo',
+      MasteryLevel.familiar => 'familiar',
+      MasteryLevel.understood => 'entendido',
+      MasteryLevel.consolidated => 'consolidado',
+    };
+  }
+
+  Future<void> createCollection(String name) async {
+    final cleaned = name.trim();
+    if (cleaned.isEmpty || collectionsByName.containsKey(cleaned)) {
+      return;
+    }
+    collectionsByName[cleaned] = [];
+    await _persistCollections();
+    notifyListeners();
+  }
+
+  Future<void> deleteCollection(String name) async {
+    collectionsByName.remove(name);
+    await _persistCollections();
+    notifyListeners();
+  }
+
+  bool topicInCollection(String name, String topicId) =>
+      collectionsByName[name]?.contains(topicId) ?? false;
+
+  Future<void> toggleTopicInCollection(
+    String name,
+    String topicId,
+  ) async {
+    final topics = collectionsByName[name];
+    if (topics == null) {
+      return;
+    }
+    if (topics.contains(topicId)) {
+      topics.remove(topicId);
+    } else {
+      topics.add(topicId);
+    }
+    await _persistCollections();
+    notifyListeners();
+  }
+
+  Future<void> addPersonalConnection({
+    required String fromTopicId,
+    required String toTopicId,
+    required String note,
+  }) async {
+    if (fromTopicId == toTopicId) {
+      return;
+    }
+    personalConnections.insert(
+      0,
+      PersonalConnection(
+        fromTopicId: fromTopicId,
+        toTopicId: toTopicId,
+        note: note.trim(),
+        createdAt: DateTime.now(),
+      ),
+    );
+    await _persistPersonalConnections();
+    notifyListeners();
+  }
+
+  Future<void> deletePersonalConnection(int index) async {
+    if (index < 0 || index >= personalConnections.length) {
+      return;
+    }
+    personalConnections.removeAt(index);
+    await _persistPersonalConnections();
+    notifyListeners();
+  }
+
+  Future<void> updateAppearance(AppAppearance appearance) async {
+    appAppearance = appearance;
+    await _prefs.setString(_appAppearanceKey, appearance.name);
+    notifyListeners();
+  }
 
   Future<void> _recordStudyDay(DateTime value) async {
     final key = _dateKey(value);
@@ -661,6 +846,9 @@ class AppState extends ChangeNotifier {
       'explanations': explanationsByTopic,
       'lastOpened': _dateMapJson(lastOpenedByTopic),
       'offlineTopicIds': offlineTopicIds.toList(),
+      'collections': collectionsByName,
+      'personalConnections':
+          personalConnections.map((item) => item.toJson()).toList(),
       'reader': {
         'fontSize': readerFontSize,
         'lineHeight': readerLineHeight,
@@ -678,6 +866,7 @@ class AppState extends ChangeNotifier {
         'highContrast': highContrast,
         'reduceMotion': reduceMotion,
         'largeTapTargets': largeTapTargets,
+        'appearance': appAppearance.name,
       },
       'reminders': {
         'enabled': studyRemindersEnabled,
@@ -757,6 +946,25 @@ class AppState extends ChangeNotifier {
         ..clear()
         ..addAll(_stringList(decoded['offlineTopicIds']));
 
+      collectionsByName.clear();
+      final collections =
+          decoded['collections'] as Map<String, dynamic>? ?? const {};
+      for (final entry in collections.entries) {
+        collectionsByName[entry.key] = (entry.value as List<dynamic>)
+            .map((value) => value.toString())
+            .toList();
+      }
+
+      personalConnections.clear();
+      final connections =
+          decoded['personalConnections'] as List<dynamic>? ?? const [];
+      for (final item in connections) {
+        final connection = PersonalConnection.fromJson(item);
+        if (connection != null) {
+          personalConnections.add(connection);
+        }
+      }
+
       final reader = decoded['reader'] as Map<String, dynamic>? ?? const {};
       readerFontSize =
           (reader['fontSize'] as num?)?.toDouble().clamp(14, 24).toDouble() ??
@@ -806,6 +1014,11 @@ class AppState extends ChangeNotifier {
       highContrast = accessibility['highContrast'] as bool? ?? false;
       reduceMotion = accessibility['reduceMotion'] as bool? ?? false;
       largeTapTargets = accessibility['largeTapTargets'] as bool? ?? false;
+      appAppearance = _enumByName(
+        AppAppearance.values,
+        accessibility['appearance']?.toString(),
+        AppAppearance.light,
+      );
 
       final reminders =
           decoded['reminders'] as Map<String, dynamic>? ?? const {};
@@ -911,6 +1124,22 @@ class AppState extends ChangeNotifier {
     await _prefs.setString(_quizKey, jsonEncode(_quizJson()));
   }
 
+  Future<void> _persistCollections() async {
+    await _prefs.setString(
+      _collectionsKey,
+      jsonEncode(collectionsByName),
+    );
+  }
+
+  Future<void> _persistPersonalConnections() async {
+    await _prefs.setString(
+      _personalConnectionsKey,
+      jsonEncode(
+        personalConnections.map((item) => item.toJson()).toList(),
+      ),
+    );
+  }
+
   Future<void> _persistAllUserState() async {
     await _prefs.setStringList(_savedKey, savedTopicIds.toList());
     await _prefs.setStringList(_completedKey, completedTopicIds.toList());
@@ -954,6 +1183,7 @@ class AppState extends ChangeNotifier {
     await _prefs.setBool(_highContrastKey, highContrast);
     await _prefs.setBool(_reduceMotionKey, reduceMotion);
     await _prefs.setBool(_largeTapTargetsKey, largeTapTargets);
+    await _prefs.setString(_appAppearanceKey, appAppearance.name);
 
     await _prefs.setBool(_studyRemindersKey, studyRemindersEnabled);
     await _prefs.setBool(_reviewRemindersKey, reviewRemindersEnabled);
