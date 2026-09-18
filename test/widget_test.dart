@@ -62,7 +62,6 @@ void main() {
     expect(find.text('em 30 segundos'), findsOneWidget);
     expect(find.byKey(const ValueKey('reader-back')), findsOneWidget);
     expect(find.byKey(const ValueKey('reader-audio')), findsNothing);
-    expect(find.byIcon(Icons.more_horiz), findsOneWidget);
     expect(find.text('ouvir aqui'), findsNothing);
 
     await tester.scrollUntilVisible(
@@ -122,6 +121,12 @@ void main() {
 
     expect(find.byKey(const ValueKey('reader-audio')), findsOneWidget);
     expect(find.byKey(const ValueKey('reader-settings')), findsOneWidget);
+    expect(find.text('ÁUDIO'), findsOneWidget);
+
+    await tester.tap(find.byKey(const ValueKey('reader-settings')));
+    await tester.pumpAndSettle();
+    expect(find.text('PROFUNDIDADE'), findsOneWidget);
+    expect(find.text('TAMANHO'), findsOneWidget);
   });
 
   testWidgets('reader back button always returns to the library',
