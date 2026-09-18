@@ -25,7 +25,7 @@ class BackupScreen extends StatelessWidget {
             Text(
               'Sem login, seus dados ficam neste aparelho. O backup permite levar progresso, salvos, notas, revisões e preferências para outro navegador ou dispositivo.',
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: AppColors.muted,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
             ),
             const SizedBox(height: 26),
@@ -63,15 +63,15 @@ class BackupScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: AppColors.softBlue,
-                border: Border.all(color: AppColors.blue),
+                color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                border: Border.all(color: Theme.of(context).colorScheme.primary),
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Icon(
                     Icons.offline_bolt_outlined,
-                    color: AppColors.blue,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                   const SizedBox(width: 12),
                   Expanded(
@@ -192,8 +192,8 @@ class _BackupCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: AppColors.paperWhite,
-        border: Border.all(color: AppColors.ink),
+        color: Theme.of(context).colorScheme.surface,
+        border: Border.all(color: Theme.of(context).colorScheme.onSurface),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -208,7 +208,7 @@ class _BackupCard extends StatelessWidget {
           Text(
             body,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.muted,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
           ),
           const SizedBox(height: 18),
