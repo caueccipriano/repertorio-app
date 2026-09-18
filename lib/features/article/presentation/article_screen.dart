@@ -114,63 +114,48 @@ class _ArticleScreenState extends State<ArticleScreen> {
       ),
       child: Scaffold(
         backgroundColor: palette.background,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(58 + MediaQuery.paddingOf(context).top),
-          child: SafeArea(
-            bottom: false,
-            child: Material(
-              color: palette.background,
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 56,
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 56,
-                          height: 56,
-                          child: InkWell(
-                            key: const ValueKey('reader-back'),
-                            onTap: _goBack,
-                            child: const Center(
-                              child: Text('‹', style: TextStyle(fontSize: 38, fontWeight: FontWeight.w400, height: 1)),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Center(
-                            child: Text(
-                              '${(_progress * 100).round()}% · $remaining min',
-                              style: TextStyle(color: palette.muted, fontSize: 11, fontWeight: FontWeight.w700, letterSpacing: .7),
-                            ),
-                          ),
-                        ),
-                        if (audioMedia != null)
-                          SizedBox(
-                            width: 64,
-                            height: 56,
-                            child: InkWell(
-                              key: const ValueKey('reader-audio'),
-                              onTap: () => _openAudio(audioMedia),
-                              child: const Center(child: Text('ÁUDIO', style: TextStyle(fontSize: 9, fontWeight: FontWeight.w800))),
-                            ),
-                          ),
-                        SizedBox(
-                          width: 56,
-                          height: 56,
-                          child: InkWell(
-                            key: const ValueKey('reader-settings'),
-                            onTap: () => showReaderControls(context),
-                            child: Center(child: Text('Aa', style: TextStyle(color: palette.text, fontSize: 16, fontWeight: FontWeight.w800))),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  LinearProgressIndicator(value: _progress, minHeight: 2, color: palette.accent, backgroundColor: palette.line),
-                ],
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          toolbarHeight: 56,
+          titleSpacing: 0,
+          leadingWidth: 56,
+          leading: InkWell(
+            key: const ValueKey('reader-back'),
+            onTap: _goBack,
+            child: const Center(
+              child: Text('‹', style: TextStyle(fontSize: 38, fontWeight: FontWeight.w400, height: 1)),
+            ),
+          ),
+          title: Center(
+            child: Text(
+              '${(_progress * 100).round()}% · $remaining min',
+              style: TextStyle(color: palette.muted, fontSize: 11, fontWeight: FontWeight.w700, letterSpacing: .7),
+            ),
+          ),
+          actions: [
+            if (audioMedia != null)
+              SizedBox(
+                width: 64,
+                height: 56,
+                child: InkWell(
+                  key: const ValueKey('reader-audio'),
+                  onTap: () => _openAudio(audioMedia),
+                  child: const Center(child: Text('ÁUDIO', style: TextStyle(fontSize: 9, fontWeight: FontWeight.w800))),
+                ),
+              ),
+            SizedBox(
+              width: 56,
+              height: 56,
+              child: InkWell(
+                key: const ValueKey('reader-settings'),
+                onTap: () => showReaderControls(context),
+                child: Center(child: Text('Aa', style: TextStyle(color: palette.text, fontSize: 16, fontWeight: FontWeight.w800))),
               ),
             ),
+          ],
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(2),
+            child: LinearProgressIndicator(value: _progress, minHeight: 2, color: palette.accent, backgroundColor: palette.line),
           ),
         ),
         body: state.readerFlow == ReaderFlow.paged
