@@ -15,8 +15,8 @@
   <meta name="apple-mobile-web-app-title" content="Repertório">
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=5">
-  <link rel="manifest" href="manifest.json?v=5">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=6">
+  <link rel="manifest" href="manifest.json?v=6">
 
   <style>
     html,
@@ -142,6 +142,7 @@
         overlay.style.justifyContent = 'center';
         overlay.style.padding = 'calc(env(safe-area-inset-top) + 68px) 12px 12px';
         overlay.style.boxSizing = 'border-box';
+        overlay.style.transition = 'padding .18s ease, align-items .18s ease';
 
         const shell = document.createElement('div');
         shell.style.width = 'min(100%, 430px)';
@@ -153,12 +154,13 @@
         shell.style.boxShadow = '0 18px 48px rgba(0,0,0,.38)';
         shell.style.pointerEvents = 'auto';
         shell.style.fontFamily = 'Arial, sans-serif';
+        shell.style.transition = 'width .18s ease, border-radius .18s ease, transform .18s ease';
 
         const header = document.createElement('div');
         header.style.minHeight = '48px';
         header.style.display = 'flex';
         header.style.alignItems = 'center';
-        header.style.gap = '10px';
+        header.style.gap = '8px';
         header.style.padding = '8px 8px 8px 14px';
         header.style.background = '#10265E';
         header.style.color = '#fff';
@@ -184,23 +186,36 @@
         titleEl.style.overflow = 'hidden';
         titleEl.style.textOverflow = 'ellipsis';
 
-        const close = document.createElement('button');
-        close.type = 'button';
-        close.setAttribute('aria-label', 'Fechar player');
-        close.textContent = '×';
-        close.style.border = '0';
-        close.style.background = 'transparent';
-        close.style.color = '#fff';
+        function makeHeaderButton(labelText, ariaLabel) {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.setAttribute('aria-label', ariaLabel);
+          button.textContent = labelText;
+          button.style.border = '0';
+          button.style.background = 'rgba(255,255,255,.10)';
+          button.style.color = '#fff';
+          button.style.fontSize = '22px';
+          button.style.fontWeight = '800';
+          button.style.lineHeight = '1';
+          button.style.width = '40px';
+          button.style.height = '40px';
+          button.style.borderRadius = '999px';
+          button.style.cursor = 'pointer';
+          button.style.display = 'grid';
+          button.style.placeItems = 'center';
+          return button;
+        }
+
+        const minimize = makeHeaderButton('−', 'Minimizar player');
+        const close = makeHeaderButton('×', 'Fechar player');
         close.style.fontSize = '28px';
-        close.style.lineHeight = '1';
-        close.style.width = '40px';
-        close.style.height = '40px';
-        close.style.borderRadius = '999px';
-        close.style.cursor = 'pointer';
+        close.style.background = 'transparent';
 
         const frameWrap = document.createElement('div');
         frameWrap.style.background = '#121212';
         frameWrap.style.padding = '10px';
+        frameWrap.style.overflow = 'hidden';
+        frameWrap.style.transition = 'height .18s ease, padding .18s ease, opacity .18s ease';
 
         const iframe = document.createElement('iframe');
         iframe.src = embedUrl;
@@ -224,9 +239,46 @@
         hint.style.marginTop = '8px';
         hint.style.textAlign = 'center';
 
+        let minimized = false;
+        function applyMinimizedState() {
+          if (minimized) {
+            overlay.style.alignItems = 'flex-end';
+            overlay.style.padding = '12px 12px calc(env(safe-area-inset-bottom) + 14px)';
+            shell.style.width = 'min(calc(100% - 8px), 360px)';
+            shell.style.borderRadius = '999px';
+            shell.style.transform = 'translateZ(0)';
+            header.style.minHeight = '50px';
+            header.style.padding = '6px 8px 6px 14px';
+            label.textContent = 'TOCANDO';
+            titleEl.textContent = title || 'Spotify';
+            frameWrap.style.height = '0';
+            frameWrap.style.padding = '0 10px';
+            frameWrap.style.opacity = '0';
+            frameWrap.style.pointerEvents = 'none';
+            minimize.textContent = '▢';
+            minimize.setAttribute('aria-label', 'Restaurar player');
+          } else {
+            overlay.style.alignItems = 'flex-start';
+            overlay.style.padding = 'calc(env(safe-area-inset-top) + 68px) 12px 12px';
+            shell.style.width = 'min(100%, 430px)';
+            shell.style.borderRadius = '18px';
+            header.style.minHeight = '48px';
+            header.style.padding = '8px 8px 8px 14px';
+            label.textContent = source || 'Spotify';
+            titleEl.textContent = title || 'Áudio';
+            frameWrap.style.height = 'auto';
+            frameWrap.style.padding = '10px';
+            frameWrap.style.opacity = '1';
+            frameWrap.style.pointerEvents = 'auto';
+            minimize.textContent = '−';
+            minimize.setAttribute('aria-label', 'Minimizar player');
+          }
+        }
+
         textWrap.appendChild(label);
         textWrap.appendChild(titleEl);
         header.appendChild(textWrap);
+        header.appendChild(minimize);
         header.appendChild(close);
         frameWrap.appendChild(iframe);
         frameWrap.appendChild(hint);
@@ -234,6 +286,19 @@
         shell.appendChild(frameWrap);
         overlay.appendChild(shell);
         document.body.appendChild(overlay);
+
+        minimize.addEventListener('click', function () {
+          minimized = !minimized;
+          applyMinimizedState();
+        });
+
+        header.addEventListener('click', function (event) {
+          if (event.target === minimize || event.target === close) return;
+          if (minimized) {
+            minimized = false;
+            applyMinimizedState();
+          }
+        });
 
         close.addEventListener('click', function () {
           removeAudioPopup();
@@ -475,6 +540,6 @@
       });
     }
   </script>
-  <script src="flutter_bootstrap.js?v=20260918-pwa-spotify-popup-1" async></script>
+  <script src="flutter_bootstrap.js?v=20260918-pwa-spotify-popup-minimize-1" async></script>
 </body>
 </html>
