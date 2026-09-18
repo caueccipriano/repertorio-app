@@ -130,98 +130,64 @@ class _ArticleScreenState extends State<ArticleScreen> {
       ),
       child: Scaffold(
         backgroundColor: palette.background,
-        appBar: AppBar(
-          leadingWidth: 72,
-          leading: TextButton(
-            style: TextButton.styleFrom(foregroundColor: palette.text, minimumSize: const Size(64, 48)),
-            key: const ValueKey('reader-back'),
-            onPressed: _goBack,
-            child: const Text('←', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w700)),
-          ),
-          title: Text(
-            '${(_progress * 100).round()}% · $remaining min',
-            style: TextStyle(
-              color: palette.muted,
-              fontSize: 11,
-              fontWeight: FontWeight.w700,
-              letterSpacing: .7,
-            ),
-          ),
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(2),
-            child: LinearProgressIndicator(
-              value: _progress,
-              minHeight: 2,
-              color: palette.accent,
-              backgroundColor: palette.line,
-            ),
-          ),
-          actions: [
-            if (audioMedia != null)
-              TextButton(
-                key: const ValueKey('reader-audio'),
-                onPressed: () => _openAudio(audioMedia),
-                style: TextButton.styleFrom(foregroundColor: palette.text, minimumSize: const Size(52, 48)),
-                child: const Text('OUVIR', style: TextStyle(fontSize: 10, fontWeight: FontWeight.w800, letterSpacing: .5)),
-              ),
-            if (!state.readerFocusMode)
-              PopupMenuButton<_ReaderMenuAction>(
-                tooltip: 'Mais ações',
-                icon: const Icon(Icons.more_horiz),
-                onSelected: _handleMenuAction,
-                itemBuilder: (context) => [
-                  _readerMenuItem(
-                    _ReaderMenuAction.save,
-                    saved ? Icons.bookmark : Icons.bookmark_border,
-                    saved ? 'Remover dos salvos' : 'Salvar',
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(58),
+          child: SafeArea(
+            bottom: false,
+            child: Material(
+              color: palette.background,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 56,
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 56,
+                          height: 56,
+                          child: InkWell(
+                            key: const ValueKey('reader-back'),
+                            onTap: _goBack,
+                            child: const Center(
+                              child: Text('‹', style: TextStyle(fontSize: 38, fontWeight: FontWeight.w400, height: 1)),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Center(
+                            child: Text(
+                              '${(_progress * 100).round()}% · $remaining min',
+                              style: TextStyle(color: palette.muted, fontSize: 11, fontWeight: FontWeight.w700, letterSpacing: .7),
+                            ),
+                          ),
+                        ),
+                        if (audioMedia != null)
+                          SizedBox(
+                            width: 64,
+                            height: 56,
+                            child: InkWell(
+                              key: const ValueKey('reader-audio'),
+                              onTap: () => _openAudio(audioMedia),
+                              child: const Center(child: Text('ÁUDIO', style: TextStyle(fontSize: 9, fontWeight: FontWeight.w800))),
+                            ),
+                          ),
+                        SizedBox(
+                          width: 56,
+                          height: 56,
+                          child: InkWell(
+                            key: const ValueKey('reader-settings'),
+                            onTap: () => showReaderControls(context),
+                            child: Center(child: Text('Aa', style: TextStyle(color: palette.text, fontSize: 16, fontWeight: FontWeight.w800))),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  _readerMenuItem(
-                    _ReaderMenuAction.queue,
-                    queued
-                        ? Icons.playlist_add_check
-                        : Icons.playlist_add,
-                    queued ? 'Remover de ler depois' : 'Ler depois',
-                  ),
-                  _readerMenuItem(
-                    _ReaderMenuAction.offline,
-                    offline
-                        ? Icons.offline_pin
-                        : Icons.download_for_offline_outlined,
-                    offline ? 'Remover offline' : 'Disponível offline',
-                  ),
-                  _readerMenuItem(
-                    _ReaderMenuAction.note,
-                    note.isEmpty
-                        ? Icons.note_add_outlined
-                        : Icons.sticky_note_2_outlined,
-                    note.isEmpty ? 'Adicionar nota' : 'Editar nota',
-                  ),
-                  _readerMenuItem(
-                    _ReaderMenuAction.share,
-                    Icons.ios_share_outlined,
-                    'Compartilhar',
-                  ),
-                  _readerMenuItem(
-                    _ReaderMenuAction.map,
-                    Icons.hub_outlined,
-                    'Abrir mapa',
-                  ),
+                  LinearProgressIndicator(value: _progress, minHeight: 2, color: palette.accent, backgroundColor: palette.line),
                 ],
               ),
-            TextButton(
-              key: const ValueKey('reader-settings'),
-              style: TextButton.styleFrom(foregroundColor: palette.text, minimumSize: const Size(52, 48)),
-              onPressed: () => showReaderControls(context),
-              child: Text(
-                'Aa',
-                style: TextStyle(
-                  color: palette.text,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
             ),
-            const SizedBox(width: 4),
-          ],
+          ),
         ),
         body: state.readerFlow == ReaderFlow.paged
             ? _buildPagedReader(state, palette, sections)
