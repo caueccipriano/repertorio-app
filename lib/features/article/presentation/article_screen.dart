@@ -7,6 +7,7 @@ import '../../../app/state/app_state.dart';
 import '../../../app/state/app_state_scope.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../../core/audio/podcast_audio.dart';
+import '../../../core/audio/reader_speech.dart';
 import '../../explore/data/knowledge_graph.dart';
 import '../../explore/presentation/knowledge_map_screen.dart';
 import '../../study/data/study_content.dart';
@@ -133,34 +134,33 @@ class _ArticleScreenState extends State<ArticleScreen> {
             ),
           ),
           actions: [
-            if (audioMedia != null)
-              SizedBox(
-                width: 64,
-                height: 56,
-                child: InkWell(
-                  key: const ValueKey('reader-audio'),
-                  onTap: () => _openAudio(audioMedia),
-                  child: Center(
-                    child: Container(
-                      width: 34,
-                      height: 34,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: palette.text, width: 1.4),
-                      ),
-                      alignment: Alignment.center,
-                      child: Text(
-                        '▶',
-                        style: TextStyle(
-                          color: palette.text,
-                          fontSize: 14,
-                          height: 1,
-                        ),
+            SizedBox(
+              width: 64,
+              height: 56,
+              child: InkWell(
+                key: const ValueKey('reader-audio'),
+                onTap: () => _playAudioOrSpeech(audioMedia),
+                child: Center(
+                  child: Container(
+                    width: 34,
+                    height: 34,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: palette.text, width: 1.4),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '▶',
+                      style: TextStyle(
+                        color: palette.text,
+                        fontSize: 14,
+                        height: 1,
                       ),
                     ),
                   ),
                 ),
               ),
+            ),
             SizedBox(
               width: 56,
               height: 56,
@@ -556,6 +556,30 @@ class _ArticleScreenState extends State<ArticleScreen> {
       }
     }
     return null;
+  }
+
+  Future<void> _playAudioOrSpeech(KnowledgeMedia? media) async {
+    if (media != null) {
+      await _openAudio(media);
+      return;
+    }
+
+    final topic = widget.topic;
+    final text = <String>[
+      topic.title,
+      topic.quickTake,
+      ...topic.body,
+      topic.remember,
+      topic.whyItMatters,
+      topic.curiosity,
+    ].join('. ');
+
+    final started = await speakReaderText(text: text);
+    if (!mounted || started) return;
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('O áudio não está disponível neste navegador.')),
+    );
   }
 
   Future<void> _openAudio(KnowledgeMedia media) async {
