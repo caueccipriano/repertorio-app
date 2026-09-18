@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'app_shell.dart';
+import '../features/onboarding/presentation/onboarding_screen.dart';
 import 'theme/app_theme.dart';
 
 class RepertorioApp extends StatelessWidget {
@@ -12,7 +12,7 @@ class RepertorioApp extends StatelessWidget {
       title: 'Repertório',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
-      home: const AppShell(),
+      home: const OnboardingScreen(),
     );
   }
 }
