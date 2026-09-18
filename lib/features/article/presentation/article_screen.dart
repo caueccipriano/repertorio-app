@@ -140,7 +140,25 @@ class _ArticleScreenState extends State<ArticleScreen> {
                 child: InkWell(
                   key: const ValueKey('reader-audio'),
                   onTap: () => _openAudio(audioMedia),
-                  child: const Center(child: Text('ÁUDIO', style: TextStyle(fontSize: 9, fontWeight: FontWeight.w800))),
+                  child: Center(
+                    child: Container(
+                      width: 34,
+                      height: 34,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: palette.text, width: 1.4),
+                      ),
+                      alignment: Alignment.center,
+                      child: Text(
+                        '▶',
+                        style: TextStyle(
+                          color: palette.text,
+                          fontSize: 14,
+                          height: 1,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ),
             SizedBox(
