@@ -29,31 +29,124 @@
 <body>
   <script>
     window.repertorioSpeech = {
+      generation: 0,
       supported: function () {
-        return 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
+        return 'speechSynthesis' in window &&
+          'SpeechSynthesisUtterance' in window;
       },
       speak: function (text, rate) {
         return new Promise(function (resolve) {
           if (!window.repertorioSpeech.supported()) {
-            resolve('unsupported');
+            resolve(false);
             return;
           }
-          window.speechSynthesis.cancel();
-          const utterance = new SpeechSynthesisUtterance(text);
-          utterance.lang = 'pt-BR';
-          utterance.rate = Math.max(0.7, Math.min(1.5, rate || 1.0));
-          utterance.pitch = 1.0;
-          utterance.onend = function () { resolve('ended'); };
-          utterance.onerror = function () { resolve('error'); };
-          window.speechSynthesis.speak(utterance);
+
+          const synth = window.speechSynthesis;
+          const generation = ++window.repertorioSpeech.generation;
+          const cleanText = String(text || '').replace(/\s+/g, ' ').trim();
+
+          if (!cleanText) {
+            resolve(false);
+            return;
+          }
+
+          const sentences = cleanText.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [cleanText];
+          const chunks = [];
+          let current = '';
+
+          sentences.forEach(function (sentence) {
+            const next = (current + ' ' + sentence).trim();
+            if (next.length > 220 && current) {
+              chunks.push(current);
+              current = sentence.trim();
+            } else {
+              current = next;
+            }
+          });
+          if (current) chunks.push(current);
+
+          const chooseVoice = function () {
+            const voices = synth.getVoices ? synth.getVoices() : [];
+            return voices.find(v => /^pt-BR$/i.test(v.lang)) ||
+              voices.find(v => /^pt/i.test(v.lang)) ||
+              null;
+          };
+
+          let index = 0;
+          let started = false;
+          let resolved = false;
+
+          const finishStartup = function (value) {
+            if (!resolved) {
+              resolved = true;
+              resolve(value);
+            }
+          };
+
+          const speakNext = function () {
+            if (generation !== window.repertorioSpeech.generation) return;
+            if (index >= chunks.length) return;
+
+            const utterance = new SpeechSynthesisUtterance(chunks[index++]);
+            utterance.lang = 'pt-BR';
+            utterance.rate = Math.max(0.7, Math.min(1.5, rate || 1.0));
+            utterance.pitch = 1.0;
+            utterance.volume = 1.0;
+
+            const voice = chooseVoice();
+            if (voice) utterance.voice = voice;
+
+            utterance.onstart = function () {
+              started = true;
+              finishStartup(true);
+            };
+            utterance.onend = function () {
+              if (generation === window.repertorioSpeech.generation) {
+                speakNext();
+              }
+            };
+            utterance.onerror = function () {
+              if (!started) finishStartup(false);
+            };
+
+            synth.speak(utterance);
+            if (synth.paused) synth.resume();
+          };
+
+          if (synth.speaking || synth.pending || synth.paused) {
+            synth.cancel();
+          }
+
+          if (synth.getVoices) synth.getVoices();
+          speakNext();
+
+          window.setTimeout(function () {
+            if (!resolved) {
+              finishStartup(
+                generation === window.repertorioSpeech.generation &&
+                  (synth.speaking || synth.pending)
+              );
+            }
+          }, 900);
         });
       },
       stop: function () {
         if ('speechSynthesis' in window) {
+          window.repertorioSpeech.generation++;
           window.speechSynthesis.cancel();
+          if (window.speechSynthesis.paused) {
+            window.speechSynthesis.resume();
+          }
         }
       }
     };
+
+    if ('speechSynthesis' in window && window.speechSynthesis.getVoices) {
+      window.speechSynthesis.getVoices();
+      window.speechSynthesis.addEventListener?.('voiceschanged', function () {
+        window.speechSynthesis.getVoices();
+      });
+    }
 
     window.repertorioOffline = {
       supported: function () {
