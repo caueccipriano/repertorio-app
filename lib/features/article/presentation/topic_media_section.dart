@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../core/audio/spotify_embed.dart';
 import '../../today/domain/knowledge_topic.dart';
 
 class TopicMediaSection extends StatelessWidget {
@@ -15,7 +13,11 @@ class TopicMediaSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (media.isEmpty) {
+    final visualMedia = media
+        .where((item) => item.type != KnowledgeMediaType.audio)
+        .toList(growable: false);
+
+    if (visualMedia.isEmpty) {
       return const SizedBox.shrink();
     }
 
@@ -25,7 +27,7 @@ class TopicMediaSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'VEJA / OUÇA',
+          'VEJA',
           style: Theme.of(context).textTheme.labelLarge?.copyWith(
                 color: colors.primary,
                 fontSize: 10,
@@ -33,7 +35,7 @@ class TopicMediaSection extends StatelessWidget {
               ),
         ),
         const SizedBox(height: 12),
-        ...media.map(
+        ...visualMedia.map(
           (item) => Padding(
             padding: const EdgeInsets.only(bottom: 18),
             child: _MediaCard(item: item),
@@ -64,29 +66,23 @@ class _MediaCard extends StatelessWidget {
           if (item.type == KnowledgeMediaType.image)
             AspectRatio(
               aspectRatio: 16 / 10,
-              child: item.url.endsWith('.svg') && item.url.startsWith('assets/')
-                  ? SvgPicture.asset(
-                      item.url,
-                      fit: BoxFit.cover,
-                      semanticsLabel: item.title,
-                    )
-                  : Image.network(
-                      item.url,
-                      fit: BoxFit.cover,
-                      webHtmlElementStrategy: WebHtmlElementStrategy.fallback,
-                      errorBuilder: (_, __, ___) => _MediaFallback(
-                        icon: Icons.image_not_supported_outlined,
-                        label: 'não consegui carregar a imagem',
-                        actionLabel:
-                            item.sourceUrl == null ? null : 'abrir na fonte',
-                        onTap: item.sourceUrl == null
-                            ? null
-                            : () => _open(item.sourceUrl!),
-                      ),
-                    ),
+              child: Image.network(
+                item.url,
+                fit: BoxFit.cover,
+                webHtmlElementStrategy: WebHtmlElementStrategy.fallback,
+                errorBuilder: (_, __, ___) => _MediaFallback(
+                  icon: Icons.image_not_supported_outlined,
+                  label: 'não consegui carregar a foto',
+                  actionLabel:
+                      item.sourceUrl == null ? null : 'abrir foto na fonte',
+                  onTap: item.sourceUrl == null
+                      ? null
+                      : () => _open(item.sourceUrl!),
+                ),
+              ),
             )
           else
-            _ExternalMediaPreview(item: item),
+            _VideoPreview(item: item),
           Padding(
             padding: const EdgeInsets.fromLTRB(14, 12, 14, 14),
             child: Column(
@@ -107,12 +103,22 @@ class _MediaCard extends StatelessWidget {
                         ),
                   ),
                 ],
+                if (item.sourceLabel != null) ...[
+                  const SizedBox(height: 9),
+                  Text(
+                    item.sourceLabel!,
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          color: colors.onSurfaceVariant,
+                          fontSize: 9,
+                        ),
+                  ),
+                ],
                 if (item.sourceUrl != null) ...[
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 7),
                   InkWell(
                     onTap: () => _open(item.sourceUrl!),
                     child: Text(
-                      item.sourceLabel ?? 'fonte',
+                      'ver fonte',
                       style: Theme.of(context).textTheme.labelLarge?.copyWith(
                             color: colors.primary,
                             fontSize: 9,
@@ -130,42 +136,32 @@ class _MediaCard extends StatelessWidget {
   }
 }
 
-class _ExternalMediaPreview extends StatelessWidget {
-  const _ExternalMediaPreview({required this.item});
+class _VideoPreview extends StatelessWidget {
+  const _VideoPreview({required this.item});
 
   final KnowledgeMedia item;
 
   @override
   Widget build(BuildContext context) {
-    final isVideo = item.type == KnowledgeMediaType.video;
-    final isSpotify = item.url.contains('open.spotify.com');
     final colors = Theme.of(context).colorScheme;
 
     return InkWell(
       onTap: () => _open(item.url),
       child: Container(
-        height: 122,
+        height: 116,
         color: colors.primary,
         padding: const EdgeInsets.all(18),
         child: Row(
           children: [
             Icon(
-              isSpotify
-                  ? Icons.music_note_rounded
-                  : isVideo
-                      ? Icons.play_circle_outline
-                      : Icons.headphones,
+              Icons.play_circle_outline,
               color: colors.onPrimary,
-              size: 42,
+              size: 40,
             ),
             const SizedBox(width: 16),
             Expanded(
               child: Text(
-                isSpotify
-                    ? 'ouvir aqui'
-                    : isVideo
-                        ? 'abrir vídeo'
-                        : 'ouvir áudio',
+                'abrir vídeo',
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                       color: colors.onPrimary,
                     ),
@@ -241,14 +237,6 @@ Future<void> _open(String url) async {
   if (uri == null) {
     return;
   }
-
-  if (uri.host == 'open.spotify.com') {
-    final openedInside = await openSpotifyEmbed(url);
-    if (openedInside) {
-      return;
-    }
-  }
-
   await launchUrl(
     uri,
     mode: LaunchMode.externalApplication,

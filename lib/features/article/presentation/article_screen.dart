@@ -7,7 +7,7 @@ import '../../../app/app_shell.dart';
 import '../../../app/state/app_state.dart';
 import '../../../app/state/app_state_scope.dart';
 import '../../../app/theme/app_colors.dart';
-import '../../../core/audio/study_speech.dart';
+import '../../../core/audio/spotify_embed.dart';
 import '../../../core/offline/offline_cache.dart';
 import '../../../core/share/knowledge_card_share.dart';
 import '../../explore/data/knowledge_graph.dart';
@@ -45,7 +45,6 @@ class _ArticleScreenState extends State<ArticleScreen> {
   PageController? _pageController;
   double _progress = 0;
   bool _bootstrapped = false;
-  bool _speaking = false;
 
   @override
   void initState() {
@@ -87,7 +86,6 @@ class _ArticleScreenState extends State<ArticleScreen> {
 
   @override
   void dispose() {
-    if (_speaking) stopStudySpeech();
     _scrollController
       ..removeListener(_onScroll)
       ..dispose();
@@ -108,6 +106,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
     final queued = state.isQueued(widget.topic.id);
     final offline = state.isOfflineTopic(widget.topic.id);
     final note = state.noteFor(widget.topic.id);
+    final spotifyAudio = _spotifyAudioFor(widget.topic);
     final remaining = ((1 - _progress) * widget.topic.minutes)
         .ceil()
         .clamp(0, widget.topic.minutes);
@@ -157,16 +156,12 @@ class _ArticleScreenState extends State<ArticleScreen> {
             ),
           ),
           actions: [
-            if (studySpeechSupported)
+            if (spotifyAudio != null)
               IconButton(
                 key: const ValueKey('reader-audio'),
-                tooltip: _speaking ? 'Parar áudio' : 'Ouvir artigo',
-                onPressed: _toggleSpeech,
-                icon: Icon(
-                  _speaking
-                      ? Icons.stop_circle_outlined
-                      : Icons.headphones_outlined,
-                ),
+                tooltip: 'Ouvir no Spotify',
+                onPressed: () => _openSpotifyAudio(spotifyAudio),
+                icon: const Icon(Icons.headphones_outlined),
               ),
             if (!state.readerFocusMode)
               PopupMenuButton<_ReaderMenuAction>(
@@ -596,46 +591,29 @@ class _ArticleScreenState extends State<ArticleScreen> {
     );
   }
 
-  Future<void> _toggleSpeech() async {
-    if (_speaking) {
-      stopStudySpeech();
-      if (mounted) setState(() => _speaking = false);
+  KnowledgeMedia? _spotifyAudioFor(KnowledgeTopic topic) {
+    for (final media in topic.media) {
+      if (media.type == KnowledgeMediaType.audio &&
+          media.url.contains('open.spotify.com')) {
+        return media;
+      }
+    }
+    return null;
+  }
+
+  Future<void> _openSpotifyAudio(KnowledgeMedia media) async {
+    final opened = await openSpotifyEmbed(media.url);
+    if (!mounted || opened) {
       return;
     }
 
-    final topic = widget.topic;
-    final text = [
-      topic.title,
-      topic.summary,
-      'Em trinta segundos.',
-      topic.quickTake,
-      ...topic.body,
-      'O que você precisa lembrar.',
-      ...topic.remember,
-      'Por que isso importa.',
-      topic.whyItMatters,
-      'Uma coisa interessante.',
-      topic.curiosity,
-    ].join('\n\n');
-
-    final rate = AppStateScope.read(context).voiceRate;
-    final started = await speakStudyText(text, rate: rate);
-
-    if (!mounted) return;
-
-    if (!started) {
-      setState(() => _speaking = false);
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-            'Não consegui iniciar o áudio. Tente tocar novamente ou confira se o iPhone não está com o volume de mídia zerado.',
-          ),
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text(
+          'Não consegui abrir o player do Spotify dentro do Repertório.',
         ),
-      );
-      return;
-    }
-
-    setState(() => _speaking = true);
+      ),
+    );
   }
 
   void _goBack() {
