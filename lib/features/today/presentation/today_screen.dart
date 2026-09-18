@@ -92,7 +92,7 @@ class TodayScreen extends StatelessWidget {
                   child: HandNote(
                     'sua biblioteca mental cresce uma leitura por vez.',
                     fontSize: 20,
-                    color: AppColors.muted,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -215,7 +215,7 @@ class _LibraryStatusBar extends StatelessWidget {
         Text(
           'repertório*',
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                color: AppColors.blue,
+                color: Theme.of(context).colorScheme.primary,
                 fontWeight: FontWeight.w800,
                 letterSpacing: -.7,
               ),
@@ -225,7 +225,7 @@ class _LibraryStatusBar extends StatelessWidget {
           dateLabel,
           style: Theme.of(context).textTheme.labelLarge?.copyWith(
                 fontSize: 10,
-                color: AppColors.muted,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
                 letterSpacing: .7,
               ),
         ),
@@ -233,13 +233,13 @@ class _LibraryStatusBar extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
           decoration: BoxDecoration(
-            border: Border.all(color: AppColors.line),
+            border: Border.all(color: Theme.of(context).colorScheme.outline),
           ),
           child: Text(
             '$read lidos',
             style: Theme.of(context).textTheme.labelLarge?.copyWith(
                   fontSize: 9,
-                  color: AppColors.muted,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
           ),
         ),
@@ -311,7 +311,7 @@ class _FeaturedKnowledge extends StatelessWidget {
                       style: Theme.of(context).textTheme.labelLarge?.copyWith(
                             fontSize: 9,
                             letterSpacing: 1.3,
-                            color: AppColors.blue,
+                            color: Theme.of(context).colorScheme.primary,
                           ),
                     ),
                     SizedBox(height: wide ? 18 : 10),
@@ -339,7 +339,7 @@ class _FeaturedKnowledge extends StatelessWidget {
                     Text(
                       topic.tags.join(' · '),
                       style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                            color: AppColors.muted,
+                            color: Theme.of(context).colorScheme.onSurfaceVariant,
                             fontSize: 10,
                           ),
                     ),
@@ -352,7 +352,7 @@ class _FeaturedKnowledge extends StatelessWidget {
                             vertical: 5,
                           ),
                           decoration: BoxDecoration(
-                            border: Border.all(color: AppColors.ink),
+                            border: Border.all(color: Theme.of(context).colorScheme.onSurface),
                             borderRadius: BorderRadius.circular(99),
                           ),
                           child: Text(
@@ -442,7 +442,7 @@ class _QuickActions extends StatelessWidget {
     return Container(
       height: 44,
       decoration: BoxDecoration(
-        border: Border.all(color: AppColors.ink),
+        border: Border.all(color: Theme.of(context).colorScheme.onSurface),
       ),
       child: Row(
         children: actions.indexed.map((item) {
@@ -454,7 +454,7 @@ class _QuickActions extends StatelessWidget {
                   border: item.$1 == actions.length - 1
                       ? null
                       : const Border(
-                          right: BorderSide(color: AppColors.ink),
+                          right: BorderSide(color: Theme.of(context).colorScheme.onSurface),
                         ),
                 ),
                 child: Row(
@@ -653,7 +653,7 @@ class _PersonalTrailCard extends StatelessWidget {
           Text(
             'TRILHA PARA VOCÊ',
             style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                  color: AppColors.blue,
+                  color: Theme.of(context).colorScheme.primary,
                   fontSize: 9,
                   letterSpacing: 1.1,
                 ),
@@ -680,7 +680,7 @@ class _PersonalTrailCard extends StatelessWidget {
                     Text(
                       '0${item.$1 + 1}',
                       style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                            color: AppColors.blue,
+                            color: Theme.of(context).colorScheme.primary,
                             fontSize: 9,
                           ),
                     ),
@@ -770,7 +770,7 @@ class _ShelfHeader extends StatelessWidget {
               Text(
                 subtitle,
                 style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      color: AppColors.muted,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                       fontSize: 10,
                     ),
               ),
@@ -821,7 +821,7 @@ class _ShelfBook extends StatelessWidget {
             '${topic.minutes} min',
             style: Theme.of(context).textTheme.labelLarge?.copyWith(
                   fontSize: 9,
-                  color: AppColors.muted,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
           ),
         ],
@@ -895,7 +895,7 @@ class _ContinueShelf extends StatelessWidget {
                           '${topic.tags.join(' · ')} · ${topic.minutes} min',
                           style:
                               Theme.of(context).textTheme.labelLarge?.copyWith(
-                                    color: AppColors.muted,
+                                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                                     fontSize: 10,
                                   ),
                         ),
@@ -903,15 +903,15 @@ class _ContinueShelf extends StatelessWidget {
                         LinearProgressIndicator(
                           value: progress,
                           minHeight: 5,
-                          color: AppColors.blue,
-                          backgroundColor: AppColors.line,
+                          color: Theme.of(context).colorScheme.primary,
+                          backgroundColor: Theme.of(context).colorScheme.outline,
                         ),
                         const SizedBox(height: 6),
                         Text(
                           '$percent% lido',
                           style:
                               Theme.of(context).textTheme.labelLarge?.copyWith(
-                                    color: AppColors.blue,
+                                    color: Theme.of(context).colorScheme.primary,
                                     fontSize: 9,
                                   ),
                         ),
@@ -936,7 +936,7 @@ class _OutsideBubbleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: AppColors.paperWhite,
+      color: Theme.of(context).colorScheme.surface,
       child: InkWell(
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute<void>(
@@ -948,13 +948,13 @@ class _OutsideBubbleCard extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.all(18),
           decoration: BoxDecoration(
-            border: Border.all(color: AppColors.ink),
+            border: Border.all(color: Theme.of(context).colorScheme.onSurface),
           ),
           child: Row(
             children: [
               const Icon(
                 Icons.shuffle_rounded,
-                color: AppColors.blue,
+                color: Theme.of(context).colorScheme.primary,
                 size: 30,
               ),
               const SizedBox(width: 15),
@@ -965,7 +965,7 @@ class _OutsideBubbleCard extends StatelessWidget {
                     Text(
                       'SAIA DA SUA BOLHA',
                       style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                            color: AppColors.blue,
+                            color: Theme.of(context).colorScheme.primary,
                             fontSize: 9,
                             letterSpacing: 1.1,
                           ),
@@ -1015,7 +1015,7 @@ class _RabbitHoleShelf extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 18),
           decoration: BoxDecoration(
-            border: Border.all(color: AppColors.ink),
+            border: Border.all(color: Theme.of(context).colorScheme.onSurface),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
