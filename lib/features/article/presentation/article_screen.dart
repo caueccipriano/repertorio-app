@@ -135,7 +135,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
             key: const ValueKey('reader-back'),
             tooltip: 'Voltar',
             onPressed: _goBack,
-            icon: const Icon(Icons.arrow_back_ios_new),
+            icon: const Text('←', style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600)),
           ),
           title: Text(
             '${(_progress * 100).round()}% · $remaining min',
@@ -161,12 +161,15 @@ class _ArticleScreenState extends State<ArticleScreen> {
                 key: const ValueKey('reader-audio'),
                 tooltip: 'Ouvir',
                 onPressed: () => _openAudio(audioMedia),
-                icon: const Icon(Icons.headphones_outlined),
+                icon: const Text('♪', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700)),
               ),
             if (!state.readerFocusMode)
               PopupMenuButton<_ReaderMenuAction>(
                 tooltip: 'Mais ações',
-                icon: const Icon(Icons.more_horiz),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                  child: Text('•••', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, letterSpacing: 2)),
+                ),
                 onSelected: _handleMenuAction,
                 itemBuilder: (context) => [
                   _readerMenuItem(
@@ -1194,12 +1197,12 @@ class _PassageBlock extends StatelessWidget {
                 visualDensity: VisualDensity.compact,
                 onPressed: () =>
                     state.toggleHighlight(topicId, passageId),
-                icon: Icon(
-                  highlighted
-                      ? Icons.format_color_fill
-                      : Icons.border_color_outlined,
-                  size: 18,
-                  color: highlighted ? palette.accent : palette.muted,
+                icon: Text(
+                  highlighted ? '●' : '✎',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: highlighted ? palette.accent : palette.muted,
+                  ),
                 ),
               ),
               IconButton(
@@ -1209,10 +1212,12 @@ class _PassageBlock extends StatelessWidget {
                 visualDensity: VisualDensity.compact,
                 onPressed: () =>
                     state.togglePassageStar(topicId, passageId),
-                icon: Icon(
-                  starred ? Icons.star : Icons.star_border,
-                  size: 18,
-                  color: starred ? palette.accent : palette.muted,
+                icon: Text(
+                  starred ? '★' : '☆',
+                  style: TextStyle(
+                    fontSize: 19,
+                    color: starred ? palette.accent : palette.muted,
+                  ),
                 ),
               ),
             ],
