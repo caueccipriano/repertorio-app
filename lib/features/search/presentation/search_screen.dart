@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
 
+import '../../../app/state/app_state_scope.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../article/presentation/article_screen.dart';
 import '../../article/presentation/quick_peek.dart';
 import '../../today/data/demo_topics.dart';
 import '../../today/domain/knowledge_topic.dart';
+
+enum _SearchFilter {
+  quick,
+  unread,
+  completed,
+  saved,
+  withNote,
+  withMedia,
+  offline,
+}
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -15,6 +26,7 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   final _controller = TextEditingController();
+  final Set<_SearchFilter> _filters = {};
   String _query = '';
 
   @override
@@ -23,11 +35,9 @@ class _SearchScreenState extends State<SearchScreen> {
     super.dispose();
   }
 
-  List<KnowledgeTopic> get _results {
+  List<KnowledgeTopic> _results(BuildContext context) {
+    final state = AppStateScope.of(context);
     final q = _query.trim().toLowerCase();
-    if (q.isEmpty) {
-      return allDemoTopics;
-    }
 
     return allDemoTopics.where((topic) {
       final haystack = [
@@ -36,17 +46,69 @@ class _SearchScreenState extends State<SearchScreen> {
         ...topic.tags,
         ...topic.connections,
         topic.quickTake,
+        ...topic.body,
       ].join(' ').toLowerCase();
-      return haystack.contains(q);
+
+      if (q.isNotEmpty && !haystack.contains(q)) return false;
+      if (_filters.contains(_SearchFilter.quick) && topic.minutes > 5) {
+        return false;
+      }
+      if (_filters.contains(_SearchFilter.unread) &&
+          state.progressFor(topic.id) > 0) {
+        return false;
+      }
+      if (_filters.contains(_SearchFilter.completed) &&
+          !state.completedTopicIds.contains(topic.id)) {
+        return false;
+      }
+      if (_filters.contains(_SearchFilter.saved) &&
+          !state.savedTopicIds.contains(topic.id)) {
+        return false;
+      }
+      if (_filters.contains(_SearchFilter.withNote) &&
+          state.noteFor(topic.id).isEmpty) {
+        return false;
+      }
+      if (_filters.contains(_SearchFilter.withMedia) &&
+          topic.media.isEmpty) {
+        return false;
+      }
+      if (_filters.contains(_SearchFilter.offline) &&
+          !state.isOfflineTopic(topic.id)) {
+        return false;
+      }
+      return true;
     }).toList();
   }
 
   @override
   Widget build(BuildContext context) {
-    final results = _results;
+    final state = AppStateScope.of(context);
+    final results = _results(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('buscar')),
+      appBar: AppBar(
+        title: const Text('buscar'),
+        actions: [
+          IconButton(
+            tooltip: 'Surpreenda-me',
+            onPressed: () {
+              final candidates = allDemoTopics
+                  .where((topic) => !state.completedTopicIds.contains(topic.id))
+                  .toList();
+              final pool = candidates.isEmpty ? allDemoTopics : candidates;
+              final topic =
+                  pool[DateTime.now().millisecondsSinceEpoch % pool.length];
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => ArticleScreen(topic: topic),
+                ),
+              );
+            },
+            icon: const Icon(Icons.casino_outlined),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
@@ -83,16 +145,35 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
               ),
             ),
+            const SizedBox(height: 14),
+            _FilterBar(
+              selected: _filters,
+              onToggle: (filter) {
+                setState(() {
+                  if (!_filters.add(filter)) {
+                    _filters.remove(filter);
+                  }
+                });
+              },
+            ),
             const SizedBox(height: 18),
-            Text(
-              _query.isEmpty
-                  ? 'TODO O ACERVO'
-                  : '${results.length} RESULTADO${results.length == 1 ? '' : 'S'}',
-              style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                    color: AppColors.muted,
-                    fontSize: 10,
-                    letterSpacing: 1.1,
+            Row(
+              children: [
+                Text(
+                  '${results.length} RESULTADO${results.length == 1 ? '' : 'S'}',
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        color: AppColors.muted,
+                        fontSize: 10,
+                        letterSpacing: 1.1,
+                      ),
+                ),
+                const Spacer(),
+                if (_filters.isNotEmpty)
+                  TextButton(
+                    onPressed: () => setState(_filters.clear),
+                    child: const Text('limpar filtros'),
                   ),
+              ],
             ),
             const SizedBox(height: 8),
             if (results.isEmpty)
@@ -101,6 +182,9 @@ class _SearchScreenState extends State<SearchScreen> {
               ...results.map(
                 (topic) => _SearchResult(
                   topic: topic,
+                  progress: state.progressFor(topic.id),
+                  saved: state.isSaved(topic.id),
+                  offline: state.isOfflineTopic(topic.id),
                   onOpen: () => Navigator.of(context).push(
                     MaterialPageRoute<void>(
                       builder: (_) => ArticleScreen(topic: topic),
@@ -116,14 +200,57 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 }
 
+class _FilterBar extends StatelessWidget {
+  const _FilterBar({
+    required this.selected,
+    required this.onToggle,
+  });
+
+  final Set<_SearchFilter> selected;
+  final ValueChanged<_SearchFilter> onToggle;
+
+  @override
+  Widget build(BuildContext context) {
+    const items = [
+      (_SearchFilter.quick, '≤ 5 min'),
+      (_SearchFilter.unread, 'não lidos'),
+      (_SearchFilter.completed, 'concluídos'),
+      (_SearchFilter.saved, 'salvos'),
+      (_SearchFilter.withNote, 'com nota'),
+      (_SearchFilter.withMedia, 'com mídia'),
+      (_SearchFilter.offline, 'offline'),
+    ];
+
+    return Wrap(
+      spacing: 7,
+      runSpacing: 7,
+      children: items
+          .map(
+            (item) => FilterChip(
+              label: Text(item.$2),
+              selected: selected.contains(item.$1),
+              onSelected: (_) => onToggle(item.$1),
+            ),
+          )
+          .toList(),
+    );
+  }
+}
+
 class _SearchResult extends StatelessWidget {
   const _SearchResult({
     required this.topic,
+    required this.progress,
+    required this.saved,
+    required this.offline,
     required this.onOpen,
     required this.onPeek,
   });
 
   final KnowledgeTopic topic;
+  final double progress;
+  final bool saved;
+  final bool offline;
   final VoidCallback onOpen;
   final VoidCallback onPeek;
 
@@ -168,12 +295,30 @@ class _SearchResult extends StatelessWidget {
                         ),
                   ),
                   const SizedBox(height: 5),
-                  Text(
-                    topic.tags.join(' · '),
-                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                          color: AppColors.muted,
-                          fontSize: 9,
+                  Wrap(
+                    spacing: 7,
+                    runSpacing: 4,
+                    children: [
+                      Text(
+                        topic.tags.join(' · '),
+                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                              color: AppColors.muted,
+                              fontSize: 9,
+                            ),
+                      ),
+                      if (progress > 0)
+                        Text(
+                          '${(progress * 100).round()}%',
+                          style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                color: AppColors.blue,
+                                fontSize: 9,
+                              ),
                         ),
+                      if (saved)
+                        const Icon(Icons.bookmark, size: 13),
+                      if (offline)
+                        const Icon(Icons.offline_pin, size: 13),
+                    ],
                   ),
                 ],
               ),
@@ -194,7 +339,7 @@ class _EmptySearch extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 36),
       child: Text(
-        'Nada por aqui ainda. Tente outro termo.',
+        'Nada por aqui com esses filtros. Tente ampliar a busca.',
         style: Theme.of(context).textTheme.bodyLarge,
       ),
     );
