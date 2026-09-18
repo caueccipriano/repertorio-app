@@ -5,6 +5,8 @@ import '../../../core/widgets/editorial_frame.dart';
 import '../../../core/widgets/knowledge_cover.dart';
 import '../../../core/widgets/paper_texture.dart';
 import '../../article/presentation/article_screen.dart';
+import '../../article/presentation/quick_peek.dart';
+import '../../search/presentation/search_screen.dart';
 import '../../today/data/demo_topics.dart';
 import '../../today/domain/knowledge_topic.dart';
 
@@ -32,8 +34,12 @@ class TopicCollectionScreen extends StatelessWidget {
         title: const Text('coleção'),
         actions: [
           IconButton(
-            tooltip: 'Buscar nesta coleção',
-            onPressed: () {},
+            tooltip: 'Buscar',
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => const SearchScreen(),
+              ),
+            ),
             icon: const Icon(Icons.search),
           ),
         ],
@@ -214,6 +220,7 @@ class _TopicTile extends StatelessWidget {
                 builder: (_) => ArticleScreen(topic: topic),
               ),
             ),
+            onLongPress: () => showQuickPeek(context, topic),
           ),
           const SizedBox(height: 10),
           Text(
