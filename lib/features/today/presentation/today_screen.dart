@@ -272,7 +272,7 @@ class _FeaturedKnowledge extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final wide = constraints.maxWidth >= 620;
-        final height = wide ? 330.0 : 264.0;
+        final height = wide ? 350.0 : 264.0;
 
         return Container(
           height: height,
