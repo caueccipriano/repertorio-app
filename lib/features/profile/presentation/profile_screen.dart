@@ -7,6 +7,7 @@ import '../../../core/widgets/paper_texture.dart';
 import '../../today/data/demo_topics.dart';
 import 'backup_screen.dart';
 import 'notification_settings_screen.dart';
+import 'notes_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -93,6 +94,8 @@ class ProfileScreen extends StatelessWidget {
                   goal: state.weeklyGoal,
                   week: state.studyWeek(),
                 ),
+                const SizedBox(height: 14),
+                _NotesPreferences(count: state.notesByTopic.length),
                 const SizedBox(height: 14),
                 const _BackupPreferences(),
                 const SizedBox(height: 14),
@@ -624,6 +627,47 @@ class _BackupPreferences extends StatelessWidget {
                 child: Text('backup e dados locais'),
               ),
               Icon(Icons.chevron_right),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+class _NotesPreferences extends StatelessWidget {
+  const _NotesPreferences({required this.count});
+
+  final int count;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: AppColors.paperWhite,
+      child: InkWell(
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => const NotesScreen(),
+          ),
+        ),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.line),
+          ),
+          child: Row(
+            children: [
+              const Icon(Icons.sticky_note_2_outlined, size: 24),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  count == 0
+                      ? 'minhas notas'
+                      : 'minhas notas · $count',
+                ),
+              ),
+              const Icon(Icons.chevron_right),
             ],
           ),
         ),
