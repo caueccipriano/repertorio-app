@@ -35,7 +35,7 @@ class TodayScreen extends StatelessWidget {
                 const SizedBox(height: 14),
                 const _LibraryNavigation(),
                 const SizedBox(height: 24),
-                _Shelf(
+                const _Shelf(
                   title: 'para hoje',
                   subtitle: '4 leituras · ~23 min',
                   entries: const [
