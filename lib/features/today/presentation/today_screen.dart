@@ -38,7 +38,7 @@ class TodayScreen extends StatelessWidget {
                 _Shelf(
                   title: 'para hoje',
                   subtitle: '4 leituras · ~23 min',
-                  entries: [
+                  entries: const [
                     _ShelfEntry(
                       title: 'Por que a Bauhaus mudou tudo?',
                       category: 'Design · História',
@@ -77,7 +77,7 @@ class TodayScreen extends StatelessWidget {
                 const _Shelf(
                   title: 'coisas que vale saber',
                   subtitle: 'uma estante para ficar mais curioso',
-                  entries: const [
+                  entries: [
                     _ShelfEntry(
                       title: 'Brutalismo',
                       category: 'Arquitetura',
