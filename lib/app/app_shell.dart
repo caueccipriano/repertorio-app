@@ -72,9 +72,9 @@ class _AppShellState extends State<AppShell> {
                           ),
                         ),
                       ),
-                      TextButton(
+                      const TextButton(
                         onPressed: applyAppUpdate,
-                        child: const Text('atualizar'),
+                        child: Text('atualizar'),
                       ),
                       IconButton(
                         tooltip: 'Depois',
