@@ -65,7 +65,7 @@ class ProfileScreen extends StatelessWidget {
                 Text(
                   'Aqui só entra o que você realmente leu, salvou ou explorou.',
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: AppColors.muted,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
                 ),
                 const SizedBox(height: 26),
@@ -178,8 +178,8 @@ class _LibraryStats extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.paperWhite,
-        border: Border.all(color: AppColors.ink),
+        color: Theme.of(context).colorScheme.surface,
+        border: Border.all(color: Theme.of(context).colorScheme.onSurface),
       ),
       child: Row(
         children: stats.indexed.map((item) {
@@ -193,7 +193,7 @@ class _LibraryStats extends StatelessWidget {
                 border: item.$1 == stats.length - 1
                     ? null
                     : const Border(
-                        right: BorderSide(color: AppColors.ink),
+                        right: BorderSide(color: Theme.of(context).colorScheme.onSurface),
                       ),
               ),
               child: Column(
@@ -201,7 +201,7 @@ class _LibraryStats extends StatelessWidget {
                   Text(
                     item.$2.$1,
                     style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                          color: AppColors.blue,
+                          color: Theme.of(context).colorScheme.primary,
                           fontSize: 36,
                         ),
                   ),
@@ -211,7 +211,7 @@ class _LibraryStats extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
                           fontSize: 9,
-                          color: AppColors.muted,
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
                         ),
                   ),
                 ],
@@ -233,8 +233,8 @@ class _EmptyKnowledgeProfile extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppColors.paperWhite,
-        border: Border.all(color: AppColors.line),
+        color: Theme.of(context).colorScheme.surface,
+        border: Border.all(color: Theme.of(context).colorScheme.outline),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -247,7 +247,7 @@ class _EmptyKnowledgeProfile extends StatelessWidget {
           Text(
             'Assim que você começar a ler, seu mapa de repertório nasce aqui — sem números inventados.',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.muted,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
           ),
         ],
@@ -285,7 +285,7 @@ class _ProgressRow extends StatelessWidget {
               Text(
                 count.toString(),
                 style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      color: AppColors.blue,
+                      color: Theme.of(context).colorScheme.primary,
                       fontSize: 10,
                     ),
               ),
@@ -295,8 +295,8 @@ class _ProgressRow extends StatelessWidget {
           LinearProgressIndicator(
             value: value,
             minHeight: 5,
-            backgroundColor: AppColors.line,
-            color: AppColors.blue,
+            backgroundColor: Theme.of(context).colorScheme.outline,
+            color: Theme.of(context).colorScheme.primary,
           ),
         ],
       ),
@@ -322,14 +322,14 @@ class _ReadingRecord extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColors.ink,
-        border: Border.all(color: AppColors.ink),
+        color: Theme.of(context).colorScheme.onSurface,
+        border: Border.all(color: Theme.of(context).colorScheme.onSurface),
       ),
       child: Row(
         children: [
           const Icon(
             Icons.auto_stories_outlined,
-            color: AppColors.paperWhite,
+            color: Theme.of(context).colorScheme.surface,
             size: 28,
           ),
           const SizedBox(width: 14),
@@ -340,7 +340,7 @@ class _ReadingRecord extends StatelessWidget {
                 Text(
                   started == 0 ? 'seu acervo está zerado' : 'seu histórico',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: AppColors.paperWhite,
+                        color: Theme.of(context).colorScheme.surface,
                         fontSize: 16,
                       ),
                 ),
@@ -377,8 +377,8 @@ class _ReaderPreferences extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColors.paperWhite,
-        border: Border.all(color: AppColors.line),
+        color: Theme.of(context).colorScheme.surface,
+        border: Border.all(color: Theme.of(context).colorScheme.outline),
       ),
       child: Row(
         children: [
@@ -414,7 +414,7 @@ class _NotificationPreferences extends StatelessWidget {
         '${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}';
 
     return Material(
-      color: AppColors.paperWhite,
+      color: Theme.of(context).colorScheme.surface,
       child: InkWell(
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute<void>(
@@ -424,7 +424,7 @@ class _NotificationPreferences extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            border: Border.all(color: AppColors.line),
+            border: Border.all(color: Theme.of(context).colorScheme.outline),
           ),
           child: Row(
             children: [
@@ -432,7 +432,7 @@ class _NotificationPreferences extends StatelessWidget {
                 enabled
                     ? Icons.notifications_active_outlined
                     : Icons.notifications_none,
-                color: enabled ? AppColors.blue : AppColors.ink,
+                color: enabled ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.onSurface,
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -449,7 +449,7 @@ class _NotificationPreferences extends StatelessWidget {
                     Text(
                       enabled ? 'ativo às $formatted' : 'desativado',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: AppColors.muted,
+                            color: Theme.of(context).colorScheme.onSurfaceVariant,
                           ),
                     ),
                   ],
@@ -484,9 +484,9 @@ class _StudyGoalCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: reached ? AppColors.softBlue : AppColors.paperWhite,
+        color: reached ? Theme.of(context).colorScheme.surfaceContainerHighest : Theme.of(context).colorScheme.surface,
         border: Border.all(
-          color: reached ? AppColors.blue : AppColors.line,
+          color: reached ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.outline,
         ),
       ),
       child: Column(
@@ -522,10 +522,10 @@ class _StudyGoalCard extends StatelessWidget {
                       height: 30,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: active ? AppColors.blue : Colors.transparent,
+                        color: active ? Theme.of(context).colorScheme.primary : Colors.transparent,
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: active ? AppColors.blue : AppColors.line,
+                          color: active ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.outline,
                         ),
                       ),
                       child: active
@@ -553,7 +553,7 @@ class _StudyGoalCard extends StatelessWidget {
                 ? 'Meta concluída — sem streak, sem culpa.'
                 : '$studied de $goal dias estudados nesta semana.',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: reached ? AppColors.blue : AppColors.muted,
+                  color: reached ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
           ),
         ],
@@ -580,7 +580,7 @@ class _StudyGoalCard extends StatelessWidget {
               Text(
                 'É uma referência leve, não uma sequência obrigatória.',
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: AppColors.muted,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
               ),
               const SizedBox(height: 18),
@@ -616,7 +616,7 @@ class _BackupPreferences extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: AppColors.paperWhite,
+      color: Theme.of(context).colorScheme.surface,
       child: InkWell(
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute<void>(
@@ -626,7 +626,7 @@ class _BackupPreferences extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            border: Border.all(color: AppColors.line),
+            border: Border.all(color: Theme.of(context).colorScheme.outline),
           ),
           child: const Row(
             children: [
@@ -653,7 +653,7 @@ class _NotesPreferences extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: AppColors.paperWhite,
+      color: Theme.of(context).colorScheme.surface,
       child: InkWell(
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute<void>(
@@ -663,7 +663,7 @@ class _NotesPreferences extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            border: Border.all(color: AppColors.line),
+            border: Border.all(color: Theme.of(context).colorScheme.outline),
           ),
           child: Row(
             children: [
@@ -692,7 +692,7 @@ class _AccessibilityPreferences extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: AppColors.paperWhite,
+      color: Theme.of(context).colorScheme.surface,
       child: InkWell(
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute<void>(
@@ -702,7 +702,7 @@ class _AccessibilityPreferences extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            border: Border.all(color: AppColors.line),
+            border: Border.all(color: Theme.of(context).colorScheme.outline),
           ),
           child: const Row(
             children: [
