@@ -87,7 +87,11 @@ class _RepertorioAppState extends State<RepertorioApp> {
               return MaterialApp(
                 title: 'Repertório',
                 debugShowCheckedModeBanner: false,
-                theme: AppTheme.light,
+                theme: AppTheme.lightWith(
+                  highContrast: state.highContrast,
+                  reduceMotion: state.reduceMotion,
+                  largeTapTargets: state.largeTapTargets,
+                ),
                 home: state.onboardingComplete
                     ? const AppShell()
                     : const OnboardingScreen(),
