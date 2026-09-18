@@ -328,7 +328,7 @@ class _ReadingRecord extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const Icon(
+          Icon(
             Icons.auto_stories_outlined,
             color: Theme.of(context).colorScheme.surface,
             size: 28,
