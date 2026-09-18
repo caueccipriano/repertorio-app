@@ -34,8 +34,8 @@ class KnowledgeTopic {
     required this.whyItMatters,
     required this.curiosity,
     required this.connections,
-    this.media = const [],
-  });
+    List<KnowledgeMedia> media = const [],
+  }) : _media = media;
 
   final String id;
   final String eyebrow;
@@ -51,5 +51,48 @@ class KnowledgeTopic {
   final String whyItMatters;
   final String curiosity;
   final List<String> connections;
-  final List<KnowledgeMedia> media;
+  final List<KnowledgeMedia> _media;
+
+  /// Curated audio is preserved when a topic already has it.
+  ///
+  /// For every remaining theme, the app provides a topic-aware Spotify podcast
+  /// search. This keeps the reader play button useful across the complete
+  /// 125-theme repertory instead of falling back to speech synthesis.
+  List<KnowledgeMedia> get media {
+    final hasAudio = _media.any((item) => item.type == KnowledgeMediaType.audio);
+    if (hasAudio) {
+      return _media;
+    }
+    return <KnowledgeMedia>[
+      ..._media,
+      _podcastFallback,
+    ];
+  }
+
+  KnowledgeMedia get _podcastFallback {
+    final searchTerms = _podcastSearchTerms();
+    final encoded = Uri.encodeComponent(searchTerms);
+    final url = 'https://open.spotify.com/search/$encoded/episodes';
+    return KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: url,
+      title: 'Podcast sobre $title',
+      caption: 'Busca contextual no Spotify · ${tags.take(2).join(' + ')}',
+      sourceLabel: 'Spotify · busca de episódios',
+      sourceUrl: url,
+    );
+  }
+
+  String _podcastSearchTerms() {
+    final cleanTitle = title
+        .toLowerCase()
+        .replaceAll('?', '')
+        .replaceAll('!', '')
+        .replaceAll(':', '')
+        .replaceAll('—', ' ')
+        .replaceAll('-', ' ')
+        .trim();
+    final tagHint = tags.take(2).join(' ');
+    return '$cleanTitle $tagHint podcast português brasil';
+  }
 }
