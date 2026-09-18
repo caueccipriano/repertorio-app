@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../app/state/app_state.dart';
@@ -137,6 +138,25 @@ class _ArticleScreenState extends State<ArticleScreen> {
               icon: Icon(
                 note.isEmpty ? Icons.note_add_outlined : Icons.sticky_note_2,
               ),
+            ),
+            IconButton(
+              tooltip: 'Compartilhar aprendizado',
+              onPressed: () async {
+                final text =
+                    '${widget.topic.title}\n\n${widget.topic.quickTake}\n\n— Repertório';
+                await Clipboard.setData(ClipboardData(text: text));
+                if (!mounted) {
+                  return;
+                }
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      'Cartão de conhecimento copiado. Agora é só colar onde quiser.',
+                    ),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.ios_share_outlined),
             ),
             IconButton(
               tooltip: 'Mapa',
