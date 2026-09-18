@@ -173,11 +173,6 @@ class StudyHubScreen extends StatelessWidget {
       }
     }
 
-    for (final topic in allDemoTopics) {
-      if (quizFor(topic.id).isNotEmpty) {
-        return topic;
-      }
-    }
     return null;
   }
 
