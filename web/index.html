@@ -5,14 +5,8 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta
-    name="description"
-    content="Repertório — sua biblioteca pessoal de conhecimento."
-  >
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
-  >
+  <meta name="description" content="Repertório — sua biblioteca pessoal de conhecimento.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
 
   <meta name="theme-color" content="#F5F2EA">
   <meta name="mobile-web-app-capable" content="yes">
@@ -21,670 +15,310 @@
   <meta name="apple-mobile-web-app-title" content="Repertório">
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=3">
-  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=4">
+  <link rel="manifest" href="manifest.json?v=4">
 
   <style>
     html,
     body {
       margin: 0;
-      width: 100%;
-      height: 100%;
-      min-height: 100%;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      min-width: 100vw;
+      min-height: 100vh;
+      min-height: 100dvh;
       background: #F5F2EA;
       overflow: hidden;
       overscroll-behavior: none;
       -webkit-text-size-adjust: 100%;
+      -webkit-tap-highlight-color: transparent;
       touch-action: manipulation;
+      position: fixed;
+      inset: 0;
     }
 
+    body {
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    flutter-view,
+    flt-glass-pane,
+    flt-scene-host,
+    flt-semantics-host,
+    #flt-glass-pane {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      height: 100dvh !important;
+      max-width: 100vw !important;
+      max-height: 100dvh !important;
+      transform: translateZ(0);
+      transform-origin: top left;
+    }
   </style>
 
   <title>Repertório</title>
 </head>
 <body>
   <script>
-    window.repertorioSpeech = {
-      generation: 0,
-      supported: function () {
-        return 'speechSynthesis' in window &&
-          'SpeechSynthesisUtterance' in window;
-      },
-      speak: function (text, rate) {
-        return new Promise(function (resolve) {
-          if (!window.repertorioSpeech.supported()) {
-            resolve(false);
-            return;
-          }
-
-          const synth = window.speechSynthesis;
-          const generation = ++window.repertorioSpeech.generation;
-          const cleanText = String(text || '').replace(/\s+/g, ' ').trim();
-
-          if (!cleanText) {
-            resolve(false);
-            return;
-          }
-
-          const sentences = cleanText.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [cleanText];
-          const chunks = [];
-          let current = '';
-
-          sentences.forEach(function (sentence) {
-            const next = (current + ' ' + sentence).trim();
-            if (next.length > 220 && current) {
-              chunks.push(current);
-              current = sentence.trim();
-            } else {
-              current = next;
-            }
-          });
-          if (current) chunks.push(current);
-
-          const chooseVoice = function () {
-            const voices = synth.getVoices ? synth.getVoices() : [];
-            return voices.find(v => /^pt-BR$/i.test(v.lang)) ||
-              voices.find(v => /^pt/i.test(v.lang)) ||
-              null;
-          };
-
-          let index = 0;
-          let started = false;
-          let resolved = false;
-
-          const finishStartup = function (value) {
-            if (!resolved) {
-              resolved = true;
-              resolve(value);
-            }
-          };
-
-          const speakNext = function () {
-            if (generation !== window.repertorioSpeech.generation) return;
-            if (index >= chunks.length) return;
-
-            const utterance = new SpeechSynthesisUtterance(chunks[index++]);
-            utterance.lang = 'pt-BR';
-            utterance.rate = Math.max(0.7, Math.min(1.5, rate || 1.0));
-            utterance.pitch = 1.0;
-            utterance.volume = 1.0;
-
-            const voice = chooseVoice();
-            if (voice) utterance.voice = voice;
-
-            utterance.onstart = function () {
-              started = true;
-              finishStartup(true);
-            };
-            utterance.onend = function () {
-              if (generation === window.repertorioSpeech.generation) {
-                speakNext();
-              }
-            };
-            utterance.onerror = function () {
-              if (!started) finishStartup(false);
-            };
-
-            // iOS Safari requires speech to be queued directly inside the
-            // user gesture. Treat a successfully queued utterance as started;
-            // WebKit does not reliably dispatch onstart.
-            synth.speak(utterance);
-            if (synth.paused) synth.resume();
-            finishStartup(true);
-          };
-
-          if (synth.speaking || synth.pending || synth.paused) {
-            synth.cancel();
-          }
-
-          if (synth.getVoices) synth.getVoices();
-          speakNext();
-
-          window.setTimeout(function () {
-            if (!resolved) {
-              finishStartup(
-                generation === window.repertorioSpeech.generation &&
-                  (synth.speaking || synth.pending)
-              );
-            }
-          }, 900);
-        });
-      },
-      stop: function () {
-        if ('speechSynthesis' in window) {
-          window.repertorioSpeech.generation++;
-          window.speechSynthesis.cancel();
-          if (window.speechSynthesis.paused) {
-            window.speechSynthesis.resume();
-          }
-        }
+    (function () {
+      function isHttpUrl(value) {
+        return /^https?:\/\//i.test(String(value || '')) || /^spotify:/i.test(String(value || ''));
       }
-    };
 
-    if ('speechSynthesis' in window && window.speechSynthesis.getVoices) {
-      window.speechSynthesis.getVoices();
-      window.speechSynthesis.addEventListener?.('voiceschanged', function () {
-        window.speechSynthesis.getVoices();
-      });
-    }
-
-    window.repertorioAudio = {
-      open: async function (url, title, source) {
+      function forceViewportSync() {
         try {
-          if (/^https?:\/\/(?:open\.)?spotify\.com\//i.test(String(url || '')) && window.repertorioSpotify) {
-            return await window.repertorioSpotify.open(url);
-          }
-          const previous = document.getElementById('repertorio-audio-overlay');
-          if (previous) previous.remove();
-
-          const overlay = document.createElement('div');
-          overlay.id = 'repertorio-audio-overlay';
-          overlay.setAttribute('role', 'dialog');
-          overlay.setAttribute('aria-modal', 'false');
-          overlay.setAttribute('aria-label', 'Player de áudio');
-          overlay.style.position = 'fixed';
-          overlay.style.top = 'calc(env(safe-area-inset-top) + 76px)';
-          overlay.style.left = '12px';
-          overlay.style.right = '12px';
-          overlay.style.zIndex = '2147483646';
-          overlay.style.pointerEvents = 'none';
-          overlay.style.display = 'flex';
-          overlay.style.justifyContent = 'center';
-
-          const shell = document.createElement('div');
-          shell.style.width = 'min(100%, 420px)';
-          shell.style.margin = '0 auto';
-          shell.style.background = '#101116';
-          shell.style.border = '1px solid rgba(255,255,255,.18)';
-          shell.style.borderRadius = '16px';
-          shell.style.overflow = 'hidden';
-          shell.style.boxShadow = '0 12px 36px rgba(0,0,0,.34)';
-          shell.style.pointerEvents = 'auto';
-
-          const header = document.createElement('div');
-          header.style.minHeight = '44px';
-          header.style.display = 'flex';
-          header.style.alignItems = 'center';
-          header.style.padding = '8px 8px 8px 14px';
-          header.style.background = '#10265E';
-          header.style.color = '#fff';
-          header.style.fontFamily = 'Arial, sans-serif';
-
-          const textWrap = document.createElement('div');
-          textWrap.style.flex = '1';
-          textWrap.style.minWidth = '0';
-
-          const label = document.createElement('div');
-          label.textContent = source || 'Podcast';
-          label.style.fontSize = '10px';
-          label.style.fontWeight = '700';
-          label.style.opacity = '.72';
-          label.style.marginBottom = '2px';
-
-          const titleEl = document.createElement('div');
-          titleEl.textContent = title || 'Áudio';
-          titleEl.style.fontSize = '13px';
-          titleEl.style.fontWeight = '700';
-          titleEl.style.whiteSpace = 'nowrap';
-          titleEl.style.overflow = 'hidden';
-          titleEl.style.textOverflow = 'ellipsis';
-
-          const close = document.createElement('button');
-          close.type = 'button';
-          close.setAttribute('aria-label', 'Fechar player');
-          close.textContent = '×';
-          close.style.border = '0';
-          close.style.background = 'transparent';
-          close.style.color = '#fff';
-          close.style.fontSize = '26px';
-          close.style.lineHeight = '1';
-          close.style.width = '38px';
-          close.style.height = '38px';
-          close.style.cursor = 'pointer';
-
-          const playerWrap = document.createElement('div');
-          playerWrap.style.padding = '12px 14px 14px';
-          playerWrap.style.background = '#191B22';
-
-          const audio = document.createElement('audio');
-          audio.controls = true;
-          audio.preload = 'metadata';
-          audio.playsInline = true;
-          audio.src = url;
-          audio.style.width = '100%';
-          audio.style.display = 'block';
-
-          const status = document.createElement('div');
-          status.style.color = '#A7A6A1';
-          status.style.font = '500 11px/1.35 Arial, sans-serif';
-          status.style.marginTop = '8px';
-          status.textContent = 'toque no play para começar';
-
-          audio.addEventListener('playing', function () {
-            status.textContent = 'tocando dentro do Repertório';
-          });
-
-          audio.addEventListener('pause', function () {
-            if (!audio.ended) status.textContent = 'pausado';
-          });
-
-          audio.addEventListener('ended', function () {
-            status.textContent = 'episódio concluído';
-          });
-
-          audio.addEventListener('error', function () {
-            status.textContent =
-              'não consegui carregar este áudio. Feche e tente novamente.';
-          });
-
-          textWrap.appendChild(label);
-          textWrap.appendChild(titleEl);
-          header.appendChild(textWrap);
-          header.appendChild(close);
-          playerWrap.appendChild(audio);
-          playerWrap.appendChild(status);
-          shell.appendChild(header);
-          shell.appendChild(playerWrap);
-          overlay.appendChild(shell);
-          document.body.appendChild(overlay);
-
-          const dismiss = function () {
-            try {
-              audio.pause();
-              audio.removeAttribute('src');
-              audio.load();
-            } catch (_) {}
-            overlay.remove();
-          };
-
-          close.addEventListener('click', dismiss);
-          close.focus();
-          audio.load();
-
-          return true;
-        } catch (_) {
-          return false;
-        }
-      }
-    };
-
-    window.repertorioSpotifyState = {
-      api: null,
-      controller: null,
-      waiters: []
-    };
-
-    window.onSpotifyIframeApiReady = function (IFrameAPI) {
-      window.repertorioSpotifyState.api = IFrameAPI;
-      const waiters = window.repertorioSpotifyState.waiters.splice(0);
-      waiters.forEach(resolve => resolve(IFrameAPI));
-    };
-
-    function waitForSpotifyIframeApi() {
-      const state = window.repertorioSpotifyState;
-      if (state.api) {
-        return Promise.resolve(state.api);
+          document.documentElement.style.width = '100vw';
+          document.documentElement.style.height = '100dvh';
+          document.body.style.width = '100vw';
+          document.body.style.height = '100dvh';
+          window.scrollTo(0, 0);
+        } catch (_) {}
       }
 
-      return new Promise(function (resolve) {
-        let settled = false;
+      window.addEventListener('resize', forceViewportSync, { passive: true });
+      window.addEventListener('orientationchange', function () {
+        window.setTimeout(forceViewportSync, 80);
+        window.setTimeout(forceViewportSync, 350);
+      }, { passive: true });
+      window.addEventListener('focus', forceViewportSync, { passive: true });
+      document.addEventListener('visibilitychange', forceViewportSync, { passive: true });
+      forceViewportSync();
 
-        const finish = function (value) {
-          if (settled) return;
-          settled = true;
-          resolve(value);
-        };
+      window.repertorioAudio = {
+        open: function (url, title, source) {
+          try {
+            const target = String(url || '').trim();
+            if (!isHttpUrl(target)) return false;
 
-        state.waiters.push(finish);
-
-        window.setTimeout(function () {
-          finish(null);
-        }, 7000);
-      });
-    }
-
-    window.repertorioSpotify = {
-      open: async function (url) {
-        try {
-          const parsed = new URL(url);
-          const parts = parsed.pathname.split('/').filter(Boolean);
-          const episodeIndex = parts.indexOf('episode');
-
-          if (episodeIndex < 0 || !parts[episodeIndex + 1]) {
-            return false;
-          }
-
-          const episodeId = parts[episodeIndex + 1];
-          const state = window.repertorioSpotifyState;
-
-          if (state.controller) {
-            try {
-              state.controller.pause();
-              state.controller.destroy();
-            } catch (_) {}
-            state.controller = null;
-          }
-
-          const previous = document.getElementById('repertorio-spotify-overlay');
-          if (previous) previous.remove();
-
-          const overlay = document.createElement('div');
-          overlay.id = 'repertorio-spotify-overlay';
-          overlay.setAttribute('role', 'dialog');
-          overlay.setAttribute('aria-modal', 'false');
-          overlay.setAttribute('aria-label', 'Player do Spotify');
-          overlay.style.position = 'fixed';
-          overlay.style.top = 'calc(env(safe-area-inset-top) + 76px)';
-          overlay.style.left = '12px';
-          overlay.style.right = '12px';
-          overlay.style.zIndex = '2147483646';
-          overlay.style.pointerEvents = 'none';
-          overlay.style.display = 'flex';
-          overlay.style.justifyContent = 'center';
-
-          const shell = document.createElement('div');
-          shell.style.width = 'min(100%, 420px)';
-          shell.style.margin = '0 auto';
-          shell.style.background = '#121212';
-          shell.style.border = '1px solid rgba(255,255,255,.18)';
-          shell.style.borderRadius = '16px';
-          shell.style.overflow = 'hidden';
-          shell.style.boxShadow = '0 12px 36px rgba(0,0,0,.34)';
-          shell.style.pointerEvents = 'auto';
-
-          const header = document.createElement('div');
-          header.style.height = '42px';
-          header.style.display = 'flex';
-          header.style.alignItems = 'center';
-          header.style.padding = '0 8px 0 14px';
-          header.style.background = '#10265E';
-          header.style.color = '#fff';
-          header.style.fontFamily = 'Arial, sans-serif';
-
-          const title = document.createElement('div');
-          title.textContent = 'Spotify · ouvir aqui';
-          title.style.fontSize = '13px';
-          title.style.fontWeight = '700';
-          title.style.letterSpacing = '.02em';
-          title.style.flex = '1';
-
-          const close = document.createElement('button');
-          close.type = 'button';
-          close.setAttribute('aria-label', 'Fechar player');
-          close.textContent = '×';
-          close.style.border = '0';
-          close.style.background = 'transparent';
-          close.style.color = '#fff';
-          close.style.fontSize = '26px';
-          close.style.lineHeight = '1';
-          close.style.width = '38px';
-          close.style.height = '38px';
-          close.style.cursor = 'pointer';
-
-          const mount = document.createElement('div');
-          mount.id = 'repertorio-spotify-mount';
-          mount.style.width = '100%';
-          mount.style.minHeight = '152px';
-          mount.style.background = '#121212';
-
-          const status = document.createElement('div');
-          status.textContent = 'carregando player…';
-          status.style.minHeight = '152px';
-          status.style.display = 'flex';
-          status.style.alignItems = 'center';
-          status.style.justifyContent = 'center';
-          status.style.color = '#fff';
-          status.style.font = '600 13px/1.4 Arial, sans-serif';
-          mount.appendChild(status);
-
-          header.appendChild(title);
-          header.appendChild(close);
-          shell.appendChild(header);
-          shell.appendChild(mount);
-          overlay.appendChild(shell);
-          document.body.appendChild(overlay);
-
-          const dismiss = function () {
-            try {
-              if (state.controller) {
-                state.controller.pause();
-                state.controller.destroy();
-              }
-            } catch (_) {}
-            state.controller = null;
-            overlay.remove();
-          };
-
-          close.addEventListener('click', dismiss);
-          close.focus();
-
-          const IFrameAPI = await waitForSpotifyIframeApi();
-
-          if (!overlay.isConnected) {
-            return false;
-          }
-
-          if (!IFrameAPI) {
-            status.textContent =
-              'não consegui carregar o Spotify. Feche e tente novamente.';
-            return false;
-          }
-
-          status.remove();
-
-          return await new Promise(function (resolve) {
-            let resolved = false;
-
-            const finish = function (value) {
-              if (resolved) return;
-              resolved = true;
-              resolve(value);
-            };
-
-            try {
-              IFrameAPI.createController(
-                mount,
-                {
-                  width: '100%',
-                  height: 152,
-                  uri: 'spotify:episode:' + episodeId
-                },
-                function (EmbedController) {
-                  state.controller = EmbedController;
-
-                  EmbedController.addListener('ready', function () {
-                    finish(true);
-                  });
-
-                  EmbedController.addListener('playback_started', function () {
-                    finish(true);
-                  });
-
-                  window.setTimeout(function () {
-                    finish(true);
-                  }, 1200);
-                }
-              );
-            } catch (_) {
-              finish(false);
-            }
-
+            // iOS installed PWAs are strict: third-party iframes and delayed
+            // async launches often lose the user gesture. This keeps the open
+            // action synchronous and directly attached to the tap coming from Flutter.
+            const anchor = document.createElement('a');
+            anchor.href = target;
+            anchor.target = '_blank';
+            anchor.rel = 'noopener noreferrer';
+            anchor.style.position = 'fixed';
+            anchor.style.left = '-9999px';
+            anchor.style.top = '-9999px';
+            anchor.textContent = title || source || 'abrir áudio';
+            document.body.appendChild(anchor);
+            anchor.click();
             window.setTimeout(function () {
-              finish(false);
-            }, 7000);
-          });
-        } catch (_) {
-          return false;
-        }
-      }
-    };
+              try { anchor.remove(); } catch (_) {}
+            }, 1000);
 
-    window.repertorioOffline = {
-      supported: function () {
-        return 'caches' in window;
-      },
-      cacheUrl: async function (url) {
-        try {
-          const cache = await caches.open('repertorio-media-v1');
-          const response = await fetch(url, { mode: 'no-cors' });
-          await cache.put(url, response.clone());
-          return true;
-        } catch (_) {
-          return false;
-        }
-      },
-      removeUrl: async function (url) {
-        try {
-          const cache = await caches.open('repertorio-media-v1');
-          return await cache.delete(url);
-        } catch (_) {
-          return false;
-        }
-      }
-    };
-
-    window.repertorioShareCard = {
-      supported: function () {
-        return 'HTMLCanvasElement' in window;
-      },
-      share: async function (title, body) {
-        try {
-          const canvas = document.createElement('canvas');
-          canvas.width = 1080;
-          canvas.height = 1350;
-          const ctx = canvas.getContext('2d');
-
-          ctx.fillStyle = '#F5F2EA';
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-          ctx.fillStyle = '#173B91';
-          ctx.beginPath();
-          ctx.arc(170, 190, 90, 0, Math.PI * 2);
-          ctx.fill();
-
-          ctx.fillStyle = '#101010';
-          ctx.fillRect(300, 90, 46, 260);
-
-          ctx.font = '700 38px Arial';
-          ctx.fillStyle = '#173B91';
-          ctx.fillText('repertório*', 90, 460);
-
-          function wrapText(text, x, y, maxWidth, lineHeight, maxLines) {
-            const words = text.split(/\s+/);
-            let line = '';
-            let lines = 0;
-            for (let n = 0; n < words.length; n++) {
-              const testLine = line + words[n] + ' ';
-              const metrics = ctx.measureText(testLine);
-              if (metrics.width > maxWidth && n > 0) {
-                ctx.fillText(line.trim(), x, y);
-                line = words[n] + ' ';
-                y += lineHeight;
-                lines++;
-                if (lines >= maxLines - 1) break;
-              } else {
-                line = testLine;
-              }
-            }
-            if (lines < maxLines) ctx.fillText(line.trim(), x, y);
-            return y;
-          }
-
-          ctx.fillStyle = '#101010';
-          ctx.font = '700 68px Georgia';
-          const titleEnd = wrapText(title, 90, 570, 900, 78, 4);
-
-          ctx.fillStyle = '#575752';
-          ctx.font = '400 34px Arial';
-          wrapText(body, 90, titleEnd + 90, 900, 52, 8);
-
-          ctx.fillStyle = '#173B91';
-          ctx.font = '700 24px Arial';
-          ctx.fillText('aprendi hoje no Repertório', 90, 1260);
-
-          const blob = await new Promise(resolve =>
-            canvas.toBlob(resolve, 'image/png')
-          );
-          if (!blob) return false;
-
-          const file = new File([blob], 'repertorio-card.png', {
-            type: 'image/png'
-          });
-
-          if (navigator.share && navigator.canShare &&
-              navigator.canShare({ files: [file] })) {
-            await navigator.share({
-              files: [file],
-              title: 'Repertório',
-              text: title
-            });
             return true;
+          } catch (_) {
+            return false;
           }
+        }
+      };
 
-          const url = URL.createObjectURL(blob);
-          const anchor = document.createElement('a');
-          anchor.href = url;
-          anchor.download = 'repertorio-card.png';
-          document.body.appendChild(anchor);
-          anchor.click();
-          anchor.remove();
-          setTimeout(() => URL.revokeObjectURL(url), 1000);
-          return true;
-        } catch (_) {
-          return false;
-        }
-      }
-    };
+      window.repertorioSpeech = {
+        generation: 0,
+        supported: function () {
+          return 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
+        },
+        speak: function (text, rate) {
+          return new Promise(function (resolve) {
+            if (!window.repertorioSpeech.supported()) {
+              resolve(false);
+              return;
+            }
 
-    window.repertorioUpdates = {
-      check: async function () {
-        if (!('serviceWorker' in navigator)) return false;
-        try {
-          const registration =
-              await navigator.serviceWorker.getRegistration();
-          if (!registration) return false;
-          await registration.update();
-          return !!registration.waiting;
-        } catch (_) {
-          return false;
-        }
-      },
-      apply: async function () {
-        if (!('serviceWorker' in navigator)) {
-          location.reload();
-          return;
-        }
-        try {
-          const registrations =
-              await navigator.serviceWorker.getRegistrations();
-          await Promise.all(registrations.map(r => r.unregister()));
-        } finally {
-          location.reload();
-        }
-      }
-    };
+            const synth = window.speechSynthesis;
+            const generation = ++window.repertorioSpeech.generation;
+            const cleanText = String(text || '').replace(/\s+/g, ' ').trim();
+            if (!cleanText) {
+              resolve(false);
+              return;
+            }
 
-    window.repertorioNotifications = {
-      permission: function () {
-        if (!('Notification' in window)) return 'unsupported';
-        return Notification.permission;
-      },
-      requestPermission: async function () {
-        if (!('Notification' in window)) return 'unsupported';
-        return await Notification.requestPermission();
-      },
-      show: function (title, body) {
-        if (!('Notification' in window) || Notification.permission !== 'granted') {
-          return;
+            const sentences = cleanText.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [cleanText];
+            const chunks = [];
+            let current = '';
+            sentences.forEach(function (sentence) {
+              const next = (current + ' ' + sentence).trim();
+              if (next.length > 220 && current) {
+                chunks.push(current);
+                current = sentence.trim();
+              } else {
+                current = next;
+              }
+            });
+            if (current) chunks.push(current);
+
+            const chooseVoice = function () {
+              const voices = synth.getVoices ? synth.getVoices() : [];
+              return voices.find(v => /^pt-BR$/i.test(v.lang)) || voices.find(v => /^pt/i.test(v.lang)) || null;
+            };
+
+            let index = 0;
+            let resolved = false;
+            const finish = function (value) {
+              if (!resolved) {
+                resolved = true;
+                resolve(value);
+              }
+            };
+
+            const speakNext = function () {
+              if (generation !== window.repertorioSpeech.generation) return;
+              if (index >= chunks.length) return;
+
+              const utterance = new SpeechSynthesisUtterance(chunks[index++]);
+              utterance.lang = 'pt-BR';
+              utterance.rate = Math.max(0.7, Math.min(1.5, rate || 1.0));
+              utterance.pitch = 1.0;
+              utterance.volume = 1.0;
+              const voice = chooseVoice();
+              if (voice) utterance.voice = voice;
+              utterance.onstart = function () { finish(true); };
+              utterance.onend = function () {
+                if (generation === window.repertorioSpeech.generation) speakNext();
+              };
+              utterance.onerror = function () { finish(false); };
+              synth.speak(utterance);
+              if (synth.paused) synth.resume();
+              finish(true);
+            };
+
+            if (synth.speaking || synth.pending || synth.paused) synth.cancel();
+            if (synth.getVoices) synth.getVoices();
+            speakNext();
+          });
+        },
+        stop: function () {
+          if ('speechSynthesis' in window) {
+            window.repertorioSpeech.generation++;
+            window.speechSynthesis.cancel();
+            if (window.speechSynthesis.paused) window.speechSynthesis.resume();
+          }
         }
-        new Notification(title, {
-          body: body,
-          icon: 'icons/Icon.svg',
-          badge: 'icons/Icon-maskable.svg',
-          tag: 'repertorio-study-reminder'
+      };
+
+      if ('speechSynthesis' in window && window.speechSynthesis.getVoices) {
+        window.speechSynthesis.getVoices();
+        window.speechSynthesis.addEventListener?.('voiceschanged', function () {
+          window.speechSynthesis.getVoices();
         });
       }
-    };
+
+      window.repertorioSpotify = {
+        open: function (url) {
+          return window.repertorioAudio.open(url, 'Spotify', 'Spotify');
+        }
+      };
+
+      window.repertorioOffline = {
+        supported: function () { return 'caches' in window; },
+        cacheUrl: async function (url) {
+          try {
+            const cache = await caches.open('repertorio-media-v2');
+            const response = await fetch(url, { mode: 'no-cors' });
+            await cache.put(url, response.clone());
+            return true;
+          } catch (_) { return false; }
+        },
+        removeUrl: async function (url) {
+          try {
+            const cache = await caches.open('repertorio-media-v2');
+            return await cache.delete(url);
+          } catch (_) { return false; }
+        }
+      };
+
+      window.repertorioShareCard = {
+        supported: function () { return 'HTMLCanvasElement' in window; },
+        share: async function (title, body) {
+          try {
+            const canvas = document.createElement('canvas');
+            canvas.width = 1080;
+            canvas.height = 1350;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#F5F2EA';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#173B91';
+            ctx.beginPath();
+            ctx.arc(170, 190, 90, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = '#101010';
+            ctx.font = '700 38px Arial';
+            ctx.fillText('repertório*', 90, 460);
+            ctx.font = '700 68px Georgia';
+            ctx.fillText(String(title || 'Repertório').slice(0, 42), 90, 570);
+            ctx.fillStyle = '#575752';
+            ctx.font = '400 34px Arial';
+            ctx.fillText(String(body || 'aprendi hoje').slice(0, 54), 90, 660);
+            const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+            if (!blob) return false;
+            const file = new File([blob], 'repertorio-card.png', { type: 'image/png' });
+            if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+              await navigator.share({ files: [file], title: 'Repertório', text: title });
+              return true;
+            }
+            const objectUrl = URL.createObjectURL(blob);
+            const anchor = document.createElement('a');
+            anchor.href = objectUrl;
+            anchor.download = 'repertorio-card.png';
+            document.body.appendChild(anchor);
+            anchor.click();
+            anchor.remove();
+            setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+            return true;
+          } catch (_) { return false; }
+        }
+      };
+
+      window.repertorioUpdates = {
+        check: async function () {
+          if (!('serviceWorker' in navigator)) return false;
+          try {
+            const registration = await navigator.serviceWorker.getRegistration();
+            if (!registration) return false;
+            await registration.update();
+            return !!registration.waiting;
+          } catch (_) { return false; }
+        },
+        apply: async function () {
+          if (!('serviceWorker' in navigator)) {
+            location.reload();
+            return;
+          }
+          try {
+            const registrations = await navigator.serviceWorker.getRegistrations();
+            await Promise.all(registrations.map(r => r.unregister()));
+          } finally {
+            location.reload();
+          }
+        }
+      };
+
+      window.repertorioNotifications = {
+        permission: function () {
+          if (!('Notification' in window)) return 'unsupported';
+          return Notification.permission;
+        },
+        requestPermission: async function () {
+          if (!('Notification' in window)) return 'unsupported';
+          return await Notification.requestPermission();
+        },
+        show: function (title, body) {
+          if (!('Notification' in window) || Notification.permission !== 'granted') return;
+          new Notification(title, {
+            body: body,
+            icon: 'icons/Icon.svg',
+            badge: 'icons/Icon-maskable.svg',
+            tag: 'repertorio-study-reminder'
+          });
+        }
+      };
+    })();
   </script>
   <script>
     if ('serviceWorker' in navigator) {
@@ -693,7 +327,6 @@
       });
     }
   </script>
-  <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
-  <script src="flutter_bootstrap.js?v=20260918-1320" async></script>
+  <script src="flutter_bootstrap.js?v=20260918-iphone-pwa-audio-touch-2" async></script>
 </body>
 </html>
