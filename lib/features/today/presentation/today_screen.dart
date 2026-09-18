@@ -24,6 +24,7 @@ class TodayScreen extends StatelessWidget {
     final dailyTopics = _dailyTopics();
     final continueTopic = _continueTopic(state.progressByTopic);
     final outsideBubble = _outsideBubble(state.historyTopicIds);
+    final personalTrail = _personalTrail(state.historyTopicIds);
 
     return PaperTexture(
       child: SafeArea(
@@ -42,12 +43,19 @@ class TodayScreen extends StatelessWidget {
                 _FeaturedKnowledge(topic: featured),
                 const SizedBox(height: 14),
                 _QuickActions(rootTopic: featured),
+                const SizedBox(height: 18),
+                _DailyBrief(
+                  topics: dailyTopics.take(3).toList(),
+                  dueReviews: state.dueReviewTopicIds().length,
+                ),
                 const SizedBox(height: 26),
                 _Shelf(
                   title: 'para hoje',
                   subtitle: 'uma pequena edição diária',
                   topics: dailyTopics,
                 ),
+                const SizedBox(height: 24),
+                _PersonalTrailCard(topics: personalTrail),
                 if (continueTopic != null) ...[
                   const SizedBox(height: 28),
                   _ContinueShelf(
@@ -122,6 +130,32 @@ class TodayScreen extends StatelessWidget {
       return null;
     }
     return topicById(candidates.first.key);
+  }
+
+  List<KnowledgeTopic> _personalTrail(List<String> historyIds) {
+    final counts = <String, int>{};
+    for (final id in historyIds) {
+      final topic = topicById(id);
+      if (topic == null) continue;
+      for (final tag in topic.tags) {
+        counts.update(tag, (value) => value + 1, ifAbsent: () => 1);
+      }
+    }
+
+    final topics = allDemoTopics.toList()
+      ..sort((a, b) {
+        final aScore = a.tags.fold<int>(
+          0,
+          (sum, tag) => sum + (counts[tag] ?? 0),
+        );
+        final bScore = b.tags.fold<int>(
+          0,
+          (sum, tag) => sum + (counts[tag] ?? 0),
+        );
+        return aScore.compareTo(bScore);
+      });
+
+    return topics.take(3).toList();
   }
 
   KnowledgeTopic _outsideBubble(List<String> historyIds) {
@@ -435,6 +469,171 @@ class _QuickAction {
   final String label;
   final IconData icon;
   final VoidCallback onTap;
+}
+
+class _DailyBrief extends StatelessWidget {
+  const _DailyBrief({
+    required this.topics,
+    required this.dueReviews,
+  });
+
+  final List<KnowledgeTopic> topics;
+  final int dueReviews;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: AppColors.paperWhite,
+        border: Border.all(color: AppColors.line),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text(
+                'EDIÇÃO DO DIA',
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      color: AppColors.blue,
+                      fontSize: 9,
+                      letterSpacing: 1.1,
+                    ),
+              ),
+              const Spacer(),
+              if (dueReviews > 0)
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
+                  color: AppColors.softBlue,
+                  child: Text(
+                    '$dueReviews revisão${dueReviews == 1 ? '' : 'ões'}',
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          color: AppColors.blue,
+                          fontSize: 9,
+                        ),
+                  ),
+                ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          ...topics.indexed.map(
+            (item) => InkWell(
+              onTap: () => showQuickPeek(context, item.$2),
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 9),
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: item.$1 == topics.length - 1
+                        ? BorderSide.none
+                        : const BorderSide(color: AppColors.line),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    Text(
+                      '0${item.$1 + 1}',
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                            color: AppColors.blue,
+                            fontSize: 9,
+                          ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        item.$2.quickTake,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    const Icon(Icons.add_circle_outline, size: 18),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _PersonalTrailCard extends StatelessWidget {
+  const _PersonalTrailCard({required this.topics});
+
+  final List<KnowledgeTopic> topics;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(16, 16, 16, 18),
+      decoration: BoxDecoration(
+        color: AppColors.softBlue,
+        border: Border.all(color: AppColors.blue),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'TRILHA PARA VOCÊ',
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                  color: AppColors.blue,
+                  fontSize: 9,
+                  letterSpacing: 1.1,
+                ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'equilibrar o repertório',
+            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                  fontSize: 24,
+                ),
+          ),
+          const SizedBox(height: 12),
+          ...topics.indexed.map(
+            (item) => InkWell(
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => ArticleScreen(topic: item.$2),
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 7),
+                child: Row(
+                  children: [
+                    Text(
+                      '0${item.$1 + 1}',
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                            color: AppColors.blue,
+                            fontSize: 9,
+                          ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        item.$2.title,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                              fontSize: 14,
+                            ),
+                      ),
+                    ),
+                    const Icon(Icons.arrow_forward, size: 17),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 class _Shelf extends StatelessWidget {
