@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../../app/state/app_state.dart';
 import '../../../app/state/app_state_scope.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../../core/widgets/editorial_frame.dart';
 import '../../../core/widgets/paper_texture.dart';
 import '../../today/data/demo_topics.dart';
 import 'accessibility_screen.dart';
+import 'appearance_screen.dart';
 import 'backup_screen.dart';
 import 'notification_settings_screen.dart';
 import 'notes_screen.dart';
@@ -104,6 +106,10 @@ class ProfileScreen extends StatelessWidget {
                   enabled: state.studyRemindersEnabled,
                   hour: state.reminderHour,
                   minute: state.reminderMinute,
+                ),
+                const SizedBox(height: 14),
+                _AppearancePreferences(
+                  dark: state.appAppearance == AppAppearance.dark,
                 ),
                 const SizedBox(height: 14),
                 const _AccessibilityPreferences(),
@@ -704,6 +710,50 @@ class _AccessibilityPreferences extends StatelessWidget {
               SizedBox(width: 12),
               Expanded(child: Text('acessibilidade')),
               Icon(Icons.chevron_right),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+class _AppearancePreferences extends StatelessWidget {
+  const _AppearancePreferences({required this.dark});
+
+  final bool dark;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
+    return Material(
+      color: colors.surface,
+      child: InkWell(
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => const AppearanceScreen(),
+          ),
+        ),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            border: Border.all(color: colors.outline),
+          ),
+          child: Row(
+            children: [
+              Icon(
+                dark ? Icons.dark_mode_outlined : Icons.light_mode_outlined,
+                size: 24,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  dark ? 'aparência · escuro' : 'aparência · claro',
+                ),
+              ),
+              const Icon(Icons.chevron_right),
             ],
           ),
         ),
