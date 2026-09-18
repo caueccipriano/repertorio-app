@@ -26,6 +26,13 @@ class AppState extends ChangeNotifier {
   static const _readerThemeKey = 'reader_theme_v1';
   static const _readerFontKey = 'reader_font_v1';
   static const _readerFlowKey = 'reader_flow_v1';
+  static const _studyRemindersKey = 'study_reminders_enabled_v1';
+  static const _reminderHourKey = 'study_reminder_hour_v1';
+  static const _reminderMinuteKey = 'study_reminder_minute_v1';
+  static const _reviewRemindersKey = 'review_reminders_enabled_v1';
+  static const _dailyEditionRemindersKey = 'daily_edition_reminders_enabled_v1';
+  static const _lastStudyAtKey = 'last_study_at_v1';
+  static const _lastReminderAtKey = 'last_study_reminder_at_v1';
 
   final SharedPreferences _prefs;
 
@@ -42,6 +49,14 @@ class AppState extends ChangeNotifier {
   ReaderThemeMode readerTheme = ReaderThemeMode.paper;
   ReaderFontFamily readerFont = ReaderFontFamily.editorial;
   ReaderFlow readerFlow = ReaderFlow.continuous;
+
+  bool studyRemindersEnabled = false;
+  bool reviewRemindersEnabled = true;
+  bool dailyEditionRemindersEnabled = true;
+  int reminderHour = 19;
+  int reminderMinute = 0;
+  DateTime? lastStudyAt;
+  DateTime? lastReminderAt;
 
   static Future<AppState> load() async {
     final prefs = await SharedPreferences.getInstance();
@@ -98,6 +113,20 @@ class AppState extends ChangeNotifier {
       _prefs.getString(_readerFlowKey),
       ReaderFlow.continuous,
     );
+
+    studyRemindersEnabled = _prefs.getBool(_studyRemindersKey) ?? false;
+    reviewRemindersEnabled = _prefs.getBool(_reviewRemindersKey) ?? true;
+    dailyEditionRemindersEnabled =
+        _prefs.getBool(_dailyEditionRemindersKey) ?? true;
+    reminderHour = _prefs.getInt(_reminderHourKey) ?? 19;
+    reminderMinute = _prefs.getInt(_reminderMinuteKey) ?? 0;
+    lastStudyAt = _readDate(_lastStudyAtKey);
+    lastReminderAt = _readDate(_lastReminderAtKey);
+  }
+
+  DateTime? _readDate(String key) {
+    final raw = _prefs.getString(key);
+    return raw == null ? null : DateTime.tryParse(raw);
   }
 
   T _enumByName<T extends Enum>(List<T> values, String? name, T fallback) {
@@ -154,6 +183,15 @@ class AppState extends ChangeNotifier {
     }
 
     progressByTopic[topicId] = normalized;
+
+    if (normalized >= .08) {
+      lastStudyAt = DateTime.now();
+      await _prefs.setString(
+        _lastStudyAtKey,
+        lastStudyAt!.toIso8601String(),
+      );
+    }
+
     if (normalized >= .92) {
       completedTopicIds.add(topicId);
       reviewDueByTopic.putIfAbsent(
@@ -220,6 +258,85 @@ class AppState extends ChangeNotifier {
         ),
       ),
     );
+  }
+
+  bool studiedToday([DateTime? now]) {
+    final reference = now ?? DateTime.now();
+    final studied = lastStudyAt;
+    if (studied == null) {
+      return false;
+    }
+    return studied.year == reference.year &&
+        studied.month == reference.month &&
+        studied.day == reference.day;
+  }
+
+  bool reminderAlreadyShownToday([DateTime? now]) {
+    final reference = now ?? DateTime.now();
+    final shown = lastReminderAt;
+    if (shown == null) {
+      return false;
+    }
+    return shown.year == reference.year &&
+        shown.month == reference.month &&
+        shown.day == reference.day;
+  }
+
+  bool shouldSendStudyReminder([DateTime? now]) {
+    if (!studyRemindersEnabled) {
+      return false;
+    }
+
+    final reference = now ?? DateTime.now();
+    final afterReminderTime = reference.hour > reminderHour ||
+        (reference.hour == reminderHour &&
+            reference.minute >= reminderMinute);
+
+    return afterReminderTime &&
+        !studiedToday(reference) &&
+        !reminderAlreadyShownToday(reference);
+  }
+
+  Future<void> markStudyReminderShown() async {
+    lastReminderAt = DateTime.now();
+    await _prefs.setString(
+      _lastReminderAtKey,
+      lastReminderAt!.toIso8601String(),
+    );
+    notifyListeners();
+  }
+
+  Future<void> updateReminderSettings({
+    bool? enabled,
+    bool? reviewEnabled,
+    bool? dailyEditionEnabled,
+    int? hour,
+    int? minute,
+  }) async {
+    if (enabled != null) {
+      studyRemindersEnabled = enabled;
+      await _prefs.setBool(_studyRemindersKey, enabled);
+    }
+    if (reviewEnabled != null) {
+      reviewRemindersEnabled = reviewEnabled;
+      await _prefs.setBool(_reviewRemindersKey, reviewEnabled);
+    }
+    if (dailyEditionEnabled != null) {
+      dailyEditionRemindersEnabled = dailyEditionEnabled;
+      await _prefs.setBool(
+        _dailyEditionRemindersKey,
+        dailyEditionEnabled,
+      );
+    }
+    if (hour != null) {
+      reminderHour = hour.clamp(0, 23);
+      await _prefs.setInt(_reminderHourKey, reminderHour);
+    }
+    if (minute != null) {
+      reminderMinute = minute.clamp(0, 59);
+      await _prefs.setInt(_reminderMinuteKey, reminderMinute);
+    }
+    notifyListeners();
   }
 
   Future<void> updateReaderSettings({
