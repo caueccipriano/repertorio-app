@@ -525,6 +525,174 @@ const languageTopic = KnowledgeTopic(
   connections: ['Latim', 'Sotaque', 'Etimologia', 'Sociolinguística'],
 );
 
+const illuminismoTopic = KnowledgeTopic(
+  id: 'illuminismo', eyebrow: 'FILOSOFIA / HISTÓRIA', title: 'O QUE FOI O ILUMINISMO?',
+  summary: 'Razão, crítica e debate sobre poder transformaram a política e a cultura europeias no século XVIII.', minutes: 7, tags: ['filosofia', 'história'],
+  quickTake: 'O Iluminismo reuniu autores diferentes, não uma única doutrina.', simpleExplanation: 'Pense nele como uma grande conversa intelectual sobre como conhecimento, leis e governos poderiam ser examinados pela razão.', example: 'Questionar se um rei governa por direito divino ou se o poder precisa de justificativa pública é uma pergunta tipicamente iluminista.',
+  body: ['Autores como Voltaire, Montesquieu, Rousseau e Diderot discordavam em muitos pontos.', 'Enciclopédias e uma esfera pública de livros, cafés e periódicos ajudaram ideias a circular.', 'Críticas ao absolutismo e aos privilégios influenciaram debates políticos dos séculos seguintes.', 'Ciência e empirismo reforçaram a confiança na investigação racional, embora o período também carregasse contradições sociais.'], remember: ['Não foi uma doutrina única.', 'Razão e crítica ganharam centralidade.', 'Suas ideias influenciaram revoluções e constituições.'],
+  whyItMatters: 'Ajuda a entender a origem de muitos debates modernos sobre direitos, Estado e conhecimento.', curiosity: 'A Encyclopédie francesa reuniu milhares de verbetes e se tornou símbolo do projeto de organizar o conhecimento.', connections: ['Revolução Francesa', 'Direitos', 'Enciclopédia', 'Montesquieu'],
+);
+
+const imperio_otomanoTopic = KnowledgeTopic(
+  id: 'imperio-otomano', eyebrow: 'HISTÓRIA / IMPÉRIOS', title: 'COMO O IMPÉRIO OTOMANO DUROU TANTO?',
+  summary: 'Instituições flexíveis, posição estratégica e capacidade militar sustentaram um império por mais de seis séculos.', minutes: 7, tags: ['história', 'geopolítica'],
+  quickTake: 'O Império Otomano não foi estático: sobreviveu justamente porque mudou muitas vezes.', simpleExplanation: 'Imagine administrar territórios em três continentes, com religiões, línguas e economias diferentes, adaptando regras e alianças conforme a época.', example: 'Constantinopla, conquistada em 1453 e depois conhecida como Istambul, tornou-se um centro político e comercial decisivo.',
+  body: ['O Estado otomano surgiu na Anatólia no fim do século XIII e expandiu-se pelos Bálcãs e Oriente Médio.', 'Sua administração combinou autoridade central com diferentes arranjos locais.', 'Rotas comerciais, tributação e grandes cidades sustentaram sua economia em períodos distintos.', 'Reformas militares e administrativas ocorreram repetidamente diante de mudanças tecnológicas e rivais externos.', 'O império foi dissolvido após a Primeira Guerra Mundial e a República da Turquia foi fundada em 1923.'], remember: ['Durou mais de seis séculos.', 'Controlou territórios em três continentes.', 'Mudança institucional foi parte de sua longevidade.'],
+  whyItMatters: 'Ajuda a entender fronteiras, cidades e conflitos históricos do Mediterrâneo, dos Bálcãs e do Oriente Médio.', curiosity: 'O sultão Mehmed II tinha apenas 21 anos quando Constantinopla foi conquistada em 1453.', connections: ['Constantinopla', 'Turquia', 'Bálcãs', 'Primeira Guerra'],
+);
+
+const guerra_friaTopic = KnowledgeTopic(
+  id: 'guerra-fria', eyebrow: 'HISTÓRIA / GEOPOLÍTICA', title: 'POR QUE A GUERRA FRIA ERA “FRIA”?',
+  summary: 'Estados Unidos e União Soviética evitaram guerra direta ampla, mas disputaram poder global por décadas.', minutes: 7, tags: ['história', 'geopolítica'],
+  quickTake: 'Foi uma rivalidade global com armas, alianças, propaganda, espionagem e guerras por procuração.', simpleExplanation: 'Duas superpotências possuíam capacidade nuclear devastadora; confrontá-las diretamente tinha riscos enormes, então a disputa apareceu em muitos outros terrenos.', example: 'A corrida espacial transformou foguetes, satélites e a chegada à Lua em demonstrações públicas de capacidade tecnológica.',
+  body: ['Após 1945, EUA e URSS emergiram como superpotências com sistemas políticos e econômicos rivais.', 'A dissuasão nuclear tornou uma guerra direta potencialmente catastrófica.', 'OTAN e Pacto de Varsóvia formalizaram blocos militares na Europa.', 'Coreia, Vietnã, Afeganistão e outras regiões foram profundamente afetadas por conflitos ligados à rivalidade.', 'A Guerra Fria terminou no contexto das reformas soviéticas e da dissolução da URSS em 1991.'], remember: ['Não foi ausência de guerras.', 'Armas nucleares alteraram a estratégia.', 'A disputa foi política, econômica, tecnológica e cultural.'],
+  whyItMatters: 'Muitos alinhamentos e instituições internacionais atuais têm raízes nesse período.', curiosity: 'O telefone vermelho entre Washington e Moscou não era literalmente um telefone vermelho; foi criado como linha direta de comunicação após a crise dos mísseis.', connections: ['URSS', 'OTAN', 'Corrida espacial', 'Berlim'],
+);
+
+const relatividadeTopic = KnowledgeTopic(
+  id: 'relatividade', eyebrow: 'CIÊNCIA / FÍSICA', title: 'O TEMPO PASSA IGUAL PARA TODO MUNDO?',
+  summary: 'A relatividade mostra que medidas de tempo e espaço dependem do movimento e da gravidade.', minutes: 7, tags: ['ciência', 'física'],
+  quickTake: 'Tempo não é um relógio universal separado do universo físico.', simpleExplanation: 'Dois relógios extremamente precisos podem acumular tempos diferentes se viajarem em velocidades diferentes ou permanecerem sob gravidades diferentes.', example: 'Satélites de GPS precisam considerar efeitos relativísticos para que o posicionamento continue preciso.',
+  body: ['Einstein apresentou a relatividade especial em 1905 e a relatividade geral em 1915.', 'Na relatividade especial, velocidade da luz e estrutura do espaço-tempo levam à dilatação temporal.', 'Na relatividade geral, gravidade é descrita pela geometria do espaço-tempo.', 'Esses efeitos parecem pequenos no cotidiano, mas tornam-se importantes em velocidades altas, campos gravitacionais intensos ou medições muito precisas.', 'Observações de lentes gravitacionais, órbitas e ondas gravitacionais testam previsões da teoria.'], remember: ['Tempo depende do referencial.', 'Gravidade afeta a passagem do tempo.', 'GPS usa correções relativísticas.'],
+  whyItMatters: 'Transforma nossa ideia de espaço, tempo e gravidade e sustenta tecnologias reais.', curiosity: 'Einstein não recebeu o Nobel pela relatividade, mas por sua explicação do efeito fotoelétrico.', connections: ['Einstein', 'Espaço-tempo', 'GPS', 'Quântica'],
+);
+
+const buracos_negrosTopic = KnowledgeTopic(
+  id: 'buracos-negros', eyebrow: 'CIÊNCIA / UNIVERSO', title: 'O QUE EXISTE DENTRO DE UM BURACO NEGRO?',
+  summary: 'Sabemos muito sobre seus efeitos externos; o interior leva nossas teorias aos seus limites.', minutes: 7, tags: ['ciência', 'astronomia'],
+  quickTake: 'Um buraco negro é uma região da qual, após o horizonte de eventos, nem a luz consegue escapar para longe.', simpleExplanation: 'Imagine um limite que pode ser atravessado para dentro, mas do qual nenhuma mensagem consegue voltar para um observador distante.', example: 'Em 2019, o Event Horizon Telescope publicou a primeira imagem da sombra de um buraco negro, no centro da galáxia M87.',
+  body: ['Buracos negros podem se formar pelo colapso de estrelas massivas e também existem em escalas supermassivas no centro de galáxias.', 'O horizonte de eventos não é uma superfície sólida; é um limite causal.', 'A relatividade geral prevê uma singularidade em soluções simples, sinal de que nossa descrição física fica incompleta em condições extremas.', 'Matéria aquecida ao redor pode emitir enorme quantidade de radiação antes de cruzar o horizonte.', 'Ondas gravitacionais permitem observar fusões de buracos negros.'], remember: ['Horizonte não é superfície sólida.', 'Não vemos o buraco negro diretamente, mas seus efeitos.', 'O interior expõe limites da física atual.'],
+  whyItMatters: 'Eles são laboratórios naturais para gravidade extrema e evolução de galáxias.', curiosity: 'O buraco negro fotografado em M87 está a dezenas de milhões de anos-luz da Terra.', connections: ['Relatividade', 'Galáxias', 'Ondas gravitacionais', 'Event Horizon Telescope'],
+);
+
+const vacinasTopic = KnowledgeTopic(
+  id: 'vacinas', eyebrow: 'CIÊNCIA / SAÚDE', title: 'COMO UMA VACINA TREINA O SISTEMA IMUNE?',
+  summary: 'Vacinas apresentam ao organismo informações ou componentes que ajudam a preparar uma resposta futura.', minutes: 7, tags: ['ciência', 'saúde'],
+  quickTake: 'Vacinação cria memória imunológica sem exigir que a pessoa enfrente todos os riscos da doença natural.', simpleExplanation: 'É como mostrar ao sistema imune um retrato ou uma versão segura de um invasor para que ele reconheça o alvo mais rapidamente depois.', example: 'Após vacinação, células de memória podem acelerar a produção de respostas específicas numa exposição posterior.',
+  body: ['Vacinas podem usar tecnologias diferentes: vírus atenuados, inativados, proteínas, vetores ou material genético, entre outras.', 'O sistema imune reconhece antígenos e ativa respostas celulares e de anticorpos.', 'Memória imunológica permite reação mais rápida em exposições futuras.', 'Nenhuma intervenção médica é absolutamente livre de risco, por isso segurança e eficácia são avaliadas em estudos e vigilância.', 'Quando muitas pessoas estão protegidas, a circulação de determinados agentes pode cair e beneficiar também a comunidade.'], remember: ['Existem várias tecnologias de vacina.', 'Memória imunológica é central.', 'Benefícios e riscos são avaliados continuamente.'],
+  whyItMatters: 'Vacinação está entre as ferramentas de saúde pública que mais reduziram doença e mortalidade infecciosa.', curiosity: 'A varíola foi declarada erradicada mundialmente em 1980 após uma campanha global de vacinação.', connections: ['Imunidade', 'Vírus', 'Ensaios clínicos', 'Saúde pública'],
+);
+
+const sonoTopic = KnowledgeTopic(
+  id: 'sono', eyebrow: 'CIÊNCIA / COTIDIANO', title: 'POR QUE PRECISAMOS DORMIR?',
+  summary: 'Sono participa de memória, regulação metabólica, imunidade e funcionamento cerebral.', minutes: 7, tags: ['ciência', 'psicologia'],
+  quickTake: 'Dormir não é simplesmente desligar: o cérebro alterna estados ativos com funções diferentes.', simpleExplanation: 'Durante a noite, passamos repetidamente por estágios de sono NREM e REM em ciclos.', example: 'Uma noite de sono pode ajudar a consolidar parte do que foi aprendido durante o dia.',
+  body: ['O sono é regulado por processos circadianos e pela pressão de sono que aumenta enquanto ficamos acordados.', 'Estágios NREM incluem fases de sono mais profundo, enquanto REM costuma concentrar sonhos vívidos.', 'Memória e aprendizagem são influenciadas pelo sono, embora não exista uma única função que explique por que dormimos.', 'Privação de sono prejudica atenção, tempo de reação e tomada de decisão.', 'Luz, horários, cafeína e rotina podem alterar o momento e a qualidade do sono.'], remember: ['Sono tem vários estágios.', 'Ritmo circadiano regula o horário.', 'Privação afeta cognição e corpo.'],
+  whyItMatters: 'Entender sono ajuda a interpretar produtividade, memória e hábitos sem tratá-lo como tempo perdido.', curiosity: 'O cérebro permanece metabolicamente ativo durante o sono e muda de padrão várias vezes ao longo da noite.', connections: ['Memória', 'Ritmo circadiano', 'Sonhos', 'Cafeína'],
+);
+
+const viesesTopic = KnowledgeTopic(
+  id: 'vieses', eyebrow: 'PSICOLOGIA / MENTE', title: 'O QUE É UM VIÉS COGNITIVO?',
+  summary: 'Atalhos mentais podem tornar decisões rápidas, mas também produzir erros previsíveis.', minutes: 7, tags: ['psicologia', 'comportamento'],
+  quickTake: 'Viés cognitivo é uma tendência sistemática de julgamento, não simplesmente falta de inteligência.', simpleExplanation: 'Se você procura apenas exemplos que confirmam uma ideia que já tinha, pode estar sofrendo influência do viés de confirmação.', example: 'Depois de comprar um produto, você pode prestar mais atenção a avaliações que justificam sua escolha.',
+  body: ['O cérebro precisa decidir sob tempo e informação limitados, por isso usa heurísticas.', 'Heurísticas podem ser úteis e ainda gerar padrões de erro em certos contextos.', 'Viés de confirmação favorece informação compatível com crenças existentes.', 'Efeito de ancoragem mostra como um número inicial pode influenciar estimativas posteriores.', 'Conhecer vieses não nos torna imunes a eles; bons processos e dados ajudam a reduzir sua influência.'], remember: ['Atalhos não são sempre ruins.', 'Vieses são padrões, não falhas morais.', 'Processos podem reduzir erros.'],
+  whyItMatters: 'Ajuda a pensar melhor sobre decisões, notícias, dinheiro e discussões.', curiosity: 'Até especialistas podem demonstrar vieses; conhecimento do tema sozinho não garante decisões imparciais.', connections: ['Heurísticas', 'Decisão', 'Placebo', 'Pensamento crítico'],
+);
+
+const juros_compostosTopic = KnowledgeTopic(
+  id: 'juros-compostos', eyebrow: 'ECONOMIA / DINHEIRO', title: 'POR QUE JUROS COMPOSTOS CRESCEM TANTO?',
+  summary: 'Quando rendimentos se incorporam ao saldo, períodos seguintes rendem também sobre ganhos anteriores.', minutes: 7, tags: ['economia', 'finanças'],
+  quickTake: 'Juros compostos são crescimento sobre uma base que muda ao longo do tempo.', simpleExplanation: 'Se R$ 100 rendem 10%, viram R$ 110; no período seguinte, os 10% incidem sobre R$ 110, não apenas sobre os R$ 100 iniciais.', example: 'O mesmo mecanismo que acelera investimentos de longo prazo também pode ampliar dívidas quando juros são altos.',
+  body: ['Em juros simples, a base de cálculo permanece constante; em compostos, o saldo acumulado vira a nova base.', 'Tempo é uma variável poderosa porque cada período adiciona novas camadas de crescimento.', 'Taxa e frequência de capitalização alteram bastante o resultado final.', 'Inflação precisa ser considerada para avaliar crescimento real do poder de compra.', 'Em dívidas, juros compostos podem trabalhar contra o devedor da mesma forma matemática.'], remember: ['Rendimento passa a render.', 'Tempo amplifica diferenças.', 'Retorno nominal não é retorno real.'],
+  whyItMatters: 'É fundamental para entender investimentos, financiamentos, cartões e planejamento de longo prazo.', curiosity: 'A regra dos 72 é uma aproximação popular para estimar em quantos anos um valor dobra a determinada taxa percentual anual.', connections: ['Inflação', 'Investimentos', 'Crédito', 'Valor do dinheiro'],
+);
+
+const bolhasTopic = KnowledgeTopic(
+  id: 'bolhas', eyebrow: 'ECONOMIA / HISTÓRIA', title: 'COMO NASCE UMA BOLHA FINANCEIRA?',
+  summary: 'Expectativas, crédito e comportamento coletivo podem afastar preços de fundamentos por algum tempo.', minutes: 7, tags: ['economia', 'história'],
+  quickTake: 'Uma alta forte de preço não prova sozinha que existe bolha; o conceito envolve dinâmica especulativa e expectativas.', simpleExplanation: 'Imagine comprar algo principalmente porque espera revendê-lo mais caro para outra pessoa, enquanto cada vez mais compradores fazem o mesmo.', example: 'A bolha das empresas ponto-com no fim dos anos 1990 combinou entusiasmo tecnológico real com avaliações extremamente elevadas em muitas empresas.',
+  body: ['Bolhas são difíceis de identificar com certeza enquanto acontecem.', 'Crédito abundante pode aumentar capacidade de compra e alimentar altas de ativos.', 'Narrativas convincentes atraem participantes e podem justificar preços crescentes por algum tempo.', 'Quando expectativas mudam, vendas e desalavancagem podem acelerar quedas.', 'Nem toda inovação cercada por especulação é inútil; tecnologias reais podem sobreviver ao colapso de preços.'], remember: ['Alta de preço não basta para provar bolha.', 'Crédito pode amplificar ciclos.', 'Tecnologia real e especulação podem coexistir.'],
+  whyItMatters: 'Ajuda a analisar euforia financeira sem depender apenas de histórias sobre enriquecimento rápido.', curiosity: 'A mania das tulipas holandesa é famosa, mas historiadores discutem o quanto versões populares exageram sua escala econômica.', connections: ['Bitcoin', 'Crédito', 'Ponto-com', 'Comportamento'],
+);
+
+const fotografiaTopic = KnowledgeTopic(
+  id: 'fotografia', eyebrow: 'ARTE / TECNOLOGIA', title: 'COMO UMA CÂMERA CONGELA A LUZ?',
+  summary: 'Lente, abertura, obturador e sensor ou filme controlam a formação e o registro de uma imagem.', minutes: 7, tags: ['arte', 'tecnologia'],
+  quickTake: 'Fotografia é literalmente administrar luz no espaço e no tempo.', simpleExplanation: 'A lente forma a imagem; a abertura controla quanto entra; o obturador controla por quanto tempo; o sensor registra o resultado.', example: 'Uma exposição longa pode transformar faróis de carros em rastros luminosos.',
+  body: ['Câmeras derivam do princípio da câmara escura, conhecido muito antes da fotografia moderna.', 'Aberturas maiores deixam entrar mais luz e também influenciam profundidade de campo.', 'Velocidade do obturador altera como movimento é registrado.', 'Sensibilidade do sensor, expressa como ISO, envolve compromissos de qualidade e ruído.', 'Composição e edição continuam sendo escolhas humanas mesmo quando a câmera automatiza exposição.'], remember: ['Abertura controla luz e profundidade.', 'Obturador controla tempo.', 'ISO altera sensibilidade e ruído.'],
+  whyItMatters: 'Entender o triângulo de exposição melhora fotos mesmo em câmeras de celular.', curiosity: 'A primeira fotografia permanente conhecida exigiu uma exposição extremamente longa no século XIX.', connections: ['Cinema', 'Óptica', 'Luz', 'Composição'],
+);
+
+const perspectivaTopic = KnowledgeTopic(
+  id: 'perspectiva', eyebrow: 'ARTE / PERCEPÇÃO', title: 'COMO UM DESENHO CRIA PROFUNDIDADE NUM PAPEL PLANO?',
+  summary: 'Perspectiva usa relações geométricas e pistas visuais para representar espaço tridimensional.', minutes: 7, tags: ['arte', 'design'],
+  quickTake: 'Linhas convergentes, escala e sobreposição fazem o cérebro interpretar profundidade.', simpleExplanation: 'Trilhos paralelos parecem se aproximar à distância; a perspectiva linear organiza esse efeito usando pontos de fuga.', example: 'Pintores renascentistas sistematizaram métodos geométricos para criar interiores e cidades convincentes.',
+  body: ['A perspectiva linear foi sistematizada na Itália do século XV, embora culturas anteriores já usassem várias formas de representar profundidade.', 'Um ponto de fuga organiza linhas paralelas numa determinada direção.', 'Objetos mais distantes costumam ser representados menores.', 'Perspectiva atmosférica usa contraste e cor para sugerir grandes distâncias.', 'Fotografia herdou muitas convenções espaciais que hoje parecem naturais aos nossos olhos.'], remember: ['Ponto de fuga organiza direção.', 'Tamanho relativo sugere distância.', 'Existem várias perspectivas possíveis.'],
+  whyItMatters: 'Mostra que imagens aparentemente realistas dependem de convenções e matemática.', curiosity: 'Brunelleschi é associado a experimentos decisivos para a perspectiva linear no início do Renascimento.', connections: ['Renascimento', 'Fotografia', 'Geometria', 'Percepção'],
+);
+
+const sushiTopic = KnowledgeTopic(
+  id: 'sushi', eyebrow: 'GASTRONOMIA / HISTÓRIA', title: 'SUSHI SEMPRE FOI PEIXE CRU?',
+  summary: 'O sushi nasceu de técnicas de conservação e evoluiu até formas muito diferentes das atuais.', minutes: 7, tags: ['gastronomia', 'história'],
+  quickTake: 'Sushi é definido principalmente pelo arroz temperado, não pela presença obrigatória de peixe cru.', simpleExplanation: 'Um nigiri com peixe é sushi; sashimi sem arroz não é sushi.', example: 'O estilo nigiri tornou-se popular em Edo, atual Tóquio, como comida rápida urbana.',
+  body: ['Formas antigas de conservar peixe com arroz fermentado existiram em partes da Ásia antes do sushi moderno.', 'No Japão, técnicas evoluíram até o arroz avinagrado substituir longos períodos de fermentação.', 'No período Edo, nigiri aproximou-se do formato reconhecido hoje.', 'Refrigeração e transporte moderno ampliaram ingredientes e segurança de distribuição.', 'Sushi contemporâneo varia enormemente dentro e fora do Japão.'], remember: ['Sushi não significa peixe cru.', 'Arroz temperado é central.', 'Nigiri se popularizou em Edo.'],
+  whyItMatters: 'Ajuda a distinguir tradições culinárias de versões simplificadas que circulam globalmente.', curiosity: 'Sashimi é uma categoria diferente porque não exige arroz de sushi.', connections: ['Japão', 'Fermentação', 'Arroz', 'Cultura alimentar'],
+);
+
+const perfumeTopic = KnowledgeTopic(
+  id: 'perfume', eyebrow: 'CULTURA / QUÍMICA', title: 'POR QUE UM PERFUME MUDA NA PELE?',
+  summary: 'Volatilidade, concentração, temperatura e interação com a pele alteram a percepção ao longo do tempo.', minutes: 7, tags: ['cultura', 'ciência'],
+  quickTake: 'Perfume é uma mistura de moléculas que evaporam em ritmos diferentes.', simpleExplanation: 'Moléculas mais voláteis aparecem rapidamente; outras permanecem por horas, fazendo a fragrância parecer evoluir.', example: 'Notas cítricas costumam aparecer cedo, enquanto madeiras e resinas podem durar muito mais.',
+  body: ['Perfumes combinam materiais aromáticos naturais e sintéticos dissolvidos em um veículo.', 'A pirâmide de notas é uma linguagem útil de descrição, não compartimentos físicos separados no frasco.', 'Temperatura e área de aplicação afetam evaporação e projeção.', 'Pele, produtos usados e percepção individual podem mudar como uma fragrância é sentida.', 'Concentrações como eau de toilette e eau de parfum indicam famílias de formulação, mas não garantem sozinhas duração.'], remember: ['Notas evaporam em ritmos diferentes.', 'Pirâmide é modelo descritivo.', 'Concentração não determina tudo.'],
+  whyItMatters: 'Dá vocabulário para escolher fragrâncias pelo comportamento real, não apenas pela primeira borrifada.', curiosity: 'Muitas moléculas sintéticas permitiram criar cheiros difíceis ou inviáveis de extrair diretamente da natureza.', connections: ['Química', 'Moda', 'Olfato', 'Design'],
+);
+
+const coresTopic = KnowledgeTopic(
+  id: 'cores', eyebrow: 'DESIGN / PERCEPÇÃO', title: 'COR EXISTE FORA DO NOSSO CÉREBRO?',
+  summary: 'Luz tem comprimentos de onda; cor é a experiência perceptiva criada pelo sistema visual.', minutes: 7, tags: ['design', 'ciência'],
+  quickTake: 'Objetos não carregam uma etiqueta física chamada “azul”: eles refletem luz que nosso cérebro interpreta como cor.', simpleExplanation: 'Sob iluminações diferentes, a mesma superfície pode enviar combinações diferentes de luz aos olhos e ainda parecer relativamente estável.', example: 'Uma tela cria cores misturando luz RGB, enquanto impressão normalmente trabalha com pigmentos CMYK.',
+  body: ['Cones na retina respondem a diferentes faixas do espectro visível.', 'O cérebro compara sinais e constrói experiências de cor.', 'Contexto visual altera percepção: a mesma cor pode parecer diferente ao lado de outras.', 'Mistura aditiva de luz e mistura subtrativa de pigmentos seguem princípios diferentes.', 'Sistemas de cor são ferramentas para reproduzir experiências de forma consistente em diferentes meios.'], remember: ['Cor é percepção.', 'RGB e CMYK funcionam de modos diferentes.', 'Contexto altera aparência.'],
+  whyItMatters: 'É essencial para design, fotografia, interfaces e para entender ilusões visuais.', curiosity: 'Magenta não corresponde a um único comprimento de onda espectral; é uma percepção produzida pela combinação de sinais.', connections: ['Bauhaus', 'Fotografia', 'Óptica', 'Tipografia'],
+);
+
+const musica_tonalTopic = KnowledgeTopic(
+  id: 'musica-tonal', eyebrow: 'MÚSICA / TEORIA', title: 'POR QUE ALGUMAS NOTAS PARECEM PEDIR RESOLUÇÃO?',
+  summary: 'A música tonal cria expectativas por relações entre acordes, escala, repetição e cultura auditiva.', minutes: 7, tags: ['música', 'cultura'],
+  quickTake: 'Tensão musical não está numa nota isolada: surge do contexto e das expectativas construídas.', simpleExplanation: 'Um acorde dominante antes da tônica costuma criar sensação de movimento que muitos ouvintes esperam ver resolvida.', example: 'Músicas podem adiar a resolução para aumentar expectativa antes de voltar ao centro tonal.',
+  body: ['Tonalidade organiza notas e acordes em torno de centros percebidos.', 'Harmonia funcional descreve relações recorrentes entre acordes em muitas tradições ocidentais.', 'Consonância e dissonância dependem tanto de propriedades acústicas quanto de contexto e aprendizagem.', 'Ritmo e melodia também criam expectativas, não apenas harmonia.', 'Outras tradições musicais organizam altura e tensão de maneiras diferentes.'], remember: ['Contexto cria expectativa.', 'Tonalidade é um sistema, não uma lei universal.', 'Tensão pode ser adiada ou resolvida.'],
+  whyItMatters: 'Ajuda a ouvir música percebendo arquitetura, não apenas melodia superficial.', curiosity: 'A cadência perfeita é uma das fórmulas de resolução mais reconhecíveis na música tonal ocidental.', connections: ['Jazz', 'Harmonia', 'Ritmo', 'Percepção'],
+);
+
+const democracia_atenasTopic = KnowledgeTopic(
+  id: 'democracia-atenas', eyebrow: 'HISTÓRIA / IDEIAS', title: 'A DEMOCRACIA NASCEU MESMO EM ATENAS?',
+  summary: 'Atenas criou uma forma influente de participação política, mas muito diferente das democracias atuais.', minutes: 7, tags: ['história', 'sociedade'],
+  quickTake: 'A democracia ateniense era direta para cidadãos elegíveis e excluía grande parte da população.', simpleExplanation: 'Em vez de eleger representantes para quase tudo, cidadãos podiam participar diretamente de assembleias e algumas funções eram sorteadas.', example: 'Mulheres, pessoas escravizadas e estrangeiros residentes não tinham cidadania política plena na Atenas clássica.',
+  body: ['Reformas ao longo dos séculos VI e V a.C. ampliaram instituições participativas em Atenas.', 'A Assembleia permitia votação direta de cidadãos homens.', 'Sorteio era usado para diversos cargos como forma de reduzir concentração de poder.', 'A democracia coexistia com escravidão, guerra e exclusões profundas.', 'Experiências modernas de democracia representativa herdaram o termo, mas criaram instituições muito diferentes.'], remember: ['Era principalmente direta.', 'Cidadania era restrita.', 'Sorteio tinha papel político importante.'],
+  whyItMatters: 'Ajuda a perceber que “democracia” mudou de significado e desenho institucional ao longo do tempo.', curiosity: 'A palavra deriva de demos, povo, e kratos, poder ou governo.', connections: ['Grécia', 'Cidadania', 'Filosofia', 'República'],
+);
+
+const escritaTopic = KnowledgeTopic(
+  id: 'escrita', eyebrow: 'HISTÓRIA / LINGUAGEM', title: 'POR QUE INVENTAR A ESCRITA MUDOU TUDO?',
+  summary: 'Registrar informação fora da memória humana permitiu novas formas de administração, cultura e transmissão de conhecimento.', minutes: 7, tags: ['história', 'linguagem'],
+  quickTake: 'Escrita não surgiu uma única vez nem começou como literatura.', simpleExplanation: 'Uma lista de grãos ou impostos pode parecer banal, mas permite administrar recursos sem depender apenas da memória de uma pessoa.', example: 'Alguns dos registros mais antigos da Mesopotâmia estão ligados a contabilidade e administração.',
+  body: ['Sistemas de escrita surgiram independentemente em diferentes regiões do mundo.', 'Na Mesopotâmia, marcas administrativas evoluíram para a escrita cuneiforme.', 'Escrita permite acumular informação entre pessoas, lugares e gerações.', 'Alfabetos representam apenas uma entre várias estratégias possíveis de escrita.', 'A alfabetização se expandiu de formas muito diferentes conforme tecnologia, instituições e educação.'], remember: ['Houve múltiplas invenções da escrita.', 'Administração foi um uso inicial importante.', 'Alfabeto não é o único sistema.'],
+  whyItMatters: 'Sem escrita, Estados, ciência e memória cultural teriam escalas muito diferentes.', curiosity: 'A escrita cuneiforme foi usada para várias línguas durante milhares de anos.', connections: ['Mesopotâmia', 'Contabilidade', 'Imprensa', 'Linguagem'],
+);
+
+const imprensaTopic = KnowledgeTopic(
+  id: 'imprensa', eyebrow: 'TECNOLOGIA / HISTÓRIA', title: 'COMO A IMPRENSA MUDOU A VELOCIDADE DAS IDEIAS?',
+  summary: 'Tipos móveis e produção em escala reduziram o custo de copiar textos e ampliaram sua circulação.', minutes: 7, tags: ['tecnologia', 'história'],
+  quickTake: 'A imprensa europeia do século XV não inventou livros, mas transformou sua reprodução.', simpleExplanation: 'Copiar um livro à mão pode levar meses; imprimir muitas cópias a partir de tipos reutilizáveis muda completamente a escala.', example: 'A Bíblia de Gutenberg tornou-se um símbolo da impressão europeia com tipos móveis.',
+  body: ['Tecnologias de impressão já existiam na Ásia séculos antes de Gutenberg.', 'Na Europa, Johannes Gutenberg combinou tipos metálicos móveis, prensa e outros processos em meados do século XV.', 'Mais cópias ajudaram textos religiosos, científicos e políticos a circular com rapidez inédita.', 'Padronização facilitou referências compartilhadas, embora erros e desinformação também pudessem se espalhar.', 'Impressão ajudou a formar novos mercados de leitores e profissões.'], remember: ['Impressão existia antes de Gutenberg.', 'Escala e custo mudaram radicalmente.', 'Mais circulação não garante informação correta.'],
+  whyItMatters: 'É um paralelo histórico poderoso para entender como novas mídias alteram sociedades.', curiosity: 'A Coreia já utilizava tipos móveis de metal antes da famosa Bíblia de Gutenberg.', connections: ['Renascimento', 'Escrita', 'Internet', 'Reforma'],
+);
+
+const oceanosTopic = KnowledgeTopic(
+  id: 'oceanos', eyebrow: 'CIÊNCIA / PLANETA', title: 'POR QUE O OCEANO CONTROLA TANTO O CLIMA?',
+  summary: 'A água armazena e transporta enorme quantidade de calor, conectando atmosfera, correntes e clima.', minutes: 7, tags: ['ciência', 'geografia'],
+  quickTake: 'Oceanos funcionam como um gigantesco reservatório e sistema de transporte de energia.', simpleExplanation: 'Água aquece e esfria mais lentamente que o solo, moderando temperaturas de regiões costeiras.', example: 'Correntes transportam calor entre latitudes e influenciam padrões de chuva e temperatura.',
+  body: ['Oceanos cobrem cerca de 71% da superfície terrestre.', 'Sua alta capacidade térmica permite absorver grande quantidade de energia.', 'Ventos, rotação da Terra, salinidade e temperatura ajudam a mover correntes.', 'Evaporação oceânica alimenta grande parte do ciclo global da água.', 'Mudanças na temperatura do oceano interagem com fenômenos como El Niño e La Niña.'], remember: ['Oceanos armazenam calor.', 'Correntes redistribuem energia.', 'Oceano e atmosfera formam um sistema acoplado.'],
+  whyItMatters: 'Clima, pesca, tempestades e nível do mar dependem profundamente do estado dos oceanos.', curiosity: 'A maior parte do volume habitável do planeta está no oceano, não em terra firme.', connections: ['Clima', 'El Niño', 'Água', 'Mapas'],
+);
+
+const vulcoesTopic = KnowledgeTopic(
+  id: 'vulcoes', eyebrow: 'CIÊNCIA / PLANETA', title: 'POR QUE EXISTEM VULCÕES?',
+  summary: 'Calor interno, tectônica de placas e movimento de magma criam caminhos para material chegar à superfície.', minutes: 7, tags: ['ciência', 'geografia'],
+  quickTake: 'Vulcões não aparecem aleatoriamente: muitos estão ligados a limites de placas ou pontos quentes.', simpleExplanation: 'Em algumas bordas de placas, uma placa mergulha sob outra e processos no manto favorecem a formação de magma.', example: 'O Círculo de Fogo do Pacífico concentra muitos vulcões e terremotos por causa de limites tectônicos.',
+  body: ['A Terra mantém calor de sua formação e de decaimento radioativo interno.', 'Placas tectônicas se movem lentamente sobre camadas mais dúcteis do planeta.', 'Em zonas de subducção, dorsais oceânicas e pontos quentes, magma pode alcançar a crosta.', 'Composição do magma influencia viscosidade e estilo de erupção.', 'Vulcanismo também constrói novas terras e recicla materiais geológicos.'], remember: ['Muitos vulcões seguem limites de placas.', 'Magma e lava não são exatamente a mesma coisa.', 'Erupções têm estilos diferentes.'],
+  whyItMatters: 'Vulcões conectam o interior da Terra à superfície e ajudam a explicar continentes, ilhas e riscos naturais.', curiosity: 'O arquipélago do Havaí se formou enquanto a placa do Pacífico se movia sobre um ponto quente.', connections: ['Tectônica', 'Terremotos', 'Oceanos', 'Havaí'],
+);
+
 const allDemoTopics = <KnowledgeTopic>[
   bauhausTopic,
   modernismTopic,
@@ -551,6 +719,27 @@ const allDemoTopics = <KnowledgeTopic>[
   mapsTopic,
   placeboTopic,
   languageTopic,
+  illuminismoTopic,
+  imperio_otomanoTopic,
+  guerra_friaTopic,
+  relatividadeTopic,
+  buracos_negrosTopic,
+  vacinasTopic,
+  sonoTopic,
+  viesesTopic,
+  juros_compostosTopic,
+  bolhasTopic,
+  fotografiaTopic,
+  perspectivaTopic,
+  sushiTopic,
+  perfumeTopic,
+  coresTopic,
+  musica_tonalTopic,
+  democracia_atenasTopic,
+  escritaTopic,
+  imprensaTopic,
+  oceanosTopic,
+  vulcoesTopic,
 ];
 
 KnowledgeTopic? topicById(String id) {
