@@ -65,6 +65,7 @@ class _MediaCard extends StatelessWidget {
               child: Image.network(
                 item.url,
                 fit: BoxFit.cover,
+                webHtmlElementStrategy: WebHtmlElementStrategy.fallback,
                 errorBuilder: (_, __, ___) => _MediaFallback(
                   icon: Icons.image_not_supported_outlined,
                   label: 'não consegui carregar a imagem',
