@@ -5,18 +5,68 @@ import '../../../core/widgets/editorial_decorations.dart';
 import '../../../core/widgets/editorial_frame.dart';
 import '../../../core/widgets/editorial_rule.dart';
 import '../../../core/widgets/paper_texture.dart';
+import '../../today/data/demo_topics.dart';
 import '../../today/domain/knowledge_topic.dart';
 
-class ArticleScreen extends StatelessWidget {
+class ArticleScreen extends StatefulWidget {
   const ArticleScreen({super.key, required this.topic});
 
   final KnowledgeTopic topic;
 
   @override
+  State<ArticleScreen> createState() => _ArticleScreenState();
+}
+
+class _ArticleScreenState extends State<ArticleScreen> {
+  final ScrollController _scrollController = ScrollController();
+  double _progress = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_updateProgress);
+  }
+
+  void _updateProgress() {
+    if (!_scrollController.hasClients) {
+      return;
+    }
+
+    final extent = _scrollController.position.maxScrollExtent;
+    final next = extent <= 0
+        ? 0.0
+        : (_scrollController.offset / extent).clamp(0.0, 1.0);
+
+    if ((next - _progress).abs() > .005 && mounted) {
+      setState(() => _progress = next);
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController
+      ..removeListener(_updateProgress)
+      ..dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final topic = widget.topic;
+    final nextTopic = nextDemoTopic(topic);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('ler'),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(2),
+          child: LinearProgressIndicator(
+            value: _progress,
+            minHeight: 2,
+            color: AppColors.blue,
+            backgroundColor: AppColors.line,
+          ),
+        ),
         actions: [
           IconButton(
             tooltip: 'Salvar',
@@ -29,6 +79,7 @@ class ArticleScreen extends StatelessWidget {
       body: PaperTexture(
         child: SelectionArea(
           child: SingleChildScrollView(
+            controller: _scrollController,
             child: EditorialFrame(
               maxWidth: 720,
               padding: const EdgeInsets.fromLTRB(20, 18, 20, 56),
@@ -103,7 +154,7 @@ class ArticleScreen extends StatelessWidget {
                     title: 'conecte os pontos',
                     child: _Connections(connections: topic.connections),
                   ),
-                  const _ArticleEnd(),
+                  _ArticleEnd(nextTopic: nextTopic),
                 ],
               ),
             ),
@@ -493,7 +544,9 @@ class _Connections extends StatelessWidget {
 }
 
 class _ArticleEnd extends StatelessWidget {
-  const _ArticleEnd();
+  const _ArticleEnd({required this.nextTopic});
+
+  final KnowledgeTopic nextTopic;
 
   @override
   Widget build(BuildContext context) {
@@ -508,13 +561,66 @@ class _ArticleEnd extends StatelessWidget {
             fontSize: 24,
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 18),
-          Text(
-            'PRÓXIMA CONEXÃO → MODERNISMO',
-            style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                  letterSpacing: 1.1,
-                  color: AppColors.muted,
+          const SizedBox(height: 24),
+          Material(
+            color: AppColors.deepBlue,
+            child: InkWell(
+              onTap: () => Navigator.of(context).pushReplacement(
+                MaterialPageRoute<void>(
+                  builder: (_) => ArticleScreen(topic: nextTopic),
                 ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(18, 16, 16, 18),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'PRÓXIMA CONEXÃO',
+                            style:
+                                Theme.of(context).textTheme.labelLarge?.copyWith(
+                                      color: Colors.white60,
+                                      fontSize: 9,
+                                      letterSpacing: 1.1,
+                                    ),
+                          ),
+                          const SizedBox(height: 7),
+                          Text(
+                            nextTopic.title,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineMedium
+                                ?.copyWith(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                          ),
+                          const SizedBox(height: 7),
+                          Text(
+                            '${nextTopic.minutes} min · ${nextTopic.tags.first}',
+                            style:
+                                Theme.of(context).textTheme.labelLarge?.copyWith(
+                                      color: Colors.white70,
+                                      fontSize: 9,
+                                    ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 14),
+                    const Icon(
+                      Icons.arrow_forward,
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
         ],
       ),
