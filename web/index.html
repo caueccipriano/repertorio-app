@@ -32,7 +32,7 @@
       supported: function () {
         return 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
       },
-      speak: function (text) {
+      speak: function (text, rate) {
         return new Promise(function (resolve) {
           if (!window.repertorioSpeech.supported()) {
             resolve('unsupported');
@@ -41,7 +41,7 @@
           window.speechSynthesis.cancel();
           const utterance = new SpeechSynthesisUtterance(text);
           utterance.lang = 'pt-BR';
-          utterance.rate = 1.0;
+          utterance.rate = Math.max(0.7, Math.min(1.5, rate || 1.0));
           utterance.pitch = 1.0;
           utterance.onend = function () { resolve('ended'); };
           utterance.onerror = function () { resolve('error'); };
