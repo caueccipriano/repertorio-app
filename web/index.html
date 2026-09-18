@@ -173,6 +173,41 @@
       });
     }
 
+    window.repertorioSpotifyState = {
+      api: null,
+      controller: null,
+      waiters: []
+    };
+
+    window.onSpotifyIframeApiReady = function (IFrameAPI) {
+      window.repertorioSpotifyState.api = IFrameAPI;
+      const waiters = window.repertorioSpotifyState.waiters.splice(0);
+      waiters.forEach(resolve => resolve(IFrameAPI));
+    };
+
+    function waitForSpotifyIframeApi() {
+      const state = window.repertorioSpotifyState;
+      if (state.api) {
+        return Promise.resolve(state.api);
+      }
+
+      return new Promise(function (resolve) {
+        let settled = false;
+
+        const finish = function (value) {
+          if (settled) return;
+          settled = true;
+          resolve(value);
+        };
+
+        state.waiters.push(finish);
+
+        window.setTimeout(function () {
+          finish(null);
+        }, 7000);
+      });
+    }
+
     window.repertorioSpotify = {
       open: async function (url) {
         try {
@@ -185,6 +220,15 @@
           }
 
           const episodeId = parts[episodeIndex + 1];
+          const state = window.repertorioSpotifyState;
+
+          if (state.controller) {
+            try {
+              state.controller.pause();
+              state.controller.destroy();
+            } catch (_) {}
+            state.controller = null;
+          }
 
           const previous = document.getElementById('repertorio-spotify-overlay');
           if (previous) previous.remove();
@@ -192,7 +236,7 @@
           const overlay = document.createElement('div');
           overlay.id = 'repertorio-spotify-overlay';
           overlay.setAttribute('role', 'dialog');
-          overlay.setAttribute('aria-modal', 'true');
+          overlay.setAttribute('aria-modal', 'false');
           overlay.setAttribute('aria-label', 'Player do Spotify');
           overlay.style.position = 'fixed';
           overlay.style.top = 'calc(env(safe-area-inset-top) + 76px)';
@@ -242,37 +286,98 @@
           close.style.height = '38px';
           close.style.cursor = 'pointer';
 
-          const iframe = document.createElement('iframe');
-          iframe.title = 'Spotify Embed';
-          iframe.src =
-            'https://open.spotify.com/embed/episode/' +
-            encodeURIComponent(episodeId) +
-            '?utm_source=repertorio';
-          iframe.width = '100%';
-          iframe.height = '152';
-          iframe.frameBorder = '0';
-          iframe.allowFullscreen = true;
-          iframe.allow =
-            'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
-          iframe.loading = 'eager';
-          iframe.style.display = 'block';
-          iframe.style.background = '#121212';
+          const mount = document.createElement('div');
+          mount.id = 'repertorio-spotify-mount';
+          mount.style.width = '100%';
+          mount.style.minHeight = '152px';
+          mount.style.background = '#121212';
+
+          const status = document.createElement('div');
+          status.textContent = 'carregando player…';
+          status.style.minHeight = '152px';
+          status.style.display = 'flex';
+          status.style.alignItems = 'center';
+          status.style.justifyContent = 'center';
+          status.style.color = '#fff';
+          status.style.font = '600 13px/1.4 Arial, sans-serif';
+          mount.appendChild(status);
 
           header.appendChild(title);
           header.appendChild(close);
           shell.appendChild(header);
-          shell.appendChild(iframe);
+          shell.appendChild(mount);
           overlay.appendChild(shell);
+          document.body.appendChild(overlay);
 
           const dismiss = function () {
+            try {
+              if (state.controller) {
+                state.controller.pause();
+                state.controller.destroy();
+              }
+            } catch (_) {}
+            state.controller = null;
             overlay.remove();
           };
 
           close.addEventListener('click', dismiss);
-          document.body.appendChild(overlay);
           close.focus();
 
-          return true;
+          const IFrameAPI = await waitForSpotifyIframeApi();
+
+          if (!overlay.isConnected) {
+            return false;
+          }
+
+          if (!IFrameAPI) {
+            status.textContent =
+              'não consegui carregar o Spotify. Feche e tente novamente.';
+            return false;
+          }
+
+          status.remove();
+
+          return await new Promise(function (resolve) {
+            let resolved = false;
+
+            const finish = function (value) {
+              if (resolved) return;
+              resolved = true;
+              resolve(value);
+            };
+
+            try {
+              IFrameAPI.createController(
+                mount,
+                {
+                  width: '100%',
+                  height: 152,
+                  uri: 'spotify:episode:' + episodeId
+                },
+                function (EmbedController) {
+                  state.controller = EmbedController;
+
+                  EmbedController.addListener('ready', function () {
+                    finish(true);
+                  });
+
+                  EmbedController.addListener('playback_started', function () {
+                    finish(true);
+                  });
+
+                  window.setTimeout(function () {
+                    finish(true);
+                  }, 1200);
+                }
+              );
+            } catch (_) {
+              finish(false);
+            }
+
+            window.setTimeout(function () {
+              finish(false);
+            }, 7000);
+          });
         } catch (_) {
           return false;
         }
@@ -446,6 +551,7 @@
       }
     };
   </script>
+  <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
