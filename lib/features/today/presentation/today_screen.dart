@@ -38,7 +38,7 @@ class TodayScreen extends StatelessWidget {
                 const _Shelf(
                   title: 'para hoje',
                   subtitle: '4 leituras · ~23 min',
-                  entries: const [
+                  entries: [
                     _ShelfEntry(
                       topicId: 'bauhaus',
                       title: 'Por que a Bauhaus mudou tudo?',
