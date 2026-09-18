@@ -599,7 +599,16 @@ const fashionTopic = KnowledgeTopic(
   body: ['A alta-costura se consolidou em Paris a partir do século XIX.','Peças são feitas com grande trabalho artesanal e ajustadas para clientes específicos.','O sistema francês estabelece critérios e reconhecimento institucional para o uso oficial da denominação.','Desfiles de couture funcionam também como laboratório de técnica, imagem e prestígio para as maisons.','A influência da couture vai além de suas poucas clientes e chega à cultura visual, celebridades e moda industrial.'],
   remember: ['É uma denominação regulada.','Sob medida e artesanato são centrais.','Luxo sozinho não basta.'],
   whyItMatters: 'Ajuda a diferenciar marketing de uma categoria histórica e institucional específica da moda.', curiosity: 'Charles Frederick Worth é frequentemente associado ao nascimento da alta-costura moderna em Paris.',
-  connections: ['Paris', 'Luxo', 'Prêt-à-porter', 'História da moda'],
+  connections: ['Paris', 'Luxo', 'Prêt-à-porter', 'História da moda'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/20I8oagQIrl3yxROZxDoHE',
+      title: 'Balenciaga e Patagonia vão salvar o consumo',
+      caption: '32 min · MODA IMPORTA',
+      sourceLabel: 'Spotify · MODA IMPORTA',
+      sourceUrl: 'https://open.spotify.com/episode/20I8oagQIrl3yxROZxDoHE',
+    ),
+  ],
 );
 
 const coffeeTopic = KnowledgeTopic(
@@ -632,7 +641,16 @@ const mapsTopic = KnowledgeTopic(
   body: ['Projeções cartográficas são métodos matemáticos para representar uma superfície curva em um plano.','Mercator preserva ângulos locais, característica útil historicamente para navegação.','Projeções equivalentes priorizam proporções de área, mas alteram formas.','Escala e objetivo determinam qual projeção é mais adequada.','Mapas também envolvem escolhas sobre centro, orientação, fronteiras, nomes e dados.'],
   remember: ['Todo mapa plano distorce algo.','Mercator não foi criada para comparar áreas.','Escolher uma projeção é escolher prioridades.'],
   whyItMatters: 'Ajuda a ler mapas criticamente e perceber como representação influencia nossa imagem mental do mundo.', curiosity: 'A Groenlândia parece gigantesca em muitos mapas Mercator, embora a África seja cerca de 14 vezes maior em área.',
-  connections: ['Mercator', 'Cartografia', 'Geopolítica', 'Escala'],
+  connections: ['Mercator', 'Cartografia', 'Geopolítica', 'Escala'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/3xZ0Yvx8FcTdWceVitaVQV',
+      title: 'Mapas y proyecciones cartográficas',
+      caption: '25 min · Aparici en Órbita',
+      sourceLabel: 'Spotify · Aparici en Órbita',
+      sourceUrl: 'https://open.spotify.com/episode/3xZ0Yvx8FcTdWceVitaVQV',
+    ),
+  ],
 );
 
 const placeboTopic = KnowledgeTopic(
@@ -665,7 +683,16 @@ const languageTopic = KnowledgeTopic(
   body: ['Línguas mudam em sons, significados, gramática e vocabulário.','Contato entre comunidades acelera empréstimos e mistura de padrões.','Mudanças podem começar em grupos sociais específicos e depois se espalhar.','A escrita costuma mudar mais lentamente que a fala, criando diferenças entre norma e uso cotidiano.','Nenhuma língua viva permanece congelada por séculos.'],
   remember: ['Mudança é normal.','Fala e escrita mudam em ritmos diferentes.','Contato entre línguas deixa marcas.'],
   whyItMatters: 'Ajuda a entender sotaques, gírias, norma-padrão e diversidade linguística sem confundir diferença com incapacidade.', curiosity: 'O português, o espanhol, o francês e o italiano descendem de variedades do latim falado.',
-  connections: ['Latim', 'Sotaque', 'Etimologia', 'Sociolinguística'],
+  connections: ['Latim', 'Sotaque', 'Etimologia', 'Sociolinguística'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/0Ysv78HC9HMqFgwtk3jj8V',
+      title: 'Variação linguística, uma conversa com Raquel Freitag',
+      caption: '29 min · Linguística ON',
+      sourceLabel: 'Spotify · Linguística ON',
+      sourceUrl: 'https://open.spotify.com/episode/0Ysv78HC9HMqFgwtk3jj8V',
+    ),
+  ],
 );
 
 const illuminismoTopic = KnowledgeTopic(
@@ -766,7 +793,16 @@ const sonoTopic = KnowledgeTopic(
   summary: 'Sono participa de memória, regulação metabólica, imunidade e funcionamento cerebral.', minutes: 7, tags: ['ciência', 'psicologia'],
   quickTake: 'Dormir não é simplesmente desligar: o cérebro alterna estados ativos com funções diferentes.', simpleExplanation: 'Durante a noite, passamos repetidamente por estágios de sono NREM e REM em ciclos.', example: 'Uma noite de sono pode ajudar a consolidar parte do que foi aprendido durante o dia.',
   body: ['O sono é regulado por processos circadianos e pela pressão de sono que aumenta enquanto ficamos acordados.', 'Estágios NREM incluem fases de sono mais profundo, enquanto REM costuma concentrar sonhos vívidos.', 'Memória e aprendizagem são influenciadas pelo sono, embora não exista uma única função que explique por que dormimos.', 'Privação de sono prejudica atenção, tempo de reação e tomada de decisão.', 'Luz, horários, cafeína e rotina podem alterar o momento e a qualidade do sono.'], remember: ['Sono tem vários estágios.', 'Ritmo circadiano regula o horário.', 'Privação afeta cognição e corpo.'],
-  whyItMatters: 'Entender sono ajuda a interpretar produtividade, memória e hábitos sem tratá-lo como tempo perdido.', curiosity: 'O cérebro permanece metabolicamente ativo durante o sono e muda de padrão várias vezes ao longo da noite.', connections: ['Memória', 'Ritmo circadiano', 'Sonhos', 'Cafeína'],
+  whyItMatters: 'Entender sono ajuda a interpretar produtividade, memória e hábitos sem tratá-lo como tempo perdido.', curiosity: 'O cérebro permanece metabolicamente ativo durante o sono e muda de padrão várias vezes ao longo da noite.', connections: ['Memória', 'Ritmo circadiano', 'Sonhos', 'Cafeína'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/5wNPPxo2IyyS3kpfI7qq4a',
+      title: 'A ciência do sono com Altay de Souza',
+      caption: '2 h 48 min · Os três elementos',
+      sourceLabel: 'Spotify · Os três elementos',
+      sourceUrl: 'https://open.spotify.com/episode/5wNPPxo2IyyS3kpfI7qq4a',
+    ),
+  ],
 );
 
 const viesesTopic = KnowledgeTopic(
@@ -774,7 +810,16 @@ const viesesTopic = KnowledgeTopic(
   summary: 'Atalhos mentais podem tornar decisões rápidas, mas também produzir erros previsíveis.', minutes: 7, tags: ['psicologia', 'comportamento'],
   quickTake: 'Viés cognitivo é uma tendência sistemática de julgamento, não simplesmente falta de inteligência.', simpleExplanation: 'Se você procura apenas exemplos que confirmam uma ideia que já tinha, pode estar sofrendo influência do viés de confirmação.', example: 'Depois de comprar um produto, você pode prestar mais atenção a avaliações que justificam sua escolha.',
   body: ['O cérebro precisa decidir sob tempo e informação limitados, por isso usa heurísticas.', 'Heurísticas podem ser úteis e ainda gerar padrões de erro em certos contextos.', 'Viés de confirmação favorece informação compatível com crenças existentes.', 'Efeito de ancoragem mostra como um número inicial pode influenciar estimativas posteriores.', 'Conhecer vieses não nos torna imunes a eles; bons processos e dados ajudam a reduzir sua influência.'], remember: ['Atalhos não são sempre ruins.', 'Vieses são padrões, não falhas morais.', 'Processos podem reduzir erros.'],
-  whyItMatters: 'Ajuda a pensar melhor sobre decisões, notícias, dinheiro e discussões.', curiosity: 'Até especialistas podem demonstrar vieses; conhecimento do tema sozinho não garante decisões imparciais.', connections: ['Heurísticas', 'Decisão', 'Placebo', 'Pensamento crítico'],
+  whyItMatters: 'Ajuda a pensar melhor sobre decisões, notícias, dinheiro e discussões.', curiosity: 'Até especialistas podem demonstrar vieses; conhecimento do tema sozinho não garante decisões imparciais.', connections: ['Heurísticas', 'Decisão', 'Placebo', 'Pensamento crítico'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/6BrwFwmI3lfmIudeyexwiz',
+      title: 'Como Usar o Design Para Aumentar as Vendas com Efeito Âncora',
+      caption: '15 min · Design From Human',
+      sourceLabel: 'Spotify · Design From Human',
+      sourceUrl: 'https://open.spotify.com/episode/6BrwFwmI3lfmIudeyexwiz',
+    ),
+  ],
 );
 
 const jurosCompostosTopic = KnowledgeTopic(
@@ -782,7 +827,16 @@ const jurosCompostosTopic = KnowledgeTopic(
   summary: 'Quando rendimentos se incorporam ao saldo, períodos seguintes rendem também sobre ganhos anteriores.', minutes: 7, tags: ['economia', 'finanças'],
   quickTake: 'Juros compostos são crescimento sobre uma base que muda ao longo do tempo.', simpleExplanation: 'Se R\$ 100 rendem 10%, viram R\$ 110; no período seguinte, os 10% incidem sobre R\$ 110, não apenas sobre os R\$ 100 iniciais.', example: 'O mesmo mecanismo que acelera investimentos de longo prazo também pode ampliar dívidas quando juros são altos.',
   body: ['Em juros simples, a base de cálculo permanece constante; em compostos, o saldo acumulado vira a nova base.', 'Tempo é uma variável poderosa porque cada período adiciona novas camadas de crescimento.', 'Taxa e frequência de capitalização alteram bastante o resultado final.', 'Inflação precisa ser considerada para avaliar crescimento real do poder de compra.', 'Em dívidas, juros compostos podem trabalhar contra o devedor da mesma forma matemática.'], remember: ['Rendimento passa a render.', 'Tempo amplifica diferenças.', 'Retorno nominal não é retorno real.'],
-  whyItMatters: 'É fundamental para entender investimentos, financiamentos, cartões e planejamento de longo prazo.', curiosity: 'A regra dos 72 é uma aproximação popular para estimar em quantos anos um valor dobra a determinada taxa percentual anual.', connections: ['Inflação', 'Investimentos', 'Crédito', 'Valor do dinheiro'],
+  whyItMatters: 'É fundamental para entender investimentos, financiamentos, cartões e planejamento de longo prazo.', curiosity: 'A regra dos 72 é uma aproximação popular para estimar em quantos anos um valor dobra a determinada taxa percentual anual.', connections: ['Inflação', 'Investimentos', 'Crédito', 'Valor do dinheiro'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/4JWqfzykw0OnQlO9DdMgNC',
+      title: 'Como investir com juros compostos?',
+      caption: '19 min · MoneyBar',
+      sourceLabel: 'Spotify · MoneyBar',
+      sourceUrl: 'https://open.spotify.com/episode/4JWqfzykw0OnQlO9DdMgNC',
+    ),
+  ],
 );
 
 const bolhasTopic = KnowledgeTopic(
@@ -798,7 +852,16 @@ const fotografiaTopic = KnowledgeTopic(
   summary: 'Lente, abertura, obturador e sensor ou filme controlam a formação e o registro de uma imagem.', minutes: 7, tags: ['arte', 'tecnologia'],
   quickTake: 'Fotografia é literalmente administrar luz no espaço e no tempo.', simpleExplanation: 'A lente forma a imagem; a abertura controla quanto entra; o obturador controla por quanto tempo; o sensor registra o resultado.', example: 'Uma exposição longa pode transformar faróis de carros em rastros luminosos.',
   body: ['Câmeras derivam do princípio da câmara escura, conhecido muito antes da fotografia moderna.', 'Aberturas maiores deixam entrar mais luz e também influenciam profundidade de campo.', 'Velocidade do obturador altera como movimento é registrado.', 'Sensibilidade do sensor, expressa como ISO, envolve compromissos de qualidade e ruído.', 'Composição e edição continuam sendo escolhas humanas mesmo quando a câmera automatiza exposição.'], remember: ['Abertura controla luz e profundidade.', 'Obturador controla tempo.', 'ISO altera sensibilidade e ruído.'],
-  whyItMatters: 'Entender o triângulo de exposição melhora fotos mesmo em câmeras de celular.', curiosity: 'A primeira fotografia permanente conhecida exigiu uma exposição extremamente longa no século XIX.', connections: ['Cinema', 'Óptica', 'Luz', 'Composição'],
+  whyItMatters: 'Entender o triângulo de exposição melhora fotos mesmo em câmeras de celular.', curiosity: 'A primeira fotografia permanente conhecida exigiu uma exposição extremamente longa no século XIX.', connections: ['Cinema', 'Óptica', 'Luz', 'Composição'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/5uWIuQMlrVbKvDucC8IRvz',
+      title: 'A fotografia foi inventada no Brasil',
+      caption: '37 min · Nós na História',
+      sourceLabel: 'Spotify · Nós na História',
+      sourceUrl: 'https://open.spotify.com/episode/5uWIuQMlrVbKvDucC8IRvz',
+    ),
+  ],
 );
 
 const perspectivaTopic = KnowledgeTopic(
@@ -806,7 +869,16 @@ const perspectivaTopic = KnowledgeTopic(
   summary: 'Perspectiva usa relações geométricas e pistas visuais para representar espaço tridimensional.', minutes: 7, tags: ['arte', 'design'],
   quickTake: 'Linhas convergentes, escala e sobreposição fazem o cérebro interpretar profundidade.', simpleExplanation: 'Trilhos paralelos parecem se aproximar à distância; a perspectiva linear organiza esse efeito usando pontos de fuga.', example: 'Pintores renascentistas sistematizaram métodos geométricos para criar interiores e cidades convincentes.',
   body: ['A perspectiva linear foi sistematizada na Itália do século XV, embora culturas anteriores já usassem várias formas de representar profundidade.', 'Um ponto de fuga organiza linhas paralelas numa determinada direção.', 'Objetos mais distantes costumam ser representados menores.', 'Perspectiva atmosférica usa contraste e cor para sugerir grandes distâncias.', 'Fotografia herdou muitas convenções espaciais que hoje parecem naturais aos nossos olhos.'], remember: ['Ponto de fuga organiza direção.', 'Tamanho relativo sugere distância.', 'Existem várias perspectivas possíveis.'],
-  whyItMatters: 'Mostra que imagens aparentemente realistas dependem de convenções e matemática.', curiosity: 'Brunelleschi é associado a experimentos decisivos para a perspectiva linear no início do Renascimento.', connections: ['Renascimento', 'Fotografia', 'Geometria', 'Percepção'],
+  whyItMatters: 'Mostra que imagens aparentemente realistas dependem de convenções e matemática.', curiosity: 'Brunelleschi é associado a experimentos decisivos para a perspectiva linear no início do Renascimento.', connections: ['Renascimento', 'Fotografia', 'Geometria', 'Percepção'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/4Hy5iORnadMnJ9PrtB1OXN',
+      title: 'Criar é DOM? O processo criativo do artista',
+      caption: '55 min · Os Impossíveis',
+      sourceLabel: 'Spotify · Os Impossíveis',
+      sourceUrl: 'https://open.spotify.com/episode/4Hy5iORnadMnJ9PrtB1OXN',
+    ),
+  ],
 );
 
 const sushiTopic = KnowledgeTopic(
@@ -814,7 +886,16 @@ const sushiTopic = KnowledgeTopic(
   summary: 'O sushi nasceu de técnicas de conservação e evoluiu até formas muito diferentes das atuais.', minutes: 7, tags: ['gastronomia', 'história'],
   quickTake: 'Sushi é definido principalmente pelo arroz temperado, não pela presença obrigatória de peixe cru.', simpleExplanation: 'Um nigiri com peixe é sushi; sashimi sem arroz não é sushi.', example: 'O estilo nigiri tornou-se popular em Edo, atual Tóquio, como comida rápida urbana.',
   body: ['Formas antigas de conservar peixe com arroz fermentado existiram em partes da Ásia antes do sushi moderno.', 'No Japão, técnicas evoluíram até o arroz avinagrado substituir longos períodos de fermentação.', 'No período Edo, nigiri aproximou-se do formato reconhecido hoje.', 'Refrigeração e transporte moderno ampliaram ingredientes e segurança de distribuição.', 'Sushi contemporâneo varia enormemente dentro e fora do Japão.'], remember: ['Sushi não significa peixe cru.', 'Arroz temperado é central.', 'Nigiri se popularizou em Edo.'],
-  whyItMatters: 'Ajuda a distinguir tradições culinárias de versões simplificadas que circulam globalmente.', curiosity: 'Sashimi é uma categoria diferente porque não exige arroz de sushi.', connections: ['Japão', 'Fermentação', 'Arroz', 'Cultura alimentar'],
+  whyItMatters: 'Ajuda a distinguir tradições culinárias de versões simplificadas que circulam globalmente.', curiosity: 'Sashimi é uma categoria diferente porque não exige arroz de sushi.', connections: ['Japão', 'Fermentação', 'Arroz', 'Cultura alimentar'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/2iXO9GaHP3mOU8hvWhjkvf',
+      title: 'Roberto Veiga defende mais que salmão',
+      caption: '38 min · Sushi Businessss',
+      sourceLabel: 'Spotify · Sushi Businessss',
+      sourceUrl: 'https://open.spotify.com/episode/2iXO9GaHP3mOU8hvWhjkvf',
+    ),
+  ],
 );
 
 const perfumeTopic = KnowledgeTopic(
@@ -822,7 +903,16 @@ const perfumeTopic = KnowledgeTopic(
   summary: 'Volatilidade, concentração, temperatura e interação com a pele alteram a percepção ao longo do tempo.', minutes: 7, tags: ['cultura', 'ciência'],
   quickTake: 'Perfume é uma mistura de moléculas que evaporam em ritmos diferentes.', simpleExplanation: 'Moléculas mais voláteis aparecem rapidamente; outras permanecem por horas, fazendo a fragrância parecer evoluir.', example: 'Notas cítricas costumam aparecer cedo, enquanto madeiras e resinas podem durar muito mais.',
   body: ['Perfumes combinam materiais aromáticos naturais e sintéticos dissolvidos em um veículo.', 'A pirâmide de notas é uma linguagem útil de descrição, não compartimentos físicos separados no frasco.', 'Temperatura e área de aplicação afetam evaporação e projeção.', 'Pele, produtos usados e percepção individual podem mudar como uma fragrância é sentida.', 'Concentrações como eau de toilette e eau de parfum indicam famílias de formulação, mas não garantem sozinhas duração.'], remember: ['Notas evaporam em ritmos diferentes.', 'Pirâmide é modelo descritivo.', 'Concentração não determina tudo.'],
-  whyItMatters: 'Dá vocabulário para escolher fragrâncias pelo comportamento real, não apenas pela primeira borrifada.', curiosity: 'Muitas moléculas sintéticas permitiram criar cheiros difíceis ou inviáveis de extrair diretamente da natureza.', connections: ['Química', 'Moda', 'Olfato', 'Design'],
+  whyItMatters: 'Dá vocabulário para escolher fragrâncias pelo comportamento real, não apenas pela primeira borrifada.', curiosity: 'Muitas moléculas sintéticas permitiram criar cheiros difíceis ou inviáveis de extrair diretamente da natureza.', connections: ['Química', 'Moda', 'Olfato', 'Design'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/6q3kQwFp1fcWoqEuRfD6qq',
+      title: 'Luiz Paulo e Tânia Braga',
+      caption: '43 min · Papo de perfumaria',
+      sourceLabel: 'Spotify · Papo de perfumaria',
+      sourceUrl: 'https://open.spotify.com/episode/6q3kQwFp1fcWoqEuRfD6qq',
+    ),
+  ],
 );
 
 const coresTopic = KnowledgeTopic(
@@ -830,7 +920,16 @@ const coresTopic = KnowledgeTopic(
   summary: 'Luz tem comprimentos de onda; cor é a experiência perceptiva criada pelo sistema visual.', minutes: 7, tags: ['design', 'ciência'],
   quickTake: 'Objetos não carregam uma etiqueta física chamada “azul”: eles refletem luz que nosso cérebro interpreta como cor.', simpleExplanation: 'Sob iluminações diferentes, a mesma superfície pode enviar combinações diferentes de luz aos olhos e ainda parecer relativamente estável.', example: 'Uma tela cria cores misturando luz RGB, enquanto impressão normalmente trabalha com pigmentos CMYK.',
   body: ['Cones na retina respondem a diferentes faixas do espectro visível.', 'O cérebro compara sinais e constrói experiências de cor.', 'Contexto visual altera percepção: a mesma cor pode parecer diferente ao lado de outras.', 'Mistura aditiva de luz e mistura subtrativa de pigmentos seguem princípios diferentes.', 'Sistemas de cor são ferramentas para reproduzir experiências de forma consistente em diferentes meios.'], remember: ['Cor é percepção.', 'RGB e CMYK funcionam de modos diferentes.', 'Contexto altera aparência.'],
-  whyItMatters: 'É essencial para design, fotografia, interfaces e para entender ilusões visuais.', curiosity: 'Magenta não corresponde a um único comprimento de onda espectral; é uma percepção produzida pela combinação de sinais.', connections: ['Bauhaus', 'Fotografia', 'Óptica', 'Tipografia'],
+  whyItMatters: 'É essencial para design, fotografia, interfaces e para entender ilusões visuais.', curiosity: 'Magenta não corresponde a um único comprimento de onda espectral; é uma percepção produzida pela combinação de sinais.', connections: ['Bauhaus', 'Fotografia', 'Óptica', 'Tipografia'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/2OrPMWBwZC7NPtZqScUICC',
+      title: 'Por que seu cérebro te sabota (para o seu próprio bem)',
+      caption: '13 min · LUDOCAST',
+      sourceLabel: 'Spotify · LUDOCAST',
+      sourceUrl: 'https://open.spotify.com/episode/2OrPMWBwZC7NPtZqScUICC',
+    ),
+  ],
 );
 
 const musicaTonalTopic = KnowledgeTopic(
@@ -846,7 +945,16 @@ const democraciaAtenasTopic = KnowledgeTopic(
   summary: 'Atenas criou uma forma influente de participação política, mas muito diferente das democracias atuais.', minutes: 7, tags: ['história', 'sociedade'],
   quickTake: 'A democracia ateniense era direta para cidadãos elegíveis e excluía grande parte da população.', simpleExplanation: 'Em vez de eleger representantes para quase tudo, cidadãos podiam participar diretamente de assembleias e algumas funções eram sorteadas.', example: 'Mulheres, pessoas escravizadas e estrangeiros residentes não tinham cidadania política plena na Atenas clássica.',
   body: ['Reformas ao longo dos séculos VI e V a.C. ampliaram instituições participativas em Atenas.', 'A Assembleia permitia votação direta de cidadãos homens.', 'Sorteio era usado para diversos cargos como forma de reduzir concentração de poder.', 'A democracia coexistia com escravidão, guerra e exclusões profundas.', 'Experiências modernas de democracia representativa herdaram o termo, mas criaram instituições muito diferentes.'], remember: ['Era principalmente direta.', 'Cidadania era restrita.', 'Sorteio tinha papel político importante.'],
-  whyItMatters: 'Ajuda a perceber que “democracia” mudou de significado e desenho institucional ao longo do tempo.', curiosity: 'A palavra deriva de demos, povo, e kratos, poder ou governo.', connections: ['Grécia', 'Cidadania', 'Filosofia', 'República'],
+  whyItMatters: 'Ajuda a perceber que “democracia” mudou de significado e desenho institucional ao longo do tempo.', curiosity: 'A palavra deriva de demos, povo, e kratos, poder ou governo.', connections: ['Grécia', 'Cidadania', 'Filosofia', 'República'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/02ytO7POydAgsWx5lAD7vW',
+      title: '004 Democracia Ateniense',
+      caption: '1 h 3 min · Colunas de Hércules',
+      sourceLabel: 'Spotify · Colunas de Hércules',
+      sourceUrl: 'https://open.spotify.com/episode/02ytO7POydAgsWx5lAD7vW',
+    ),
+  ],
 );
 
 const escritaTopic = KnowledgeTopic(
@@ -854,7 +962,16 @@ const escritaTopic = KnowledgeTopic(
   summary: 'Registrar informação fora da memória humana permitiu novas formas de administração, cultura e transmissão de conhecimento.', minutes: 7, tags: ['história', 'linguagem'],
   quickTake: 'Escrita não surgiu uma única vez nem começou como literatura.', simpleExplanation: 'Uma lista de grãos ou impostos pode parecer banal, mas permite administrar recursos sem depender apenas da memória de uma pessoa.', example: 'Alguns dos registros mais antigos da Mesopotâmia estão ligados a contabilidade e administração.',
   body: ['Sistemas de escrita surgiram independentemente em diferentes regiões do mundo.', 'Na Mesopotâmia, marcas administrativas evoluíram para a escrita cuneiforme.', 'Escrita permite acumular informação entre pessoas, lugares e gerações.', 'Alfabetos representam apenas uma entre várias estratégias possíveis de escrita.', 'A alfabetização se expandiu de formas muito diferentes conforme tecnologia, instituições e educação.'], remember: ['Houve múltiplas invenções da escrita.', 'Administração foi um uso inicial importante.', 'Alfabeto não é o único sistema.'],
-  whyItMatters: 'Sem escrita, Estados, ciência e memória cultural teriam escalas muito diferentes.', curiosity: 'A escrita cuneiforme foi usada para várias línguas durante milhares de anos.', connections: ['Mesopotâmia', 'Contabilidade', 'Imprensa', 'Linguagem'],
+  whyItMatters: 'Sem escrita, Estados, ciência e memória cultural teriam escalas muito diferentes.', curiosity: 'A escrita cuneiforme foi usada para várias línguas durante milhares de anos.', connections: ['Mesopotâmia', 'Contabilidade', 'Imprensa', 'Linguagem'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/478UK94AQMItxwLacWWcs9',
+      title: 'A Invenção da Escrita',
+      caption: '2 min · Um Pouco da Nossa História',
+      sourceLabel: 'Spotify · Um Pouco da Nossa História',
+      sourceUrl: 'https://open.spotify.com/episode/478UK94AQMItxwLacWWcs9',
+    ),
+  ],
 );
 
 const imprensaTopic = KnowledgeTopic(
@@ -862,7 +979,16 @@ const imprensaTopic = KnowledgeTopic(
   summary: 'Tipos móveis e produção em escala reduziram o custo de copiar textos e ampliaram sua circulação.', minutes: 7, tags: ['tecnologia', 'história'],
   quickTake: 'A imprensa europeia do século XV não inventou livros, mas transformou sua reprodução.', simpleExplanation: 'Copiar um livro à mão pode levar meses; imprimir muitas cópias a partir de tipos reutilizáveis muda completamente a escala.', example: 'A Bíblia de Gutenberg tornou-se um símbolo da impressão europeia com tipos móveis.',
   body: ['Tecnologias de impressão já existiam na Ásia séculos antes de Gutenberg.', 'Na Europa, Johannes Gutenberg combinou tipos metálicos móveis, prensa e outros processos em meados do século XV.', 'Mais cópias ajudaram textos religiosos, científicos e políticos a circular com rapidez inédita.', 'Padronização facilitou referências compartilhadas, embora erros e desinformação também pudessem se espalhar.', 'Impressão ajudou a formar novos mercados de leitores e profissões.'], remember: ['Impressão existia antes de Gutenberg.', 'Escala e custo mudaram radicalmente.', 'Mais circulação não garante informação correta.'],
-  whyItMatters: 'É um paralelo histórico poderoso para entender como novas mídias alteram sociedades.', curiosity: 'A Coreia já utilizava tipos móveis de metal antes da famosa Bíblia de Gutenberg.', connections: ['Renascimento', 'Escrita', 'Internet', 'Reforma'],
+  whyItMatters: 'É um paralelo histórico poderoso para entender como novas mídias alteram sociedades.', curiosity: 'A Coreia já utilizava tipos móveis de metal antes da famosa Bíblia de Gutenberg.', connections: ['Renascimento', 'Escrita', 'Internet', 'Reforma'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/0qHp073h6tfBPAxJ02Aozi',
+      title: 'Imprensa e ideologia política no Brasil',
+      caption: '13 min · Soberania Informacional em Pauta',
+      sourceLabel: 'Spotify · Soberania Informacional em Pauta',
+      sourceUrl: 'https://open.spotify.com/episode/0qHp073h6tfBPAxJ02Aozi',
+    ),
+  ],
 );
 
 const oceanosTopic = KnowledgeTopic(
@@ -870,7 +996,16 @@ const oceanosTopic = KnowledgeTopic(
   summary: 'A água armazena e transporta enorme quantidade de calor, conectando atmosfera, correntes e clima.', minutes: 7, tags: ['ciência', 'geografia'],
   quickTake: 'Oceanos funcionam como um gigantesco reservatório e sistema de transporte de energia.', simpleExplanation: 'Água aquece e esfria mais lentamente que o solo, moderando temperaturas de regiões costeiras.', example: 'Correntes transportam calor entre latitudes e influenciam padrões de chuva e temperatura.',
   body: ['Oceanos cobrem cerca de 71% da superfície terrestre.', 'Sua alta capacidade térmica permite absorver grande quantidade de energia.', 'Ventos, rotação da Terra, salinidade e temperatura ajudam a mover correntes.', 'Evaporação oceânica alimenta grande parte do ciclo global da água.', 'Mudanças na temperatura do oceano interagem com fenômenos como El Niño e La Niña.'], remember: ['Oceanos armazenam calor.', 'Correntes redistribuem energia.', 'Oceano e atmosfera formam um sistema acoplado.'],
-  whyItMatters: 'Clima, pesca, tempestades e nível do mar dependem profundamente do estado dos oceanos.', curiosity: 'A maior parte do volume habitável do planeta está no oceano, não em terra firme.', connections: ['Clima', 'El Niño', 'Água', 'Mapas'],
+  whyItMatters: 'Clima, pesca, tempestades e nível do mar dependem profundamente do estado dos oceanos.', curiosity: 'A maior parte do volume habitável do planeta está no oceano, não em terra firme.', connections: ['Clima', 'El Niño', 'Água', 'Mapas'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/4AZCH66FmHX6yfnxz6logm',
+      title: 'Tiago Pitta e Cunha sobre a Conferência dos Oceanos',
+      caption: '37 min · Azul',
+      sourceLabel: 'Spotify · Azul',
+      sourceUrl: 'https://open.spotify.com/episode/4AZCH66FmHX6yfnxz6logm',
+    ),
+  ],
 );
 
 const vulcoesTopic = KnowledgeTopic(
@@ -878,7 +1013,16 @@ const vulcoesTopic = KnowledgeTopic(
   summary: 'Calor interno, tectônica de placas e movimento de magma criam caminhos para material chegar à superfície.', minutes: 7, tags: ['ciência', 'geografia'],
   quickTake: 'Vulcões não aparecem aleatoriamente: muitos estão ligados a limites de placas ou pontos quentes.', simpleExplanation: 'Em algumas bordas de placas, uma placa mergulha sob outra e processos no manto favorecem a formação de magma.', example: 'O Círculo de Fogo do Pacífico concentra muitos vulcões e terremotos por causa de limites tectônicos.',
   body: ['A Terra mantém calor de sua formação e de decaimento radioativo interno.', 'Placas tectônicas se movem lentamente sobre camadas mais dúcteis do planeta.', 'Em zonas de subducção, dorsais oceânicas e pontos quentes, magma pode alcançar a crosta.', 'Composição do magma influencia viscosidade e estilo de erupção.', 'Vulcanismo também constrói novas terras e recicla materiais geológicos.'], remember: ['Muitos vulcões seguem limites de placas.', 'Magma e lava não são exatamente a mesma coisa.', 'Erupções têm estilos diferentes.'],
-  whyItMatters: 'Vulcões conectam o interior da Terra à superfície e ajudam a explicar continentes, ilhas e riscos naturais.', curiosity: 'O arquipélago do Havaí se formou enquanto a placa do Pacífico se movia sobre um ponto quente.', connections: ['Tectônica', 'Terremotos', 'Oceanos', 'Havaí'],
+  whyItMatters: 'Vulcões conectam o interior da Terra à superfície e ajudam a explicar continentes, ilhas e riscos naturais.', curiosity: 'O arquipélago do Havaí se formou enquanto a placa do Pacífico se movia sobre um ponto quente.', connections: ['Tectônica', 'Terremotos', 'Oceanos', 'Havaí'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/0NDF0UEpsWnHnecJnWe2kO',
+      title: 'Como vulcões moldam a vida?',
+      caption: '29 min · Biologia em Meia Hora',
+      sourceLabel: 'Spotify · Biologia em Meia Hora',
+      sourceUrl: 'https://open.spotify.com/episode/0NDF0UEpsWnHnecJnWe2kO',
+    ),
+  ],
 );
 
 const egitoTopic=KnowledgeTopic(id:'egito',eyebrow:'HISTÓRIA / REPERTÓRIO',title:'COMO O EGITO ANTIGO DUROU MILÊNIOS?',summary:'Uma introdução clara ao tema como o egito antigo durou milênios, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['história','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema como o egito antigo durou milênios, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema como o egito antigo durou milênios, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
