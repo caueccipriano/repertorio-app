@@ -471,6 +471,8 @@ class _ContinueShelf extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final topic = topicById('modernismo');
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -479,7 +481,17 @@ class _ContinueShelf extends StatelessWidget {
           subtitle: 'seu histórico recente',
         ),
         const SizedBox(height: 14),
-        Container(
+        Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: topic == null
+                ? null
+                : () => Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) => ArticleScreen(topic: topic),
+                      ),
+                    ),
+            child: Container(
           padding: const EdgeInsets.fromLTRB(14, 14, 14, 12),
           decoration: BoxDecoration(
             color: AppColors.paperWhite,
@@ -535,6 +547,8 @@ class _ContinueShelf extends StatelessWidget {
               ),
             ],
           ),
+            ),
+          ),
         ),
       ],
     );
@@ -546,7 +560,19 @@ class _RabbitHoleShelf extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    final topic = topicById('modernismo');
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: topic == null
+            ? null
+            : () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => ArticleScreen(topic: topic),
+                  ),
+                ),
+        child: Container(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 18),
       decoration: BoxDecoration(
         color: AppColors.deepBlue,
@@ -587,6 +613,8 @@ class _RabbitHoleShelf extends StatelessWidget {
             ],
           ),
         ],
+      ),
+        ),
       ),
     );
   }
