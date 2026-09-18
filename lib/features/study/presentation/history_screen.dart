@@ -26,7 +26,7 @@ class HistoryScreen extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
                 itemCount: topics.length,
                 separatorBuilder: (_, __) =>
-                    const Divider(height: 1, color: AppColors.line),
+                    const Divider(height: 1, color: Theme.of(context).colorScheme.outline),
                 itemBuilder: (context, index) {
                   final topic = topics[index];
                   final opened = state.lastOpenedByTopic[topic.id];
@@ -38,8 +38,8 @@ class HistoryScreen extends StatelessWidget {
                       vertical: 8,
                     ),
                     leading: CircleAvatar(
-                      backgroundColor: AppColors.softBlue,
-                      foregroundColor: AppColors.blue,
+                      backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
+                      foregroundColor: Theme.of(context).colorScheme.primary,
                       child: Text(
                         '${(progress * 100).round()}',
                         style: const TextStyle(
