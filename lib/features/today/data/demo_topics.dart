@@ -36,7 +36,7 @@ const bauhausTopic = KnowledgeTopic(
     KnowledgeMedia(
       type: KnowledgeMediaType.image,
       url:
-          'https://upload.wikimedia.org/wikipedia/commons/f/f9/Bauhaus-Dessau_main_building.jpg',
+          'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Bauhaus-Dessau_main_building.jpg/960px-Bauhaus-Dessau_main_building.jpg',
       title: 'Bauhaus Dessau',
       caption:
           'O edifício principal da Bauhaus em Dessau, referência central do movimento.',
@@ -117,7 +117,7 @@ const fermiTopic = KnowledgeTopic(
     KnowledgeMedia(
       type: KnowledgeMediaType.image,
       url:
-          'https://upload.wikimedia.org/wikipedia/commons/4/46/Fermi-enrico.jpg',
+          'https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Fermi-enrico.jpg/960px-Fermi-enrico.jpg',
       title: 'Enrico Fermi',
       caption:
           'Retrato de Enrico Fermi, físico cujo nome ficou associado ao paradoxo.',
