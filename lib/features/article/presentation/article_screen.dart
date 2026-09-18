@@ -569,7 +569,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
       topic.title,
       topic.quickTake,
       ...topic.body,
-      topic.remember,
+      ...topic.remember,
       topic.whyItMatters,
       topic.curiosity,
     ].join('. ');
