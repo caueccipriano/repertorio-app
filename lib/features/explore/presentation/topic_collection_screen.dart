@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../app/theme/app_colors.dart';
 import '../../../core/widgets/editorial_frame.dart';
 import '../../../core/widgets/knowledge_cover.dart';
 import '../../../core/widgets/paper_texture.dart';
@@ -161,7 +160,7 @@ class _CollectionMeta extends StatelessWidget {
               ),
             ),
           ),
-          const VerticalDivider(width: 1, color: Theme.of(context).colorScheme.onSurface),
+          VerticalDivider(width: 1, color: Theme.of(context).colorScheme.onSurface),
           Expanded(
             child: Center(
               child: Text(
@@ -173,7 +172,7 @@ class _CollectionMeta extends StatelessWidget {
               ),
             ),
           ),
-          const VerticalDivider(width: 1, color: Theme.of(context).colorScheme.onSurface),
+          VerticalDivider(width: 1, color: Theme.of(context).colorScheme.onSurface),
           Expanded(
             child: Center(
               child: Text(
