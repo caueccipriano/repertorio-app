@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../app/theme/app_colors.dart';
 import '../../article/presentation/article_screen.dart';
 import '../../today/data/demo_topics.dart';
 import '../../today/domain/knowledge_topic.dart';
@@ -100,7 +99,7 @@ class KnowledgeMapScreen extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(18, 8, 18, 22),
               child: Row(
                 children: [
-                  const Icon(
+                  Icon(
                     Icons.circle,
                     color: Theme.of(context).colorScheme.primary,
                     size: 10,
@@ -231,12 +230,12 @@ class _MapPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final line = Paint()
-      ..color = Theme.of(context).colorScheme.onSurface.withValues(alpha: .42)
+      ..color = lineColor
       ..strokeWidth = 1.3
       ..style = PaintingStyle.stroke;
 
     final accent = Paint()
-      ..color = Theme.of(context).colorScheme.primary.withValues(alpha: .18)
+      ..color = accentColor
       ..strokeWidth = 12
       ..strokeCap = StrokeCap.round;
 
