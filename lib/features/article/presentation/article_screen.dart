@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -9,7 +8,6 @@ import '../../../app/state/app_state_scope.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../../core/audio/podcast_audio.dart';
 import '../../../core/offline/offline_cache.dart';
-import '../../../core/share/knowledge_card_share.dart';
 import '../../explore/data/knowledge_graph.dart';
 import '../../explore/presentation/knowledge_map_screen.dart';
 import '../../study/data/study_content.dart';
@@ -18,15 +16,6 @@ import '../../today/data/demo_topics.dart';
 import '../../today/domain/knowledge_topic.dart';
 import 'reader_controls_sheet.dart';
 import 'topic_media_section.dart';
-
-enum _ReaderMenuAction {
-  save,
-  queue,
-  offline,
-  note,
-  share,
-  map,
-}
 
 class ArticleScreen extends StatefulWidget {
   const ArticleScreen({
@@ -596,68 +585,6 @@ class _ArticleScreenState extends State<ArticleScreen> {
     navigator.pushReplacement(
       MaterialPageRoute<void>(
         builder: (_) => const AppShell(),
-      ),
-    );
-  }
-
-  Future<void> _toggleSavedWithOffline() async {
-    final state = AppStateScope.read(context);
-    final topicId = widget.topic.id;
-
-    if (state.isSaved(topicId)) {
-      await state.toggleSaved(topicId);
-      return;
-    }
-
-    final urls = widget.topic.media.map((item) => item.url).toList();
-    final cached = urls.isEmpty ? true : await cacheOfflineMedia(urls);
-
-    await state.toggleSaved(topicId);
-    if (cached && !state.isOfflineTopic(topicId)) {
-      await state.toggleOfflineTopic(topicId);
-    }
-
-    if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          cached
-              ? 'Salvo na biblioteca e preparado para leitura offline.'
-              : 'Salvo. O texto fica disponível; algumas mídias podem exigir internet.',
-        ),
-      ),
-    );
-  }
-
-  Future<void> _toggleOffline() async {
-    final state = AppStateScope.read(context);
-    final topicId = widget.topic.id;
-    final wasOffline = state.isOfflineTopic(topicId);
-    final urls = widget.topic.media.map((item) => item.url).toList();
-
-    if (wasOffline) {
-      await removeOfflineMedia(urls);
-      await state.toggleOfflineTopic(topicId);
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Removido da biblioteca offline.')),
-      );
-      return;
-    }
-
-    final cached = urls.isEmpty
-        ? true
-        : await cacheOfflineMedia(urls);
-    await state.toggleOfflineTopic(topicId);
-    if (!mounted) return;
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          cached
-              ? 'Texto e mídia disponível foram preparados para offline.'
-              : 'O texto fica offline; algumas mídias externas podem precisar de internet.',
-        ),
       ),
     );
   }
