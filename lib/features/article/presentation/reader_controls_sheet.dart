@@ -43,7 +43,7 @@ class ReaderControlsSheet extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 22),
-          _Label('TAMANHO'),
+          const _Label('TAMANHO'),
           Row(
             children: [
               IconButton(
@@ -79,7 +79,7 @@ class ReaderControlsSheet extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 12),
-          _Label('FONTE'),
+          const _Label('FONTE'),
           const SizedBox(height: 8),
           SegmentedButton<ReaderFontFamily>(
             segments: const [
@@ -100,7 +100,7 @@ class ReaderControlsSheet extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 18),
-          _Label('TEMA'),
+          const _Label('TEMA'),
           const SizedBox(height: 8),
           SegmentedButton<ReaderThemeMode>(
             segments: const [
@@ -123,7 +123,7 @@ class ReaderControlsSheet extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 18),
-          _Label('FLUXO'),
+          const _Label('FLUXO'),
           const SizedBox(height: 8),
           SegmentedButton<ReaderFlow>(
             segments: const [
@@ -144,7 +144,7 @@ class ReaderControlsSheet extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 18),
-          _Label('ESPAÇAMENTO'),
+          const _Label('ESPAÇAMENTO'),
           Slider(
             value: state.readerLineHeight,
             min: 1.3,
