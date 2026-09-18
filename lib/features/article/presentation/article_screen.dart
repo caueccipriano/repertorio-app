@@ -90,6 +90,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
     final bodyStyle = _bodyStyle(state, palette);
     final nextTopic = _nextTopic(widget.topic);
     final saved = state.isSaved(widget.topic.id);
+    final note = state.noteFor(widget.topic.id);
 
     return Theme(
       data: Theme.of(context).copyWith(
@@ -128,6 +129,13 @@ class _ArticleScreenState extends State<ArticleScreen> {
                   AppStateScope.read(context).toggleSaved(widget.topic.id),
               icon: Icon(
                 saved ? Icons.bookmark : Icons.bookmark_border,
+              ),
+            ),
+            IconButton(
+              tooltip: note.isEmpty ? 'Adicionar nota' : 'Editar nota',
+              onPressed: () => _showNoteSheet(note),
+              icon: Icon(
+                note.isEmpty ? Icons.note_add_outlined : Icons.sticky_note_2,
               ),
             ),
             IconButton(
@@ -275,6 +283,14 @@ class _ArticleScreenState extends State<ArticleScreen> {
                       palette: palette,
                     ),
                   ),
+                  _PersonalNote(
+                    note: state.noteFor(widget.topic.id),
+                    palette: palette,
+                    onEdit: () => _showNoteSheet(
+                      state.noteFor(widget.topic.id),
+                    ),
+                  ),
+                  const SizedBox(height: 28),
                   _NextConnection(
                     nextTopic: nextTopic,
                     palette: palette,
@@ -397,6 +413,14 @@ class _ArticleScreenState extends State<ArticleScreen> {
                 palette: palette,
               ),
             ),
+            _PersonalNote(
+              note: state.noteFor(widget.topic.id),
+              palette: palette,
+              onEdit: () => _showNoteSheet(
+                state.noteFor(widget.topic.id),
+              ),
+            ),
+            const SizedBox(height: 28),
             _NextConnection(
               nextTopic: nextTopic,
               palette: palette,
@@ -454,6 +478,76 @@ class _ArticleScreenState extends State<ArticleScreen> {
         ),
       ],
     );
+  }
+
+  Future<void> _showNoteSheet(String currentNote) async {
+    final controller = TextEditingController(text: currentNote);
+
+    final result = await showModalBottomSheet<String>(
+      context: context,
+      useSafeArea: true,
+      isScrollControlled: true,
+      backgroundColor: _ReaderPalette.fromMode(
+        AppStateScope.read(context).readerTheme,
+      ).surface,
+      builder: (sheetContext) {
+        final bottom = MediaQuery.viewInsetsOf(sheetContext).bottom;
+        return Padding(
+          padding: EdgeInsets.fromLTRB(18, 18, 18, 20 + bottom),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'sua nota',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+              const SizedBox(height: 7),
+              Text(
+                'Escreva do seu jeito. Essa anotação fica ligada a este assunto e entra no backup.',
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: AppColors.muted,
+                    ),
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                controller: controller,
+                autofocus: true,
+                minLines: 5,
+                maxLines: 10,
+                decoration: const InputDecoration(
+                  hintText: 'O que vale lembrar? Que conexão você fez?',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 14),
+              Row(
+                children: [
+                  if (currentNote.isNotEmpty)
+                    TextButton(
+                      onPressed: () => Navigator.of(sheetContext).pop(''),
+                      child: const Text('apagar nota'),
+                    ),
+                  const Spacer(),
+                  FilledButton(
+                    onPressed: () =>
+                        Navigator.of(sheetContext).pop(controller.text),
+                    child: const Text('salvar'),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+    );
+
+    controller.dispose();
+
+    if (result == null || !mounted) {
+      return;
+    }
+    await AppStateScope.read(context).saveNote(widget.topic.id, result);
   }
 
   TextStyle _bodyStyle(AppState state, _ReaderPalette palette) {
@@ -755,6 +849,77 @@ class _Connections extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class _PersonalNote extends StatelessWidget {
+  const _PersonalNote({
+    required this.note,
+    required this.palette,
+    required this.onEdit,
+  });
+
+  final String note;
+  final _ReaderPalette palette;
+  final VoidCallback onEdit;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: palette.surface,
+      child: InkWell(
+        onTap: onEdit,
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(18),
+          decoration: BoxDecoration(
+            border: Border.all(color: palette.line),
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Icon(
+                note.isEmpty
+                    ? Icons.note_add_outlined
+                    : Icons.sticky_note_2_outlined,
+                color: palette.accent,
+              ),
+              const SizedBox(width: 13),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      note.isEmpty ? 'adicione uma nota' : 'sua nota',
+                      style: TextStyle(
+                        color: palette.text,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 14,
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      note.isEmpty
+                          ? 'Registre uma conexão, exemplo ou ideia que queira lembrar.'
+                          : note,
+                      maxLines: note.isEmpty ? 3 : 8,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: note.isEmpty ? palette.muted : palette.text,
+                        fontSize: 14,
+                        height: 1.45,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 8),
+              Icon(Icons.edit_outlined, color: palette.muted, size: 18),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
