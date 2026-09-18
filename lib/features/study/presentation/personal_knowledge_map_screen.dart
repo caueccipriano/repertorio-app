@@ -16,7 +16,6 @@ class PersonalKnowledgeMapScreen extends StatelessWidget {
     final ids = {
       ...state.historyTopicIds,
       ...state.completedTopicIds,
-      ...state.savedTopicIds,
     };
     final topics = ids
         .map(topicById)
