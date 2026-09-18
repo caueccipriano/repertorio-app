@@ -828,7 +828,7 @@ class AppState extends ChangeNotifier {
   String exportBackup() {
     return const JsonEncoder.withIndent('  ').convert({
       'format': 'repertorio-backup',
-      'version': 2,
+      'version': 3,
       'exportedAt': DateTime.now().toIso8601String(),
       'savedTopicIds': savedTopicIds.toList(),
       'completedTopicIds': completedTopicIds.toList(),
