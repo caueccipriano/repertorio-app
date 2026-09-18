@@ -863,6 +863,66 @@ const origem_vidaTopic = KnowledgeTopic(
  whyItMatters:'Amplia o repertório e cria conexões úteis com história, ciência, cultura e situações do cotidiano.', curiosity:'Experimentos já mostraram que moléculas orgânicas podem surgir em condições não biológicas, mas isso não resolve toda a origem da vida.', connections:['Evolução', 'DNA', 'Oceanos', 'Fermi'],
 );
 
+const mitologia_gregaTopic = KnowledgeTopic(
+ id:'mitologia-grega', eyebrow:'HISTÓRIA / MITOLOGIA', title:'POR QUE OS MITOS GREGOS CONTINUAM EM TODO LUGAR?', summary:'Histórias de deuses e heróis foram reinterpretadas por séculos e continuam estruturando referências na arte, literatura e linguagem.', minutes:7, tags:['história', 'cultura'],
+ quickTake:'Mitologia grega não era um livro único com uma versão oficial: histórias variavam conforme época, cidade e autor.', simpleExplanation:'Um mesmo herói podia aparecer de maneira diferente numa epopeia, numa peça teatral e numa tradição local.', example:'Um mesmo herói podia aparecer de maneira diferente numa epopeia, numa peça teatral e numa tradição local.', body:['Mitos ajudavam a explicar origens, rituais, relações sociais e fenômenos naturais.', 'Homero e Hesíodo registraram versões muito influentes, mas não exclusivas.', 'Deuses gregos possuíam poderes extraordinários e comportamentos profundamente humanos.', 'Roma reinterpretou muitas divindades e narrativas gregas.', 'Renascimento e neoclassicismo recuperaram intensamente esses temas.'], remember:['Não havia cânone único.', 'Mitos mudavam conforme contexto.', 'Roma ajudou a transmitir muitas histórias.'],
+ whyItMatters:'Amplia o repertório e conecta este assunto a temas históricos, científicos e culturais já presentes no app.', curiosity:'Muitos nomes de planetas e constelações que usamos hoje preservam tradições mitológicas greco-romanas.', connections:['Democracia ateniense', 'Roma', 'Renascimento', 'Literatura'],
+);
+
+const reforma_protestanteTopic = KnowledgeTopic(
+ id:'reforma-protestante', eyebrow:'HISTÓRIA / RELIGIÃO', title:'COMO A REFORMA PROTESTANTE TRANSFORMOU A EUROPA?', summary:'Críticas religiosas, imprensa e disputas políticas fragmentaram a cristandade ocidental no século XVI.', minutes:7, tags:['história', 'cultura'],
+ quickTake:'A Reforma não foi obra de uma única pessoa nem teve apenas causas religiosas.', simpleExplanation:'As 95 teses associadas a Martinho Lutero entraram num ambiente em que textos podiam circular muito mais rapidamente graças à imprensa.', example:'As 95 teses associadas a Martinho Lutero entraram num ambiente em que textos podiam circular muito mais rapidamente graças à imprensa.', body:['Em 1517, Lutero tornou públicas críticas ligadas especialmente às indulgências.', 'Reformadores como Calvino e Zwinglio desenvolveram tradições distintas.', 'Governantes viram nas disputas religiosas também oportunidades e riscos políticos.', 'A Igreja Católica respondeu com reformas internas e o Concílio de Trento.', 'Guerras e acordos religiosos redesenharam partes da Europa.'], remember:['1517 é um marco simbólico.', 'Houve várias reformas protestantes.', 'Imprensa acelerou circulação de ideias.'],
+ whyItMatters:'Amplia o repertório e conecta este assunto a temas históricos, científicos e culturais já presentes no app.', curiosity:'A tradução da Bíblia para línguas locais também influenciou alfabetização e padronização linguística.', connections:['Imprensa', 'Iluminismo', 'Europa', 'Linguagem'],
+);
+
+const revolucao_russaTopic = KnowledgeTopic(
+ id:'revolucao-russa', eyebrow:'HISTÓRIA / REVOLUÇÕES', title:'POR QUE HOUVE DUAS REVOLUÇÕES NA RÚSSIA EM 1917?', summary:'Guerra, crise econômica e perda de legitimidade derrubaram o czar e depois permitiram aos bolcheviques tomar o poder.', minutes:7, tags:['história', 'geopolítica'],
+ quickTake:'A Revolução Russa de 1917 teve fases diferentes e não foi um único levante contínuo.', simpleExplanation:'Em fevereiro, o regime czarista caiu; meses depois, em outubro, os bolcheviques derrubaram o Governo Provisório.', example:'Em fevereiro, o regime czarista caiu; meses depois, em outubro, os bolcheviques derrubaram o Governo Provisório.', body:['A Primeira Guerra agravou escassez, inflação e desgaste militar.', 'Protestos e motins levaram à abdicação de Nicolau II.', 'Um Governo Provisório dividiu autoridade com sovietes de trabalhadores e soldados.', 'Lenin e os bolcheviques defenderam transferência de poder aos sovietes e saída da guerra.', 'Após outubro, uma guerra civil consolidou um novo regime que daria origem à URSS.'], remember:['Fevereiro e outubro foram fases distintas.', 'A Primeira Guerra foi decisiva.', 'A URSS surgiu depois, em 1922.'],
+ whyItMatters:'Amplia o repertório e conecta este assunto a temas históricos, científicos e culturais já presentes no app.', curiosity:'A Rússia ainda utilizava o calendário juliano, por isso as datas históricas mudam quando convertidas ao calendário gregoriano.', connections:['Primeira Guerra', 'Guerra Fria', 'URSS', 'Revolução Francesa'],
+);
+
+const penicilinaTopic = KnowledgeTopic(
+ id:'penicilina', eyebrow:'CIÊNCIA / MEDICINA', title:'COMO UM FUNGO AJUDOU A REVOLUCIONAR A MEDICINA?', summary:'A descoberta da penicilina abriu caminho para antibióticos capazes de tratar muitas infecções bacterianas antes frequentemente fatais.', minutes:7, tags:['ciência', 'saúde'],
+ quickTake:'Fleming observou o fenômeno, mas transformar penicilina em medicamento exigiu anos de trabalho de muitos pesquisadores.', simpleExplanation:'Uma contaminação por mofo numa placa bacteriana revelou uma zona onde bactérias não cresciam.', example:'Uma contaminação por mofo numa placa bacteriana revelou uma zona onde bactérias não cresciam.', body:['Alexander Fleming observou o efeito antibacteriano do Penicillium em 1928.', 'Ele publicou a descoberta, mas a substância era difícil de purificar e produzir.', 'Howard Florey, Ernst Chain e equipes posteriores desenvolveram métodos para transformá-la em terapia prática.', 'Produção industrial aumentou rapidamente nos anos 1940.', 'O uso de antibióticos também criou forte pressão evolutiva para resistência.'], remember:['1928 foi a descoberta inicial.', 'Medicamento exigiu trabalho coletivo.', 'Resistência é consequência evolutiva.'],
+ whyItMatters:'Amplia o repertório e conecta este assunto a temas históricos, científicos e culturais já presentes no app.', curiosity:'A produção em massa de penicilina ganhou escala durante a Segunda Guerra Mundial.', connections:['Antibióticos', 'Evolução', 'Segunda Guerra', 'Microbioma'],
+);
+
+const neuroplasticidadeTopic = KnowledgeTopic(
+ id:'neuroplasticidade', eyebrow:'CIÊNCIA / CÉREBRO', title:'O CÉREBRO CONSEGUE SE REORGANIZAR?', summary:'Experiência, aprendizagem e lesões podem alterar conexões e funções de circuitos neurais ao longo da vida.', minutes:7, tags:['ciência', 'psicologia'],
+ quickTake:'Neuroplasticidade não significa que o cérebro possa se transformar sem limites; mudanças dependem de biologia, idade, treino e contexto.', simpleExplanation:'Praticar uma habilidade repetidamente pode fortalecer e reorganizar redes envolvidas naquela tarefa.', example:'Praticar uma habilidade repetidamente pode fortalecer e reorganizar redes envolvidas naquela tarefa.', body:['Sinapses podem fortalecer ou enfraquecer com atividade.', 'Aprendizagem envolve alterações em redes distribuídas.', 'Após algumas lesões, outras áreas podem assumir parte de funções perdidas.', 'Plasticidade é maior em certos períodos do desenvolvimento, mas continua na vida adulta.', 'Mudanças plásticas podem ser úteis ou contribuir para problemas, como dor crônica.'], remember:['Plasticidade continua na vida adulta.', 'Não é ilimitada.', 'Aprendizagem altera redes.'],
+ whyItMatters:'Amplia o repertório e conecta este assunto a temas históricos, científicos e culturais já presentes no app.', curiosity:'Aprender a ler modifica a maneira como certas regiões visuais respondem a símbolos escritos.', connections:['Memória', 'Hábitos', 'Sono', 'Linguagem'],
+);
+
+const teoria_jogosTopic = KnowledgeTopic(
+ id:'teoria-jogos', eyebrow:'ECONOMIA / ESTRATÉGIA', title:'O QUE A TEORIA DOS JOGOS TEM A VER COM DECISÕES REAIS?', summary:'Ela estuda situações em que o resultado de cada participante depende também das escolhas dos outros.', minutes:7, tags:['economia', 'matemática'],
+ quickTake:'Um jogo, nesse contexto, pode ser uma negociação, competição de preços ou acordo internacional — não precisa ser entretenimento.', simpleExplanation:'Se duas empresas escolhem preços sabendo que cada decisão afeta a reação da concorrente, existe interdependência estratégica.', example:'Se duas empresas escolhem preços sabendo que cada decisão afeta a reação da concorrente, existe interdependência estratégica.', body:['Modelos especificam participantes, estratégias, informações e resultados.', 'John von Neumann e Oskar Morgenstern foram fundamentais na formalização moderna.', 'John Nash desenvolveu um conceito de equilíbrio para estratégias mutuamente consistentes.', 'Jogos repetidos podem criar incentivos diferentes de interações únicas.', 'A teoria é usada em economia, biologia, ciência política e computação.'], remember:['Decisões são interdependentes.', 'Equilíbrio não significa melhor resultado.', 'Repetição muda incentivos.'],
+ whyItMatters:'Amplia o repertório e conecta este assunto a temas históricos, científicos e culturais já presentes no app.', curiosity:'O famoso dilema do prisioneiro mostra como decisões individualmente racionais podem produzir um resultado coletivo ruim.', connections:['Probabilidade', 'Economia', 'Xadrez', 'Algoritmos'],
+);
+
+const blockchainTopic = KnowledgeTopic(
+ id:'blockchain', eyebrow:'TECNOLOGIA / INTERNET', title:'O QUE UMA BLOCKCHAIN FAZ ALÉM DE CRIPTOMOEDAS?', summary:'Ela mantém um registro compartilhado cuja ordem e integridade são verificadas por regras criptográficas e mecanismos de consenso.', minutes:7, tags:['tecnologia', 'finanças'],
+ quickTake:'Blockchain é um tipo específico de banco de dados distribuído; nem todo problema precisa dela.', simpleExplanation:'Vários participantes podem manter cópias de um histórico e concordar sobre novas entradas sem uma única base central controlando tudo.', example:'Vários participantes podem manter cópias de um histórico e concordar sobre novas entradas sem uma única base central controlando tudo.', body:['Blocos agrupam registros e referências criptográficas ao histórico anterior.', 'Hashes tornam alterações retroativas detectáveis.', 'Redes precisam de um mecanismo para concordar sobre o estado válido.', 'Blockchains públicas sacrificam algumas eficiências para reduzir dependência de uma autoridade central.', 'Contratos inteligentes permitem executar regras programadas em algumas redes.'], remember:['É um registro distribuído.', 'Consenso é essencial.', 'Descentralização traz custos e benefícios.'],
+ whyItMatters:'Amplia o repertório e conecta este assunto a temas históricos, científicos e culturais já presentes no app.', curiosity:'Bitcoin popularizou a combinação de blockchain com prova de trabalho.', connections:['Bitcoin', 'Criptografia', 'Internet', 'Algoritmos'],
+);
+
+const reggaeTopic = KnowledgeTopic(
+ id:'reggae', eyebrow:'MÚSICA / CULTURA', title:'COMO O REGGAE DA JAMAICA VIROU UMA VOZ GLOBAL?', summary:'Ritmos jamaicanos, sistemas de som e mensagens sociais transformaram um gênero local em influência mundial.', minutes:7, tags:['música', 'cultura'],
+ quickTake:'Reggae é uma tradição diversa que nasceu de estilos jamaicanos anteriores, especialmente ska e rocksteady.', simpleExplanation:'A guitarra frequentemente acentua tempos fracos do compasso, criando a pulsação imediatamente reconhecível do gênero.', example:'A guitarra frequentemente acentua tempos fracos do compasso, criando a pulsação imediatamente reconhecível do gênero.', body:['Sistemas de som foram fundamentais na cultura musical jamaicana.', 'Ska surgiu antes, com andamento geralmente mais rápido.', 'Rocksteady desacelerou o pulso e destacou linhas de baixo.', 'Reggae consolidou-se no fim dos anos 1960.', 'Rastafári, desigualdade e política aparecem em parte importante de seu repertório.'], remember:['Veio de tradições anteriores.', 'Baixo e contratempo são marcantes.', 'Bob Marley popularizou, não inventou.'],
+ whyItMatters:'Amplia o repertório e conecta este assunto a temas históricos, científicos e culturais já presentes no app.', curiosity:'Bob Marley ampliou enormemente a projeção internacional do reggae, mas não foi seu inventor.', connections:['Hip-hop', 'Jazz', 'Jamaica', 'Cultura'],
+);
+
+const rococoTopic = KnowledgeTopic(
+ id:'rococo', eyebrow:'ARTE / HISTÓRIA', title:'POR QUE O ROCOCÓ PARECE TÃO EXAGERADAMENTE DELICADO?', summary:'Curvas, cores claras, ornamentação e cenas de lazer criaram uma linguagem associada às elites europeias do século XVIII.', minutes:7, tags:['arte', 'design'],
+ quickTake:'Rococó não é simplesmente barroco mais decorado; desenvolveu escala, temas e atmosferas próprias.', simpleExplanation:'Interiores podiam combinar espelhos, douramento, curvas assimétricas e tons pastéis para dissolver visualmente paredes e teto.', example:'Interiores podiam combinar espelhos, douramento, curvas assimétricas e tons pastéis para dissolver visualmente paredes e teto.', body:['O estilo floresceu especialmente na França do início do século XVIII.', 'Salões privados substituíram parte da monumentalidade de palácios anteriores.', 'Pintores como Watteau e Fragonard exploraram cenas de lazer e sedução.', 'Ornamentos assimétricos inspirados na natureza eram frequentes.', 'O neoclassicismo depois reagiu contra aspectos associados ao excesso rococó.'], remember:['Século XVIII foi central.', 'Interiores eram fundamentais.', 'Neoclassicismo reagiu ao estilo.'],
+ whyItMatters:'Amplia o repertório e conecta este assunto a temas históricos, científicos e culturais já presentes no app.', curiosity:'O nome rococó está ligado à palavra francesa rocaille, associada à ornamentação com pedras e conchas.', connections:['Barroco', 'Iluminismo', 'Moda', 'Art Déco'],
+);
+
+const urbanismoTopic = KnowledgeTopic(
+ id:'urbanismo', eyebrow:'CIDADE / DESIGN', title:'QUEM DESENHA UMA CIDADE?', summary:'Ruas, leis, transportes, mercado imobiliário e decisões coletivas moldam cidades continuamente — muito além do trabalho de um único urbanista.', minutes:7, tags:['cidade', 'design'],
+ quickTake:'Uma cidade não funciona como um prédio ampliado: milhões de decisões descentralizadas alteram o plano original.', simpleExplanation:'Abrir uma linha de metrô pode mudar onde empresas e moradores desejam se instalar, alterando preços e densidade.', example:'Abrir uma linha de metrô pode mudar onde empresas e moradores desejam se instalar, alterando preços e densidade.', body:['Urbanismo organiza relações entre uso do solo, mobilidade, infraestrutura e espaço público.', 'Zoneamento influencia onde diferentes atividades podem acontecer.', 'Redes de transporte alteram acessibilidade e valor da terra.', 'Espaços públicos dependem tanto de desenho quanto de uso e manutenção.', 'Planejamento contemporâneo precisa lidar com clima, desigualdade, habitação e crescimento metropolitano.'], remember:['Cidade é sistema dinâmico.', 'Transporte e uso do solo interagem.', 'Plano e realidade nunca são idênticos.'],
+ whyItMatters:'Amplia o repertório e conecta este assunto a temas históricos, científicos e culturais já presentes no app.', curiosity:'Planos urbanos frequentemente produzem efeitos diferentes dos previstos décadas depois.', connections:['Cidades', 'Metrô', 'Brasília', 'Arquitetura moderna'],
+);
+
 const allDemoTopics = <KnowledgeTopic>[
   bauhausTopic,
   modernismTopic,
@@ -975,6 +1035,16 @@ const allDemoTopics = <KnowledgeTopic>[
   linguisticaTopic,
   antropologiaTopic,
   origem_vidaTopic,
+  mitologia_gregaTopic,
+  reforma_protestanteTopic,
+  revolucao_russaTopic,
+  penicilinaTopic,
+  neuroplasticidadeTopic,
+  teoria_jogosTopic,
+  blockchainTopic,
+  reggaeTopic,
+  rococoTopic,
+  urbanismoTopic,
 ];
 
 KnowledgeTopic? topicById(String id) {
