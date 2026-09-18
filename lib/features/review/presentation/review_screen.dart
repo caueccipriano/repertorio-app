@@ -20,19 +20,16 @@ class _ReviewScreenState extends State<ReviewScreen> {
   Widget build(BuildContext context) {
     final state = AppStateScope.of(context);
     final dueIds = state.dueReviewTopicIds();
-    final fallbackIds = state.historyTopicIds.take(4).toList();
-    final ids = dueIds.isNotEmpty ? dueIds : fallbackIds;
-    final topics = ids
-        .map(topicById)
-        .whereType<KnowledgeTopic>()
-        .toList(growable: false);
+    final seedIds =
+        dueIds.isNotEmpty ? dueIds : state.historyTopicIds.take(5).toList();
+    final cards = _cards(seedIds);
 
-    if (topics.isEmpty) {
+    if (cards.isEmpty) {
       return const _NoReviewsYet();
     }
 
-    final topic = topics[_index % topics.length];
-    final isDue = dueIds.contains(topic.id);
+    final card = cards[_index % cards.length];
+    final isDue = dueIds.contains(card.topic.id);
 
     return Scaffold(
       backgroundColor: AppColors.paper,
@@ -43,12 +40,12 @@ class _ReviewScreenState extends State<ReviewScreen> {
             Row(
               children: [
                 Text(
-                  'revisar',
+                  'flashcards',
                   style: Theme.of(context).textTheme.displayMedium,
                 ),
                 const Spacer(),
                 Text(
-                  isDue ? 'HOJE' : 'AQUECIMENTO',
+                  isDue ? 'REVISÃO' : 'AQUECIMENTO',
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
                         color: AppColors.blue,
                         fontSize: 10,
@@ -59,7 +56,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
             ),
             const SizedBox(height: 8),
             Text(
-              'Poucos minutos para transformar leitura em memória.',
+              'Gerados a partir do que você leu, lembrou e anotou.',
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: AppColors.muted,
                   ),
@@ -81,7 +78,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    topic.tags.join(' · ').toUpperCase(),
+                    card.topic.tags.join(' · ').toUpperCase(),
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
                           color: AppColors.blue,
                           fontSize: 9,
@@ -90,16 +87,9 @@ class _ReviewScreenState extends State<ReviewScreen> {
                   ),
                   const SizedBox(height: 18),
                   Text(
-                    'Você consegue explicar…',
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: AppColors.muted,
-                        ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    topic.title.toLowerCase(),
+                    card.prompt,
                     style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                          fontSize: 38,
+                          fontSize: 35,
                         ),
                   ),
                   const SizedBox(height: 26),
@@ -117,7 +107,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                       padding: const EdgeInsets.all(18),
                       color: AppColors.softBlue,
                       child: Text(
-                        topic.quickTake,
+                        card.answer,
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                               fontSize: 17,
                             ),
@@ -136,27 +126,41 @@ class _ReviewScreenState extends State<ReviewScreen> {
                     _ReviewChoice(
                       label: 'lembrei fácil',
                       icon: Icons.sentiment_satisfied_alt,
-                      onTap: () => _answer(topic.id, 2, topics.length),
+                      onTap: () => _answer(
+                        card.topic.id,
+                        2,
+                        cards.length,
+                      ),
                     ),
                     _ReviewChoice(
                       label: 'mais ou menos',
                       icon: Icons.sentiment_neutral,
-                      onTap: () => _answer(topic.id, 1, topics.length),
+                      onTap: () => _answer(
+                        card.topic.id,
+                        1,
+                        cards.length,
+                      ),
                     ),
                     _ReviewChoice(
                       label: 'não lembrei',
                       icon: Icons.refresh,
-                      onTap: () => _answer(topic.id, 0, topics.length),
+                      onTap: () => _answer(
+                        card.topic.id,
+                        0,
+                        cards.length,
+                      ),
                     ),
                   ],
                 ],
               ),
             ),
-            const SizedBox(height: 22),
+            const SizedBox(height: 16),
             Text(
-              'Repetições ficam mais espaçadas quando você lembra com facilidade.',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              '${(_index % cards.length) + 1} de ${cards.length} cartões',
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.labelLarge?.copyWith(
                     color: AppColors.muted,
+                    fontSize: 9,
                   ),
             ),
           ],
@@ -165,19 +169,72 @@ class _ReviewScreenState extends State<ReviewScreen> {
     );
   }
 
+  List<_Flashcard> _cards(List<String> ids) {
+    final state = AppStateScope.read(context);
+    final cards = <_Flashcard>[];
+
+    for (final id in ids) {
+      final topic = topicById(id);
+      if (topic == null) continue;
+
+      cards.add(
+        _Flashcard(
+          topic: topic,
+          prompt: 'Explique: ${topic.title.toLowerCase()}',
+          answer: topic.quickTake,
+        ),
+      );
+
+      for (final item in topic.remember.indexed) {
+        cards.add(
+          _Flashcard(
+            topic: topic,
+            prompt:
+                'O que vale lembrar sobre ${topic.title.toLowerCase()}? #${item.$1 + 1}',
+            answer: item.$2,
+          ),
+        );
+      }
+
+      final note = state.noteFor(topic.id);
+      if (note.isNotEmpty) {
+        cards.add(
+          _Flashcard(
+            topic: topic,
+            prompt: 'O que você anotou sobre este assunto?',
+            answer: note,
+          ),
+        );
+      }
+    }
+
+    return cards;
+  }
+
   Future<void> _answer(String topicId, int quality, int total) async {
     await AppStateScope.read(context).recordReview(
       topicId,
       quality: quality,
     );
-    if (!mounted) {
-      return;
-    }
+    if (!mounted) return;
+
     setState(() {
       _revealed = false;
       _index = (_index + 1) % total;
     });
   }
+}
+
+class _Flashcard {
+  const _Flashcard({
+    required this.topic,
+    required this.prompt,
+    required this.answer,
+  });
+
+  final KnowledgeTopic topic;
+  final String prompt;
+  final String answer;
 }
 
 class _ReviewChoice extends StatelessWidget {
@@ -235,7 +292,7 @@ class _NoReviewsYet extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'revisar',
+                'flashcards',
                 style: Theme.of(context).textTheme.displayMedium,
               ),
               const Spacer(),
@@ -245,7 +302,7 @@ class _NoReviewsYet extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               Text(
-                'Quando você terminar algumas leituras, elas voltam aqui no momento certo para você realmente lembrar.',
+                'Abra alguns assuntos e seus cartões começam a aparecer aqui automaticamente.',
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
               const Spacer(),
