@@ -160,8 +160,10 @@ class _StatsRow extends StatelessWidget {
                   decoration: BoxDecoration(
                     border: item.$1 == items.length - 1
                         ? null
-                        : const Border(
-                            right: BorderSide(color: Theme.of(context).colorScheme.onSurface),
+                        : Border(
+                            right: BorderSide(
+                              color: Theme.of(context).colorScheme.outline,
+                            ),
                           ),
                   ),
                   child: Column(
