@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../app/state/app_state.dart';
+import '../../../core/audio/study_speech.dart';
 import '../../../app/state/app_state_scope.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../explore/data/knowledge_graph.dart';
@@ -29,6 +30,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
   PageController? _pageController;
   double _progress = 0;
   bool _bootstrapped = false;
+  bool _speaking = false;
 
   @override
   void initState() {
@@ -77,6 +79,9 @@ class _ArticleScreenState extends State<ArticleScreen> {
 
   @override
   void dispose() {
+    if (_speaking) {
+      stopStudySpeech();
+    }
     _scrollController
       ..removeListener(_onScroll)
       ..dispose();
@@ -132,6 +137,16 @@ class _ArticleScreenState extends State<ArticleScreen> {
                 saved ? Icons.bookmark : Icons.bookmark_border,
               ),
             ),
+            if (studySpeechSupported)
+              IconButton(
+                tooltip: _speaking ? 'Parar áudio' : 'Ouvir artigo',
+                onPressed: _toggleSpeech,
+                icon: Icon(
+                  _speaking
+                      ? Icons.stop_circle_outlined
+                      : Icons.headphones_outlined,
+                ),
+              ),
             IconButton(
               tooltip: note.isEmpty ? 'Adicionar nota' : 'Editar nota',
               onPressed: () => _showNoteSheet(note),
@@ -498,6 +513,37 @@ class _ArticleScreenState extends State<ArticleScreen> {
         ),
       ],
     );
+  }
+
+  Future<void> _toggleSpeech() async {
+    if (_speaking) {
+      stopStudySpeech();
+      if (mounted) {
+        setState(() => _speaking = false);
+      }
+      return;
+    }
+
+    final topic = widget.topic;
+    final text = [
+      topic.title,
+      topic.summary,
+      'Em trinta segundos.',
+      topic.quickTake,
+      ...topic.body,
+      'O que você precisa lembrar.',
+      ...topic.remember,
+      'Por que isso importa.',
+      topic.whyItMatters,
+      'Uma coisa interessante.',
+      topic.curiosity,
+    ].join('\n\n');
+
+    setState(() => _speaking = true);
+    await speakStudyText(text);
+    if (mounted) {
+      setState(() => _speaking = false);
+    }
   }
 
   Future<void> _showNoteSheet(String currentNote) async {
