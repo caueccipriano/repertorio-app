@@ -145,7 +145,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                 final text =
                     '${widget.topic.title}\n\n${widget.topic.quickTake}\n\n— Repertório';
                 await Clipboard.setData(ClipboardData(text: text));
-                if (!mounted) {
+                if (!context.mounted) {
                   return;
                 }
                 ScaffoldMessenger.of(context).showSnackBar(
