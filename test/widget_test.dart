@@ -24,6 +24,14 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('em 30 segundos'), findsOneWidget);
+
+    await tester.scrollUntilVisible(
+      find.text('entenda de verdade'),
+      350,
+      scrollable: find.byType(Scrollable),
+    );
+    await tester.pumpAndSettle();
+
     expect(find.text('entenda de verdade'), findsOneWidget);
   });
 }
