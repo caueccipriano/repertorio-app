@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
+import '../core/notifications/study_notifications.dart';
 import '../features/onboarding/presentation/onboarding_screen.dart';
 import 'app_shell.dart';
 import 'state/app_state.dart';
@@ -16,6 +19,49 @@ class RepertorioApp extends StatefulWidget {
 
 class _RepertorioAppState extends State<RepertorioApp> {
   late final Future<AppState> _stateFuture = AppState.load();
+  Timer? _reminderTimer;
+  AppState? _reminderState;
+
+  @override
+  void dispose() {
+    _reminderTimer?.cancel();
+    super.dispose();
+  }
+
+  void _ensureReminderLoop(AppState state) {
+    if (identical(_reminderState, state)) {
+      return;
+    }
+
+    _reminderState = state;
+    _reminderTimer?.cancel();
+
+    Future<void> check() async {
+      if (!state.shouldSendStudyReminder()) {
+        return;
+      }
+      if (!studyNotificationPermissionGranted) {
+        return;
+      }
+
+      final dueReviews = state.dueReviewTopicIds().length;
+      final body = dueReviews > 0 && state.reviewRemindersEnabled
+          ? 'Você tem $dueReviews revisão${dueReviews == 1 ? '' : 'ões'} esperando. Cinco minutos já contam.'
+          : 'Sua edição de hoje está esperando. Cinco minutos para aprender algo novo?';
+
+      showStudyNotification(
+        title: 'repertório*',
+        body: body,
+      );
+      await state.markStudyReminderShown();
+    }
+
+    check();
+    _reminderTimer = Timer.periodic(
+      const Duration(minutes: 1),
+      (_) => check(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +77,7 @@ class _RepertorioAppState extends State<RepertorioApp> {
         }
 
         final state = snapshot.requireData;
+        _ensureReminderLoop(state);
 
         return AppStateScope(
           state: state,
