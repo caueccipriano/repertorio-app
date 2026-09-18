@@ -61,7 +61,7 @@ void main() {
 
     expect(find.text('em 30 segundos'), findsOneWidget);
     expect(find.byKey(const ValueKey('reader-back')), findsOneWidget);
-    expect(find.byKey(const ValueKey('reader-audio')), findsNothing);
+    expect(find.byKey(const ValueKey('reader-audio')), findsOneWidget);
     expect(find.text('ouvir aqui'), findsNothing);
 
     await tester.scrollUntilVisible(
