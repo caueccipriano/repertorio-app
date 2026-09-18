@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/state/app_state_scope.dart';
-import '../../../app/theme/app_colors.dart';
 import '../../../core/notifications/study_notifications.dart';
 
 class NotificationSettingsScreen extends StatefulWidget {
