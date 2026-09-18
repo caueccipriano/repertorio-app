@@ -27,6 +27,29 @@
   <title>Repertório</title>
 </head>
 <body>
+  <script>
+    window.repertorioNotifications = {
+      permission: function () {
+        if (!('Notification' in window)) return 'unsupported';
+        return Notification.permission;
+      },
+      requestPermission: async function () {
+        if (!('Notification' in window)) return 'unsupported';
+        return await Notification.requestPermission();
+      },
+      show: function (title, body) {
+        if (!('Notification' in window) || Notification.permission !== 'granted') {
+          return;
+        }
+        new Notification(title, {
+          body: body,
+          icon: 'icons/Icon.svg',
+          badge: 'icons/Icon-maskable.svg',
+          tag: 'repertorio-study-reminder'
+        });
+      }
+    };
+  </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
