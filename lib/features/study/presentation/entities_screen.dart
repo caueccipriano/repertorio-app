@@ -43,8 +43,8 @@ class _EntityCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColors.paperWhite,
-        border: Border.all(color: AppColors.ink),
+        color: Theme.of(context).colorScheme.surface,
+        border: Border.all(color: Theme.of(context).colorScheme.onSurface),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,7 +57,7 @@ class _EntityCard extends StatelessWidget {
                 child: Text(
                   entity.subtitle.toUpperCase(),
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                        color: AppColors.blue,
+                        color: Theme.of(context).colorScheme.primary,
                         fontSize: 9,
                         letterSpacing: .9,
                       ),
@@ -76,7 +76,7 @@ class _EntityCard extends StatelessWidget {
           Text(
             entity.summary,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.muted,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
           ),
           if (topics.isNotEmpty) ...[
