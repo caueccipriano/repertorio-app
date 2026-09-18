@@ -675,14 +675,19 @@ class _ArticleScreenState extends State<ArticleScreen> {
     switch (action) {
       case _ReaderMenuAction.save:
         await _toggleSavedWithOffline();
+        return;
       case _ReaderMenuAction.queue:
         await state.toggleReadLater(widget.topic.id);
+        return;
       case _ReaderMenuAction.offline:
         await _toggleOffline();
+        return;
       case _ReaderMenuAction.note:
         await _showNoteSheet(state.noteFor(widget.topic.id));
+        return;
       case _ReaderMenuAction.share:
         await _shareLearning();
+        return;
       case _ReaderMenuAction.map:
         if (!mounted) return;
         await Navigator.of(context).push(
@@ -692,6 +697,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
             ),
           ),
         );
+        return;
     }
   }
 
