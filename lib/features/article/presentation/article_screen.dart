@@ -9,6 +9,7 @@ import '../../explore/presentation/knowledge_map_screen.dart';
 import '../../today/data/demo_topics.dart';
 import '../../today/domain/knowledge_topic.dart';
 import 'reader_controls_sheet.dart';
+import 'topic_media_section.dart';
 
 class ArticleScreen extends StatefulWidget {
   const ArticleScreen({
@@ -209,6 +210,10 @@ class _ArticleScreenState extends State<ArticleScreen> {
                       bodyStyle: bodyStyle,
                     ),
                   ),
+                  if (widget.topic.media.isNotEmpty) ...[
+                    TopicMediaSection(media: widget.topic.media),
+                    const SizedBox(height: 42),
+                  ],
                   _Section(
                     number: '02',
                     title: 'entenda de verdade',
@@ -315,6 +320,11 @@ class _ArticleScreenState extends State<ArticleScreen> {
           ],
         ),
       ),
+      if (widget.topic.media.isNotEmpty)
+        _Page(
+          palette: palette,
+          child: TopicMediaSection(media: widget.topic.media),
+        ),
       _Page(
         palette: palette,
         child: _Section(
