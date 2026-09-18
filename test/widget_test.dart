@@ -107,5 +107,32 @@ void main() {
     expect(state.completedTopicIds, isEmpty);
     expect(state.progressByTopic, isEmpty);
     expect(state.historyTopicIds, isEmpty);
+    expect(state.notesByTopic, isEmpty);
+    expect(state.studiedDaysThisWeek(), 0);
+  });
+
+  test('backup restores progress notes goals and saved topics', () async {
+    final state = await AppState.load();
+
+    await state.toggleSaved('bauhaus');
+    await state.saveNote('bauhaus', 'Forma e função precisam conversar.');
+    await state.updateWeeklyGoal(4);
+    await state.updateProgress('bauhaus', .55);
+
+    final backup = state.exportBackup();
+
+    SharedPreferences.setMockInitialValues({});
+    final restored = await AppState.load();
+    final success = await restored.importBackup(backup);
+
+    expect(success, isTrue);
+    expect(restored.isSaved('bauhaus'), isTrue);
+    expect(
+      restored.noteFor('bauhaus'),
+      'Forma e função precisam conversar.',
+    );
+    expect(restored.weeklyGoal, 4);
+    expect(restored.progressFor('bauhaus'), closeTo(.55, .001));
+    expect(restored.studiedDaysThisWeek(), 1);
   });
 }
