@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../core/notifications/study_notifications.dart';
-import '../features/onboarding/presentation/onboarding_screen.dart';
 import 'app_shell.dart';
 import 'state/app_state.dart';
 import 'state/app_state_scope.dart';
@@ -100,9 +99,10 @@ class _RepertorioAppState extends State<RepertorioApp> {
                 themeMode: state.appAppearance == AppAppearance.dark
                     ? ThemeMode.dark
                     : ThemeMode.light,
-                home: state.onboardingComplete
-                    ? const AppShell()
-                    : const OnboardingScreen(),
+                // Do not gate app startup behind onboarding. This avoids the
+                // iOS standalone-PWA touch deadlock that could trap users on
+                // the welcome screen. Onboarding can remain an optional flow.
+                home: const AppShell(),
               );
             },
           ),
