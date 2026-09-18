@@ -229,17 +229,6 @@ class ReaderControlsSheet extends StatelessWidget {
                 margin: value,
               ),
             ),
-            const _Label('VELOCIDADE DO ÁUDIO'),
-            Slider(
-              value: state.voiceRate,
-              min: .7,
-              max: 1.5,
-              divisions: 8,
-              label: '${state.voiceRate.toStringAsFixed(1)}×',
-              onChanged: (value) => state.updateReaderSettings(
-                newVoiceRate: value,
-              ),
-            ),
             const SizedBox(height: 8),
             SwitchListTile.adaptive(
               contentPadding: EdgeInsets.zero,
