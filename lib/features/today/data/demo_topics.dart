@@ -44,15 +44,6 @@ const bauhausTopic = KnowledgeTopic(
       sourceUrl:
           'https://commons.wikimedia.org/wiki/File:Bauhaus_Dessau.jpg',
     ),
-    KnowledgeMedia(
-      type: KnowledgeMediaType.audio,
-      url: 'https://open.spotify.com/episode/2CbfpKhrAIWYkN3zvywt53',
-      title: '52 | Bauhaus — Arquitetura Objetiva',
-      caption: '14 min 59 s · em português',
-      sourceLabel: 'Spotify',
-      sourceUrl:
-          'https://open.spotify.com/episode/2CbfpKhrAIWYkN3zvywt53',
-    ),
   ],
 );
 
@@ -88,17 +79,6 @@ const modernismTopic = KnowledgeTopic(
   curiosity:
       '“Menos é mais”, frase associada a Mies van der Rohe, virou um dos resumos mais famosos da sensibilidade modernista — mesmo que o movimento fosse muito mais diverso do que essa frase sugere.',
   connections: ['Bauhaus', 'Brasília', 'Brutalismo', 'Le Corbusier'],
-  media: [
-    KnowledgeMedia(
-      type: KnowledgeMediaType.audio,
-      url: 'https://open.spotify.com/episode/4pbke9lDgQSP6kWvr4atyU',
-      title: 'Arquitetura, Modernismo e Memória — Arte IN FORMA',
-      caption: '39 min 53 s · em português',
-      sourceLabel: 'Spotify',
-      sourceUrl:
-          'https://open.spotify.com/episode/4pbke9lDgQSP6kWvr4atyU',
-    ),
-  ],
 );
 
 const fermiTopic = KnowledgeTopic(
@@ -147,12 +127,13 @@ const fermiTopic = KnowledgeTopic(
     ),
     KnowledgeMedia(
       type: KnowledgeMediaType.audio,
-      url: 'https://open.spotify.com/episode/64UATArdZW3k2VOMlbzjJq',
-      title: 'A equação de Drake e a busca por civilizações extraterrestres',
+      url:
+          'https://d3ctxlq1ktw2nl.cloudfront.net/staging/2026-6-18/37924afc-726b-f551-a3b4-3b866ff480ce.mp3',
+      title: 'O paradoxo de Fermi — Onde está todo mundo?',
       caption: '13 min · Astronomia e Astronáutica',
-      sourceLabel: 'Spotify',
+      sourceLabel: 'Astronomia e Astronáutica',
       sourceUrl:
-          'https://open.spotify.com/episode/64UATArdZW3k2VOMlbzjJq',
+          'https://podcastaddict.com/astronomia-e-astronautica/episode/229514378',
     ),
   ],
 );
@@ -189,17 +170,6 @@ const romeTopic = KnowledgeTopic(
   curiosity:
       'Os habitantes do Império Romano do Oriente continuavam se chamando de romanos muito depois da queda do Ocidente.',
   connections: ['Bizâncio', 'Cristianismo', 'Povos germânicos', 'Feudalismo'],
-  media: [
-    KnowledgeMedia(
-      type: KnowledgeMediaType.audio,
-      url: 'https://open.spotify.com/episode/3zdVgjMqnkucPQxMmmkKkf',
-      title: 'Estudos Medievais 34 — Queda de Roma',
-      caption: '1 h 7 min · aprofundamento em português',
-      sourceLabel: 'Spotify',
-      sourceUrl:
-          'https://open.spotify.com/episode/3zdVgjMqnkucPQxMmmkKkf',
-    ),
-  ],
 );
 
 const brutalismTopic = KnowledgeTopic(
@@ -237,12 +207,13 @@ const brutalismTopic = KnowledgeTopic(
   media: [
     KnowledgeMedia(
       type: KnowledgeMediaType.audio,
-      url: 'https://open.spotify.com/episode/0dIZZEGIxZaXGzjHZd1rBk',
-      title: '137 | Escola Paulista (Brutalista)',
+      url:
+          'https://d3ctxlq1ktw2nl.cloudfront.net/staging/2026-3-21/7c27c5bd-230f-2d7a-1b58-6adc2f607435.mp3',
+      title: 'Escola Paulista (Brutalista)',
       caption: '11 min 34 s · Arquitetura Objetiva',
-      sourceLabel: 'Spotify',
+      sourceLabel: 'Arquitetura Objetiva',
       sourceUrl:
-          'https://open.spotify.com/episode/0dIZZEGIxZaXGzjHZd1rBk',
+          'https://podcastaddict.com/arquitetura-objetiva/episode/222941639',
     ),
   ],
 );
@@ -279,17 +250,6 @@ const helveticaTopic = KnowledgeTopic(
   curiosity:
       'O nome Helvetica vem de Helvetia, termo latino associado à Suíça.',
   connections: ['Swiss Style', 'Grid', 'Bauhaus', 'Sinalização'],
-  media: [
-    KnowledgeMedia(
-      type: KnowledgeMediaType.audio,
-      url: 'https://open.spotify.com/episode/4eWd9VSCYWSWmYW59XMSF3',
-      title: 'Tipografia: a renegada do branding — Branding em Tudo',
-      caption: '54 min · em português',
-      sourceLabel: 'Spotify',
-      sourceUrl:
-          'https://open.spotify.com/episode/4eWd9VSCYWSWmYW59XMSF3',
-    ),
-  ],
 );
 
 const inflationTopic = KnowledgeTopic(

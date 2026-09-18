@@ -7,7 +7,7 @@ import '../../../app/app_shell.dart';
 import '../../../app/state/app_state.dart';
 import '../../../app/state/app_state_scope.dart';
 import '../../../app/theme/app_colors.dart';
-import '../../../core/audio/spotify_embed.dart';
+import '../../../core/audio/podcast_audio.dart';
 import '../../../core/offline/offline_cache.dart';
 import '../../../core/share/knowledge_card_share.dart';
 import '../../explore/data/knowledge_graph.dart';
@@ -106,7 +106,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
     final queued = state.isQueued(widget.topic.id);
     final offline = state.isOfflineTopic(widget.topic.id);
     final note = state.noteFor(widget.topic.id);
-    final spotifyAudio = _spotifyAudioFor(widget.topic);
+    final audioMedia = _audioFor(widget.topic);
     final remaining = ((1 - _progress) * widget.topic.minutes)
         .ceil()
         .clamp(0, widget.topic.minutes);
@@ -156,11 +156,11 @@ class _ArticleScreenState extends State<ArticleScreen> {
             ),
           ),
           actions: [
-            if (spotifyAudio != null)
+            if (audioMedia != null)
               IconButton(
                 key: const ValueKey('reader-audio'),
-                tooltip: 'Ouvir no Spotify',
-                onPressed: () => _openSpotifyAudio(spotifyAudio),
+                tooltip: 'Ouvir',
+                onPressed: () => _openAudio(audioMedia),
                 icon: const Icon(Icons.headphones_outlined),
               ),
             if (!state.readerFocusMode)
@@ -591,18 +591,23 @@ class _ArticleScreenState extends State<ArticleScreen> {
     );
   }
 
-  KnowledgeMedia? _spotifyAudioFor(KnowledgeTopic topic) {
+  KnowledgeMedia? _audioFor(KnowledgeTopic topic) {
     for (final media in topic.media) {
       if (media.type == KnowledgeMediaType.audio &&
-          media.url.contains('open.spotify.com')) {
+          (media.url.startsWith('https://') ||
+              media.url.startsWith('http://'))) {
         return media;
       }
     }
     return null;
   }
 
-  Future<void> _openSpotifyAudio(KnowledgeMedia media) async {
-    final opened = await openSpotifyEmbed(media.url);
+  Future<void> _openAudio(KnowledgeMedia media) async {
+    final opened = await openPodcastAudio(
+      url: media.url,
+      title: media.title,
+      source: media.sourceLabel ?? 'Podcast',
+    );
     if (!mounted || opened) {
       return;
     }
@@ -610,7 +615,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text(
-          'Não consegui abrir o player do Spotify dentro do Repertório.',
+          'Não consegui abrir o áudio dentro do Repertório.',
         ),
       ),
     );

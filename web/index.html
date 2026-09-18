@@ -173,6 +173,143 @@
       });
     }
 
+    window.repertorioAudio = {
+      open: async function (url, title, source) {
+        try {
+          const previous = document.getElementById('repertorio-audio-overlay');
+          if (previous) previous.remove();
+
+          const overlay = document.createElement('div');
+          overlay.id = 'repertorio-audio-overlay';
+          overlay.setAttribute('role', 'dialog');
+          overlay.setAttribute('aria-modal', 'false');
+          overlay.setAttribute('aria-label', 'Player de áudio');
+          overlay.style.position = 'fixed';
+          overlay.style.top = 'calc(env(safe-area-inset-top) + 76px)';
+          overlay.style.left = '12px';
+          overlay.style.right = '12px';
+          overlay.style.zIndex = '2147483646';
+          overlay.style.pointerEvents = 'none';
+          overlay.style.display = 'flex';
+          overlay.style.justifyContent = 'center';
+
+          const shell = document.createElement('div');
+          shell.style.width = 'min(100%, 420px)';
+          shell.style.margin = '0 auto';
+          shell.style.background = '#101116';
+          shell.style.border = '1px solid rgba(255,255,255,.18)';
+          shell.style.borderRadius = '16px';
+          shell.style.overflow = 'hidden';
+          shell.style.boxShadow = '0 12px 36px rgba(0,0,0,.34)';
+          shell.style.pointerEvents = 'auto';
+
+          const header = document.createElement('div');
+          header.style.minHeight = '44px';
+          header.style.display = 'flex';
+          header.style.alignItems = 'center';
+          header.style.padding = '8px 8px 8px 14px';
+          header.style.background = '#10265E';
+          header.style.color = '#fff';
+          header.style.fontFamily = 'Arial, sans-serif';
+
+          const textWrap = document.createElement('div');
+          textWrap.style.flex = '1';
+          textWrap.style.minWidth = '0';
+
+          const label = document.createElement('div');
+          label.textContent = source || 'Podcast';
+          label.style.fontSize = '10px';
+          label.style.fontWeight = '700';
+          label.style.opacity = '.72';
+          label.style.marginBottom = '2px';
+
+          const titleEl = document.createElement('div');
+          titleEl.textContent = title || 'Áudio';
+          titleEl.style.fontSize = '13px';
+          titleEl.style.fontWeight = '700';
+          titleEl.style.whiteSpace = 'nowrap';
+          titleEl.style.overflow = 'hidden';
+          titleEl.style.textOverflow = 'ellipsis';
+
+          const close = document.createElement('button');
+          close.type = 'button';
+          close.setAttribute('aria-label', 'Fechar player');
+          close.textContent = '×';
+          close.style.border = '0';
+          close.style.background = 'transparent';
+          close.style.color = '#fff';
+          close.style.fontSize = '26px';
+          close.style.lineHeight = '1';
+          close.style.width = '38px';
+          close.style.height = '38px';
+          close.style.cursor = 'pointer';
+
+          const playerWrap = document.createElement('div');
+          playerWrap.style.padding = '12px 14px 14px';
+          playerWrap.style.background = '#191B22';
+
+          const audio = document.createElement('audio');
+          audio.controls = true;
+          audio.preload = 'metadata';
+          audio.playsInline = true;
+          audio.src = url;
+          audio.style.width = '100%';
+          audio.style.display = 'block';
+
+          const status = document.createElement('div');
+          status.style.color = '#A7A6A1';
+          status.style.font = '500 11px/1.35 Arial, sans-serif';
+          status.style.marginTop = '8px';
+          status.textContent = 'toque no play para começar';
+
+          audio.addEventListener('playing', function () {
+            status.textContent = 'tocando dentro do Repertório';
+          });
+
+          audio.addEventListener('pause', function () {
+            if (!audio.ended) status.textContent = 'pausado';
+          });
+
+          audio.addEventListener('ended', function () {
+            status.textContent = 'episódio concluído';
+          });
+
+          audio.addEventListener('error', function () {
+            status.textContent =
+              'não consegui carregar este áudio. Feche e tente novamente.';
+          });
+
+          textWrap.appendChild(label);
+          textWrap.appendChild(titleEl);
+          header.appendChild(textWrap);
+          header.appendChild(close);
+          playerWrap.appendChild(audio);
+          playerWrap.appendChild(status);
+          shell.appendChild(header);
+          shell.appendChild(playerWrap);
+          overlay.appendChild(shell);
+          document.body.appendChild(overlay);
+
+          const dismiss = function () {
+            try {
+              audio.pause();
+              audio.removeAttribute('src');
+              audio.load();
+            } catch (_) {}
+            overlay.remove();
+          };
+
+          close.addEventListener('click', dismiss);
+          close.focus();
+          audio.load();
+
+          return true;
+        } catch (_) {
+          return false;
+        }
+      }
+    };
+
     window.repertorioSpotifyState = {
       api: null,
       controller: null,
@@ -551,7 +688,6 @@
       }
     };
   </script>
-  <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>

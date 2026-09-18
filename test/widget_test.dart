@@ -74,7 +74,7 @@ void main() {
 
     expect(find.text('em 30 segundos'), findsOneWidget);
     expect(find.byKey(const ValueKey('reader-back')), findsOneWidget);
-    expect(find.byKey(const ValueKey('reader-audio')), findsOneWidget);
+    expect(find.byKey(const ValueKey('reader-audio')), findsNothing);
     expect(find.byIcon(Icons.more_horiz), findsOneWidget);
     expect(find.text('ouvir aqui'), findsNothing);
 
@@ -117,6 +117,23 @@ void main() {
       reloaded.progressFor('bauhaus'),
       greaterThan(0),
     );
+  });
+
+  testWidgets('shows native podcast audio only when a direct stream exists',
+      (tester) async {
+    final state = await AppState.load();
+
+    await tester.pumpWidget(
+      AppStateScope(
+        state: state,
+        child: const MaterialApp(
+          home: ArticleScreen(topic: fermiTopic),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const ValueKey('reader-audio')), findsOneWidget);
   });
 
   testWidgets('reader back button always returns to the library',
