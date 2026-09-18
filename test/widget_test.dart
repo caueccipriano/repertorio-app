@@ -5,14 +5,22 @@ import 'package:repertorio_app/features/article/presentation/article_screen.dart
 import 'package:repertorio_app/features/today/data/demo_topics.dart';
 
 void main() {
-  testWidgets('renders the daily knowledge experience', (tester) async {
+  testWidgets('opens through onboarding into the knowledge library',
+      (tester) async {
     await tester.pumpWidget(const RepertorioApp());
     await tester.pumpAndSettle();
 
+    expect(find.text('saiba um pouco\nsobre tudo.'), findsOneWidget);
+    expect(find.text('pular'), findsOneWidget);
+
+    await tester.tap(find.text('pular'));
+    await tester.pumpAndSettle();
+
     expect(find.text('repertório*'), findsOneWidget);
-    expect(find.text('POR QUE A BAUHAUS MUDOU TUDO?'), findsOneWidget);
-    expect(find.text('Hoje'), findsOneWidget);
-    expect(find.text('Explorar'), findsOneWidget);
+    expect(find.text('DESTAQUE DE HOJE'), findsOneWidget);
+    expect(find.text('para hoje'), findsOneWidget);
+    expect(find.text('Início'), findsOneWidget);
+    expect(find.text('Catálogo'), findsOneWidget);
   });
 
   testWidgets('renders the article structure', (tester) async {
