@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import '../../../app/app_shell.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../../core/widgets/editorial_decorations.dart';
