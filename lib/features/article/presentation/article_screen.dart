@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../app/app_shell.dart';
 import '../../../app/state/app_state.dart';
 import '../../../app/state/app_state_scope.dart';
 import '../../../app/theme/app_colors.dart';
@@ -17,6 +18,15 @@ import '../../today/data/demo_topics.dart';
 import '../../today/domain/knowledge_topic.dart';
 import 'reader_controls_sheet.dart';
 import 'topic_media_section.dart';
+
+enum _ReaderMenuAction {
+  save,
+  queue,
+  offline,
+  note,
+  share,
+  map,
+}
 
 class ArticleScreen extends StatefulWidget {
   const ArticleScreen({
@@ -122,6 +132,12 @@ class _ArticleScreenState extends State<ArticleScreen> {
       child: Scaffold(
         backgroundColor: palette.background,
         appBar: AppBar(
+          leading: IconButton(
+            key: const ValueKey('reader-back'),
+            tooltip: 'Voltar',
+            onPressed: _goBack,
+            icon: const Icon(Icons.arrow_back_ios_new),
+          ),
           title: Text(
             '${(_progress * 100).round()}% · $remaining min',
             style: TextStyle(
@@ -141,71 +157,61 @@ class _ArticleScreenState extends State<ArticleScreen> {
             ),
           ),
           actions: [
-            if (!state.readerFocusMode) ...[
+            if (studySpeechSupported)
               IconButton(
-                tooltip: saved ? 'Remover dos salvos' : 'Salvar',
-                onPressed: _toggleSavedWithOffline,
+                key: const ValueKey('reader-audio'),
+                tooltip: _speaking ? 'Parar áudio' : 'Ouvir artigo',
+                onPressed: _toggleSpeech,
                 icon: Icon(
-                  saved ? Icons.bookmark : Icons.bookmark_border,
+                  _speaking
+                      ? Icons.stop_circle_outlined
+                      : Icons.headphones_outlined,
                 ),
               ),
-              IconButton(
-                tooltip: queued ? 'Remover da fila' : 'Ler depois',
-                onPressed: () =>
-                    state.toggleReadLater(widget.topic.id),
-                icon: Icon(
-                  queued
-                      ? Icons.playlist_add_check
-                      : Icons.playlist_add,
-                ),
-              ),
-              IconButton(
-                tooltip: offline
-                    ? 'Remover disponibilidade offline'
-                    : 'Disponível offline',
-                onPressed: _toggleOffline,
-                icon: Icon(
-                  offline
-                      ? Icons.offline_pin
-                      : Icons.download_for_offline_outlined,
-                ),
-              ),
-              if (studySpeechSupported)
-                IconButton(
-                  tooltip: _speaking ? 'Parar áudio' : 'Ouvir artigo',
-                  onPressed: _toggleSpeech,
-                  icon: Icon(
-                    _speaking
-                        ? Icons.stop_circle_outlined
-                        : Icons.headphones_outlined,
+            if (!state.readerFocusMode)
+              PopupMenuButton<_ReaderMenuAction>(
+                tooltip: 'Mais ações',
+                icon: const Icon(Icons.more_horiz),
+                onSelected: _handleMenuAction,
+                itemBuilder: (context) => [
+                  _readerMenuItem(
+                    _ReaderMenuAction.save,
+                    saved ? Icons.bookmark : Icons.bookmark_border,
+                    saved ? 'Remover dos salvos' : 'Salvar',
                   ),
-                ),
-              IconButton(
-                tooltip: note.isEmpty ? 'Adicionar nota' : 'Editar nota',
-                onPressed: () => _showNoteSheet(note),
-                icon: Icon(
-                  note.isEmpty
-                      ? Icons.note_add_outlined
-                      : Icons.sticky_note_2,
-                ),
-              ),
-              IconButton(
-                tooltip: 'Compartilhar aprendizado',
-                onPressed: _shareLearning,
-                icon: const Icon(Icons.ios_share_outlined),
-              ),
-              IconButton(
-                tooltip: 'Mapa',
-                onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute<void>(
-                    builder: (_) => KnowledgeMapScreen(
-                      rootTopicId: widget.topic.id,
-                    ),
+                  _readerMenuItem(
+                    _ReaderMenuAction.queue,
+                    queued
+                        ? Icons.playlist_add_check
+                        : Icons.playlist_add,
+                    queued ? 'Remover de ler depois' : 'Ler depois',
                   ),
-                ),
-                icon: const Icon(Icons.hub_outlined),
+                  _readerMenuItem(
+                    _ReaderMenuAction.offline,
+                    offline
+                        ? Icons.offline_pin
+                        : Icons.download_for_offline_outlined,
+                    offline ? 'Remover offline' : 'Disponível offline',
+                  ),
+                  _readerMenuItem(
+                    _ReaderMenuAction.note,
+                    note.isEmpty
+                        ? Icons.note_add_outlined
+                        : Icons.sticky_note_2_outlined,
+                    note.isEmpty ? 'Adicionar nota' : 'Editar nota',
+                  ),
+                  _readerMenuItem(
+                    _ReaderMenuAction.share,
+                    Icons.ios_share_outlined,
+                    'Compartilhar',
+                  ),
+                  _readerMenuItem(
+                    _ReaderMenuAction.map,
+                    Icons.hub_outlined,
+                    'Abrir mapa',
+                  ),
+                ],
               ),
-            ],
             TextButton(
               onPressed: () => showReaderControls(context),
               child: Text(
@@ -267,10 +273,28 @@ class _ArticleScreenState extends State<ArticleScreen> {
           topic: topic,
           palette: palette,
           bodyStyle: bodyStyle,
+          number: '02',
         ),
         _NextConnection(nextTopic: nextTopic, palette: palette),
       ]);
       return sections;
+    }
+
+    if (standard &&
+        (topic.simpleExplanation != null || topic.example != null)) {
+      sections.add(
+        _Section(
+          number: '02',
+          title: 'explicando sem complicar',
+          palette: palette,
+          child: _SimpleExplanationBlock(
+            explanation: topic.simpleExplanation,
+            example: topic.example,
+            palette: palette,
+            bodyStyle: bodyStyle,
+          ),
+        ),
+      );
     }
 
     if (topic.media.isNotEmpty && deep) {
@@ -283,7 +307,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
     if (standard) {
       sections.add(
         _Section(
-          number: '02',
+          number: '03',
           title: 'entenda de verdade',
           palette: palette,
           child: Column(
@@ -314,7 +338,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
       );
       sections.add(
         _Section(
-          number: '04',
+          number: '05',
           title: 'por que isso importa',
           palette: palette,
           child: _PassageBlock(
@@ -331,7 +355,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
     if (deep) {
       sections.add(
         _Section(
-          number: '05',
+          number: '06',
           title: 'uma coisa interessante',
           palette: palette,
           child: _PassageBlock(
@@ -348,7 +372,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
       if (glossary.isNotEmpty) {
         sections.add(
           _Section(
-            number: '06',
+            number: '07',
             title: 'glossário',
             palette: palette,
             child: _GlossarySection(
@@ -361,7 +385,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
 
       sections.add(
         _Section(
-          number: '07',
+          number: '08',
           title: 'conecte os pontos',
           palette: palette,
           child: _Connections(
@@ -377,7 +401,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
       if (entities.isNotEmpty) {
         sections.add(
           _Section(
-            number: '08',
+            number: '09',
             title: 'pessoas · lugares · ideias',
             palette: palette,
             child: _EntitySection(
@@ -392,7 +416,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
       if (sources.isNotEmpty) {
         sections.add(
           _Section(
-            number: '09',
+            number: '10',
             title: 'fontes e aprofundamento',
             palette: palette,
             child: _SourcesSection(
@@ -595,9 +619,23 @@ class _ArticleScreenState extends State<ArticleScreen> {
     ].join('\n\n');
 
     final rate = AppStateScope.read(context).voiceRate;
+    final started = await speakStudyText(text, rate: rate);
+
+    if (!mounted) return;
+
+    if (!started) {
+      setState(() => _speaking = false);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Não consegui iniciar o áudio. Tente tocar novamente ou confira se o iPhone não está com o volume de mídia zerado.',
+          ),
+        ),
+      );
+      return;
+    }
+
     setState(() => _speaking = true);
-    await speakStudyText(text, rate: rate);
-    if (mounted) setState(() => _speaking = false);
   }
 
   Future<void> _shareLearning() async {
