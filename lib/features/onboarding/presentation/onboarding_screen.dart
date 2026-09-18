@@ -44,7 +44,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   ];
 
   Future<void> _enterApp() async {
-    await AppStateScope.read(context).completeOnboarding();
+    // Update in-memory state immediately so the root app can leave onboarding
+    // even if iOS PWA storage is slow to persist.
+    final appState = AppStateScope.read(context);
+    await appState.completeOnboarding();
   }
 
   Future<void> _next() async {
@@ -89,7 +92,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                     const Spacer(),
                     TextButton(
-                      onPressed: _enterApp,
+                      onPressed: () => _enterApp(),
                       child: const Text('pular'),
                     ),
                   ],
@@ -124,7 +127,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                     const Spacer(),
                     FilledButton(
-                      onPressed: _next,
+                      onPressed: () => _next(),
                       style: FilledButton.styleFrom(
                         backgroundColor: AppColors.ink,
                         foregroundColor: AppColors.paperWhite,
