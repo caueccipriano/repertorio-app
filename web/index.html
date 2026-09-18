@@ -15,8 +15,8 @@
   <meta name="apple-mobile-web-app-title" content="Repertório">
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=4">
-  <link rel="manifest" href="manifest.json?v=4">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=5">
+  <link rel="manifest" href="manifest.json?v=5">
 
   <style>
     html,
@@ -70,6 +70,41 @@
         return /^https?:\/\//i.test(String(value || '')) || /^spotify:/i.test(String(value || ''));
       }
 
+      function toSpotifyEmbedUrl(value) {
+        try {
+          const raw = String(value || '').trim();
+          if (!raw) return null;
+
+          if (/^spotify:/i.test(raw)) {
+            const parts = raw.split(':');
+            if (parts.length >= 3) {
+              return 'https://open.spotify.com/embed/' + encodeURIComponent(parts[1]) + '/' + encodeURIComponent(parts[2]) + '?utm_source=generator&theme=0';
+            }
+            return null;
+          }
+
+          const url = new URL(raw);
+          const pathParts = url.pathname.split('/').filter(Boolean);
+          const embeddable = ['episode', 'show', 'track', 'album', 'playlist'];
+          const type = pathParts.find(part => embeddable.includes(part));
+          if (type) {
+            const index = pathParts.indexOf(type);
+            const id = pathParts[index + 1];
+            if (id) {
+              return 'https://open.spotify.com/embed/' + type + '/' + encodeURIComponent(id) + '?utm_source=generator&theme=0';
+            }
+          }
+
+          if (url.hostname.includes('spotify.com') && pathParts[0] === 'search') {
+            return raw;
+          }
+
+          return raw;
+        } catch (_) {
+          return null;
+        }
+      }
+
       function forceViewportSync() {
         try {
           document.documentElement.style.width = '100vw';
@@ -78,6 +113,137 @@
           document.body.style.height = '100dvh';
           window.scrollTo(0, 0);
         } catch (_) {}
+      }
+
+      function removeAudioPopup() {
+        try {
+          const previous = document.getElementById('repertorio-audio-popup');
+          if (previous) previous.remove();
+        } catch (_) {}
+      }
+
+      function showAudioPopup(url, title, source) {
+        removeAudioPopup();
+
+        const embedUrl = toSpotifyEmbedUrl(url);
+        if (!embedUrl || !isHttpUrl(embedUrl)) return false;
+
+        const overlay = document.createElement('div');
+        overlay.id = 'repertorio-audio-popup';
+        overlay.setAttribute('role', 'dialog');
+        overlay.setAttribute('aria-modal', 'false');
+        overlay.setAttribute('aria-label', 'Player de áudio');
+        overlay.style.position = 'fixed';
+        overlay.style.inset = '0';
+        overlay.style.zIndex = '2147483647';
+        overlay.style.pointerEvents = 'none';
+        overlay.style.display = 'flex';
+        overlay.style.alignItems = 'flex-start';
+        overlay.style.justifyContent = 'center';
+        overlay.style.padding = 'calc(env(safe-area-inset-top) + 68px) 12px 12px';
+        overlay.style.boxSizing = 'border-box';
+
+        const shell = document.createElement('div');
+        shell.style.width = 'min(100%, 430px)';
+        shell.style.maxHeight = 'calc(100dvh - env(safe-area-inset-top) - 96px)';
+        shell.style.background = '#121212';
+        shell.style.border = '1px solid rgba(255,255,255,.18)';
+        shell.style.borderRadius = '18px';
+        shell.style.overflow = 'hidden';
+        shell.style.boxShadow = '0 18px 48px rgba(0,0,0,.38)';
+        shell.style.pointerEvents = 'auto';
+        shell.style.fontFamily = 'Arial, sans-serif';
+
+        const header = document.createElement('div');
+        header.style.minHeight = '48px';
+        header.style.display = 'flex';
+        header.style.alignItems = 'center';
+        header.style.gap = '10px';
+        header.style.padding = '8px 8px 8px 14px';
+        header.style.background = '#10265E';
+        header.style.color = '#fff';
+
+        const textWrap = document.createElement('div');
+        textWrap.style.flex = '1';
+        textWrap.style.minWidth = '0';
+
+        const label = document.createElement('div');
+        label.textContent = source || 'Spotify';
+        label.style.fontSize = '10px';
+        label.style.fontWeight = '800';
+        label.style.letterSpacing = '.08em';
+        label.style.textTransform = 'uppercase';
+        label.style.opacity = '.72';
+        label.style.marginBottom = '2px';
+
+        const titleEl = document.createElement('div');
+        titleEl.textContent = title || 'Áudio';
+        titleEl.style.fontSize = '13px';
+        titleEl.style.fontWeight = '800';
+        titleEl.style.whiteSpace = 'nowrap';
+        titleEl.style.overflow = 'hidden';
+        titleEl.style.textOverflow = 'ellipsis';
+
+        const close = document.createElement('button');
+        close.type = 'button';
+        close.setAttribute('aria-label', 'Fechar player');
+        close.textContent = '×';
+        close.style.border = '0';
+        close.style.background = 'transparent';
+        close.style.color = '#fff';
+        close.style.fontSize = '28px';
+        close.style.lineHeight = '1';
+        close.style.width = '40px';
+        close.style.height = '40px';
+        close.style.borderRadius = '999px';
+        close.style.cursor = 'pointer';
+
+        const frameWrap = document.createElement('div');
+        frameWrap.style.background = '#121212';
+        frameWrap.style.padding = '10px';
+
+        const iframe = document.createElement('iframe');
+        iframe.src = embedUrl;
+        iframe.title = title || 'Spotify player';
+        iframe.loading = 'eager';
+        iframe.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+        iframe.allowFullscreen = true;
+        iframe.style.display = 'block';
+        iframe.style.width = '100%';
+        iframe.style.height = embedUrl.includes('/embed/') ? '232px' : '360px';
+        iframe.style.border = '0';
+        iframe.style.borderRadius = '12px';
+        iframe.style.background = '#121212';
+
+        const hint = document.createElement('div');
+        hint.textContent = embedUrl.includes('/embed/')
+          ? 'toque no play dentro do card'
+          : 'escolha um episódio dentro do Spotify';
+        hint.style.color = '#b8b8b8';
+        hint.style.font = '700 11px/1.35 Arial, sans-serif';
+        hint.style.marginTop = '8px';
+        hint.style.textAlign = 'center';
+
+        textWrap.appendChild(label);
+        textWrap.appendChild(titleEl);
+        header.appendChild(textWrap);
+        header.appendChild(close);
+        frameWrap.appendChild(iframe);
+        frameWrap.appendChild(hint);
+        shell.appendChild(header);
+        shell.appendChild(frameWrap);
+        overlay.appendChild(shell);
+        document.body.appendChild(overlay);
+
+        close.addEventListener('click', function () {
+          removeAudioPopup();
+        });
+
+        window.setTimeout(function () {
+          try { close.focus(); } catch (_) {}
+        }, 40);
+
+        return true;
       }
 
       window.addEventListener('resize', forceViewportSync, { passive: true });
@@ -94,25 +260,7 @@
           try {
             const target = String(url || '').trim();
             if (!isHttpUrl(target)) return false;
-
-            // iOS installed PWAs are strict: third-party iframes and delayed
-            // async launches often lose the user gesture. This keeps the open
-            // action synchronous and directly attached to the tap coming from Flutter.
-            const anchor = document.createElement('a');
-            anchor.href = target;
-            anchor.target = '_blank';
-            anchor.rel = 'noopener noreferrer';
-            anchor.style.position = 'fixed';
-            anchor.style.left = '-9999px';
-            anchor.style.top = '-9999px';
-            anchor.textContent = title || source || 'abrir áudio';
-            document.body.appendChild(anchor);
-            anchor.click();
-            window.setTimeout(function () {
-              try { anchor.remove(); } catch (_) {}
-            }, 1000);
-
-            return true;
+            return showAudioPopup(target, title, source);
           } catch (_) {
             return false;
           }
@@ -211,7 +359,7 @@
 
       window.repertorioSpotify = {
         open: function (url) {
-          return window.repertorioAudio.open(url, 'Spotify', 'Spotify');
+          return showAudioPopup(url, 'Spotify', 'Spotify');
         }
       };
 
@@ -327,6 +475,6 @@
       });
     }
   </script>
-  <script src="flutter_bootstrap.js?v=20260918-iphone-pwa-audio-touch-2" async></script>
+  <script src="flutter_bootstrap.js?v=20260918-pwa-spotify-popup-1" async></script>
 </body>
 </html>
