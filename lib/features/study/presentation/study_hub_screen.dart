@@ -239,6 +239,7 @@ class _StudySummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
     final values = [
       (due, 'revisões'),
       (queue, 'na fila'),
@@ -327,7 +328,7 @@ class _ToolCard extends StatelessWidget {
                         horizontal: 7,
                         vertical: 3,
                       ),
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         color: colors.primary,
                         shape: BoxShape.circle,
                       ),
