@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../app/app_shell.dart';
+import '../../../app/state/app_state_scope.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../../core/widgets/editorial_decorations.dart';
 import '../../../core/widgets/editorial_frame.dart';
@@ -43,12 +43,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     ),
   ];
 
-  void _enterApp() {
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute<void>(
-        builder: (_) => const AppShell(),
-      ),
-    );
+  Future<void> _enterApp() async {
+    await AppStateScope.read(context).completeOnboarding();
   }
 
   Future<void> _next() async {
