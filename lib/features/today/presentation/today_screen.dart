@@ -335,7 +335,24 @@ class _QuickActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final state = AppStateScope.of(context);
+    final quickTopic = allDemoTopics.firstWhere(
+      (topic) =>
+          topic.minutes <= 5 &&
+          !state.completedTopicIds.contains(topic.id),
+      orElse: () => allDemoTopics.first,
+    );
+
     final actions = <_QuickAction>[
+      _QuickAction(
+        label: '5 MIN',
+        icon: Icons.bolt_outlined,
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => ArticleScreen(topic: quickTopic),
+          ),
+        ),
+      ),
       _QuickAction(
         label: 'MAPA',
         icon: Icons.hub_outlined,
