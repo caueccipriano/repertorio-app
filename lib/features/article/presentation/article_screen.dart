@@ -102,10 +102,6 @@ class _ArticleScreenState extends State<ArticleScreen> {
     );
     final bodyStyle = _bodyStyle(state, palette);
     final nextTopic = _nextTopic(widget.topic);
-    final saved = state.isSaved(widget.topic.id);
-    final queued = state.isQueued(widget.topic.id);
-    final offline = state.isOfflineTopic(widget.topic.id);
-    final note = state.noteFor(widget.topic.id);
     final audioMedia = _audioFor(widget.topic);
     final remaining = ((1 - _progress) * widget.topic.minutes)
         .ceil()
@@ -600,85 +596,6 @@ class _ArticleScreenState extends State<ArticleScreen> {
     navigator.pushReplacement(
       MaterialPageRoute<void>(
         builder: (_) => const AppShell(),
-      ),
-    );
-  }
-
-  PopupMenuItem<_ReaderMenuAction> _readerMenuItem(
-    _ReaderMenuAction action,
-    IconData icon,
-    String label,
-  ) {
-    return PopupMenuItem<_ReaderMenuAction>(
-      value: action,
-      child: Row(
-        children: [
-          Icon(icon, size: 20),
-          const SizedBox(width: 12),
-          Text(label),
-        ],
-      ),
-    );
-  }
-
-  Future<void> _handleMenuAction(_ReaderMenuAction action) async {
-    final state = AppStateScope.read(context);
-
-    switch (action) {
-      case _ReaderMenuAction.save:
-        await _toggleSavedWithOffline();
-        return;
-      case _ReaderMenuAction.queue:
-        await state.toggleReadLater(widget.topic.id);
-        return;
-      case _ReaderMenuAction.offline:
-        await _toggleOffline();
-        return;
-      case _ReaderMenuAction.note:
-        await _showNoteSheet(state.noteFor(widget.topic.id));
-        return;
-      case _ReaderMenuAction.share:
-        await _shareLearning();
-        return;
-      case _ReaderMenuAction.map:
-        if (!mounted) return;
-        await Navigator.of(context).push(
-          MaterialPageRoute<void>(
-            builder: (_) => KnowledgeMapScreen(
-              rootTopicId: widget.topic.id,
-            ),
-          ),
-        );
-        return;
-    }
-  }
-
-  Future<void> _shareLearning() async {
-    final shared = await shareKnowledgeCard(
-      title: widget.topic.title,
-      body: widget.topic.quickTake,
-    );
-    if (!mounted) return;
-
-    if (shared) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Seu cartão editorial foi preparado.'),
-        ),
-      );
-      return;
-    }
-
-    final text =
-        '${widget.topic.title}\n\n${widget.topic.quickTake}\n\n— Repertório';
-    await Clipboard.setData(ClipboardData(text: text));
-    if (!mounted) return;
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text(
-          'Imagem indisponível aqui; o conteúdo foi copiado como texto.',
-        ),
       ),
     );
   }
