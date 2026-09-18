@@ -30,7 +30,7 @@ class TimelineScreen extends StatelessWidget {
                     child: Text(
                       event.year,
                       style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                            color: AppColors.blue,
+                            color: Theme.of(context).colorScheme.primary,
                             fontSize: 11,
                           ),
                     ),
@@ -41,7 +41,7 @@ class TimelineScreen extends StatelessWidget {
                         width: 12,
                         height: 12,
                         decoration: const BoxDecoration(
-                          color: AppColors.blue,
+                          color: Theme.of(context).colorScheme.primary,
                           shape: BoxShape.circle,
                         ),
                       ),
@@ -50,7 +50,7 @@ class TimelineScreen extends StatelessWidget {
                           width: 1,
                           color: index == timelineEvents.length - 1
                               ? Colors.transparent
-                              : AppColors.line,
+                              : Theme.of(context).colorScheme.outline,
                         ),
                       ),
                     ],
@@ -84,7 +84,7 @@ class TimelineScreen extends StatelessWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
-                                  ?.copyWith(color: AppColors.muted),
+                                  ?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
                             ),
                           ],
                         ),
