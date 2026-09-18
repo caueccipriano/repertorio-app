@@ -35,41 +35,39 @@ class TodayScreen extends StatelessWidget {
                 const SizedBox(height: 14),
                 const _LibraryNavigation(),
                 const SizedBox(height: 24),
-                _Shelf(
+                const _Shelf(
                   title: 'para hoje',
                   subtitle: '4 leituras · ~23 min',
-                  entries: const [
+                  entries: [
                     _ShelfEntry(
+                      topicId: 'bauhaus',
                       title: 'Por que a Bauhaus mudou tudo?',
                       category: 'Design · História',
                       minutes: '6 min',
                       style: KnowledgeCoverStyle.bauhaus,
-                      opensFeaturedArticle: true,
                     ),
                     _ShelfEntry(
+                      topicId: 'fermi',
                       title: 'O paradoxo de Fermi',
                       category: 'Ciência',
                       minutes: '5 min',
-                      style: KnowledgeCoverStyle.orbit,
+                      style: KnowledgeCoverStyle.constellation,
                     ),
                     _ShelfEntry(
+                      topicId: 'roma',
                       title: 'Por que Roma caiu?',
                       category: 'História',
                       minutes: '7 min',
-                      style: KnowledgeCoverStyle.columns,
+                      style: KnowledgeCoverStyle.stamp,
                     ),
                     _ShelfEntry(
-                      title: 'De onde veio o símbolo @?',
-                      category: 'Tecnologia',
-                      minutes: '5 min',
+                      topicId: 'helvetica',
+                      title: 'Por que Helvetica está em todo lugar?',
+                      category: 'Design',
+                      minutes: '4 min',
                       style: KnowledgeCoverStyle.typography,
                     ),
                   ],
-                  onOpenFeatured: () => Navigator.of(context).push(
-                    MaterialPageRoute<void>(
-                      builder: (_) => const ArticleScreen(topic: bauhausTopic),
-                    ),
-                  ),
                 ),
                 const SizedBox(height: 28),
                 const _ContinueShelf(),
@@ -79,24 +77,28 @@ class TodayScreen extends StatelessWidget {
                   subtitle: 'uma estante para ficar mais curioso',
                   entries: [
                     _ShelfEntry(
+                      topicId: 'brutalismo',
                       title: 'Brutalismo',
                       category: 'Arquitetura',
                       minutes: '4 min',
                       style: KnowledgeCoverStyle.archive,
                     ),
                     _ShelfEntry(
+                      topicId: 'vinho',
                       title: 'Por que vinho envelhece?',
                       category: 'Gastronomia',
                       minutes: '5 min',
                       style: KnowledgeCoverStyle.waves,
                     ),
                     _ShelfEntry(
+                      topicId: 'helvetica',
                       title: 'Helvetica',
                       category: 'Design',
                       minutes: '4 min',
-                      style: KnowledgeCoverStyle.typography,
+                      style: KnowledgeCoverStyle.diagonal,
                     ),
                     _ShelfEntry(
+                      topicId: 'inflacao',
                       title: 'O que é inflação?',
                       category: 'Economia',
                       minutes: '6 min',
@@ -331,13 +333,11 @@ class _Shelf extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.entries,
-    this.onOpenFeatured,
   });
 
   final String title;
   final String subtitle;
   final List<_ShelfEntry> entries;
-  final VoidCallback? onOpenFeatured;
 
   @override
   Widget build(BuildContext context) {
@@ -356,10 +356,7 @@ class _Shelf extends StatelessWidget {
             itemBuilder: (context, index) {
               final entry = entries[index];
 
-              return _ShelfBook(
-                entry: entry,
-                onTap: entry.opensFeaturedArticle ? onOpenFeatured : null,
-              );
+              return _ShelfBook(entry: entry);
             },
           ),
         ),
@@ -419,14 +416,14 @@ class _ShelfHeader extends StatelessWidget {
 class _ShelfBook extends StatelessWidget {
   const _ShelfBook({
     required this.entry,
-    this.onTap,
   });
 
   final _ShelfEntry entry;
-  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
+    final topic = topicById(entry.topicId);
+
     return SizedBox(
       width: 138,
       child: Column(
@@ -438,7 +435,13 @@ class _ShelfBook extends StatelessWidget {
             style: entry.style,
             width: 132,
             height: 184,
-            onTap: onTap,
+            onTap: topic == null
+                ? null
+                : () => Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) => ArticleScreen(topic: topic),
+                      ),
+                    ),
           ),
           const SizedBox(height: 9),
           Text(
@@ -468,6 +471,8 @@ class _ContinueShelf extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final topic = topicById('modernismo');
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -476,7 +481,17 @@ class _ContinueShelf extends StatelessWidget {
           subtitle: 'seu histórico recente',
         ),
         const SizedBox(height: 14),
-        Container(
+        Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: topic == null
+                ? null
+                : () => Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) => ArticleScreen(topic: topic),
+                      ),
+                    ),
+            child: Container(
           padding: const EdgeInsets.fromLTRB(14, 14, 14, 12),
           decoration: BoxDecoration(
             color: AppColors.paperWhite,
@@ -532,6 +547,8 @@ class _ContinueShelf extends StatelessWidget {
               ),
             ],
           ),
+            ),
+          ),
         ),
       ],
     );
@@ -543,7 +560,19 @@ class _RabbitHoleShelf extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    final topic = topicById('modernismo');
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: topic == null
+            ? null
+            : () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => ArticleScreen(topic: topic),
+                  ),
+                ),
+        child: Container(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 18),
       decoration: BoxDecoration(
         color: AppColors.deepBlue,
@@ -585,22 +614,24 @@ class _RabbitHoleShelf extends StatelessWidget {
           ),
         ],
       ),
+        ),
+      ),
     );
   }
 }
 
 class _ShelfEntry {
   const _ShelfEntry({
+    required this.topicId,
     required this.title,
     required this.category,
     required this.minutes,
     required this.style,
-    this.opensFeaturedArticle = false,
   });
 
+  final String topicId;
   final String title;
   final String category;
   final String minutes;
   final KnowledgeCoverStyle style;
-  final bool opensFeaturedArticle;
 }
