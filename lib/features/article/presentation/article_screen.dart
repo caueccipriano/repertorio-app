@@ -135,7 +135,6 @@ class _ArticleScreenState extends State<ArticleScreen> {
           leading: TextButton(
             style: TextButton.styleFrom(foregroundColor: palette.text, minimumSize: const Size(64, 48)),
             key: const ValueKey('reader-back'),
-            tooltip: 'Voltar',
             onPressed: _goBack,
             child: const Text('←', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w700)),
           ),
