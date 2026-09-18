@@ -53,7 +53,7 @@ class HighlightsScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final entry = entries[index];
                   return Material(
-                    color: AppColors.paperWhite,
+                    color: Theme.of(context).colorScheme.surface,
                     child: InkWell(
                       onTap: () => Navigator.of(context).push(
                         MaterialPageRoute<void>(
@@ -64,7 +64,7 @@ class HighlightsScreen extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
-                          border: Border.all(color: AppColors.ink),
+                          border: Border.all(color: Theme.of(context).colorScheme.onSurface),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,7 +80,7 @@ class HighlightsScreen extends StatelessWidget {
                                         .textTheme
                                         .labelLarge
                                         ?.copyWith(
-                                          color: AppColors.blue,
+                                          color: Theme.of(context).colorScheme.primary,
                                           fontSize: 9,
                                         ),
                                   ),
@@ -98,8 +98,8 @@ class HighlightsScreen extends StatelessWidget {
                                         ? Icons.star
                                         : Icons.star_border,
                                     color: entry.starred
-                                        ? AppColors.blue
-                                        : AppColors.ink,
+                                        ? Theme.of(context).colorScheme.primary
+                                        : Theme.of(context).colorScheme.onSurface,
                                   ),
                                 ),
                               ],
