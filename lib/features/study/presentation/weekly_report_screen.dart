@@ -30,6 +30,11 @@ class WeeklyReportScreen extends StatelessWidget {
 
     final sortedTags = tags.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
+    final weeklyMinutes = topics.fold<int>(
+      0,
+      (sum, topic) =>
+          sum + (topic.minutes * state.progressFor(topic.id)).round(),
+    );
 
     return Scaffold(
       appBar: AppBar(title: const Text('sua semana')),
@@ -45,7 +50,7 @@ class WeeklyReportScreen extends StatelessWidget {
             _StatsRow(
               days: state.studiedDaysThisWeek(),
               topics: topics.length,
-              minutes: state.studiedMinutesEstimate(),
+              minutes: weeklyMinutes,
             ),
             const SizedBox(height: 28),
             Text(
