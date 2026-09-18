@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../core/audio/spotify_embed.dart';
 import '../../today/domain/knowledge_topic.dart';
 
 class TopicMediaSection extends StatelessWidget {
@@ -154,7 +155,7 @@ class _ExternalMediaPreview extends StatelessWidget {
             Expanded(
               child: Text(
                 isSpotify
-                    ? 'abrir no Spotify'
+                    ? 'ouvir aqui'
                     : isVideo
                         ? 'abrir vídeo'
                         : 'ouvir áudio',
@@ -235,22 +236,9 @@ Future<void> _open(String url) async {
   }
 
   if (uri.host == 'open.spotify.com') {
-    final segments = uri.pathSegments;
-    final episodeIndex = segments.indexOf('episode');
-    if (episodeIndex >= 0 && episodeIndex + 1 < segments.length) {
-      final episodeId = segments[episodeIndex + 1];
-      final spotifyUri = Uri.parse('spotify:episode:$episodeId');
-      try {
-        final opened = await launchUrl(
-          spotifyUri,
-          mode: LaunchMode.externalApplication,
-        );
-        if (opened) {
-          return;
-        }
-      } catch (_) {
-        // Universal HTTPS link below is the reliable fallback on iOS/PWA.
-      }
+    final openedInside = await openSpotifyEmbed(url);
+    if (openedInside) {
+      return;
     }
   }
 
