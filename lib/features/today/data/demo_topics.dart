@@ -243,7 +243,7 @@ const inflationTopic = KnowledgeTopic(
   simpleExplanation:
       'Se apenas o tomate fica caro porque uma safra foi ruim, isso é uma alta específica de preço. Falamos em inflação quando aumentos se espalham por muitos bens e serviços e persistem ao longo do tempo. Por isso, inflação é sobre o nível geral de preços, não sobre um item isolado.',
   example:
-      'Se R$ 100 compravam dez itens da sua cesta e, depois de algum tempo, compram apenas nove, houve perda de poder de compra. O dinheiro continua valendo R$ 100 no papel, mas compra menos coisas.',
+      'Se R\$ 100 compravam dez itens da sua cesta e, depois de algum tempo, compram apenas nove, houve perda de poder de compra. O dinheiro continua valendo R\$ 100 no papel, mas compra menos coisas.',
   body: [
     'Preços mudam o tempo todo por motivos diferentes: clima, oferta, demanda, câmbio, salários, energia, impostos, logística e outros fatores.',
     'Um índice de inflação tenta resumir milhares de variações de preço em uma medida única. Para isso, acompanha uma cesta de bens e serviços com pesos diferentes.',
