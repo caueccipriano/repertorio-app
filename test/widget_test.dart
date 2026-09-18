@@ -14,30 +14,17 @@ void main() {
     SharedPreferences.setMockInitialValues({});
   });
 
-  testWidgets('shows onboarding once and then opens the library',
+  testWidgets('opens the library directly without onboarding lockout',
       (tester) async {
-    await tester.pumpWidget(const RepertorioApp());
-    await tester.pumpAndSettle();
-
-    expect(find.text('saiba um pouco\nsobre tudo.'), findsOneWidget);
-    expect(find.text('pular'), findsOneWidget);
-
-    await tester.tap(find.text('pular'));
-    await tester.pumpAndSettle();
-
-    expect(find.text('repertório*'), findsOneWidget);
-    expect(find.text('DESTAQUE DE HOJE'), findsOneWidget);
-    expect(find.text('para hoje'), findsOneWidget);
-    expect(find.text('Início'), findsOneWidget);
-    expect(find.text('Catálogo'), findsOneWidget);
-
-    await tester.pumpWidget(const SizedBox.shrink());
-    await tester.pumpAndSettle();
     await tester.pumpWidget(const RepertorioApp());
     await tester.pumpAndSettle();
 
     expect(find.text('pular'), findsNothing);
     expect(find.text('repertório*'), findsOneWidget);
+    expect(find.text('DESTAQUE DE HOJE'), findsOneWidget);
+    expect(find.text('para hoje'), findsOneWidget);
+    expect(find.text('Início'), findsOneWidget);
+    expect(find.text('Catálogo'), findsOneWidget);
   });
 
   testWidgets('renders a topic collection as a library shelf', (tester) async {
