@@ -121,6 +121,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.byKey(const ValueKey('reader-audio')), findsOneWidget);
+    expect(find.byKey(const ValueKey('reader-settings')), findsOneWidget);
   });
 
   testWidgets('reader back button always returns to the library',
