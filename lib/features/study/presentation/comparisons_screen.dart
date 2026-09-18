@@ -48,7 +48,7 @@ class _ComparisonCard extends StatelessWidget {
             ),
           ),
           Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               border: Border(
                 top: BorderSide(color: Theme.of(context).colorScheme.onSurface),
                 bottom: BorderSide(color: Theme.of(context).colorScheme.onSurface),
@@ -71,7 +71,7 @@ class _ComparisonCard extends StatelessWidget {
           ),
           ...item.rows.map(
             (row) => Container(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(color: Theme.of(context).colorScheme.outline),
                 ),
@@ -146,7 +146,7 @@ class _ValueCell extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(10),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         border: Border(
           left: BorderSide(color: Theme.of(context).colorScheme.outline),
         ),
