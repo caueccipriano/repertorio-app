@@ -32,7 +32,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
     final isDue = dueIds.contains(card.topic.id);
 
     return Scaffold(
-      backgroundColor: AppColors.paper,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.fromLTRB(20, 28, 20, 32),
@@ -47,7 +47,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 Text(
                   isDue ? 'REVISÃO' : 'AQUECIMENTO',
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                        color: AppColors.blue,
+                        color: Theme.of(context).colorScheme.primary,
                         fontSize: 10,
                         letterSpacing: 1.1,
                       ),
@@ -58,15 +58,15 @@ class _ReviewScreenState extends State<ReviewScreen> {
             Text(
               'Gerados a partir do que você leu, lembrou e anotou.',
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: AppColors.muted,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
             ),
             const SizedBox(height: 34),
             Container(
               padding: const EdgeInsets.fromLTRB(22, 24, 22, 26),
               decoration: BoxDecoration(
-                color: AppColors.paperWhite,
-                border: Border.all(color: AppColors.ink),
+                color: Theme.of(context).colorScheme.surface,
+                border: Border.all(color: Theme.of(context).colorScheme.onSurface),
                 boxShadow: const [
                   BoxShadow(
                     color: Color(0x18000000),
@@ -80,7 +80,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                   Text(
                     card.topic.tags.join(' · ').toUpperCase(),
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                          color: AppColors.blue,
+                          color: Theme.of(context).colorScheme.primary,
                           fontSize: 9,
                           letterSpacing: 1.1,
                         ),
@@ -105,7 +105,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.all(18),
-                      color: AppColors.softBlue,
+                      color: Theme.of(context).colorScheme.surfaceContainerHighest,
                       child: Text(
                         card.answer,
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
@@ -117,7 +117,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                     Text(
                       'COMO FOI?',
                       style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                            color: AppColors.muted,
+                            color: Theme.of(context).colorScheme.onSurfaceVariant,
                             fontSize: 10,
                             letterSpacing: 1.1,
                           ),
@@ -159,7 +159,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
               '${(_index % cards.length) + 1} de ${cards.length} cartões',
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                    color: AppColors.muted,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                     fontSize: 9,
                   ),
             ),
@@ -256,7 +256,7 @@ class _ReviewChoice extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 13),
         decoration: const BoxDecoration(
           border: Border(
-            bottom: BorderSide(color: AppColors.line),
+            bottom: BorderSide(color: Theme.of(context).colorScheme.outline),
           ),
         ),
         child: Row(
@@ -284,7 +284,7 @@ class _NoReviewsYet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.paper,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(22),
