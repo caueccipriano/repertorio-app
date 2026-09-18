@@ -115,10 +115,13 @@ class _AppearanceOption extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Radio<AppAppearance>(
-                    value: mode,
-                    groupValue: selected ? mode : null,
-                    onChanged: (_) => onTap(),
+                  Icon(
+                    selected
+                        ? Icons.radio_button_checked
+                        : Icons.radio_button_off,
+                    color: selected
+                        ? colors.primary
+                        : colors.onSurfaceVariant,
                   ),
                 ],
               ),
