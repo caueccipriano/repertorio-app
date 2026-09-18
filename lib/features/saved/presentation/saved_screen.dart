@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/state/app_state_scope.dart';
-import '../../../app/theme/app_colors.dart';
 import '../../../core/widgets/editorial_frame.dart';
 import '../../../core/widgets/knowledge_cover.dart';
 import '../../../core/widgets/paper_texture.dart';
@@ -162,8 +161,10 @@ class _SavedTabs extends StatelessWidget {
                   color: isSelected ? Theme.of(context).colorScheme.onSurface : Colors.transparent,
                   border: item.$1 == tabs.length - 1
                       ? null
-                      : const Border(
-                          right: BorderSide(color: Theme.of(context).colorScheme.onSurface),
+                      : Border(
+                          right: BorderSide(
+                            color: Theme.of(context).colorScheme.outline,
+                          ),
                         ),
                 ),
                 child: Text(
