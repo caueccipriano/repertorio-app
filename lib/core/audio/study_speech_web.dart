@@ -4,18 +4,19 @@ import 'dart:js_interop';
 external JSBoolean _supported();
 
 @JS('repertorioSpeech.speak')
-external JSPromise<JSString> _speak(JSString text, JSNumber rate);
+external JSPromise<JSBoolean> _speak(JSString text, JSNumber rate);
 
 @JS('repertorioSpeech.stop')
 external void _stop();
 
 bool get studySpeechSupported => _supported().toDart;
 
-Future<void> speakStudyText(
+Future<bool> speakStudyText(
   String text, {
   double rate = 1,
 }) async {
-  await _speak(text.toJS, rate.toJS).toDart;
+  final result = await _speak(text.toJS, rate.toJS).toDart;
+  return result.toDart;
 }
 
 void stopStudySpeech() => _stop();

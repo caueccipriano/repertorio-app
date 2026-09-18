@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../app/theme/app_colors.dart';
 import '../../today/domain/knowledge_topic.dart';
 
 class TopicMediaSection extends StatelessWidget {
@@ -18,13 +17,15 @@ class TopicMediaSection extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
+    final colors = Theme.of(context).colorScheme;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'VEJA / OUÇA',
           style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                color: AppColors.blue,
+                color: colors.primary,
                 fontSize: 10,
                 letterSpacing: 1.2,
               ),
@@ -48,10 +49,12 @@ class _MediaCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.paperWhite,
-        border: Border.all(color: AppColors.ink),
+        color: colors.surface,
+        border: Border.all(color: colors.outline),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,9 +65,14 @@ class _MediaCard extends StatelessWidget {
               child: Image.network(
                 item.url,
                 fit: BoxFit.cover,
-                errorBuilder: (_, __, ___) => const _MediaFallback(
+                errorBuilder: (_, __, ___) => _MediaFallback(
                   icon: Icons.image_not_supported_outlined,
-                  label: 'imagem indisponível',
+                  label: 'não consegui carregar a imagem',
+                  actionLabel:
+                      item.sourceUrl == null ? null : 'abrir na fonte',
+                  onTap: item.sourceUrl == null
+                      ? null
+                      : () => _open(item.sourceUrl!),
                 ),
               ),
             )
@@ -86,7 +94,7 @@ class _MediaCard extends StatelessWidget {
                   Text(
                     item.caption!,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: AppColors.muted,
+                          color: colors.onSurfaceVariant,
                         ),
                   ),
                 ],
@@ -97,7 +105,7 @@ class _MediaCard extends StatelessWidget {
                     child: Text(
                       item.sourceLabel ?? 'fonte',
                       style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                            color: AppColors.blue,
+                            color: colors.primary,
                             fontSize: 9,
                             decoration: TextDecoration.underline,
                           ),
@@ -111,17 +119,6 @@ class _MediaCard extends StatelessWidget {
       ),
     );
   }
-
-  Future<void> _open(String url) async {
-    final uri = Uri.tryParse(url);
-    if (uri == null) {
-      return;
-    }
-    await launchUrl(
-      uri,
-      mode: LaunchMode.externalApplication,
-    );
-  }
 }
 
 class _ExternalMediaPreview extends StatelessWidget {
@@ -132,24 +129,19 @@ class _ExternalMediaPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isVideo = item.type == KnowledgeMediaType.video;
+    final colors = Theme.of(context).colorScheme;
 
     return InkWell(
-      onTap: () async {
-        final uri = Uri.tryParse(item.url);
-        if (uri == null) {
-          return;
-        }
-        await launchUrl(uri, mode: LaunchMode.externalApplication);
-      },
+      onTap: () => _open(item.url),
       child: Container(
         height: 122,
-        color: AppColors.deepBlue,
+        color: colors.primary,
         padding: const EdgeInsets.all(18),
         child: Row(
           children: [
             Icon(
               isVideo ? Icons.play_circle_outline : Icons.headphones,
-              color: Colors.white,
+              color: colors.onPrimary,
               size: 42,
             ),
             const SizedBox(width: 16),
@@ -157,13 +149,13 @@ class _ExternalMediaPreview extends StatelessWidget {
               child: Text(
                 isVideo ? 'abrir vídeo' : 'ouvir áudio',
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      color: Colors.white,
+                      color: colors.onPrimary,
                     ),
               ),
             ),
-            const Icon(
+            Icon(
               Icons.open_in_new,
-              color: Colors.white70,
+              color: colors.onPrimary.withValues(alpha: .7),
             ),
           ],
         ),
@@ -176,24 +168,63 @@ class _MediaFallback extends StatelessWidget {
   const _MediaFallback({
     required this.icon,
     required this.label,
+    this.actionLabel,
+    this.onTap,
   });
 
   final IconData icon;
   final String label;
+  final String? actionLabel;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.line,
-      alignment: Alignment.center,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, size: 32),
-          const SizedBox(height: 8),
-          Text(label),
-        ],
+    final colors = Theme.of(context).colorScheme;
+
+    return Material(
+      color: colors.surfaceContainerHighest,
+      child: InkWell(
+        onTap: onTap,
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(22),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(icon, size: 32, color: colors.onSurfaceVariant),
+                const SizedBox(height: 8),
+                Text(
+                  label,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: colors.onSurfaceVariant),
+                ),
+                if (actionLabel != null) ...[
+                  const SizedBox(height: 8),
+                  Text(
+                    actionLabel!,
+                    style: TextStyle(
+                      color: colors.primary,
+                      fontWeight: FontWeight.w800,
+                      fontSize: 11,
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
+}
+
+Future<void> _open(String url) async {
+  final uri = Uri.tryParse(url);
+  if (uri == null) {
+    return;
+  }
+  await launchUrl(
+    uri,
+    mode: LaunchMode.externalApplication,
+  );
 }
