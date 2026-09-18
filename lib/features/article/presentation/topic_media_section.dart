@@ -130,6 +130,7 @@ class _ExternalMediaPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isVideo = item.type == KnowledgeMediaType.video;
+    final isSpotify = item.url.contains('open.spotify.com');
     final colors = Theme.of(context).colorScheme;
 
     return InkWell(
@@ -141,14 +142,22 @@ class _ExternalMediaPreview extends StatelessWidget {
         child: Row(
           children: [
             Icon(
-              isVideo ? Icons.play_circle_outline : Icons.headphones,
+              isSpotify
+                  ? Icons.music_note_rounded
+                  : isVideo
+                      ? Icons.play_circle_outline
+                      : Icons.headphones,
               color: colors.onPrimary,
               size: 42,
             ),
             const SizedBox(width: 16),
             Expanded(
               child: Text(
-                isVideo ? 'abrir vídeo' : 'ouvir áudio',
+                isSpotify
+                    ? 'abrir no Spotify'
+                    : isVideo
+                        ? 'abrir vídeo'
+                        : 'ouvir áudio',
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                       color: colors.onPrimary,
                     ),
@@ -224,6 +233,27 @@ Future<void> _open(String url) async {
   if (uri == null) {
     return;
   }
+
+  if (uri.host == 'open.spotify.com') {
+    final segments = uri.pathSegments;
+    final episodeIndex = segments.indexOf('episode');
+    if (episodeIndex >= 0 && episodeIndex + 1 < segments.length) {
+      final episodeId = segments[episodeIndex + 1];
+      final spotifyUri = Uri.parse('spotify:episode:$episodeId');
+      try {
+        final opened = await launchUrl(
+          spotifyUri,
+          mode: LaunchMode.externalApplication,
+        );
+        if (opened) {
+          return;
+        }
+      } catch (_) {
+        // Universal HTTPS link below is the reliable fallback on iOS/PWA.
+      }
+    }
+  }
+
   await launchUrl(
     uri,
     mode: LaunchMode.externalApplication,
