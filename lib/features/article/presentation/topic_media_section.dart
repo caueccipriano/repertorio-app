@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/audio/spotify_embed.dart';
@@ -63,20 +64,26 @@ class _MediaCard extends StatelessWidget {
           if (item.type == KnowledgeMediaType.image)
             AspectRatio(
               aspectRatio: 16 / 10,
-              child: Image.network(
-                item.url,
-                fit: BoxFit.cover,
-                webHtmlElementStrategy: WebHtmlElementStrategy.fallback,
-                errorBuilder: (_, __, ___) => _MediaFallback(
-                  icon: Icons.image_not_supported_outlined,
-                  label: 'não consegui carregar a imagem',
-                  actionLabel:
-                      item.sourceUrl == null ? null : 'abrir na fonte',
-                  onTap: item.sourceUrl == null
-                      ? null
-                      : () => _open(item.sourceUrl!),
-                ),
-              ),
+              child: item.url.endsWith('.svg') && item.url.startsWith('assets/')
+                  ? SvgPicture.asset(
+                      item.url,
+                      fit: BoxFit.cover,
+                      semanticsLabel: item.title,
+                    )
+                  : Image.network(
+                      item.url,
+                      fit: BoxFit.cover,
+                      webHtmlElementStrategy: WebHtmlElementStrategy.fallback,
+                      errorBuilder: (_, __, ___) => _MediaFallback(
+                        icon: Icons.image_not_supported_outlined,
+                        label: 'não consegui carregar a imagem',
+                        actionLabel:
+                            item.sourceUrl == null ? null : 'abrir na fonte',
+                        onTap: item.sourceUrl == null
+                            ? null
+                            : () => _open(item.sourceUrl!),
+                      ),
+                    ),
             )
           else
             _ExternalMediaPreview(item: item),
