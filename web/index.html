@@ -125,8 +125,12 @@
               if (!started) finishStartup(false);
             };
 
+            // iOS Safari requires speech to be queued directly inside the
+            // user gesture. Treat a successfully queued utterance as started;
+            // WebKit does not reliably dispatch onstart.
             synth.speak(utterance);
             if (synth.paused) synth.resume();
+            finishStartup(true);
           };
 
           if (synth.speaking || synth.pending || synth.paused) {
