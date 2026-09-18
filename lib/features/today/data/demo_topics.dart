@@ -86,7 +86,16 @@ const modernismTopic = KnowledgeTopic(
       'Prédios, móveis, identidades visuais e interfaces digitais ainda carregam princípios de clareza, função, padronização e redução formal desenvolvidos nesse período. Entender o modernismo ajuda a enxergar de onde veio boa parte da aparência do mundo contemporâneo.',
   curiosity:
       '“Menos é mais”, frase associada a Mies van der Rohe, virou um dos resumos mais famosos da sensibilidade modernista — mesmo que o movimento fosse muito mais diverso do que essa frase sugere.',
-  connections: ['Bauhaus', 'Brasília', 'Brutalismo', 'Le Corbusier'],
+  connections: ['Bauhaus', 'Brasília', 'Brutalismo', 'Le Corbusier'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/4pbke9lDgQSP6kWvr4atyU',
+      title: 'Arquitetura, Modernismo e Memória',
+      caption: '39 min 53 s · Arte IN FORMA',
+      sourceLabel: 'Spotify · Arte IN FORMA',
+      sourceUrl: 'https://open.spotify.com/episode/4pbke9lDgQSP6kWvr4atyU',
+    ),
+  ],
 );
 
 const fermiTopic = KnowledgeTopic(
@@ -177,7 +186,16 @@ const romeTopic = KnowledgeTopic(
       'Roma é um bom exemplo de como sistemas complexos raramente mudam por um único motivo. Crises políticas, economia, instituições, migrações e guerras se influenciam mutuamente. Isso ajuda a evitar explicações históricas simplistas.',
   curiosity:
       'Os habitantes do Império Romano do Oriente continuavam se chamando de romanos muito depois da queda do Ocidente.',
-  connections: ['Bizâncio', 'Cristianismo', 'Povos germânicos', 'Feudalismo'],
+  connections: ['Bizâncio', 'Cristianismo', 'Povos germânicos', 'Feudalismo'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/1xHuxX6No3KH527N2tDP93',
+      title: 'Apogeu e queda do Império Romano',
+      caption: '1 h 53 min · Caravelas Podcast',
+      sourceLabel: 'Spotify · Caravelas Podcast',
+      sourceUrl: 'https://open.spotify.com/episode/1xHuxX6No3KH527N2tDP93',
+    ),
+  ],
 );
 
 const brutalismTopic = KnowledgeTopic(
@@ -291,7 +309,16 @@ const inflationTopic = KnowledgeTopic(
       'Inflação afeta salário real, orçamento, contratos, juros, investimentos e decisões de longo prazo. Entendê-la ajuda a interpretar notícias econômicas sem confundir “preços altos” com “inflação alta”.',
   curiosity:
       'Mesmo com inflação baixa, preços podem continuar subindo; o que muda é a velocidade desse aumento.',
-  connections: ['Juros', 'Banco Central', 'Salário real', 'Moeda'],
+  connections: ['Juros', 'Banco Central', 'Salário real', 'Moeda'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/2Kyi1bIQOXXpxsaRnz6mt3',
+      title: 'A melhora da inflação vai durar?',
+      caption: '13 min 52 s · Macro Review',
+      sourceLabel: 'Spotify · Macro Review',
+      sourceUrl: 'https://open.spotify.com/episode/2Kyi1bIQOXXpxsaRnz6mt3',
+    ),
+  ],
 );
 
 const wineTopic = KnowledgeTopic(
@@ -338,7 +365,16 @@ const stoicismTopic = KnowledgeTopic(
   body: ['O estoicismo surgiu no mundo helenístico e foi desenvolvido por pensadores como Zenão, Sêneca, Epicteto e Marco Aurélio.','Para os estoicos, uma vida boa depende sobretudo de virtude e razão, não de riqueza, fama ou conforto.','A famosa distinção entre o que depende e o que não depende de nós funciona como ferramenta prática para direcionar atenção e responsabilidade.','Aceitação estoica não significa passividade: agir é importante quando a ação está ao nosso alcance.','A filosofia voltou a ganhar popularidade porque oferece linguagem simples para lidar com incerteza, frustração e escolhas.'],
   remember: ['Controle não é o mesmo que influência.','Aceitar não significa desistir.','Virtude e ação importam mais que conforto.'],
   whyItMatters: 'Ajuda a separar problemas que pedem ação daqueles que pedem adaptação.', curiosity: 'Marco Aurélio escreveu suas Meditações como notas pessoais, não como um livro pensado para publicação.',
-  connections: ['Epicteto', 'Marco Aurélio', 'Ética', 'Resiliência'],
+  connections: ['Epicteto', 'Marco Aurélio', 'Ética', 'Resiliência'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/3zkEpGjfFCsCV2NDb42yK6',
+      title: 'Estoicismo',
+      caption: '32 min 4 s · História em Meia Hora',
+      sourceLabel: 'Spotify · História em Meia Hora',
+      sourceUrl: 'https://open.spotify.com/episode/3zkEpGjfFCsCV2NDb42yK6',
+    ),
+  ],
 );
 
 const renaissanceTopic = KnowledgeTopic(
@@ -362,7 +398,16 @@ const frenchRevolutionTopic = KnowledgeTopic(
   body: ['A França chegou ao fim da década de 1780 com grave crise financeira.','A sociedade era juridicamente dividida em ordens com direitos e obrigações diferentes.','A convocação dos Estados Gerais abriu uma disputa sobre quem representava a nação e como os votos deveriam contar.','A tomada da Bastilha tornou-se um símbolo, mas a Revolução atravessou várias fases e conflitos.','Declarações de direitos ampliaram novas ideias de cidadania enquanto violência política e guerra também marcaram o período.'],
   remember: ['1789 é o início convencional.','Crise fiscal e representação estavam ligadas.','A Revolução teve fases muito diferentes.'],
   whyItMatters: 'Cidadania, direitos, nacionalismo e política moderna foram profundamente transformados por seus efeitos.', curiosity: 'A Bastilha tinha apenas sete prisioneiros quando foi tomada em 14 de julho de 1789.',
-  connections: ['Iluminismo', 'Napoleão', 'Direitos humanos', 'Antigo Regime'],
+  connections: ['Iluminismo', 'Napoleão', 'Direitos humanos', 'Antigo Regime'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/1GeBRtAeVTSRNOTBjxK4d3',
+      title: 'Revolução Francesa (parte 1)',
+      caption: '29 min 42 s · História em Meia Hora',
+      sourceLabel: 'Spotify · História em Meia Hora',
+      sourceUrl: 'https://open.spotify.com/episode/1GeBRtAeVTSRNOTBjxK4d3',
+    ),
+  ],
 );
 
 const blackDeathTopic = KnowledgeTopic(
@@ -386,7 +431,16 @@ const evolutionTopic = KnowledgeTopic(
   body: ['Darwin e Wallace formularam independentemente a ideia de seleção natural no século XIX.','A seleção atua sobre diferenças existentes; ela não planeja resultados futuros.','Mutações e recombinação ajudam a gerar variação genética.','Seleção natural é um mecanismo da evolução, ao lado de processos como deriva genética e fluxo gênico.','Adaptação é sempre relativa a um ambiente e pode envolver custos.'],
   remember: ['Populações evoluem.','Seleção não tem objetivo.','Adaptação depende do ambiente.'],
   whyItMatters: 'É uma das ideias centrais para entender biodiversidade, doenças, agricultura e genética.', curiosity: 'Darwin publicou A Origem das Espécies em 1859.',
-  connections: ['Darwin', 'Genética', 'DNA', 'Resistência bacteriana'],
+  connections: ['Darwin', 'Genética', 'DNA', 'Resistência bacteriana'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/4XzJEEC1rkAzxpE128Wtw7',
+      title: 'A seleção natural não explica tudo na evolução das espécies?',
+      caption: '37 min 38 s · Os três elementos',
+      sourceLabel: 'Spotify · Os três elementos',
+      sourceUrl: 'https://open.spotify.com/episode/4XzJEEC1rkAzxpE128Wtw7',
+    ),
+  ],
 );
 
 const quantumTopic = KnowledgeTopic(
@@ -398,7 +452,16 @@ const quantumTopic = KnowledgeTopic(
   body: ['A teoria quântica nasceu de problemas que a física clássica não conseguia explicar no início do século XX.','Planck, Einstein, Bohr, Heisenberg, Schrödinger e outros construíram partes importantes da teoria.','Superposição descreve estados possíveis antes de uma medição, mas não deve ser confundida com ideias místicas.','O princípio da incerteza estabelece limites fundamentais para certos pares de grandezas.','Sem física quântica não entenderíamos semicondutores, lasers e grande parte da eletrônica moderna.'],
   remember: ['É probabilística, mas rigorosa.','Quantização significa valores discretos em certos contextos.','Tecnologia moderna depende dela.'],
   whyItMatters: 'Ela sustenta boa parte da física e da tecnologia contemporâneas.', curiosity: 'Einstein ajudou a fundar a teoria quântica ao explicar o efeito fotoelétrico, embora depois criticasse aspectos de sua interpretação.',
-  connections: ['Átomo', 'Semicondutores', 'Laser', 'Relatividade'],
+  connections: ['Átomo', 'Semicondutores', 'Laser', 'Relatividade'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/0T0JHwjFiwmFHimDgZnxBA',
+      title: 'A Física Quântica explicada sem mistério',
+      caption: '35 min 31 s · Os três elementos',
+      sourceLabel: 'Spotify · Os três elementos',
+      sourceUrl: 'https://open.spotify.com/episode/0T0JHwjFiwmFHimDgZnxBA',
+    ),
+  ],
 );
 
 const dnaTopic = KnowledgeTopic(
@@ -410,7 +473,16 @@ const dnaTopic = KnowledgeTopic(
   body: ['O DNA é formado por nucleotídeos organizados em uma dupla hélice.','A sequência das bases carrega informação que pode ser copiada e transmitida.','Genes representam apenas parte do genoma e sua expressão é regulada.','Ambiente e desenvolvimento interagem com a genética, por isso muitos traços não têm uma causa genética simples.','Mutações podem ser neutras, prejudiciais ou vantajosas dependendo do contexto.'],
   remember: ['Mesmo DNA, usos diferentes em células diferentes.','Gene não é destino.','Mutações geram variação.'],
   whyItMatters: 'Ajuda a interpretar notícias sobre hereditariedade, testes genéticos, medicina e biotecnologia.', curiosity: 'Se esticado, o DNA de uma única célula humana teria aproximadamente dois metros.',
-  connections: ['Genética', 'Evolução', 'RNA', 'CRISPR'],
+  connections: ['Genética', 'Evolução', 'RNA', 'CRISPR'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/4Fm1wZdTGFYfc88UNiymwu',
+      title: 'DNA',
+      caption: '36 min 45 s · Biologia em Meia Hora',
+      sourceLabel: 'Spotify · Biologia em Meia Hora',
+      sourceUrl: 'https://open.spotify.com/episode/4Fm1wZdTGFYfc88UNiymwu',
+    ),
+  ],
 );
 
 const aiTopic = KnowledgeTopic(
@@ -422,7 +494,16 @@ const aiTopic = KnowledgeTopic(
   body: ['Texto é dividido em unidades chamadas tokens.','Redes do tipo transformer usam mecanismos de atenção para relacionar partes do contexto.','Treinamento ajusta muitos parâmetros para reduzir erros de previsão.','A geração pode produzir respostas convincentes e ainda assim factualmente erradas, porque plausibilidade linguística não garante verdade.','Ferramentas externas, recuperação de documentos e verificações podem melhorar a fundamentação.'],
   remember: ['Geração acontece token por token.','Plausível não significa verdadeiro.','Contexto muda a resposta.'],
   whyItMatters: 'Entender o mecanismo ajuda a usar IA com expectativas melhores e verificar respostas quando precisão importa.', curiosity: 'Transformers foram apresentados em 2017 e rapidamente se tornaram uma arquitetura central para modelos de linguagem.',
-  connections: ['Machine learning', 'Transformer', 'Tokens', 'Redes neurais'],
+  connections: ['Machine learning', 'Transformer', 'Tokens', 'Redes neurais'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/4NQcop9rrfKuqEeZoOmJBC',
+      title: 'A evolução da IA generativa',
+      caption: '32 min 38 s · MIT Technology Review Brasil',
+      sourceLabel: 'Spotify · MIT Technology Review Brasil',
+      sourceUrl: 'https://open.spotify.com/episode/4NQcop9rrfKuqEeZoOmJBC',
+    ),
+  ],
 );
 
 const internetTopic = KnowledgeTopic(
@@ -434,7 +515,16 @@ const internetTopic = KnowledgeTopic(
   body: ['DNS ajuda a resolver nomes de domínio em endereços de rede.','Pacotes atravessam diferentes equipamentos e redes até chegar ao destino.','HTTPS usa TLS para proteger a comunicação contra leitura e alteração no caminho.','O servidor responde com HTML e outros recursos; o navegador interpreta tudo e monta a interface.','Caches e CDNs aproximam conteúdo do usuário e reduzem tempo de carregamento.'],
   remember: ['Internet e web não são sinônimos.','DNS resolve nomes.','HTTPS protege a conexão.'],
   whyItMatters: 'Torna conceitos de privacidade, segurança, velocidade e hospedagem muito menos abstratos.', curiosity: 'A World Wide Web foi proposta por Tim Berners-Lee no CERN em 1989.',
-  connections: ['DNS', 'HTTPS', 'Servidor', 'Navegador'],
+  connections: ['DNS', 'HTTPS', 'Servidor', 'Navegador'],  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/69AKhXRdr6UshYKs0j5DQe',
+      title: 'Internet, Domínios e ICANN',
+      caption: '43 min 5 s · Hipsters Ponto Tech',
+      sourceLabel: 'Spotify · Hipsters Ponto Tech',
+      sourceUrl: 'https://open.spotify.com/episode/69AKhXRdr6UshYKs0j5DQe',
+    ),
+  ],
 );
 
 const bitcoinTopic = KnowledgeTopic(
