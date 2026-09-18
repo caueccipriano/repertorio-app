@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/state/app_state_scope.dart';
-import '../../../app/theme/app_colors.dart';
 import '../../today/data/demo_topics.dart';
 import '../../today/domain/knowledge_topic.dart';
 
@@ -254,9 +253,11 @@ class _ReviewChoice extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 13),
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           border: Border(
-            bottom: BorderSide(color: Theme.of(context).colorScheme.outline),
+            bottom: BorderSide(
+              color: Theme.of(context).colorScheme.outline,
+            ),
           ),
         ),
         child: Row(
