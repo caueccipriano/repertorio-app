@@ -1,14 +1,47 @@
 import 'package:flutter/material.dart';
 
+import '../../../app/state/app_state_scope.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../../core/widgets/editorial_frame.dart';
 import '../../../core/widgets/paper_texture.dart';
+import '../../today/data/demo_topics.dart';
+import 'notification_settings_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final state = AppStateScope.of(context);
+    final exploredIds = {
+      ...state.historyTopicIds,
+      ...state.completedTopicIds,
+    };
+    final categoryCounts = <String, int>{};
+
+    for (final id in exploredIds) {
+      final topic = topicById(id);
+      if (topic == null) {
+        continue;
+      }
+      for (final tag in topic.tags) {
+        categoryCounts.update(
+          tag,
+          (value) => value + 1,
+          ifAbsent: () => 1,
+        );
+      }
+    }
+
+    final totalRead = state.completedTopicIds.length;
+    final totalSaved = state.savedTopicIds.length;
+    final totalStarted = state.progressByTopic.values
+        .where((progress) => progress > 0)
+        .length;
+    final rabbitHoles = state.historyTopicIds.length < 2
+        ? 0
+        : state.historyTopicIds.length - 1;
+
     return PaperTexture(
       child: SafeArea(
         bottom: false,
@@ -25,13 +58,17 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'O registro da biblioteca que você está construindo.',
+                  'Aqui só entra o que você realmente leu, salvou ou explorou.',
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: AppColors.muted,
                       ),
                 ),
                 const SizedBox(height: 26),
-                const _LibraryStats(),
+                _LibraryStats(
+                  read: totalRead,
+                  saved: totalSaved,
+                  rabbitHoles: rabbitHoles,
+                ),
                 const SizedBox(height: 30),
                 Text(
                   'áreas exploradas',
@@ -40,13 +77,27 @@ class ProfileScreen extends StatelessWidget {
                       ),
                 ),
                 const SizedBox(height: 16),
-                const _ProgressRow(label: 'História', value: .72),
-                const _ProgressRow(label: 'Ciência', value: .61),
-                const _ProgressRow(label: 'Arte', value: .32),
-                const _ProgressRow(label: 'Economia', value: .54),
-                const _ProgressRow(label: 'Design', value: .68),
+                if (categoryCounts.isEmpty)
+                  const _EmptyKnowledgeProfile()
+                else
+                  ..._categoryRows(context, categoryCounts),
                 const SizedBox(height: 12),
-                const _ReadingRecord(),
+                _ReadingRecord(
+                  started: totalStarted,
+                  completed: totalRead,
+                ),
+                const SizedBox(height: 22),
+                _NotificationPreferences(
+                  enabled: state.studyRemindersEnabled,
+                  hour: state.reminderHour,
+                  minute: state.reminderMinute,
+                ),
+                const SizedBox(height: 14),
+                _ReaderPreferences(
+                  fontSize: state.readerFontSize,
+                  theme: state.readerTheme.name,
+                  flow: state.readerFlow.name,
+                ),
               ],
             ),
           ),
@@ -54,17 +105,54 @@ class ProfileScreen extends StatelessWidget {
       ),
     );
   }
+
+  List<Widget> _categoryRows(
+    BuildContext context,
+    Map<String, int> categoryCounts,
+  ) {
+    final maxCount = categoryCounts.values.fold<int>(
+      1,
+      (max, value) => value > max ? value : max,
+    );
+    final sorted = categoryCounts.entries.toList()
+      ..sort((a, b) => b.value.compareTo(a.value));
+
+    return sorted
+        .map(
+          (entry) => _ProgressRow(
+            label: _titleCase(entry.key),
+            value: entry.value / maxCount,
+            count: entry.value,
+          ),
+        )
+        .toList();
+  }
+
+  String _titleCase(String value) {
+    if (value.isEmpty) {
+      return value;
+    }
+    return '${value[0].toUpperCase()}${value.substring(1)}';
+  }
 }
 
 class _LibraryStats extends StatelessWidget {
-  const _LibraryStats();
+  const _LibraryStats({
+    required this.read,
+    required this.saved,
+    required this.rabbitHoles,
+  });
+
+  final int read;
+  final int saved;
+  final int rabbitHoles;
 
   @override
   Widget build(BuildContext context) {
-    const stats = [
-      ('27', 'assuntos lidos'),
-      ('11', 'salvos'),
-      ('6', 'rabbit holes'),
+    final stats = [
+      (read.toString(), 'concluídos'),
+      (saved.toString(), 'salvos'),
+      (rabbitHoles.toString(), 'conexões'),
     ];
 
     return Container(
@@ -73,60 +161,93 @@ class _LibraryStats extends StatelessWidget {
         border: Border.all(color: AppColors.ink),
       ),
       child: Row(
-        children: stats.indexed
-            .map(
-              (item) => Expanded(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 18,
-                  ),
-                  decoration: BoxDecoration(
-                    border: item.$1 == stats.length - 1
-                        ? null
-                        : const Border(
-                            right: BorderSide(color: AppColors.ink),
-                          ),
-                  ),
-                  child: Column(
-                    children: [
-                      Text(
-                        item.$2.$1,
-                        style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                              color: AppColors.blue,
-                              fontSize: 36,
-                            ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        item.$2.$2,
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                              fontSize: 9,
-                              color: AppColors.muted,
-                            ),
-                      ),
-                    ],
-                  ),
-                ),
+        children: stats.indexed.map((item) {
+          return Expanded(
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10,
+                vertical: 18,
               ),
-            )
-            .toList(),
+              decoration: BoxDecoration(
+                border: item.$1 == stats.length - 1
+                    ? null
+                    : const Border(
+                        right: BorderSide(color: AppColors.ink),
+                      ),
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    item.$2.$1,
+                    style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                          color: AppColors.blue,
+                          fontSize: 36,
+                        ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    item.$2.$2,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          fontSize: 9,
+                          color: AppColors.muted,
+                        ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }).toList(),
+      ),
+    );
+  }
+}
+
+class _EmptyKnowledgeProfile extends StatelessWidget {
+  const _EmptyKnowledgeProfile();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: AppColors.paperWhite,
+        border: Border.all(color: AppColors.line),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '0 assuntos estudados.',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Assim que você começar a ler, seu mapa de repertório nasce aqui — sem números inventados.',
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: AppColors.muted,
+                ),
+          ),
+        ],
       ),
     );
   }
 }
 
 class _ProgressRow extends StatelessWidget {
-  const _ProgressRow({required this.label, required this.value});
+  const _ProgressRow({
+    required this.label,
+    required this.value,
+    required this.count,
+  });
 
   final String label;
   final double value;
+  final int count;
 
   @override
   Widget build(BuildContext context) {
-    final percent = (value * 100).round();
-
     return Padding(
       padding: const EdgeInsets.only(bottom: 18),
       child: Column(
@@ -141,7 +262,7 @@ class _ProgressRow extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                '$percent%',
+                count.toString(),
                 style: Theme.of(context).textTheme.labelLarge?.copyWith(
                       color: AppColors.blue,
                       fontSize: 10,
@@ -163,10 +284,20 @@ class _ProgressRow extends StatelessWidget {
 }
 
 class _ReadingRecord extends StatelessWidget {
-  const _ReadingRecord();
+  const _ReadingRecord({
+    required this.started,
+    required this.completed,
+  });
+
+  final int started;
+  final int completed;
 
   @override
   Widget build(BuildContext context) {
+    final message = started == 0
+        ? 'Sua primeira leitura ainda está esperando por você.'
+        : '$started assunto${started == 1 ? '' : 's'} iniciado${started == 1 ? '' : 's'} · $completed concluído${completed == 1 ? '' : 's'}.';
+
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -186,7 +317,7 @@ class _ReadingRecord extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '7 dias explorando',
+                  started == 0 ? 'seu acervo está zerado' : 'seu histórico',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: AppColors.paperWhite,
                         fontSize: 16,
@@ -194,7 +325,7 @@ class _ReadingRecord extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  'Sua semana teve mais História, Design e Ciência.',
+                  message,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Colors.white70,
                         fontSize: 12,
@@ -204,6 +335,109 @@ class _ReadingRecord extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _ReaderPreferences extends StatelessWidget {
+  const _ReaderPreferences({
+    required this.fontSize,
+    required this.theme,
+    required this.flow,
+  });
+
+  final double fontSize;
+  final String theme;
+  final String flow;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: AppColors.paperWhite,
+        border: Border.all(color: AppColors.line),
+      ),
+      child: Row(
+        children: [
+          const Icon(Icons.tune, size: 24),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              'Leitor: fonte ${fontSize.round()} · $theme · $flow',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+class _NotificationPreferences extends StatelessWidget {
+  const _NotificationPreferences({
+    required this.enabled,
+    required this.hour,
+    required this.minute,
+  });
+
+  final bool enabled;
+  final int hour;
+  final int minute;
+
+  @override
+  Widget build(BuildContext context) {
+    final formatted =
+        '${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}';
+
+    return Material(
+      color: AppColors.paperWhite,
+      child: InkWell(
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => const NotificationSettingsScreen(),
+          ),
+        ),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.line),
+          ),
+          child: Row(
+            children: [
+              Icon(
+                enabled
+                    ? Icons.notifications_active_outlined
+                    : Icons.notifications_none,
+                color: enabled ? AppColors.blue : AppColors.ink,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'lembretes de estudo',
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            fontSize: 15,
+                          ),
+                    ),
+                    const SizedBox(height: 3),
+                    Text(
+                      enabled ? 'ativo às $formatted' : 'desativado',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: AppColors.muted,
+                          ),
+                    ),
+                  ],
+                ),
+              ),
+              const Icon(Icons.chevron_right),
+            ],
+          ),
+        ),
       ),
     );
   }

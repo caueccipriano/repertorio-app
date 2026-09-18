@@ -4,6 +4,7 @@ import '../../../app/theme/app_colors.dart';
 import '../../../core/widgets/editorial_frame.dart';
 import '../../../core/widgets/knowledge_cover.dart';
 import '../../../core/widgets/paper_texture.dart';
+import '../../search/presentation/search_screen.dart';
 import 'topic_collection_screen.dart';
 
 class ExploreScreen extends StatelessWidget {
@@ -14,84 +15,72 @@ class ExploreScreen extends StatelessWidget {
       title: 'História',
       subtitle: 'Impérios, revoluções e ideias',
       style: KnowledgeCoverStyle.columns,
-      count: 24,
       topicIds: ['roma', 'bauhaus', 'modernismo'],
     ),
     _CatalogEntry(
       title: 'Ciência',
       subtitle: 'Do átomo ao universo',
       style: KnowledgeCoverStyle.orbit,
-      count: 19,
       topicIds: ['fermi', 'vinho'],
     ),
     _CatalogEntry(
       title: 'Arte',
       subtitle: 'Movimentos, obras e contexto',
       style: KnowledgeCoverStyle.waves,
-      count: 17,
       topicIds: ['bauhaus', 'modernismo', 'helvetica'],
     ),
     _CatalogEntry(
       title: 'Design',
       subtitle: 'Objetos, sistemas e linguagem',
       style: KnowledgeCoverStyle.bauhaus,
-      count: 21,
       topicIds: ['bauhaus', 'helvetica', 'modernismo'],
     ),
     _CatalogEntry(
       title: 'Arquitetura',
       subtitle: 'Espaços que contam histórias',
       style: KnowledgeCoverStyle.archive,
-      count: 18,
       topicIds: ['modernismo', 'brutalismo', 'bauhaus'],
     ),
     _CatalogEntry(
       title: 'Filosofia',
       subtitle: 'Perguntas que mudaram o mundo',
       style: KnowledgeCoverStyle.typography,
-      count: 16,
       topicIds: ['fermi', 'roma'],
     ),
     _CatalogEntry(
       title: 'Psicologia',
       subtitle: 'Mente, comportamento e escolhas',
       style: KnowledgeCoverStyle.waves,
-      count: 14,
       topicIds: ['inflacao', 'fermi'],
     ),
     _CatalogEntry(
       title: 'Economia',
       subtitle: 'Dinheiro, mercados e sociedade',
       style: KnowledgeCoverStyle.columns,
-      count: 15,
       topicIds: ['inflacao', 'roma'],
     ),
     _CatalogEntry(
       title: 'Tecnologia',
       subtitle: 'Ideias que viraram infraestrutura',
       style: KnowledgeCoverStyle.typography,
-      count: 20,
       topicIds: ['helvetica', 'fermi', 'bauhaus'],
     ),
     _CatalogEntry(
       title: 'Cinema',
       subtitle: 'Filmes, linguagem e bastidores',
       style: KnowledgeCoverStyle.archive,
-      count: 13,
       topicIds: ['modernismo', 'helvetica'],
     ),
     _CatalogEntry(
       title: 'Música',
       subtitle: 'Gêneros, movimentos e histórias',
       style: KnowledgeCoverStyle.waves,
-      count: 12,
       topicIds: ['helvetica', 'bauhaus'],
     ),
     _CatalogEntry(
       title: 'Mundo',
       subtitle: 'Geografia, cultura e sociedade',
       style: KnowledgeCoverStyle.orbit,
-      count: 22,
       topicIds: ['roma', 'inflacao', 'fermi', 'vinho'],
     ),
   ];
@@ -117,7 +106,11 @@ class ExploreScreen extends StatelessWidget {
                     const Spacer(),
                     IconButton(
                       tooltip: 'Buscar',
-                      onPressed: () {},
+                      onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute<void>(
+                          builder: (_) => const SearchScreen(),
+                        ),
+                      ),
                       icon: const Icon(Icons.search),
                     ),
                   ],
@@ -236,7 +229,7 @@ class _CatalogCard extends StatelessWidget {
         children: [
           KnowledgeCover(
             title: entry.title,
-            kicker: '${entry.count} assuntos',
+            kicker: '${entry.topicIds.length} assuntos',
             style: entry.style,
             width: width,
             height: coverHeight,
@@ -274,13 +267,11 @@ class _CatalogEntry {
     required this.title,
     required this.subtitle,
     required this.style,
-    required this.count,
     required this.topicIds,
   });
 
   final String title;
   final String subtitle;
   final KnowledgeCoverStyle style;
-  final int count;
   final List<String> topicIds;
 }

@@ -24,6 +24,7 @@ class KnowledgeCover extends StatelessWidget {
     this.height = 190,
     this.selected = false,
     this.onTap,
+    this.onLongPress,
   });
 
   final String title;
@@ -33,6 +34,7 @@ class KnowledgeCover extends StatelessWidget {
   final double height;
   final bool selected;
   final VoidCallback? onTap;
+  final VoidCallback? onLongPress;
 
   bool get _darkCover => style == KnowledgeCoverStyle.archive;
 
@@ -94,7 +96,7 @@ class KnowledgeCover extends StatelessWidget {
       ),
     );
 
-    if (onTap == null) {
+    if (onTap == null && onLongPress == null) {
       return cover;
     }
 
@@ -105,6 +107,7 @@ class KnowledgeCover extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           onTap: onTap,
+          onLongPress: onLongPress,
           child: cover,
         ),
       ),

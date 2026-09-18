@@ -1,15 +1,46 @@
 import 'package:flutter/material.dart';
 
+import '../../../app/state/app_state_scope.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../../core/widgets/editorial_frame.dart';
 import '../../../core/widgets/knowledge_cover.dart';
 import '../../../core/widgets/paper_texture.dart';
+import '../../article/presentation/article_screen.dart';
+import '../../article/presentation/quick_peek.dart';
+import '../../search/presentation/search_screen.dart';
+import '../../today/data/demo_topics.dart';
+import '../../today/domain/knowledge_topic.dart';
 
-class SavedScreen extends StatelessWidget {
+enum _SavedFilter { all, reading, completed }
+
+class SavedScreen extends StatefulWidget {
   const SavedScreen({super.key});
 
   @override
+  State<SavedScreen> createState() => _SavedScreenState();
+}
+
+class _SavedScreenState extends State<SavedScreen> {
+  _SavedFilter _filter = _SavedFilter.all;
+
+  @override
   Widget build(BuildContext context) {
+    final state = AppStateScope.of(context);
+    final savedTopics = state.savedTopicIds
+        .map(topicById)
+        .whereType<KnowledgeTopic>()
+        .where((topic) {
+      switch (_filter) {
+        case _SavedFilter.all:
+          return true;
+        case _SavedFilter.reading:
+          final progress = state.progressFor(topic.id);
+          return progress > 0 && progress < .92;
+        case _SavedFilter.completed:
+          return state.completedTopicIds.contains(topic.id);
+      }
+    }).toList();
+
     return PaperTexture(
       child: SafeArea(
         bottom: false,
@@ -27,75 +58,65 @@ class SavedScreen extends StatelessWidget {
                   ),
                   const Spacer(),
                   IconButton(
-                    tooltip: 'Buscar nos salvos',
-                    onPressed: () {},
+                    tooltip: 'Buscar',
+                    onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) => const SearchScreen(),
+                      ),
+                    ),
                     icon: const Icon(Icons.search),
                   ),
                 ],
               ),
               const SizedBox(height: 8),
               Text(
-                'Assuntos que você guardou para voltar depois.',
+                'Assuntos que você realmente salvou aparecem aqui.',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: AppColors.muted,
                     ),
               ),
               const SizedBox(height: 20),
-              const _SavedTabs(),
-              const SizedBox(height: 26),
+              _SavedTabs(
+                selected: _filter,
+                onChanged: (value) => setState(() => _filter = value),
+              ),
+              const SizedBox(height: 24),
               Expanded(
-                child: LayoutBuilder(
-                  builder: (context, constraints) {
-                    final columns = constraints.maxWidth >= 700
-                        ? 4
-                        : constraints.maxWidth >= 480
-                            ? 3
-                            : 2;
-                    const gap = 14.0;
-                    final width =
-                        (constraints.maxWidth - gap * (columns - 1)) / columns;
+                child: savedTopics.isEmpty
+                    ? _EmptyLibrary(filter: _filter)
+                    : LayoutBuilder(
+                        builder: (context, constraints) {
+                          final columns = constraints.maxWidth >= 700
+                              ? 4
+                              : constraints.maxWidth >= 480
+                                  ? 3
+                                  : 2;
+                          const gap = 14.0;
+                          final width =
+                              (constraints.maxWidth - gap * (columns - 1)) /
+                                  columns;
 
-                    return SingleChildScrollView(
-                      child: Wrap(
-                        spacing: gap,
-                        runSpacing: 22,
-                        children: const [
-                          _SavedBook(
-                            title: 'Bauhaus',
-                            category: 'Design · História',
-                            style: KnowledgeCoverStyle.bauhaus,
-                            progress: 1,
-                          ),
-                          _SavedBook(
-                            title: 'Modernismo',
-                            category: 'Arquitetura',
-                            style: KnowledgeCoverStyle.archive,
-                            progress: .46,
-                          ),
-                          _SavedBook(
-                            title: 'Paradoxo de Fermi',
-                            category: 'Ciência',
-                            style: KnowledgeCoverStyle.orbit,
-                            progress: 0,
-                          ),
-                          _SavedBook(
-                            title: 'Helvetica',
-                            category: 'Design',
-                            style: KnowledgeCoverStyle.typography,
-                            progress: 0,
-                          ),
-                        ]
-                            .map(
-                              (book) => SizedBox(
-                                width: width,
-                                child: book,
-                              ),
-                            )
-                            .toList(),
+                          return SingleChildScrollView(
+                            child: Wrap(
+                              spacing: gap,
+                              runSpacing: 22,
+                              children: savedTopics
+                                  .map(
+                                    (topic) => SizedBox(
+                                      width: width,
+                                      child: _SavedBook(
+                                        topic: topic,
+                                        width: width,
+                                        progress:
+                                            state.progressFor(topic.id),
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
+                            ),
+                          );
+                        },
                       ),
-                    );
-                  },
-                ),
               ),
             ],
           ),
@@ -106,11 +127,21 @@ class SavedScreen extends StatelessWidget {
 }
 
 class _SavedTabs extends StatelessWidget {
-  const _SavedTabs();
+  const _SavedTabs({
+    required this.selected,
+    required this.onChanged,
+  });
+
+  final _SavedFilter selected;
+  final ValueChanged<_SavedFilter> onChanged;
 
   @override
   Widget build(BuildContext context) {
-    const tabs = ['TODOS', 'LENDO', 'CONCLUÍDOS'];
+    const tabs = [
+      (_SavedFilter.all, 'TODOS'),
+      (_SavedFilter.reading, 'LENDO'),
+      (_SavedFilter.completed, 'CONCLUÍDOS'),
+    ];
 
     return Container(
       height: 40,
@@ -118,33 +149,94 @@ class _SavedTabs extends StatelessWidget {
         border: Border.all(color: AppColors.ink),
       ),
       child: Row(
-        children: tabs.indexed
-            .map(
-              (item) => Expanded(
-                child: Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: item.$1 == 0 ? AppColors.ink : Colors.transparent,
-                    border: item.$1 == tabs.length - 1
-                        ? null
-                        : const Border(
-                            right: BorderSide(color: AppColors.ink),
-                          ),
-                  ),
-                  child: Text(
-                    item.$2,
-                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                          color: item.$1 == 0
-                              ? AppColors.paperWhite
-                              : AppColors.ink,
-                          fontSize: 9,
-                          letterSpacing: .6,
+        children: tabs.indexed.map((item) {
+          final value = item.$2.$1;
+          final isSelected = selected == value;
+
+          return Expanded(
+            child: InkWell(
+              onTap: () => onChanged(value),
+              child: Container(
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: isSelected ? AppColors.ink : Colors.transparent,
+                  border: item.$1 == tabs.length - 1
+                      ? null
+                      : const Border(
+                          right: BorderSide(color: AppColors.ink),
                         ),
-                  ),
+                ),
+                child: Text(
+                  item.$2.$2,
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        color: isSelected
+                            ? AppColors.paperWhite
+                            : AppColors.ink,
+                        fontSize: 9,
+                        letterSpacing: .6,
+                      ),
                 ),
               ),
-            )
-            .toList(),
+            ),
+          );
+        }).toList(),
+      ),
+    );
+  }
+}
+
+class _EmptyLibrary extends StatelessWidget {
+  const _EmptyLibrary({required this.filter});
+
+  final _SavedFilter filter;
+
+  @override
+  Widget build(BuildContext context) {
+    final title = switch (filter) {
+      _SavedFilter.all => 'sua biblioteca começa vazia.',
+      _SavedFilter.reading => 'nenhuma leitura em andamento.',
+      _SavedFilter.completed => 'nenhum assunto concluído ainda.',
+    };
+
+    final body = switch (filter) {
+      _SavedFilter.all =>
+        'Salve apenas o que realmente quiser guardar. Nada entra aqui automaticamente.',
+      _SavedFilter.reading =>
+        'Quando você começar um assunto salvo, ele aparece nesta estante.',
+      _SavedFilter.completed =>
+        'Ao terminar uma leitura salva, ela passa a fazer parte deste arquivo.',
+    };
+
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 460),
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(24),
+          decoration: BoxDecoration(
+            color: AppColors.paperWhite,
+            border: Border.all(color: AppColors.ink),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Icon(Icons.bookmark_border, size: 30),
+              const SizedBox(height: 22),
+              Text(
+                title,
+                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                      fontSize: 35,
+                    ),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                body,
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -152,65 +244,84 @@ class _SavedTabs extends StatelessWidget {
 
 class _SavedBook extends StatelessWidget {
   const _SavedBook({
-    required this.title,
-    required this.category,
-    required this.style,
+    required this.topic,
+    required this.width,
     required this.progress,
   });
 
-  final String title;
-  final String category;
-  final KnowledgeCoverStyle style;
+  final KnowledgeTopic topic;
+  final double width;
   final double progress;
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final width = constraints.maxWidth;
-
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            KnowledgeCover(
-              title: title,
-              kicker: category,
-              style: style,
-              width: width,
-              height: width * 1.3,
-              onTap: () {},
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        KnowledgeCover(
+          title: topic.title,
+          kicker: topic.tags.join(' · '),
+          style: _styleFor(topic.id),
+          width: width,
+          height: width * 1.3,
+          onTap: () => Navigator.of(context).push(
+            MaterialPageRoute<void>(
+              builder: (_) => ArticleScreen(topic: topic),
             ),
-            const SizedBox(height: 9),
-            Text(
-              title,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontSize: 14,
-                  ),
-            ),
-            const SizedBox(height: 3),
-            Text(
-              category,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                    color: AppColors.muted,
-                    fontSize: 9,
-                  ),
-            ),
-            if (progress > 0) ...[
-              const SizedBox(height: 7),
-              LinearProgressIndicator(
-                value: progress,
-                minHeight: 4,
-                color: AppColors.blue,
-                backgroundColor: AppColors.line,
+          ),
+          onLongPress: () => showQuickPeek(context, topic),
+        ),
+        const SizedBox(height: 9),
+        Text(
+          topic.title,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontSize: 14,
               ),
-            ],
-          ],
-        );
-      },
+        ),
+        const SizedBox(height: 3),
+        Text(
+          topic.tags.join(' · '),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                color: AppColors.muted,
+                fontSize: 9,
+              ),
+        ),
+        if (progress > 0) ...[
+          const SizedBox(height: 7),
+          LinearProgressIndicator(
+            value: progress,
+            minHeight: 4,
+            color: AppColors.blue,
+            backgroundColor: AppColors.line,
+          ),
+          const SizedBox(height: 4),
+          Text(
+            '${(progress * 100).round()}%',
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                  color: AppColors.blue,
+                  fontSize: 9,
+                ),
+          ),
+        ],
+      ],
     );
+  }
+
+  KnowledgeCoverStyle _styleFor(String id) {
+    return switch (id) {
+      'bauhaus' => KnowledgeCoverStyle.bauhaus,
+      'modernismo' => KnowledgeCoverStyle.archive,
+      'fermi' => KnowledgeCoverStyle.constellation,
+      'roma' => KnowledgeCoverStyle.stamp,
+      'brutalismo' => KnowledgeCoverStyle.archive,
+      'helvetica' => KnowledgeCoverStyle.diagonal,
+      'inflacao' => KnowledgeCoverStyle.columns,
+      'vinho' => KnowledgeCoverStyle.waves,
+      _ => KnowledgeCoverStyle.typography,
+    };
   }
 }

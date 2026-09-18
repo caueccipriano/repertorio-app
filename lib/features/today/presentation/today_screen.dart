@@ -1,18 +1,30 @@
 import 'package:flutter/material.dart';
 
+import '../../../app/state/app_state_scope.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../../core/widgets/editorial_decorations.dart';
 import '../../../core/widgets/editorial_frame.dart';
 import '../../../core/widgets/knowledge_cover.dart';
 import '../../../core/widgets/paper_texture.dart';
 import '../../article/presentation/article_screen.dart';
+import '../../article/presentation/quick_peek.dart';
+import '../../explore/presentation/knowledge_map_screen.dart';
+import '../../review/presentation/review_screen.dart';
+import '../../search/presentation/search_screen.dart';
 import '../data/demo_topics.dart';
+import '../domain/knowledge_topic.dart';
 
 class TodayScreen extends StatelessWidget {
   const TodayScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final state = AppStateScope.of(context);
+    final featured = _featuredTopic(state.historyTopicIds);
+    final dailyTopics = _dailyTopics();
+    final continueTopic = _continueTopic(state.progressByTopic);
+    final outsideBubble = _outsideBubble(state.historyTopicIds);
+
     return PaperTexture(
       child: SafeArea(
         bottom: false,
@@ -23,92 +35,47 @@ class TodayScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const _LibraryStatusBar(),
+                _LibraryStatusBar(
+                  read: state.completedTopicIds.length,
+                ),
                 const SizedBox(height: 16),
-                _FeaturedKnowledge(
-                  onOpen: () => Navigator.of(context).push(
-                    MaterialPageRoute<void>(
-                      builder: (_) => const ArticleScreen(topic: bauhausTopic),
-                    ),
-                  ),
-                ),
+                _FeaturedKnowledge(topic: featured),
                 const SizedBox(height: 14),
-                const _LibraryNavigation(),
-                const SizedBox(height: 24),
-                const _Shelf(
+                _QuickActions(rootTopic: featured),
+                const SizedBox(height: 26),
+                _Shelf(
                   title: 'para hoje',
-                  subtitle: '4 leituras · ~23 min',
-                  entries: [
-                    _ShelfEntry(
-                      topicId: 'bauhaus',
-                      title: 'Por que a Bauhaus mudou tudo?',
-                      category: 'Design · História',
-                      minutes: '6 min',
-                      style: KnowledgeCoverStyle.bauhaus,
-                    ),
-                    _ShelfEntry(
-                      topicId: 'fermi',
-                      title: 'O paradoxo de Fermi',
-                      category: 'Ciência',
-                      minutes: '5 min',
-                      style: KnowledgeCoverStyle.constellation,
-                    ),
-                    _ShelfEntry(
-                      topicId: 'roma',
-                      title: 'Por que Roma caiu?',
-                      category: 'História',
-                      minutes: '7 min',
-                      style: KnowledgeCoverStyle.stamp,
-                    ),
-                    _ShelfEntry(
-                      topicId: 'helvetica',
-                      title: 'Por que Helvetica está em todo lugar?',
-                      category: 'Design',
-                      minutes: '4 min',
-                      style: KnowledgeCoverStyle.typography,
-                    ),
-                  ],
+                  subtitle: 'uma pequena edição diária',
+                  topics: dailyTopics,
                 ),
-                const SizedBox(height: 28),
-                const _ContinueShelf(),
+                if (continueTopic != null) ...[
+                  const SizedBox(height: 28),
+                  _ContinueShelf(
+                    topic: continueTopic,
+                    progress: state.progressFor(continueTopic.id),
+                  ),
+                ],
                 const SizedBox(height: 28),
                 const _Shelf(
                   title: 'coisas que vale saber',
-                  subtitle: 'uma estante para ficar mais curioso',
-                  entries: [
-                    _ShelfEntry(
-                      topicId: 'brutalismo',
-                      title: 'Brutalismo',
-                      category: 'Arquitetura',
-                      minutes: '4 min',
-                      style: KnowledgeCoverStyle.archive,
-                    ),
-                    _ShelfEntry(
-                      topicId: 'vinho',
-                      title: 'Por que vinho envelhece?',
-                      category: 'Gastronomia',
-                      minutes: '5 min',
-                      style: KnowledgeCoverStyle.waves,
-                    ),
-                    _ShelfEntry(
-                      topicId: 'helvetica',
-                      title: 'Helvetica',
-                      category: 'Design',
-                      minutes: '4 min',
-                      style: KnowledgeCoverStyle.diagonal,
-                    ),
-                    _ShelfEntry(
-                      topicId: 'inflacao',
-                      title: 'O que é inflação?',
-                      category: 'Economia',
-                      minutes: '6 min',
-                      style: KnowledgeCoverStyle.columns,
-                    ),
+                  subtitle: 'segure uma capa para ver em 30 segundos',
+                  topics: [
+                    brutalismTopic,
+                    wineTopic,
+                    helveticaTopic,
+                    inflationTopic,
                   ],
                 ),
                 const SizedBox(height: 28),
-                const _RabbitHoleShelf(),
-                const SizedBox(height: 14),
+                _OutsideBubbleCard(topic: outsideBubble),
+                const SizedBox(height: 20),
+                _RabbitHoleShelf(
+                  rootTopic: state.historyTopicIds.isEmpty
+                      ? bauhausTopic
+                      : topicById(state.historyTopicIds.first) ?? bauhausTopic,
+                  hasHistory: state.historyTopicIds.isNotEmpty,
+                ),
+                const SizedBox(height: 18),
                 const Center(
                   child: HandNote(
                     'sua biblioteca mental cresce uma leitura por vez.',
@@ -124,13 +91,87 @@ class TodayScreen extends StatelessWidget {
       ),
     );
   }
+
+  KnowledgeTopic _featuredTopic(List<String> historyIds) {
+    if (historyIds.isNotEmpty) {
+      final topic = topicById(historyIds.first);
+      if (topic != null) {
+        return topic;
+      }
+    }
+
+    final index = DateTime.now().day % allDemoTopics.length;
+    return allDemoTopics[index];
+  }
+
+  List<KnowledgeTopic> _dailyTopics() {
+    final start = DateTime.now().day % allDemoTopics.length;
+    return List.generate(
+      4,
+      (index) => allDemoTopics[(start + index) % allDemoTopics.length],
+    );
+  }
+
+  KnowledgeTopic? _continueTopic(Map<String, double> progressByTopic) {
+    final candidates = progressByTopic.entries
+        .where((entry) => entry.value > .02 && entry.value < .92)
+        .toList()
+      ..sort((a, b) => b.value.compareTo(a.value));
+
+    if (candidates.isEmpty) {
+      return null;
+    }
+    return topicById(candidates.first.key);
+  }
+
+  KnowledgeTopic _outsideBubble(List<String> historyIds) {
+    final exploredTags = <String>{};
+    for (final id in historyIds) {
+      final topic = topicById(id);
+      if (topic != null) {
+        exploredTags.addAll(topic.tags);
+      }
+    }
+
+    if (exploredTags.isEmpty) {
+      return fermiTopic;
+    }
+
+    for (final topic in allDemoTopics.reversed) {
+      if (topic.tags.every((tag) => !exploredTags.contains(tag))) {
+        return topic;
+      }
+    }
+
+    return allDemoTopics.last;
+  }
 }
 
 class _LibraryStatusBar extends StatelessWidget {
-  const _LibraryStatusBar();
+  const _LibraryStatusBar({required this.read});
+
+  final int read;
 
   @override
   Widget build(BuildContext context) {
+    final now = DateTime.now();
+    const months = [
+      'JAN',
+      'FEV',
+      'MAR',
+      'ABR',
+      'MAI',
+      'JUN',
+      'JUL',
+      'AGO',
+      'SET',
+      'OUT',
+      'NOV',
+      'DEZ',
+    ];
+    final dateLabel =
+        '${now.day.toString().padLeft(2, '0')} ${months[now.month - 1]}';
+
     return Row(
       children: [
         Text(
@@ -143,7 +184,7 @@ class _LibraryStatusBar extends StatelessWidget {
         ),
         const Spacer(),
         Text(
-          '17 SET · 21:27',
+          dateLabel,
           style: Theme.of(context).textTheme.labelLarge?.copyWith(
                 fontSize: 10,
                 color: AppColors.muted,
@@ -151,19 +192,41 @@ class _LibraryStatusBar extends StatelessWidget {
               ),
         ),
         const SizedBox(width: 10),
-        const Icon(Icons.menu_book_outlined, size: 17),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.line),
+          ),
+          child: Text(
+            '$read lidos',
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                  fontSize: 9,
+                  color: AppColors.muted,
+                ),
+          ),
+        ),
       ],
     );
   }
 }
 
 class _FeaturedKnowledge extends StatelessWidget {
-  const _FeaturedKnowledge({required this.onOpen});
+  const _FeaturedKnowledge({required this.topic});
 
-  final VoidCallback onOpen;
+  final KnowledgeTopic topic;
 
   @override
   Widget build(BuildContext context) {
+    final style = _styleFor(topic.id);
+
+    void open() {
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => ArticleScreen(topic: topic),
+        ),
+      );
+    }
+
     return LayoutBuilder(
       builder: (context, constraints) {
         final wide = constraints.maxWidth >= 620;
@@ -182,13 +245,14 @@ class _FeaturedKnowledge extends StatelessWidget {
               Expanded(
                 flex: wide ? 5 : 46,
                 child: KnowledgeCover(
-                  title: 'Bauhaus',
-                  kicker: '1919—1933',
-                  style: KnowledgeCoverStyle.bauhaus,
+                  title: topic.title,
+                  kicker: topic.tags.join(' · '),
+                  style: style,
                   width: double.infinity,
                   height: double.infinity,
                   selected: true,
-                  onTap: onOpen,
+                  onTap: open,
+                  onLongPress: () => showQuickPeek(context, topic),
                 ),
               ),
               SizedBox(width: wide ? 22 : 14),
@@ -207,18 +271,18 @@ class _FeaturedKnowledge extends StatelessWidget {
                     ),
                     SizedBox(height: wide ? 18 : 10),
                     Text(
-                      'Por que a\nBauhaus\nmudou tudo?',
-                      maxLines: 4,
+                      topic.title,
+                      maxLines: 5,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                            fontSize: wide ? 48 : 31,
+                            fontSize: wide ? 45 : 29,
                             height: .95,
                             fontWeight: FontWeight.w600,
                           ),
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Design · História',
+                      topic.tags.join(' · '),
                       style: Theme.of(context).textTheme.labelLarge?.copyWith(
                             color: AppColors.muted,
                             fontSize: 10,
@@ -237,7 +301,7 @@ class _FeaturedKnowledge extends StatelessWidget {
                             borderRadius: BorderRadius.circular(99),
                           ),
                           child: Text(
-                            '6 MIN',
+                            '${topic.minutes} MIN',
                             style:
                                 Theme.of(context).textTheme.labelLarge?.copyWith(
                                       fontSize: 9,
@@ -247,7 +311,7 @@ class _FeaturedKnowledge extends StatelessWidget {
                         const Spacer(),
                         IconButton(
                           tooltip: 'Abrir leitura',
-                          onPressed: onOpen,
+                          onPressed: open,
                           visualDensity: VisualDensity.compact,
                           icon: const Icon(Icons.arrow_forward, size: 20),
                         ),
@@ -264,80 +328,108 @@ class _FeaturedKnowledge extends StatelessWidget {
   }
 }
 
-class _LibraryNavigation extends StatelessWidget {
-  const _LibraryNavigation();
+class _QuickActions extends StatelessWidget {
+  const _QuickActions({required this.rootTopic});
+
+  final KnowledgeTopic rootTopic;
 
   @override
   Widget build(BuildContext context) {
-    const items = ['INÍCIO', 'TRILHAS', 'TEMAS', 'SALVOS'];
+    final actions = <_QuickAction>[
+      _QuickAction(
+        label: 'MAPA',
+        icon: Icons.hub_outlined,
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => KnowledgeMapScreen(
+              rootTopicId: rootTopic.id,
+            ),
+          ),
+        ),
+      ),
+      _QuickAction(
+        label: 'REVISAR',
+        icon: Icons.psychology_alt_outlined,
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => const ReviewScreen(),
+          ),
+        ),
+      ),
+      _QuickAction(
+        label: 'BUSCAR',
+        icon: Icons.search,
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => const SearchScreen(),
+          ),
+        ),
+      ),
+    ];
 
     return Container(
-      height: 42,
+      height: 44,
       decoration: BoxDecoration(
         border: Border.all(color: AppColors.ink),
       ),
       child: Row(
-        children: [
-          Container(
-            width: 42,
-            alignment: Alignment.center,
-            decoration: const BoxDecoration(
-              border: Border(
-                right: BorderSide(color: AppColors.ink),
-              ),
-            ),
-            child: const Icon(Icons.menu_book_outlined, size: 18),
-          ),
-          ...items.indexed.map(
-            (item) => Expanded(
+        children: actions.indexed.map((item) {
+          return Expanded(
+            child: InkWell(
+              onTap: item.$2.onTap,
               child: Container(
-                alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: item.$1 == 0 ? AppColors.ink : Colors.transparent,
-                  border: item.$1 == items.length - 1
+                  border: item.$1 == actions.length - 1
                       ? null
                       : const Border(
                           right: BorderSide(color: AppColors.ink),
                         ),
                 ),
-                child: Text(
-                  item.$2,
-                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                        color:
-                            item.$1 == 0 ? AppColors.paperWhite : AppColors.ink,
-                        fontSize: 9,
-                        letterSpacing: .6,
-                      ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(item.$2.icon, size: 16),
+                    const SizedBox(width: 6),
+                    Text(
+                      item.$2.label,
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                            fontSize: 9,
+                            letterSpacing: .6,
+                          ),
+                    ),
+                  ],
                 ),
               ),
             ),
-          ),
-          Container(
-            width: 42,
-            alignment: Alignment.center,
-            decoration: const BoxDecoration(
-              border: Border(
-                left: BorderSide(color: AppColors.ink),
-              ),
-            ),
-            child: const Icon(Icons.search, size: 19),
-          ),
-        ],
+          );
+        }).toList(),
       ),
     );
   }
+}
+
+class _QuickAction {
+  const _QuickAction({
+    required this.label,
+    required this.icon,
+    required this.onTap,
+  });
+
+  final String label;
+  final IconData icon;
+  final VoidCallback onTap;
 }
 
 class _Shelf extends StatelessWidget {
   const _Shelf({
     required this.title,
     required this.subtitle,
-    required this.entries,
+    required this.topics,
   });
 
   final String title;
   final String subtitle;
-  final List<_ShelfEntry> entries;
+  final List<KnowledgeTopic> topics;
 
   @override
   Widget build(BuildContext context) {
@@ -351,12 +443,10 @@ class _Shelf extends StatelessWidget {
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             clipBehavior: Clip.none,
-            itemCount: entries.length,
+            itemCount: topics.length,
             separatorBuilder: (_, __) => const SizedBox(width: 14),
             itemBuilder: (context, index) {
-              final entry = entries[index];
-
-              return _ShelfBook(entry: entry);
+              return _ShelfBook(topic: topics[index]);
             },
           ),
         ),
@@ -400,52 +490,39 @@ class _ShelfHeader extends StatelessWidget {
             ],
           ),
         ),
-        Text(
-          'VER TODOS →',
-          style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                color: AppColors.blue,
-                fontSize: 9,
-                letterSpacing: .6,
-              ),
-        ),
       ],
     );
   }
 }
 
 class _ShelfBook extends StatelessWidget {
-  const _ShelfBook({
-    required this.entry,
-  });
+  const _ShelfBook({required this.topic});
 
-  final _ShelfEntry entry;
+  final KnowledgeTopic topic;
 
   @override
   Widget build(BuildContext context) {
-    final topic = topicById(entry.topicId);
-
     return SizedBox(
       width: 138,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           KnowledgeCover(
-            title: entry.title,
-            kicker: entry.category,
-            style: entry.style,
+            title: topic.title,
+            kicker: topic.tags.join(' · '),
+            style: _styleFor(topic.id),
             width: 132,
             height: 184,
-            onTap: topic == null
-                ? null
-                : () => Navigator.of(context).push(
-                      MaterialPageRoute<void>(
-                        builder: (_) => ArticleScreen(topic: topic),
-                      ),
-                    ),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => ArticleScreen(topic: topic),
+              ),
+            ),
+            onLongPress: () => showQuickPeek(context, topic),
           ),
           const SizedBox(height: 9),
           Text(
-            entry.title,
+            topic.title,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.labelLarge?.copyWith(
@@ -454,7 +531,7 @@ class _ShelfBook extends StatelessWidget {
           ),
           const SizedBox(height: 2),
           Text(
-            entry.minutes,
+            '${topic.minutes} min',
             style: Theme.of(context).textTheme.labelLarge?.copyWith(
                   fontSize: 9,
                   color: AppColors.muted,
@@ -467,86 +544,93 @@ class _ShelfBook extends StatelessWidget {
 }
 
 class _ContinueShelf extends StatelessWidget {
-  const _ContinueShelf();
+  const _ContinueShelf({
+    required this.topic,
+    required this.progress,
+  });
+
+  final KnowledgeTopic topic;
+  final double progress;
 
   @override
   Widget build(BuildContext context) {
-    final topic = topicById('modernismo');
+    final percent = (progress * 100).round();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const _ShelfHeader(
           title: 'continue daqui',
-          subtitle: 'seu histórico recente',
+          subtitle: 'volte exatamente de onde parou',
         ),
         const SizedBox(height: 14),
         Material(
           color: Colors.transparent,
           child: InkWell(
-            onTap: topic == null
-                ? null
-                : () => Navigator.of(context).push(
-                      MaterialPageRoute<void>(
-                        builder: (_) => ArticleScreen(topic: topic),
-                      ),
-                    ),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => ArticleScreen(topic: topic),
+              ),
+            ),
             child: Container(
-          padding: const EdgeInsets.fromLTRB(14, 14, 14, 12),
-          decoration: BoxDecoration(
-            color: AppColors.paperWhite,
-            border: Border.all(color: AppColors.ink),
-          ),
-          child: Row(
-            children: [
-              const KnowledgeCover(
-                title: 'Modernismo',
-                kicker: 'Arquitetura',
-                style: KnowledgeCoverStyle.archive,
-                width: 82,
-                height: 112,
+              padding: const EdgeInsets.fromLTRB(14, 14, 14, 12),
+              decoration: BoxDecoration(
+                color: AppColors.paperWhite,
+                border: Border.all(color: AppColors.ink),
               ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Modernismo: quando o mundo resolveu parecer moderno',
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontSize: 16,
-                          ),
+              child: Row(
+                children: [
+                  KnowledgeCover(
+                    title: topic.title,
+                    kicker: topic.tags.first,
+                    style: _styleFor(topic.id),
+                    width: 82,
+                    height: 112,
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          topic.title,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          style:
+                              Theme.of(context).textTheme.titleLarge?.copyWith(
+                                    fontSize: 16,
+                                  ),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          '${topic.tags.join(' · ')} · ${topic.minutes} min',
+                          style:
+                              Theme.of(context).textTheme.labelLarge?.copyWith(
+                                    color: AppColors.muted,
+                                    fontSize: 10,
+                                  ),
+                        ),
+                        const SizedBox(height: 12),
+                        LinearProgressIndicator(
+                          value: progress,
+                          minHeight: 5,
+                          color: AppColors.blue,
+                          backgroundColor: AppColors.line,
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          '$percent% lido',
+                          style:
+                              Theme.of(context).textTheme.labelLarge?.copyWith(
+                                    color: AppColors.blue,
+                                    fontSize: 9,
+                                  ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'Arquitetura · 8 min',
-                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                            color: AppColors.muted,
-                            fontSize: 10,
-                          ),
-                    ),
-                    const SizedBox(height: 12),
-                    const LinearProgressIndicator(
-                      value: .46,
-                      minHeight: 5,
-                      color: AppColors.blue,
-                      backgroundColor: AppColors.line,
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      '46% lido',
-                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                            color: AppColors.blue,
-                            fontSize: 9,
-                          ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
             ),
           ),
         ),
@@ -555,83 +639,154 @@ class _ContinueShelf extends StatelessWidget {
   }
 }
 
-class _RabbitHoleShelf extends StatelessWidget {
-  const _RabbitHoleShelf();
+class _OutsideBubbleCard extends StatelessWidget {
+  const _OutsideBubbleCard({required this.topic});
+
+  final KnowledgeTopic topic;
 
   @override
   Widget build(BuildContext context) {
-    final topic = topicById('modernismo');
-
     return Material(
-      color: Colors.transparent,
+      color: AppColors.paperWhite,
       child: InkWell(
-        onTap: topic == null
-            ? null
-            : () => Navigator.of(context).push(
-                  MaterialPageRoute<void>(
-                    builder: (_) => ArticleScreen(topic: topic),
-                  ),
-                ),
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => ArticleScreen(topic: topic),
+          ),
+        ),
+        onLongPress: () => showQuickPeek(context, topic),
         child: Container(
-      padding: const EdgeInsets.fromLTRB(16, 16, 16, 18),
-      decoration: BoxDecoration(
-        color: AppColors.deepBlue,
-        border: Border.all(color: AppColors.ink),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'RABBIT HOLE ATUAL',
-            style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                  color: Colors.white60,
-                  fontSize: 9,
-                  letterSpacing: 1.1,
-                ),
+          width: double.infinity,
+          padding: const EdgeInsets.all(18),
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.ink),
           ),
-          const SizedBox(height: 12),
-          Text(
-            'Bauhaus → Modernismo → Brasília → Niemeyer',
-            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                  color: Colors.white,
-                  fontSize: 30,
-                  height: 1.05,
-                ),
-          ),
-          const SizedBox(height: 14),
-          Row(
+          child: Row(
             children: [
-              Text(
-                '4 conexões',
-                style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      color: Colors.white70,
-                      fontSize: 10,
-                    ),
+              const Icon(
+                Icons.shuffle_rounded,
+                color: AppColors.blue,
+                size: 30,
               ),
-              const Spacer(),
-              const Icon(Icons.arrow_forward, color: Colors.white, size: 20),
+              const SizedBox(width: 15),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'SAIA DA SUA BOLHA',
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                            color: AppColors.blue,
+                            fontSize: 9,
+                            letterSpacing: 1.1,
+                          ),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      topic.title,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            fontSize: 16,
+                          ),
+                    ),
+                  ],
+                ),
+              ),
+              const Icon(Icons.arrow_forward, size: 19),
             ],
           ),
-        ],
-      ),
         ),
       ),
     );
   }
 }
 
-class _ShelfEntry {
-  const _ShelfEntry({
-    required this.topicId,
-    required this.title,
-    required this.category,
-    required this.minutes,
-    required this.style,
+class _RabbitHoleShelf extends StatelessWidget {
+  const _RabbitHoleShelf({
+    required this.rootTopic,
+    required this.hasHistory,
   });
 
-  final String topicId;
-  final String title;
-  final String category;
-  final String minutes;
-  final KnowledgeCoverStyle style;
+  final KnowledgeTopic rootTopic;
+  final bool hasHistory;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: AppColors.deepBlue,
+      child: InkWell(
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => KnowledgeMapScreen(
+              rootTopicId: rootTopic.id,
+            ),
+          ),
+        ),
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 18),
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.ink),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                hasHistory ? 'SEU RABBIT HOLE' : 'COMECE UM RABBIT HOLE',
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      color: Colors.white60,
+                      fontSize: 9,
+                      letterSpacing: 1.1,
+                    ),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                hasHistory
+                    ? '${rootTopic.title} → veja as conexões'
+                    : 'Bauhaus → Modernismo → Brutalismo → Helvetica',
+                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                      color: Colors.white,
+                      fontSize: 29,
+                      height: 1.05,
+                    ),
+              ),
+              const SizedBox(height: 14),
+              const Row(
+                children: [
+                  Text(
+                    'abrir mapa',
+                    style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 10,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  Spacer(),
+                  Icon(
+                    Icons.hub_outlined,
+                    color: Colors.white,
+                    size: 20,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+KnowledgeCoverStyle _styleFor(String id) {
+  return switch (id) {
+    'bauhaus' => KnowledgeCoverStyle.bauhaus,
+    'modernismo' => KnowledgeCoverStyle.archive,
+    'fermi' => KnowledgeCoverStyle.constellation,
+    'roma' => KnowledgeCoverStyle.stamp,
+    'brutalismo' => KnowledgeCoverStyle.archive,
+    'helvetica' => KnowledgeCoverStyle.diagonal,
+    'inflacao' => KnowledgeCoverStyle.columns,
+    'vinho' => KnowledgeCoverStyle.waves,
+    _ => KnowledgeCoverStyle.typography,
+  };
 }
