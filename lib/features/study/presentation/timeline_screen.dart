@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../app/theme/app_colors.dart';
 import '../../article/presentation/article_screen.dart';
 import '../../today/data/demo_topics.dart';
 import '../data/study_content.dart';
@@ -40,7 +39,7 @@ class TimelineScreen extends StatelessWidget {
                       Container(
                         width: 12,
                         height: 12,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           color: Theme.of(context).colorScheme.primary,
                           shape: BoxShape.circle,
                         ),
