@@ -17,12 +17,37 @@
   <meta name="theme-color" content="#F5F2EA">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Repertório">
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="apple-touch-icon" href="icons/Icon.svg">
   <link rel="manifest" href="manifest.json">
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100dvh;
+      background: #F5F2EA;
+      overscroll-behavior: none;
+    }
+
+    /* iOS PWA: paint the notch / Dynamic Island safe area as part of the app. */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: env(safe-area-inset-top);
+      background: #10265E;
+      z-index: 2147483647;
+      pointer-events: none;
+    }
+  </style>
 
   <title>Repertório</title>
 </head>
