@@ -88,7 +88,7 @@ class TodayScreen extends StatelessWidget {
                   hasHistory: state.historyTopicIds.isNotEmpty,
                 ),
                 const SizedBox(height: 18),
-                const Center(
+                Center(
                   child: HandNote(
                     'sua biblioteca mental cresce uma leitura por vez.',
                     fontSize: 20,
@@ -453,8 +453,10 @@ class _QuickActions extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: item.$1 == actions.length - 1
                       ? null
-                      : const Border(
-                          right: BorderSide(color: Theme.of(context).colorScheme.onSurface),
+                      : Border(
+                          right: BorderSide(
+                            color: Theme.of(context).colorScheme.outline,
+                          ),
                         ),
                 ),
                 child: Row(
@@ -952,7 +954,7 @@ class _OutsideBubbleCard extends StatelessWidget {
           ),
           child: Row(
             children: [
-              const Icon(
+              Icon(
                 Icons.shuffle_rounded,
                 color: Theme.of(context).colorScheme.primary,
                 size: 30,
