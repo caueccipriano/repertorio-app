@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../app/state/app_state_scope.dart';
-import '../../../app/theme/app_colors.dart';
 
 class BackupScreen extends StatelessWidget {
   const BackupScreen({super.key});
@@ -69,7 +68,7 @@ class BackupScreen extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Icon(
+                  Icon(
                     Icons.offline_bolt_outlined,
                     color: Theme.of(context).colorScheme.primary,
                   ),
