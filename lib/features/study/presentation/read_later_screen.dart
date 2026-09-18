@@ -25,7 +25,7 @@ class ReadLaterScreen extends StatelessWidget {
             : ReorderableListView.builder(
                 padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
                 itemCount: topics.length,
-                onReorder: (oldIndex, newIndex) =>
+                onReorderItem: (oldIndex, newIndex) =>
                     state.reorderReadLater(oldIndex, newIndex),
                 itemBuilder: (context, index) {
                   final topic = topics[index];
