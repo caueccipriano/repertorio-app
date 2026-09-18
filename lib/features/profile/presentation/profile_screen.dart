@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../app/state/app_state.dart';
 import '../../../app/state/app_state_scope.dart';
-import '../../../app/theme/app_colors.dart';
 import '../../../core/widgets/editorial_frame.dart';
 import '../../../core/widgets/paper_texture.dart';
 import '../../today/data/demo_topics.dart';
@@ -192,8 +191,10 @@ class _LibraryStats extends StatelessWidget {
               decoration: BoxDecoration(
                 border: item.$1 == stats.length - 1
                     ? null
-                    : const Border(
-                        right: BorderSide(color: Theme.of(context).colorScheme.onSurface),
+                    : Border(
+                        right: BorderSide(
+                          color: Theme.of(context).colorScheme.outline,
+                        ),
                       ),
               ),
               child: Column(
