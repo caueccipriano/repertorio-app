@@ -26,6 +26,19 @@ const bauhausTopic = KnowledgeTopic(
   curiosity:
       'A Bauhaus teve sedes em Weimar, Dessau e Berlim — e mudou de cidade conforme pressões políticas aumentavam.',
   connections: ['Modernismo', 'Brasília', 'Tipografia', 'Le Corbusier'],
+  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.image,
+      url:
+          'https://commons.wikimedia.org/wiki/Special:FilePath/Bauhaus-Dessau%20main%20building.jpg?width=1200',
+      title: 'Bauhaus Dessau',
+      caption:
+          'O edifício principal da Bauhaus em Dessau, referência central do movimento.',
+      sourceLabel: 'Wikimedia Commons',
+      sourceUrl:
+          'https://commons.wikimedia.org/wiki/File:Bauhaus-Dessau_main_building.jpg',
+    ),
+  ],
 );
 
 const modernismTopic = KnowledgeTopic(
@@ -82,6 +95,19 @@ const fermiTopic = KnowledgeTopic(
   curiosity:
       'A famosa formulação “onde está todo mundo?” é associada a uma conversa informal envolvendo o físico Enrico Fermi em 1950.',
   connections: ['Equação de Drake', 'Exoplanetas', 'SETI', 'Astrobiologia'],
+  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.image,
+      url:
+          'https://commons.wikimedia.org/wiki/Special:FilePath/Fermi-enrico.jpg?width=900',
+      title: 'Enrico Fermi',
+      caption:
+          'Retrato de Enrico Fermi, físico cujo nome ficou associado ao paradoxo.',
+      sourceLabel: 'Wikimedia Commons / Los Alamos',
+      sourceUrl:
+          'https://commons.wikimedia.org/wiki/File:Fermi-enrico.jpg',
+    ),
+  ],
 );
 
 const romeTopic = KnowledgeTopic(
