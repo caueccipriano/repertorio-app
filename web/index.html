@@ -55,6 +55,151 @@
       }
     };
 
+    window.repertorioOffline = {
+      supported: function () {
+        return 'caches' in window;
+      },
+      cacheUrl: async function (url) {
+        try {
+          const cache = await caches.open('repertorio-media-v1');
+          const response = await fetch(url, { mode: 'no-cors' });
+          await cache.put(url, response.clone());
+          return true;
+        } catch (_) {
+          return false;
+        }
+      },
+      removeUrl: async function (url) {
+        try {
+          const cache = await caches.open('repertorio-media-v1');
+          return await cache.delete(url);
+        } catch (_) {
+          return false;
+        }
+      }
+    };
+
+    window.repertorioShareCard = {
+      supported: function () {
+        return 'HTMLCanvasElement' in window;
+      },
+      share: async function (title, body) {
+        try {
+          const canvas = document.createElement('canvas');
+          canvas.width = 1080;
+          canvas.height = 1350;
+          const ctx = canvas.getContext('2d');
+
+          ctx.fillStyle = '#F5F2EA';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+          ctx.fillStyle = '#173B91';
+          ctx.beginPath();
+          ctx.arc(170, 190, 90, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.fillStyle = '#101010';
+          ctx.fillRect(300, 90, 46, 260);
+
+          ctx.font = '700 38px Arial';
+          ctx.fillStyle = '#173B91';
+          ctx.fillText('repertório*', 90, 460);
+
+          function wrapText(text, x, y, maxWidth, lineHeight, maxLines) {
+            const words = text.split(/\s+/);
+            let line = '';
+            let lines = 0;
+            for (let n = 0; n < words.length; n++) {
+              const testLine = line + words[n] + ' ';
+              const metrics = ctx.measureText(testLine);
+              if (metrics.width > maxWidth && n > 0) {
+                ctx.fillText(line.trim(), x, y);
+                line = words[n] + ' ';
+                y += lineHeight;
+                lines++;
+                if (lines >= maxLines - 1) break;
+              } else {
+                line = testLine;
+              }
+            }
+            if (lines < maxLines) ctx.fillText(line.trim(), x, y);
+            return y;
+          }
+
+          ctx.fillStyle = '#101010';
+          ctx.font = '700 68px Georgia';
+          const titleEnd = wrapText(title, 90, 570, 900, 78, 4);
+
+          ctx.fillStyle = '#575752';
+          ctx.font = '400 34px Arial';
+          wrapText(body, 90, titleEnd + 90, 900, 52, 8);
+
+          ctx.fillStyle = '#173B91';
+          ctx.font = '700 24px Arial';
+          ctx.fillText('aprendi hoje no Repertório', 90, 1260);
+
+          const blob = await new Promise(resolve =>
+            canvas.toBlob(resolve, 'image/png')
+          );
+          if (!blob) return false;
+
+          const file = new File([blob], 'repertorio-card.png', {
+            type: 'image/png'
+          });
+
+          if (navigator.share && navigator.canShare &&
+              navigator.canShare({ files: [file] })) {
+            await navigator.share({
+              files: [file],
+              title: 'Repertório',
+              text: title
+            });
+            return true;
+          }
+
+          const url = URL.createObjectURL(blob);
+          const anchor = document.createElement('a');
+          anchor.href = url;
+          anchor.download = 'repertorio-card.png';
+          document.body.appendChild(anchor);
+          anchor.click();
+          anchor.remove();
+          setTimeout(() => URL.revokeObjectURL(url), 1000);
+          return true;
+        } catch (_) {
+          return false;
+        }
+      }
+    };
+
+    window.repertorioUpdates = {
+      check: async function () {
+        if (!('serviceWorker' in navigator)) return false;
+        try {
+          const registration =
+              await navigator.serviceWorker.getRegistration();
+          if (!registration) return false;
+          await registration.update();
+          return !!registration.waiting;
+        } catch (_) {
+          return false;
+        }
+      },
+      apply: async function () {
+        if (!('serviceWorker' in navigator)) {
+          location.reload();
+          return;
+        }
+        try {
+          const registrations =
+              await navigator.serviceWorker.getRegistrations();
+          await Promise.all(registrations.map(r => r.unregister()));
+        } finally {
+          location.reload();
+        }
+      }
+    };
+
     window.repertorioNotifications = {
       permission: function () {
         if (!('Notification' in window)) return 'unsupported';
