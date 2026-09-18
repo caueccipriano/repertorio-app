@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/state/app_state_scope.dart';
-import '../../../app/theme/app_colors.dart';
 import '../../article/presentation/article_screen.dart';
 import '../../article/presentation/quick_peek.dart';
 import '../../today/data/demo_topics.dart';
@@ -131,13 +130,13 @@ class _SearchScreenState extends State<SearchScreen> {
                       ),
                 filled: true,
                 fillColor: Theme.of(context).colorScheme.surface,
-                border: const OutlineInputBorder(
+                border: OutlineInputBorder(
                   borderSide: BorderSide(color: Theme.of(context).colorScheme.onSurface),
                 ),
-                enabledBorder: const OutlineInputBorder(
+                enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Theme.of(context).colorScheme.onSurface),
                 ),
-                focusedBorder: const OutlineInputBorder(
+                focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Theme.of(context).colorScheme.primary,
                     width: 2,
@@ -261,9 +260,11 @@ class _SearchResult extends StatelessWidget {
       onLongPress: onPeek,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 16),
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           border: Border(
-            bottom: BorderSide(color: Theme.of(context).colorScheme.outline),
+            bottom: BorderSide(
+              color: Theme.of(context).colorScheme.outline,
+            ),
           ),
         ),
         child: Row(
@@ -273,7 +274,7 @@ class _SearchResult extends StatelessWidget {
               width: 42,
               height: 56,
               alignment: Alignment.center,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.primary,
               ),
               child: Text(
