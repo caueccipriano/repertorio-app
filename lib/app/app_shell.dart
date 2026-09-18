@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../features/explore/presentation/explore_screen.dart';
 import '../features/profile/presentation/profile_screen.dart';
-import '../features/review/presentation/review_screen.dart';
+import '../features/study/presentation/study_hub_screen.dart';
 import '../features/saved/presentation/saved_screen.dart';
 import '../features/today/presentation/today_screen.dart';
 
@@ -19,7 +19,7 @@ class _AppShellState extends State<AppShell> {
   static const _screens = [
     TodayScreen(),
     ExploreScreen(),
-    ReviewScreen(),
+    StudyHubScreen(),
     SavedScreen(),
     ProfileScreen(),
   ];
@@ -48,7 +48,7 @@ class _AppShellState extends State<AppShell> {
           NavigationDestination(
             icon: Icon(Icons.psychology_alt_outlined),
             selectedIcon: Icon(Icons.psychology_alt),
-            label: 'Revisar',
+            label: 'Estudar',
           ),
           NavigationDestination(
             icon: Icon(Icons.bookmark_border),
