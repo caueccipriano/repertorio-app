@@ -119,6 +119,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
           automaticallyImplyLeading: false,
           toolbarHeight: 56,
           titleSpacing: 0,
+          centerTitle: true,
           leadingWidth: 56,
           leading: InkWell(
             key: const ValueKey('reader-back'),
