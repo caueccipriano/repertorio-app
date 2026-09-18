@@ -552,9 +552,16 @@ class _ArticleScreenState extends State<ArticleScreen> {
   }
 
   Future<void> _playAudioOrSpeech(KnowledgeMedia? media) async {
+    // The reader play button is always useful: use a curated podcast when the
+    // topic has one; otherwise read the article aloud. This also avoids a dead
+    // play button on topics such as Bauhaus that currently only have images.
     if (media != null) {
-      await _openAudio(media);
-      return;
+      final opened = await openPodcastAudio(
+        url: media.url,
+        title: media.title,
+        source: media.sourceLabel ?? 'Podcast',
+      );
+      if (opened) return;
     }
 
     final topic = widget.topic;
