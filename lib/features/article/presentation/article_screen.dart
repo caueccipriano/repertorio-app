@@ -131,7 +131,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
       child: Scaffold(
         backgroundColor: palette.background,
         appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(58),
+          preferredSize: Size.fromHeight(58 + MediaQuery.paddingOf(context).top),
           child: SafeArea(
             bottom: false,
             child: Material(
