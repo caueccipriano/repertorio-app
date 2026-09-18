@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/state/app_state_scope.dart';
-import '../../../app/theme/app_colors.dart';
 import '../../today/domain/knowledge_topic.dart';
 import '../data/study_content.dart';
 
@@ -122,7 +121,7 @@ class _QuizScreenState extends State<QuizScreen> {
                             ),
                           ),
                           if (revealed && correct)
-                            const Icon(
+                            Icon(
                               Icons.check_circle,
                               color: Theme.of(context).colorScheme.primary,
                             ),
