@@ -8,6 +8,11 @@ void main() {
 
     expect(find.text('repertório*'), findsOneWidget);
     expect(find.text('POR QUE A BAUHAUS MUDOU TUDO?'), findsOneWidget);
-    expect(find.text('rapidinhas'), findsOneWidget);
+
+    await tester.tap(find.text('POR QUE A BAUHAUS MUDOU TUDO?'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('em 30 segundos'), findsOneWidget);
+    expect(find.text('entenda de verdade'), findsOneWidget);
   });
 }
