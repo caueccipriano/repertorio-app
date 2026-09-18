@@ -141,7 +141,7 @@ class ExploreScreen extends StatelessWidget {
                       ),
                 ),
                 const SizedBox(height: 22),
-                _TrailRail(trails: _trails),
+                const _TrailRail(trails: _trails),
                 const SizedBox(height: 28),
                 const _FilterRail(),
                 const SizedBox(height: 26),
