@@ -3,7 +3,7 @@ name: Deploy Repertório Web
 on:
   push:
     branches:
-      - feat/library-ux-1.2
+      - main
   workflow_dispatch:
 
 permissions:
