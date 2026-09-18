@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/state/app_state_scope.dart';
-import '../../../app/theme/app_colors.dart';
 
 class AccessibilityScreen extends StatelessWidget {
   const AccessibilityScreen({super.key});
