@@ -320,6 +320,211 @@ const wineTopic = KnowledgeTopic(
   connections: ['Fermentação', 'Taninos', 'Terroir', 'Química dos aromas'],
 );
 
+
+const stoicismTopic = KnowledgeTopic(
+  id: 'estoicismo', eyebrow: 'FILOSOFIA / VIDA', title: 'ESTOICISMO NÃO É “NÃO SENTIR NADA”',
+  summary: 'Uma filosofia antiga sobre distinguir o que depende de nós do que não depende.', minutes: 7,
+  tags: ['filosofia', 'psicologia'], quickTake: 'Estoicismo busca agir bem diante do que acontece, não eliminar emoções.',
+  simpleExplanation: 'Os estoicos propunham concentrar energia em julgamentos, escolhas e ações próprias, aceitando que muitos acontecimentos externos escapam ao nosso controle.',
+  example: 'Você não controla o atraso de um voo, mas controla como reorganiza seus planos e trata as pessoas ao redor.',
+  body: ['O estoicismo surgiu no mundo helenístico e foi desenvolvido por pensadores como Zenão, Sêneca, Epicteto e Marco Aurélio.','Para os estoicos, uma vida boa depende sobretudo de virtude e razão, não de riqueza, fama ou conforto.','A famosa distinção entre o que depende e o que não depende de nós funciona como ferramenta prática para direcionar atenção e responsabilidade.','Aceitação estoica não significa passividade: agir é importante quando a ação está ao nosso alcance.','A filosofia voltou a ganhar popularidade porque oferece linguagem simples para lidar com incerteza, frustração e escolhas.'],
+  remember: ['Controle não é o mesmo que influência.','Aceitar não significa desistir.','Virtude e ação importam mais que conforto.'],
+  whyItMatters: 'Ajuda a separar problemas que pedem ação daqueles que pedem adaptação.', curiosity: 'Marco Aurélio escreveu suas Meditações como notas pessoais, não como um livro pensado para publicação.',
+  connections: ['Epicteto', 'Marco Aurélio', 'Ética', 'Resiliência'],
+);
+
+const renaissanceTopic = KnowledgeTopic(
+  id: 'renascimento', eyebrow: 'ARTE / HISTÓRIA', title: 'POR QUE O RENASCIMENTO FOI TÃO IMPORTANTE?',
+  summary: 'Arte, ciência, comércio e redescoberta de textos antigos transformaram a Europa entre os séculos XIV e XVI.', minutes: 8,
+  tags: ['arte', 'história'], quickTake: 'O Renascimento não foi um simples “retorno” à Antiguidade, mas uma reinvenção feita num mundo em mudança.',
+  simpleExplanation: 'Artistas e estudiosos passaram a observar com intensidade o corpo, a natureza, a perspectiva e textos clássicos, enquanto cidades ricas financiavam novas obras.',
+  example: 'A perspectiva linear permitiu organizar uma pintura como se o espaço continuasse para dentro da parede.',
+  body: ['O movimento ganhou força em cidades italianas como Florença, Veneza e Roma.','Humanistas estudaram autores gregos e romanos e colocaram grande atenção na experiência humana, sem que isso significasse abandonar a religião.','Artistas exploraram anatomia, luz, proporção e perspectiva com métodos cada vez mais sistemáticos.','Mecenas, cortes, Igreja e famílias de comerciantes financiaram obras que também funcionavam como símbolos de poder.','A imprensa ajudou ideias e textos a circular em escala muito maior.'],
+  remember: ['Florença foi um centro decisivo.','Humanismo não significa ateísmo.','Arte, dinheiro, política e conhecimento estavam conectados.'],
+  whyItMatters: 'Muitas ideias modernas sobre artista, perspectiva, educação e cultura visual foram moldadas nesse período.', curiosity: 'Leonardo da Vinci deixou milhares de páginas de cadernos com estudos de anatomia, máquinas, água e desenho.',
+  connections: ['Humanismo', 'Leonardo da Vinci', 'Perspectiva', 'Imprensa'],
+);
+
+const frenchRevolutionTopic = KnowledgeTopic(
+  id: 'revolucao-francesa', eyebrow: 'HISTÓRIA / SOCIEDADE', title: 'POR QUE A REVOLUÇÃO FRANCESA EXPLODIU?',
+  summary: 'Crise fiscal, desigualdades políticas e novas ideias ajudaram a derrubar a ordem do Antigo Regime.', minutes: 9,
+  tags: ['história', 'sociedade'], quickTake: '1789 não surgiu de uma causa única: finanças públicas, privilégios e disputa por representação se combinaram.',
+  simpleExplanation: 'A monarquia precisava de dinheiro, mas o sistema de impostos era desigual e reformas encontravam resistência. Ao mesmo tempo, crescia a pressão por representação política.',
+  example: 'É como tentar resolver uma dívida enorme quando quem tem mais privilégios também consegue bloquear mudanças na forma de arrecadar.',
+  body: ['A França chegou ao fim da década de 1780 com grave crise financeira.','A sociedade era juridicamente dividida em ordens com direitos e obrigações diferentes.','A convocação dos Estados Gerais abriu uma disputa sobre quem representava a nação e como os votos deveriam contar.','A tomada da Bastilha tornou-se um símbolo, mas a Revolução atravessou várias fases e conflitos.','Declarações de direitos ampliaram novas ideias de cidadania enquanto violência política e guerra também marcaram o período.'],
+  remember: ['1789 é o início convencional.','Crise fiscal e representação estavam ligadas.','A Revolução teve fases muito diferentes.'],
+  whyItMatters: 'Cidadania, direitos, nacionalismo e política moderna foram profundamente transformados por seus efeitos.', curiosity: 'A Bastilha tinha apenas sete prisioneiros quando foi tomada em 14 de julho de 1789.',
+  connections: ['Iluminismo', 'Napoleão', 'Direitos humanos', 'Antigo Regime'],
+);
+
+const blackDeathTopic = KnowledgeTopic(
+  id: 'peste-negra', eyebrow: 'HISTÓRIA / SAÚDE', title: 'COMO A PESTE NEGRA MUDOU A EUROPA?',
+  summary: 'A pandemia do século XIV matou uma parcela enorme da população e alterou trabalho, religião e relações sociais.', minutes: 8,
+  tags: ['história', 'sociedade'], quickTake: 'A Peste Negra foi uma catástrofe demográfica com consequências econômicas e culturais duradouras.',
+  simpleExplanation: 'Quando milhões de pessoas morreram em poucos anos, faltaram trabalhadores, famílias desapareceram e instituições precisaram se adaptar a uma sociedade muito menor.',
+  example: 'Com menos trabalhadores disponíveis, em algumas regiões sobreviventes puderam negociar salários e condições melhores.',
+  body: ['A grande onda chegou à Europa em 1347 e se espalhou rapidamente por rotas comerciais.','A doença é associada à bactéria Yersinia pestis e circulou por redes envolvendo humanos, pulgas e outros hospedeiros.','A mortalidade variou muito entre regiões, mas foi extraordinariamente alta.','A escassez de mão de obra alterou relações econômicas e pressionou estruturas sociais existentes.','Sem conhecimento microbiológico, explicações religiosas, médicas e supersticiosas coexistiram.'],
+  remember: ['A peste circulou por redes de comércio.','O impacto variou por região.','A perda populacional mudou também a economia.'],
+  whyItMatters: 'Mostra como epidemias podem reorganizar sociedades muito além da medicina.', curiosity: 'A Peste Negra foi parte de uma pandemia mais ampla conhecida como Segunda Pandemia de peste.',
+  connections: ['Idade Média', 'Comércio', 'Epidemias', 'Trabalho'],
+);
+
+const evolutionTopic = KnowledgeTopic(
+  id: 'evolucao', eyebrow: 'CIÊNCIA / VIDA', title: 'COMO A SELEÇÃO NATURAL FUNCIONA?',
+  summary: 'Variações herdáveis que favorecem reprodução podem se tornar mais comuns ao longo das gerações.', minutes: 8,
+  tags: ['ciência', 'biologia'], quickTake: 'Indivíduos não evoluem porque “precisam”; populações mudam ao longo de gerações.',
+  simpleExplanation: 'Se indivíduos variam, parte dessa variação é herdável e algumas características ajudam a deixar mais descendentes, essas características tendem a aumentar na população.',
+  example: 'Bactérias resistentes a um antibiótico podem sobreviver ao tratamento e deixar descendentes, aumentando a frequência da resistência.',
+  body: ['Darwin e Wallace formularam independentemente a ideia de seleção natural no século XIX.','A seleção atua sobre diferenças existentes; ela não planeja resultados futuros.','Mutações e recombinação ajudam a gerar variação genética.','Seleção natural é um mecanismo da evolução, ao lado de processos como deriva genética e fluxo gênico.','Adaptação é sempre relativa a um ambiente e pode envolver custos.'],
+  remember: ['Populações evoluem.','Seleção não tem objetivo.','Adaptação depende do ambiente.'],
+  whyItMatters: 'É uma das ideias centrais para entender biodiversidade, doenças, agricultura e genética.', curiosity: 'Darwin publicou A Origem das Espécies em 1859.',
+  connections: ['Darwin', 'Genética', 'DNA', 'Resistência bacteriana'],
+);
+
+const quantumTopic = KnowledgeTopic(
+  id: 'quantica', eyebrow: 'CIÊNCIA / FÍSICA', title: 'POR QUE A FÍSICA QUÂNTICA PARECE TÃO ESTRANHA?',
+  summary: 'Na escala atômica, probabilidades e quantização descrevem fenômenos que não combinam com nossa intuição cotidiana.', minutes: 8,
+  tags: ['ciência', 'física'], quickTake: 'Quântica não significa “qualquer coisa misteriosa”: é uma teoria matemática extremamente testada.',
+  simpleExplanation: 'Objetos microscópicos não se comportam como bolinhas clássicas em miniatura. Certas grandezas aparecem em valores discretos e previsões são frequentemente probabilísticas.',
+  example: 'Um elétron num átomo só pode ocupar determinados estados de energia, como degraus em vez de uma rampa contínua.',
+  body: ['A teoria quântica nasceu de problemas que a física clássica não conseguia explicar no início do século XX.','Planck, Einstein, Bohr, Heisenberg, Schrödinger e outros construíram partes importantes da teoria.','Superposição descreve estados possíveis antes de uma medição, mas não deve ser confundida com ideias místicas.','O princípio da incerteza estabelece limites fundamentais para certos pares de grandezas.','Sem física quântica não entenderíamos semicondutores, lasers e grande parte da eletrônica moderna.'],
+  remember: ['É probabilística, mas rigorosa.','Quantização significa valores discretos em certos contextos.','Tecnologia moderna depende dela.'],
+  whyItMatters: 'Ela sustenta boa parte da física e da tecnologia contemporâneas.', curiosity: 'Einstein ajudou a fundar a teoria quântica ao explicar o efeito fotoelétrico, embora depois criticasse aspectos de sua interpretação.',
+  connections: ['Átomo', 'Semicondutores', 'Laser', 'Relatividade'],
+);
+
+const dnaTopic = KnowledgeTopic(
+  id: 'dna', eyebrow: 'CIÊNCIA / BIOLOGIA', title: 'O QUE O DNA REALMENTE FAZ?',
+  summary: 'DNA armazena informação hereditária, mas genes funcionam dentro de redes celulares e ambientais complexas.', minutes: 7,
+  tags: ['ciência', 'biologia'], quickTake: 'DNA é informação biológica, não um roteiro rígido que determina sozinho tudo sobre um organismo.',
+  simpleExplanation: 'Trechos de DNA podem orientar a produção de moléculas, especialmente proteínas e RNAs, enquanto células regulam quando e como essa informação é usada.',
+  example: 'Quase todas as células do corpo têm o mesmo DNA, mas uma célula da pele e um neurônio ativam conjuntos diferentes de genes.',
+  body: ['O DNA é formado por nucleotídeos organizados em uma dupla hélice.','A sequência das bases carrega informação que pode ser copiada e transmitida.','Genes representam apenas parte do genoma e sua expressão é regulada.','Ambiente e desenvolvimento interagem com a genética, por isso muitos traços não têm uma causa genética simples.','Mutações podem ser neutras, prejudiciais ou vantajosas dependendo do contexto.'],
+  remember: ['Mesmo DNA, usos diferentes em células diferentes.','Gene não é destino.','Mutações geram variação.'],
+  whyItMatters: 'Ajuda a interpretar notícias sobre hereditariedade, testes genéticos, medicina e biotecnologia.', curiosity: 'Se esticado, o DNA de uma única célula humana teria aproximadamente dois metros.',
+  connections: ['Genética', 'Evolução', 'RNA', 'CRISPR'],
+);
+
+const aiTopic = KnowledgeTopic(
+  id: 'ia-generativa', eyebrow: 'TECNOLOGIA / IA', title: 'COMO UMA IA GENERATIVA PRODUZ TEXTO?',
+  summary: 'Modelos de linguagem aprendem padrões estatísticos em grandes conjuntos de dados e geram sequências token por token.', minutes: 8,
+  tags: ['tecnologia', 'ia'], quickTake: 'Um modelo de linguagem não consulta uma frase pronta: calcula continuamente quais tokens são plausíveis a seguir.',
+  simpleExplanation: 'Durante o treinamento, o modelo aprende relações entre palavras, ideias e estruturas. Na geração, usa o contexto recebido para estimar o próximo token repetidamente.',
+  example: 'Ao receber “o céu está”, o modelo distribui probabilidades entre continuações possíveis e escolhe uma delas conforme sua configuração.',
+  body: ['Texto é dividido em unidades chamadas tokens.','Redes do tipo transformer usam mecanismos de atenção para relacionar partes do contexto.','Treinamento ajusta muitos parâmetros para reduzir erros de previsão.','A geração pode produzir respostas convincentes e ainda assim factualmente erradas, porque plausibilidade linguística não garante verdade.','Ferramentas externas, recuperação de documentos e verificações podem melhorar a fundamentação.'],
+  remember: ['Geração acontece token por token.','Plausível não significa verdadeiro.','Contexto muda a resposta.'],
+  whyItMatters: 'Entender o mecanismo ajuda a usar IA com expectativas melhores e verificar respostas quando precisão importa.', curiosity: 'Transformers foram apresentados em 2017 e rapidamente se tornaram uma arquitetura central para modelos de linguagem.',
+  connections: ['Machine learning', 'Transformer', 'Tokens', 'Redes neurais'],
+);
+
+const internetTopic = KnowledgeTopic(
+  id: 'internet', eyebrow: 'TECNOLOGIA / INFRAESTRUTURA', title: 'O QUE ACONTECE QUANDO VOCÊ ABRE UM SITE?',
+  summary: 'DNS, redes, servidores, TLS e navegador trabalham em sequência para transformar um endereço em uma página.', minutes: 7,
+  tags: ['tecnologia', 'internet'], quickTake: 'A web é uma aplicação sobre a internet: seu navegador encontra um servidor, estabelece uma conexão e pede recursos.',
+  simpleExplanation: 'O endereço precisa ser traduzido para um destino de rede; depois navegador e servidor negociam uma conexão segura e trocam arquivos e dados.',
+  example: 'DNS funciona um pouco como uma agenda: você sabe o nome do site e precisa descobrir o endereço usado pela rede.',
+  body: ['DNS ajuda a resolver nomes de domínio em endereços de rede.','Pacotes atravessam diferentes equipamentos e redes até chegar ao destino.','HTTPS usa TLS para proteger a comunicação contra leitura e alteração no caminho.','O servidor responde com HTML e outros recursos; o navegador interpreta tudo e monta a interface.','Caches e CDNs aproximam conteúdo do usuário e reduzem tempo de carregamento.'],
+  remember: ['Internet e web não são sinônimos.','DNS resolve nomes.','HTTPS protege a conexão.'],
+  whyItMatters: 'Torna conceitos de privacidade, segurança, velocidade e hospedagem muito menos abstratos.', curiosity: 'A World Wide Web foi proposta por Tim Berners-Lee no CERN em 1989.',
+  connections: ['DNS', 'HTTPS', 'Servidor', 'Navegador'],
+);
+
+const bitcoinTopic = KnowledgeTopic(
+  id: 'bitcoin', eyebrow: 'ECONOMIA / TECNOLOGIA', title: 'O QUE O BITCOIN RESOLVE TECNICAMENTE?',
+  summary: 'Uma rede distribuída mantém um histórico compartilhado de transferências sem uma autoridade central única.', minutes: 8,
+  tags: ['economia', 'tecnologia'], quickTake: 'Bitcoin combina criptografia, incentivos e consenso para dificultar gasto duplo numa rede aberta.',
+  simpleExplanation: 'Em vez de um banco manter sozinho o livro-caixa, muitos participantes verificam regras e compartilham uma versão do histórico.',
+  example: 'Se alguém tenta gastar as mesmas unidades duas vezes, a rede usa suas regras de consenso para determinar qual histórico válido será aceito.',
+  body: ['Bitcoin foi apresentado em 2008 sob o pseudônimo Satoshi Nakamoto.','Transações são agrupadas em blocos ligados criptograficamente.','Mineração usa prova de trabalho para participar do processo de consenso e emissão.','A oferta segue regras definidas pelo protocolo, mas o preço de mercado varia livremente.','Descentralização traz propriedades diferentes de sistemas tradicionais, mas também custos, volatilidade e desafios de uso.'],
+  remember: ['Blockchain é parte do sistema, não sinônimo de Bitcoin.','Prova de trabalho protege o consenso.','Preço e funcionamento técnico são questões diferentes.'],
+  whyItMatters: 'Ajuda a discutir criptoativos separando tecnologia, economia e especulação.', curiosity: 'O primeiro bloco da rede Bitcoin foi minerado em janeiro de 2009.',
+  connections: ['Blockchain', 'Criptografia', 'Moeda', 'Prova de trabalho'],
+);
+
+const jazzTopic = KnowledgeTopic(
+  id: 'jazz', eyebrow: 'MÚSICA / CULTURA', title: 'O QUE FAZ O JAZZ SOAR COMO JAZZ?',
+  summary: 'Improvisação, swing, diálogo entre músicos e uma história afro-americana formam um universo musical diverso.', minutes: 7,
+  tags: ['música', 'cultura'], quickTake: 'Jazz não é um único som: é uma tradição que valoriza interpretação, improvisação e interação.',
+  simpleExplanation: 'Uma mesma música pode mudar a cada apresentação porque músicos respondem uns aos outros e criam novas frases sobre uma estrutura compartilhada.',
+  example: 'Depois de tocar o tema principal, um saxofonista pode improvisar enquanto baixo, bateria e piano adaptam o acompanhamento em tempo real.',
+  body: ['O jazz se desenvolveu no início do século XX com raízes especialmente fortes em comunidades negras de Nova Orleans.','Blues, ragtime, tradições africanas e música europeia contribuíram para sua formação.','Improvisação permite que músicos criem dentro de estruturas harmônicas e rítmicas.','Swing descreve tanto uma sensação rítmica quanto um período histórico específico do jazz.','Bebop, cool jazz, hard bop, free jazz e fusion mostram como o gênero se transformou continuamente.'],
+  remember: ['Improvisação é central.','Jazz tem raízes afro-americanas.','Existem muitos estilos de jazz.'],
+  whyItMatters: 'O jazz influenciou música popular, linguagem harmônica e a própria ideia moderna de improvisação.', curiosity: 'Louis Armstrong ajudou a transformar o solo improvisado em elemento central do jazz.',
+  connections: ['Blues', 'Louis Armstrong', 'Bebop', 'Improvisação'],
+);
+
+const cinemaTopic = KnowledgeTopic(
+  id: 'montagem-cinema', eyebrow: 'CINEMA / LINGUAGEM', title: 'POR QUE A MONTAGEM MUDA O SENTIDO DE UM FILME?',
+  summary: 'A ordem e duração dos planos criam ritmo, relações e significados que não existem em cada imagem isolada.', minutes: 7,
+  tags: ['cinema', 'arte'], quickTake: 'Editar não é apenas cortar excessos: é construir significado pela relação entre imagens e sons.',
+  simpleExplanation: 'O cérebro conecta planos consecutivos. Mostrar um rosto neutro e depois um prato de comida pode fazer o mesmo rosto parecer faminto.',
+  example: 'Uma perseguição parece simultânea quando o filme alterna rapidamente entre quem foge e quem persegue.',
+  body: ['O cinema descobriu cedo que planos separados podiam formar uma continuidade compreensível.','Montagem controla tempo: pode condensar anos em segundos ou prolongar um instante.','O efeito Kuleshov ficou famoso por demonstrar como o contexto altera nossa leitura de uma expressão.','Eisenstein explorou colisões entre imagens para produzir ideias e emoção.','No cinema contemporâneo, montagem também organiza som, ritmo, ponto de vista e informação narrativa.'],
+  remember: ['A ordem dos planos muda significado.','Montagem manipula tempo.','Ritmo também conta história.'],
+  whyItMatters: 'Depois de perceber montagem, você passa a enxergar como filmes guiam atenção e emoção.', curiosity: 'Muitos princípios de montagem desenvolvidos no cinema hoje aparecem em vídeos curtos, publicidade e redes sociais.',
+  connections: ['Kuleshov', 'Eisenstein', 'Narrativa', 'Fotografia'],
+);
+
+const fashionTopic = KnowledgeTopic(
+  id: 'alta-costura', eyebrow: 'MODA / CULTURA', title: 'O QUE “ALTA-COSTURA” SIGNIFICA DE VERDADE?',
+  summary: 'Haute couture é uma denominação regulada na França, ligada a produção sob medida e critérios específicos.', minutes: 6,
+  tags: ['moda', 'cultura'], quickTake: 'Nem todo vestido caro ou feito à mão é oficialmente haute couture.',
+  simpleExplanation: 'O termo funciona como uma categoria institucional: casas precisam cumprir requisitos e integrar uma lista reconhecida no sistema francês.',
+  example: 'Uma marca pode produzir peças luxuosas e exclusivas sem ter o direito de se apresentar oficialmente como uma maison de haute couture.',
+  body: ['A alta-costura se consolidou em Paris a partir do século XIX.','Peças são feitas com grande trabalho artesanal e ajustadas para clientes específicos.','O sistema francês estabelece critérios e reconhecimento institucional para o uso oficial da denominação.','Desfiles de couture funcionam também como laboratório de técnica, imagem e prestígio para as maisons.','A influência da couture vai além de suas poucas clientes e chega à cultura visual, celebridades e moda industrial.'],
+  remember: ['É uma denominação regulada.','Sob medida e artesanato são centrais.','Luxo sozinho não basta.'],
+  whyItMatters: 'Ajuda a diferenciar marketing de uma categoria histórica e institucional específica da moda.', curiosity: 'Charles Frederick Worth é frequentemente associado ao nascimento da alta-costura moderna em Paris.',
+  connections: ['Paris', 'Luxo', 'Prêt-à-porter', 'História da moda'],
+);
+
+const coffeeTopic = KnowledgeTopic(
+  id: 'cafe', eyebrow: 'GASTRONOMIA / CIÊNCIA', title: 'POR QUE CAFÉS PODEM TER SABORES TÃO DIFERENTES?',
+  summary: 'Espécie, origem, processamento, torra, moagem e extração alteram profundamente o que chega à xícara.', minutes: 7,
+  tags: ['gastronomia', 'ciência'], quickTake: '“Gosto de café” não vem de um único fator: é o resultado de uma cadeia inteira.',
+  simpleExplanation: 'O grão já carrega características da planta e do cultivo; processamento e torra transformam compostos; preparo decide o que será extraído.',
+  example: 'O mesmo café pode parecer ácido e leve num preparo filtrado ou mais concentrado e intenso num espresso.',
+  body: ['Arabica e canephora são espécies comercialmente importantes com perfis diferentes.','Altitude, clima, solo e manejo influenciam o desenvolvimento do fruto.','Processamentos natural, lavado e outros mudam fermentação e secagem.','Torra cria centenas de compostos aromáticos e pode enfatizar ou mascarar características do grão.','Na extração, proporção, água, temperatura, moagem e tempo alteram equilíbrio entre acidez, doçura e amargor.'],
+  remember: ['Origem é só uma parte.','Torra transforma o grão.','Extração muda a percepção final.'],
+  whyItMatters: 'Dá vocabulário para escolher e preparar café pelo perfil que você realmente gosta.', curiosity: 'O que chamamos de “grão” de café é a semente de um fruto.',
+  connections: ['Fermentação', 'Torra', 'Espresso', 'Química dos aromas'],
+);
+
+const mapsTopic = KnowledgeTopic(
+  id: 'mapas', eyebrow: 'GEOGRAFIA / MUNDO', title: 'POR QUE TODO MAPA DISTORCE O MUNDO?',
+  summary: 'Transformar a superfície curva da Terra em um plano exige compromissos entre área, forma, distância e direção.', minutes: 7,
+  tags: ['geografia', 'mundo'], quickTake: 'Não existe projeção plana perfeita: cada mapa escolhe o que preservar e o que distorcer.',
+  simpleExplanation: 'Tente abrir a casca de uma laranja e deixá-la perfeitamente plana sem rasgar ou esticar. O mesmo problema aparece ao representar a Terra.',
+  example: 'Na projeção de Mercator, regiões próximas aos polos parecem muito maiores em relação às áreas equatoriais.',
+  body: ['Projeções cartográficas são métodos matemáticos para representar uma superfície curva em um plano.','Mercator preserva ângulos locais, característica útil historicamente para navegação.','Projeções equivalentes priorizam proporções de área, mas alteram formas.','Escala e objetivo determinam qual projeção é mais adequada.','Mapas também envolvem escolhas sobre centro, orientação, fronteiras, nomes e dados.'],
+  remember: ['Todo mapa plano distorce algo.','Mercator não foi criada para comparar áreas.','Escolher uma projeção é escolher prioridades.'],
+  whyItMatters: 'Ajuda a ler mapas criticamente e perceber como representação influencia nossa imagem mental do mundo.', curiosity: 'A Groenlândia parece gigantesca em muitos mapas Mercator, embora a África seja cerca de 14 vezes maior em área.',
+  connections: ['Mercator', 'Cartografia', 'Geopolítica', 'Escala'],
+);
+
+const placeboTopic = KnowledgeTopic(
+  id: 'placebo', eyebrow: 'PSICOLOGIA / SAÚDE', title: 'O QUE É O EFEITO PLACEBO?',
+  summary: 'Expectativas e contexto de tratamento podem alterar sintomas e experiências, sem transformar placebo em cura universal.', minutes: 7,
+  tags: ['psicologia', 'ciência'], quickTake: 'Placebo mostra que contexto e expectativa podem afetar alguns desfechos, mas não significa que doenças sejam “coisa da cabeça”.',
+  simpleExplanation: 'Receber um tratamento envolve ritual, expectativa e aprendizagem. Esses fatores podem modificar percepção de dor e outros sintomas em determinadas condições.',
+  example: 'Num estudo, grupos podem receber tratamento real ou uma intervenção controle parecida para separar o efeito específico do medicamento de outros efeitos do contexto.',
+  body: ['O efeito placebo é estudado em ensaios clínicos e em pesquisas sobre expectativa e aprendizagem.','Sintomas subjetivos, como dor, podem responder ao contexto de forma mensurável.','Isso não significa que placebo elimine infecções, tumores ou qualquer doença de forma geral.','Ensaios controlados ajudam a estimar quanto benefício vem do tratamento específico.','Existe também o efeito nocebo, em que expectativas negativas podem aumentar sintomas ou efeitos percebidos.'],
+  remember: ['Placebo não é cura universal.','Contexto pode alterar sintomas.','Controles ajudam a testar tratamentos.'],
+  whyItMatters: 'Ajuda a entender por que bons estudos clínicos precisam comparar intervenções cuidadosamente.', curiosity: 'Placebos podem produzir respostas mesmo quando alguns participantes sabem que estão recebendo um placebo, em contextos específicos de pesquisa.',
+  connections: ['Ensaios clínicos', 'Nocebo', 'Dor', 'Expectativa'],
+);
+
+const languageTopic = KnowledgeTopic(
+  id: 'linguagem', eyebrow: 'LINGUAGEM / SOCIEDADE', title: 'POR QUE AS LÍNGUAS MUDAM O TEMPO TODO?',
+  summary: 'Pronúncia, vocabulário e gramática mudam conforme comunidades usam a língua em novos contextos.', minutes: 7,
+  tags: ['linguagem', 'sociedade'], quickTake: 'Mudança linguística não é necessariamente “erro”: é uma característica normal de línguas vivas.',
+  simpleExplanation: 'Cada geração aprende padrões existentes, mas também cria, simplifica, empresta e reorganiza formas de falar.',
+  example: 'Palavras estrangeiras podem entrar no vocabulário, ganhar pronúncia local e depois parecer completamente normais.',
+  body: ['Línguas mudam em sons, significados, gramática e vocabulário.','Contato entre comunidades acelera empréstimos e mistura de padrões.','Mudanças podem começar em grupos sociais específicos e depois se espalhar.','A escrita costuma mudar mais lentamente que a fala, criando diferenças entre norma e uso cotidiano.','Nenhuma língua viva permanece congelada por séculos.'],
+  remember: ['Mudança é normal.','Fala e escrita mudam em ritmos diferentes.','Contato entre línguas deixa marcas.'],
+  whyItMatters: 'Ajuda a entender sotaques, gírias, norma-padrão e diversidade linguística sem confundir diferença com incapacidade.', curiosity: 'O português, o espanhol, o francês e o italiano descendem de variedades do latim falado.',
+  connections: ['Latim', 'Sotaque', 'Etimologia', 'Sociolinguística'],
+);
+
 const allDemoTopics = <KnowledgeTopic>[
   bauhausTopic,
   modernismTopic,
@@ -329,6 +534,23 @@ const allDemoTopics = <KnowledgeTopic>[
   helveticaTopic,
   inflationTopic,
   wineTopic,
+  stoicismTopic,
+  renaissanceTopic,
+  frenchRevolutionTopic,
+  blackDeathTopic,
+  evolutionTopic,
+  quantumTopic,
+  dnaTopic,
+  aiTopic,
+  internetTopic,
+  bitcoinTopic,
+  jazzTopic,
+  cinemaTopic,
+  fashionTopic,
+  coffeeTopic,
+  mapsTopic,
+  placeboTopic,
+  languageTopic,
 ];
 
 KnowledgeTopic? topicById(String id) {
