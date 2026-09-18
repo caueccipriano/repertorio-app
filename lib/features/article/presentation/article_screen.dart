@@ -144,8 +144,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
             if (!state.readerFocusMode) ...[
               IconButton(
                 tooltip: saved ? 'Remover dos salvos' : 'Salvar',
-                onPressed: () =>
-                    state.toggleSaved(widget.topic.id),
+                onPressed: _toggleSavedWithOffline,
                 icon: Icon(
                   saved ? Icons.bookmark : Icons.bookmark_border,
                 ),
@@ -626,6 +625,35 @@ class _ArticleScreenState extends State<ArticleScreen> {
       const SnackBar(
         content: Text(
           'Imagem indisponível aqui; o conteúdo foi copiado como texto.',
+        ),
+      ),
+    );
+  }
+
+  Future<void> _toggleSavedWithOffline() async {
+    final state = AppStateScope.read(context);
+    final topicId = widget.topic.id;
+
+    if (state.isSaved(topicId)) {
+      await state.toggleSaved(topicId);
+      return;
+    }
+
+    final urls = widget.topic.media.map((item) => item.url).toList();
+    final cached = urls.isEmpty ? true : await cacheOfflineMedia(urls);
+
+    await state.toggleSaved(topicId);
+    if (cached && !state.isOfflineTopic(topicId)) {
+      await state.toggleOfflineTopic(topicId);
+    }
+
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          cached
+              ? 'Salvo na biblioteca e preparado para leitura offline.'
+              : 'Salvo. O texto fica disponível; algumas mídias podem exigir internet.',
         ),
       ),
     );
