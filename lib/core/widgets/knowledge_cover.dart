@@ -9,6 +9,9 @@ enum KnowledgeCoverStyle {
   orbit,
   columns,
   waves,
+  diagonal,
+  constellation,
+  stamp,
 }
 
 class KnowledgeCover extends StatelessWidget {
@@ -30,6 +33,8 @@ class KnowledgeCover extends StatelessWidget {
   final double height;
   final bool selected;
   final VoidCallback? onTap;
+
+  bool get _darkCover => style == KnowledgeCoverStyle.archive;
 
   @override
   Widget build(BuildContext context) {
@@ -67,9 +72,7 @@ class KnowledgeCover extends StatelessWidget {
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
                         fontSize: 8,
                         letterSpacing: 1.2,
-                        color: style == KnowledgeCoverStyle.archive
-                            ? Colors.white70
-                            : AppColors.ink,
+                        color: _darkCover ? Colors.white70 : AppColors.ink,
                       ),
                 ),
                 const Spacer(),
@@ -81,9 +84,7 @@ class KnowledgeCover extends StatelessWidget {
                         fontSize: 17,
                         height: .94,
                         letterSpacing: -.6,
-                        color: style == KnowledgeCoverStyle.archive
-                            ? Colors.white
-                            : AppColors.ink,
+                        color: _darkCover ? Colors.white : AppColors.ink,
                       ),
                 ),
               ],
@@ -100,9 +101,12 @@ class KnowledgeCover extends StatelessWidget {
     return Semantics(
       button: true,
       label: title,
-      child: InkWell(
-        onTap: onTap,
-        child: cover,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          child: cover,
+        ),
       ),
     );
   }
@@ -169,7 +173,10 @@ class _CoverPainter extends CustomPainter {
         );
         break;
       case KnowledgeCoverStyle.archive:
-        canvas.drawRect(Offset.zero & size, Paint()..color = AppColors.deepBlue);
+        canvas.drawRect(
+          Offset.zero & size,
+          Paint()..color = AppColors.deepBlue,
+        );
         final whiteLine = Paint()
           ..color = Colors.white70
           ..style = PaintingStyle.stroke
@@ -243,6 +250,73 @@ class _CoverPainter extends CustomPainter {
               y,
             );
           canvas.drawPath(path, wave);
+        }
+        break;
+      case KnowledgeCoverStyle.diagonal:
+        final path = Path()
+          ..moveTo(0, size.height * .18)
+          ..lineTo(size.width, size.height * .03)
+          ..lineTo(size.width, size.height * .28)
+          ..lineTo(0, size.height * .43)
+          ..close();
+        canvas.drawPath(path, blue);
+        canvas.drawLine(
+          Offset(size.width * .12, size.height * .52),
+          Offset(size.width * .88, size.height * .40),
+          line..strokeWidth = 3,
+        );
+        canvas.drawLine(
+          Offset(size.width * .18, size.height * .59),
+          Offset(size.width * .75, size.height * .50),
+          line..strokeWidth = 1.3,
+        );
+        break;
+      case KnowledgeCoverStyle.constellation:
+        final star = Paint()..color = AppColors.blue;
+        final connector = Paint()
+          ..color = AppColors.ink
+          ..strokeWidth = .9;
+        final points = <Offset>[
+          Offset(size.width * .20, size.height * .24),
+          Offset(size.width * .47, size.height * .17),
+          Offset(size.width * .75, size.height * .30),
+          Offset(size.width * .62, size.height * .46),
+          Offset(size.width * .30, size.height * .50),
+        ];
+        for (var i = 0; i < points.length - 1; i++) {
+          canvas.drawLine(points[i], points[i + 1], connector);
+        }
+        for (final point in points) {
+          canvas.drawCircle(point, size.width * .028, star);
+        }
+        break;
+      case KnowledgeCoverStyle.stamp:
+        canvas.drawRect(
+          Rect.fromLTWH(
+            size.width * .13,
+            size.height * .18,
+            size.width * .74,
+            size.height * .29,
+          ),
+          blue,
+        );
+        final paper = Paint()..color = AppColors.paperWhite;
+        canvas.drawRect(
+          Rect.fromLTWH(
+            size.width * .19,
+            size.height * .24,
+            size.width * .62,
+            size.height * .17,
+          ),
+          paper,
+        );
+        for (var i = 0; i < 8; i++) {
+          final y = size.height * (.51 + i * .018);
+          canvas.drawLine(
+            Offset(size.width * .18, y),
+            Offset(size.width * (.78 - (i % 3) * .08), y),
+            line..strokeWidth = i == 0 ? 2 : .8,
+          );
         }
         break;
     }
