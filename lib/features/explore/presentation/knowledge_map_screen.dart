@@ -77,6 +77,14 @@ class KnowledgeMapScreen extends StatelessWidget {
                           painter: _MapPainter(
                             center: center,
                             points: points,
+                            lineColor: Theme.of(context)
+                                .colorScheme
+                                .onSurface
+                                .withValues(alpha: .42),
+                            accentColor: Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withValues(alpha: .18),
                           ),
                         ),
                       ),
@@ -222,10 +230,14 @@ class _MapPainter extends CustomPainter {
   const _MapPainter({
     required this.center,
     required this.points,
+    required this.lineColor,
+    required this.accentColor,
   });
 
   final Offset center;
   final List<Offset> points;
+  final Color lineColor;
+  final Color accentColor;
 
   @override
   void paint(Canvas canvas, Size size) {
