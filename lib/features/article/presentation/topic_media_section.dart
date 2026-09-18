@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../core/audio/spotify_embed.dart';
 import '../../today/domain/knowledge_topic.dart';
 
 class TopicMediaSection extends StatelessWidget {
@@ -62,19 +64,26 @@ class _MediaCard extends StatelessWidget {
           if (item.type == KnowledgeMediaType.image)
             AspectRatio(
               aspectRatio: 16 / 10,
-              child: Image.network(
-                item.url,
-                fit: BoxFit.cover,
-                errorBuilder: (_, __, ___) => _MediaFallback(
-                  icon: Icons.image_not_supported_outlined,
-                  label: 'não consegui carregar a imagem',
-                  actionLabel:
-                      item.sourceUrl == null ? null : 'abrir na fonte',
-                  onTap: item.sourceUrl == null
-                      ? null
-                      : () => _open(item.sourceUrl!),
-                ),
-              ),
+              child: item.url.endsWith('.svg') && item.url.startsWith('assets/')
+                  ? SvgPicture.asset(
+                      item.url,
+                      fit: BoxFit.cover,
+                      semanticsLabel: item.title,
+                    )
+                  : Image.network(
+                      item.url,
+                      fit: BoxFit.cover,
+                      webHtmlElementStrategy: WebHtmlElementStrategy.fallback,
+                      errorBuilder: (_, __, ___) => _MediaFallback(
+                        icon: Icons.image_not_supported_outlined,
+                        label: 'não consegui carregar a imagem',
+                        actionLabel:
+                            item.sourceUrl == null ? null : 'abrir na fonte',
+                        onTap: item.sourceUrl == null
+                            ? null
+                            : () => _open(item.sourceUrl!),
+                      ),
+                    ),
             )
           else
             _ExternalMediaPreview(item: item),
@@ -129,6 +138,7 @@ class _ExternalMediaPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isVideo = item.type == KnowledgeMediaType.video;
+    final isSpotify = item.url.contains('open.spotify.com');
     final colors = Theme.of(context).colorScheme;
 
     return InkWell(
@@ -140,14 +150,22 @@ class _ExternalMediaPreview extends StatelessWidget {
         child: Row(
           children: [
             Icon(
-              isVideo ? Icons.play_circle_outline : Icons.headphones,
+              isSpotify
+                  ? Icons.music_note_rounded
+                  : isVideo
+                      ? Icons.play_circle_outline
+                      : Icons.headphones,
               color: colors.onPrimary,
               size: 42,
             ),
             const SizedBox(width: 16),
             Expanded(
               child: Text(
-                isVideo ? 'abrir vídeo' : 'ouvir áudio',
+                isSpotify
+                    ? 'ouvir aqui'
+                    : isVideo
+                        ? 'abrir vídeo'
+                        : 'ouvir áudio',
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                       color: colors.onPrimary,
                     ),
@@ -223,6 +241,14 @@ Future<void> _open(String url) async {
   if (uri == null) {
     return;
   }
+
+  if (uri.host == 'open.spotify.com') {
+    final openedInside = await openSpotifyEmbed(url);
+    if (openedInside) {
+      return;
+    }
+  }
+
   await launchUrl(
     uri,
     mode: LaunchMode.externalApplication,
