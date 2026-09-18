@@ -1,3 +1,23 @@
+enum KnowledgeMediaType { image, video, audio }
+
+class KnowledgeMedia {
+  const KnowledgeMedia({
+    required this.type,
+    required this.url,
+    required this.title,
+    this.caption,
+    this.sourceLabel,
+    this.sourceUrl,
+  });
+
+  final KnowledgeMediaType type;
+  final String url;
+  final String title;
+  final String? caption;
+  final String? sourceLabel;
+  final String? sourceUrl;
+}
+
 class KnowledgeTopic {
   const KnowledgeTopic({
     required this.id,
@@ -12,6 +32,7 @@ class KnowledgeTopic {
     required this.whyItMatters,
     required this.curiosity,
     required this.connections,
+    this.media = const [],
   });
 
   final String id;
@@ -26,4 +47,5 @@ class KnowledgeTopic {
   final String whyItMatters;
   final String curiosity;
   final List<String> connections;
+  final List<KnowledgeMedia> media;
 }
