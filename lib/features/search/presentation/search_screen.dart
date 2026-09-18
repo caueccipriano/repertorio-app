@@ -130,16 +130,16 @@ class _SearchScreenState extends State<SearchScreen> {
                         icon: const Icon(Icons.close),
                       ),
                 filled: true,
-                fillColor: AppColors.paperWhite,
+                fillColor: Theme.of(context).colorScheme.surface,
                 border: const OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.ink),
+                  borderSide: BorderSide(color: Theme.of(context).colorScheme.onSurface),
                 ),
                 enabledBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.ink),
+                  borderSide: BorderSide(color: Theme.of(context).colorScheme.onSurface),
                 ),
                 focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(
-                    color: AppColors.blue,
+                    color: Theme.of(context).colorScheme.primary,
                     width: 2,
                   ),
                 ),
@@ -162,7 +162,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 Text(
                   '${results.length} RESULTADO${results.length == 1 ? '' : 'S'}',
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                        color: AppColors.muted,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                         fontSize: 10,
                         letterSpacing: 1.1,
                       ),
@@ -263,7 +263,7 @@ class _SearchResult extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 16),
         decoration: const BoxDecoration(
           border: Border(
-            bottom: BorderSide(color: AppColors.line),
+            bottom: BorderSide(color: Theme.of(context).colorScheme.outline),
           ),
         ),
         child: Row(
@@ -274,7 +274,7 @@ class _SearchResult extends StatelessWidget {
               height: 56,
               alignment: Alignment.center,
               decoration: const BoxDecoration(
-                color: AppColors.blue,
+                color: Theme.of(context).colorScheme.primary,
               ),
               child: Text(
                 topic.minutes.toString(),
@@ -302,7 +302,7 @@ class _SearchResult extends StatelessWidget {
                       Text(
                         topic.tags.join(' · '),
                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                              color: AppColors.muted,
+                              color: Theme.of(context).colorScheme.onSurfaceVariant,
                               fontSize: 9,
                             ),
                       ),
@@ -310,7 +310,7 @@ class _SearchResult extends StatelessWidget {
                         Text(
                           '${(progress * 100).round()}%',
                           style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                color: AppColors.blue,
+                                color: Theme.of(context).colorScheme.primary,
                                 fontSize: 9,
                               ),
                         ),
