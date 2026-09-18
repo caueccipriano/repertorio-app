@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart' show MaterialApp;
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:repertorio_app/app/app.dart';
 import 'package:repertorio_app/app/state/app_state.dart';
