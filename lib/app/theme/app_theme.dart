@@ -4,6 +4,51 @@ import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
 abstract final class AppTheme {
+  static ThemeData lightWith({
+    bool highContrast = false,
+    bool reduceMotion = false,
+    bool largeTapTargets = false,
+  }) {
+    final theme = light;
+
+    return theme.copyWith(
+      colorScheme: highContrast
+          ? const ColorScheme.light(
+              primary: Color(0xFF002F9E),
+              onPrimary: Colors.white,
+              secondary: Color(0xFF001B60),
+              onSecondary: Colors.white,
+              surface: Colors.white,
+              onSurface: Colors.black,
+              outline: Colors.black,
+            )
+          : theme.colorScheme,
+      scaffoldBackgroundColor:
+          highContrast ? Colors.white : theme.scaffoldBackgroundColor,
+      materialTapTargetSize: largeTapTargets
+          ? MaterialTapTargetSize.padded
+          : theme.materialTapTargetSize,
+      iconButtonTheme: largeTapTargets
+          ? IconButtonThemeData(
+              style: IconButton.styleFrom(
+                minimumSize: const Size(52, 52),
+              ),
+            )
+          : theme.iconButtonTheme,
+      pageTransitionsTheme: reduceMotion
+          ? const PageTransitionsTheme(
+              builders: {
+                TargetPlatform.android: _NoTransitionsBuilder(),
+                TargetPlatform.iOS: _NoTransitionsBuilder(),
+                TargetPlatform.macOS: _NoTransitionsBuilder(),
+                TargetPlatform.windows: _NoTransitionsBuilder(),
+                TargetPlatform.linux: _NoTransitionsBuilder(),
+              },
+            )
+          : theme.pageTransitionsTheme,
+    );
+  }
+
   static ThemeData get light {
     final baseTextTheme = GoogleFonts.manropeTextTheme();
 
@@ -117,5 +162,21 @@ abstract final class AppTheme {
       ),
       dividerColor: AppColors.line,
     );
+  }
+}
+
+
+class _NoTransitionsBuilder extends PageTransitionsBuilder {
+  const _NoTransitionsBuilder();
+
+  @override
+  Widget buildTransitions<T>(
+    PageRoute<T> route,
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+  ) {
+    return child;
   }
 }

@@ -5,6 +5,7 @@ import '../../../app/theme/app_colors.dart';
 import '../../../core/widgets/editorial_frame.dart';
 import '../../../core/widgets/paper_texture.dart';
 import '../../today/data/demo_topics.dart';
+import 'accessibility_screen.dart';
 import 'backup_screen.dart';
 import 'notification_settings_screen.dart';
 import 'notes_screen.dart';
@@ -104,6 +105,8 @@ class ProfileScreen extends StatelessWidget {
                   hour: state.reminderHour,
                   minute: state.reminderMinute,
                 ),
+                const SizedBox(height: 14),
+                const _AccessibilityPreferences(),
                 const SizedBox(height: 14),
                 _ReaderPreferences(
                   fontSize: state.readerFontSize,
@@ -668,6 +671,39 @@ class _NotesPreferences extends StatelessWidget {
                 ),
               ),
               const Icon(Icons.chevron_right),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+class _AccessibilityPreferences extends StatelessWidget {
+  const _AccessibilityPreferences();
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: AppColors.paperWhite,
+      child: InkWell(
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => const AccessibilityScreen(),
+          ),
+        ),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.line),
+          ),
+          child: const Row(
+            children: [
+              Icon(Icons.accessibility_new_outlined, size: 24),
+              SizedBox(width: 12),
+              Expanded(child: Text('acessibilidade')),
+              Icon(Icons.chevron_right),
             ],
           ),
         ),

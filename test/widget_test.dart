@@ -111,13 +111,35 @@ void main() {
     expect(state.studiedDaysThisWeek(), 0);
   });
 
-  test('backup restores progress notes goals and saved topics', () async {
+  test('advanced local study state persists and restores', () async {
     final state = await AppState.load();
 
     await state.toggleSaved('bauhaus');
     await state.saveNote('bauhaus', 'Forma e função precisam conversar.');
     await state.updateWeeklyGoal(4);
     await state.updateProgress('bauhaus', .55);
+    await state.toggleReadLater('fermi');
+    await state.toggleHighlight('bauhaus', 'quick');
+    await state.togglePassageStar('bauhaus', 'quick');
+    await state.recordQuiz('bauhaus', score: 2, total: 3);
+    await state.saveExplanation(
+      'bauhaus',
+      'Uma escola que aproximou arte, função e indústria.',
+    );
+    await state.toggleOfflineTopic('bauhaus');
+    await state.updateReaderSettings(
+      depth: ContentDepth.deep,
+      alignment: ReaderTextAlignment.justify,
+      columnWidth: 680,
+      margin: 24,
+      focusMode: true,
+      newVoiceRate: 1.2,
+    );
+    await state.updateAccessibility(
+      contrast: true,
+      motion: true,
+      targets: true,
+    );
 
     final backup = state.exportBackup();
 
@@ -134,5 +156,24 @@ void main() {
     expect(restored.weeklyGoal, 4);
     expect(restored.progressFor('bauhaus'), closeTo(.55, .001));
     expect(restored.studiedDaysThisWeek(), 1);
+    expect(restored.readLaterQueue, contains('fermi'));
+    expect(restored.isHighlighted('bauhaus', 'quick'), isTrue);
+    expect(restored.isPassageStarred('bauhaus', 'quick'), isTrue);
+    expect(restored.quizScoreByTopic['bauhaus'], 2);
+    expect(restored.quizTotalByTopic['bauhaus'], 3);
+    expect(
+      restored.explanationFor('bauhaus'),
+      contains('arte, função e indústria'),
+    );
+    expect(restored.isOfflineTopic('bauhaus'), isTrue);
+    expect(restored.readerDepth, ContentDepth.deep);
+    expect(restored.readerAlignment, ReaderTextAlignment.justify);
+    expect(restored.readerColumnWidth, 680);
+    expect(restored.readerMargin, 24);
+    expect(restored.readerFocusMode, isTrue);
+    expect(restored.voiceRate, 1.2);
+    expect(restored.highContrast, isTrue);
+    expect(restored.reduceMotion, isTrue);
+    expect(restored.largeTapTargets, isTrue);
   });
 }

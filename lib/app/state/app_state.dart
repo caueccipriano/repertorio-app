@@ -5,9 +5,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 enum ReaderThemeMode { paper, sepia, dark }
 
-enum ReaderFontFamily { editorial, sans }
+enum ReaderFontFamily { editorial, sans, readable }
 
 enum ReaderFlow { continuous, paged }
+
+enum ReaderTextAlignment { left, justify }
+
+enum ContentDepth { quick, standard, deep, immersion }
 
 class AppState extends ChangeNotifier {
   AppState._(this._prefs) {
@@ -37,6 +41,23 @@ class AppState extends ChangeNotifier {
   static const _studyDaysKey = 'study_days_v1';
   static const _weeklyGoalKey = 'weekly_goal_v1';
 
+  static const _queueKey = 'read_later_queue_v1';
+  static const _highlightsKey = 'passage_highlights_v1';
+  static const _starredPassagesKey = 'starred_passages_v1';
+  static const _quizKey = 'quiz_scores_v1';
+  static const _explanationsKey = 'topic_explanations_v1';
+  static const _lastOpenedKey = 'topic_last_opened_v1';
+  static const _offlineTopicsKey = 'offline_topics_v1';
+  static const _readerColumnWidthKey = 'reader_column_width_v1';
+  static const _readerMarginKey = 'reader_margin_v1';
+  static const _readerAlignmentKey = 'reader_alignment_v1';
+  static const _readerDepthKey = 'reader_depth_v1';
+  static const _readerFocusKey = 'reader_focus_v1';
+  static const _voiceRateKey = 'reader_voice_rate_v1';
+  static const _highContrastKey = 'access_high_contrast_v1';
+  static const _reduceMotionKey = 'access_reduce_motion_v1';
+  static const _largeTapTargetsKey = 'access_large_targets_v1';
+
   final SharedPreferences _prefs;
 
   bool onboardingComplete = false;
@@ -52,6 +73,16 @@ class AppState extends ChangeNotifier {
   ReaderThemeMode readerTheme = ReaderThemeMode.paper;
   ReaderFontFamily readerFont = ReaderFontFamily.editorial;
   ReaderFlow readerFlow = ReaderFlow.continuous;
+  ReaderTextAlignment readerAlignment = ReaderTextAlignment.left;
+  ContentDepth readerDepth = ContentDepth.standard;
+  double readerColumnWidth = 720;
+  double readerMargin = 20;
+  double voiceRate = 1.0;
+  bool readerFocusMode = false;
+
+  bool highContrast = false;
+  bool reduceMotion = false;
+  bool largeTapTargets = false;
 
   bool studyRemindersEnabled = false;
   bool reviewRemindersEnabled = true;
@@ -65,6 +96,15 @@ class AppState extends ChangeNotifier {
   final Set<String> studyDays = {};
   int weeklyGoal = 3;
 
+  final List<String> readLaterQueue = [];
+  final Map<String, Set<String>> highlightedPassages = {};
+  final Map<String, Set<String>> starredPassages = {};
+  final Map<String, int> quizScoreByTopic = {};
+  final Map<String, int> quizTotalByTopic = {};
+  final Map<String, String> explanationsByTopic = {};
+  final Map<String, DateTime> lastOpenedByTopic = {};
+  final Set<String> offlineTopicIds = {};
+
   static Future<AppState> load() async {
     final prefs = await SharedPreferences.getInstance();
     return AppState._(prefs);
@@ -76,32 +116,9 @@ class AppState extends ChangeNotifier {
     completedTopicIds.addAll(_prefs.getStringList(_completedKey) ?? const []);
     historyTopicIds.addAll(_prefs.getStringList(_historyKey) ?? const []);
 
-    final rawProgress = _prefs.getString(_progressKey);
-    if (rawProgress != null) {
-      final decoded = jsonDecode(rawProgress) as Map<String, dynamic>;
-      for (final entry in decoded.entries) {
-        progressByTopic[entry.key] = (entry.value as num).toDouble();
-      }
-    }
-
-    final rawLevels = _prefs.getString(_reviewLevelKey);
-    if (rawLevels != null) {
-      final decoded = jsonDecode(rawLevels) as Map<String, dynamic>;
-      for (final entry in decoded.entries) {
-        reviewLevelByTopic[entry.key] = (entry.value as num).toInt();
-      }
-    }
-
-    final rawDue = _prefs.getString(_reviewDueKey);
-    if (rawDue != null) {
-      final decoded = jsonDecode(rawDue) as Map<String, dynamic>;
-      for (final entry in decoded.entries) {
-        final parsed = DateTime.tryParse(entry.value.toString());
-        if (parsed != null) {
-          reviewDueByTopic[entry.key] = parsed;
-        }
-      }
-    }
+    _loadDoubleMap(_progressKey, progressByTopic);
+    _loadIntMap(_reviewLevelKey, reviewLevelByTopic);
+    _loadDateMap(_reviewDueKey, reviewDueByTopic);
 
     readerFontSize = _prefs.getDouble(_fontSizeKey) ?? 17;
     readerLineHeight = _prefs.getDouble(_lineHeightKey) ?? 1.62;
@@ -120,6 +137,24 @@ class AppState extends ChangeNotifier {
       _prefs.getString(_readerFlowKey),
       ReaderFlow.continuous,
     );
+    readerAlignment = _enumByName(
+      ReaderTextAlignment.values,
+      _prefs.getString(_readerAlignmentKey),
+      ReaderTextAlignment.left,
+    );
+    readerDepth = _enumByName(
+      ContentDepth.values,
+      _prefs.getString(_readerDepthKey),
+      ContentDepth.standard,
+    );
+    readerColumnWidth = _prefs.getDouble(_readerColumnWidthKey) ?? 720;
+    readerMargin = _prefs.getDouble(_readerMarginKey) ?? 20;
+    voiceRate = _prefs.getDouble(_voiceRateKey) ?? 1;
+    readerFocusMode = _prefs.getBool(_readerFocusKey) ?? false;
+
+    highContrast = _prefs.getBool(_highContrastKey) ?? false;
+    reduceMotion = _prefs.getBool(_reduceMotionKey) ?? false;
+    largeTapTargets = _prefs.getBool(_largeTapTargetsKey) ?? false;
 
     studyRemindersEnabled = _prefs.getBool(_studyRemindersKey) ?? false;
     reviewRemindersEnabled = _prefs.getBool(_reviewRemindersKey) ?? true;
@@ -130,19 +165,95 @@ class AppState extends ChangeNotifier {
     lastStudyAt = _readDate(_lastStudyAtKey);
     lastReminderAt = _readDate(_lastReminderAtKey);
 
-    final rawNotes = _prefs.getString(_notesKey);
-    if (rawNotes != null) {
-      final decoded = jsonDecode(rawNotes) as Map<String, dynamic>;
-      for (final entry in decoded.entries) {
-        final value = entry.value?.toString().trim() ?? '';
-        if (value.isNotEmpty) {
-          notesByTopic[entry.key] = value;
-        }
-      }
-    }
-
+    _loadStringMap(_notesKey, notesByTopic);
     studyDays.addAll(_prefs.getStringList(_studyDaysKey) ?? const []);
     weeklyGoal = _prefs.getInt(_weeklyGoalKey) ?? 3;
+
+    readLaterQueue.addAll(_prefs.getStringList(_queueKey) ?? const []);
+    _loadStringSetMap(_highlightsKey, highlightedPassages);
+    _loadStringSetMap(_starredPassagesKey, starredPassages);
+    _loadIntMap(_quizKey, quizScoreByTopic, field: 'score');
+    _loadIntMap(_quizKey, quizTotalByTopic, field: 'total');
+    _loadStringMap(_explanationsKey, explanationsByTopic);
+    _loadDateMap(_lastOpenedKey, lastOpenedByTopic);
+    offlineTopicIds.addAll(
+      _prefs.getStringList(_offlineTopicsKey) ?? const [],
+    );
+  }
+
+  void _loadDoubleMap(String key, Map<String, double> target) {
+    final raw = _prefs.getString(key);
+    if (raw == null) {
+      return;
+    }
+    final decoded = jsonDecode(raw) as Map<String, dynamic>;
+    for (final entry in decoded.entries) {
+      target[entry.key] = (entry.value as num).toDouble();
+    }
+  }
+
+  void _loadIntMap(
+    String key,
+    Map<String, int> target, {
+    String? field,
+  }) {
+    final raw = _prefs.getString(key);
+    if (raw == null) {
+      return;
+    }
+    final decoded = jsonDecode(raw) as Map<String, dynamic>;
+    for (final entry in decoded.entries) {
+      final value = field == null
+          ? entry.value
+          : (entry.value as Map<String, dynamic>)[field];
+      if (value is num) {
+        target[entry.key] = value.toInt();
+      }
+    }
+  }
+
+  void _loadStringMap(String key, Map<String, String> target) {
+    final raw = _prefs.getString(key);
+    if (raw == null) {
+      return;
+    }
+    final decoded = jsonDecode(raw) as Map<String, dynamic>;
+    for (final entry in decoded.entries) {
+      final value = entry.value?.toString().trim() ?? '';
+      if (value.isNotEmpty) {
+        target[entry.key] = value;
+      }
+    }
+  }
+
+  void _loadDateMap(String key, Map<String, DateTime> target) {
+    final raw = _prefs.getString(key);
+    if (raw == null) {
+      return;
+    }
+    final decoded = jsonDecode(raw) as Map<String, dynamic>;
+    for (final entry in decoded.entries) {
+      final parsed = DateTime.tryParse(entry.value.toString());
+      if (parsed != null) {
+        target[entry.key] = parsed;
+      }
+    }
+  }
+
+  void _loadStringSetMap(
+    String key,
+    Map<String, Set<String>> target,
+  ) {
+    final raw = _prefs.getString(key);
+    if (raw == null) {
+      return;
+    }
+    final decoded = jsonDecode(raw) as Map<String, dynamic>;
+    for (final entry in decoded.entries) {
+      target[entry.key] = (entry.value as List<dynamic>)
+          .map((value) => value.toString())
+          .toSet();
+    }
   }
 
   DateTime? _readDate(String key) {
@@ -184,20 +295,43 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool isQueued(String topicId) => readLaterQueue.contains(topicId);
+
+  Future<void> toggleReadLater(String topicId) async {
+    if (readLaterQueue.contains(topicId)) {
+      readLaterQueue.remove(topicId);
+    } else {
+      readLaterQueue.add(topicId);
+    }
+    await _prefs.setStringList(_queueKey, readLaterQueue);
+    notifyListeners();
+  }
+
+  Future<void> reorderReadLater(int oldIndex, int newIndex) async {
+    final item = readLaterQueue.removeAt(oldIndex);
+    readLaterQueue.insert(newIndex, item);
+    await _prefs.setStringList(_queueKey, readLaterQueue);
+    notifyListeners();
+  }
+
   double progressFor(String topicId) => progressByTopic[topicId] ?? 0;
 
   Future<void> openTopic(String topicId) async {
     historyTopicIds.remove(topicId);
     historyTopicIds.insert(0, topicId);
-    if (historyTopicIds.length > 40) {
-      historyTopicIds.removeRange(40, historyTopicIds.length);
+    if (historyTopicIds.length > 80) {
+      historyTopicIds.removeRange(80, historyTopicIds.length);
     }
+
+    lastOpenedByTopic[topicId] = DateTime.now();
+
     await _prefs.setStringList(_historyKey, historyTopicIds);
+    await _persistDateMap(_lastOpenedKey, lastOpenedByTopic);
     notifyListeners();
   }
 
   Future<void> updateProgress(String topicId, double progress) async {
-    final normalized = progress.clamp(0.0, 1.0);
+    final normalized = progress.clamp(0.0, 1.0).toDouble();
     final previous = progressByTopic[topicId] ?? 0;
     if ((normalized - previous).abs() < .025 && normalized < .96) {
       return;
@@ -227,10 +361,7 @@ class AppState extends ChangeNotifier {
       await _persistReviewDue();
     }
 
-    await _prefs.setString(
-      _progressKey,
-      jsonEncode(progressByTopic),
-    );
+    await _prefs.setString(_progressKey, jsonEncode(progressByTopic));
     notifyListeners();
   }
 
@@ -253,9 +384,9 @@ class AppState extends ChangeNotifier {
     const intervals = [1, 3, 7, 14, 30, 60];
     final current = reviewLevelByTopic[topicId] ?? 0;
     final nextLevel = quality >= 2
-        ? (current + 1).clamp(0, intervals.length - 1)
+        ? (current + 1).clamp(0, intervals.length - 1).toInt()
         : quality == 1
-            ? current.clamp(0, intervals.length - 1)
+            ? current.clamp(0, intervals.length - 1).toInt()
             : 0;
 
     reviewLevelByTopic[topicId] = nextLevel;
@@ -272,14 +403,7 @@ class AppState extends ChangeNotifier {
   }
 
   Future<void> _persistReviewDue() async {
-    await _prefs.setString(
-      _reviewDueKey,
-      jsonEncode(
-        reviewDueByTopic.map(
-          (key, value) => MapEntry(key, value.toIso8601String()),
-        ),
-      ),
-    );
+    await _persistDateMap(_reviewDueKey, reviewDueByTopic);
   }
 
   bool studiedToday([DateTime? now]) {
@@ -351,11 +475,11 @@ class AppState extends ChangeNotifier {
       );
     }
     if (hour != null) {
-      reminderHour = hour.clamp(0, 23);
+      reminderHour = hour.clamp(0, 23).toInt();
       await _prefs.setInt(_reminderHourKey, reminderHour);
     }
     if (minute != null) {
-      reminderMinute = minute.clamp(0, 59);
+      reminderMinute = minute.clamp(0, 59).toInt();
       await _prefs.setInt(_reminderMinuteKey, reminderMinute);
     }
     notifyListeners();
@@ -374,14 +498,89 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
+  String explanationFor(String topicId) =>
+      explanationsByTopic[topicId] ?? '';
+
+  Future<void> saveExplanation(String topicId, String explanation) async {
+    final cleaned = explanation.trim();
+    if (cleaned.isEmpty) {
+      explanationsByTopic.remove(topicId);
+    } else {
+      explanationsByTopic[topicId] = cleaned;
+    }
+    await _prefs.setString(
+      _explanationsKey,
+      jsonEncode(explanationsByTopic),
+    );
+    notifyListeners();
+  }
+
+  bool isHighlighted(String topicId, String passageId) =>
+      highlightedPassages[topicId]?.contains(passageId) ?? false;
+
+  bool isPassageStarred(String topicId, String passageId) =>
+      starredPassages[topicId]?.contains(passageId) ?? false;
+
+  Future<void> toggleHighlight(String topicId, String passageId) async {
+    final set = highlightedPassages.putIfAbsent(topicId, () => <String>{});
+    if (!set.add(passageId)) {
+      set.remove(passageId);
+    }
+    if (set.isEmpty) {
+      highlightedPassages.remove(topicId);
+    }
+    await _persistStringSetMap(_highlightsKey, highlightedPassages);
+    notifyListeners();
+  }
+
+  Future<void> togglePassageStar(String topicId, String passageId) async {
+    final set = starredPassages.putIfAbsent(topicId, () => <String>{});
+    if (!set.add(passageId)) {
+      set.remove(passageId);
+    }
+    if (set.isEmpty) {
+      starredPassages.remove(topicId);
+    }
+    await _persistStringSetMap(_starredPassagesKey, starredPassages);
+    notifyListeners();
+  }
+
+  Future<void> recordQuiz(
+    String topicId, {
+    required int score,
+    required int total,
+  }) async {
+    quizScoreByTopic[topicId] = score;
+    quizTotalByTopic[topicId] = total;
+    await _persistQuiz();
+    notifyListeners();
+  }
+
+  Future<void> toggleOfflineTopic(String topicId) async {
+    if (!offlineTopicIds.add(topicId)) {
+      offlineTopicIds.remove(topicId);
+    }
+    await _prefs.setStringList(
+      _offlineTopicsKey,
+      offlineTopicIds.toList(),
+    );
+    notifyListeners();
+  }
+
+  bool isOfflineTopic(String topicId) => offlineTopicIds.contains(topicId);
+
   Future<void> _recordStudyDay(DateTime value) async {
-    final key =
-        '${value.year.toString().padLeft(4, '0')}-${value.month.toString().padLeft(2, '0')}-${value.day.toString().padLeft(2, '0')}';
+    final key = _dateKey(value);
     if (studyDays.add(key)) {
       await _prefs.setStringList(_studyDaysKey, studyDays.toList()..sort());
       notifyListeners();
     }
   }
+
+  String _dateKey(DateTime value) =>
+      '${value.year.toString().padLeft(4, '0')}-'
+      '${value.month.toString().padLeft(2, '0')}-'
+      '${value.day.toString().padLeft(2, '0')}';
 
   int studiedDaysThisWeek([DateTime? now]) {
     final reference = now ?? DateTime.now();
@@ -393,10 +592,7 @@ class AppState extends ChangeNotifier {
 
     var count = 0;
     for (var offset = 0; offset < 7; offset++) {
-      final day = monday.add(Duration(days: offset));
-      final key =
-          '${day.year.toString().padLeft(4, '0')}-${day.month.toString().padLeft(2, '0')}-${day.day.toString().padLeft(2, '0')}';
-      if (studyDays.contains(key)) {
+      if (studyDays.contains(_dateKey(monday.add(Duration(days: offset))))) {
         count++;
       }
     }
@@ -411,42 +607,77 @@ class AppState extends ChangeNotifier {
       reference.day,
     ).subtract(Duration(days: reference.weekday - 1));
 
-    return List.generate(7, (offset) {
-      final day = monday.add(Duration(days: offset));
-      final key =
-          '${day.year.toString().padLeft(4, '0')}-${day.month.toString().padLeft(2, '0')}-${day.day.toString().padLeft(2, '0')}';
-      return studyDays.contains(key);
-    });
+    return List.generate(
+      7,
+      (offset) =>
+          studyDays.contains(_dateKey(monday.add(Duration(days: offset)))),
+    );
   }
 
   Future<void> updateWeeklyGoal(int goal) async {
-    weeklyGoal = goal.clamp(1, 7);
+    weeklyGoal = goal.clamp(1, 7).toInt();
     await _prefs.setInt(_weeklyGoalKey, weeklyGoal);
     notifyListeners();
+  }
+
+  int get totalQuizAttempts => quizScoreByTopic.length;
+
+  double? quizPercentFor(String topicId) {
+    final score = quizScoreByTopic[topicId];
+    final total = quizTotalByTopic[topicId];
+    if (score == null || total == null || total == 0) {
+      return null;
+    }
+    return score / total;
+  }
+
+  int studiedMinutesEstimate() {
+    var minutes = 0.0;
+    for (final entry in progressByTopic.entries) {
+      final progress = entry.value.clamp(0.0, 1.0);
+      minutes += progress * 6;
+    }
+    return minutes.round();
   }
 
   String exportBackup() {
     return const JsonEncoder.withIndent('  ').convert({
       'format': 'repertorio-backup',
-      'version': 1,
+      'version': 2,
       'exportedAt': DateTime.now().toIso8601String(),
       'savedTopicIds': savedTopicIds.toList(),
       'completedTopicIds': completedTopicIds.toList(),
       'historyTopicIds': historyTopicIds,
       'progressByTopic': progressByTopic,
       'reviewLevelByTopic': reviewLevelByTopic,
-      'reviewDueByTopic': reviewDueByTopic.map(
-        (key, value) => MapEntry(key, value.toIso8601String()),
-      ),
+      'reviewDueByTopic': _dateMapJson(reviewDueByTopic),
       'notesByTopic': notesByTopic,
       'studyDays': studyDays.toList(),
       'weeklyGoal': weeklyGoal,
+      'readLaterQueue': readLaterQueue,
+      'highlights': _stringSetMapJson(highlightedPassages),
+      'starredPassages': _stringSetMapJson(starredPassages),
+      'quiz': _quizJson(),
+      'explanations': explanationsByTopic,
+      'lastOpened': _dateMapJson(lastOpenedByTopic),
+      'offlineTopicIds': offlineTopicIds.toList(),
       'reader': {
         'fontSize': readerFontSize,
         'lineHeight': readerLineHeight,
         'theme': readerTheme.name,
         'font': readerFont.name,
         'flow': readerFlow.name,
+        'alignment': readerAlignment.name,
+        'depth': readerDepth.name,
+        'columnWidth': readerColumnWidth,
+        'margin': readerMargin,
+        'focusMode': readerFocusMode,
+        'voiceRate': voiceRate,
+      },
+      'accessibility': {
+        'highContrast': highContrast,
+        'reduceMotion': reduceMotion,
+        'largeTapTargets': largeTapTargets,
       },
       'reminders': {
         'enabled': studyRemindersEnabled,
@@ -467,70 +698,74 @@ class AppState extends ChangeNotifier {
 
       savedTopicIds
         ..clear()
-        ..addAll(
-          (decoded['savedTopicIds'] as List<dynamic>? ?? const [])
-              .map((value) => value.toString()),
-        );
+        ..addAll(_stringList(decoded['savedTopicIds']));
       completedTopicIds
         ..clear()
-        ..addAll(
-          (decoded['completedTopicIds'] as List<dynamic>? ?? const [])
-              .map((value) => value.toString()),
-        );
+        ..addAll(_stringList(decoded['completedTopicIds']));
       historyTopicIds
         ..clear()
-        ..addAll(
-          (decoded['historyTopicIds'] as List<dynamic>? ?? const [])
-              .map((value) => value.toString()),
-        );
+        ..addAll(_stringList(decoded['historyTopicIds']));
 
-      progressByTopic.clear();
-      final progress =
-          decoded['progressByTopic'] as Map<String, dynamic>? ?? const {};
-      for (final entry in progress.entries) {
-        progressByTopic[entry.key] = (entry.value as num).toDouble();
-      }
+      progressByTopic
+        ..clear()
+        ..addAll(_doubleMap(decoded['progressByTopic']));
+      reviewLevelByTopic
+        ..clear()
+        ..addAll(_intMap(decoded['reviewLevelByTopic']));
+      reviewDueByTopic
+        ..clear()
+        ..addAll(_dateMap(decoded['reviewDueByTopic']));
 
-      reviewLevelByTopic.clear();
-      final levels =
-          decoded['reviewLevelByTopic'] as Map<String, dynamic>? ?? const {};
-      for (final entry in levels.entries) {
-        reviewLevelByTopic[entry.key] = (entry.value as num).toInt();
-      }
-
-      reviewDueByTopic.clear();
-      final due =
-          decoded['reviewDueByTopic'] as Map<String, dynamic>? ?? const {};
-      for (final entry in due.entries) {
-        final parsed = DateTime.tryParse(entry.value.toString());
-        if (parsed != null) {
-          reviewDueByTopic[entry.key] = parsed;
-        }
-      }
-
-      notesByTopic.clear();
-      final notes =
-          decoded['notesByTopic'] as Map<String, dynamic>? ?? const {};
-      for (final entry in notes.entries) {
-        final value = entry.value?.toString().trim() ?? '';
-        if (value.isNotEmpty) {
-          notesByTopic[entry.key] = value;
-        }
-      }
+      notesByTopic
+        ..clear()
+        ..addAll(_stringMap(decoded['notesByTopic']));
 
       studyDays
         ..clear()
-        ..addAll(
-          (decoded['studyDays'] as List<dynamic>? ?? const [])
-              .map((value) => value.toString()),
-        );
-      weeklyGoal = ((decoded['weeklyGoal'] as num?)?.toInt() ?? 3).clamp(1, 7);
+        ..addAll(_stringList(decoded['studyDays']));
+      weeklyGoal =
+          ((decoded['weeklyGoal'] as num?)?.toInt() ?? 3).clamp(1, 7).toInt();
+
+      readLaterQueue
+        ..clear()
+        ..addAll(_stringList(decoded['readLaterQueue']));
+
+      highlightedPassages
+        ..clear()
+        ..addAll(_stringSetMap(decoded['highlights']));
+      starredPassages
+        ..clear()
+        ..addAll(_stringSetMap(decoded['starredPassages']));
+
+      final quiz = decoded['quiz'] as Map<String, dynamic>? ?? const {};
+      quizScoreByTopic.clear();
+      quizTotalByTopic.clear();
+      for (final entry in quiz.entries) {
+        final item = entry.value as Map<String, dynamic>;
+        quizScoreByTopic[entry.key] = (item['score'] as num).toInt();
+        quizTotalByTopic[entry.key] = (item['total'] as num).toInt();
+      }
+
+      explanationsByTopic
+        ..clear()
+        ..addAll(_stringMap(decoded['explanations']));
+      lastOpenedByTopic
+        ..clear()
+        ..addAll(_dateMap(decoded['lastOpened']));
+
+      offlineTopicIds
+        ..clear()
+        ..addAll(_stringList(decoded['offlineTopicIds']));
 
       final reader = decoded['reader'] as Map<String, dynamic>? ?? const {};
       readerFontSize =
-          (reader['fontSize'] as num?)?.toDouble().clamp(14, 24) ?? 17;
-      readerLineHeight =
-          (reader['lineHeight'] as num?)?.toDouble().clamp(1.3, 2.0) ?? 1.62;
+          (reader['fontSize'] as num?)?.toDouble().clamp(14, 24).toDouble() ??
+              17;
+      readerLineHeight = (reader['lineHeight'] as num?)
+              ?.toDouble()
+              .clamp(1.3, 2.0)
+              .toDouble() ??
+          1.62;
       readerTheme = _enumByName(
         ReaderThemeMode.values,
         reader['theme']?.toString(),
@@ -546,6 +781,31 @@ class AppState extends ChangeNotifier {
         reader['flow']?.toString(),
         ReaderFlow.continuous,
       );
+      readerAlignment = _enumByName(
+        ReaderTextAlignment.values,
+        reader['alignment']?.toString(),
+        ReaderTextAlignment.left,
+      );
+      readerDepth = _enumByName(
+        ContentDepth.values,
+        reader['depth']?.toString(),
+        ContentDepth.standard,
+      );
+      readerColumnWidth =
+          (reader['columnWidth'] as num?)?.toDouble().clamp(520, 860).toDouble() ??
+              720;
+      readerMargin =
+          (reader['margin'] as num?)?.toDouble().clamp(12, 40).toDouble() ?? 20;
+      readerFocusMode = reader['focusMode'] as bool? ?? false;
+      voiceRate =
+          (reader['voiceRate'] as num?)?.toDouble().clamp(.7, 1.5).toDouble() ??
+              1;
+
+      final accessibility =
+          decoded['accessibility'] as Map<String, dynamic>? ?? const {};
+      highContrast = accessibility['highContrast'] as bool? ?? false;
+      reduceMotion = accessibility['reduceMotion'] as bool? ?? false;
+      largeTapTargets = accessibility['largeTapTargets'] as bool? ?? false;
 
       final reminders =
           decoded['reminders'] as Map<String, dynamic>? ?? const {};
@@ -553,9 +813,10 @@ class AppState extends ChangeNotifier {
       reviewRemindersEnabled = reminders['reviewEnabled'] as bool? ?? true;
       dailyEditionRemindersEnabled =
           reminders['dailyEditionEnabled'] as bool? ?? true;
-      reminderHour = ((reminders['hour'] as num?)?.toInt() ?? 19).clamp(0, 23);
+      reminderHour =
+          ((reminders['hour'] as num?)?.toInt() ?? 19).clamp(0, 23).toInt();
       reminderMinute =
-          ((reminders['minute'] as num?)?.toInt() ?? 0).clamp(0, 59);
+          ((reminders['minute'] as num?)?.toInt() ?? 0).clamp(0, 59).toInt();
 
       await _persistAllUserState();
       onboardingComplete = true;
@@ -565,6 +826,89 @@ class AppState extends ChangeNotifier {
     } catch (_) {
       return false;
     }
+  }
+
+  List<String> _stringList(dynamic raw) =>
+      (raw as List<dynamic>? ?? const []).map((e) => e.toString()).toList();
+
+  Map<String, String> _stringMap(dynamic raw) {
+    final source = raw as Map<String, dynamic>? ?? const {};
+    return source.map((key, value) => MapEntry(key, value.toString()));
+  }
+
+  Map<String, double> _doubleMap(dynamic raw) {
+    final source = raw as Map<String, dynamic>? ?? const {};
+    return source.map(
+      (key, value) => MapEntry(key, (value as num).toDouble()),
+    );
+  }
+
+  Map<String, int> _intMap(dynamic raw) {
+    final source = raw as Map<String, dynamic>? ?? const {};
+    return source.map(
+      (key, value) => MapEntry(key, (value as num).toInt()),
+    );
+  }
+
+  Map<String, DateTime> _dateMap(dynamic raw) {
+    final source = raw as Map<String, dynamic>? ?? const {};
+    final result = <String, DateTime>{};
+    for (final entry in source.entries) {
+      final parsed = DateTime.tryParse(entry.value.toString());
+      if (parsed != null) {
+        result[entry.key] = parsed;
+      }
+    }
+    return result;
+  }
+
+  Map<String, Set<String>> _stringSetMap(dynamic raw) {
+    final source = raw as Map<String, dynamic>? ?? const {};
+    return source.map(
+      (key, value) => MapEntry(
+        key,
+        (value as List<dynamic>).map((e) => e.toString()).toSet(),
+      ),
+    );
+  }
+
+  static Map<String, dynamic> _dateMapJson(Map<String, DateTime> source) =>
+      source.map(
+        (key, value) => MapEntry(key, value.toIso8601String()),
+      );
+
+  static Map<String, dynamic> _stringSetMapJson(
+    Map<String, Set<String>> source,
+  ) =>
+      source.map((key, value) => MapEntry(key, value.toList()));
+
+  Map<String, dynamic> _quizJson() {
+    final result = <String, dynamic>{};
+    for (final id in {...quizScoreByTopic.keys, ...quizTotalByTopic.keys}) {
+      result[id] = {
+        'score': quizScoreByTopic[id] ?? 0,
+        'total': quizTotalByTopic[id] ?? 0,
+      };
+    }
+    return result;
+  }
+
+  Future<void> _persistDateMap(
+    String key,
+    Map<String, DateTime> source,
+  ) async {
+    await _prefs.setString(key, jsonEncode(_dateMapJson(source)));
+  }
+
+  Future<void> _persistStringSetMap(
+    String key,
+    Map<String, Set<String>> source,
+  ) async {
+    await _prefs.setString(key, jsonEncode(_stringSetMapJson(source)));
+  }
+
+  Future<void> _persistQuiz() async {
+    await _prefs.setString(_quizKey, jsonEncode(_quizJson()));
   }
 
   Future<void> _persistAllUserState() async {
@@ -580,11 +924,37 @@ class AppState extends ChangeNotifier {
     await _prefs.setString(_notesKey, jsonEncode(notesByTopic));
     await _prefs.setStringList(_studyDaysKey, studyDays.toList());
     await _prefs.setInt(_weeklyGoalKey, weeklyGoal);
+
+    await _prefs.setStringList(_queueKey, readLaterQueue);
+    await _persistStringSetMap(_highlightsKey, highlightedPassages);
+    await _persistStringSetMap(_starredPassagesKey, starredPassages);
+    await _persistQuiz();
+    await _prefs.setString(
+      _explanationsKey,
+      jsonEncode(explanationsByTopic),
+    );
+    await _persistDateMap(_lastOpenedKey, lastOpenedByTopic);
+    await _prefs.setStringList(
+      _offlineTopicsKey,
+      offlineTopicIds.toList(),
+    );
+
     await _prefs.setDouble(_fontSizeKey, readerFontSize);
     await _prefs.setDouble(_lineHeightKey, readerLineHeight);
     await _prefs.setString(_readerThemeKey, readerTheme.name);
     await _prefs.setString(_readerFontKey, readerFont.name);
     await _prefs.setString(_readerFlowKey, readerFlow.name);
+    await _prefs.setString(_readerAlignmentKey, readerAlignment.name);
+    await _prefs.setString(_readerDepthKey, readerDepth.name);
+    await _prefs.setDouble(_readerColumnWidthKey, readerColumnWidth);
+    await _prefs.setDouble(_readerMarginKey, readerMargin);
+    await _prefs.setBool(_readerFocusKey, readerFocusMode);
+    await _prefs.setDouble(_voiceRateKey, voiceRate);
+
+    await _prefs.setBool(_highContrastKey, highContrast);
+    await _prefs.setBool(_reduceMotionKey, reduceMotion);
+    await _prefs.setBool(_largeTapTargetsKey, largeTapTargets);
+
     await _prefs.setBool(_studyRemindersKey, studyRemindersEnabled);
     await _prefs.setBool(_reviewRemindersKey, reviewRemindersEnabled);
     await _prefs.setBool(
@@ -601,13 +971,19 @@ class AppState extends ChangeNotifier {
     ReaderThemeMode? theme,
     ReaderFontFamily? font,
     ReaderFlow? flow,
+    ReaderTextAlignment? alignment,
+    ContentDepth? depth,
+    double? columnWidth,
+    double? margin,
+    bool? focusMode,
+    double? newVoiceRate,
   }) async {
     if (fontSize != null) {
-      readerFontSize = fontSize.clamp(14, 24);
+      readerFontSize = fontSize.clamp(14, 24).toDouble();
       await _prefs.setDouble(_fontSizeKey, readerFontSize);
     }
     if (lineHeight != null) {
-      readerLineHeight = lineHeight.clamp(1.3, 2.0);
+      readerLineHeight = lineHeight.clamp(1.3, 2.0).toDouble();
       await _prefs.setDouble(_lineHeightKey, readerLineHeight);
     }
     if (theme != null) {
@@ -621,6 +997,50 @@ class AppState extends ChangeNotifier {
     if (flow != null) {
       readerFlow = flow;
       await _prefs.setString(_readerFlowKey, flow.name);
+    }
+    if (alignment != null) {
+      readerAlignment = alignment;
+      await _prefs.setString(_readerAlignmentKey, alignment.name);
+    }
+    if (depth != null) {
+      readerDepth = depth;
+      await _prefs.setString(_readerDepthKey, depth.name);
+    }
+    if (columnWidth != null) {
+      readerColumnWidth = columnWidth.clamp(520, 860).toDouble();
+      await _prefs.setDouble(_readerColumnWidthKey, readerColumnWidth);
+    }
+    if (margin != null) {
+      readerMargin = margin.clamp(12, 40).toDouble();
+      await _prefs.setDouble(_readerMarginKey, readerMargin);
+    }
+    if (focusMode != null) {
+      readerFocusMode = focusMode;
+      await _prefs.setBool(_readerFocusKey, focusMode);
+    }
+    if (newVoiceRate != null) {
+      voiceRate = newVoiceRate.clamp(.7, 1.5).toDouble();
+      await _prefs.setDouble(_voiceRateKey, voiceRate);
+    }
+    notifyListeners();
+  }
+
+  Future<void> updateAccessibility({
+    bool? contrast,
+    bool? motion,
+    bool? targets,
+  }) async {
+    if (contrast != null) {
+      highContrast = contrast;
+      await _prefs.setBool(_highContrastKey, contrast);
+    }
+    if (motion != null) {
+      reduceMotion = motion;
+      await _prefs.setBool(_reduceMotionKey, motion);
+    }
+    if (targets != null) {
+      largeTapTargets = targets;
+      await _prefs.setBool(_largeTapTargetsKey, targets);
     }
     notifyListeners();
   }
