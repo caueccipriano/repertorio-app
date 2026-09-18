@@ -73,6 +73,22 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('em 30 segundos'), findsOneWidget);
+    expect(find.byKey(const ValueKey('reader-back')), findsOneWidget);
+    expect(find.byIcon(Icons.more_horiz), findsOneWidget);
+
+    await tester.scrollUntilVisible(
+      find.text('explicando sem complicar'),
+      280,
+      scrollable: find.byType(Scrollable),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('explicando sem complicar'), findsOneWidget);
+    expect(
+      find.textContaining('Pense na Bauhaus como uma escola'),
+      findsOneWidget,
+    );
+    expect(find.text('EXEMPLO SIMPLES'), findsOneWidget);
 
     await tester.scrollUntilVisible(
       find.text('entenda de verdade'),
@@ -99,6 +115,27 @@ void main() {
       reloaded.progressFor('bauhaus'),
       greaterThan(0),
     );
+  });
+
+  testWidgets('reader back button always returns to the library',
+      (tester) async {
+    final state = await AppState.load();
+
+    await tester.pumpWidget(
+      AppStateScope(
+        state: state,
+        child: const MaterialApp(
+          home: ArticleScreen(topic: fermiTopic),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byKey(const ValueKey('reader-back')));
+    await tester.pumpAndSettle();
+
+    expect(find.text('repertório*'), findsOneWidget);
+    expect(find.text('Início'), findsOneWidget);
   });
 
   testWidgets('starts with zero saved and completed topics', (tester) async {
