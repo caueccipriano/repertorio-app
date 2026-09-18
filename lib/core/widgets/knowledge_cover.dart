@@ -169,7 +169,7 @@ class _CoverPainter extends CustomPainter {
         );
         break;
       case KnowledgeCoverStyle.archive:
-        canvas.drawRect(Offset.zero & size, AppColors.deepBlue);
+        canvas.drawRect(Offset.zero & size, Paint()..color = AppColors.deepBlue);
         final whiteLine = Paint()
           ..color = Colors.white70
           ..style = PaintingStyle.stroke
