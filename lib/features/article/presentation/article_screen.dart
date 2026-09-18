@@ -131,11 +131,13 @@ class _ArticleScreenState extends State<ArticleScreen> {
       child: Scaffold(
         backgroundColor: palette.background,
         appBar: AppBar(
-          leading: IconButton(
+          leadingWidth: 72,
+          leading: TextButton(
+            style: TextButton.styleFrom(foregroundColor: palette.text, minimumSize: const Size(64, 48)),
             key: const ValueKey('reader-back'),
             tooltip: 'Voltar',
             onPressed: _goBack,
-            icon: const Text('←', style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600)),
+            child: const Text('←', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w700)),
           ),
           title: Text(
             '${(_progress * 100).round()}% · $remaining min',
@@ -157,11 +159,11 @@ class _ArticleScreenState extends State<ArticleScreen> {
           ),
           actions: [
             if (audioMedia != null)
-              IconButton(
+              TextButton(
                 key: const ValueKey('reader-audio'),
-                tooltip: 'Ouvir',
                 onPressed: () => _openAudio(audioMedia),
-                icon: const Text('♪', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700)),
+                style: TextButton.styleFrom(foregroundColor: palette.text, minimumSize: const Size(52, 48)),
+                child: const Text('OUVIR', style: TextStyle(fontSize: 10, fontWeight: FontWeight.w800, letterSpacing: .5)),
               ),
             if (!state.readerFocusMode)
               PopupMenuButton<_ReaderMenuAction>(
@@ -208,6 +210,8 @@ class _ArticleScreenState extends State<ArticleScreen> {
                 ],
               ),
             TextButton(
+              key: const ValueKey('reader-settings'),
+              style: TextButton.styleFrom(foregroundColor: palette.text, minimumSize: const Size(52, 48)),
               onPressed: () => showReaderControls(context),
               child: Text(
                 'Aa',
