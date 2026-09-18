@@ -89,8 +89,12 @@ class PersonalKnowledgeMapScreen extends StatelessWidget {
 
   double _sin(double x) {
     var value = x;
-    while (value > 3.14159265359) value -= 6.28318530718;
-    while (value < -3.14159265359) value += 6.28318530718;
+    while (value > 3.14159265359) {
+      value -= 6.28318530718;
+    }
+    while (value < -3.14159265359) {
+      value += 6.28318530718;
+    }
     final x2 = value * value;
     return value *
         (1 - x2 / 6 + x2 * x2 / 120 - x2 * x2 * x2 / 5040);
