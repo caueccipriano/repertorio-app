@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../core/updates/app_update.dart';
@@ -18,6 +20,7 @@ class _AppShellState extends State<AppShell> {
   int _index = 0;
   bool _updateAvailable = false;
   bool _checkingUpdate = false;
+  Timer? _initialUpdateTimer;
 
   static const _screens = [
     TodayScreen(),
@@ -30,10 +33,16 @@ class _AppShellState extends State<AppShell> {
   @override
   void initState() {
     super.initState();
-    Future<void>.delayed(
+    _initialUpdateTimer = Timer(
       const Duration(seconds: 4),
       _checkForUpdate,
     );
+  }
+
+  @override
+  void dispose() {
+    _initialUpdateTimer?.cancel();
+    super.dispose();
   }
 
   Future<void> _checkForUpdate() async {
