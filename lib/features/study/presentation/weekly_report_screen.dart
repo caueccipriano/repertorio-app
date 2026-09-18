@@ -64,7 +64,7 @@ class WeeklyReportScreen extends StatelessWidget {
               Text(
                 'Ainda não há leitura suficiente nesta semana para montar seu resumo.',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: AppColors.muted,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
               )
             else
@@ -79,7 +79,7 @@ class WeeklyReportScreen extends StatelessWidget {
                             style: Theme.of(context)
                                 .textTheme
                                 .labelLarge
-                                ?.copyWith(color: AppColors.blue),
+                                ?.copyWith(color: Theme.of(context).colorScheme.primary),
                           ),
                         ],
                       ),
@@ -148,8 +148,8 @@ class _StatsRow extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: AppColors.ink),
-        color: AppColors.paperWhite,
+        border: Border.all(color: Theme.of(context).colorScheme.onSurface),
+        color: Theme.of(context).colorScheme.surface,
       ),
       child: Row(
         children: items.indexed
@@ -161,7 +161,7 @@ class _StatsRow extends StatelessWidget {
                     border: item.$1 == items.length - 1
                         ? null
                         : const Border(
-                            right: BorderSide(color: AppColors.ink),
+                            right: BorderSide(color: Theme.of(context).colorScheme.onSurface),
                           ),
                   ),
                   child: Column(
@@ -169,14 +169,14 @@ class _StatsRow extends StatelessWidget {
                       Text(
                         item.$2.$1,
                         style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                              color: AppColors.blue,
+                              color: Theme.of(context).colorScheme.primary,
                               fontSize: 34,
                             ),
                       ),
                       Text(
                         item.$2.$2,
                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                              color: AppColors.muted,
+                              color: Theme.of(context).colorScheme.onSurfaceVariant,
                               fontSize: 9,
                             ),
                       ),
