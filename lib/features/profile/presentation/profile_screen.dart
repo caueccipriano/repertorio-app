@@ -5,7 +5,9 @@ import '../../../app/theme/app_colors.dart';
 import '../../../core/widgets/editorial_frame.dart';
 import '../../../core/widgets/paper_texture.dart';
 import '../../today/data/demo_topics.dart';
+import 'backup_screen.dart';
 import 'notification_settings_screen.dart';
+import 'notes_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -87,6 +89,16 @@ class ProfileScreen extends StatelessWidget {
                   completed: totalRead,
                 ),
                 const SizedBox(height: 22),
+                _StudyGoalCard(
+                  studied: state.studiedDaysThisWeek(),
+                  goal: state.weeklyGoal,
+                  week: state.studyWeek(),
+                ),
+                const SizedBox(height: 14),
+                _NotesPreferences(count: state.notesByTopic.length),
+                const SizedBox(height: 14),
+                const _BackupPreferences(),
+                const SizedBox(height: 14),
                 _NotificationPreferences(
                   enabled: state.studyRemindersEnabled,
                   hour: state.reminderHour,
@@ -432,6 +444,227 @@ class _NotificationPreferences extends StatelessWidget {
                           ),
                     ),
                   ],
+                ),
+              ),
+              const Icon(Icons.chevron_right),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+class _StudyGoalCard extends StatelessWidget {
+  const _StudyGoalCard({
+    required this.studied,
+    required this.goal,
+    required this.week,
+  });
+
+  final int studied;
+  final int goal;
+  final List<bool> week;
+
+  @override
+  Widget build(BuildContext context) {
+    const labels = ['S', 'T', 'Q', 'Q', 'S', 'S', 'D'];
+    final reached = studied >= goal;
+
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: reached ? AppColors.softBlue : AppColors.paperWhite,
+        border: Border.all(
+          color: reached ? AppColors.blue : AppColors.line,
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Icon(Icons.calendar_month_outlined, size: 24),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  'meta semanal',
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontSize: 15,
+                      ),
+                ),
+              ),
+              TextButton(
+                onPressed: () => _pickGoal(context),
+                child: Text('$goal dias'),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Row(
+            children: week.indexed.map((item) {
+              final active = item.$2;
+              return Expanded(
+                child: Column(
+                  children: [
+                    Container(
+                      width: 30,
+                      height: 30,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: active ? AppColors.blue : Colors.transparent,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: active ? AppColors.blue : AppColors.line,
+                        ),
+                      ),
+                      child: active
+                          ? const Icon(
+                              Icons.check,
+                              color: Colors.white,
+                              size: 16,
+                            )
+                          : Text(
+                              labels[item.$1],
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelLarge
+                                  ?.copyWith(fontSize: 9),
+                            ),
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
+          ),
+          const SizedBox(height: 12),
+          Text(
+            reached
+                ? 'Meta concluída — sem streak, sem culpa.'
+                : '$studied de $goal dias estudados nesta semana.',
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: reached ? AppColors.blue : AppColors.muted,
+                ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _pickGoal(BuildContext context) async {
+    final selected = await showModalBottomSheet<int>(
+      context: context,
+      useSafeArea: true,
+      builder: (sheetContext) {
+        return Padding(
+          padding: const EdgeInsets.fromLTRB(18, 18, 18, 28),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'quantos dias por semana?',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'É uma referência leve, não uma sequência obrigatória.',
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: AppColors.muted,
+                    ),
+              ),
+              const SizedBox(height: 18),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: List.generate(7, (index) {
+                  final value = index + 1;
+                  return ChoiceChip(
+                    label: Text('$value'),
+                    selected: value == goal,
+                    onSelected: (_) =>
+                        Navigator.of(sheetContext).pop(value),
+                  );
+                }),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+
+    if (selected == null || !context.mounted) {
+      return;
+    }
+    await AppStateScope.read(context).updateWeeklyGoal(selected);
+  }
+}
+
+class _BackupPreferences extends StatelessWidget {
+  const _BackupPreferences();
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: AppColors.paperWhite,
+      child: InkWell(
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => const BackupScreen(),
+          ),
+        ),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.line),
+          ),
+          child: const Row(
+            children: [
+              Icon(Icons.shield_outlined, size: 24),
+              SizedBox(width: 12),
+              Expanded(
+                child: Text('backup e dados locais'),
+              ),
+              Icon(Icons.chevron_right),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+class _NotesPreferences extends StatelessWidget {
+  const _NotesPreferences({required this.count});
+
+  final int count;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: AppColors.paperWhite,
+      child: InkWell(
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => const NotesScreen(),
+          ),
+        ),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.line),
+          ),
+          child: Row(
+            children: [
+              const Icon(Icons.sticky_note_2_outlined, size: 24),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  count == 0
+                      ? 'minhas notas'
+                      : 'minhas notas · $count',
                 ),
               ),
               const Icon(Icons.chevron_right),

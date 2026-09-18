@@ -10,6 +10,24 @@ import 'topic_collection_screen.dart';
 class ExploreScreen extends StatelessWidget {
   const ExploreScreen({super.key});
 
+  static const _trails = [
+    _TrailEntry(
+      title: '50 coisas que vale saber',
+      subtitle: 'Uma base cultural para conversar melhor sobre o mundo.',
+      topicIds: ['bauhaus', 'fermi', 'roma', 'inflacao', 'vinho'],
+    ),
+    _TrailEntry(
+      title: 'Entenda design sem decorar nomes',
+      subtitle: 'Bauhaus, tipografia, modernismo e brutalismo em sequência.',
+      topicIds: ['bauhaus', 'helvetica', 'modernismo', 'brutalismo'],
+    ),
+    _TrailEntry(
+      title: 'Economia para ler o jornal',
+      subtitle: 'Comece pelos conceitos que aparecem o tempo todo.',
+      topicIds: ['inflacao', 'roma', 'fermi'],
+    ),
+  ];
+
   static const _catalog = [
     _CatalogEntry(
       title: 'História',
@@ -123,6 +141,8 @@ class ExploreScreen extends StatelessWidget {
                       ),
                 ),
                 const SizedBox(height: 22),
+                const _TrailRail(trails: _trails),
+                const SizedBox(height: 28),
                 const _FilterRail(),
                 const SizedBox(height: 26),
                 LayoutBuilder(
@@ -157,6 +177,138 @@ class ExploreScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+class _TrailRail extends StatelessWidget {
+  const _TrailRail({required this.trails});
+
+  final List<_TrailEntry> trails;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'trilhas editoriais',
+          style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                fontSize: 29,
+              ),
+        ),
+        const SizedBox(height: 5),
+        Text(
+          'Sequências curtas para estudar com contexto.',
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: AppColors.muted,
+              ),
+        ),
+        const SizedBox(height: 14),
+        SizedBox(
+          height: 154,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemCount: trails.length,
+            separatorBuilder: (_, __) => const SizedBox(width: 12),
+            itemBuilder: (context, index) {
+              final trail = trails[index];
+              return SizedBox(
+                width: 250,
+                child: Material(
+                  color: index.isEven
+                      ? AppColors.deepBlue
+                      : AppColors.paperWhite,
+                  child: InkWell(
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) => TopicCollectionScreen(
+                          title: trail.title,
+                          subtitle: trail.subtitle,
+                          topicIds: trail.topicIds,
+                        ),
+                      ),
+                    ),
+                    child: Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: AppColors.ink),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'TRILHA · ${trail.topicIds.length} ASSUNTOS',
+                            style:
+                                Theme.of(context).textTheme.labelLarge?.copyWith(
+                                      color: index.isEven
+                                          ? Colors.white60
+                                          : AppColors.blue,
+                                      fontSize: 9,
+                                      letterSpacing: 1,
+                                    ),
+                          ),
+                          const Spacer(),
+                          Text(
+                            trail.title,
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineMedium
+                                ?.copyWith(
+                                  color: index.isEven
+                                      ? Colors.white
+                                      : AppColors.ink,
+                                  fontSize: 23,
+                                  height: 1.02,
+                                ),
+                          ),
+                          const SizedBox(height: 8),
+                          Row(
+                            children: [
+                              Text(
+                                'começar',
+                                style: TextStyle(
+                                  color: index.isEven
+                                      ? Colors.white70
+                                      : AppColors.muted,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              const Spacer(),
+                              Icon(
+                                Icons.arrow_forward,
+                                color: index.isEven
+                                    ? Colors.white
+                                    : AppColors.ink,
+                                size: 18,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _TrailEntry {
+  const _TrailEntry({
+    required this.title,
+    required this.subtitle,
+    required this.topicIds,
+  });
+
+  final String title;
+  final String subtitle;
+  final List<String> topicIds;
 }
 
 class _FilterRail extends StatelessWidget {

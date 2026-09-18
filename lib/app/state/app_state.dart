@@ -33,6 +33,9 @@ class AppState extends ChangeNotifier {
   static const _dailyEditionRemindersKey = 'daily_edition_reminders_enabled_v1';
   static const _lastStudyAtKey = 'last_study_at_v1';
   static const _lastReminderAtKey = 'last_study_reminder_at_v1';
+  static const _notesKey = 'topic_notes_v1';
+  static const _studyDaysKey = 'study_days_v1';
+  static const _weeklyGoalKey = 'weekly_goal_v1';
 
   final SharedPreferences _prefs;
 
@@ -57,6 +60,10 @@ class AppState extends ChangeNotifier {
   int reminderMinute = 0;
   DateTime? lastStudyAt;
   DateTime? lastReminderAt;
+
+  final Map<String, String> notesByTopic = {};
+  final Set<String> studyDays = {};
+  int weeklyGoal = 3;
 
   static Future<AppState> load() async {
     final prefs = await SharedPreferences.getInstance();
@@ -122,6 +129,20 @@ class AppState extends ChangeNotifier {
     reminderMinute = _prefs.getInt(_reminderMinuteKey) ?? 0;
     lastStudyAt = _readDate(_lastStudyAtKey);
     lastReminderAt = _readDate(_lastReminderAtKey);
+
+    final rawNotes = _prefs.getString(_notesKey);
+    if (rawNotes != null) {
+      final decoded = jsonDecode(rawNotes) as Map<String, dynamic>;
+      for (final entry in decoded.entries) {
+        final value = entry.value?.toString().trim() ?? '';
+        if (value.isNotEmpty) {
+          notesByTopic[entry.key] = value;
+        }
+      }
+    }
+
+    studyDays.addAll(_prefs.getStringList(_studyDaysKey) ?? const []);
+    weeklyGoal = _prefs.getInt(_weeklyGoalKey) ?? 3;
   }
 
   DateTime? _readDate(String key) {
@@ -190,6 +211,7 @@ class AppState extends ChangeNotifier {
         _lastStudyAtKey,
         lastStudyAt!.toIso8601String(),
       );
+      await _recordStudyDay(lastStudyAt!);
     }
 
     if (normalized >= .92) {
@@ -337,6 +359,240 @@ class AppState extends ChangeNotifier {
       await _prefs.setInt(_reminderMinuteKey, reminderMinute);
     }
     notifyListeners();
+  }
+
+  String noteFor(String topicId) => notesByTopic[topicId] ?? '';
+
+  Future<void> saveNote(String topicId, String note) async {
+    final cleaned = note.trim();
+    if (cleaned.isEmpty) {
+      notesByTopic.remove(topicId);
+    } else {
+      notesByTopic[topicId] = cleaned;
+    }
+    await _prefs.setString(_notesKey, jsonEncode(notesByTopic));
+    notifyListeners();
+  }
+
+  Future<void> _recordStudyDay(DateTime value) async {
+    final key =
+        '${value.year.toString().padLeft(4, '0')}-${value.month.toString().padLeft(2, '0')}-${value.day.toString().padLeft(2, '0')}';
+    if (studyDays.add(key)) {
+      await _prefs.setStringList(_studyDaysKey, studyDays.toList()..sort());
+      notifyListeners();
+    }
+  }
+
+  int studiedDaysThisWeek([DateTime? now]) {
+    final reference = now ?? DateTime.now();
+    final monday = DateTime(
+      reference.year,
+      reference.month,
+      reference.day,
+    ).subtract(Duration(days: reference.weekday - 1));
+
+    var count = 0;
+    for (var offset = 0; offset < 7; offset++) {
+      final day = monday.add(Duration(days: offset));
+      final key =
+          '${day.year.toString().padLeft(4, '0')}-${day.month.toString().padLeft(2, '0')}-${day.day.toString().padLeft(2, '0')}';
+      if (studyDays.contains(key)) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  List<bool> studyWeek([DateTime? now]) {
+    final reference = now ?? DateTime.now();
+    final monday = DateTime(
+      reference.year,
+      reference.month,
+      reference.day,
+    ).subtract(Duration(days: reference.weekday - 1));
+
+    return List.generate(7, (offset) {
+      final day = monday.add(Duration(days: offset));
+      final key =
+          '${day.year.toString().padLeft(4, '0')}-${day.month.toString().padLeft(2, '0')}-${day.day.toString().padLeft(2, '0')}';
+      return studyDays.contains(key);
+    });
+  }
+
+  Future<void> updateWeeklyGoal(int goal) async {
+    weeklyGoal = goal.clamp(1, 7);
+    await _prefs.setInt(_weeklyGoalKey, weeklyGoal);
+    notifyListeners();
+  }
+
+  String exportBackup() {
+    return const JsonEncoder.withIndent('  ').convert({
+      'format': 'repertorio-backup',
+      'version': 1,
+      'exportedAt': DateTime.now().toIso8601String(),
+      'savedTopicIds': savedTopicIds.toList(),
+      'completedTopicIds': completedTopicIds.toList(),
+      'historyTopicIds': historyTopicIds,
+      'progressByTopic': progressByTopic,
+      'reviewLevelByTopic': reviewLevelByTopic,
+      'reviewDueByTopic': reviewDueByTopic.map(
+        (key, value) => MapEntry(key, value.toIso8601String()),
+      ),
+      'notesByTopic': notesByTopic,
+      'studyDays': studyDays.toList(),
+      'weeklyGoal': weeklyGoal,
+      'reader': {
+        'fontSize': readerFontSize,
+        'lineHeight': readerLineHeight,
+        'theme': readerTheme.name,
+        'font': readerFont.name,
+        'flow': readerFlow.name,
+      },
+      'reminders': {
+        'enabled': studyRemindersEnabled,
+        'reviewEnabled': reviewRemindersEnabled,
+        'dailyEditionEnabled': dailyEditionRemindersEnabled,
+        'hour': reminderHour,
+        'minute': reminderMinute,
+      },
+    });
+  }
+
+  Future<bool> importBackup(String raw) async {
+    try {
+      final decoded = jsonDecode(raw) as Map<String, dynamic>;
+      if (decoded['format'] != 'repertorio-backup') {
+        return false;
+      }
+
+      savedTopicIds
+        ..clear()
+        ..addAll(
+          (decoded['savedTopicIds'] as List<dynamic>? ?? const [])
+              .map((value) => value.toString()),
+        );
+      completedTopicIds
+        ..clear()
+        ..addAll(
+          (decoded['completedTopicIds'] as List<dynamic>? ?? const [])
+              .map((value) => value.toString()),
+        );
+      historyTopicIds
+        ..clear()
+        ..addAll(
+          (decoded['historyTopicIds'] as List<dynamic>? ?? const [])
+              .map((value) => value.toString()),
+        );
+
+      progressByTopic.clear();
+      final progress =
+          decoded['progressByTopic'] as Map<String, dynamic>? ?? const {};
+      for (final entry in progress.entries) {
+        progressByTopic[entry.key] = (entry.value as num).toDouble();
+      }
+
+      reviewLevelByTopic.clear();
+      final levels =
+          decoded['reviewLevelByTopic'] as Map<String, dynamic>? ?? const {};
+      for (final entry in levels.entries) {
+        reviewLevelByTopic[entry.key] = (entry.value as num).toInt();
+      }
+
+      reviewDueByTopic.clear();
+      final due =
+          decoded['reviewDueByTopic'] as Map<String, dynamic>? ?? const {};
+      for (final entry in due.entries) {
+        final parsed = DateTime.tryParse(entry.value.toString());
+        if (parsed != null) {
+          reviewDueByTopic[entry.key] = parsed;
+        }
+      }
+
+      notesByTopic.clear();
+      final notes =
+          decoded['notesByTopic'] as Map<String, dynamic>? ?? const {};
+      for (final entry in notes.entries) {
+        final value = entry.value?.toString().trim() ?? '';
+        if (value.isNotEmpty) {
+          notesByTopic[entry.key] = value;
+        }
+      }
+
+      studyDays
+        ..clear()
+        ..addAll(
+          (decoded['studyDays'] as List<dynamic>? ?? const [])
+              .map((value) => value.toString()),
+        );
+      weeklyGoal = ((decoded['weeklyGoal'] as num?)?.toInt() ?? 3).clamp(1, 7);
+
+      final reader = decoded['reader'] as Map<String, dynamic>? ?? const {};
+      readerFontSize =
+          (reader['fontSize'] as num?)?.toDouble().clamp(14, 24) ?? 17;
+      readerLineHeight =
+          (reader['lineHeight'] as num?)?.toDouble().clamp(1.3, 2.0) ?? 1.62;
+      readerTheme = _enumByName(
+        ReaderThemeMode.values,
+        reader['theme']?.toString(),
+        ReaderThemeMode.paper,
+      );
+      readerFont = _enumByName(
+        ReaderFontFamily.values,
+        reader['font']?.toString(),
+        ReaderFontFamily.editorial,
+      );
+      readerFlow = _enumByName(
+        ReaderFlow.values,
+        reader['flow']?.toString(),
+        ReaderFlow.continuous,
+      );
+
+      final reminders =
+          decoded['reminders'] as Map<String, dynamic>? ?? const {};
+      studyRemindersEnabled = reminders['enabled'] as bool? ?? false;
+      reviewRemindersEnabled = reminders['reviewEnabled'] as bool? ?? true;
+      dailyEditionRemindersEnabled =
+          reminders['dailyEditionEnabled'] as bool? ?? true;
+      reminderHour = ((reminders['hour'] as num?)?.toInt() ?? 19).clamp(0, 23);
+      reminderMinute =
+          ((reminders['minute'] as num?)?.toInt() ?? 0).clamp(0, 59);
+
+      await _persistAllUserState();
+      onboardingComplete = true;
+      await _prefs.setBool(_onboardingKey, true);
+      notifyListeners();
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  Future<void> _persistAllUserState() async {
+    await _prefs.setStringList(_savedKey, savedTopicIds.toList());
+    await _prefs.setStringList(_completedKey, completedTopicIds.toList());
+    await _prefs.setStringList(_historyKey, historyTopicIds);
+    await _prefs.setString(_progressKey, jsonEncode(progressByTopic));
+    await _prefs.setString(
+      _reviewLevelKey,
+      jsonEncode(reviewLevelByTopic),
+    );
+    await _persistReviewDue();
+    await _prefs.setString(_notesKey, jsonEncode(notesByTopic));
+    await _prefs.setStringList(_studyDaysKey, studyDays.toList());
+    await _prefs.setInt(_weeklyGoalKey, weeklyGoal);
+    await _prefs.setDouble(_fontSizeKey, readerFontSize);
+    await _prefs.setDouble(_lineHeightKey, readerLineHeight);
+    await _prefs.setString(_readerThemeKey, readerTheme.name);
+    await _prefs.setString(_readerFontKey, readerFont.name);
+    await _prefs.setString(_readerFlowKey, readerFlow.name);
+    await _prefs.setBool(_studyRemindersKey, studyRemindersEnabled);
+    await _prefs.setBool(_reviewRemindersKey, reviewRemindersEnabled);
+    await _prefs.setBool(
+      _dailyEditionRemindersKey,
+      dailyEditionRemindersEnabled,
+    );
+    await _prefs.setInt(_reminderHourKey, reminderHour);
+    await _prefs.setInt(_reminderMinuteKey, reminderMinute);
   }
 
   Future<void> updateReaderSettings({

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../app/state/app_state.dart';
+import '../../../core/audio/study_speech.dart';
 import '../../../app/state/app_state_scope.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../explore/data/knowledge_graph.dart';
@@ -28,6 +30,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
   PageController? _pageController;
   double _progress = 0;
   bool _bootstrapped = false;
+  bool _speaking = false;
 
   @override
   void initState() {
@@ -76,6 +79,9 @@ class _ArticleScreenState extends State<ArticleScreen> {
 
   @override
   void dispose() {
+    if (_speaking) {
+      stopStudySpeech();
+    }
     _scrollController
       ..removeListener(_onScroll)
       ..dispose();
@@ -90,6 +96,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
     final bodyStyle = _bodyStyle(state, palette);
     final nextTopic = _nextTopic(widget.topic);
     final saved = state.isSaved(widget.topic.id);
+    final note = state.noteFor(widget.topic.id);
 
     return Theme(
       data: Theme.of(context).copyWith(
@@ -129,6 +136,42 @@ class _ArticleScreenState extends State<ArticleScreen> {
               icon: Icon(
                 saved ? Icons.bookmark : Icons.bookmark_border,
               ),
+            ),
+            if (studySpeechSupported)
+              IconButton(
+                tooltip: _speaking ? 'Parar áudio' : 'Ouvir artigo',
+                onPressed: _toggleSpeech,
+                icon: Icon(
+                  _speaking
+                      ? Icons.stop_circle_outlined
+                      : Icons.headphones_outlined,
+                ),
+              ),
+            IconButton(
+              tooltip: note.isEmpty ? 'Adicionar nota' : 'Editar nota',
+              onPressed: () => _showNoteSheet(note),
+              icon: Icon(
+                note.isEmpty ? Icons.note_add_outlined : Icons.sticky_note_2,
+              ),
+            ),
+            IconButton(
+              tooltip: 'Compartilhar aprendizado',
+              onPressed: () async {
+                final text =
+                    '${widget.topic.title}\n\n${widget.topic.quickTake}\n\n— Repertório';
+                await Clipboard.setData(ClipboardData(text: text));
+                if (!context.mounted) {
+                  return;
+                }
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      'Cartão de conhecimento copiado. Agora é só colar onde quiser.',
+                    ),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.ios_share_outlined),
             ),
             IconButton(
               tooltip: 'Mapa',
@@ -275,6 +318,14 @@ class _ArticleScreenState extends State<ArticleScreen> {
                       palette: palette,
                     ),
                   ),
+                  _PersonalNote(
+                    note: state.noteFor(widget.topic.id),
+                    palette: palette,
+                    onEdit: () => _showNoteSheet(
+                      state.noteFor(widget.topic.id),
+                    ),
+                  ),
+                  const SizedBox(height: 28),
                   _NextConnection(
                     nextTopic: nextTopic,
                     palette: palette,
@@ -397,6 +448,14 @@ class _ArticleScreenState extends State<ArticleScreen> {
                 palette: palette,
               ),
             ),
+            _PersonalNote(
+              note: state.noteFor(widget.topic.id),
+              palette: palette,
+              onEdit: () => _showNoteSheet(
+                state.noteFor(widget.topic.id),
+              ),
+            ),
+            const SizedBox(height: 28),
             _NextConnection(
               nextTopic: nextTopic,
               palette: palette,
@@ -454,6 +513,107 @@ class _ArticleScreenState extends State<ArticleScreen> {
         ),
       ],
     );
+  }
+
+  Future<void> _toggleSpeech() async {
+    if (_speaking) {
+      stopStudySpeech();
+      if (mounted) {
+        setState(() => _speaking = false);
+      }
+      return;
+    }
+
+    final topic = widget.topic;
+    final text = [
+      topic.title,
+      topic.summary,
+      'Em trinta segundos.',
+      topic.quickTake,
+      ...topic.body,
+      'O que você precisa lembrar.',
+      ...topic.remember,
+      'Por que isso importa.',
+      topic.whyItMatters,
+      'Uma coisa interessante.',
+      topic.curiosity,
+    ].join('\n\n');
+
+    setState(() => _speaking = true);
+    await speakStudyText(text);
+    if (mounted) {
+      setState(() => _speaking = false);
+    }
+  }
+
+  Future<void> _showNoteSheet(String currentNote) async {
+    final controller = TextEditingController(text: currentNote);
+
+    final result = await showModalBottomSheet<String>(
+      context: context,
+      useSafeArea: true,
+      isScrollControlled: true,
+      backgroundColor: _ReaderPalette.fromMode(
+        AppStateScope.read(context).readerTheme,
+      ).surface,
+      builder: (sheetContext) {
+        final bottom = MediaQuery.viewInsetsOf(sheetContext).bottom;
+        return Padding(
+          padding: EdgeInsets.fromLTRB(18, 18, 18, 20 + bottom),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'sua nota',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+              const SizedBox(height: 7),
+              Text(
+                'Escreva do seu jeito. Essa anotação fica ligada a este assunto e entra no backup.',
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: AppColors.muted,
+                    ),
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                controller: controller,
+                autofocus: true,
+                minLines: 5,
+                maxLines: 10,
+                decoration: const InputDecoration(
+                  hintText: 'O que vale lembrar? Que conexão você fez?',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 14),
+              Row(
+                children: [
+                  if (currentNote.isNotEmpty)
+                    TextButton(
+                      onPressed: () => Navigator.of(sheetContext).pop(''),
+                      child: const Text('apagar nota'),
+                    ),
+                  const Spacer(),
+                  FilledButton(
+                    onPressed: () =>
+                        Navigator.of(sheetContext).pop(controller.text),
+                    child: const Text('salvar'),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+    );
+
+    controller.dispose();
+
+    if (result == null || !mounted) {
+      return;
+    }
+    await AppStateScope.read(context).saveNote(widget.topic.id, result);
   }
 
   TextStyle _bodyStyle(AppState state, _ReaderPalette palette) {
@@ -755,6 +915,77 @@ class _Connections extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class _PersonalNote extends StatelessWidget {
+  const _PersonalNote({
+    required this.note,
+    required this.palette,
+    required this.onEdit,
+  });
+
+  final String note;
+  final _ReaderPalette palette;
+  final VoidCallback onEdit;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: palette.surface,
+      child: InkWell(
+        onTap: onEdit,
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(18),
+          decoration: BoxDecoration(
+            border: Border.all(color: palette.line),
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Icon(
+                note.isEmpty
+                    ? Icons.note_add_outlined
+                    : Icons.sticky_note_2_outlined,
+                color: palette.accent,
+              ),
+              const SizedBox(width: 13),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      note.isEmpty ? 'adicione uma nota' : 'sua nota',
+                      style: TextStyle(
+                        color: palette.text,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 14,
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      note.isEmpty
+                          ? 'Registre uma conexão, exemplo ou ideia que queira lembrar.'
+                          : note,
+                      maxLines: note.isEmpty ? 3 : 8,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: note.isEmpty ? palette.muted : palette.text,
+                        fontSize: 14,
+                        height: 1.45,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 8),
+              Icon(Icons.edit_outlined, color: palette.muted, size: 18),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
