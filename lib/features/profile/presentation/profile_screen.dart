@@ -5,6 +5,7 @@ import '../../../app/theme/app_colors.dart';
 import '../../../core/widgets/editorial_frame.dart';
 import '../../../core/widgets/paper_texture.dart';
 import '../../today/data/demo_topics.dart';
+import 'notification_settings_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -86,6 +87,12 @@ class ProfileScreen extends StatelessWidget {
                   completed: totalRead,
                 ),
                 const SizedBox(height: 22),
+                _NotificationPreferences(
+                  enabled: state.studyRemindersEnabled,
+                  hour: state.reminderHour,
+                  minute: state.reminderMinute,
+                ),
+                const SizedBox(height: 14),
                 _ReaderPreferences(
                   fontSize: state.readerFontSize,
                   theme: state.readerTheme.name,
@@ -363,6 +370,74 @@ class _ReaderPreferences extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+
+class _NotificationPreferences extends StatelessWidget {
+  const _NotificationPreferences({
+    required this.enabled,
+    required this.hour,
+    required this.minute,
+  });
+
+  final bool enabled;
+  final int hour;
+  final int minute;
+
+  @override
+  Widget build(BuildContext context) {
+    final formatted =
+        '${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}';
+
+    return Material(
+      color: AppColors.paperWhite,
+      child: InkWell(
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => const NotificationSettingsScreen(),
+          ),
+        ),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.line),
+          ),
+          child: Row(
+            children: [
+              Icon(
+                enabled
+                    ? Icons.notifications_active_outlined
+                    : Icons.notifications_none,
+                color: enabled ? AppColors.blue : AppColors.ink,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'lembretes de estudo',
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            fontSize: 15,
+                          ),
+                    ),
+                    const SizedBox(height: 3),
+                    Text(
+                      enabled ? 'ativo às $formatted' : 'desativado',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: AppColors.muted,
+                          ),
+                    ),
+                  ],
+                ),
+              ),
+              const Icon(Icons.chevron_right),
+            ],
+          ),
+        ),
       ),
     );
   }
