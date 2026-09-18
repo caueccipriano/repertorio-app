@@ -38,7 +38,7 @@ class _NotificationSettingsScreenState
             Text(
               'Você escolhe quando o Repertório pode te cutucar. Nada de streak agressivo.',
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: AppColors.muted,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
             ),
             const SizedBox(height: 28),
@@ -65,7 +65,7 @@ class _NotificationSettingsScreenState
                     trailing: Text(
                       time.format(context),
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: AppColors.blue,
+                            color: Theme.of(context).colorScheme.primary,
                             fontSize: 15,
                           ),
                     ),
@@ -117,8 +117,8 @@ class _NotificationSettingsScreenState
                             ? Icons.notifications_active_outlined
                             : Icons.notifications_off_outlined,
                         color: studyNotificationPermissionGranted
-                            ? AppColors.blue
-                            : AppColors.muted,
+                            ? Theme.of(context).colorScheme.primary
+                            : Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
                       const SizedBox(width: 12),
                       Expanded(
@@ -169,7 +169,7 @@ class _NotificationSettingsScreenState
             Text(
               'Nesta versão local-first, lembretes funcionam enquanto o PWA está ativo. Push com o app totalmente fechado entra quando conectarmos um serviço de envio.',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.muted,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                     fontSize: 12,
                   ),
             ),
@@ -254,8 +254,8 @@ class _SettingCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
-        color: AppColors.paperWhite,
-        border: Border.all(color: AppColors.ink),
+        color: Theme.of(context).colorScheme.surface,
+        border: Border.all(color: Theme.of(context).colorScheme.onSurface),
       ),
       child: child,
     );
