@@ -63,32 +63,53 @@ class AppState extends ChangeNotifier {
     _publishEuBridge();
   }
 
-  static const _euBridgeKey = 'eu_bridge_repertorio_v1';
+  static const _euBridgeLegacyKey = 'eu_bridge_repertorio_v1';
+  static const _euBridgeKey = 'eu_bridge_repertorio_v2';
 
   void _publishEuBridge() {
     final started = progressByTopic.values.where((progress) => progress > 0).length;
     final studied = studiedDaysThisWeek();
+    final dueReviews = dueReviewTopicIds().length;
+    final minutes = studiedMinutesEstimate();
+    final status = studied >= weeklyGoal && weeklyGoal > 0
+        ? 'meta semanal batida'
+        : completedTopicIds.isEmpty
+            ? 'começando'
+            : 'em evolução';
+
+    final summaryParts = <String>[
+      '${completedTopicIds.length} concluídos',
+      '$studied/$weeklyGoal dias estudados na semana',
+      if (dueReviews > 0) '$dueReviews revisões esperando',
+      if (minutes > 0) '~$minutes min estudados',
+    ];
+
     final payload = <String, dynamic>{
-      'version': 1,
+      'version': 2,
+      'schema': 'eu.bridge/2',
       'app': 'repertorio',
       'title': 'Repertório',
       'updatedAt': DateTime.now().toIso8601String(),
-      'status': completedTopicIds.isEmpty ? 'começando' : 'em evolução',
-      'summary':
-          '${completedTopicIds.length} concluídos · $studied/$weeklyGoal dias estudados na semana',
+      'status': status,
+      'summary': summaryParts.join(' · '),
       'metrics': {
         'completed': completedTopicIds.length,
         'saved': savedTopicIds.length,
         'started': started,
         'studiedDaysThisWeek': studied,
         'weeklyGoal': weeklyGoal,
-        'dueReviews': dueReviewTopicIds().length,
-        'studiedMinutesEstimate': studiedMinutesEstimate(),
+        'dueReviews': dueReviews,
+        'studiedMinutesEstimate': minutes,
         'quizAttempts': totalQuizAttempts,
+        'offlineTopics': offlineTopicIds.length,
       },
     };
 
-    unawaited(_prefs.setString(_euBridgeKey, jsonEncode(payload)));
+    final encoded = jsonEncode(payload);
+    unawaited(Future.wait([
+      _prefs.setString(_euBridgeKey, encoded),
+      _prefs.setString(_euBridgeLegacyKey, encoded),
+    ]));
   }
 
   @override
