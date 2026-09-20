@@ -471,7 +471,7 @@ class _HeroCopy extends StatelessWidget {
           onPressed: onStart,
           style: FilledButton.styleFrom(
             backgroundColor: palette.accent,
-            foregroundColor: palette.surface,
+            foregroundColor: palette.onAccent,
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           ),
@@ -850,7 +850,7 @@ class _ResultStage extends StatelessWidget {
                 onPressed: () => _share(context),
                 style: FilledButton.styleFrom(
                   backgroundColor: palette.accent,
-                  foregroundColor: palette.surface,
+                  foregroundColor: palette.onAccent,
                   padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 18),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 ),
