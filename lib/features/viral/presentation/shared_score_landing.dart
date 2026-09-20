@@ -52,7 +52,7 @@ class SharedScoreLanding extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const Row(
+                    Row(
                       children: [
                         Text(
                           'repertório*',
