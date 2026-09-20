@@ -115,6 +115,15 @@ class ExploreScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text(
+                  'DESCOBERTA / CATÁLOGO',
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        color: Theme.of(context).colorScheme.primary,
+                        fontSize: 9,
+                        letterSpacing: 1.2,
+                      ),
+                ),
+                const SizedBox(height: 7),
                 Row(
                   children: [
                     Text(
