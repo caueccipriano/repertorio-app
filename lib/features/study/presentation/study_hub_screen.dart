@@ -462,59 +462,60 @@ class _ToolCard extends StatelessWidget {
         child: InkWell(
           onTap: tool.onTap,
           child: SizedBox(
-          height: 146,
-          child: Container(
-          padding: const EdgeInsets.all(14),
-          decoration: BoxDecoration(
-            border: Border.all(color: colors.outline),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
+            height: 146,
+            child: Container(
+              padding: const EdgeInsets.all(14),
+              decoration: BoxDecoration(
+                border: Border.all(color: colors.outline),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(tool.icon, size: 24),
-                  const Spacer(),
-                  if (tool.badge != null)
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 7,
-                        vertical: 3,
-                      ),
-                      decoration: BoxDecoration(
-                        color: colors.primary,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Text(
-                        tool.badge!,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 9,
-                          fontWeight: FontWeight.w800,
+                  Row(
+                    children: [
+                      Icon(tool.icon, size: 24),
+                      const Spacer(),
+                      if (tool.badge != null)
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 7,
+                            vertical: 3,
+                          ),
+                          decoration: BoxDecoration(
+                            color: colors.primary,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Text(
+                            tool.badge!,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 9,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
+                    ],
+                  ),
+                  const Spacer(),
+                  Text(
+                    tool.title,
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          fontSize: 15,
+                        ),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    tool.subtitle,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: colors.onSurfaceVariant,
+                          height: 1.3,
+                        ),
+                  ),
                 ],
               ),
-              const Spacer(),
-              Text(
-                tool.title,
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontSize: 15,
-                    ),
-              ),
-              const SizedBox(height: 5),
-              Text(
-                tool.subtitle,
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: colors.onSurfaceVariant,
-                      height: 1.3,
-                    ),
-              ),
-            ],
-          ),
+            ),
           ),
         ),
       ),
