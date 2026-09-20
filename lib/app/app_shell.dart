@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../core/updates/app_update.dart';
 import '../features/explore/presentation/explore_screen.dart';
@@ -127,7 +128,11 @@ class _AppShellState extends State<AppShell> {
           child: NavigationBar(
             selectedIndex: _index,
             labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
-            onDestinationSelected: (value) => setState(() => _index = value),
+            onDestinationSelected: (value) {
+              if (value == _index) return;
+              HapticFeedback.selectionClick();
+              setState(() => _index = value);
+            },
             destinations: const [
               NavigationDestination(
                 icon: Icon(Icons.auto_stories_outlined),
