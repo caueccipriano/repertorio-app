@@ -23,6 +23,7 @@ class _ViralEntryGateState extends State<ViralEntryGate> {
 
   bool? _entryComplete;
   int? _sharedScore;
+  String? _sharedArchetype;
 
   @override
   void initState() {
@@ -35,17 +36,21 @@ class _ViralEntryGateState extends State<ViralEntryGate> {
     final rawScore = int.tryParse(Uri.base.queryParameters['score'] ?? '');
     final sharedScore =
         rawScore != null && rawScore >= 390 && rawScore <= 830 ? rawScore : null;
+    final sharedArchetype = Uri.base.queryParameters['a']?.trim();
 
     if (!mounted) return;
     setState(() {
       _entryComplete = prefs.getBool(_entryKey) ?? false;
       _sharedScore = sharedScore;
+      _sharedArchetype =
+          sharedArchetype == null || sharedArchetype.isEmpty ? null : sharedArchetype;
     });
   }
 
   void _startFromSharedScore() {
     setState(() {
       _sharedScore = null;
+      _sharedArchetype = null;
       _entryComplete = false;
     });
   }
@@ -83,6 +88,7 @@ class _ViralEntryGateState extends State<ViralEntryGate> {
     if (_sharedScore != null) {
       return SharedScoreLanding(
         score: _sharedScore!,
+        archetype: _sharedArchetype,
         onStart: _startFromSharedScore,
         onEnterApp: () => _enterApp(null),
       );
@@ -754,12 +760,16 @@ class _ResultStage extends StatelessWidget {
         ? 'curiosidade em construção'
         : result.strengths.map((item) => item.toLowerCase()).join(' · ');
     final shareUri = Uri.base.replace(
-      queryParameters: {'score': result.score.toString()},
+      queryParameters: {
+        'score': result.score.toString(),
+        'a': result.archetype,
+      },
     );
-    final shared = await shareKnowledgeCard(
-      title: '${result.score} · ${result.archetype}',
-      body:
-          'Meu Repertório Score: ${result.score}. $strengths. Descubra o seu: $shareUri',
+    final shared = await shareViralScore(
+      score: result.score,
+      archetype: result.archetype,
+      strengths: strengths,
+      shareUrl: shareUri.toString(),
     );
     if (!context.mounted || shared) return;
     ScaffoldMessenger.of(context).showSnackBar(
