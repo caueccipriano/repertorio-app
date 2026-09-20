@@ -17,6 +17,7 @@ void main() {
   Future<void> pumpMap(
     WidgetTester tester, {
     required ThemeMode mode,
+    ValueChanged<String>? onCategoryTap,
   }) async {
     await tester.binding.setSurfaceSize(const Size(320, 780));
     addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -26,14 +27,15 @@ void main() {
         theme: ThemeData.light(useMaterial3: true),
         darkTheme: ThemeData.dark(useMaterial3: true),
         themeMode: mode,
-        home: const Scaffold(
+        home: Scaffold(
           body: SafeArea(
             child: SingleChildScrollView(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: CulturalMap(
                 counts: counts,
-                strengths: ['CIÊNCIA', 'CULTURA'],
-                weakCategories: ['ECONOMIA', 'HISTÓRIA'],
+                strengths: const ['CIÊNCIA', 'CULTURA'],
+                weakCategories: const ['ECONOMIA', 'HISTÓRIA'],
+                onCategoryTap: onCategoryTap,
               ),
             ),
           ),
@@ -59,6 +61,21 @@ void main() {
 
     expect(find.text('CONSTELAÇÃO CULTURAL'), findsOneWidget);
     expect(find.text('8/8 áreas'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('cultural map legend opens the selected area', (tester) async {
+    String? tapped;
+    await pumpMap(
+      tester,
+      mode: ThemeMode.light,
+      onCategoryTap: (category) => tapped = category,
+    );
+
+    await tester.tap(find.text('Ciência').last);
+    await tester.pump();
+
+    expect(tapped, 'CIÊNCIA');
     expect(tester.takeException(), isNull);
   });
 }
