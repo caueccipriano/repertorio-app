@@ -859,18 +859,75 @@ class _ResultStage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 38),
-              Container(
-                padding: const EdgeInsets.fromLTRB(24, 24, 24, 28),
-                decoration: BoxDecoration(
-                  color: palette.surface,
-                  border: Border.all(color: palette.line, width: 1.2),
-                  boxShadow: const [
-                    BoxShadow(color: Color(0x22101010), offset: Offset(8, 8)),
-                  ],
-                ),
-                child: Column(
+              TweenAnimationBuilder<double>(
+                tween: Tween(begin: 0, end: 1),
+                duration: const Duration(milliseconds: 620),
+                curve: Curves.easeOutCubic,
+                builder: (context, reveal, child) {
+                  return Opacity(
+                    opacity: reveal,
+                    child: Transform.translate(
+                      offset: Offset(0, 18 * (1 - reveal)),
+                      child: child,
+                    ),
+                  );
+                },
+                child: Container(
+                  padding: const EdgeInsets.fromLTRB(24, 24, 24, 28),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        palette.surface,
+                        palette.accentSoft.withValues(alpha: .62),
+                      ],
+                    ),
+                    border: Border.all(color: palette.line, width: 1.2),
+                    borderRadius: BorderRadius.circular(18),
+                    boxShadow: [
+                      BoxShadow(
+                        color: palette.shadow,
+                        offset: const Offset(0, 12),
+                        blurRadius: 28,
+                      ),
+                    ],
+                  ),
+                  child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 6,
+                          ),
+                          decoration: BoxDecoration(
+                            color: palette.accent,
+                            borderRadius: BorderRadius.circular(999),
+                          ),
+                          child: Text(
+                            'RESULTADO DESBLOQUEADO',
+                            style: textTheme.labelSmall?.copyWith(
+                              color: palette.onAccent,
+                              fontWeight: FontWeight.w900,
+                              letterSpacing: .8,
+                            ),
+                          ),
+                        ),
+                        const Spacer(),
+                        Text(
+                          'BETA / 01',
+                          style: textTheme.labelSmall?.copyWith(
+                            color: palette.muted,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 1.1,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
                     Text(
                       'SEU REPERTÓRIO SCORE',
                       style: textTheme.labelMedium?.copyWith(
@@ -879,17 +936,8 @@ class _ResultStage extends StatelessWidget {
                         letterSpacing: 1.4,
                       ),
                     ),
-                    const SizedBox(height: 16),
-                    Text(
-                      '${result.score}',
-                      style: textTheme.displayLarge?.copyWith(
-                        color: palette.accent,
-                        fontSize: 96,
-                        height: .88,
-                        letterSpacing: -6,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
+                    const SizedBox(height: 12),
+                    _AnimatedScoreNumber(score: result.score),
                     const SizedBox(height: 12),
                     Text(
                       result.archetype,
@@ -901,12 +949,20 @@ class _ResultStage extends StatelessWidget {
                     ),
                     const SizedBox(height: 18),
                     Text(result.description, style: textTheme.bodyLarge?.copyWith(height: 1.45)),
-                    const SizedBox(height: 26),
+                    const SizedBox(height: 24),
+                    _ScoreBand(score: result.score),
+                    const SizedBox(height: 24),
                     Row(
                       children: [
-                        _ResultMetric(value: '${result.correct}/${result.total}', label: 'acertos'),
+                        _ResultMetric(
+                          value: '${result.correct}/${result.total}',
+                          label: 'acertos',
+                        ),
                         const SizedBox(width: 26),
-                        _ResultMetric(value: '${result.score - 390}', label: 'pontos ganhos'),
+                        _ResultMetric(
+                          value: '+${result.score - 390}',
+                          label: 'pontos nesta rodada',
+                        ),
                       ],
                     ),
                     if (result.strengths.isNotEmpty) ...[
@@ -928,7 +984,8 @@ class _ResultStage extends StatelessWidget {
                             .toList(),
                       ),
                     ],
-                  ],
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(height: 30),
@@ -976,6 +1033,101 @@ class _ResultStage extends StatelessWidget {
     );
   }
 }
+
+class _AnimatedScoreNumber extends StatelessWidget {
+  const _AnimatedScoreNumber({required this.score});
+
+  final int score;
+
+  @override
+  Widget build(BuildContext context) {
+    final palette = ViralPalette.of(context);
+    final textTheme = Theme.of(context).textTheme;
+
+    return TweenAnimationBuilder<double>(
+      tween: Tween(begin: 390, end: score.toDouble()),
+      duration: const Duration(milliseconds: 1150),
+      curve: Curves.easeOutExpo,
+      builder: (context, value, _) {
+        return Text(
+          value.round().toString(),
+          style: textTheme.displayLarge?.copyWith(
+            color: palette.accent,
+            fontSize: 102,
+            height: .84,
+            letterSpacing: -6.4,
+            fontWeight: FontWeight.w900,
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _ScoreBand extends StatelessWidget {
+  const _ScoreBand({required this.score});
+
+  final int score;
+
+  @override
+  Widget build(BuildContext context) {
+    final palette = ViralPalette.of(context);
+    final textTheme = Theme.of(context).textTheme;
+    final progress = ((score - 390) / (830 - 390)).clamp(0.0, 1.0);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Row(
+          children: [
+            Text(
+              '390',
+              style: textTheme.labelSmall?.copyWith(
+                color: palette.muted,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+            const Spacer(),
+            Text(
+              'SEU SCORE NESTA VERSÃO DO TESTE',
+              style: textTheme.labelSmall?.copyWith(
+                color: palette.muted,
+                fontWeight: FontWeight.w900,
+                letterSpacing: .55,
+              ),
+            ),
+            const Spacer(),
+            Text(
+              '830',
+              style: textTheme.labelSmall?.copyWith(
+                color: palette.muted,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(999),
+          child: TweenAnimationBuilder<double>(
+            tween: Tween(begin: 0, end: progress),
+            duration: const Duration(milliseconds: 980),
+            curve: Curves.easeOutCubic,
+            builder: (context, value, _) {
+              return LinearProgressIndicator(
+                value: value,
+                minHeight: 10,
+                backgroundColor: palette.line.withValues(alpha: .75),
+                color: palette.accent,
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 
 class _BrandMark extends StatelessWidget {
   const _BrandMark();
