@@ -9,7 +9,12 @@ import '../data/viral_score_focus.dart';
 import 'viral_entry_gate.dart';
 
 class ViralScoreHomeCard extends StatefulWidget {
-  const ViralScoreHomeCard({super.key});
+  const ViralScoreHomeCard({
+    super.key,
+    this.onScoreUpdated,
+  });
+
+  final Future<void> Function()? onScoreUpdated;
 
   @override
   State<ViralScoreHomeCard> createState() => _ViralScoreHomeCardState();
@@ -64,6 +69,7 @@ class _ViralScoreHomeCardState extends State<ViralScoreHomeCard> {
 
     if (!mounted) return;
     await _load();
+    await widget.onScoreUpdated?.call();
   }
 
   @override
@@ -82,6 +88,7 @@ class _ViralScoreHomeCardState extends State<ViralScoreHomeCard> {
     final delta = previous == null ? null : latest.score - previous.score;
 
     return Container(
+      margin: const EdgeInsets.only(top: 12),
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 14),
       decoration: BoxDecoration(
         color: colors.surface,
