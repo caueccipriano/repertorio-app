@@ -5,6 +5,7 @@ import '../../../app/state/app_state_scope.dart';
 import '../../article/presentation/article_screen.dart';
 import '../../today/data/demo_topics.dart';
 import '../../today/domain/knowledge_topic.dart';
+import 'viral_entry_gate.dart';
 
 class ViralScoreHomeCard extends StatefulWidget {
   const ViralScoreHomeCard({super.key});
@@ -41,6 +42,27 @@ class _ViralScoreHomeCardState extends State<ViralScoreHomeCard> {
       _weakCategories =
           prefs.getStringList(_weakCategoriesKey) ?? const <String>[];
     });
+  }
+
+  Future<void> _retakeScore() async {
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => ViralEntryExperience(
+          onEnterApp: (result) async {
+            if (result != null) {
+              final prefs = await SharedPreferences.getInstance();
+              await prefs.setInt('viral_score_v1', result.score);
+              await prefs.setString('viral_archetype_v1', result.archetype);
+            }
+            if (!mounted) return;
+            Navigator.of(context).pop();
+          },
+        ),
+      ),
+    );
+
+    if (!mounted) return;
+    await _load();
   }
 
   @override
@@ -159,6 +181,22 @@ class _ViralScoreHomeCardState extends State<ViralScoreHomeCard> {
               ),
             ),
           ],
+          const SizedBox(height: 12),
+          Align(
+            alignment: Alignment.centerRight,
+            child: TextButton.icon(
+              onPressed: _retakeScore,
+              icon: const Icon(Icons.refresh_rounded, size: 17),
+              label: const Text(
+                'NOVA RODADA',
+                style: TextStyle(
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: .55,
+                  fontSize: 11,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
