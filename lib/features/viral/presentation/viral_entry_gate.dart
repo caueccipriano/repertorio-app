@@ -342,7 +342,7 @@ class _LandingStage extends StatelessWidget {
                       const SizedBox(width: 8),
                       TextButton(
                         onPressed: onSkip,
-                        child: const Text('já uso o repertório →'),
+                        child: Text(wide ? 'já uso o repertório →' : 'entrar →'),
                       ),
                     ],
                   ),
