@@ -1057,6 +1057,16 @@ const egitoTopic = KnowledgeTopic(
   curiosity:
       'Cleópatra VII viveu muito mais perto da chegada do ser humano à Lua do que da construção das grandes pirâmides de Gizé.',
   connections: ['Nilo', 'Escrita', 'Pirâmides', 'Impérios antigos'],
+  media: [
+    KnowledgeMedia(
+      type: KnowledgeMediaType.audio,
+      url: 'https://open.spotify.com/episode/3wNk6JKPxk2qnRJHwOatki',
+      title: 'Egito Antigo: o que você aprendeu errado?',
+      caption: '1 h 19 min · História FM',
+      sourceLabel: 'Spotify · História FM',
+      sourceUrl: 'https://open.spotify.com/episode/3wNk6JKPxk2qnRJHwOatki',
+    ),
+  ],
 );
 const mongolTopic = KnowledgeTopic(
   id: 'mongol',
