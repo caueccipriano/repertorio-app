@@ -66,6 +66,15 @@ class ProfileScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
+                  'RETRATO DO SEU CONHECIMENTO',
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        color: Theme.of(context).colorScheme.primary,
+                        fontSize: 9,
+                        letterSpacing: 1.2,
+                      ),
+                ),
+                const SizedBox(height: 7),
+                Text(
                   'seu repertório',
                   style: Theme.of(context).textTheme.displayMedium,
                 ),
