@@ -45,6 +45,10 @@ class ProfileScreen extends StatelessWidget {
     final rabbitHoles = state.historyTopicIds.length < 2
         ? 0
         : state.historyTopicIds.length - 1;
+    final rankedAreas = categoryCounts.entries.toList()
+      ..sort((a, b) => b.value.compareTo(a.value));
+    final strongestArea =
+        rankedAreas.isEmpty ? null : _titleCase(rankedAreas.first.key);
 
     return PaperTexture(
       child: SafeArea(
@@ -73,9 +77,17 @@ class ProfileScreen extends StatelessWidget {
                   saved: totalSaved,
                   rabbitHoles: rabbitHoles,
                 ),
+                if (strongestArea != null) ...[
+                  const SizedBox(height: 14),
+                  _KnowledgeIdentityCard(
+                    area: strongestArea,
+                    exploredAreas: categoryCounts.length,
+                    started: totalStarted,
+                  ),
+                ],
                 const SizedBox(height: 30),
                 Text(
-                  'áreas exploradas',
+                  'seu mapa de assuntos',
                   style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                         fontSize: 31,
                       ),
@@ -90,13 +102,23 @@ class ProfileScreen extends StatelessWidget {
                   started: totalStarted,
                   completed: totalRead,
                 ),
-                const SizedBox(height: 22),
+                const SizedBox(height: 30),
+                _SectionEyebrow(
+                  title: 'ritmo de estudo',
+                  subtitle: 'uma rotina leve para manter o repertório vivo',
+                ),
+                const SizedBox(height: 12),
                 _StudyGoalCard(
                   studied: state.studiedDaysThisWeek(),
                   goal: state.weeklyGoal,
                   week: state.studyWeek(),
                 ),
-                const SizedBox(height: 14),
+                const SizedBox(height: 30),
+                _SectionEyebrow(
+                  title: 'seu espaço',
+                  subtitle: 'notas, aparência, leitura e dados',
+                ),
+                const SizedBox(height: 12),
                 _NotesPreferences(count: state.notesByTopic.length),
                 const SizedBox(height: 14),
                 const _BackupPreferences(),
@@ -153,6 +175,113 @@ class ProfileScreen extends StatelessWidget {
       return value;
     }
     return '${value[0].toUpperCase()}${value.substring(1)}';
+  }
+}
+
+class _KnowledgeIdentityCard extends StatelessWidget {
+  const _KnowledgeIdentityCard({
+    required this.area,
+    required this.exploredAreas,
+    required this.started,
+  });
+
+  final String area;
+  final int exploredAreas;
+  final int started;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(16, 14, 16, 16),
+      decoration: BoxDecoration(
+        color: colors.surfaceContainerHighest,
+        border: Border.all(color: colors.primary),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 42,
+            height: 42,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: colors.primary,
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              Icons.auto_awesome_outlined,
+              color: colors.onPrimary,
+              size: 20,
+            ),
+          ),
+          const SizedBox(width: 13),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'SEU EIXO AGORA',
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        color: colors.primary,
+                        fontSize: 9,
+                        letterSpacing: 1,
+                      ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  area,
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w800,
+                      ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  '$exploredAreas áreas tocadas · $started assuntos iniciados',
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: colors.onSurfaceVariant,
+                      ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SectionEyebrow extends StatelessWidget {
+  const _SectionEyebrow({
+    required this.title,
+    required this.subtitle,
+  });
+
+  final String title;
+  final String subtitle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                fontSize: 29,
+              ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          subtitle,
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
+        ),
+      ],
+    );
   }
 }
 
