@@ -198,7 +198,7 @@ class _ViralEntryExperienceState extends State<ViralEntryExperience> {
     if (_answers.length > _questionIndex) return;
     setState(() => _answers.add(answerIndex));
 
-    Future<void>.delayed(const Duration(milliseconds: 180), () {
+    Future<void>.delayed(const Duration(milliseconds: 460), () {
       if (!mounted) return;
       if (_questionIndex == _questions.length - 1) {
         setState(() => _stage = 2);
@@ -270,7 +270,20 @@ class _ViralEntryExperienceState extends State<ViralEntryExperience> {
         backgroundColor: Colors.transparent,
         body: SafeArea(
           child: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 260),
+            duration: const Duration(milliseconds: 380),
+            reverseDuration: const Duration(milliseconds: 260),
+            switchInCurve: Curves.easeOutCubic,
+            switchOutCurve: Curves.easeInCubic,
+            transitionBuilder: (child, animation) {
+              final slide = Tween<Offset>(
+                begin: const Offset(.035, .015),
+                end: Offset.zero,
+              ).animate(animation);
+              return FadeTransition(
+                opacity: animation,
+                child: SlideTransition(position: slide, child: child),
+              );
+            },
             child: switch (_stage) {
               0 => _LandingStage(
                   key: const ValueKey('landing'),
@@ -282,6 +295,9 @@ class _ViralEntryExperienceState extends State<ViralEntryExperience> {
                   question: _questions[_questionIndex],
                   index: _questionIndex,
                   total: _questions.length,
+                  selectedAnswer: _answers.length > _questionIndex
+                      ? _answers[_questionIndex]
+                      : null,
                   onAnswer: _answer,
                   onBack: () {
                     setState(() {
@@ -575,6 +591,7 @@ class _QuizStage extends StatelessWidget {
     required this.question,
     required this.index,
     required this.total,
+    required this.selectedAnswer,
     required this.onAnswer,
     required this.onBack,
   });
@@ -582,6 +599,7 @@ class _QuizStage extends StatelessWidget {
   final _ScoreQuestion question;
   final int index;
   final int total;
+  final int? selectedAnswer;
   final ValueChanged<int> onAnswer;
   final VoidCallback onBack;
 
@@ -647,6 +665,8 @@ class _QuizStage extends StatelessWidget {
                   child: _AnswerButton(
                     label: question.answers[answerIndex],
                     prefix: String.fromCharCode(65 + answerIndex),
+                    selected: selectedAnswer == answerIndex,
+                    locked: selectedAnswer != null,
                     onTap: () => onAnswer(answerIndex),
                   ),
                 ),
@@ -672,58 +692,114 @@ class _AnswerButton extends StatelessWidget {
   const _AnswerButton({
     required this.label,
     required this.prefix,
+    required this.selected,
+    required this.locked,
     required this.onTap,
   });
 
   final String label;
   final String prefix;
+  final bool selected;
+  final bool locked;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     final palette = ViralPalette.of(context);
-    return Material(
-      color: palette.surface,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
-          decoration: BoxDecoration(
-            border: Border.all(color: palette.line, width: 1.1),
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Row(
-            children: [
-              Container(
-                width: 34,
-                height: 34,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: palette.accentSoft,
-                  borderRadius: BorderRadius.circular(8),
+    final dimmed = locked && !selected;
+
+    return AnimatedScale(
+      scale: selected ? 1.012 : 1,
+      duration: const Duration(milliseconds: 180),
+      curve: Curves.easeOutBack,
+      child: AnimatedOpacity(
+        opacity: dimmed ? .54 : 1,
+        duration: const Duration(milliseconds: 180),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: locked ? null : onTap,
+            borderRadius: BorderRadius.circular(14),
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 220),
+              curve: Curves.easeOutCubic,
+              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
+              decoration: BoxDecoration(
+                color: selected ? palette.accentSoft : palette.surface,
+                border: Border.all(
+                  color: selected ? palette.accent : palette.line,
+                  width: selected ? 1.6 : 1.1,
                 ),
-                child: Text(
-                  prefix,
-                  style: TextStyle(
-                    color: palette.accentStrong,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
+                borderRadius: BorderRadius.circular(14),
+                boxShadow: selected
+                    ? [
+                        BoxShadow(
+                          color: palette.shadow,
+                          offset: const Offset(0, 6),
+                          blurRadius: 18,
+                        ),
+                      ]
+                    : null,
               ),
-              const SizedBox(width: 14),
-              Expanded(
-                child: Text(
-                  label,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    height: 1.25,
-                    fontWeight: FontWeight.w600,
+              child: Row(
+                children: [
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 220),
+                    width: 36,
+                    height: 36,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: selected ? palette.accent : palette.accentSoft,
+                      borderRadius: BorderRadius.circular(9),
+                    ),
+                    child: AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 160),
+                      child: selected
+                          ? Icon(
+                              Icons.check_rounded,
+                              key: const ValueKey('selected'),
+                              color: palette.onAccent,
+                              size: 20,
+                            )
+                          : Text(
+                              prefix,
+                              key: const ValueKey('prefix'),
+                              style: TextStyle(
+                                color: palette.accentStrong,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                    ),
                   ),
-                ),
+                  const SizedBox(width: 14),
+                  Expanded(
+                    child: Text(
+                      label,
+                      style: TextStyle(
+                        fontSize: 16,
+                        height: 1.25,
+                        fontWeight: selected ? FontWeight.w800 : FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                  AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 160),
+                    child: selected
+                        ? Icon(
+                            Icons.arrow_forward_rounded,
+                            key: const ValueKey('selected-arrow'),
+                            color: palette.accent,
+                            size: 19,
+                          )
+                        : const Icon(
+                            Icons.arrow_forward_rounded,
+                            key: ValueKey('idle-arrow'),
+                            size: 18,
+                          ),
+                  ),
+                ],
               ),
-              const Icon(Icons.arrow_forward, size: 18),
-            ],
+            ),
           ),
         ),
       ),
