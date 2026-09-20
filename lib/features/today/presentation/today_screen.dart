@@ -12,6 +12,7 @@ import '../../explore/presentation/knowledge_map_screen.dart';
 import '../../review/presentation/review_screen.dart';
 import '../../search/presentation/search_screen.dart';
 import '../../study/data/personal_library_engine.dart';
+import '../../viral/presentation/viral_score_home_card.dart';
 import '../data/demo_topics.dart';
 import '../domain/knowledge_topic.dart';
 
@@ -46,6 +47,7 @@ class TodayScreen extends StatelessWidget {
                 _LibraryStatusBar(
                   read: state.completedTopicIds.length,
                 ),
+                const ViralScoreHomeCard(),
                 const SizedBox(height: 16),
                 _FeaturedKnowledge(
                   topic: featured,
