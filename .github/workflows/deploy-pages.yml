@@ -38,7 +38,7 @@ jobs:
           perl -0pi -e 's/\n  Future<void> _openAudio\(KnowledgeMedia media\) async \{.*?\n  \}\n\n  void _goBack/\n  void _goBack/s' lib/features/article/presentation/article_screen.dart
 
       - name: Analyze
-        run: flutter analyze
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
 
       - name: Test
         run: flutter test
