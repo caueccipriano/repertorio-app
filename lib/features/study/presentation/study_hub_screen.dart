@@ -213,19 +213,35 @@ class StudyHubScreen extends StatelessWidget {
             ),
             const SizedBox(height: 28),
             Text(
-              'ferramentas de repertório',
+              'núcleo do seu repertório',
               style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                     fontSize: 29,
                   ),
             ),
             const SizedBox(height: 5),
             Text(
-              'Escolha uma forma de lembrar, conectar ou reorganizar o que você já viu.',
+              'As quatro áreas que mais ajudam a transformar leitura em conhecimento.',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: colors.onSurfaceVariant,
                   ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 14),
+            _PrimaryStudyRail(tools: tools.take(4).toList()),
+            const SizedBox(height: 28),
+            Text(
+              'mais ferramentas',
+              style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                    fontSize: 27,
+                  ),
+            ),
+            const SizedBox(height: 5),
+            Text(
+              'Teste, organize, compare e revisite o que já passou por aqui.',
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: colors.onSurfaceVariant,
+                  ),
+            ),
+            const SizedBox(height: 14),
             LayoutBuilder(
               builder: (context, constraints) {
                 final columns = constraints.maxWidth >= 680 ? 3 : 2;
@@ -237,6 +253,7 @@ class StudyHubScreen extends StatelessWidget {
                   spacing: gap,
                   runSpacing: gap,
                   children: tools
+                      .skip(4)
                       .map(
                         (tool) => SizedBox(
                           width: width,
@@ -441,6 +458,112 @@ class _StudySummary extends StatelessWidget {
               ),
             )
             .toList(),
+      ),
+    );
+  }
+}
+
+class _PrimaryStudyRail extends StatelessWidget {
+  const _PrimaryStudyRail({required this.tools});
+
+  final List<_StudyTool> tools;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 154,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        clipBehavior: Clip.none,
+        itemCount: tools.length,
+        separatorBuilder: (_, __) => const SizedBox(width: 10),
+        itemBuilder: (context, index) {
+          final tool = tools[index];
+          final colors = Theme.of(context).colorScheme;
+          final inverted = index.isEven;
+
+          return SizedBox(
+            width: 218,
+            child: Opacity(
+              opacity: tool.onTap == null ? .48 : 1,
+              child: Material(
+                color: inverted ? colors.onSurface : colors.surfaceContainerHighest,
+                child: InkWell(
+                  onTap: tool.onTap,
+                  child: Container(
+                    padding: const EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: inverted ? colors.onSurface : colors.primary,
+                      ),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              tool.icon,
+                              size: 23,
+                              color: inverted ? colors.surface : colors.primary,
+                            ),
+                            const Spacer(),
+                            if (tool.badge != null)
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 7,
+                                  vertical: 3,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: inverted
+                                      ? colors.surface
+                                      : colors.primary,
+                                  borderRadius: BorderRadius.circular(99),
+                                ),
+                                child: Text(
+                                  tool.badge!,
+                                  style: TextStyle(
+                                    color: inverted
+                                        ? colors.onSurface
+                                        : colors.onPrimary,
+                                    fontSize: 9,
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                                ),
+                              ),
+                          ],
+                        ),
+                        const Spacer(),
+                        Text(
+                          tool.title,
+                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                                color: inverted
+                                    ? colors.surface
+                                    : colors.onSurface,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w800,
+                              ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          tool.subtitle,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                color: inverted
+                                    ? colors.surface.withValues(alpha: .66)
+                                    : colors.onSurfaceVariant,
+                                height: 1.28,
+                              ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
