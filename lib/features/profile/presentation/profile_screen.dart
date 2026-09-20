@@ -722,7 +722,7 @@ class _PreferenceShortcut extends StatelessWidget {
     final colors = Theme.of(context).colorScheme;
 
     final content = Container(
-      minHeight: 92,
+      constraints: const BoxConstraints(minHeight: 92),
       padding: const EdgeInsets.all(13),
       decoration: BoxDecoration(
         color: colors.surface,
