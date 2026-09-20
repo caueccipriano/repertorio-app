@@ -49,6 +49,11 @@ class ProfileScreen extends StatelessWidget {
       ..sort((a, b) => b.value.compareTo(a.value));
     final strongestArea =
         rankedAreas.isEmpty ? null : _titleCase(rankedAreas.first.key);
+    final now = DateTime.now();
+    final monthPrefix =
+        '${now.year.toString().padLeft(4, '0')}-${now.month.toString().padLeft(2, '0')}-';
+    final studiedDaysThisMonth =
+        state.studyDays.where((day) => day.startsWith(monthPrefix)).length;
 
     return PaperTexture(
       child: SafeArea(
@@ -85,6 +90,12 @@ class ProfileScreen extends StatelessWidget {
                     started: totalStarted,
                   ),
                 ],
+                const SizedBox(height: 14),
+                _MonthSnapshot(
+                  studiedDays: studiedDaysThisMonth,
+                  minutes: state.studiedMinutesEstimate(),
+                  quizzes: state.totalQuizAttempts,
+                ),
                 const SizedBox(height: 30),
                 Text(
                   'seu mapa de assuntos',
@@ -246,6 +257,90 @@ class _KnowledgeIdentityCard extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _MonthSnapshot extends StatelessWidget {
+  const _MonthSnapshot({
+    required this.studiedDays,
+    required this.minutes,
+    required this.quizzes,
+  });
+
+  final int studiedDays;
+  final int minutes;
+  final int quizzes;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    final stats = [
+      (studiedDays, 'dias neste mês'),
+      (minutes, 'min estimados'),
+      (quizzes, 'quizzes feitos'),
+    ];
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(14, 13, 14, 14),
+      decoration: BoxDecoration(
+        color: colors.onSurface,
+        border: Border.all(color: colors.onSurface),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'SEU MÊS ATÉ AGORA',
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                  color: colors.surface.withValues(alpha: .65),
+                  fontSize: 9,
+                  letterSpacing: 1.1,
+                ),
+          ),
+          const SizedBox(height: 12),
+          Row(
+            children: stats.indexed.map((item) {
+              return Expanded(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 6),
+                  decoration: BoxDecoration(
+                    border: item.$1 == stats.length - 1
+                        ? null
+                        : Border(
+                            right: BorderSide(
+                              color: colors.surface.withValues(alpha: .18),
+                            ),
+                          ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        item.$2.$1.toString(),
+                        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                              color: colors.surface,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w800,
+                            ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        item.$2.$2,
+                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                              color: colors.surface.withValues(alpha: .62),
+                              fontSize: 8,
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }).toList(),
           ),
         ],
       ),
