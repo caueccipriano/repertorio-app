@@ -13,6 +13,7 @@ import 'appearance_screen.dart';
 import 'backup_screen.dart';
 import 'notification_settings_screen.dart';
 import 'notes_screen.dart';
+import 'cultural_map.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -200,11 +201,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         fontSize: 31,
                       ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 12),
                 if (categoryCounts.values.every((count) => count == 0))
                   const _EmptyKnowledgeProfile()
-                else
-                  ..._categoryRows(context, categoryCounts),
+                else ...[
+                  CulturalMap(
+                    counts: categoryCounts,
+                    strengths: _strengthCategories,
+                    weakCategories: _weakCategories,
+                  ),
+                  const SizedBox(height: 12),
+                  _MapReading(
+                    strongest: rankedAreas.isEmpty
+                        ? null
+                        : _displayCategory(rankedAreas.first.key),
+                    frontier: _nextFrontier(categoryCounts),
+                  ),
+                ],
                 const SizedBox(height: 12),
                 _ReadingRecord(
                   started: totalStarted,
@@ -256,25 +269,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  List<Widget> _categoryRows(
-    BuildContext context,
-    Map<String, int> categoryCounts,
-  ) {
-    final maxCount = categoryCounts.values.fold<int>(
-      1,
-      (max, value) => value > max ? value : max,
-    );
+  String? _nextFrontier(Map<String, int> categoryCounts) {
+    final entries = categoryCounts.entries.toList()
+      ..sort((a, b) => a.value.compareTo(b.value));
+    if (entries.isEmpty) return null;
 
-    return _scoreCategories
-        .map(
-          (category) => _ProgressRow(
-            label: _displayCategory(category),
-            value: (categoryCounts[category] ?? 0) / maxCount,
-            count: categoryCounts[category] ?? 0,
-          ),
-        )
-        .toList();
+    final least = entries.first;
+    return _displayCategory(least.key);
   }
+
 
   String _displayCategory(String value) {
     return switch (value) {
@@ -1071,53 +1074,117 @@ class _EmptyKnowledgeProfile extends StatelessWidget {
   }
 }
 
-class _ProgressRow extends StatelessWidget {
-  const _ProgressRow({
-    required this.label,
-    required this.value,
-    required this.count,
+class _MapReading extends StatelessWidget {
+  const _MapReading({
+    required this.strongest,
+    required this.frontier,
   });
 
-  final String label;
-  final double value;
-  final int count;
+  final String? strongest;
+  final String? frontier;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 18),
+    final colors = Theme.of(context).colorScheme;
+
+    return Row(
+      children: [
+        Expanded(
+          child: _MapReadingCell(
+            eyebrow: 'MAIS VIVA',
+            value: strongest ?? 'ainda descobrindo',
+            icon: Icons.auto_awesome_rounded,
+            accent: true,
+          ),
+        ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: _MapReadingCell(
+            eyebrow: 'PRÓXIMA FRONTEIRA',
+            value: frontier ?? 'explore mais',
+            icon: Icons.north_east_rounded,
+            accent: false,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _MapReadingCell extends StatelessWidget {
+  const _MapReadingCell({
+    required this.eyebrow,
+    required this.value,
+    required this.icon,
+    required this.accent,
+  });
+
+  final String eyebrow;
+  final String value;
+  final IconData icon;
+  final bool accent;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
+    return Container(
+      constraints: const BoxConstraints(minHeight: 86),
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: accent
+            ? colors.primaryContainer.withValues(alpha: .52)
+            : colors.surface,
+        border: Border.all(
+          color: accent ? colors.primary.withValues(alpha: .52) : colors.outline,
+        ),
+        borderRadius: BorderRadius.circular(12),
+      ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Text(
-                label,
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontSize: 16,
-                    ),
+              Icon(
+                icon,
+                size: 15,
+                color: accent ? colors.primary : colors.onSurfaceVariant,
               ),
-              const Spacer(),
-              Text(
-                count.toString(),
-                style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      color: Theme.of(context).colorScheme.primary,
-                      fontSize: 10,
-                    ),
+              const SizedBox(width: 6),
+              Expanded(
+                child: Text(
+                  eyebrow,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        color: accent
+                            ? colors.primary
+                            : colors.onSurfaceVariant,
+                        fontSize: 8.5,
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: .8,
+                      ),
+                ),
               ),
             ],
           ),
-          const SizedBox(height: 8),
-          LinearProgressIndicator(
-            value: value,
-            minHeight: 5,
-            backgroundColor: Theme.of(context).colorScheme.outline,
-            color: Theme.of(context).colorScheme.primary,
+          const SizedBox(height: 9),
+          Text(
+            value,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w900,
+                  height: 1.05,
+                  letterSpacing: -.25,
+                ),
           ),
         ],
       ),
     );
   }
 }
+
 
 class _ReadingRecord extends StatelessWidget {
   const _ReadingRecord({
