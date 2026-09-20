@@ -109,7 +109,10 @@ class ViralEntryExperience extends StatefulWidget {
 
 class _ViralEntryExperienceState extends State<ViralEntryExperience> {
   int _stage = 0;
+  static const _historyKey = 'viral_score_history_v1';
+
   int _questionIndex = 0;
+  int? _previousScore;
   final List<int> _answers = [];
 
   late List<ViralScoreQuestion> _questions;
@@ -120,6 +123,36 @@ class _ViralEntryExperienceState extends State<ViralEntryExperience> {
     _questions = buildViralRound(
       seed: DateTime.now().microsecondsSinceEpoch,
     );
+    _loadPreviousScore();
+  }
+
+  Future<void> _loadPreviousScore() async {
+    final prefs = await SharedPreferences.getInstance();
+    final history = prefs.getStringList(_historyKey) ?? const <String>[];
+    if (history.isEmpty || !mounted) return;
+    final score = int.tryParse(history.first.split('|').first);
+    if (score == null) return;
+    setState(() => _previousScore = score);
+  }
+
+  Future<void> _finishQuiz() async {
+    final prefs = await SharedPreferences.getInstance();
+    final history = prefs.getStringList(_historyKey) ?? <String>[];
+    final result = _result;
+    final previous = history.isEmpty
+        ? _previousScore
+        : int.tryParse(history.first.split('|').first);
+
+    final entry =
+        '${result.score}|${DateTime.now().toIso8601String()}|${result.archetype}';
+    final nextHistory = <String>[entry, ...history].take(5).toList();
+    await prefs.setStringList(_historyKey, nextHistory);
+
+    if (!mounted) return;
+    setState(() {
+      _previousScore = previous;
+      _stage = 2;
+    });
   }
 
   void _start() {
@@ -140,7 +173,7 @@ class _ViralEntryExperienceState extends State<ViralEntryExperience> {
     Future<void>.delayed(const Duration(milliseconds: 460), () {
       if (!mounted) return;
       if (_questionIndex == _questions.length - 1) {
-        setState(() => _stage = 2);
+        _finishQuiz();
       } else {
         setState(() => _questionIndex++);
       }
@@ -237,6 +270,7 @@ class _ViralEntryExperienceState extends State<ViralEntryExperience> {
               _ => _ResultStage(
                   key: const ValueKey('result'),
                   result: _result,
+                  previousScore: _previousScore,
                   onEnterApp: () => widget.onEnterApp(_result),
                   onRestart: _start,
                 ),
@@ -747,11 +781,13 @@ class _ResultStage extends StatelessWidget {
   const _ResultStage({
     super.key,
     required this.result,
+    required this.previousScore,
     required this.onEnterApp,
     required this.onRestart,
   });
 
   final ViralScoreResult result;
+  final int? previousScore;
   final VoidCallback onEnterApp;
   final VoidCallback onRestart;
 
@@ -920,6 +956,13 @@ class _ResultStage extends StatelessWidget {
                     ),
                     const SizedBox(height: 24),
                     _ScoreBand(score: result.score),
+                    if (previousScore != null) ...[
+                      const SizedBox(height: 14),
+                      _PreviousScoreDelta(
+                        current: result.score,
+                        previous: previousScore!,
+                      ),
+                    ],
                     const SizedBox(height: 24),
                     Row(
                       children: [
@@ -1002,6 +1045,62 @@ class _ResultStage extends StatelessWidget {
     );
   }
 }
+
+class _PreviousScoreDelta extends StatelessWidget {
+  const _PreviousScoreDelta({
+    required this.current,
+    required this.previous,
+  });
+
+  final int current;
+  final int previous;
+
+  @override
+  Widget build(BuildContext context) {
+    final palette = ViralPalette.of(context);
+    final delta = current - previous;
+    final neutral = delta == 0;
+    final signal = delta > 0 ? '+' : '';
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
+      decoration: BoxDecoration(
+        color: neutral
+            ? palette.surface
+            : palette.accentSoft.withValues(alpha: .72),
+        border: Border.all(color: palette.line),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Row(
+        children: [
+          Icon(
+            neutral
+                ? Icons.horizontal_rule_rounded
+                : delta > 0
+                    ? Icons.trending_up_rounded
+                    : Icons.trending_down_rounded,
+            size: 18,
+            color: neutral ? palette.muted : palette.accent,
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              neutral
+                  ? 'mesmo score da sua rodada anterior'
+                  : '$signal$delta pontos vs. sua rodada anterior',
+              style: TextStyle(
+                color: neutral ? palette.muted : palette.accentStrong,
+                fontWeight: FontWeight.w800,
+                fontSize: 12.5,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 
 class _AnimatedScoreNumber extends StatelessWidget {
   const _AnimatedScoreNumber({required this.score});
