@@ -22,9 +22,9 @@ void main() {
     expect(find.text('pular'), findsNothing);
     expect(find.text('repertório*'), findsOneWidget);
     expect(find.text('DESTAQUE DE HOJE'), findsOneWidget);
-    expect(find.text('para hoje'), findsOneWidget);
-    expect(find.text('Início'), findsOneWidget);
-    expect(find.text('Catálogo'), findsOneWidget);
+    expect(find.text('ME SURPREENDA'), findsOneWidget);
+    expect(find.text('Hoje'), findsOneWidget);
+    expect(find.text('Explorar'), findsOneWidget);
   });
 
   testWidgets('renders a topic collection as a library shelf', (tester) async {
@@ -121,7 +121,7 @@ void main() {
 
     expect(find.byKey(const ValueKey('reader-audio')), findsOneWidget);
     expect(find.byKey(const ValueKey('reader-settings')), findsOneWidget);
-    expect(find.text('▶'), findsOneWidget);
+    expect(find.byIcon(Icons.headphones_rounded), findsOneWidget);
 
     await tester.tap(find.byKey(const ValueKey('reader-settings')));
     await tester.pumpAndSettle();
@@ -147,7 +147,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('repertório*'), findsOneWidget);
-    expect(find.text('Início'), findsOneWidget);
+    expect(find.text('Hoje'), findsOneWidget);
   });
 
   testWidgets('starts with zero saved and completed topics', (tester) async {
