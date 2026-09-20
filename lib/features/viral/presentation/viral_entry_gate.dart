@@ -110,6 +110,7 @@ class ViralEntryExperience extends StatefulWidget {
 class _ViralEntryExperienceState extends State<ViralEntryExperience> {
   int _stage = 0;
   static const _historyKey = 'viral_score_history_v1';
+  static const _weakCategoriesKey = 'viral_score_weak_categories_v1';
 
   int _questionIndex = 0;
   int? _previousScore;
@@ -143,10 +144,30 @@ class _ViralEntryExperienceState extends State<ViralEntryExperience> {
         ? _previousScore
         : int.tryParse(history.first.split('|').first);
 
+    final missesByCategory = <String, int>{};
+    for (var i = 0; i < _answers.length && i < _questions.length; i++) {
+      if (_answers[i] != _questions[i].correctIndex) {
+        missesByCategory.update(
+          _questions[i].category,
+          (value) => value + 1,
+          ifAbsent: () => 1,
+        );
+      }
+    }
+    final weakCategories = missesByCategory.entries.toList()
+      ..sort((a, b) {
+        final byMisses = b.value.compareTo(a.value);
+        return byMisses != 0 ? byMisses : a.key.compareTo(b.key);
+      });
+
     final entry =
         '${result.score}|${DateTime.now().toIso8601String()}|${result.archetype}';
     final nextHistory = <String>[entry, ...history].take(5).toList();
     await prefs.setStringList(_historyKey, nextHistory);
+    await prefs.setStringList(
+      _weakCategoriesKey,
+      weakCategories.take(3).map((entry) => entry.key).toList(),
+    );
 
     if (!mounted) return;
     setState(() {
