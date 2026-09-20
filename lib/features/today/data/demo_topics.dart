@@ -1559,22 +1559,270 @@ const memoriaTopic = KnowledgeTopic(
       'Pesquisas de psicologia mostraram que a forma como uma pergunta é feita pode alterar detalhes que participantes relatam lembrar de um evento.',
   connections: ['Aprendizagem', 'Neuroplasticidade', 'Vieses', 'Sono'],
 );
-const dopaminaTopic=KnowledgeTopic(id:'dopamina',eyebrow:'PSICOLOGIA / REPERTÓRIO',title:'DOPAMINA É O HORMÔNIO DO PRAZER?',summary:'Uma introdução clara ao tema dopamina é o hormônio do prazer, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['psicologia','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema dopamina é o hormônio do prazer, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema dopamina é o hormônio do prazer, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const habitosTopic=KnowledgeTopic(id:'habitos',eyebrow:'PSICOLOGIA / REPERTÓRIO',title:'COMO UM HÁBITO VIRA AUTOMÁTICO?',summary:'Uma introdução clara ao tema como um hábito vira automático, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['psicologia','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema como um hábito vira automático, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema como um hábito vira automático, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const linguagemCorporalTopic=KnowledgeTopic(id:'linguagem-corporal',eyebrow:'PSICOLOGIA / REPERTÓRIO',title:'DÁ PARA LER ALGUÉM PELA LINGUAGEM CORPORAL?',summary:'Uma introdução clara ao tema dá para ler alguém pela linguagem corporal, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['psicologia','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema dá para ler alguém pela linguagem corporal, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema dá para ler alguém pela linguagem corporal, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const pibTopic=KnowledgeTopic(id:'pib',eyebrow:'ECONOMIA / REPERTÓRIO',title:'O QUE O PIB MEDE — E O QUE ELE NÃO MEDE?',summary:'Uma introdução clara ao tema o que o pib mede — e o que ele não mede, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['economia','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema o que o pib mede — e o que ele não mede, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema o que o pib mede — e o que ele não mede, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const cambioTopic=KnowledgeTopic(id:'cambio',eyebrow:'ECONOMIA / REPERTÓRIO',title:'POR QUE O DÓLAR SOBE E DESCE?',summary:'Uma introdução clara ao tema por que o dólar sobe e desce, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['economia','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema por que o dólar sobe e desce, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema por que o dólar sobe e desce, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const acoesTopic=KnowledgeTopic(id:'acoes',eyebrow:'ECONOMIA / REPERTÓRIO',title:'O QUE VOCÊ COMPRA QUANDO COMPRA UMA AÇÃO?',summary:'Uma introdução clara ao tema o que você compra quando compra uma ação, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['economia','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema o que você compra quando compra uma ação, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema o que você compra quando compra uma ação, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const contabilidadeTopic=KnowledgeTopic(id:'contabilidade',eyebrow:'ECONOMIA / REPERTÓRIO',title:'POR QUE A CONTABILIDADE USA DÉBITO E CRÉDITO?',summary:'Uma introdução clara ao tema por que a contabilidade usa débito e crédito, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['economia','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema por que a contabilidade usa débito e crédito, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema por que a contabilidade usa débito e crédito, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const supplyChainTopic=KnowledgeTopic(id:'supply-chain',eyebrow:'ECONOMIA / REPERTÓRIO',title:'COMO UM PRODUTO ATRAVESSA O MUNDO ATÉ VOCÊ?',summary:'Uma introdução clara ao tema como um produto atravessa o mundo até você, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['economia','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema como um produto atravessa o mundo até você, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema como um produto atravessa o mundo até você, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
+const dopaminaTopic = KnowledgeTopic(
+  id: 'dopamina',
+  eyebrow: 'PSICOLOGIA / CÉREBRO',
+  title: 'DOPAMINA É O HORMÔNIO DO PRAZER?',
+  summary:
+      'Dopamina é um neurotransmissor envolvido em motivação, aprendizagem, movimento e expectativa de recompensa — não um simples “químico da felicidade”.',
+  minutes: 7,
+  tags: ['psicologia', 'neurociência'],
+  quickTake:
+      'Dopamina participa mais de aprender o que merece atenção e repetir comportamentos do que de produzir prazer isoladamente.',
+  simpleExplanation:
+      'Quando algo acontece melhor ou pior do que o esperado, certos circuitos dopaminérgicos ajudam o cérebro a atualizar expectativas. Isso influencia o que você aprende a buscar ou evitar.',
+  example:
+      'Se uma notificação traz uma recompensa inesperada, o cérebro pode aprender que vale a pena conferir o celular de novo — não porque dopamina seja “prazer líquido”, mas porque o sinal ajuda a reforçar previsão e comportamento.',
+  body: [
+    'Dopamina atua em diferentes circuitos do cérebro e também tem funções fora do sistema nervoso central.',
+    'Alguns caminhos dopaminérgicos participam de motivação, recompensa e aprendizagem por reforço.',
+    'Outros são importantes para controle do movimento; a perda de neurônios dopaminérgicos está relacionada à doença de Parkinson.',
+    'A atividade dopaminérgica pode refletir diferenças entre recompensa esperada e recompensa obtida, chamadas de erros de previsão.',
+    'Isso ajuda a explicar por que novidade, incerteza e antecipação podem ter grande força motivacional.',
+    'Reduzir toda experiência de prazer ou vício a “dopamina alta” simplifica demais sistemas biológicos e psicológicos complexos.',
+  ],
+  remember: [
+    'Dopamina não é sinônimo de prazer.',
+    'Ela participa de aprendizagem e motivação.',
+    'Diferentes circuitos dopaminérgicos têm funções diferentes.',
+  ],
+  whyItMatters:
+      'Entender dopamina evita explicações pseudocientíficas para hábitos, motivação e uso de tecnologia.',
+  curiosity:
+      'Uma recompensa totalmente previsível pode gerar resposta diferente daquela provocada por uma recompensa inesperada.',
+  connections: ['Hábitos', 'Recompensa', 'Parkinson', 'Aprendizagem'],
+);
+const habitosTopic = KnowledgeTopic(
+  id: 'habitos',
+  eyebrow: 'PSICOLOGIA / COMPORTAMENTO',
+  title: 'COMO UM HÁBITO VIRA AUTOMÁTICO?',
+  summary:
+      'Com repetição em contextos semelhantes, ações podem depender cada vez menos de decisão consciente e mais de sinais ambientais.',
+  minutes: 7,
+  tags: ['psicologia', 'comportamento'],
+  quickTake:
+      'Hábitos não surgem por uma quantidade mágica de dias. Tempo, repetição, contexto e dificuldade do comportamento influenciam a automatização.',
+  simpleExplanation:
+      'Se você sempre faz algo depois do mesmo sinal — por exemplo, escova os dentes ao entrar no banheiro à noite — o contexto passa a “puxar” a ação com menos esforço consciente.',
+  example:
+      'Deixar uma garrafa de água sobre a mesa pode funcionar como pista visual e aumentar a chance de beber água sem precisar lembrar deliberadamente toda vez.',
+  body: [
+    'Um hábito é uma tendência de responder automaticamente a pistas recorrentes de contexto.',
+    'Repetição fortalece a associação entre situação e comportamento, especialmente quando a ação é simples e estável.',
+    'Recompensas podem ajudar no início, mas um hábito maduro pode continuar mesmo quando a recompensa imediata é pequena.',
+    'Comportamentos complexos tendem a levar mais tempo para automatizar do que ações simples.',
+    'Mudar o ambiente pode ser mais eficaz do que depender exclusivamente de força de vontade.',
+    'Quebrar um hábito antigo costuma exigir identificar pistas e criar respostas alternativas, não apenas “parar”.',
+  ],
+  remember: [
+    'Não existe um número universal de dias.',
+    'Contexto repetido é uma pista poderosa.',
+    'Ambiente pode facilitar ou dificultar hábitos.',
+  ],
+  whyItMatters:
+      'Pensar em hábitos como relações entre contexto e comportamento ajuda a criar mudanças mais realistas do que depender só de motivação.',
+  curiosity:
+      'A popular ideia de “21 dias para formar um hábito” não é uma regra científica geral.',
+  connections: ['Dopamina', 'Comportamento', 'Ambiente', 'Autocontrole'],
+);
+const linguagemCorporalTopic = KnowledgeTopic(
+  id: 'linguagem-corporal',
+  eyebrow: 'PSICOLOGIA / COMUNICAÇÃO',
+  title: 'DÁ PARA LER ALGUÉM PELA LINGUAGEM CORPORAL?',
+  summary:
+      'Gestos, postura e expressão oferecem pistas sobre interação, mas não funcionam como um código universal capaz de revelar pensamentos com certeza.',
+  minutes: 7,
+  tags: ['psicologia', 'comunicação'],
+  quickTake:
+      'Cruzar os braços, desviar o olhar ou mexer as mãos não prova mentira, insegurança ou desinteresse sem considerar contexto e padrão individual.',
+  simpleExplanation:
+      'Um mesmo gesto pode ter motivos diferentes. Alguém pode cruzar os braços por frio, conforto, hábito ou tensão. Interpretar sem contexto cria conclusões frágeis.',
+  example:
+      'Evitar contato visual pode indicar desconforto em uma situação, mas também pode refletir cultura, neurodiversidade, timidez ou simplesmente concentração.',
+  body: [
+    'Comunicação não verbal inclui expressão facial, postura, distância, gestos, ritmo de fala e muitos outros sinais.',
+    'Alguns padrões têm associações estatísticas com emoções ou intenções, mas raramente funcionam como provas isoladas.',
+    'Contexto cultural altera o significado de gestos, distância interpessoal e contato visual.',
+    'Pessoas também diferem muito em seu comportamento habitual, por isso mudanças em relação ao próprio padrão podem ser mais informativas que regras universais.',
+    'Métodos populares de “detectar mentira” por um único gesto têm suporte científico fraco.',
+    'Uma leitura responsável combina palavras, contexto, histórico da interação e múltiplas pistas — sempre com incerteza.',
+  ],
+  remember: [
+    'Gesto isolado não revela intenção com certeza.',
+    'Contexto e cultura importam.',
+    'Detecção de mentira por linguagem corporal é limitada.',
+  ],
+  whyItMatters:
+      'Evita julgamentos precipitados em entrevistas, relacionamentos e situações profissionais onde interpretações erradas podem ter consequências reais.',
+  curiosity:
+      'Mesmo profissionais treinados geralmente não identificam mentiras com precisão perfeita apenas observando comportamento não verbal.',
+  connections: ['Comunicação', 'Vieses', 'Expressões faciais', 'Cultura'],
+);
+const pibTopic = KnowledgeTopic(
+  id: 'pib',
+  eyebrow: 'ECONOMIA / INDICADORES',
+  title: 'O QUE O PIB MEDE — E O QUE ELE NÃO MEDE?',
+  summary:
+      'O Produto Interno Bruto mede o valor de bens e serviços finais produzidos numa economia durante determinado período.',
+  minutes: 7,
+  tags: ['economia', 'indicadores'],
+  quickTake:
+      'PIB ajuda a medir atividade econômica, mas não é uma medida completa de bem-estar, desigualdade, patrimônio ou sustentabilidade.',
+  simpleExplanation:
+      'Se uma economia produz mais carros, consultas médicas, softwares e outros bens e serviços finais, isso tende a aparecer no PIB. Mas o indicador não diz sozinho como essa renda foi distribuída.',
+  example:
+      'Dois países podem ter PIB por habitante semelhante e ainda apresentar diferenças grandes em desigualdade, saúde, segurança ou qualidade ambiental.',
+  body: [
+    'PIB soma o valor de produção final realizada dentro de um território em certo período.',
+    'Ele pode ser calculado pelas óticas da produção, renda ou despesa; em teoria, as três chegam ao mesmo total.',
+    'Na ótica da despesa, costuma-se organizar o PIB em consumo, investimento, gastos do governo e exportações líquidas.',
+    'Para comparar crescimento ao longo do tempo, economistas usam medidas reais que descontam o efeito de preços.',
+    'PIB per capita divide o total pela população, mas continua sendo uma média e não revela a distribuição de renda.',
+    'Trabalho doméstico não remunerado, qualidade ambiental e vários aspectos de bem-estar ficam parcial ou totalmente fora do indicador.',
+  ],
+  remember: [
+    'PIB mede produção, não felicidade.',
+    'PIB nominal e real são diferentes.',
+    'PIB per capita é uma média.',
+  ],
+  whyItMatters:
+      'PIB aparece o tempo todo em notícias e decisões públicas; saber seus limites evita interpretar crescimento econômico como melhora automática de toda a sociedade.',
+  curiosity:
+      'Atividades de reconstrução após um desastre podem aumentar gastos e produção medidos pelo PIB mesmo quando houve grande perda de patrimônio e bem-estar.',
+  connections: ['Inflação', 'Produtividade', 'Renda', 'Indicadores econômicos'],
+);
+const cambioTopic = KnowledgeTopic(
+  id: 'cambio',
+  eyebrow: 'ECONOMIA / MOEDAS',
+  title: 'POR QUE O DÓLAR SOBE E DESCE?',
+  summary:
+      'Taxas de câmbio refletem oferta e demanda por moedas e respondem a juros, comércio, risco, expectativas e fluxos financeiros.',
+  minutes: 8,
+  tags: ['economia', 'finanças'],
+  quickTake:
+      'Não existe uma causa única para o câmbio. O mesmo dólar pode reagir a juros nos EUA, risco local, commodities, política fiscal ou mudanças globais de apetite por risco.',
+  simpleExplanation:
+      'Quando cresce a procura por dólares em relação à procura por reais, o preço do dólar em reais tende a subir. Quando ocorre o contrário, tende a cair.',
+  example:
+      'Uma empresa brasileira que precisa pagar uma dívida em dólares aumenta demanda pela moeda americana; já um investidor estrangeiro que traz dólares para comprar ativos no Brasil faz a operação inversa.',
+  body: [
+    'A taxa de câmbio é o preço de uma moeda em termos de outra.',
+    'Em regimes flutuantes, operações de comércio, investimento e finanças influenciam continuamente oferta e demanda.',
+    'Diferenças de juros podem alterar a atratividade relativa de ativos denominados em cada moeda.',
+    'Percepção de risco e expectativas sobre inflação, crescimento e política econômica também afetam fluxos financeiros.',
+    'Exportadores recebem moeda estrangeira enquanto importadores e devedores externos podem precisar comprá-la.',
+    'Bancos centrais podem intervir no mercado, mas isso não significa que consigam fixar permanentemente qualquer taxa desejada num regime flutuante.',
+  ],
+  remember: [
+    'Câmbio é um preço relativo.',
+    'Juros e risco influenciam fluxos de capital.',
+    'Comércio e finanças agem ao mesmo tempo.',
+  ],
+  whyItMatters:
+      'O câmbio afeta preços de importados, viagens, dívidas, receitas de exportadores e parte da inflação, por isso aparece em quase toda discussão econômica.',
+  curiosity:
+      'Uma moeda “forte” não é automaticamente sinal de uma economia melhor; o nível do câmbio também altera competitividade de exportações e importações.',
+  connections: ['Inflação', 'Juros', 'Comércio exterior', 'Bancos centrais'],
+);
+const acoesTopic = KnowledgeTopic(
+  id: 'acoes',
+  eyebrow: 'ECONOMIA / MERCADOS',
+  title: 'O QUE VOCÊ COMPRA QUANDO COMPRA UMA AÇÃO?',
+  summary:
+      'Uma ação representa uma participação societária em uma empresa e dá ao investidor direitos econômicos e societários definidos por lei e pela classe do papel.',
+  minutes: 8,
+  tags: ['economia', 'finanças'],
+  quickTake:
+      'Comprar uma ação não é emprestar dinheiro à empresa como num título de dívida; é adquirir uma pequena parcela de propriedade.',
+  simpleExplanation:
+      'Se uma companhia divide seu capital em milhões de ações, cada papel representa uma fração muito pequena desse capital. Seu valor pode subir ou cair conforme expectativas sobre o negócio e o mercado.',
+  example:
+      'Uma empresa lucrativa pode distribuir parte do resultado aos acionistas por dividendos, mas não existe garantia de que isso aconteça em todo período.',
+  body: [
+    'Empresas podem emitir ações para captar capital e distribuir participação entre investidores.',
+    'Acionistas assumem o risco residual do negócio: recebem valor depois que obrigações prioritárias são atendidas.',
+    'Algumas classes de ações oferecem direito de voto; outras podem ter estruturas diferentes de direitos econômicos.',
+    'O preço negociado em bolsa reflete expectativas de compradores e vendedores sobre resultados futuros, risco e alternativas de investimento.',
+    'Dividendos são uma forma de distribuir resultados, mas empresas também podem reter lucros para reinvestir.',
+    'Preço de mercado e valor contábil são conceitos diferentes e podem divergir bastante.',
+  ],
+  remember: [
+    'Ação é participação, não empréstimo.',
+    'Preço depende de expectativas futuras.',
+    'Dividendos não são garantidos.',
+  ],
+  whyItMatters:
+      'Entender o que uma ação representa ajuda a enxergar bolsa de valores como mercado de propriedade empresarial, e não apenas como um gráfico de preços.',
+  curiosity:
+      'Uma empresa pode valer na bolsa muito mais ou muito menos que seu patrimônio líquido contábil porque investidores precificam expectativas sobre o futuro.',
+  connections: ['Bolsa', 'Dividendos', 'Valor de mercado', 'Contabilidade'],
+);
+const contabilidadeTopic = KnowledgeTopic(
+  id: 'contabilidade',
+  eyebrow: 'ECONOMIA / EMPRESAS',
+  title: 'POR QUE A CONTABILIDADE USA DÉBITO E CRÉDITO?',
+  summary:
+      'Débito e crédito são lados de um sistema de registro em partidas dobradas que mantém o equilíbrio entre recursos, obrigações, patrimônio, receitas e despesas.',
+  minutes: 8,
+  tags: ['economia', 'contabilidade'],
+  quickTake:
+      'Na contabilidade, débito não significa necessariamente “coisa ruim” e crédito não significa necessariamente “dinheiro entrando”. Eles dependem da natureza da conta.',
+  simpleExplanation:
+      'Toda transação altera pelo menos duas partes do sistema. Se a empresa compra uma máquina à vista, aumenta um ativo chamado imobilizado e reduz outro ativo chamado caixa.',
+  example:
+      'Uma venda a prazo pode aumentar contas a receber e reconhecer receita no mesmo evento, mantendo o lançamento equilibrado entre débitos e créditos.',
+  body: [
+    'O método das partidas dobradas registra cada evento com valores equivalentes em pelo menos dois lados contábeis.',
+    'Ativos normalmente aumentam por débito, enquanto passivos e patrimônio líquido normalmente aumentam por crédito.',
+    'Receitas e despesas alimentam o resultado e, ao final, alteram o patrimônio líquido.',
+    'O equilíbrio fundamental pode ser resumido pela relação entre ativos, passivos e patrimônio líquido.',
+    'Esse sistema cria rastreabilidade e facilita detectar registros incompletos, embora equilíbrio matemático sozinho não garanta ausência de erro.',
+    'Demonstrações como balanço patrimonial, DRE e fluxo de caixa organizam perspectivas diferentes da mesma realidade econômica.',
+  ],
+  remember: [
+    'Débito e crédito não significam bom e ruim.',
+    'Toda transação afeta pelo menos duas contas.',
+    'Partidas dobradas preservam o equilíbrio contábil.',
+  ],
+  whyItMatters:
+      'Contabilidade é a linguagem usada para transformar eventos de uma empresa em informação que gestores, investidores, bancos e governos conseguem analisar.',
+  curiosity:
+      'O sistema de partidas dobradas já era descrito em obras europeias do século XV e continua sendo a base da contabilidade moderna.',
+  connections: ['Balanço', 'DRE', 'Fluxo de caixa', 'Ações'],
+);
+const supplyChainTopic = KnowledgeTopic(
+  id: 'supply-chain',
+  eyebrow: 'ECONOMIA / OPERAÇÕES',
+  title: 'COMO UM PRODUTO ATRAVESSA O MUNDO ATÉ VOCÊ?',
+  summary:
+      'Uma cadeia de suprimentos conecta fornecedores, fábricas, estoques, transportes, centros de distribuição e clientes por fluxos físicos e de informação.',
+  minutes: 8,
+  tags: ['economia', 'operações'],
+  quickTake:
+      'Supply chain não é só transporte. Planejamento, compras, produção, estoque, dados e decisões sobre capacidade fazem parte do sistema.',
+  simpleExplanation:
+      'Para um tênis chegar à loja, materiais precisam existir no lugar certo, a fábrica precisa ter capacidade, o pedido precisa ser planejado e o transporte precisa conectar vários pontos sem atrasar.',
+  example:
+      'Se um componente barato falta, uma fábrica inteira pode parar mesmo tendo todos os outros materiais disponíveis.',
+  body: [
+    'Cadeias de suprimentos coordenam materiais, informações e dinheiro entre empresas e consumidores.',
+    'Previsão de demanda ajuda a decidir quanto comprar, produzir e manter em estoque, mas toda previsão possui erro.',
+    'Estoques protegem contra incerteza, porém custam capital, espaço e risco de obsolescência.',
+    'Lead time mede o tempo entre uma necessidade e sua entrega e influencia quanto buffer o sistema precisa.',
+    'Uma cadeia otimizada apenas para custo pode ficar vulnerável a interrupções, enquanto excesso de redundância também tem preço.',
+    'Tecnologia melhora visibilidade, mas decisões continuam dependendo de prioridades como serviço, custo, velocidade e resiliência.',
+  ],
+  remember: [
+    'Supply chain conecta mais que transporte.',
+    'Estoque troca custo por proteção contra incerteza.',
+    'Eficiência e resiliência podem entrar em tensão.',
+  ],
+  whyItMatters:
+      'Crises logísticas, falta de chips e atrasos de produtos ficam muito mais compreensíveis quando você enxerga a cadeia como uma rede de dependências.',
+  curiosity:
+      'Uma peça de baixo valor pode ter impacto enorme se for o único componente que impede a conclusão de um produto caro.',
+  connections: ['Logística', 'Estoque', 'Forecast', 'Produção'],
+);
 const criptografiaTopic=KnowledgeTopic(id:'criptografia',eyebrow:'TECNOLOGIA / REPERTÓRIO',title:'COMO A CRIPTOGRAFIA PROTEGE UMA MENSAGEM?',summary:'Uma introdução clara ao tema como a criptografia protege uma mensagem, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['tecnologia','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema como a criptografia protege uma mensagem, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema como a criptografia protege uma mensagem, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
 
 const cloudTopic=KnowledgeTopic(id:'cloud',eyebrow:'TECNOLOGIA / REPERTÓRIO',title:'O QUE É A NUVEM DE VERDADE?',summary:'Uma introdução clara ao tema o que é a nuvem de verdade, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['tecnologia','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema o que é a nuvem de verdade, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema o que é a nuvem de verdade, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
