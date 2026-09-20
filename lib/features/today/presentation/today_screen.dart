@@ -57,7 +57,10 @@ class TodayScreen extends StatelessWidget {
                 _DailyPlanCard(tasks: dailyPlan),
                 const SizedBox(height: 14),
                 _SurpriseStrip(
-                  excludedTopicIds: state.completedTopicIds,
+                  excludedTopicIds: {
+                    ...state.historyTopicIds,
+                    ...state.completedTopicIds,
+                  },
                 ),
                 const SizedBox(height: 24),
                 _PersonalTrailCard(topics: personalTrail),
