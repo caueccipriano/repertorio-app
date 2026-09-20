@@ -16,3 +16,15 @@ Future<bool> shareViralScore({
   required String shareUrl,
 }) async =>
     false;
+
+
+bool get repertoryProfileShareSupported => false;
+
+Future<bool> shareRepertoryProfile({
+  required int score,
+  required String archetype,
+  required String strengths,
+  required String countsJson,
+  required String shareUrl,
+}) async =>
+    false;
