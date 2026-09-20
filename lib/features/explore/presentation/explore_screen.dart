@@ -5,6 +5,7 @@ import '../../../core/widgets/editorial_frame.dart';
 import '../../../core/widgets/knowledge_cover.dart';
 import '../../../core/widgets/paper_texture.dart';
 import '../../search/presentation/search_screen.dart';
+import '../../today/data/demo_topics.dart';
 import 'topic_collection_screen.dart';
 
 class ExploreScreen extends StatelessWidget {
@@ -33,73 +34,73 @@ class ExploreScreen extends StatelessWidget {
       title: 'História',
       subtitle: 'Impérios, revoluções e ideias',
       style: KnowledgeCoverStyle.columns,
-      topicIds: ['roma', 'bauhaus', 'modernismo'],
+      tags: ['história', 'geopolítica'],
     ),
     _CatalogEntry(
       title: 'Ciência',
       subtitle: 'Do átomo ao universo',
       style: KnowledgeCoverStyle.orbit,
-      topicIds: ['fermi', 'vinho'],
+      tags: ['ciência', 'astronomia'],
     ),
     _CatalogEntry(
       title: 'Arte',
       subtitle: 'Movimentos, obras e contexto',
       style: KnowledgeCoverStyle.waves,
-      topicIds: ['bauhaus', 'modernismo', 'helvetica'],
+      tags: ['arte', 'fotografia'],
     ),
     _CatalogEntry(
       title: 'Design',
       subtitle: 'Objetos, sistemas e linguagem',
       style: KnowledgeCoverStyle.bauhaus,
-      topicIds: ['bauhaus', 'helvetica', 'modernismo'],
+      tags: ['design', 'tipografia', 'moda'],
     ),
     _CatalogEntry(
       title: 'Arquitetura',
       subtitle: 'Espaços que contam histórias',
       style: KnowledgeCoverStyle.archive,
-      topicIds: ['modernismo', 'brutalismo', 'bauhaus'],
+      tags: ['arquitetura', 'cidade'],
     ),
     _CatalogEntry(
       title: 'Filosofia',
       subtitle: 'Perguntas que mudaram o mundo',
       style: KnowledgeCoverStyle.typography,
-      topicIds: ['fermi', 'roma'],
+      tags: ['filosofia'],
     ),
     _CatalogEntry(
       title: 'Psicologia',
       subtitle: 'Mente, comportamento e escolhas',
       style: KnowledgeCoverStyle.waves,
-      topicIds: ['inflacao', 'fermi'],
+      tags: ['psicologia'],
     ),
     _CatalogEntry(
       title: 'Economia',
       subtitle: 'Dinheiro, mercados e sociedade',
       style: KnowledgeCoverStyle.columns,
-      topicIds: ['inflacao', 'roma'],
+      tags: ['economia', 'finanças', 'contabilidade'],
     ),
     _CatalogEntry(
       title: 'Tecnologia',
       subtitle: 'Ideias que viraram infraestrutura',
       style: KnowledgeCoverStyle.typography,
-      topicIds: ['helvetica', 'fermi', 'bauhaus'],
+      tags: ['tecnologia', 'computação'],
     ),
     _CatalogEntry(
       title: 'Cinema',
       subtitle: 'Filmes, linguagem e bastidores',
       style: KnowledgeCoverStyle.archive,
-      topicIds: ['modernismo', 'helvetica'],
+      tags: ['cinema'],
     ),
     _CatalogEntry(
       title: 'Música',
       subtitle: 'Gêneros, movimentos e histórias',
       style: KnowledgeCoverStyle.waves,
-      topicIds: ['helvetica', 'bauhaus'],
+      tags: ['música'],
     ),
     _CatalogEntry(
       title: 'Mundo',
       subtitle: 'Geografia, cultura e sociedade',
       style: KnowledgeCoverStyle.orbit,
-      topicIds: ['roma', 'inflacao', 'fermi', 'vinho'],
+      tags: ['geografia', 'cultura', 'brasil', 'geopolítica'],
     ),
   ];
 
@@ -401,6 +402,15 @@ class _CatalogCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final coverHeight = width * 1.28;
+    final topicIds = allDemoTopics
+        .where(
+          (topic) => topic.tags.any(
+            (tag) => entry.tags.contains(tag.toLowerCase()),
+          ),
+        )
+        .map((topic) => topic.id)
+        .toSet()
+        .toList();
 
     void openCollection() {
       Navigator.of(context).push(
@@ -408,7 +418,7 @@ class _CatalogCard extends StatelessWidget {
           builder: (_) => TopicCollectionScreen(
             title: entry.title,
             subtitle: entry.subtitle,
-            topicIds: entry.topicIds,
+            topicIds: topicIds,
           ),
         ),
       );
@@ -421,7 +431,7 @@ class _CatalogCard extends StatelessWidget {
         children: [
           KnowledgeCover(
             title: entry.title,
-            kicker: '${entry.topicIds.length} assuntos',
+            kicker: '${topicIds.length} assuntos',
             style: entry.style,
             width: width,
             height: coverHeight,
@@ -459,11 +469,11 @@ class _CatalogEntry {
     required this.title,
     required this.subtitle,
     required this.style,
-    required this.topicIds,
+    required this.tags,
   });
 
   final String title;
   final String subtitle;
   final KnowledgeCoverStyle style;
-  final List<String> topicIds;
+  final List<String> tags;
 }
