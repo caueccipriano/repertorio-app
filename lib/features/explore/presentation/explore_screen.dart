@@ -142,9 +142,9 @@ class ExploreScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 22),
                 const _TrailRail(trails: _trails),
-                const SizedBox(height: 28),
-                const _FilterRail(),
-                const SizedBox(height: 26),
+                const SizedBox(height: 30),
+                const _CatalogHeader(areaCount: 12),
+                const SizedBox(height: 18),
                 LayoutBuilder(
                   builder: (context, constraints) {
                     final columns = constraints.maxWidth >= 720
@@ -311,40 +311,71 @@ class _TrailEntry {
   final List<String> topicIds;
 }
 
-class _FilterRail extends StatelessWidget {
-  const _FilterRail();
+class _CatalogHeader extends StatelessWidget {
+  const _CatalogHeader({required this.areaCount});
+
+  final int areaCount;
 
   @override
   Widget build(BuildContext context) {
-    const filters = ['TODOS', 'POPULAR', 'NOVOS', 'RÁPIDOS'];
+    final colors = Theme.of(context).colorScheme;
 
-    return SizedBox(
-      height: 38,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemCount: filters.length,
-        separatorBuilder: (_, __) => const SizedBox(width: 8),
-        itemBuilder: (context, index) {
-          final selected = index == 0;
-
-          return Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.symmetric(horizontal: 14),
-            decoration: BoxDecoration(
-              color: selected ? Theme.of(context).colorScheme.onSurface : Theme.of(context).colorScheme.surface,
-              border: Border.all(color: Theme.of(context).colorScheme.onSurface),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'explore por área',
+                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                      fontSize: 29,
+                    ),
+              ),
+              const SizedBox(height: 5),
+              Text(
+                '$areaCount estantes para entrar por assunto.',
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: colors.onSurfaceVariant,
+                    ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(width: 12),
+        Material(
+          color: colors.surface,
+          child: InkWell(
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => const SearchScreen(),
+              ),
             ),
-            child: Text(
-              filters[index],
-              style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                    color: selected ? Theme.of(context).colorScheme.surface : Theme.of(context).colorScheme.onSurface,
-                    fontSize: 9,
-                    letterSpacing: .7,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
+              decoration: BoxDecoration(
+                border: Border.all(color: colors.outline),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.search, size: 17, color: colors.primary),
+                  const SizedBox(width: 7),
+                  Text(
+                    'BUSCAR',
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          color: colors.primary,
+                          fontSize: 9,
+                          letterSpacing: .7,
+                        ),
                   ),
+                ],
+              ),
             ),
-          );
-        },
-      ),
+          ),
+        ),
+      ],
     );
   }
 }
