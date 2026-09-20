@@ -7,6 +7,7 @@ import '../../../core/widgets/editorial_frame.dart';
 import '../../../core/widgets/paper_texture.dart';
 import '../../today/data/demo_topics.dart';
 import '../../viral/data/viral_score_focus.dart';
+import '../../viral/presentation/viral_entry_gate.dart';
 import 'accessibility_screen.dart';
 import 'appearance_screen.dart';
 import 'backup_screen.dart';
@@ -60,6 +61,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
       _strengthCategories =
           prefs.getStringList(_strengthCategoriesKey) ?? const <String>[];
     });
+  }
+
+  Future<void> _retakeScore() async {
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => ViralEntryExperience(
+          onEnterApp: (result) async {
+            if (result != null) {
+              final prefs = await SharedPreferences.getInstance();
+              await prefs.setInt('viral_score_v1', result.score);
+              await prefs.setString('viral_archetype_v1', result.archetype);
+            }
+            if (!mounted) return;
+            Navigator.of(context).pop();
+          },
+        ),
+      ),
+    );
+    if (!mounted) return;
+    await _loadScoreProfile();
   }
 
   @override
@@ -149,6 +170,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     history: _scoreHistory,
                     strengths: _strengthCategories,
                     weakCategories: _weakCategories,
+                    onRetake: _retakeScore,
                   ),
                   const SizedBox(height: 14),
                 ],
@@ -345,11 +367,13 @@ class _ScorePortrait extends StatelessWidget {
     required this.history,
     required this.strengths,
     required this.weakCategories,
+    required this.onRetake,
   });
 
   final List<_ProfileScoreSnapshot> history;
   final List<String> strengths;
   final List<String> weakCategories;
+  final VoidCallback onRetake;
 
   @override
   Widget build(BuildContext context) {
@@ -466,6 +490,22 @@ class _ScorePortrait extends StatelessWidget {
               ],
             ),
           ],
+          const SizedBox(height: 12),
+          Align(
+            alignment: Alignment.centerRight,
+            child: TextButton.icon(
+              onPressed: onRetake,
+              icon: const Icon(Icons.refresh_rounded, size: 17),
+              label: const Text(
+                'NOVA RODADA',
+                style: TextStyle(
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: .55,
+                  fontSize: 11,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -1517,7 +1557,7 @@ class _StudyGoalCard extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             reached
-                ? 'Meta concluída — sem streak, sem culpa.'
+                ? 'Meta concluída — ritmo mantido.'
                 : '$studied de $goal dias estudados nesta semana.',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: reached ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.onSurfaceVariant,
