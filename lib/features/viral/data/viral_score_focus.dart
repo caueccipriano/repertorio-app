@@ -15,6 +15,22 @@ List<String> scoreTagsForCategory(String category) {
   };
 }
 
+List<KnowledgeTopic> topicsForScoreCategory(
+  String category, {
+  Set<String> excludedIds = const {},
+}) {
+  final tags = scoreTagsForCategory(category);
+  return allDemoTopics.where((topic) {
+    if (excludedIds.contains(topic.id)) return false;
+    final haystack = <String>{
+      ...topic.tags.map(normalizeScoreText),
+      normalizeScoreText(topic.eyebrow),
+      normalizeScoreText(topic.title),
+    }.join(' ');
+    return tags.any(haystack.contains);
+  }).toList(growable: false);
+}
+
 KnowledgeTopic? topicForScoreFocus({
   required List<String> weakCategories,
   Set<String> excludedIds = const {},
