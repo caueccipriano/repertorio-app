@@ -1,0 +1,85 @@
+name: Deploy Repertório Viral Preview
+
+on:
+  push:
+    branches:
+      - repertorio-viral-v2
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout current app
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: current
+
+      - name: Checkout viral preview
+        uses: actions/checkout@v4
+        with:
+          ref: repertorio-viral-v2
+          path: viral
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Build current app
+        working-directory: current
+        run: |
+          flutter pub get
+          perl -0pi -e 's/\n,media:/\n media:/g' lib/features/today/data/demo_topics.dart
+          perl -0pi -e 's/\n  Future<void> _openAudio\(KnowledgeMedia media\) async \{.*?\n  \}\n\n  void _goBack/\n  void _goBack/s' lib/features/article/presentation/article_screen.dart
+          flutter build web --release --base-href "/repertorio-app/"
+
+      - name: Build viral preview
+        working-directory: viral
+        run: |
+          flutter pub get
+          perl -0pi -e 's/\n,media:/\n media:/g' lib/features/today/data/demo_topics.dart
+          perl -0pi -e 's/\n  Future<void> _openAudio\(KnowledgeMedia media\) async \{.*?\n  \}\n\n  void _goBack/\n  void _goBack/s' lib/features/article/presentation/article_screen.dart
+          flutter analyze --no-fatal-infos --no-fatal-warnings
+          flutter test
+          flutter build web --release --base-href "/repertorio-app/viral-v2/"
+
+      - name: Assemble Pages site
+        run: |
+          mkdir -p public/viral-v2
+          cp -R current/build/web/. public/
+          cp -R viral/build/web/. public/viral-v2/
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
