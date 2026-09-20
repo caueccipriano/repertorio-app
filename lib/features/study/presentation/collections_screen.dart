@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/state/app_state_scope.dart';
+import '../../../core/widgets/knowledge_cover.dart';
 import '../../article/presentation/article_screen.dart';
 import '../../today/data/demo_topics.dart';
 import '../../today/domain/knowledge_topic.dart';
@@ -113,17 +114,12 @@ class _CollectionCard extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Container(
-                width: 54,
-                height: 70,
-                decoration: BoxDecoration(
-                  color: colors.surfaceContainerHighest,
-                  border: Border.all(color: colors.outline),
-                ),
-                child: Icon(
-                  Icons.collections_bookmark_outlined,
-                  color: colors.primary,
-                ),
+              KnowledgeCover(
+                title: name,
+                kicker: 'coleção',
+                style: _collectionStyle(name),
+                width: 62,
+                height: 82,
               ),
               const SizedBox(width: 14),
               Expanded(
@@ -155,6 +151,13 @@ class _CollectionCard extends StatelessWidget {
       ),
     );
   }
+}
+
+KnowledgeCoverStyle _collectionStyle(String name) {
+  final styles = KnowledgeCoverStyle.values;
+  final normalized = name.trim().toLowerCase();
+  final score = normalized.runes.fold<int>(0, (sum, rune) => sum + rune);
+  return styles[score % styles.length];
 }
 
 class CollectionDetailScreen extends StatelessWidget {
