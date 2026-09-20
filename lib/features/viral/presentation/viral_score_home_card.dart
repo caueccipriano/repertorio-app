@@ -5,6 +5,7 @@ import '../../../app/state/app_state_scope.dart';
 import '../../article/presentation/article_screen.dart';
 import '../../today/data/demo_topics.dart';
 import '../../today/domain/knowledge_topic.dart';
+import '../data/viral_score_focus.dart';
 import 'viral_entry_gate.dart';
 
 class ViralScoreHomeCard extends StatefulWidget {
@@ -210,20 +211,15 @@ class _ViralScoreHomeCardState extends State<ViralScoreHomeCard> {
     final seen = <String>{};
 
     for (final category in weakCategories) {
-      final tags = _tagsForCategory(category);
-      final candidates = allDemoTopics.where((topic) {
-        if (excludedIds.contains(topic.id) || seen.contains(topic.id)) {
-          return false;
-        }
+      final tags = scoreTagsForCategory(category);
+      for (final topic in allDemoTopics) {
+        if (excludedIds.contains(topic.id) || seen.contains(topic.id)) continue;
         final haystack = <String>{
-          ...topic.tags.map(_normalize),
-          _normalize(topic.eyebrow),
-          _normalize(topic.title),
+          ...topic.tags.map(normalizeScoreText),
+          normalizeScoreText(topic.eyebrow),
+          normalizeScoreText(topic.title),
         }.join(' ');
-        return tags.any((tag) => haystack.contains(tag));
-      });
-
-      for (final topic in candidates) {
+        if (!tags.any(haystack.contains)) continue;
         if (seen.add(topic.id)) ordered.add(topic);
         if (ordered.length >= 3) return ordered;
       }
@@ -238,30 +234,6 @@ class _ViralScoreHomeCardState extends State<ViralScoreHomeCard> {
     return ordered;
   }
 
-  List<String> _tagsForCategory(String category) {
-    return switch (category) {
-      'PSICOLOGIA' => ['psicologia', 'comportamento', 'mente'],
-      'HISTÓRIA' => ['historia', 'imperio', 'guerra'],
-      'CIÊNCIA' => ['ciencia', 'astronomia', 'biologia', 'universo'],
-      'ECONOMIA' => ['economia', 'dinheiro', 'financas', 'inflacao'],
-      'ARTE & DESIGN' => ['arte', 'design', 'arquitetura', 'tipografia'],
-      'TECNOLOGIA' => ['tecnologia', 'internet', 'ia', 'digital'],
-      'MUNDO' => ['mundo', 'geografia', 'politica', 'cidade'],
-      'CULTURA' => ['cultura', 'literatura', 'cinema', 'musica'],
-      _ => [_normalize(category)],
-    };
-  }
-
-  String _normalize(String value) {
-    return value
-        .toLowerCase()
-        .replaceAll(RegExp(r'[áàâã]'), 'a')
-        .replaceAll(RegExp(r'[éèê]'), 'e')
-        .replaceAll(RegExp(r'[íìî]'), 'i')
-        .replaceAll(RegExp(r'[óòôõ]'), 'o')
-        .replaceAll(RegExp(r'[úùû]'), 'u')
-        .replaceAll('ç', 'c');
-  }
 }
 
 class _ScoreSummary extends StatelessWidget {
