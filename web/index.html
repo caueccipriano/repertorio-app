@@ -503,6 +503,120 @@
         }
       };
 
+      window.repertorioScoreCard = {
+        supported: function () { return 'HTMLCanvasElement' in window; },
+        share: async function (score, archetype, strengths, shareUrl) {
+          try {
+            const canvas = document.createElement('canvas');
+            canvas.width = 1080;
+            canvas.height = 1920;
+            const ctx = canvas.getContext('2d');
+
+            ctx.fillStyle = '#F5F2EA';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#173B91';
+            ctx.fillRect(0, 0, 1080, 28);
+
+            ctx.fillStyle = '#173B91';
+            ctx.font = '900 42px Arial';
+            ctx.fillText('repertório*', 82, 130);
+
+            ctx.fillStyle = '#6E706D';
+            ctx.font = '800 25px Arial';
+            ctx.fillText('REPERTÓRIO SCORE / BETA', 82, 215);
+
+            ctx.fillStyle = '#173B91';
+            ctx.font = '900 260px Arial';
+            ctx.fillText(String(score || '—'), 74, 520);
+
+            ctx.fillStyle = '#101010';
+            ctx.font = '900 70px Arial';
+            const archetypeText = String(archetype || 'RADAR CULTURAL').toUpperCase();
+            const archetypeWords = archetypeText.split(' ');
+            let line = '';
+            let y = 665;
+            archetypeWords.forEach(function (word) {
+              const test = line ? line + ' ' + word : word;
+              if (ctx.measureText(test).width > 900 && line) {
+                ctx.fillText(line, 82, y);
+                line = word;
+                y += 78;
+              } else {
+                line = test;
+              }
+            });
+            if (line) ctx.fillText(line, 82, y);
+
+            const dividerY = y + 90;
+            ctx.fillStyle = '#173B91';
+            ctx.fillRect(82, dividerY, 916, 6);
+
+            ctx.fillStyle = '#101010';
+            ctx.font = '800 30px Arial';
+            ctx.fillText('MEU RADAR ACENDE EM', 82, dividerY + 95);
+
+            ctx.fillStyle = '#575752';
+            ctx.font = '600 34px Arial';
+            const strengthText = String(strengths || 'curiosidade em construção')
+              .replace(/\s*·\s*/g, '  •  ');
+            ctx.fillText(strengthText.slice(0, 58), 82, dividerY + 155);
+
+            ctx.fillStyle = '#E3E9F8';
+            ctx.fillRect(82, 1435, 916, 255);
+
+            ctx.fillStyle = '#173B91';
+            ctx.font = '900 54px Arial';
+            ctx.fillText('E O SEU?', 122, 1535);
+
+            ctx.fillStyle = '#101010';
+            ctx.font = '700 31px Arial';
+            ctx.fillText('10 perguntas. sem login. feito para compartilhar.', 122, 1595);
+
+            ctx.fillStyle = '#173B91';
+            ctx.font = '900 29px Arial';
+            ctx.fillText('FAÇA O TESTE →', 122, 1655);
+
+            ctx.fillStyle = '#6E706D';
+            ctx.font = '600 23px Arial';
+            ctx.fillText('um pouco sobre tudo, todo dia.', 82, 1815);
+
+            const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+            if (!blob) return false;
+
+            const file = new File([blob], 'repertorio-score-story.png', {
+              type: 'image/png'
+            });
+            const text = 'Meu Repertório Score: ' + score + ' · ' + archetype + '. Descubra o seu: ' + shareUrl;
+
+            if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+              await navigator.share({
+                files: [file],
+                title: 'Repertório Score',
+                text: text
+              });
+              return true;
+            }
+
+            if (navigator.clipboard) {
+              try { await navigator.clipboard.writeText(text); } catch (_) {}
+            }
+
+            const objectUrl = URL.createObjectURL(blob);
+            const anchor = document.createElement('a');
+            anchor.href = objectUrl;
+            anchor.download = 'repertorio-score-story.png';
+            document.body.appendChild(anchor);
+            anchor.click();
+            anchor.remove();
+            setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+            return true;
+          } catch (_) {
+            return false;
+          }
+        }
+      };
+
       window.repertorioUpdates = {
         check: async function () {
           if (!('serviceWorker' in navigator)) return false;
