@@ -140,7 +140,7 @@ class SharedScoreLanding extends StatelessWidget {
                       onPressed: onStart,
                       style: FilledButton.styleFrom(
                         backgroundColor: palette.accent,
-                        foregroundColor: palette.surface,
+                        foregroundColor: palette.onAccent,
                         padding: const EdgeInsets.symmetric(
                           horizontal: 22,
                           vertical: 18,
