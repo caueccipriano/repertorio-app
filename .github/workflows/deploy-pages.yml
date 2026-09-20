@@ -46,6 +46,21 @@ jobs:
       - name: Build web
         run: flutter build web --release --base-href "/repertorio-app/"
 
+      - name: Generate iOS/PWA PNG icons
+        run: |
+          python3 - <<'PY'
+          import base64, re, pathlib
+          svg = pathlib.Path('web/icons/Icon-v3.svg').read_text()
+          m = re.search(r'base64,([^"]+)', svg)
+          if not m:
+              raise SystemExit('Embedded PNG not found in Icon-v3.svg')
+          raw = base64.b64decode(m.group(1))
+          out = pathlib.Path('build/web/icons')
+          out.mkdir(parents=True, exist_ok=True)
+          for name in ('apple-touch-icon-v3.png', 'Icon-192-v3.png', 'Icon-512-v3.png', 'Icon-maskable-512-v3.png'):
+              (out / name).write_bytes(raw)
+          PY
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
