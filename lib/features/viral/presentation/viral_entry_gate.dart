@@ -63,7 +63,7 @@ class _ViralEntryGateState extends State<ViralEntryGate> {
   Widget build(BuildContext context) {
     final palette = ViralPalette.of(context);
     if (_entryComplete == null) {
-      return const Scaffold(
+      return Scaffold(
         backgroundColor: palette.background,
         body: Center(
           child: Text(
@@ -264,7 +264,6 @@ class _ViralEntryExperienceState extends State<ViralEntryExperience> {
 
   @override
   Widget build(BuildContext context) {
-    final palette = ViralPalette.of(context);
     return PaperTexture(
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -701,7 +700,7 @@ class _AnswerButton extends StatelessWidget {
                 ),
                 child: Text(
                   prefix,
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: palette.accentStrong,
                     fontWeight: FontWeight.w900,
                   ),
@@ -897,7 +896,7 @@ class _BrandMark extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = ViralPalette.of(context);
-    return const Text(
+    return Text(
       'repertório*',
       style: TextStyle(
         color: palette.accent,
