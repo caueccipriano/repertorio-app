@@ -89,7 +89,6 @@ class CulturalMap extends StatelessWidget {
                 onSurface: colors.onSurface,
                 muted: colors.onSurfaceVariant,
                 line: colors.outline,
-                surface: colors.surface,
                 soft: colors.primaryContainer,
               ),
               child: const SizedBox.expand(),
@@ -223,7 +222,6 @@ class _CulturalMapPainter extends CustomPainter {
     required this.onSurface,
     required this.muted,
     required this.line,
-    required this.surface,
     required this.soft,
   });
 
@@ -235,7 +233,6 @@ class _CulturalMapPainter extends CustomPainter {
   final Color onSurface;
   final Color muted;
   final Color line;
-  final Color surface;
   final Color soft;
 
   static const _angles = <double>[
@@ -447,7 +444,6 @@ class _CulturalMapPainter extends CustomPainter {
         oldDelegate.onSurface != onSurface ||
         oldDelegate.muted != muted ||
         oldDelegate.line != line ||
-        oldDelegate.surface != surface ||
         oldDelegate.soft != soft;
   }
 }
