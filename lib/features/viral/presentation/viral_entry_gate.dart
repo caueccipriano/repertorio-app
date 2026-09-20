@@ -111,6 +111,7 @@ class _ViralEntryExperienceState extends State<ViralEntryExperience> {
   int _stage = 0;
   static const _historyKey = 'viral_score_history_v1';
   static const _weakCategoriesKey = 'viral_score_weak_categories_v1';
+  static const _strengthCategoriesKey = 'viral_score_strength_categories_v1';
 
   int _questionIndex = 0;
   int? _previousScore;
@@ -162,11 +163,15 @@ class _ViralEntryExperienceState extends State<ViralEntryExperience> {
 
     final entry =
         '${result.score}|${DateTime.now().toIso8601String()}|${result.archetype}';
-    final nextHistory = <String>[entry, ...history].take(5).toList();
+    final nextHistory = <String>[entry, ...history].take(12).toList();
     await prefs.setStringList(_historyKey, nextHistory);
     await prefs.setStringList(
       _weakCategoriesKey,
       weakCategories.take(3).map((entry) => entry.key).toList(),
+    );
+    await prefs.setStringList(
+      _strengthCategoriesKey,
+      result.strengths,
     );
 
     if (!mounted) return;
