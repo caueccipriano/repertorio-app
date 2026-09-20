@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../app/app_shell.dart';
-import '../../../app/theme/app_colors.dart';
+import 'viral_palette.dart';
 import '../../../core/share/knowledge_card_share.dart';
 import '../../../core/widgets/paper_texture.dart';
 import 'shared_score_landing.dart';
@@ -61,14 +61,15 @@ class _ViralEntryGateState extends State<ViralEntryGate> {
 
   @override
   Widget build(BuildContext context) {
+    final palette = ViralPalette.of(context);
     if (_entryComplete == null) {
       return const Scaffold(
-        backgroundColor: AppColors.paper,
+        backgroundColor: palette.background,
         body: Center(
           child: Text(
             'repertório*',
             style: TextStyle(
-              color: AppColors.blue,
+              color: palette.accent,
               fontSize: 24,
               fontWeight: FontWeight.w900,
               letterSpacing: -1,
@@ -263,6 +264,7 @@ class _ViralEntryExperienceState extends State<ViralEntryExperience> {
 
   @override
   Widget build(BuildContext context) {
+    final palette = ViralPalette.of(context);
     return PaperTexture(
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -319,6 +321,7 @@ class _LandingStage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = ViralPalette.of(context);
     final textTheme = Theme.of(context).textTheme;
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -359,10 +362,10 @@ class _LandingStage extends StatelessWidget {
                   SizedBox(height: wide ? 72 : 48),
                   Container(
                     padding: const EdgeInsets.symmetric(vertical: 18),
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       border: Border(
-                        top: BorderSide(color: AppColors.ink, width: 1.2),
-                        bottom: BorderSide(color: AppColors.ink, width: 1.2),
+                        top: BorderSide(color: palette.text, width: 1.2),
+                        bottom: BorderSide(color: palette.text, width: 1.2),
                       ),
                     ),
                     child: const Wrap(
@@ -406,7 +409,7 @@ class _LandingStage extends StatelessWidget {
                     child: Text(
                       'repertório* / beta viral',
                       style: textTheme.labelMedium?.copyWith(
-                        color: AppColors.muted,
+                        color: palette.muted,
                         letterSpacing: 1.4,
                         fontWeight: FontWeight.w700,
                       ),
@@ -429,6 +432,7 @@ class _HeroCopy extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = ViralPalette.of(context);
     final textTheme = Theme.of(context).textTheme;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -436,13 +440,13 @@ class _HeroCopy extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
           decoration: BoxDecoration(
-            color: AppColors.softBlue,
+            color: palette.accentSoft,
             borderRadius: BorderRadius.circular(999),
           ),
           child: Text(
             'REPERTÓRIO SCORE / BETA',
             style: textTheme.labelSmall?.copyWith(
-              color: AppColors.deepBlue,
+              color: palette.accentStrong,
               fontWeight: FontWeight.w900,
               letterSpacing: 1,
             ),
@@ -466,10 +470,10 @@ class _HeroCopy extends StatelessWidget {
         FilledButton.icon(
           onPressed: onStart,
           style: FilledButton.styleFrom(
-            backgroundColor: AppColors.blue,
-            foregroundColor: AppColors.paperWhite,
+            backgroundColor: palette.accent,
+            foregroundColor: palette.surface,
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           ),
           icon: const Icon(Icons.arrow_outward_rounded, size: 19),
           label: const Text(
@@ -480,7 +484,7 @@ class _HeroCopy extends StatelessWidget {
         const SizedBox(height: 12),
         Text(
           'grátis · sem login · resultado compartilhável',
-          style: textTheme.bodySmall?.copyWith(color: AppColors.muted),
+          style: textTheme.bodySmall?.copyWith(color: palette.muted),
         ),
       ],
     );
@@ -492,14 +496,15 @@ class _ScorePreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = ViralPalette.of(context);
     final textTheme = Theme.of(context).textTheme;
     return Transform.rotate(
       angle: .018,
       child: Container(
         padding: const EdgeInsets.fromLTRB(24, 22, 24, 26),
         decoration: BoxDecoration(
-          color: AppColors.paperWhite,
-          border: Border.all(color: AppColors.ink, width: 1.5),
+          color: palette.surface,
+          border: Border.all(color: palette.line, width: 1.2),
           boxShadow: const [
             BoxShadow(color: Color(0x22101010), offset: Offset(8, 8)),
           ],
@@ -512,7 +517,7 @@ class _ScorePreview extends StatelessWidget {
                 Text(
                   'REPERTÓRIO*',
                   style: textTheme.labelLarge?.copyWith(
-                    color: AppColors.blue,
+                    color: palette.accent,
                     fontWeight: FontWeight.w900,
                     letterSpacing: 1.2,
                   ),
@@ -525,7 +530,7 @@ class _ScorePreview extends StatelessWidget {
             Text(
               '742',
               style: textTheme.displayLarge?.copyWith(
-                color: AppColors.blue,
+                color: palette.accent,
                 fontSize: 88,
                 height: .9,
                 fontWeight: FontWeight.w900,
@@ -541,17 +546,17 @@ class _ScorePreview extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 28),
-            const LinearProgressIndicator(
+            LinearProgressIndicator(
               value: .74,
               minHeight: 9,
-              backgroundColor: AppColors.line,
-              color: AppColors.blue,
+              backgroundColor: palette.line,
+              color: palette.accent,
             ),
             const SizedBox(height: 18),
             Text(
               'psicologia · cultura · tecnologia',
               style: textTheme.bodySmall?.copyWith(
-                color: AppColors.muted,
+                color: palette.muted,
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -580,6 +585,7 @@ class _QuizStage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = ViralPalette.of(context);
     final textTheme = Theme.of(context).textTheme;
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(20, 18, 20, 32),
@@ -607,15 +613,15 @@ class _QuizStage extends StatelessWidget {
                 child: LinearProgressIndicator(
                   value: (index + 1) / total,
                   minHeight: 7,
-                  color: AppColors.blue,
-                  backgroundColor: AppColors.line,
+                  color: palette.accent,
+                  backgroundColor: palette.line,
                 ),
               ),
               const SizedBox(height: 44),
               Text(
                 question.category,
                 style: textTheme.labelMedium?.copyWith(
-                  color: AppColors.blue,
+                  color: palette.accent,
                   fontWeight: FontWeight.w900,
                   letterSpacing: 1.5,
                 ),
@@ -646,7 +652,7 @@ class _QuizStage extends StatelessWidget {
                 'Não vale pesquisar. O charme está justamente no que já mora na sua cabeça.',
                 textAlign: TextAlign.center,
                 style: textTheme.bodySmall?.copyWith(
-                  color: AppColors.muted,
+                  color: palette.muted,
                   fontStyle: FontStyle.italic,
                 ),
               ),
@@ -671,16 +677,17 @@ class _AnswerButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = ViralPalette.of(context);
     return Material(
-      color: AppColors.paperWhite,
+      color: palette.surface,
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(6),
+        borderRadius: BorderRadius.circular(12),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
           decoration: BoxDecoration(
-            border: Border.all(color: AppColors.ink, width: 1.15),
-            borderRadius: BorderRadius.circular(6),
+            border: Border.all(color: palette.line, width: 1.1),
+            borderRadius: BorderRadius.circular(12),
           ),
           child: Row(
             children: [
@@ -689,13 +696,13 @@ class _AnswerButton extends StatelessWidget {
                 height: 34,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: AppColors.softBlue,
-                  borderRadius: BorderRadius.circular(3),
+                  color: palette.accentSoft,
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
                   prefix,
                   style: const TextStyle(
-                    color: AppColors.deepBlue,
+                    color: palette.accentStrong,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
@@ -752,6 +759,7 @@ class _ResultStage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = ViralPalette.of(context);
     final textTheme = Theme.of(context).textTheme;
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(20, 18, 20, 34),
@@ -768,8 +776,8 @@ class _ResultStage extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.fromLTRB(24, 24, 24, 28),
                 decoration: BoxDecoration(
-                  color: AppColors.paperWhite,
-                  border: Border.all(color: AppColors.ink, width: 1.5),
+                  color: palette.surface,
+                  border: Border.all(color: palette.line, width: 1.2),
                   boxShadow: const [
                     BoxShadow(color: Color(0x22101010), offset: Offset(8, 8)),
                   ],
@@ -780,7 +788,7 @@ class _ResultStage extends StatelessWidget {
                     Text(
                       'SEU REPERTÓRIO SCORE',
                       style: textTheme.labelMedium?.copyWith(
-                        color: AppColors.blue,
+                        color: palette.accent,
                         fontWeight: FontWeight.w900,
                         letterSpacing: 1.4,
                       ),
@@ -789,7 +797,7 @@ class _ResultStage extends StatelessWidget {
                     Text(
                       '${result.score}',
                       style: textTheme.displayLarge?.copyWith(
-                        color: AppColors.blue,
+                        color: palette.accent,
                         fontSize: 96,
                         height: .88,
                         letterSpacing: -6,
@@ -820,7 +828,7 @@ class _ResultStage extends StatelessWidget {
                       Text(
                         'SEUS PONTOS FORTES',
                         style: textTheme.labelSmall?.copyWith(
-                          color: AppColors.muted,
+                          color: palette.muted,
                           fontWeight: FontWeight.w900,
                           letterSpacing: 1.2,
                         ),
@@ -841,10 +849,10 @@ class _ResultStage extends StatelessWidget {
               FilledButton.icon(
                 onPressed: () => _share(context),
                 style: FilledButton.styleFrom(
-                  backgroundColor: AppColors.blue,
-                  foregroundColor: AppColors.paperWhite,
+                  backgroundColor: palette.accent,
+                  foregroundColor: palette.surface,
                   padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 18),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 ),
                 icon: const Icon(Icons.ios_share_rounded),
                 label: const Text(
@@ -856,10 +864,10 @@ class _ResultStage extends StatelessWidget {
               OutlinedButton.icon(
                 onPressed: onEnterApp,
                 style: OutlinedButton.styleFrom(
-                  foregroundColor: AppColors.ink,
+                  foregroundColor: palette.text,
                   padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 18),
-                  side: const BorderSide(color: AppColors.ink, width: 1.2),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                  side: BorderSide(color: palette.line, width: 1.2),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 ),
                 icon: const Icon(Icons.trending_up_rounded),
                 label: const Text(
@@ -873,7 +881,7 @@ class _ResultStage extends StatelessWidget {
               Text(
                 'Score inicial experimental calculado a partir destas 8 questões. Não é uma medida de inteligência nem comparação científica entre pessoas.',
                 textAlign: TextAlign.center,
-                style: textTheme.bodySmall?.copyWith(color: AppColors.muted, height: 1.35),
+                style: textTheme.bodySmall?.copyWith(color: palette.muted, height: 1.35),
               ),
             ],
           ),
@@ -888,10 +896,11 @@ class _BrandMark extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = ViralPalette.of(context);
     return const Text(
       'repertório*',
       style: TextStyle(
-        color: AppColors.blue,
+        color: palette.accent,
         fontSize: 21,
         fontWeight: FontWeight.w900,
         letterSpacing: -.9,
@@ -907,6 +916,7 @@ class _MiniProof extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = ViralPalette.of(context);
     return SizedBox(
       width: 150,
       child: Column(
@@ -914,14 +924,14 @@ class _MiniProof extends StatelessWidget {
         children: [
           Text(
             value,
-            style: const TextStyle(
-              color: AppColors.blue,
+            style: TextStyle(
+              color: palette.accent,
               fontSize: 15,
               fontWeight: FontWeight.w900,
             ),
           ),
           const SizedBox(height: 3),
-          Text(label, style: const TextStyle(color: AppColors.muted, fontSize: 12)),
+          Text(label, style: TextStyle(color: palette.muted, fontSize: 12)),
         ],
       ),
     );
@@ -934,11 +944,12 @@ class _TopicPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = ViralPalette.of(context);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: AppColors.paperWhite,
-        border: Border.all(color: AppColors.line),
+        color: palette.surface,
+        border: Border.all(color: palette.line),
         borderRadius: BorderRadius.circular(999),
       ),
       child: Text(
@@ -956,11 +967,12 @@ class _ResultMetric extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = ViralPalette.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(value, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w900)),
-        Text(label, style: const TextStyle(color: AppColors.muted, fontSize: 12)),
+        Text(label, style: TextStyle(color: palette.muted, fontSize: 12)),
       ],
     );
   }
