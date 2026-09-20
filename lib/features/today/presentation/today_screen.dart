@@ -23,7 +23,7 @@ class TodayScreen extends StatelessWidget {
     final state = AppStateScope.of(context);
     const engine = PersonalLibraryEngine();
     final featured = _featuredTopic(state.historyTopicIds);
-    final dailyTopics = _dailyTopics();
+    final dailyTopics = _dailyTopics(state.historyTopicIds);
     final continueTopic = _continueTopic(state.progressByTopic);
     final outsideBubble = _outsideBubble(state.historyTopicIds);
     final personalTrail = _personalTrail(state.historyTopicIds);
@@ -105,22 +105,25 @@ class TodayScreen extends StatelessWidget {
   }
 
   KnowledgeTopic _featuredTopic(List<String> historyIds) {
-    if (historyIds.isNotEmpty) {
-      final topic = topicById(historyIds.first);
-      if (topic != null) {
-        return topic;
-      }
-    }
-
-    final index = DateTime.now().day % allDemoTopics.length;
-    return allDemoTopics[index];
+    final unseen = allDemoTopics
+        .where((topic) => !historyIds.contains(topic.id))
+        .toList();
+    final pool = unseen.isEmpty ? allDemoTopics : unseen;
+    final index = DateTime.now().day % pool.length;
+    return pool[index];
   }
 
-  List<KnowledgeTopic> _dailyTopics() {
-    final start = DateTime.now().day % allDemoTopics.length;
+  List<KnowledgeTopic> _dailyTopics(List<String> historyIds) {
+    final unseen = allDemoTopics
+        .where((topic) => !historyIds.contains(topic.id))
+        .toList();
+    final pool = unseen.isEmpty ? allDemoTopics : unseen;
+    final count = pool.length >= 4 ? 4 : pool.length;
+    final start = DateTime.now().day % pool.length;
+
     return List.generate(
-      4,
-      (index) => allDemoTopics[(start + index) % allDemoTopics.length],
+      count,
+      (index) => pool[(start + index) % pool.length],
     );
   }
 
@@ -146,7 +149,9 @@ class TodayScreen extends StatelessWidget {
       }
     }
 
-    final topics = allDemoTopics.toList()
+    final topics = allDemoTopics
+        .where((topic) => !historyIds.contains(topic.id))
+        .toList()
       ..sort((a, b) {
         final aScore = a.tags.fold<int>(
           0,
@@ -156,7 +161,7 @@ class TodayScreen extends StatelessWidget {
           0,
           (sum, tag) => sum + (counts[tag] ?? 0),
         );
-        return aScore.compareTo(bScore);
+        return bScore.compareTo(aScore);
       });
 
     return topics.take(3).toList();
@@ -440,7 +445,7 @@ class _QuickActions extends StatelessWidget {
     ];
 
     return Container(
-      height: 44,
+      height: 50,
       decoration: BoxDecoration(
         border: Border.all(color: Theme.of(context).colorScheme.onSurface),
       ),
@@ -519,7 +524,7 @@ class _DailyPlanCard extends StatelessWidget {
           Row(
             children: [
               Text(
-                'HOJE, FAÇA ISSO',
+                'SEU ROTEIRO DE HOJE',
                 style: Theme.of(context).textTheme.labelLarge?.copyWith(
                       color: colors.primary,
                       fontSize: 9,
