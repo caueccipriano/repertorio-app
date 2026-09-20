@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../app/theme/app_colors.dart';
+import 'viral_palette.dart';
 import '../../../core/widgets/paper_texture.dart';
 
 class SharedScoreLanding extends StatelessWidget {
@@ -37,6 +37,7 @@ class SharedScoreLanding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = ViralPalette.of(context);
     final textTheme = Theme.of(context).textTheme;
 
     return PaperTexture(
@@ -56,7 +57,7 @@ class SharedScoreLanding extends StatelessWidget {
                         Text(
                           'repertório*',
                           style: TextStyle(
-                            color: AppColors.blue,
+                            color: palette.accent,
                             fontSize: 21,
                             fontWeight: FontWeight.w900,
                             letterSpacing: -.9,
@@ -79,7 +80,7 @@ class SharedScoreLanding extends StatelessWidget {
                     Text(
                       'Agora vem a parte importante: descobrir o seu.',
                       style: textTheme.bodyLarge?.copyWith(
-                        color: AppColors.muted,
+                        color: palette.muted,
                         height: 1.4,
                       ),
                     ),
@@ -87,8 +88,8 @@ class SharedScoreLanding extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.fromLTRB(24, 24, 24, 28),
                       decoration: BoxDecoration(
-                        color: AppColors.paperWhite,
-                        border: Border.all(color: AppColors.ink, width: 1.5),
+                        color: palette.surface,
+                        border: Border.all(color: palette.line, width: 1.2),
                         boxShadow: const [
                           BoxShadow(
                             color: Color(0x22101010),
@@ -102,7 +103,7 @@ class SharedScoreLanding extends StatelessWidget {
                           Text(
                             'REPERTÓRIO SCORE',
                             style: textTheme.labelMedium?.copyWith(
-                              color: AppColors.blue,
+                              color: palette.accent,
                               fontWeight: FontWeight.w900,
                               letterSpacing: 1.4,
                             ),
@@ -111,7 +112,7 @@ class SharedScoreLanding extends StatelessWidget {
                           Text(
                             '$score',
                             style: textTheme.displayLarge?.copyWith(
-                              color: AppColors.blue,
+                              color: palette.accent,
                               fontSize: 96,
                               height: .88,
                               letterSpacing: -6,
@@ -138,14 +139,14 @@ class SharedScoreLanding extends StatelessWidget {
                     FilledButton.icon(
                       onPressed: onStart,
                       style: FilledButton.styleFrom(
-                        backgroundColor: AppColors.blue,
-                        foregroundColor: AppColors.paperWhite,
+                        backgroundColor: palette.accent,
+                        foregroundColor: palette.surface,
                         padding: const EdgeInsets.symmetric(
                           horizontal: 22,
                           vertical: 18,
                         ),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4),
+                          borderRadius: BorderRadius.circular(10),
                         ),
                       ),
                       icon: const Icon(Icons.bolt_rounded),
@@ -161,17 +162,17 @@ class SharedScoreLanding extends StatelessWidget {
                     OutlinedButton(
                       onPressed: onEnterApp,
                       style: OutlinedButton.styleFrom(
-                        foregroundColor: AppColors.ink,
+                        foregroundColor: palette.text,
                         padding: const EdgeInsets.symmetric(
                           horizontal: 22,
                           vertical: 18,
                         ),
-                        side: const BorderSide(
-                          color: AppColors.ink,
+                        side: BorderSide(
+                          color: palette.line,
                           width: 1.2,
                         ),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4),
+                          borderRadius: BorderRadius.circular(10),
                         ),
                       ),
                       child: const Text(
@@ -189,7 +190,7 @@ class SharedScoreLanding extends StatelessWidget {
                       'Score experimental baseado em 8 perguntas. Ele não mede inteligência e não representa uma avaliação científica.',
                       textAlign: TextAlign.center,
                       style: textTheme.bodySmall?.copyWith(
-                        color: AppColors.muted,
+                        color: palette.muted,
                         height: 1.35,
                       ),
                     ),
@@ -209,14 +210,15 @@ class _ProductPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = ViralPalette.of(context);
     final textTheme = Theme.of(context).textTheme;
 
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppColors.softBlue.withValues(alpha: .5),
-        border: Border.all(color: AppColors.blue.withValues(alpha: .35)),
-        borderRadius: BorderRadius.circular(8),
+        color: palette.accentSoft.withValues(alpha: .72),
+        border: Border.all(color: palette.accent.withValues(alpha: .42)),
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -224,7 +226,7 @@ class _ProductPreview extends StatelessWidget {
           Text(
             'DEPOIS DO TESTE',
             style: textTheme.labelSmall?.copyWith(
-              color: AppColors.deepBlue,
+              color: palette.accentStrong,
               fontWeight: FontWeight.w900,
               letterSpacing: 1.3,
             ),
@@ -254,7 +256,7 @@ class _ProductPreview extends StatelessWidget {
           Text(
             'FREE para começar · REPERTÓRIO+ para ir mais fundo',
             style: textTheme.bodySmall?.copyWith(
-              color: AppColors.deepBlue,
+              color: palette.accentStrong,
               fontWeight: FontWeight.w800,
             ),
           ),
@@ -271,16 +273,17 @@ class _FeaturePill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = ViralPalette.of(context);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 7),
       decoration: BoxDecoration(
-        color: AppColors.paperWhite,
-        border: Border.all(color: AppColors.line),
+        color: palette.surface,
+        border: Border.all(color: palette.line),
         borderRadius: BorderRadius.circular(999),
       ),
       child: Text(
         label,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.w700,
         ),
