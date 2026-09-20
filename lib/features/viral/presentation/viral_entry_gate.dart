@@ -1000,7 +1000,9 @@ class _ResultStage extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 24),
+              const _AfterScorePlan(),
+              const SizedBox(height: 24),
               FilledButton.icon(
                 onPressed: () => _share(context),
                 style: FilledButton.styleFrom(
@@ -1045,6 +1047,128 @@ class _ResultStage extends StatelessWidget {
     );
   }
 }
+
+class _AfterScorePlan extends StatelessWidget {
+  const _AfterScorePlan();
+
+  @override
+  Widget build(BuildContext context) {
+    final palette = ViralPalette.of(context);
+    final textTheme = Theme.of(context).textTheme;
+
+    return Container(
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        color: palette.surface,
+        border: Border.all(color: palette.line),
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'NÃO DEIXA O SCORE PARADO.',
+            style: textTheme.labelMedium?.copyWith(
+              color: palette.accent,
+              fontWeight: FontWeight.w900,
+              letterSpacing: 1.05,
+            ),
+          ),
+          const SizedBox(height: 7),
+          Text(
+            'O Repertório transforma curiosidade em hábito.',
+            style: textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.w900,
+              letterSpacing: -.45,
+            ),
+          ),
+          const SizedBox(height: 16),
+          const _HabitStep(
+            number: '01',
+            title: '1 assunto por dia',
+            body: 'leitura rápida para descobrir algo que você não sabia',
+          ),
+          const SizedBox(height: 12),
+          const _HabitStep(
+            number: '02',
+            title: 'quiz + revisão',
+            body: 'faz a informação deixar de ser só “vi uma vez”',
+          ),
+          const SizedBox(height: 12),
+          const _HabitStep(
+            number: '03',
+            title: 'refaça seu Score',
+            body: 'compare novas rodadas com você mesmo',
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _HabitStep extends StatelessWidget {
+  const _HabitStep({
+    required this.number,
+    required this.title,
+    required this.body,
+  });
+
+  final String number;
+  final String title;
+  final String body;
+
+  @override
+  Widget build(BuildContext context) {
+    final palette = ViralPalette.of(context);
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          width: 36,
+          height: 36,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: palette.accentSoft,
+            borderRadius: BorderRadius.circular(9),
+          ),
+          child: Text(
+            number,
+            style: TextStyle(
+              color: palette.accentStrong,
+              fontWeight: FontWeight.w900,
+              fontSize: 11,
+            ),
+          ),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w900,
+                  fontSize: 14,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                body,
+                style: TextStyle(
+                  color: palette.muted,
+                  height: 1.3,
+                  fontSize: 12.5,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 
 class _PreviousScoreDelta extends StatelessWidget {
   const _PreviousScoreDelta({
