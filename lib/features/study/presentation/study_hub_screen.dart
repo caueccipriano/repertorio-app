@@ -193,6 +193,15 @@ class StudyHubScreen extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(16, 22, 16, 32),
           children: [
             Text(
+              'MEMÓRIA / CONEXÃO / DOMÍNIO',
+              style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                    color: colors.primary,
+                    fontSize: 9,
+                    letterSpacing: 1.2,
+                  ),
+            ),
+            const SizedBox(height: 7),
+            Text(
               'estudar',
               style: Theme.of(context).textTheme.displayMedium,
             ),
