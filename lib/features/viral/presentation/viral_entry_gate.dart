@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../app/app_shell.dart';
 import 'viral_palette.dart';
+import 'viral_theme_toggle.dart';
 import '../../../core/share/knowledge_card_share.dart';
 import '../../../core/widgets/paper_texture.dart';
 import 'shared_score_landing.dart';
@@ -337,6 +338,8 @@ class _LandingStage extends StatelessWidget {
                     children: [
                       const _BrandMark(),
                       const Spacer(),
+                      const ViralThemeToggle(),
+                      const SizedBox(width: 8),
                       TextButton(
                         onPressed: onSkip,
                         child: const Text('já uso o repertório →'),
@@ -600,6 +603,8 @@ class _QuizStage extends StatelessWidget {
                   const SizedBox(width: 6),
                   const _BrandMark(),
                   const Spacer(),
+                  const ViralThemeToggle(),
+                  const SizedBox(width: 10),
                   Text(
                     '${index + 1}/$total',
                     style: textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w900),
@@ -769,7 +774,13 @@ class _ResultStage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const Row(
-                children: [_BrandMark(), Spacer(), Text('SCORE / BETA')],
+                children: [
+                  _BrandMark(),
+                  Spacer(),
+                  ViralThemeToggle(),
+                  SizedBox(width: 10),
+                  Text('SCORE / BETA'),
+                ],
               ),
               const SizedBox(height: 38),
               Container(
