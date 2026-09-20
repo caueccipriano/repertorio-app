@@ -17,6 +17,7 @@ import 'backup_screen.dart';
 import 'notification_settings_screen.dart';
 import 'notes_screen.dart';
 import 'cultural_map.dart';
+import 'cultural_area_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -167,6 +168,47 @@ class _ProfileScreenState extends State<ProfileScreen> {
         '${now.year.toString().padLeft(4, '0')}-${now.month.toString().padLeft(2, '0')}-';
     final studiedDaysThisMonth =
         state.studyDays.where((day) => day.startsWith(monthPrefix)).length;
+    final weekStart = DateTime(
+      now.year,
+      now.month,
+      now.day,
+    ).subtract(const Duration(days: 6));
+    final weeklyTopicIds = state.lastOpenedByTopic.entries
+        .where((entry) => !entry.value.isBefore(weekStart))
+        .map((entry) => entry.key)
+        .toSet();
+    final weeklyCategoryCounts = <String, int>{
+      for (final category in _scoreCategories) category: 0,
+    };
+    for (final id in weeklyTopicIds) {
+      final topic = topicById(id);
+      if (topic == null) continue;
+      final haystack = <String>{
+        ...topic.tags.map(normalizeScoreText),
+        normalizeScoreText(topic.eyebrow),
+        normalizeScoreText(topic.title),
+      }.join(' ');
+      for (final category in _scoreCategories) {
+        if (scoreTagsForCategory(category).any(haystack.contains)) {
+          weeklyCategoryCounts[category] =
+              (weeklyCategoryCounts[category] ?? 0) + 1;
+        }
+      }
+    }
+    final weeklyRanked = weeklyCategoryCounts.entries
+        .where((entry) => entry.value > 0)
+        .toList()
+      ..sort((a, b) => b.value.compareTo(a.value));
+    final weeklyTopCategory =
+        weeklyRanked.isEmpty ? null : weeklyRanked.first.key;
+    final weeklyActiveDays = state.studyDays
+        .map(DateTime.tryParse)
+        .whereType<DateTime>()
+        .where((date) => !date.isBefore(weekStart))
+        .length;
+    final weeklyConnections = state.personalConnections
+        .where((connection) => !connection.createdAt.isBefore(weekStart))
+        .length;
 
     return PaperTexture(
       child: SafeArea(
@@ -207,6 +249,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     onRetake: _retakeScore,
                     onShare: () => _shareProfile(categoryCounts),
                   ),
+                  const SizedBox(height: 12),
+                  _CulturalPassport(
+                    score: _scoreHistory.first.score,
+                    archetype: _scoreHistory.first.archetype,
+                    strongestArea: strongestArea,
+                    exploredAreas: exploredScoreAreas,
+                    streak: streak,
+                  ),
                   const SizedBox(height: 14),
                 ],
                 _LibraryStats(
@@ -228,6 +278,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   minutes: state.studiedMinutesEstimate(),
                   quizzes: state.totalQuizAttempts,
                 ),
+                const SizedBox(height: 14),
+                _WeeklyBrainCard(
+                  topicCount: weeklyTopicIds.length,
+                  activeDays: weeklyActiveDays,
+                  connections: weeklyConnections,
+                  topArea: weeklyTopCategory == null
+                      ? null
+                      : _displayCategory(weeklyTopCategory),
+                  onOpenArea: weeklyTopCategory == null
+                      ? null
+                      : () => _openCulturalArea(weeklyTopCategory),
+                ),
                 const SizedBox(height: 30),
                 Text(
                   'seu mapa de repertório',
@@ -243,6 +305,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     counts: categoryCounts,
                     strengths: _strengthCategories,
                     weakCategories: _weakCategories,
+                    onCategoryTap: _openCulturalArea,
                   ),
                   const SizedBox(height: 12),
                   _MapReading(
@@ -298,6 +361,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  void _openCulturalArea(String category) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => CulturalAreaScreen(
+          category: category,
+          isStrong: _strengthCategories.contains(category),
+          isWeak: _weakCategories.contains(category),
         ),
       ),
     );
@@ -396,6 +471,247 @@ class _ProfileScreenState extends State<ProfileScreen> {
         unlocked: exploredAreas >= 6,
       ),
     ];
+  }
+}
+
+class _CulturalPassport extends StatelessWidget {
+  const _CulturalPassport({
+    required this.score,
+    required this.archetype,
+    required this.strongestArea,
+    required this.exploredAreas,
+    required this.streak,
+  });
+
+  final int score;
+  final String archetype;
+  final String? strongestArea;
+  final int exploredAreas;
+  final int streak;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(15, 14, 15, 14),
+      decoration: BoxDecoration(
+        color: colors.surface,
+        border: Border.all(color: colors.outline),
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(Icons.badge_outlined, size: 17, color: colors.primary),
+              const SizedBox(width: 7),
+              Text(
+                'PASSAPORTE CULTURAL',
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      color: colors.primary,
+                      fontSize: 9,
+                      fontWeight: FontWeight.w900,
+                      letterSpacing: 1.0,
+                    ),
+              ),
+              const Spacer(),
+              Text(
+                '$exploredAreas/8',
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                      color: colors.onSurfaceVariant,
+                      fontWeight: FontWeight.w900,
+                    ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 13),
+          Text(
+            archetype,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: -.5,
+                ),
+          ),
+          const SizedBox(height: 12),
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final compact = constraints.maxWidth < 380;
+              final items = <Widget>[
+                _PassportField(label: 'SCORE', value: '$score'),
+                _PassportField(
+                  label: 'MAIS VIVA',
+                  value: strongestArea ?? 'descobrindo',
+                ),
+                _PassportField(
+                  label: 'RITMO',
+                  value: streak == 0 ? 'começando' : '$streak dias',
+                ),
+              ];
+              if (compact) {
+                return Column(
+                  children: items
+                      .map(
+                        (item) => Padding(
+                          padding: const EdgeInsets.only(bottom: 8),
+                          child: SizedBox(width: double.infinity, child: item),
+                        ),
+                      )
+                      .toList(),
+                );
+              }
+              return Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  for (var i = 0; i < items.length; i++) ...[
+                    if (i > 0) const SizedBox(width: 8),
+                    Expanded(child: items[i]),
+                  ],
+                ],
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _PassportField extends StatelessWidget {
+  const _PassportField({
+    required this.label,
+    required this.value,
+  });
+
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    return Container(
+      constraints: const BoxConstraints(minHeight: 62),
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: colors.surfaceContainerHighest.withValues(alpha: .45),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            label,
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                  color: colors.onSurfaceVariant,
+                  fontSize: 8,
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: .7,
+                ),
+          ),
+          const SizedBox(height: 5),
+          Text(
+            value,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.w900,
+                  height: 1.05,
+                ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _WeeklyBrainCard extends StatelessWidget {
+  const _WeeklyBrainCard({
+    required this.topicCount,
+    required this.activeDays,
+    required this.connections,
+    required this.topArea,
+    required this.onOpenArea,
+  });
+
+  final int topicCount;
+  final int activeDays;
+  final int connections;
+  final String? topArea;
+  final VoidCallback? onOpenArea;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    final empty = topicCount == 0;
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(16, 15, 16, 14),
+      decoration: BoxDecoration(
+        color: colors.primaryContainer.withValues(alpha: .42),
+        border: Border.all(color: colors.primary.withValues(alpha: .42)),
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'SEU CÉREBRO ESTA SEMANA',
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                  color: colors.primary,
+                  fontSize: 9,
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: 1.0,
+                ),
+          ),
+          const SizedBox(height: 9),
+          Text(
+            empty
+                ? 'Sua semana ainda está em branco.'
+                : topArea == null
+                    ? 'Seu radar passeou por assuntos diferentes.'
+                    : 'Seu radar passou mais por $topArea.',
+            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.w900,
+                  height: 1.05,
+                  letterSpacing: -.4,
+                ),
+          ),
+          const SizedBox(height: 7),
+          Text(
+            empty
+                ? 'Abra um assunto hoje e este retrato começa a mudar.'
+                : '$topicCount assuntos tocados · $activeDays dias ativos · $connections conexões criadas',
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: colors.onSurfaceVariant,
+                  height: 1.4,
+                ),
+          ),
+          if (onOpenArea != null) ...[
+            const SizedBox(height: 8),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton.icon(
+                onPressed: onOpenArea,
+                icon: const Icon(Icons.arrow_outward_rounded, size: 16),
+                label: const Text(
+                  'ABRIR ÁREA',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w900,
+                    fontSize: 10.5,
+                    letterSpacing: .5,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
   }
 }
 
