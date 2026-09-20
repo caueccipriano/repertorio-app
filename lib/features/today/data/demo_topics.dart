@@ -1025,22 +1025,270 @@ const vulcoesTopic = KnowledgeTopic(
   ],
 );
 
-const egitoTopic=KnowledgeTopic(id:'egito',eyebrow:'HISTÓRIA / REPERTÓRIO',title:'COMO O EGITO ANTIGO DUROU MILÊNIOS?',summary:'Uma introdução clara ao tema como o egito antigo durou milênios, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['história','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema como o egito antigo durou milênios, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema como o egito antigo durou milênios, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório'],media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/3wNk6JKPxk2qnRJHwOatki',title:'Egito Antigo: o que você aprendeu errado?',caption:'1 h 19 min · História FM',sourceLabel:'Spotify · História FM',sourceUrl:'https://open.spotify.com/episode/3wNk6JKPxk2qnRJHwOatki'),]);
-
-const mongolTopic=KnowledgeTopic(id:'mongol',eyebrow:'HISTÓRIA / REPERTÓRIO',title:'COMO OS MONGÓIS CRIARAM UM IMPÉRIO GIGANTESCO?',summary:'Uma introdução clara ao tema como os mongóis criaram um império gigantesco, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['história','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema como os mongóis criaram um império gigantesco, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema como os mongóis criaram um império gigantesco, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const rotaSedaTopic=KnowledgeTopic(id:'rota-seda',eyebrow:'HISTÓRIA / REPERTÓRIO',title:'A ROTA DA SEDA ERA UMA ÚNICA ESTRADA?',summary:'Uma introdução clara ao tema a rota da seda era uma única estrada, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['história','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema a rota da seda era uma única estrada, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema a rota da seda era uma única estrada, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const vikingsTopic=KnowledgeTopic(id:'vikings',eyebrow:'HISTÓRIA / REPERTÓRIO',title:'VIKINGS ERAM SÓ GUERREIROS?',summary:'Uma introdução clara ao tema vikings eram só guerreiros, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['história','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema vikings eram só guerreiros, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema vikings eram só guerreiros, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const maiasTopic=KnowledgeTopic(id:'maias',eyebrow:'HISTÓRIA / REPERTÓRIO',title:'POR QUE OS MAIAS NÃO DESAPARECERAM?',summary:'Uma introdução clara ao tema por que os maias não desapareceram, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['história','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema por que os maias não desapareceram, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema por que os maias não desapareceram, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const astecasTopic=KnowledgeTopic(id:'astecas',eyebrow:'HISTÓRIA / REPERTÓRIO',title:'COMO TENOCHTITLÁN VIROU UMA MEGACIDADE?',summary:'Uma introdução clara ao tema como tenochtitlán virou uma megacidade, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['história','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema como tenochtitlán virou uma megacidade, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema como tenochtitlán virou uma megacidade, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const incasTopic=KnowledgeTopic(id:'incas',eyebrow:'HISTÓRIA / REPERTÓRIO',title:'COMO OS INCAS ADMINISTRAVAM OS ANDES?',summary:'Uma introdução clara ao tema como os incas administravam os andes, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['história','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema como os incas administravam os andes, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema como os incas administravam os andes, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const revolucaoIndustrialTopic=KnowledgeTopic(id:'revolucao-industrial',eyebrow:'HISTÓRIA / REPERTÓRIO',title:'POR QUE A REVOLUÇÃO INDUSTRIAL MUDOU O COTIDIANO?',summary:'Uma introdução clara ao tema por que a revolução industrial mudou o cotidiano, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['história','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema por que a revolução industrial mudou o cotidiano, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema por que a revolução industrial mudou o cotidiano, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
+const egitoTopic = KnowledgeTopic(
+  id: 'egito',
+  eyebrow: 'HISTÓRIA / ANTIGUIDADE',
+  title: 'COMO O EGITO ANTIGO DUROU MILÊNIOS?',
+  summary:
+      'O Egito antigo mudou muitas vezes, mas instituições duradouras, o Nilo e uma forte cultura política ajudaram seus reinos a se reorganizar por mais de três mil anos.',
+  minutes: 8,
+  tags: ['história', 'antiguidade'],
+  quickTake:
+      'A longevidade egípcia não veio de uma sociedade parada no tempo. Ela veio da capacidade de adaptar estruturas antigas a crises, invasões e novas dinastias.',
+  simpleExplanation:
+      'O Nilo funcionava como uma grande infraestrutura natural: suas cheias ajudavam a agricultura, o rio conectava cidades e o vale concentrava população. Sobre essa base, reis, templos, escribas e administrações criaram instituições que podiam sobreviver à troca de governantes.',
+  example:
+      'Mesmo quando o Egito se fragmentava politicamente, escribas continuavam usando tradições administrativas e religiosas antigas. Quando um novo poder reunificava o território, ele não precisava reconstruir tudo do zero.',
+  body: [
+    'A história do Egito faraônico costuma ser dividida em grandes períodos de centralização, como os Reinos Antigo, Médio e Novo, separados por fases de fragmentação política.',
+    'O vale do Nilo favorecia agricultura intensiva e transporte por água, o que ajudava a conectar regiões distantes num território relativamente estreito.',
+    'A escrita e a burocracia permitiam registrar impostos, propriedades, estoques, obras e decisões do Estado.',
+    'Religião e poder político estavam profundamente ligados. Faraós mudavam, mas ideias sobre ordem, realeza e continuidade davam legitimidade às novas dinastias.',
+    'O Egito também absorveu influências externas. Povos estrangeiros governaram partes do território em diferentes épocas, e ainda assim muitas instituições egípcias continuaram funcionando.',
+    'Por isso, falar em três mil anos de Egito não significa imaginar uma única sociedade imutável, mas uma tradição que atravessou mudanças profundas.',
+  ],
+  remember: [
+    'O Nilo ajudou agricultura, transporte e concentração populacional.',
+    'A história egípcia alternou centralização e fragmentação.',
+    'Continuidade cultural não significa ausência de mudança.',
+  ],
+  whyItMatters:
+      'O Egito mostra como instituições, geografia e símbolos políticos podem dar continuidade a uma sociedade mesmo quando governantes e fronteiras mudam.',
+  curiosity:
+      'Cleópatra VII viveu muito mais perto da chegada do ser humano à Lua do que da construção das grandes pirâmides de Gizé.',
+  connections: ['Nilo', 'Escrita', 'Pirâmides', 'Impérios antigos'],
+);
+const mongolTopic = KnowledgeTopic(
+  id: 'mongol',
+  eyebrow: 'HISTÓRIA / IMPÉRIOS',
+  title: 'COMO OS MONGÓIS CRIARAM UM IMPÉRIO GIGANTESCO?',
+  summary:
+      'Mobilidade, disciplina militar, informação rápida e capacidade de incorporar especialistas ajudaram os mongóis a conquistar territórios da China ao leste europeu.',
+  minutes: 8,
+  tags: ['história', 'geopolítica'],
+  quickTake:
+      'O sucesso mongol não veio só de cavalos ou brutalidade: organização, inteligência, logística e adaptação foram decisivos.',
+  simpleExplanation:
+      'Exércitos mongóis conseguiam se mover muito rápido porque dependiam de cavalos e levavam menos infraestrutura pesada que muitos adversários. Eles também coordenavam unidades, mensageiros e reconhecimento de território com grande eficiência.',
+  example:
+      'Um comandante podia receber informações de batedores, dividir suas forças em vários grupos e reuni-las depois num ponto combinado. Para o inimigo, isso fazia o exército parecer estar em vários lugares ao mesmo tempo.',
+  body: [
+    'No início do século XIII, Temujin unificou diferentes grupos das estepes e passou a ser conhecido como Gêngis Khan.',
+    'A cavalaria era central, mas o diferencial também estava em organização, comunicação e capacidade de executar manobras coordenadas em grandes distâncias.',
+    'Os mongóis incorporavam engenheiros, escribas, artesãos e especialistas de povos conquistados, usando conhecimentos locais em campanhas posteriores.',
+    'Uma rede de estações de revezamento, conhecida como yam, facilitava circulação de mensageiros e informações pelo império.',
+    'Depois de Gêngis Khan, seus sucessores ampliaram as conquistas e o império acabou dividido em grandes unidades políticas governadas por diferentes ramos da família.',
+    'O domínio mongol também intensificou conexões comerciais e diplomáticas entre regiões da Eurásia, embora essas rotas continuassem perigosas e desiguais.',
+  ],
+  remember: [
+    'Mobilidade e informação foram tão importantes quanto combate.',
+    'Especialistas conquistados eram incorporados ao sistema mongol.',
+    'O império depois se dividiu em vários canatos.',
+  ],
+  whyItMatters:
+      'O caso mongol mostra como logística, comunicação e adaptação podem ser decisivas para o poder de um Estado, mesmo quando ele enfrenta sociedades muito maiores.',
+  curiosity:
+      'O chamado Império Mongol tornou-se o maior império terrestre contíguo da história.',
+  connections: ['Gêngis Khan', 'Rota da Seda', 'China', 'Eurásia'],
+);
+const rotaSedaTopic = KnowledgeTopic(
+  id: 'rota-seda',
+  eyebrow: 'HISTÓRIA / TROCAS',
+  title: 'A ROTA DA SEDA ERA UMA ÚNICA ESTRADA?',
+  summary:
+      'O nome descreve uma rede de rotas terrestres e marítimas que conectava partes da Ásia, Oriente Médio, África e Europa.',
+  minutes: 7,
+  tags: ['história', 'comércio'],
+  quickTake:
+      'A Rota da Seda não era uma rodovia contínua entre China e Europa. Mercadorias e ideias passavam por muitos intermediários e trajetos diferentes.',
+  simpleExplanation:
+      'Imagine uma encomenda que troca de caminhão, depósito e transportadora várias vezes antes de chegar ao destino. Algo parecido acontecia: um tecido podia viajar milhares de quilômetros sem que um único comerciante percorresse todo o caminho.',
+  example:
+      'Seda produzida na China podia passar por mercadores da Ásia Central, cidades persas e portos mediterrâneos antes de chegar a consumidores europeus.',
+  body: [
+    'As rotas que hoje chamamos de Rota da Seda existiram em diferentes formas durante muitos séculos.',
+    'Elas conectavam cidades, oásis, portos e mercados através da Ásia Central e de outras regiões.',
+    'Seda ficou famosa, mas especiarias, metais, cavalos, vidro, papel e muitos outros bens também circulavam.',
+    'Religiões, técnicas, idiomas e conhecimentos viajavam junto com pessoas e mercadorias.',
+    'A circulação também tinha efeitos negativos: redes comerciais podiam facilitar a propagação de doenças por longas distâncias.',
+    'Mudanças políticas, guerras, novas rotas marítimas e transformações econômicas alteravam quais caminhos eram mais importantes em cada período.',
+  ],
+  remember: [
+    'Era uma rede, não uma estrada única.',
+    'Mercadorias passavam por muitos intermediários.',
+    'Ideias e doenças também circulavam.',
+  ],
+  whyItMatters:
+      'A Rota da Seda ajuda a enxergar globalização como um processo muito mais antigo que a internet ou os contêineres modernos.',
+  curiosity:
+      'O termo “Rota da Seda” foi popularizado apenas no século XIX, muito depois do auge de várias dessas redes comerciais.',
+  connections: ['Mongóis', 'Comércio', 'China', 'Peste Negra'],
+);
+const vikingsTopic = KnowledgeTopic(
+  id: 'vikings',
+  eyebrow: 'HISTÓRIA / EUROPA',
+  title: 'VIKINGS ERAM SÓ GUERREIROS?',
+  summary:
+      'As sociedades nórdicas da Era Viking incluíam agricultores, comerciantes, artesãos, navegadores, colonizadores e guerreiros.',
+  minutes: 7,
+  tags: ['história', 'cultura'],
+  quickTake:
+      '“Viking” descreve melhor uma atividade ligada a expedições do que todos os habitantes da Escandinávia medieval.',
+  simpleExplanation:
+      'Algumas pessoas saíam em expedições para negociar, explorar ou atacar. Muitas outras passavam a vida cultivando terras, criando animais e produzindo objetos em comunidades locais.',
+  example:
+      'Um navio nórdico podia servir a uma incursão militar, mas a mesma tecnologia naval também permitia comércio no Báltico, viagens até a Islândia e assentamentos no Atlântico Norte.',
+  body: [
+    'A chamada Era Viking costuma ser situada aproximadamente entre os séculos VIII e XI.',
+    'Povos escandinavos desenvolveram embarcações leves e eficientes que navegavam tanto em mar aberto quanto em rios rasos.',
+    'Ataques a mosteiros e cidades deram aos vikings uma reputação duradoura de violência, mas comércio e colonização também foram centrais.',
+    'Mercadores nórdicos conectavam regiões do Atlântico Norte, Báltico e rotas que chegavam ao mundo bizantino e islâmico.',
+    'Nórdicos fundaram assentamentos na Islândia, Groenlândia e, por um período, na América do Norte.',
+    'Com o tempo, reinos escandinavos se cristianizaram e passaram por mudanças políticas que encerraram o período tradicionalmente chamado de Era Viking.',
+  ],
+  remember: [
+    'Nem todo escandinavo medieval era “viking”.',
+    'Navegação sustentava guerra, comércio e colonização.',
+    'Os nórdicos chegaram à América do Norte antes de Colombo.',
+  ],
+  whyItMatters:
+      'Separar o mito do guerreiro com capacete de chifres da história real revela sociedades conectadas a redes comerciais e políticas muito amplas.',
+  curiosity:
+      'Não há evidência de que guerreiros vikings usassem rotineiramente capacetes com chifres em batalha.',
+  connections: ['Escandinávia', 'Comércio', 'Navegação', 'Cristianização'],
+);
+const maiasTopic = KnowledgeTopic(
+  id: 'maias',
+  eyebrow: 'HISTÓRIA / AMÉRICAS',
+  title: 'POR QUE OS MAIAS NÃO DESAPARECERAM?',
+  summary:
+      'Algumas grandes cidades maias perderam população e poder, mas povos maias continuaram vivendo na Mesoamérica e existem até hoje.',
+  minutes: 8,
+  tags: ['história', 'américas'],
+  quickTake:
+      'O chamado “colapso maia” foi regional e político. Não foi o desaparecimento de um povo inteiro.',
+  simpleExplanation:
+      'É como uma região onde grandes centros urbanos entram em crise enquanto outras cidades e comunidades continuam existindo. O poder muda de lugar, mas a população e a cultura não somem.',
+  example:
+      'Muitas cidades das terras baixas do sul perderam importância entre os séculos VIII e X, enquanto centros no norte da península de Yucatán continuaram ativos.',
+  body: [
+    'A civilização maia ocupou uma ampla área que inclui partes do atual México, Guatemala, Belize, Honduras e El Salvador.',
+    'Os maias nunca formaram um único império centralizado; existiam cidades-Estado e reinos com alianças e rivalidades.',
+    'Entre os séculos VIII e X, várias cidades importantes das terras baixas do sul sofreram declínio populacional e político.',
+    'Pesquisadores estudam combinações de seca, guerra, pressão ambiental e instabilidade política para explicar essas transformações.',
+    'Outros centros maias continuaram existindo, e sociedades maias enfrentaram posteriormente a conquista espanhola.',
+    'Hoje milhões de pessoas falam línguas maias e mantêm identidades culturais ligadas a essas tradições.',
+  ],
+  remember: [
+    'Não existia um único Império Maia.',
+    'O colapso foi desigual entre regiões.',
+    'Povos maias existem no presente.',
+  ],
+  whyItMatters:
+      'Esse tema mostra como a palavra “colapso” pode simplificar demais mudanças históricas complexas e apagar populações que continuam vivas.',
+  curiosity:
+      'A escrita maia é um dos sistemas de escrita mais desenvolvidos das Américas pré-colombianas e hoje pode ser lida em grande parte por especialistas.',
+  connections: ['Mesoamérica', 'Cidades-Estado', 'Escrita', 'Astecas'],
+);
+const astecasTopic = KnowledgeTopic(
+  id: 'astecas',
+  eyebrow: 'HISTÓRIA / CIDADES',
+  title: 'COMO TENOCHTITLÁN VIROU UMA MEGACIDADE?',
+  summary:
+      'A capital mexica cresceu numa ilha do lago Texcoco e combinou engenharia hidráulica, mercados, tributos e conexões por canais e calçadas.',
+  minutes: 8,
+  tags: ['história', 'cidade'],
+  quickTake:
+      'Tenochtitlán não era uma cidade improvisada: era um centro urbano planejado, conectado por água e por grandes vias elevadas.',
+  simpleExplanation:
+      'Construir numa ilha exigia controlar água, transporte e abastecimento. Os mexicas ampliaram áreas cultiváveis, criaram canais e conectaram a cidade às margens do lago.',
+  example:
+      'As chinampas — áreas agrícolas construídas em zonas rasas do lago — ajudavam a produzir alimentos perto de uma população urbana muito grande.',
+  body: [
+    'Tenochtitlán foi fundada no século XIV e se tornou a principal cidade do poder mexica no vale do México.',
+    'A cidade ficava numa ilha e era conectada ao entorno por grandes calçadas elevadas.',
+    'Canais funcionavam como vias de transporte, enquanto obras hidráulicas ajudavam a administrar água doce e áreas do lago.',
+    'Mercados regionais movimentavam enorme variedade de produtos, e tributos de territórios subordinados alimentavam a economia da capital.',
+    'Templos, palácios e bairros organizavam funções políticas, religiosas e residenciais.',
+    'Após a conquista espanhola, grande parte da atual Cidade do México cresceu sobre e ao redor da antiga Tenochtitlán.',
+  ],
+  remember: [
+    'A cidade foi construída numa ilha do lago Texcoco.',
+    'Canais e calçadas eram parte da infraestrutura urbana.',
+    'Tributos e comércio sustentavam uma grande população.',
+  ],
+  whyItMatters:
+      'Tenochtitlán desmonta a ideia de que as Américas pré-colombianas não tinham grandes sistemas urbanos e de engenharia.',
+  curiosity:
+      'Relatos espanhóis do século XVI descrevem o tamanho e a movimentação dos mercados da região com grande espanto.',
+  connections: ['Mexicas', 'Cidade do México', 'Chinampas', 'Mesoamérica'],
+);
+const incasTopic = KnowledgeTopic(
+  id: 'incas',
+  eyebrow: 'HISTÓRIA / ANDES',
+  title: 'COMO OS INCAS ADMINISTRAVAM OS ANDES?',
+  summary:
+      'Estradas, depósitos, trabalho organizado e administradores locais permitiam governar um território enorme e montanhoso sem usar escrita alfabética.',
+  minutes: 8,
+  tags: ['história', 'américas'],
+  quickTake:
+      'O Estado inca conectava regiões por infraestrutura e obrigações de trabalho, não por uma economia baseada apenas em moedas e mercados.',
+  simpleExplanation:
+      'Imagine administrar cidades separadas por montanhas usando uma rede de estradas, mensageiros e armazéns. O governo precisava saber quem devia trabalhar, onde havia alimentos e como mover recursos rapidamente.',
+  example:
+      'Depósitos estatais ao longo de rotas podiam guardar alimentos, roupas e equipamentos para abastecer trabalhadores, exércitos e comunidades em momentos de necessidade.',
+  body: [
+    'O Tawantinsuyu, nome do Estado inca, expandiu-se rapidamente pelos Andes no século XV.',
+    'Uma extensa rede viária conectava centros administrativos, áreas agrícolas e regiões muito distantes.',
+    'Mensageiros conhecidos como chasquis corriam em revezamento para transportar informações.',
+    'O sistema de mit’a organizava períodos de trabalho que comunidades deviam ao Estado para obras, agricultura, mineração e outras atividades.',
+    'Quipus — conjuntos de cordões e nós — eram usados para registrar quantidades e informações administrativas.',
+    'O governo também incorporava autoridades locais, reassentava populações e adaptava seu controle às realidades de diferentes regiões.',
+  ],
+  remember: [
+    'Estradas eram infraestrutura política.',
+    'Mit’a organizava trabalho devido ao Estado.',
+    'Quipus eram instrumentos administrativos importantes.',
+  ],
+  whyItMatters:
+      'O Império Inca mostra que Estados complexos podem organizar informação, trabalho e recursos de formas muito diferentes das instituições europeias modernas.',
+  curiosity:
+      'A rede de estradas andinas associada ao sistema inca alcançava dezenas de milhares de quilômetros.',
+  connections: ['Andes', 'Quipus', 'Estradas', 'Impérios'],
+);
+const revolucaoIndustrialTopic = KnowledgeTopic(
+  id: 'revolucao-industrial',
+  eyebrow: 'HISTÓRIA / ECONOMIA',
+  title: 'POR QUE A REVOLUÇÃO INDUSTRIAL MUDOU O COTIDIANO?',
+  summary:
+      'Máquinas, fábricas, novas fontes de energia e urbanização alteraram como bens eram produzidos, onde as pessoas viviam e como o trabalho era organizado.',
+  minutes: 8,
+  tags: ['história', 'economia'],
+  quickTake:
+      'A Revolução Industrial não foi apenas a invenção da máquina a vapor. Ela reorganizou energia, produção, trabalho, transporte e cidades.',
+  simpleExplanation:
+      'Antes, muitos produtos eram feitos em oficinas ou casas em pequenas quantidades. Fábricas reuniram máquinas, energia e trabalhadores no mesmo lugar, permitindo produzir em escalas muito maiores.',
+  example:
+      'Na indústria têxtil britânica, máquinas de fiação e tecelagem aumentaram a produção e ajudaram a transformar regiões inteiras em centros fabris.',
+  body: [
+    'A industrialização começou a ganhar força na Grã-Bretanha no século XVIII antes de se espalhar para outras regiões.',
+    'Carvão mineral fornecia energia em grande escala, enquanto motores a vapor passaram a movimentar máquinas, minas, locomotivas e navios.',
+    'A mecanização avançou cedo no setor têxtil, mas depois atingiu siderurgia, transportes e muitos outros ramos.',
+    'O sistema fabril concentrou trabalhadores e horários, mudando profundamente a organização do trabalho.',
+    'Cidades industriais cresceram rapidamente e enfrentaram problemas de habitação, saneamento, poluição e condições laborais.',
+    'Ao longo do século XIX, novas tecnologias, ferrovias e produção em massa aceleraram a integração de mercados e a transformação social.',
+  ],
+  remember: [
+    'Industrialização envolve mais que máquinas: energia e organização também mudaram.',
+    'A Grã-Bretanha foi um dos primeiros grandes centros industriais.',
+    'Urbanização e conflito trabalhista acompanharam o processo.',
+  ],
+  whyItMatters:
+      'Grande parte da vida contemporânea — horários de trabalho, produção em massa, cidades industriais e cadeias globais — tem raízes nessa transformação.',
+  curiosity:
+      'O termo “Revolução Industrial” se popularizou depois que muitas das mudanças que ele descreve já estavam em andamento havia décadas.',
+  connections: ['Máquina a vapor', 'Urbanização', 'Capitalismo industrial', 'Ferrovias'],
+);
 const primeiraGuerraTopic=KnowledgeTopic(id:'primeira-guerra',eyebrow:'HISTÓRIA / REPERTÓRIO',title:'POR QUE A PRIMEIRA GUERRA VIROU GUERRA DE TRINCHEIRAS?',summary:'Uma introdução clara ao tema por que a primeira guerra virou guerra de trincheiras, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['história','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema por que a primeira guerra virou guerra de trincheiras, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema por que a primeira guerra virou guerra de trincheiras, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
 
 const segundaGuerraTopic=KnowledgeTopic(id:'segunda-guerra',eyebrow:'HISTÓRIA / REPERTÓRIO',title:'POR QUE A SEGUNDA GUERRA FOI REALMENTE MUNDIAL?',summary:'Uma introdução clara ao tema por que a segunda guerra foi realmente mundial, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['história','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema por que a segunda guerra foi realmente mundial, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema por que a segunda guerra foi realmente mundial, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
