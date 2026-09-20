@@ -617,6 +617,153 @@
         }
       };
 
+      window.repertorioProfileCard = {
+        supported: function () { return 'HTMLCanvasElement' in window; },
+        share: async function (score, archetype, strengths, countsJson, shareUrl) {
+          try {
+            const canvas = document.createElement('canvas');
+            canvas.width = 1080;
+            canvas.height = 1350;
+            const ctx = canvas.getContext('2d');
+            const counts = JSON.parse(String(countsJson || '{}'));
+            const categories = [
+              ['PSICOLOGIA', 'PSICO'],
+              ['HISTÓRIA', 'HISTÓRIA'],
+              ['CIÊNCIA', 'CIÊNCIA'],
+              ['ECONOMIA', 'ECONOMIA'],
+              ['ARTE & DESIGN', 'ARTE/DESIGN'],
+              ['TECNOLOGIA', 'TECH'],
+              ['MUNDO', 'MUNDO'],
+              ['CULTURA', 'CULTURA']
+            ];
+            const strongSet = new Set(String(strengths || '').split('·').map(v => v.trim()).filter(Boolean));
+            const maxCount = Math.max(1, ...categories.map(item => Number(counts[item[0]] || 0)));
+
+            ctx.fillStyle = '#F5F2EA';
+            ctx.fillRect(0, 0, 1080, 1350);
+            ctx.fillStyle = '#173B91';
+            ctx.fillRect(0, 0, 1080, 26);
+
+            ctx.fillStyle = '#173B91';
+            ctx.font = '900 38px Arial';
+            ctx.fillText('repertório*', 72, 105);
+
+            ctx.fillStyle = '#6E706D';
+            ctx.font = '800 21px Arial';
+            ctx.fillText('MEU REPERTÓRIO', 72, 165);
+
+            ctx.fillStyle = '#173B91';
+            ctx.font = '900 150px Arial';
+            ctx.fillText(String(score || '—'), 64, 330);
+
+            ctx.fillStyle = '#101010';
+            ctx.font = '900 44px Arial';
+            ctx.fillText(String(archetype || 'RADAR CULTURAL').toUpperCase().slice(0, 30), 72, 395);
+
+            const centerX = 540;
+            const centerY = 760;
+            const orbit = 245;
+
+            ctx.strokeStyle = '#D2CEC4';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, orbit, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, orbit * .52, 0, Math.PI * 2);
+            ctx.stroke();
+
+            ctx.fillStyle = '#E3E9F8';
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, 42, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = '#173B91';
+            ctx.font = '900 20px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('EU', centerX, centerY + 7);
+
+            categories.forEach(function (item, i) {
+              const angle = -Math.PI / 2 + (Math.PI * 2 * i / categories.length);
+              const x = centerX + Math.cos(angle) * orbit;
+              const y = centerY + Math.sin(angle) * orbit;
+              const count = Number(counts[item[0]] || 0);
+              const progress = Math.max(0, Math.min(1, count / maxCount));
+              const radius = count === 0 ? 10 : 16 + progress * 22;
+
+              ctx.strokeStyle = 'rgba(23,59,145,.20)';
+              ctx.lineWidth = 2;
+              ctx.beginPath();
+              ctx.moveTo(centerX, centerY);
+              ctx.lineTo(x, y);
+              ctx.stroke();
+
+              if (strongSet.has(item[0])) {
+                ctx.fillStyle = 'rgba(23,59,145,.12)';
+                ctx.beginPath();
+                ctx.arc(x, y, radius + 12, 0, Math.PI * 2);
+                ctx.fill();
+              }
+
+              ctx.fillStyle = count > 0 ? 'rgba(23,59,145,' + (0.28 + progress * .52) + ')' : '#D2CEC4';
+              ctx.beginPath();
+              ctx.arc(x, y, radius, 0, Math.PI * 2);
+              ctx.fill();
+
+              ctx.fillStyle = count > 0 ? '#101010' : '#7A7A75';
+              ctx.font = '800 18px Arial';
+              ctx.fillText(item[1], x, y + radius + 32);
+              ctx.fillStyle = '#173B91';
+              ctx.font = '900 16px Arial';
+              ctx.fillText(String(count), x, y + 6);
+            });
+
+            ctx.textAlign = 'left';
+            ctx.fillStyle = '#E3E9F8';
+            ctx.fillRect(72, 1120, 936, 130);
+            ctx.fillStyle = '#173B91';
+            ctx.font = '900 32px Arial';
+            ctx.fillText('E O SEU MAPA?', 108, 1170);
+            ctx.fillStyle = '#101010';
+            ctx.font = '700 23px Arial';
+            ctx.fillText('Descubra seu Score e construa seu repertório.', 108, 1212);
+
+            ctx.fillStyle = '#6E706D';
+            ctx.font = '600 19px Arial';
+            ctx.fillText('um pouco sobre tudo, todo dia.', 72, 1300);
+
+            const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+            if (!blob) return false;
+            const file = new File([blob], 'meu-repertorio.png', { type: 'image/png' });
+            const text = 'Meu Repertório Score: ' + score + ' · ' + archetype + '. ' + shareUrl;
+
+            if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+              await navigator.share({
+                files: [file],
+                title: 'Meu Repertório',
+                text: text
+              });
+              return true;
+            }
+
+            if (navigator.clipboard) {
+              try { await navigator.clipboard.writeText(text); } catch (_) {}
+            }
+
+            const objectUrl = URL.createObjectURL(blob);
+            const anchor = document.createElement('a');
+            anchor.href = objectUrl;
+            anchor.download = 'meu-repertorio.png';
+            document.body.appendChild(anchor);
+            anchor.click();
+            anchor.remove();
+            setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+            return true;
+          } catch (_) {
+            return false;
+          }
+        }
+      };
+
       window.repertorioUpdates = {
         check: async function () {
           if (!('serviceWorker' in navigator)) return false;
