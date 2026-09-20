@@ -153,7 +153,10 @@ class ExploreScreen extends StatelessWidget {
                 const SizedBox(height: 22),
                 const _TrailRail(trails: _trails),
                 const SizedBox(height: 30),
-                const _CatalogHeader(areaCount: 12),
+                _CatalogHeader(
+                  areaCount: _catalog.length,
+                  topicCount: allDemoTopics.length,
+                ),
                 const SizedBox(height: 18),
                 LayoutBuilder(
                   builder: (context, constraints) {
@@ -322,9 +325,13 @@ class _TrailEntry {
 }
 
 class _CatalogHeader extends StatelessWidget {
-  const _CatalogHeader({required this.areaCount});
+  const _CatalogHeader({
+    required this.areaCount,
+    required this.topicCount,
+  });
 
   final int areaCount;
+  final int topicCount;
 
   @override
   Widget build(BuildContext context) {
@@ -345,7 +352,7 @@ class _CatalogHeader extends StatelessWidget {
               ),
               const SizedBox(height: 5),
               Text(
-                '$areaCount estantes para entrar por assunto.',
+                '$areaCount estantes · $topicCount assuntos no acervo.',
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: colors.onSurfaceVariant,
                     ),
