@@ -63,7 +63,10 @@ class TodayScreen extends StatelessWidget {
                   },
                 ),
                 const SizedBox(height: 24),
-                _PersonalTrailCard(topics: personalTrail),
+                _PersonalTrailCard(
+                  topics: personalTrail,
+                  personalized: state.historyTopicIds.isNotEmpty,
+                ),
                 if (continueTopic != null) ...[
                   const SizedBox(height: 28),
                   _ContinueShelf(
@@ -735,9 +738,13 @@ class _SurpriseStrip extends StatelessWidget {
 }
 
 class _PersonalTrailCard extends StatelessWidget {
-  const _PersonalTrailCard({required this.topics});
+  const _PersonalTrailCard({
+    required this.topics,
+    required this.personalized,
+  });
 
   final List<KnowledgeTopic> topics;
+  final bool personalized;
 
   @override
   Widget build(BuildContext context) {
@@ -751,7 +758,7 @@ class _PersonalTrailCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'TRILHA PARA VOCÊ',
+            personalized ? 'TRILHA PARA VOCÊ' : 'COMECE POR AQUI',
             style: Theme.of(context).textTheme.labelLarge?.copyWith(
                   color: Theme.of(context).colorScheme.primary,
                   fontSize: 9,
@@ -760,7 +767,9 @@ class _PersonalTrailCard extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'equilibrar o repertório',
+            personalized
+                ? 'aprofundar sem ficar na mesma bolha'
+                : 'uma primeira sequência para abrir caminhos',
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   fontSize: 24,
                 ),
