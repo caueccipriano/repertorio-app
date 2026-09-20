@@ -25,10 +25,19 @@ class _SavedScreenState extends State<SavedScreen> {
   @override
   Widget build(BuildContext context) {
     final state = AppStateScope.of(context);
-    final savedTopics = state.savedTopicIds
+    final allSavedTopics = state.savedTopicIds
         .map(topicById)
         .whereType<KnowledgeTopic>()
-        .where((topic) {
+        .toList();
+    final readingCount = allSavedTopics.where((topic) {
+      final progress = state.progressFor(topic.id);
+      return progress > 0 && progress < .92;
+    }).length;
+    final completedCount = allSavedTopics
+        .where((topic) => state.completedTopicIds.contains(topic.id))
+        .length;
+
+    final savedTopics = allSavedTopics.where((topic) {
       switch (_filter) {
         case _SavedFilter.all:
           return true;
@@ -74,7 +83,13 @@ class _SavedScreenState extends State<SavedScreen> {
                       color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 18),
+              _LibraryOverview(
+                total: allSavedTopics.length,
+                reading: readingCount,
+                completed: completedCount,
+              ),
+              const SizedBox(height: 16),
               _SavedTabs(
                 selected: _filter,
                 onChanged: (value) => setState(() => _filter = value),
@@ -120,6 +135,72 @@ class _SavedScreenState extends State<SavedScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _LibraryOverview extends StatelessWidget {
+  const _LibraryOverview({
+    required this.total,
+    required this.reading,
+    required this.completed,
+  });
+
+  final int total;
+  final int reading;
+  final int completed;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    final stats = [
+      (total, 'guardados'),
+      (reading, 'lendo'),
+      (completed, 'concluídos'),
+    ];
+
+    return Container(
+      decoration: BoxDecoration(
+        color: colors.surface,
+        border: Border.all(color: colors.outline),
+      ),
+      child: Row(
+        children: stats.indexed.map((item) {
+          return Expanded(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+              decoration: BoxDecoration(
+                border: item.$1 == stats.length - 1
+                    ? null
+                    : Border(
+                        right: BorderSide(color: colors.outline),
+                      ),
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    item.$2.$1.toString().padLeft(2, '0'),
+                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                          color: colors.primary,
+                          fontSize: 22,
+                          fontWeight: FontWeight.w800,
+                        ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    item.$2.$2,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          color: colors.onSurfaceVariant,
+                          fontSize: 9,
+                        ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }).toList(),
       ),
     );
   }
@@ -235,6 +316,18 @@ class _EmptyLibrary extends StatelessWidget {
                 body,
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
+              if (filter == _SavedFilter.all) ...[
+                const SizedBox(height: 18),
+                FilledButton.icon(
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => const SearchScreen(),
+                    ),
+                  ),
+                  icon: const Icon(Icons.search, size: 18),
+                  label: const Text('encontrar algo para guardar'),
+                ),
+              ],
             ],
           ),
         ),
