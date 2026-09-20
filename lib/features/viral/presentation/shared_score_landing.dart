@@ -8,32 +8,38 @@ class SharedScoreLanding extends StatelessWidget {
   const SharedScoreLanding({
     super.key,
     required this.score,
+    this.archetype,
     required this.onStart,
     required this.onEnterApp,
   });
 
   final int score;
+  final String? archetype;
   final VoidCallback onStart;
   final VoidCallback onEnterApp;
 
-  String get archetype {
-    if (score >= 775) return 'ENCICLOPÉDIA AMBULANTE';
-    if (score >= 665) return 'CABEÇA DE WIKIPEDIA';
-    if (score >= 555) return 'CURIOSO CAÓTICO';
-    return 'RADAR LIGADO';
+
+  String get resolvedArchetype {
+    final provided = archetype?.trim();
+    if (provided != null && provided.isNotEmpty) return provided;
+    if (score >= 785) return 'ARQUIVO VIVO';
+    if (score >= 700) return 'CONECTOR CULTURAL';
+    if (score >= 610) return 'CABEÇA DE WIKIPEDIA';
+    if (score >= 520) return 'CURIOSO CAÓTICO';
+    return 'RADAR CULTURAL';
   }
 
   String get description {
-    if (score >= 775) {
-      return 'Esse resultado indica um repertório amplo neste teste rápido.';
+    if (score >= 700) {
+      return 'Esse resultado mostra repertório amplo e boas conexões entre assuntos nesta rodada.';
     }
-    if (score >= 665) {
-      return 'Esse resultado mostra uma boa base de cultura geral neste teste.';
+    if (score >= 610) {
+      return 'Esse resultado mostra uma base cultural consistente nesta rodada.';
     }
-    if (score >= 555) {
+    if (score >= 520) {
       return 'Esse resultado mistura boas referências com espaço para novas conexões.';
     }
-    return 'Esse resultado é só o começo: um assunto por dia já muda bastante o placar.';
+    return 'Esse resultado é um ponto de partida: repertório cresce quando curiosidade vira hábito.';
   }
 
   @override
@@ -93,10 +99,10 @@ class SharedScoreLanding extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: palette.surface,
                         border: Border.all(color: palette.line, width: 1.2),
-                        boxShadow: const [
+                        boxShadow: [
                           BoxShadow(
-                            color: Color(0x22101010),
-                            offset: Offset(8, 8),
+                            color: palette.shadow,
+                            offset: const Offset(8, 8),
                           ),
                         ],
                       ),
@@ -124,7 +130,7 @@ class SharedScoreLanding extends StatelessWidget {
                           ),
                           const SizedBox(height: 12),
                           Text(
-                            archetype,
+                            resolvedArchetype,
                             style: textTheme.headlineSmall?.copyWith(
                               fontWeight: FontWeight.w900,
                               letterSpacing: -1,
@@ -190,7 +196,7 @@ class SharedScoreLanding extends StatelessWidget {
                     const _ProductPreview(),
                     const SizedBox(height: 26),
                     Text(
-                      'Score experimental baseado em 8 perguntas. Ele não mede inteligência e não representa uma avaliação científica.',
+                      'Score experimental baseado em 10 perguntas escolhidas de um banco maior. Ele não mede inteligência e não representa uma avaliação científica.',
                       textAlign: TextAlign.center,
                       style: textTheme.bodySmall?.copyWith(
                         color: palette.muted,
