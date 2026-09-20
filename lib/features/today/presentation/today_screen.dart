@@ -27,6 +27,7 @@ class TodayScreen extends StatelessWidget {
     final continueTopic = _continueTopic(state.progressByTopic);
     final outsideBubble = _outsideBubble(state.historyTopicIds);
     final personalTrail = _personalTrail(state.historyTopicIds);
+    final recentTopics = _recentTopics(state.historyTopicIds);
     final dailyPlan = engine.dailyPlan(state, budgetMinutes: 12);
     final featuredReason = engine.reasonFor(state, featured);
 
@@ -65,6 +66,14 @@ class TodayScreen extends StatelessWidget {
                   _ContinueShelf(
                     topic: continueTopic,
                     progress: state.progressFor(continueTopic.id),
+                  ),
+                ],
+                if (recentTopics.isNotEmpty) ...[
+                  const SizedBox(height: 28),
+                  _Shelf(
+                    title: 'vistos recentemente',
+                    subtitle: 'retome uma ideia ou faça uma nova conexão',
+                    topics: recentTopics,
                   ),
                 ],
                 const SizedBox(height: 28),
@@ -125,6 +134,21 @@ class TodayScreen extends StatelessWidget {
       count,
       (index) => pool[(start + index) % pool.length],
     );
+  }
+
+  List<KnowledgeTopic> _recentTopics(List<String> historyIds) {
+    final seen = <String>{};
+    final recent = <KnowledgeTopic>[];
+
+    for (final id in historyIds) {
+      if (!seen.add(id)) continue;
+      final topic = topicById(id);
+      if (topic == null) continue;
+      recent.add(topic);
+      if (recent.length == 4) break;
+    }
+
+    return recent;
   }
 
   KnowledgeTopic? _continueTopic(Map<String, double> progressByTopic) {
