@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../app/state/app_state_scope.dart';
 import '../../../app/theme/app_colors.dart';
@@ -12,18 +13,55 @@ import '../../explore/presentation/knowledge_map_screen.dart';
 import '../../review/presentation/review_screen.dart';
 import '../../search/presentation/search_screen.dart';
 import '../../study/data/personal_library_engine.dart';
+import '../../viral/data/viral_score_focus.dart';
 import '../../viral/presentation/viral_score_home_card.dart';
 import '../data/demo_topics.dart';
 import '../domain/knowledge_topic.dart';
 
-class TodayScreen extends StatelessWidget {
+class TodayScreen extends StatefulWidget {
   const TodayScreen({super.key});
+
+  @override
+  State<TodayScreen> createState() => _TodayScreenState();
+}
+
+class _TodayScreenState extends State<TodayScreen> {
+  static const _weakCategoriesKey = 'viral_score_weak_categories_v1';
+
+  List<String> _weakCategories = const [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadScoreFocus();
+  }
+
+  Future<void> _loadScoreFocus() async {
+    final prefs = await SharedPreferences.getInstance();
+    final weak = prefs.getStringList(_weakCategoriesKey) ?? const <String>[];
+    if (!mounted) return;
+    setState(() => _weakCategories = weak);
+  }
 
   @override
   Widget build(BuildContext context) {
     final state = AppStateScope.of(context);
     const engine = PersonalLibraryEngine();
-    final featured = _featuredTopic(state.historyTopicIds);
+    final fallbackFeatured = _featuredTopic(state.historyTopicIds);
+    String? focusCategory;
+    KnowledgeTopic? scoreFeatured;
+    for (final category in _weakCategories) {
+      final match = topicForScoreFocus(
+        weakCategories: [category],
+        excludedIds: state.historyTopicIds.toSet(),
+      );
+      if (match != null) {
+        focusCategory = category;
+        scoreFeatured = match;
+        break;
+      }
+    }
+    final featured = scoreFeatured ?? fallbackFeatured;
     final continueTopic = _continueTopic(state.progressByTopic);
     final outsideBubble = _outsideBubble(state.historyTopicIds);
     final personalTrail = _personalTrail(state.historyTopicIds);
@@ -31,8 +69,15 @@ class TodayScreen extends StatelessWidget {
       state.historyTopicIds,
       state.lastOpenedByTopic,
     );
-    final dailyPlan = engine.dailyPlan(state, budgetMinutes: 12);
-    final featuredReason = engine.reasonFor(state, featured);
+    final baseDailyPlan = engine.dailyPlan(state, budgetMinutes: 12);
+    final dailyPlan = _scoreAwareDailyPlan(
+      baseDailyPlan,
+      focusTopic: scoreFeatured,
+      focusCategory: focusCategory,
+    );
+    final featuredReason = focusCategory != null
+        ? scoreFocusReason(focusCategory)
+        : engine.reasonFor(state, featured);
 
     return PaperTexture(
       child: SafeArea(
@@ -119,6 +164,49 @@ class TodayScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  List<DailyTask> _scoreAwareDailyPlan(
+    List<DailyTask> basePlan, {
+    required KnowledgeTopic? focusTopic,
+    required String? focusCategory,
+  }) {
+    if (focusTopic == null || focusCategory == null) return basePlan;
+    if (basePlan.any((task) => task.topic.id == focusTopic.id)) {
+      return basePlan;
+    }
+
+    const budgetMinutes = 12;
+    final focusMinutes = focusTopic.minutes.clamp(3, 5).toInt();
+    final result = <DailyTask>[
+      DailyTask(
+        type: DailyTaskType.discovery,
+        topic: focusTopic,
+        reason: scoreFocusReason(focusCategory),
+        minutes: focusMinutes,
+      ),
+    ];
+
+    var usedMinutes = focusMinutes;
+    for (final task in basePlan) {
+      if (usedMinutes >= budgetMinutes) break;
+      if (result.any((item) => item.topic.id == task.topic.id)) continue;
+      final remaining = budgetMinutes - usedMinutes;
+      if (remaining <= 0) break;
+
+      final minutes = task.minutes.clamp(1, remaining).toInt();
+      result.add(
+        DailyTask(
+          type: task.type,
+          topic: task.topic,
+          reason: task.reason,
+          minutes: minutes,
+        ),
+      );
+      usedMinutes += minutes;
+    }
+
+    return result;
   }
 
   KnowledgeTopic _featuredTopic(List<String> historyIds) {
