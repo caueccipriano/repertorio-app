@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../app/state/app_state.dart';
 import '../../../app/state/app_state_scope.dart';
+import '../../../core/share/knowledge_card_share.dart';
 import '../../../core/widgets/editorial_frame.dart';
 import '../../../core/widgets/paper_texture.dart';
 import '../../today/data/demo_topics.dart';
@@ -62,6 +65,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
       _strengthCategories =
           prefs.getStringList(_strengthCategoriesKey) ?? const <String>[];
     });
+  }
+
+  Future<void> _shareProfile(Map<String, int> categoryCounts) async {
+    if (_scoreHistory.isEmpty) return;
+    final latest = _scoreHistory.first;
+    final shareUri = Uri.base.replace(
+      queryParameters: {
+        'score': latest.score.toString(),
+        'a': latest.archetype,
+      },
+    );
+
+    final shared = await shareRepertoryProfile(
+      score: latest.score,
+      archetype: latest.archetype,
+      strengths: _strengthCategories.join(' · '),
+      countsJson: jsonEncode(categoryCounts),
+      shareUrl: shareUri.toString(),
+    );
+
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          shared
+              ? 'Seu mapa de repertório está pronto para compartilhar.'
+              : 'Não consegui abrir o compartilhamento neste dispositivo.',
+        ),
+      ),
+    );
   }
 
   Future<void> _retakeScore() async {
@@ -172,6 +205,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     strengths: _strengthCategories,
                     weakCategories: _weakCategories,
                     onRetake: _retakeScore,
+                    onShare: () => _shareProfile(categoryCounts),
                   ),
                   const SizedBox(height: 14),
                 ],
@@ -371,12 +405,14 @@ class _ScorePortrait extends StatelessWidget {
     required this.strengths,
     required this.weakCategories,
     required this.onRetake,
+    required this.onShare,
   });
 
   final List<_ProfileScoreSnapshot> history;
   final List<String> strengths;
   final List<String> weakCategories;
   final VoidCallback onRetake;
+  final VoidCallback onShare;
 
   @override
   Widget build(BuildContext context) {
@@ -494,20 +530,34 @@ class _ScorePortrait extends StatelessWidget {
             ),
           ],
           const SizedBox(height: 12),
-          Align(
-            alignment: Alignment.centerRight,
-            child: TextButton.icon(
-              onPressed: onRetake,
-              icon: const Icon(Icons.refresh_rounded, size: 17),
-              label: const Text(
-                'NOVA RODADA',
-                style: TextStyle(
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: .55,
-                  fontSize: 11,
+          Row(
+            children: [
+              TextButton.icon(
+                onPressed: onShare,
+                icon: const Icon(Icons.ios_share_rounded, size: 17),
+                label: const Text(
+                  'COMPARTILHAR',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: .45,
+                    fontSize: 11,
+                  ),
                 ),
               ),
-            ),
+              const Spacer(),
+              TextButton.icon(
+                onPressed: onRetake,
+                icon: const Icon(Icons.refresh_rounded, size: 17),
+                label: const Text(
+                  'NOVA RODADA',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: .55,
+                    fontSize: 11,
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
