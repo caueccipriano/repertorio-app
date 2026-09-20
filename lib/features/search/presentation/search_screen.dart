@@ -144,6 +144,18 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
               ),
             ),
+            if (_query.isEmpty && _filters.isEmpty) ...[
+              const SizedBox(height: 14),
+              _SearchSuggestions(
+                onSelect: (value) {
+                  _controller.text = value;
+                  _controller.selection = TextSelection.collapsed(
+                    offset: value.length,
+                  );
+                  setState(() => _query = value);
+                },
+              ),
+            ],
             const SizedBox(height: 14),
             _FilterBar(
               selected: _filters,
@@ -194,6 +206,59 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _SearchSuggestions extends StatelessWidget {
+  const _SearchSuggestions({required this.onSelect});
+
+  final ValueChanged<String> onSelect;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    const suggestions = [
+      ('design', Icons.grid_view_outlined),
+      ('história', Icons.account_balance_outlined),
+      ('ciência', Icons.science_outlined),
+      ('economia', Icons.show_chart_outlined),
+    ];
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(14, 13, 14, 14),
+      decoration: BoxDecoration(
+        color: colors.surfaceContainerHighest,
+        border: Border.all(color: colors.outline),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'EXPLORE UMA IDEIA',
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                  color: colors.primary,
+                  fontSize: 9,
+                  letterSpacing: 1,
+                ),
+          ),
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: suggestions
+                .map(
+                  (item) => ActionChip(
+                    avatar: Icon(item.$2, size: 16),
+                    label: Text(item.$1),
+                    onPressed: () => onSelect(item.$1),
+                  ),
+                )
+                .toList(),
+          ),
+        ],
       ),
     );
   }
@@ -277,11 +342,26 @@ class _SearchResult extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.primary,
               ),
-              child: Text(
-                topic.minutes.toString(),
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      color: Colors.white,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    topic.minutes.toString(),
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
+                  ),
+                  const Text(
+                    'MIN',
+                    style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 7,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: .7,
                     ),
+                  ),
+                ],
               ),
             ),
             const SizedBox(width: 14),
