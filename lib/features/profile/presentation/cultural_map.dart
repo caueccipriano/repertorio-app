@@ -47,22 +47,29 @@ class CulturalMap extends StatelessWidget {
         children: [
           Row(
             children: [
-              Text(
-                'CONSTELAÇÃO CULTURAL',
-                style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      color: colors.primary,
-                      fontSize: 9,
-                      fontWeight: FontWeight.w900,
-                      letterSpacing: 1.15,
-                    ),
+              Expanded(
+                child: Text(
+                  'CONSTELAÇÃO CULTURAL',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        color: colors.primary,
+                        fontSize: 9,
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: 1.05,
+                      ),
+                ),
               ),
-              const Spacer(),
-              Text(
-                '$explored/8 áreas',
-                style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: colors.onSurfaceVariant,
-                      fontWeight: FontWeight.w800,
-                    ),
+              const SizedBox(width: 8),
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  '$explored/8 áreas',
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        color: colors.onSurfaceVariant,
+                        fontWeight: FontWeight.w800,
+                      ),
+                ),
               ),
             ],
           ),
