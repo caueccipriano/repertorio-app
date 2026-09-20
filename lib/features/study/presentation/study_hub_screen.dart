@@ -27,6 +27,43 @@ class StudyHubScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = AppStateScope.of(context);
     final quizTopic = _quizTopic(state.historyTopicIds);
+    final dueCount = state.dueReviewTopicIds().length;
+    final queueCount = state.readLaterQueue.length;
+
+    final nextStep = dueCount > 0
+        ? _StudyNextStepData(
+            eyebrow: 'PRÓXIMO PASSO',
+            title: 'revisar o que já viu',
+            subtitle: '${dueCount} revisão${dueCount == 1 ? '' : 'ões'} pronta${dueCount == 1 ? '' : 's'} para fortalecer sua memória.',
+            icon: Icons.refresh_rounded,
+            onTap: () => _push(context, const ReviewScreen()),
+          )
+        : queueCount > 0
+            ? _StudyNextStepData(
+                eyebrow: 'PRÓXIMO PASSO',
+                title: 'continuar sua fila',
+                subtitle: '${queueCount} assunto${queueCount == 1 ? '' : 's'} esperando para virar repertório.',
+                icon: Icons.playlist_play_rounded,
+                onTap: () => _push(context, const ReadLaterScreen()),
+              )
+            : quizTopic != null
+                ? _StudyNextStepData(
+                    eyebrow: 'PRÓXIMO PASSO',
+                    title: 'testar o que ficou',
+                    subtitle: 'Um quiz curto para transformar leitura em lembrança.',
+                    icon: Icons.quiz_outlined,
+                    onTap: () => _push(
+                      context,
+                      QuizScreen(topic: quizTopic),
+                    ),
+                  )
+                : _StudyNextStepData(
+                    eyebrow: 'COMECE AQUI',
+                    title: 'construa seu domínio',
+                    subtitle: 'Seu mapa de aprendizado vai ficando mais rico conforme você explora.',
+                    icon: Icons.auto_graph_outlined,
+                    onTap: () => _push(context, const MasteryScreen()),
+                  );
 
     final tools = <_StudyTool>[
       _StudyTool(
@@ -166,13 +203,29 @@ class StudyHubScreen extends StatelessWidget {
                     color: colors.onSurfaceVariant,
                   ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 22),
+            _StudyNextStep(data: nextStep),
+            const SizedBox(height: 14),
             _StudySummary(
-              due: state.dueReviewTopicIds().length,
-              queue: state.readLaterQueue.length,
+              due: dueCount,
+              queue: queueCount,
               highlights: _highlightCount(state),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 28),
+            Text(
+              'ferramentas de repertório',
+              style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                    fontSize: 29,
+                  ),
+            ),
+            const SizedBox(height: 5),
+            Text(
+              'Escolha uma forma de lembrar, conectar ou reorganizar o que você já viu.',
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: colors.onSurfaceVariant,
+                  ),
+            ),
+            const SizedBox(height: 16),
             LayoutBuilder(
               builder: (context, constraints) {
                 final columns = constraints.maxWidth >= 680 ? 3 : 2;
@@ -226,6 +279,104 @@ class StudyHubScreen extends StatelessWidget {
   }
 }
 
+class _StudyNextStepData {
+  const _StudyNextStepData({
+    required this.eyebrow,
+    required this.title,
+    required this.subtitle,
+    required this.icon,
+    required this.onTap,
+  });
+
+  final String eyebrow;
+  final String title;
+  final String subtitle;
+  final IconData icon;
+  final VoidCallback onTap;
+}
+
+class _StudyNextStep extends StatelessWidget {
+  const _StudyNextStep({required this.data});
+
+  final _StudyNextStepData data;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
+    return Material(
+      color: colors.surfaceContainerHighest,
+      child: InkWell(
+        onTap: data.onTap,
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(16, 15, 14, 15),
+          decoration: BoxDecoration(
+            border: Border.all(color: colors.primary),
+          ),
+          child: Row(
+            children: [
+              Container(
+                width: 46,
+                height: 46,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: colors.primary,
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  data.icon,
+                  color: colors.onPrimary,
+                  size: 22,
+                ),
+              ),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      data.eyebrow,
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                            color: colors.primary,
+                            fontSize: 9,
+                            letterSpacing: 1,
+                          ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      data.title,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w800,
+                          ),
+                    ),
+                    const SizedBox(height: 3),
+                    Text(
+                      data.subtitle,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: colors.onSurfaceVariant,
+                            height: 1.3,
+                          ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 8),
+              Icon(
+                Icons.arrow_forward_rounded,
+                color: colors.primary,
+                size: 21,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _StudySummary extends StatelessWidget {
   const _StudySummary({
     required this.due,
@@ -272,7 +423,7 @@ class _StudySummary extends StatelessWidget {
                             .textTheme
                             .displayMedium
                             ?.copyWith(
-                              color: colors.onPrimary,
+                              color: Colors.white,
                               fontSize: 34,
                             ),
                       ),
@@ -304,11 +455,13 @@ class _ToolCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
 
-    return Material(
-      color: colors.surface,
-      child: InkWell(
-        onTap: tool.onTap,
-        child: SizedBox(
+    return Opacity(
+      opacity: tool.onTap == null ? .48 : 1,
+      child: Material(
+        color: colors.surface,
+        child: InkWell(
+          onTap: tool.onTap,
+          child: SizedBox(
           height: 146,
           child: Container(
           padding: const EdgeInsets.all(14),
@@ -362,7 +515,7 @@ class _ToolCard extends StatelessWidget {
               ),
             ],
           ),
-        ),
+          ),
         ),
       ),
     );
