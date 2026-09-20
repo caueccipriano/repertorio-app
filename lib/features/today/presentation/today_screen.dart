@@ -27,7 +27,10 @@ class TodayScreen extends StatelessWidget {
     final continueTopic = _continueTopic(state.progressByTopic);
     final outsideBubble = _outsideBubble(state.historyTopicIds);
     final personalTrail = _personalTrail(state.historyTopicIds);
-    final recentTopics = _recentTopics(state.historyTopicIds);
+    final recentTopics = _recentTopics(
+      state.historyTopicIds,
+      state.lastOpenedByTopic,
+    );
     final dailyPlan = engine.dailyPlan(state, budgetMinutes: 12);
     final featuredReason = engine.reasonFor(state, featured);
 
@@ -136,19 +139,24 @@ class TodayScreen extends StatelessWidget {
     );
   }
 
-  List<KnowledgeTopic> _recentTopics(List<String> historyIds) {
-    final seen = <String>{};
-    final recent = <KnowledgeTopic>[];
+  List<KnowledgeTopic> _recentTopics(
+    List<String> historyIds,
+    Map<String, DateTime> lastOpenedByTopic,
+  ) {
+    final ids = historyIds.toSet().toList()
+      ..sort((a, b) {
+        final aDate = lastOpenedByTopic[a] ??
+            DateTime.fromMillisecondsSinceEpoch(0);
+        final bDate = lastOpenedByTopic[b] ??
+            DateTime.fromMillisecondsSinceEpoch(0);
+        return bDate.compareTo(aDate);
+      });
 
-    for (final id in historyIds) {
-      if (!seen.add(id)) continue;
-      final topic = topicById(id);
-      if (topic == null) continue;
-      recent.add(topic);
-      if (recent.length == 4) break;
-    }
-
-    return recent;
+    return ids
+        .map(topicById)
+        .whereType<KnowledgeTopic>()
+        .take(4)
+        .toList();
   }
 
   KnowledgeTopic? _continueTopic(Map<String, double> progressByTopic) {
