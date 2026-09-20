@@ -523,8 +523,11 @@ class _ScorePreview extends StatelessWidget {
         decoration: BoxDecoration(
           color: palette.surface,
           border: Border.all(color: palette.line, width: 1.2),
-          boxShadow: const [
-            BoxShadow(color: Color(0x22101010), offset: Offset(8, 8)),
+          boxShadow: [
+            BoxShadow(
+              color: palette.shadow,
+              offset: const Offset(8, 8),
+            ),
           ],
         ),
         child: Column(
@@ -632,11 +635,21 @@ class _QuizStage extends StatelessWidget {
               const SizedBox(height: 30),
               ClipRRect(
                 borderRadius: BorderRadius.circular(99),
-                child: LinearProgressIndicator(
-                  value: (index + 1) / total,
-                  minHeight: 7,
-                  color: palette.accent,
-                  backgroundColor: palette.line,
+                child: TweenAnimationBuilder<double>(
+                  tween: Tween(
+                    begin: index / total,
+                    end: (index + 1) / total,
+                  ),
+                  duration: const Duration(milliseconds: 520),
+                  curve: Curves.easeOutCubic,
+                  builder: (context, value, _) {
+                    return LinearProgressIndicator(
+                      value: value,
+                      minHeight: 7,
+                      color: palette.accent,
+                      backgroundColor: palette.line,
+                    );
+                  },
                 ),
               ),
               const SizedBox(height: 44),
