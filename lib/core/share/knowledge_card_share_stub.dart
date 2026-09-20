@@ -5,3 +5,14 @@ Future<bool> shareKnowledgeCard({
   required String body,
 }) async =>
     false;
+
+
+bool get viralScoreShareSupported => false;
+
+Future<bool> shareViralScore({
+  required int score,
+  required String archetype,
+  required String strengths,
+  required String shareUrl,
+}) async =>
+    false;
