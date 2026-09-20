@@ -46,6 +46,18 @@ jobs:
       - name: Build web
         run: flutter build web --release --base-href "/repertorio-app/"
 
+      - name: Validate published app icon
+        run: |
+          python3 - <<'PY'
+          import pathlib, struct
+          p = pathlib.Path('build/web/app-icon-v5.png')
+          data = p.read_bytes()
+          assert data[:8] == b'\x89PNG\r\n\x1a\n', 'app icon is not a valid PNG'
+          width, height = struct.unpack('>II', data[16:24])
+          assert (width, height) == (180, 180), f'unexpected PNG dimensions: {width}x{height}'
+          print(f'Validated PNG: {width}x{height}, {len(data)} bytes')
+          PY
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
