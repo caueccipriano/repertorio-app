@@ -67,15 +67,49 @@ class KnowledgeCover extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  kicker.toUpperCase(),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                        fontSize: 8,
-                        letterSpacing: 1.2,
-                        color: _darkCover ? Colors.white70 : AppColors.ink,
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        kicker.toUpperCase(),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                              fontSize: 8,
+                              letterSpacing: 1.2,
+                              color: _darkCover ? Colors.white70 : AppColors.ink,
+                            ),
                       ),
+                    ),
+                    const SizedBox(width: 8),
+                    Container(
+                      width: 22,
+                      height: 22,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: selected
+                            ? AppColors.blue
+                            : (_darkCover
+                                ? Colors.white.withValues(alpha: .10)
+                                : AppColors.softBlue),
+                        border: Border.all(
+                          color: _darkCover ? Colors.white54 : AppColors.ink,
+                          width: .8,
+                        ),
+                      ),
+                      child: Text(
+                        'R*',
+                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                              fontSize: 7,
+                              fontWeight: FontWeight.w900,
+                              letterSpacing: -.2,
+                              color: selected
+                                  ? Colors.white
+                                  : (_darkCover ? Colors.white : AppColors.ink),
+                            ),
+                      ),
+                    ),
+                  ],
                 ),
                 const Spacer(),
                 Text(
@@ -103,6 +137,9 @@ class KnowledgeCover extends StatelessWidget {
     return Semantics(
       button: true,
       label: title,
+      hint: onLongPress == null
+          ? 'Toque para abrir'
+          : 'Toque para abrir. Segure para ver um resumo rápido.',
       child: Material(
         color: Colors.transparent,
         child: InkWell(
