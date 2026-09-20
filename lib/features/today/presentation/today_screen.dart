@@ -23,7 +23,6 @@ class TodayScreen extends StatelessWidget {
     final state = AppStateScope.of(context);
     const engine = PersonalLibraryEngine();
     final featured = _featuredTopic(state.historyTopicIds);
-    final dailyTopics = _dailyTopics(state.historyTopicIds);
     final continueTopic = _continueTopic(state.progressByTopic);
     final outsideBubble = _outsideBubble(state.historyTopicIds);
     final personalTrail = _personalTrail(state.historyTopicIds);
@@ -56,11 +55,9 @@ class TodayScreen extends StatelessWidget {
                 _QuickActions(rootTopic: featured),
                 const SizedBox(height: 18),
                 _DailyPlanCard(tasks: dailyPlan),
-                const SizedBox(height: 26),
-                _Shelf(
-                  title: 'para hoje',
-                  subtitle: 'uma pequena edição diária',
-                  topics: dailyTopics,
+                const SizedBox(height: 14),
+                _SurpriseStrip(
+                  excludedTopicIds: state.completedTopicIds,
                 ),
                 const SizedBox(height: 24),
                 _PersonalTrailCard(topics: personalTrail),
@@ -123,20 +120,6 @@ class TodayScreen extends StatelessWidget {
     final pool = unseen.isEmpty ? allDemoTopics : unseen;
     final index = DateTime.now().day % pool.length;
     return pool[index];
-  }
-
-  List<KnowledgeTopic> _dailyTopics(List<String> historyIds) {
-    final unseen = allDemoTopics
-        .where((topic) => !historyIds.contains(topic.id))
-        .toList();
-    final pool = unseen.isEmpty ? allDemoTopics : unseen;
-    final count = pool.length >= 4 ? 4 : pool.length;
-    final start = DateTime.now().day % pool.length;
-
-    return List.generate(
-      count,
-      (index) => pool[(start + index) % pool.length],
-    );
   }
 
   List<KnowledgeTopic> _recentTopics(
@@ -669,6 +652,81 @@ class _TaskIcon extends StatelessWidget {
         shape: BoxShape.circle,
       ),
       child: Icon(icon, size: 16, color: colors.primary),
+    );
+  }
+}
+
+class _SurpriseStrip extends StatelessWidget {
+  const _SurpriseStrip({required this.excludedTopicIds});
+
+  final Set<String> excludedTopicIds;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
+    void surprise() {
+      final candidates = allDemoTopics
+          .where((topic) => !excludedTopicIds.contains(topic.id))
+          .toList();
+      final pool = candidates.isEmpty ? allDemoTopics : candidates;
+      final index = DateTime.now().millisecondsSinceEpoch % pool.length;
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => ArticleScreen(topic: pool[index]),
+        ),
+      );
+    }
+
+    return Material(
+      color: colors.onSurface,
+      child: InkWell(
+        onTap: surprise,
+        child: Container(
+          minHeight: 58,
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 11),
+          decoration: BoxDecoration(
+            border: Border.all(color: colors.onSurface),
+          ),
+          child: Row(
+            children: [
+              Icon(
+                Icons.casino_outlined,
+                color: colors.surface,
+                size: 21,
+              ),
+              const SizedBox(width: 11),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'ME SURPREENDA',
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                            color: colors.surface,
+                            fontSize: 9,
+                            letterSpacing: 1,
+                          ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      'abra algo fora do roteiro',
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: colors.surface.withValues(alpha: .68),
+                          ),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(
+                Icons.arrow_forward_rounded,
+                color: colors.surface,
+                size: 20,
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
