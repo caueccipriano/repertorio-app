@@ -2021,22 +2021,270 @@ const openSourceTopic = KnowledgeTopic(
       'Servidores, celulares, navegadores e linguagens modernas dependem amplamente de componentes open source.',
   connections: ['Linux', 'GitHub', 'Licenças', 'Comunidades de software'],
 );
-const arquiteturaGoticaTopic=KnowledgeTopic(id:'arquitetura-gotica',eyebrow:'ARQUITETURA / REPERTÓRIO',title:'COMO CATEDRAIS GÓTICAS FICARAM TÃO ALTAS?',summary:'Uma introdução clara ao tema como catedrais góticas ficaram tão altas, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['arquitetura','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema como catedrais góticas ficaram tão altas, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema como catedrais góticas ficaram tão altas, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const artDecoTopic=KnowledgeTopic(id:'art-deco',eyebrow:'DESIGN / REPERTÓRIO',title:'POR QUE ART DÉCO PARECE LUXUOSO E MODERNO?',summary:'Uma introdução clara ao tema por que art déco parece luxuoso e moderno, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['design','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema por que art déco parece luxuoso e moderno, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema por que art déco parece luxuoso e moderno, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const surrealismoTopic=KnowledgeTopic(id:'surrealismo',eyebrow:'ARTE / REPERTÓRIO',title:'POR QUE O SURREALISMO PARECE UM SONHO?',summary:'Uma introdução clara ao tema por que o surrealismo parece um sonho, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['arte','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema por que o surrealismo parece um sonho, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema por que o surrealismo parece um sonho, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const popArtTopic=KnowledgeTopic(id:'pop-art',eyebrow:'ARTE / REPERTÓRIO',title:'POR QUE A POP ART TRANSFORMOU PRODUTOS EM ARTE?',summary:'Uma introdução clara ao tema por que a pop art transformou produtos em arte, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['arte','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema por que a pop art transformou produtos em arte, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema por que a pop art transformou produtos em arte, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const minimalismoTopic=KnowledgeTopic(id:'minimalismo',eyebrow:'DESIGN / REPERTÓRIO',title:'MENOS É SEMPRE MAIS?',summary:'Uma introdução clara ao tema menos é sempre mais, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['design','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema menos é sempre mais, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema menos é sempre mais, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const grafiteTopic=KnowledgeTopic(id:'grafite',eyebrow:'ARTE / REPERTÓRIO',title:'QUANDO O GRAFITE VIROU ARTE?',summary:'Uma introdução clara ao tema quando o grafite virou arte, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['arte','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema quando o grafite virou arte, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema quando o grafite virou arte, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const hipHopTopic=KnowledgeTopic(id:'hip-hop',eyebrow:'MÚSICA / REPERTÓRIO',title:'COMO O HIP-HOP VIROU UMA CULTURA GLOBAL?',summary:'Uma introdução clara ao tema como o hip-hop virou uma cultura global, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['música','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema como o hip-hop virou uma cultura global, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema como o hip-hop virou uma cultura global, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const bossaNovaTopic=KnowledgeTopic(id:'bossa-nova',eyebrow:'MÚSICA / REPERTÓRIO',title:'POR QUE A BOSSA NOVA SOA TÃO DIFERENTE?',summary:'Uma introdução clara ao tema por que a bossa nova soa tão diferente, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['música','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema por que a bossa nova soa tão diferente, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema por que a bossa nova soa tão diferente, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
+const arquiteturaGoticaTopic = KnowledgeTopic(
+  id: 'arquitetura-gotica',
+  eyebrow: 'ARQUITETURA / HISTÓRIA',
+  title: 'COMO CATEDRAIS GÓTICAS FICARAM TÃO ALTAS?',
+  summary:
+      'Arcos apontados, abóbadas nervuradas e arcobotantes redistribuíram cargas e permitiram paredes mais altas, grandes janelas e interiores iluminados.',
+  minutes: 8,
+  tags: ['arquitetura', 'história'],
+  quickTake:
+      'O gótico não é só “estilo sombrio”: foi também uma solução estrutural sofisticada para construir espaços altos e luminosos.',
+  simpleExplanation:
+      'Em vez de fazer paredes muito grossas para segurar todo o peso, construtores transferiam parte das forças para pilares e apoios externos.',
+  example:
+      'Arcobotantes funcionam como braços de pedra que levam empuxos da cobertura para contrafortes fora da parede principal.',
+  body: [
+    'A arquitetura gótica se desenvolveu na Europa medieval a partir do século XII.',
+    'Arcos apontados permitiam diferentes proporções e ajudavam a direcionar forças para apoios específicos.',
+    'Abóbadas nervuradas concentravam cargas em estruturas mais definidas, reduzindo a necessidade de superfícies maciças.',
+    'Arcobotantes levavam parte dos esforços laterais para contrafortes externos.',
+    'Com paredes menos responsáveis pela sustentação, vitrais podiam ocupar áreas muito maiores.',
+    'Catedrais também eram projetos urbanos, religiosos, econômicos e políticos que podiam atravessar gerações.',
+  ],
+  remember: [
+    'Estrutura e estética andam juntas.',
+    'Arcobotantes transferem esforços para fora.',
+    'Grandes vitrais foram possíveis porque paredes ficaram menos estruturais.',
+  ],
+  whyItMatters:
+      'Entender o gótico ajuda a ver edifícios históricos como sistemas de engenharia, não apenas como decoração religiosa.',
+  curiosity:
+      'Muitas catedrais medievais levaram décadas ou séculos para chegar à forma conhecida hoje.',
+  connections: ['Vitrais', 'Idade Média', 'Estruturas', 'Cidades'],
+);
+const artDecoTopic = KnowledgeTopic(
+  id: 'art-deco',
+  eyebrow: 'DESIGN / CIDADE',
+  title: 'POR QUE ART DÉCO PARECE LUXUOSO E MODERNO?',
+  summary:
+      'Geometria, materiais industriais, brilho e referências a máquinas transformaram o Art Déco numa linguagem associada à modernidade e ao glamour entre as décadas de 1920 e 1930.',
+  minutes: 7,
+  tags: ['design', 'arquitetura'],
+  quickTake:
+      'Art Déco mistura modernidade industrial e ornamentação — bem diferente do funcionalismo mais austero associado à Bauhaus.',
+  simpleExplanation:
+      'É como vestir uma máquina com joias geométricas: superfícies lisas, linhas escalonadas, metais e padrões simétricos combinam tecnologia com luxo.',
+  example:
+      'Arranha-céus como o Chrysler Building usam aço, formas radiantes e coroamentos geométricos para transformar a ideia de máquina em espetáculo.',
+  body: [
+    'O nome Art Déco vem da Exposição Internacional de Artes Decorativas e Industriais Modernas realizada em Paris em 1925.',
+    'A linguagem combinava geometria, simetria, materiais brilhantes e referências a velocidade, aviação, automóveis e indústria.',
+    'Arquitetura, mobiliário, cartazes, joias e objetos domésticos adotaram versões diferentes do estilo.',
+    'O movimento absorveu influências de culturas antigas, vanguardas europeias e design de luxo.',
+    'Nos Estados Unidos, edifícios altos transformaram o Déco em símbolo urbano da era dos arranha-céus.',
+    'No Brasil, cinemas, prédios residenciais e edifícios públicos também incorporaram essa estética.',
+  ],
+  remember: [
+    'Art Déco é moderno e ornamental ao mesmo tempo.',
+    'Geometria e simetria são marcas frequentes.',
+    'A estética apareceu em arquitetura e objetos.',
+  ],
+  whyItMatters:
+      'O Déco mostra que modernidade visual não precisou significar abandono completo da ornamentação.',
+  curiosity:
+      'O Cristo Redentor, no Rio de Janeiro, é frequentemente associado ao contexto Art Déco por sua linguagem escultórica simplificada.',
+  connections: ['Bauhaus', 'Arranha-céus', 'Moda', 'Design gráfico'],
+);
+const surrealismoTopic = KnowledgeTopic(
+  id: 'surrealismo',
+  eyebrow: 'ARTE / IMAGINAÇÃO',
+  title: 'POR QUE O SURREALISMO PARECE UM SONHO?',
+  summary:
+      'Surrealistas exploraram sonho, automatismo, desejo e associações inesperadas para desafiar a lógica cotidiana.',
+  minutes: 7,
+  tags: ['arte', 'cultura'],
+  quickTake:
+      'Surrealismo não era só pintar coisas estranhas: foi um movimento artístico e literário interessado em liberar associações fora do controle racional.',
+  simpleExplanation:
+      'Num sonho, objetos familiares podem aparecer em combinações impossíveis. Surrealistas usavam essa lógica para produzir imagens e textos que escapassem da ordem comum.',
+  example:
+      'René Magritte pintava objetos comuns em situações impossíveis, enquanto Salvador Dalí usava técnica extremamente realista para representar cenas absurdas.',
+  body: [
+    'O movimento surrealista se organizou em Paris na década de 1920, especialmente após o manifesto de André Breton.',
+    'Freud e debates sobre inconsciente influenciaram fortemente o imaginário do grupo.',
+    'Automatismo buscava criar sem controle racional excessivo, deixando associações emergirem.',
+    'Pintores, escritores, fotógrafos e cineastas desenvolveram caminhos muito diferentes dentro do movimento.',
+    'O surrealismo também teve dimensões políticas e conflitos internos, não sendo apenas um estilo visual.',
+    'Sua influência atravessou publicidade, cinema, moda, música e cultura pop.',
+  ],
+  remember: [
+    'Surrealismo nasceu também na literatura.',
+    'Sonho e inconsciente foram referências centrais.',
+    'Não existe uma única estética surrealista.',
+  ],
+  whyItMatters:
+      'O surrealismo mudou a forma como cultura visual usa estranhamento, sonho e justaposição para provocar interpretação.',
+  curiosity:
+      'Magritte não gostava de ser tratado apenas como pintor de sonhos; muitas obras funcionam como problemas sobre linguagem e representação.',
+  connections: ['Freud', 'Cinema', 'Dadaísmo', 'Magritte'],
+);
+const popArtTopic = KnowledgeTopic(
+  id: 'pop-art',
+  eyebrow: 'ARTE / CONSUMO',
+  title: 'POR QUE A POP ART TRANSFORMOU PRODUTOS EM ARTE?',
+  summary:
+      'Artistas incorporaram imagens de publicidade, quadrinhos, celebridades e embalagens para discutir a cultura de massa do pós-guerra.',
+  minutes: 7,
+  tags: ['arte', 'cultura'],
+  quickTake:
+      'Pop Art não é simplesmente “arte colorida”: ela aproxima a linguagem dos museus da linguagem de supermercados, revistas e televisão.',
+  simpleExplanation:
+      'Quando uma lata de sopa aparece numa galeria, o objeto comum muda de contexto e faz o público perguntar por que algumas imagens são consideradas arte e outras não.',
+  example:
+      'Andy Warhol repetia retratos e embalagens em séries, imitando a lógica de reprodução industrial e circulação de imagens.',
+  body: [
+    'Pop Art ganhou força no Reino Unido e nos Estados Unidos entre as décadas de 1950 e 1960.',
+    'Publicidade, embalagens, cinema, televisão e quadrinhos forneceram um novo vocabulário visual.',
+    'Artistas questionavam a separação entre cultura “alta” e cultura popular.',
+    'Repetição e técnicas de reprodução mecânica aproximavam obras da produção em massa.',
+    'Roy Lichtenstein ampliava linguagens de quadrinhos; Warhol trabalhava com celebridades e produtos cotidianos.',
+    'O movimento podia celebrar, ironizar ou simplesmente observar a sociedade de consumo — interpretações variam conforme a obra.',
+  ],
+  remember: [
+    'Cultura de massa virou matéria-prima artística.',
+    'Repetição tem papel central em muitas obras.',
+    'Pop Art não é só estética divertida.',
+  ],
+  whyItMatters:
+      'A Pop Art antecipou uma cultura visual em que marcas, celebridades e imagens reproduzidas moldam identidade e consumo.',
+  curiosity:
+      'As famosas latas de sopa de Warhol eram produtos baratos e extremamente comuns nos Estados Unidos.',
+  connections: ['Publicidade', 'Warhol', 'Consumo', 'Design gráfico'],
+);
+const minimalismoTopic = KnowledgeTopic(
+  id: 'minimalismo',
+  eyebrow: 'ARTE / DESIGN',
+  title: 'MENOS É SEMPRE MAIS?',
+  summary:
+      'Minimalismo reduziu elementos, repetição e gesto individual em diferentes campos, mas “menos” nunca é uma regra universal de qualidade.',
+  minutes: 7,
+  tags: ['design', 'arte'],
+  quickTake:
+      'Minimalismo é contexto, não sinônimo de qualquer coisa simples, branca ou vazia.',
+  simpleExplanation:
+      'Retirar elementos pode tornar estrutura, material e proporção mais visíveis — mas remover demais também pode prejudicar função ou expressão.',
+  example:
+      'Uma interface com poucos botões pode ser clara, mas esconder funções importantes em menus invisíveis pode torná-la pior, não melhor.',
+  body: [
+    'Nas artes visuais, o minimalismo ganhou força nos Estados Unidos na década de 1960.',
+    'Artistas exploravam formas simples, repetição, escala e materiais industriais.',
+    'A obra frequentemente enfatizava a relação física entre objeto, espaço e observador.',
+    'Em arquitetura e design, redução formal assumiu trajetórias diferentes e não deve ser confundida automaticamente com o movimento artístico.',
+    'A ideia de “menos é mais” se tornou um slogan popular, mas design eficiente depende de contexto e uso.',
+    'Hoje “minimalista” virou também um rótulo comercial para interfaces, interiores, moda e estilo de vida.',
+  ],
+  remember: [
+    'Minimalismo histórico é mais específico que “visual simples”.',
+    'Redução pode revelar estrutura.',
+    'Menos não é automaticamente melhor.',
+  ],
+  whyItMatters:
+      'Ajuda a avaliar design pela relação entre simplicidade e função, e não apenas pela ausência de elementos visuais.',
+  curiosity:
+      'Donald Judd rejeitava categorias tradicionais como pintura e escultura para muitas das obras associadas ao minimalismo.',
+  connections: ['Modernismo', 'Design', 'Interfaces', 'Arte contemporânea'],
+);
+const grafiteTopic = KnowledgeTopic(
+  id: 'grafite',
+  eyebrow: 'ARTE / CIDADE',
+  title: 'QUANDO O GRAFITE VIROU ARTE?',
+  summary:
+      'Inscrições urbanas existem há séculos, mas graffiti contemporâneo ganhou linguagem própria em cidades como Nova York e depois entrou em galerias, publicidade e debates sobre espaço público.',
+  minutes: 7,
+  tags: ['arte', 'cidade'],
+  quickTake:
+      'A fronteira entre graffiti, arte urbana e vandalismo depende de contexto, autorização, linguagem e disputa sobre quem pode ocupar visualmente a cidade.',
+  simpleExplanation:
+      'Uma mesma técnica pode ser vista como expressão artística num mural autorizado e como intervenção ilegal quando feita sem consentimento em propriedade alheia.',
+  example:
+      'Tags priorizam assinatura e presença; murais podem envolver letras elaboradas, personagens e composições de grande escala.',
+  body: [
+    'Escrever e desenhar em superfícies públicas é prática antiga, mas o graffiti moderno desenvolveu novas formas nas décadas de 1960 e 1970.',
+    'Em Nova York, assinaturas e estilos de letras se espalharam por muros e sistemas de transporte.',
+    'Competição por visibilidade incentivou escala, cor e complexidade crescentes.',
+    'Graffiti se cruzou com hip-hop, embora os dois não sejam exatamente a mesma coisa.',
+    'Museus e galerias passaram a incorporar artistas ligados à rua, gerando debates sobre institucionalização e mercado.',
+    'Cidades continuam negociando limites entre expressão, propriedade, conservação e políticas públicas.',
+  ],
+  remember: [
+    'Graffiti e muralismo não são sinônimos.',
+    'Contexto legal muda a leitura da intervenção.',
+    'A rua é parte central da linguagem.',
+  ],
+  whyItMatters:
+      'Grafite revela como arte, propriedade e espaço público entram em conflito na construção visual das cidades.',
+  curiosity:
+      'O Brasil desenvolveu linguagens urbanas próprias, incluindo a pixação paulistana, que possui estética e história distintas do graffiti internacional.',
+  connections: ['Hip-hop', 'Cidade', 'Arte urbana', 'Espaço público'],
+);
+const hipHopTopic = KnowledgeTopic(
+  id: 'hip-hop',
+  eyebrow: 'MÚSICA / CULTURA',
+  title: 'COMO O HIP-HOP VIROU UMA CULTURA GLOBAL?',
+  summary:
+      'Festas de bairro no Bronx combinaram DJing, MCing, dança e arte urbana; décadas depois, essas práticas se espalharam e foram reinterpretadas no mundo inteiro.',
+  minutes: 8,
+  tags: ['música', 'cultura'],
+  quickTake:
+      'Hip-hop é maior que rap: música, performance, dança, produção e expressão visual fazem parte de uma cultura mais ampla.',
+  simpleExplanation:
+      'DJs começaram a prolongar trechos rítmicos de discos para manter a pista dançando. MCs passaram a falar e rimar sobre essas batidas, e o rap ganhou cada vez mais centralidade.',
+  example:
+      'O uso de dois toca-discos permitia repetir breaks de uma gravação e criar, ao vivo, uma nova base rítmica a partir de discos existentes.',
+  body: [
+    'Hip-hop se desenvolveu no Bronx, em Nova York, durante a década de 1970, em comunidades negras e latinas.',
+    'DJs como Kool Herc ficaram associados à técnica de prolongar breaks rítmicos para dançarinos.',
+    'MCs passaram de animadores de festa a intérpretes de versos cada vez mais elaborados.',
+    'Breakdance, graffiti e práticas de DJ também ganharam identidades próprias dentro da cultura.',
+    'Gravações comerciais ampliaram o alcance do rap e transformaram o gênero numa indústria global.',
+    'Em diferentes países, artistas adaptaram hip-hop a idiomas, políticas, ritmos e experiências locais.',
+  ],
+  remember: [
+    'Hip-hop não é só rap.',
+    'Nasceu em contexto urbano específico do Bronx.',
+    'A cultura se transformou ao circular globalmente.',
+  ],
+  whyItMatters:
+      'Hip-hop é uma das linguagens culturais mais influentes do mundo contemporâneo e conecta música, moda, política, linguagem e cidade.',
+  curiosity:
+      'O termo “break” está ligado aos trechos instrumentais que DJs isolavam e prolongavam nas festas.',
+  connections: ['Graffiti', 'DJ', 'Sampling', 'Reggae'],
+);
+const bossaNovaTopic = KnowledgeTopic(
+  id: 'bossa-nova',
+  eyebrow: 'MÚSICA / BRASIL',
+  title: 'POR QUE A BOSSA NOVA SOA TÃO DIFERENTE?',
+  summary:
+      'Violão sincopado, canto contido e harmonias sofisticadas aproximaram samba e jazz numa linguagem urbana que ganhou projeção internacional.',
+  minutes: 8,
+  tags: ['música', 'brasil'],
+  quickTake:
+      'Bossa nova não é simplesmente “samba lento”: ela reorganiza ritmo, harmonia, timbre e interpretação de forma muito particular.',
+  simpleExplanation:
+      'O violão pode condensar elementos do samba numa batida íntima, enquanto a voz evita o estilo projetado e dramático comum em parte da música popular anterior.',
+  example:
+      'A batida associada a João Gilberto distribui baixos e acordes de modo sincopado, criando sensação de balanço mesmo em volume baixo.',
+  body: [
+    'A bossa nova ganhou forma no Rio de Janeiro no fim da década de 1950.',
+    'João Gilberto foi central para consolidar uma maneira nova de tocar violão e cantar.',
+    'Tom Jobim expandiu a linguagem harmônica em canções que se tornaram repertório internacional.',
+    'Letras de Vinicius de Moraes e outros autores associaram a estética a temas urbanos, amorosos e cotidianos.',
+    'A aproximação com músicos de jazz ampliou sua circulação fora do Brasil.',
+    'O movimento também recebeu críticas por representar sobretudo ambientes de classe média e por não resumir a diversidade da música brasileira.',
+  ],
+  remember: [
+    'Violão sincopado é uma marca central.',
+    'João Gilberto e Tom Jobim foram figuras decisivas.',
+    'Bossa nova dialoga com samba e jazz sem ser idêntica a nenhum dos dois.',
+  ],
+  whyItMatters:
+      'A bossa nova alterou a imagem internacional da música brasileira e influenciou cantores, compositores e instrumentistas em várias partes do mundo.',
+  curiosity:
+      '“Garota de Ipanema” se tornou uma das canções brasileiras mais conhecidas internacionalmente.',
+  connections: ['Samba', 'Jazz', 'Tom Jobim', 'Rio de Janeiro'],
+);
 const cinemaMudoTopic=KnowledgeTopic(id:'cinema-mudo',eyebrow:'CINEMA / REPERTÓRIO',title:'FILME MUDO ERA REALMENTE SILENCIOSO?',summary:'Uma introdução clara ao tema filme mudo era realmente silencioso, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['cinema','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema filme mudo era realmente silencioso, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema filme mudo era realmente silencioso, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
 
 const efeitosVisuaisTopic=KnowledgeTopic(id:'efeitos-visuais',eyebrow:'CINEMA / REPERTÓRIO',title:'COMO O CINEMA CRIA COISAS QUE NÃO EXISTEM?',summary:'Uma introdução clara ao tema como o cinema cria coisas que não existem, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['cinema','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema como o cinema cria coisas que não existem, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema como o cinema cria coisas que não existem, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
