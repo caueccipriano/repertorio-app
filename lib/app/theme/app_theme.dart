@@ -4,13 +4,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
 abstract final class AppTheme {
-  static const darkBackground = Color(0xFF101116);
-  static const darkSurface = Color(0xFF191B22);
-  static const darkSurfaceRaised = Color(0xFF22252E);
-  static const darkText = Color(0xFFF5F2EA);
-  static const darkMuted = Color(0xFFA7A6A1);
-  static const darkLine = Color(0xFF363A46);
-  static const darkBlue = Color(0xFF7595EF);
+  static const darkBackground = Color(0xFF0D0F14);
+  static const darkSurface = Color(0xFF151821);
+  static const darkSurfaceRaised = Color(0xFF1E2330);
+  static const darkText = Color(0xFFF4F1E9);
+  static const darkMuted = Color(0xFFB6B8C2);
+  static const darkLine = Color(0xFF394152);
+  static const darkBlue = Color(0xFF91AAFF);
 
   static ThemeData lightWith({
     bool highContrast = false,
@@ -140,7 +140,30 @@ abstract final class AppTheme {
       ),
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
-          textStyle: GoogleFonts.manrope(fontWeight: FontWeight.w700),
+          backgroundColor: AppColors.blue,
+          foregroundColor: Colors.white,
+          disabledBackgroundColor: AppColors.line,
+          disabledForegroundColor: AppColors.muted,
+          textStyle: GoogleFonts.manrope(
+            fontWeight: FontWeight.w800,
+            letterSpacing: .2,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: AppColors.ink,
+          side: const BorderSide(color: AppColors.line),
+          textStyle: GoogleFonts.manrope(
+            fontWeight: FontWeight.w800,
+            letterSpacing: .2,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
         ),
       ),
       chipTheme: ChipThemeData(
@@ -194,9 +217,9 @@ abstract final class AppTheme {
       scaffoldBackgroundColor: darkBackground,
       colorScheme: const ColorScheme.dark(
         primary: darkBlue,
-        onPrimary: Color(0xFF071332),
-        secondary: Color(0xFFB7C7FF),
-        onSecondary: Color(0xFF09122C),
+        onPrimary: Color(0xFF091229),
+        secondary: Color(0xFFC1CEFF),
+        onSecondary: Color(0xFF091229),
         surface: darkSurface,
         onSurface: darkText,
         outline: darkLine,
@@ -228,19 +251,34 @@ abstract final class AppTheme {
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
           backgroundColor: darkBlue,
-          foregroundColor: const Color(0xFF071332),
-          textStyle: GoogleFonts.manrope(fontWeight: FontWeight.w800),
+          foregroundColor: const Color(0xFF091229),
+          disabledBackgroundColor: darkSurfaceRaised,
+          disabledForegroundColor: darkMuted,
+          textStyle: GoogleFonts.manrope(
+            fontWeight: FontWeight.w800,
+            letterSpacing: .2,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           foregroundColor: darkText,
           side: const BorderSide(color: darkLine),
+          textStyle: GoogleFonts.manrope(
+            fontWeight: FontWeight.w800,
+            letterSpacing: .2,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
         ),
       ),
       chipTheme: ChipThemeData(
         backgroundColor: darkSurface,
-        selectedColor: const Color(0xFF26365E),
+        selectedColor: const Color(0xFF202A45),
         side: const BorderSide(color: darkLine),
         shape: const StadiumBorder(),
         labelStyle: GoogleFonts.manrope(
@@ -250,8 +288,8 @@ abstract final class AppTheme {
         ),
       ),
       navigationBarTheme: NavigationBarThemeData(
-        backgroundColor: const Color(0xFF15171D),
-        indicatorColor: const Color(0xFF26365E),
+        backgroundColor: const Color(0xFF12151C),
+        indicatorColor: const Color(0xFF202A45),
         indicatorShape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
           side: const BorderSide(color: darkLine),
