@@ -1,18 +1,66 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../app/state/app_state.dart';
 import '../../../app/state/app_state_scope.dart';
 import '../../../core/widgets/editorial_frame.dart';
 import '../../../core/widgets/paper_texture.dart';
 import '../../today/data/demo_topics.dart';
+import '../../viral/data/viral_score_focus.dart';
 import 'accessibility_screen.dart';
 import 'appearance_screen.dart';
 import 'backup_screen.dart';
 import 'notification_settings_screen.dart';
 import 'notes_screen.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  static const _historyKey = 'viral_score_history_v1';
+  static const _weakCategoriesKey = 'viral_score_weak_categories_v1';
+  static const _strengthCategoriesKey = 'viral_score_strength_categories_v1';
+  static const _scoreCategories = <String>[
+    'PSICOLOGIA',
+    'HISTÓRIA',
+    'CIÊNCIA',
+    'ECONOMIA',
+    'ARTE & DESIGN',
+    'TECNOLOGIA',
+    'MUNDO',
+    'CULTURA',
+  ];
+
+  List<_ProfileScoreSnapshot> _scoreHistory = const [];
+  List<String> _weakCategories = const [];
+  List<String> _strengthCategories = const [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadScoreProfile();
+  }
+
+  Future<void> _loadScoreProfile() async {
+    final prefs = await SharedPreferences.getInstance();
+    final history = (prefs.getStringList(_historyKey) ?? const <String>[])
+        .map(_ProfileScoreSnapshot.tryParse)
+        .whereType<_ProfileScoreSnapshot>()
+        .toList();
+
+    if (!mounted) return;
+    setState(() {
+      _scoreHistory = history;
+      _weakCategories =
+          prefs.getStringList(_weakCategoriesKey) ?? const <String>[];
+      _strengthCategories =
+          prefs.getStringList(_strengthCategoriesKey) ?? const <String>[];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,19 +69,24 @@ class ProfileScreen extends StatelessWidget {
       ...state.historyTopicIds,
       ...state.completedTopicIds,
     };
-    final categoryCounts = <String, int>{};
+    final categoryCounts = <String, int>{
+      for (final category in _scoreCategories) category: 0,
+    };
 
     for (final id in exploredIds) {
       final topic = topicById(id);
-      if (topic == null) {
-        continue;
-      }
-      for (final tag in topic.tags) {
-        categoryCounts.update(
-          tag,
-          (value) => value + 1,
-          ifAbsent: () => 1,
-        );
+      if (topic == null) continue;
+      final haystack = <String>{
+        ...topic.tags.map(normalizeScoreText),
+        normalizeScoreText(topic.eyebrow),
+        normalizeScoreText(topic.title),
+      }.join(' ');
+
+      for (final category in _scoreCategories) {
+        final tags = scoreTagsForCategory(category);
+        if (tags.any(haystack.contains)) {
+          categoryCounts[category] = (categoryCounts[category] ?? 0) + 1;
+        }
       }
     }
 
@@ -45,10 +98,15 @@ class ProfileScreen extends StatelessWidget {
     final rabbitHoles = state.historyTopicIds.length < 2
         ? 0
         : state.historyTopicIds.length - 1;
-    final rankedAreas = categoryCounts.entries.toList()
+    final rankedAreas = categoryCounts.entries
+        .where((entry) => entry.value > 0)
+        .toList()
       ..sort((a, b) => b.value.compareTo(a.value));
     final strongestArea =
-        rankedAreas.isEmpty ? null : _titleCase(rankedAreas.first.key);
+        rankedAreas.isEmpty ? null : _displayCategory(rankedAreas.first.key);
+    final exploredScoreAreas =
+        categoryCounts.values.where((count) => count > 0).length;
+    final streak = _currentStreak(state.studyDays);
     final now = DateTime.now();
     final monthPrefix =
         '${now.year.toString().padLeft(4, '0')}-${now.month.toString().padLeft(2, '0')}-';
@@ -85,7 +143,15 @@ class ProfileScreen extends StatelessWidget {
                         color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
                 ),
-                const SizedBox(height: 26),
+                const SizedBox(height: 24),
+                if (_scoreHistory.isNotEmpty) ...[
+                  _ScorePortrait(
+                    history: _scoreHistory,
+                    strengths: _strengthCategories,
+                    weakCategories: _weakCategories,
+                  ),
+                  const SizedBox(height: 14),
+                ],
                 _LibraryStats(
                   read: totalRead,
                   saved: totalSaved,
@@ -95,7 +161,7 @@ class ProfileScreen extends StatelessWidget {
                   const SizedBox(height: 14),
                   _KnowledgeIdentityCard(
                     area: strongestArea,
-                    exploredAreas: categoryCounts.length,
+                    exploredAreas: exploredScoreAreas,
                     started: totalStarted,
                   ),
                 ],
@@ -107,13 +173,13 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 30),
                 Text(
-                  'seu mapa de assuntos',
+                  'seu mapa de repertório',
                   style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                         fontSize: 31,
                       ),
                 ),
                 const SizedBox(height: 16),
-                if (categoryCounts.isEmpty)
+                if (categoryCounts.values.every((count) => count == 0))
                   const _EmptyKnowledgeProfile()
                 else
                   ..._categoryRows(context, categoryCounts),
@@ -121,6 +187,17 @@ class ProfileScreen extends StatelessWidget {
                 _ReadingRecord(
                   started: totalStarted,
                   completed: totalRead,
+                ),
+                const SizedBox(height: 26),
+                _AchievementsCard(
+                  achievements: _achievements(
+                    scoreRounds: _scoreHistory.length,
+                    streak: streak,
+                    completed: totalRead,
+                    started: totalStarted,
+                    exploredAreas: exploredScoreAreas,
+                    connections: state.personalConnections.length,
+                  ),
                 ),
                 const SizedBox(height: 30),
                 _SectionEyebrow(
@@ -165,27 +242,502 @@ class ProfileScreen extends StatelessWidget {
       1,
       (max, value) => value > max ? value : max,
     );
-    final sorted = categoryCounts.entries.toList()
-      ..sort((a, b) => b.value.compareTo(a.value));
 
-    return sorted
+    return _scoreCategories
         .map(
-          (entry) => _ProgressRow(
-            label: _titleCase(entry.key),
-            value: entry.value / maxCount,
-            count: entry.value,
+          (category) => _ProgressRow(
+            label: _displayCategory(category),
+            value: (categoryCounts[category] ?? 0) / maxCount,
+            count: categoryCounts[category] ?? 0,
           ),
         )
         .toList();
   }
 
-  String _titleCase(String value) {
-    if (value.isEmpty) {
-      return value;
+  String _displayCategory(String value) {
+    return switch (value) {
+      'ARTE & DESIGN' => 'Arte & design',
+      'CIÊNCIA' => 'Ciência',
+      'HISTÓRIA' => 'História',
+      'PSICOLOGIA' => 'Psicologia',
+      'ECONOMIA' => 'Economia',
+      'TECNOLOGIA' => 'Tecnologia',
+      'MUNDO' => 'Mundo',
+      'CULTURA' => 'Cultura',
+      _ => value,
+    };
+  }
+
+  int _currentStreak(Set<String> studyDays) {
+    if (studyDays.isEmpty) return 0;
+    final days = studyDays
+        .map(DateTime.tryParse)
+        .whereType<DateTime>()
+        .map((date) => DateTime(date.year, date.month, date.day))
+        .toSet();
+    var cursor = DateTime.now();
+    cursor = DateTime(cursor.year, cursor.month, cursor.day);
+
+    if (!days.contains(cursor)) {
+      cursor = cursor.subtract(const Duration(days: 1));
+      if (!days.contains(cursor)) return 0;
     }
-    return '${value[0].toUpperCase()}${value.substring(1)}';
+
+    var streak = 0;
+    while (days.contains(cursor)) {
+      streak++;
+      cursor = cursor.subtract(const Duration(days: 1));
+    }
+    return streak;
+  }
+
+  List<_AchievementData> _achievements({
+    required int scoreRounds,
+    required int streak,
+    required int completed,
+    required int started,
+    required int exploredAreas,
+    required int connections,
+  }) {
+    return <_AchievementData>[
+      _AchievementData(
+        icon: Icons.bolt_rounded,
+        title: 'primeira faísca',
+        subtitle: 'fez o Repertório Score',
+        unlocked: scoreRounds >= 1,
+      ),
+      _AchievementData(
+        icon: Icons.timeline_rounded,
+        title: 'em evolução',
+        subtitle: '3 rodadas de Score',
+        unlocked: scoreRounds >= 3,
+      ),
+      _AchievementData(
+        icon: Icons.local_fire_department_outlined,
+        title: 'ritmo vivo',
+        subtitle: '3 dias seguidos',
+        unlocked: streak >= 3,
+      ),
+      _AchievementData(
+        icon: Icons.auto_stories_outlined,
+        title: '10 assuntos',
+        subtitle: 'leu ou iniciou 10',
+        unlocked: completed >= 10 || started >= 10,
+      ),
+      _AchievementData(
+        icon: Icons.hub_outlined,
+        title: 'conector',
+        subtitle: '3 conexões próprias',
+        unlocked: connections >= 3,
+      ),
+      _AchievementData(
+        icon: Icons.public_rounded,
+        title: 'radar amplo',
+        subtitle: '6 das 8 áreas tocadas',
+        unlocked: exploredAreas >= 6,
+      ),
+    ];
   }
 }
+
+class _ScorePortrait extends StatelessWidget {
+  const _ScorePortrait({
+    required this.history,
+    required this.strengths,
+    required this.weakCategories,
+  });
+
+  final List<_ProfileScoreSnapshot> history;
+  final List<String> strengths;
+  final List<String> weakCategories;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+    final latest = history.first;
+    final previous = history.length > 1 ? history[1] : null;
+    final delta = previous == null ? null : latest.score - previous.score;
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(18, 18, 18, 16),
+      decoration: BoxDecoration(
+        color: colors.surface,
+        border: Border.all(color: colors.primary, width: 1.2),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text(
+                'MEU REPERTÓRIO',
+                style: textTheme.labelLarge?.copyWith(
+                  color: colors.primary,
+                  fontSize: 9,
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: 1.2,
+                ),
+              ),
+              const Spacer(),
+              Text(
+                '${history.length} rodada${history.length == 1 ? '' : 's'}',
+                style: textTheme.labelSmall?.copyWith(
+                  color: colors.onSurfaceVariant,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 14),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                '${latest.score}',
+                style: textTheme.displayLarge?.copyWith(
+                  color: colors.primary,
+                  fontSize: 72,
+                  height: .86,
+                  letterSpacing: -4.8,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+              if (delta != null) ...[
+                const SizedBox(width: 10),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 5),
+                  child: Text(
+                    '${delta >= 0 ? '+' : ''}$delta',
+                    style: textTheme.titleMedium?.copyWith(
+                      color: delta >= 0
+                          ? colors.primary
+                          : colors.onSurfaceVariant,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ),
+              ],
+            ],
+          ),
+          const SizedBox(height: 7),
+          Text(
+            latest.archetype,
+            style: textTheme.titleLarge?.copyWith(
+              fontWeight: FontWeight.w900,
+              letterSpacing: -.45,
+            ),
+          ),
+          const SizedBox(height: 16),
+          SizedBox(
+            height: 88,
+            child: CustomPaint(
+              painter: _ProfileScoreChartPainter(
+                scores: history.reversed.map((item) => item.score).toList(),
+                lineColor: colors.primary,
+                guideColor: colors.outline,
+                fillColor: colors.primaryContainer.withValues(alpha: .38),
+              ),
+              child: const SizedBox.expand(),
+            ),
+          ),
+          if (strengths.isNotEmpty || weakCategories.isNotEmpty) ...[
+            const SizedBox(height: 16),
+            Divider(height: 1, color: colors.outline),
+            const SizedBox(height: 14),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                ...strengths.take(3).map(
+                  (item) => _ProfileSignalChip(
+                    label: 'forte · ${_profileCategoryLabel(item)}',
+                    positive: true,
+                  ),
+                ),
+                ...weakCategories.take(2).map(
+                  (item) => _ProfileSignalChip(
+                    label: 'reforçar · ${_profileCategoryLabel(item)}',
+                    positive: false,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _ProfileSignalChip extends StatelessWidget {
+  const _ProfileSignalChip({
+    required this.label,
+    required this.positive,
+  });
+
+  final String label;
+  final bool positive;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+      decoration: BoxDecoration(
+        color: positive
+            ? colors.primaryContainer
+            : colors.surfaceContainerHighest,
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: colors.outline),
+      ),
+      child: Text(
+        label,
+        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+              color: positive
+                  ? colors.onPrimaryContainer
+                  : colors.onSurfaceVariant,
+              fontWeight: FontWeight.w800,
+              fontSize: 10,
+            ),
+      ),
+    );
+  }
+}
+
+class _ProfileScoreChartPainter extends CustomPainter {
+  _ProfileScoreChartPainter({
+    required this.scores,
+    required this.lineColor,
+    required this.guideColor,
+    required this.fillColor,
+  });
+
+  final List<int> scores;
+  final Color lineColor;
+  final Color guideColor;
+  final Color fillColor;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (scores.isEmpty) return;
+    final baseline = size.height - 8;
+    final guide = Paint()
+      ..color = guideColor
+      ..strokeWidth = 1;
+    canvas.drawLine(Offset(0, baseline), Offset(size.width, baseline), guide);
+
+    double yFor(int score) {
+      final progress = ((score - 390) / 440).clamp(0.0, 1.0);
+      return baseline - progress * (baseline - 6);
+    }
+
+    if (scores.length == 1) {
+      canvas.drawCircle(
+        Offset(size.width / 2, yFor(scores.first)),
+        4,
+        Paint()..color = lineColor,
+      );
+      return;
+    }
+
+    final step = size.width / (scores.length - 1);
+    final path = Path();
+    final fill = Path();
+
+    for (var i = 0; i < scores.length; i++) {
+      final point = Offset(step * i, yFor(scores[i]));
+      if (i == 0) {
+        path.moveTo(point.dx, point.dy);
+        fill.moveTo(point.dx, baseline);
+        fill.lineTo(point.dx, point.dy);
+      } else {
+        path.lineTo(point.dx, point.dy);
+        fill.lineTo(point.dx, point.dy);
+      }
+    }
+
+    fill
+      ..lineTo(size.width, baseline)
+      ..close();
+
+    canvas.drawPath(fill, Paint()..color = fillColor);
+    canvas.drawPath(
+      path,
+      Paint()
+        ..color = lineColor
+        ..strokeWidth = 3
+        ..strokeCap = StrokeCap.round
+        ..strokeJoin = StrokeJoin.round
+        ..style = PaintingStyle.stroke,
+    );
+
+    final dot = Paint()..color = lineColor;
+    for (var i = 0; i < scores.length; i++) {
+      canvas.drawCircle(Offset(step * i, yFor(scores[i])), 3.2, dot);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _ProfileScoreChartPainter oldDelegate) {
+    return oldDelegate.scores != scores ||
+        oldDelegate.lineColor != lineColor ||
+        oldDelegate.guideColor != guideColor ||
+        oldDelegate.fillColor != fillColor;
+  }
+}
+
+class _AchievementsCard extends StatelessWidget {
+  const _AchievementsCard({required this.achievements});
+
+  final List<_AchievementData> achievements;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    final unlocked = achievements.where((item) => item.unlocked).length;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _SectionEyebrow(
+          title: 'conquistas',
+          subtitle: '$unlocked de ${achievements.length} desbloqueadas',
+        ),
+        const SizedBox(height: 12),
+        LayoutBuilder(
+          builder: (context, constraints) {
+            final width = constraints.maxWidth >= 420
+                ? (constraints.maxWidth - 10) / 2
+                : constraints.maxWidth;
+            return Wrap(
+              spacing: 10,
+              runSpacing: 10,
+              children: achievements
+                  .map(
+                    (item) => SizedBox(
+                      width: width,
+                      child: Container(
+                        padding: const EdgeInsets.all(13),
+                        decoration: BoxDecoration(
+                          color: item.unlocked
+                              ? colors.primaryContainer
+                              : colors.surface,
+                          border: Border.all(color: colors.outline),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(
+                              item.icon,
+                              size: 21,
+                              color: item.unlocked
+                                  ? colors.primary
+                                  : colors.onSurfaceVariant.withValues(alpha: .45),
+                            ),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    item.title,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleSmall
+                                        ?.copyWith(
+                                          fontWeight: FontWeight.w900,
+                                        ),
+                                  ),
+                                  const SizedBox(height: 2),
+                                  Text(
+                                    item.subtitle,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall
+                                        ?.copyWith(
+                                          color: colors.onSurfaceVariant,
+                                          fontSize: 10.5,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            if (item.unlocked)
+                              Icon(
+                                Icons.check_circle_rounded,
+                                color: colors.primary,
+                                size: 18,
+                              ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
+                  .toList(),
+            );
+          },
+        ),
+      ],
+    );
+  }
+}
+
+class _AchievementData {
+  const _AchievementData({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.unlocked,
+  });
+
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final bool unlocked;
+}
+
+class _ProfileScoreSnapshot {
+  const _ProfileScoreSnapshot({
+    required this.score,
+    required this.date,
+    required this.archetype,
+  });
+
+  final int score;
+  final DateTime date;
+  final String archetype;
+
+  static _ProfileScoreSnapshot? tryParse(String raw) {
+    final parts = raw.split('|');
+    if (parts.length < 3) return null;
+    final score = int.tryParse(parts[0]);
+    final date = DateTime.tryParse(parts[1]);
+    if (score == null || date == null) return null;
+    return _ProfileScoreSnapshot(
+      score: score,
+      date: date,
+      archetype: parts.sublist(2).join('|'),
+    );
+  }
+}
+
+String _profileCategoryLabel(String value) {
+  return switch (value) {
+    'ARTE & DESIGN' => 'arte & design',
+    'CIÊNCIA' => 'ciência',
+    'HISTÓRIA' => 'história',
+    'PSICOLOGIA' => 'psicologia',
+    'ECONOMIA' => 'economia',
+    'TECNOLOGIA' => 'tecnologia',
+    'MUNDO' => 'mundo',
+    'CULTURA' => 'cultura',
+    _ => value.toLowerCase(),
+  };
+}
+
 
 class _KnowledgeIdentityCard extends StatelessWidget {
   const _KnowledgeIdentityCard({
