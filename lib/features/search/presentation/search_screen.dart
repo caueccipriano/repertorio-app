@@ -114,7 +114,7 @@ class _SearchScreenState extends State<SearchScreen> {
           children: [
             TextField(
               controller: _controller,
-              autofocus: true,
+              autofocus: false,
               onChanged: (value) => setState(() => _query = value),
               decoration: InputDecoration(
                 hintText: 'Roma, vinho, Bauhaus, inflação…',
