@@ -121,12 +121,11 @@ class _ArticleScreenState extends State<ArticleScreen> {
           titleSpacing: 0,
           centerTitle: true,
           leadingWidth: 56,
-          leading: InkWell(
+          leading: IconButton(
             key: const ValueKey('reader-back'),
-            onTap: _goBack,
-            child: const Center(
-              child: Text('‹', style: TextStyle(fontSize: 38, fontWeight: FontWeight.w400, height: 1)),
-            ),
+            tooltip: 'Voltar',
+            onPressed: _goBack,
+            icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 19),
           ),
           title: Center(
             child: Text(
@@ -136,31 +135,34 @@ class _ArticleScreenState extends State<ArticleScreen> {
           ),
           actions: [
             SizedBox(
-              width: 64,
+              width: 56,
               height: 56,
-              child: InkWell(
+              child: IconButton(
                 key: const ValueKey('reader-audio'),
-                onTap: () => _playAudioOrSpeech(audioMedia),
-                child: Center(
-                  child: Text(
-                    '▶',
-                    style: TextStyle(
-                      color: palette.text,
-                      fontSize: 23,
-                      height: 1,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
+                tooltip: audioMedia == null ? 'Ouvir leitura' : 'Ouvir áudio',
+                onPressed: () => _playAudioOrSpeech(audioMedia),
+                icon: Icon(
+                  Icons.headphones_rounded,
+                  color: palette.text,
+                  size: 22,
                 ),
               ),
             ),
             SizedBox(
               width: 56,
               height: 56,
-              child: InkWell(
+              child: IconButton(
                 key: const ValueKey('reader-settings'),
-                onTap: () => showReaderControls(context),
-                child: Center(child: Text('Aa', style: TextStyle(color: palette.text, fontSize: 16, fontWeight: FontWeight.w800))),
+                tooltip: 'Ajustar leitura',
+                onPressed: () => showReaderControls(context),
+                icon: Text(
+                  'Aa',
+                  style: TextStyle(
+                    color: palette.text,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
               ),
             ),
           ],
