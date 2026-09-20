@@ -92,7 +92,7 @@ class _TodayScreenState extends State<TodayScreen> {
                 _LibraryStatusBar(
                   read: state.completedTopicIds.length,
                 ),
-                const ViralScoreHomeCard(),
+                ViralScoreHomeCard(onScoreUpdated: _loadScoreFocus),
                 const SizedBox(height: 16),
                 _FeaturedKnowledge(
                   topic: featured,
