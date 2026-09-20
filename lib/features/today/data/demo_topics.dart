@@ -2285,22 +2285,270 @@ const bossaNovaTopic = KnowledgeTopic(
       '“Garota de Ipanema” se tornou uma das canções brasileiras mais conhecidas internacionalmente.',
   connections: ['Samba', 'Jazz', 'Tom Jobim', 'Rio de Janeiro'],
 );
-const cinemaMudoTopic=KnowledgeTopic(id:'cinema-mudo',eyebrow:'CINEMA / REPERTÓRIO',title:'FILME MUDO ERA REALMENTE SILENCIOSO?',summary:'Uma introdução clara ao tema filme mudo era realmente silencioso, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['cinema','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema filme mudo era realmente silencioso, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema filme mudo era realmente silencioso, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const efeitosVisuaisTopic=KnowledgeTopic(id:'efeitos-visuais',eyebrow:'CINEMA / REPERTÓRIO',title:'COMO O CINEMA CRIA COISAS QUE NÃO EXISTEM?',summary:'Uma introdução clara ao tema como o cinema cria coisas que não existem, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['cinema','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema como o cinema cria coisas que não existem, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema como o cinema cria coisas que não existem, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const modaJeansTopic=KnowledgeTopic(id:'moda-jeans',eyebrow:'MODA / REPERTÓRIO',title:'COMO O JEANS VIROU UMA ROUPA UNIVERSAL?',summary:'Uma introdução clara ao tema como o jeans virou uma roupa universal, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['moda','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema como o jeans virou uma roupa universal, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema como o jeans virou uma roupa universal, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const tenisTopic=KnowledgeTopic(id:'tenis',eyebrow:'MODA / REPERTÓRIO',title:'COMO O TÊNIS SAIU DO ESPORTE PARA DOMINAR A MODA?',summary:'Uma introdução clara ao tema como o tênis saiu do esporte para dominar a moda, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['moda','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema como o tênis saiu do esporte para dominar a moda, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema como o tênis saiu do esporte para dominar a moda, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const fermentacaoTopic=KnowledgeTopic(id:'fermentacao',eyebrow:'GASTRONOMIA / REPERTÓRIO',title:'O QUE A FERMENTAÇÃO FAZ COM A COMIDA?',summary:'Uma introdução clara ao tema o que a fermentação faz com a comida, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['gastronomia','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema o que a fermentação faz com a comida, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema o que a fermentação faz com a comida, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const chocolateTopic=KnowledgeTopic(id:'chocolate',eyebrow:'GASTRONOMIA / REPERTÓRIO',title:'POR QUE CHOCOLATE NÃO TEM GOSTO DE CACAU CRU?',summary:'Uma introdução clara ao tema por que chocolate não tem gosto de cacau cru, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['gastronomia','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema por que chocolate não tem gosto de cacau cru, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema por que chocolate não tem gosto de cacau cru, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const paoTopic=KnowledgeTopic(id:'pao',eyebrow:'GASTRONOMIA / REPERTÓRIO',title:'POR QUE O PÃO CRESCE?',summary:'Uma introdução clara ao tema por que o pão cresce, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['gastronomia','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema por que o pão cresce, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema por que o pão cresce, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const umamiTopic=KnowledgeTopic(id:'umami',eyebrow:'GASTRONOMIA / REPERTÓRIO',title:'O QUE É UMAMI?',summary:'Uma introdução clara ao tema o que é umami, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['gastronomia','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema o que é umami, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema o que é umami, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
+const cinemaMudoTopic = KnowledgeTopic(
+  id: 'cinema-mudo',
+  eyebrow: 'CINEMA / HISTÓRIA',
+  title: 'FILME MUDO ERA REALMENTE SILENCIOSO?',
+  summary:
+      'Os filmes não traziam diálogo sincronizado gravado, mas sessões frequentemente tinham música ao vivo, efeitos sonoros e até narradores.',
+  minutes: 7,
+  tags: ['cinema', 'história'],
+  quickTake:
+      '“Mudo” descreve a ausência de som sincronizado na própria cópia do filme — não uma sala necessariamente silenciosa.',
+  simpleExplanation:
+      'O filme projetado podia não carregar uma faixa de áudio, mas o cinema era uma experiência ao vivo: pianistas, pequenos conjuntos ou orquestras acompanhavam a projeção.',
+  example:
+      'Uma cena de perseguição podia receber música acelerada tocada ao vivo para aumentar tensão e ritmo.',
+  body: [
+    'O cinema surgiu no fim do século XIX antes de existir uma solução industrial estável para gravar e reproduzir imagem e som perfeitamente sincronizados.',
+    'A música ao vivo ajudava a criar atmosfera, ritmo e continuidade durante as sessões.',
+    'Algumas salas utilizavam efeitos sonoros ou profissionais que narravam e explicavam acontecimentos.',
+    'Intertítulos exibiam diálogos, informações e transições entre cenas.',
+    'Diretores e atores desenvolveram linguagem visual sofisticada com montagem, enquadramento e performance corporal.',
+    'A partir do fim da década de 1920, sistemas de som sincronizado se tornaram comercialmente dominantes e transformaram a indústria.',
+  ],
+  remember: [
+    'Filme mudo podia ter muito som na sala.',
+    'Intertítulos não substituíam toda a narrativa visual.',
+    'A chegada do som mudou produção e atuação.',
+  ],
+  whyItMatters:
+      'Entender o cinema mudo mostra que linguagem cinematográfica não depende apenas de diálogo e ajuda a perceber como imagem e montagem contam histórias.',
+  curiosity:
+      'Em diferentes países, narradores ao vivo podiam ter papel tão importante que o mesmo filme ganhava experiências bastante diferentes conforme a sessão.',
+  connections: ['Montagem', 'Chaplin', 'Música', 'Som no cinema'],
+);
+const efeitosVisuaisTopic = KnowledgeTopic(
+  id: 'efeitos-visuais',
+  eyebrow: 'CINEMA / TECNOLOGIA',
+  title: 'COMO O CINEMA CRIA COISAS QUE NÃO EXISTEM?',
+  summary:
+      'Miniaturas, composição, maquiagem, telas verdes, computação gráfica e captura de movimento combinam imagens reais e artificiais para construir cenas impossíveis.',
+  minutes: 8,
+  tags: ['cinema', 'tecnologia'],
+  quickTake:
+      'Efeito visual não é sinônimo de CGI. Cinema usa truques ópticos e físicos desde muito antes dos computadores.',
+  simpleExplanation:
+      'Uma cena final pode ser uma colagem de muitas camadas: ator filmado em estúdio, cenário parcial, céu digital, partículas, correção de cor e objetos simulados.',
+  example:
+      'Uma cidade futurista pode misturar uma rua real, extensão digital de prédios e veículos criados por computador numa única imagem.',
+  body: [
+    'Georges Méliès já utilizava cortes, sobreposição e cenários para criar ilusões no início do cinema.',
+    'Miniaturas e matte paintings permitiram representar espaços grandes demais ou inexistentes.',
+    'Chroma key isola uma cor de fundo para combinar atores com outras imagens.',
+    'CGI cria objetos e ambientes tridimensionais por modelagem, iluminação, animação e renderização.',
+    'Captura de movimento registra atuação humana para orientar personagens digitais.',
+    'Grandes produções misturam efeitos práticos e digitais porque cada técnica resolve problemas diferentes.',
+  ],
+  remember: [
+    'VFX existia antes de computadores.',
+    'CGI é apenas uma categoria de efeito.',
+    'Imagem final costuma combinar muitas camadas.',
+  ],
+  whyItMatters:
+      'Conhecer VFX muda a forma de assistir a filmes: você começa a perceber cinema como integração entre fotografia, design, atuação e computação.',
+  curiosity:
+      'Algumas das melhores cenas “digitais” funcionam justamente porque objetos reais, luz física e efeitos práticos fornecem referências convincentes ao olho.',
+  connections: ['CGI', 'Montagem', 'Fotografia', 'Games'],
+);
+const modaJeansTopic = KnowledgeTopic(
+  id: 'moda-jeans',
+  eyebrow: 'MODA / HISTÓRIA',
+  title: 'COMO O JEANS VIROU UMA ROUPA UNIVERSAL?',
+  summary:
+      'Uma peça ligada ao trabalho no século XIX atravessou cinema, juventude, contracultura e indústria global até virar básico do vestuário.',
+  minutes: 7,
+  tags: ['moda', 'cultura'],
+  quickTake:
+      'Jeans não virou universal apenas por resistência do tecido: símbolos de trabalho, rebeldia, juventude e consumo foram se acumulando ao redor da peça.',
+  simpleExplanation:
+      'Uma roupa criada para durar em atividades físicas ganhou novos significados quando passou a aparecer em estrelas de cinema, músicos e movimentos juvenis.',
+  example:
+      'Na metade do século XX, atores usando denim em filmes ajudaram a associar jeans a juventude e rebeldia fora do ambiente de trabalho.',
+  body: [
+    'Tecidos de algodão resistentes já existiam antes da calça jeans moderna.',
+    'No século XIX, Levi Strauss e Jacob Davis ficaram ligados ao uso de rebites metálicos para reforçar pontos de tensão em roupas de trabalho.',
+    'O denim foi associado a trabalhadores, mineradores e atividades rurais.',
+    'No século XX, cinema e cultura juvenil ampliaram seu significado simbólico.',
+    'Lavagens, cortes e tratamentos transformaram o jeans em produto de moda com enorme variedade.',
+    'Hoje a cadeia do denim envolve produção global e debates sobre consumo de água, químicos, trabalho e sustentabilidade.',
+  ],
+  remember: [
+    'Jeans começou fortemente ligado a roupa de trabalho.',
+    'Cinema ajudou a transformar sua imagem cultural.',
+    'Denim virou plataforma para muitas modas diferentes.',
+  ],
+  whyItMatters:
+      'A história do jeans mostra como objetos cotidianos mudam de significado conforme atravessam trabalho, mídia, identidade e consumo.',
+  curiosity:
+      'O índigo tradicional tinge principalmente a superfície dos fios, ajudando a explicar o desbotamento característico do denim.',
+  connections: ['Moda', 'Cinema', 'Trabalho', 'Cultura jovem'],
+);
+const tenisTopic = KnowledgeTopic(
+  id: 'tenis',
+  eyebrow: 'MODA / DESIGN',
+  title: 'COMO O TÊNIS SAIU DO ESPORTE PARA DOMINAR A MODA?',
+  summary:
+      'Tecnologia esportiva, cultura juvenil, basquete, corrida, hip-hop e colaborações transformaram calçados atléticos em objetos de identidade e desejo.',
+  minutes: 8,
+  tags: ['moda', 'design'],
+  quickTake:
+      'Sneakers deixaram de ser apenas equipamento porque marcas e comunidades passaram a atribuir história, status e linguagem visual a modelos específicos.',
+  simpleExplanation:
+      'Um tênis pode resolver um problema físico — amortecer corrida — e ao mesmo tempo comunicar pertencimento cultural, gosto e estilo.',
+  example:
+      'Modelos ligados a atletas famosos ultrapassaram quadras e passaram a ser usados como parte de looks cotidianos e coleções.',
+  body: [
+    'Calçados com sola de borracha ganharam espaço em esportes e lazer a partir do fim do século XIX e início do XX.',
+    'Basquete, tênis e corrida impulsionaram tecnologias e silhuetas específicas.',
+    'A cultura hip-hop ajudou a transformar determinados modelos em símbolos de rua e identidade.',
+    'Associações com atletas e celebridades criaram narrativas que ultrapassavam desempenho técnico.',
+    'Edições limitadas e colaborações alimentaram o mercado de colecionadores e revenda.',
+    'Hoje tênis mistura ergonomia, materiais, branding, nostalgia e moda em escala global.',
+  ],
+  remember: [
+    'Função esportiva e símbolo cultural coexistem.',
+    'Comunidades ajudaram a transformar modelos em ícones.',
+    'Escassez e colaboração influenciam valor percebido.',
+  ],
+  whyItMatters:
+      'Tênis é um exemplo claro de como design funcional pode virar linguagem cultural e mercado de colecionismo.',
+  curiosity:
+      'Alguns modelos originalmente criados para desempenho décadas atrás retornam como itens de moda quase sem alteração estrutural.',
+  connections: ['Hip-hop', 'Basquete', 'Design de produto', 'Streetwear'],
+);
+const fermentacaoTopic = KnowledgeTopic(
+  id: 'fermentacao',
+  eyebrow: 'GASTRONOMIA / CIÊNCIA',
+  title: 'O QUE A FERMENTAÇÃO FAZ COM A COMIDA?',
+  summary:
+      'Microrganismos transformam açúcares e outras moléculas, produzindo ácidos, gases, álcool e compostos aromáticos que mudam sabor, textura e conservação.',
+  minutes: 8,
+  tags: ['gastronomia', 'ciência'],
+  quickTake:
+      'Fermentação não é uma técnica única: pão, iogurte, vinho, queijo e kimchi envolvem microrganismos e processos diferentes.',
+  simpleExplanation:
+      'Leveduras e bactérias “comem” moléculas disponíveis e liberam outras substâncias. Essas novas moléculas transformam o alimento.',
+  example:
+      'No pão, leveduras produzem dióxido de carbono, que fica preso na massa e cria bolhas responsáveis por parte do crescimento.',
+  body: [
+    'Fermentação é um conjunto de processos metabólicos realizados por microrganismos em diferentes condições.',
+    'Leveduras podem converter açúcares em álcool e dióxido de carbono.',
+    'Bactérias ácido-láticas transformam açúcares em ácido lático, acidificando alimentos.',
+    'Acidez, álcool e competição microbiana podem dificultar crescimento de organismos indesejados e aumentar conservação.',
+    'Tempo, temperatura, sal, oxigênio e composição do alimento alteram quais microrganismos dominam.',
+    'Muitos alimentos fermentados dependem de comunidades microbianas complexas e tradições locais.',
+  ],
+  remember: [
+    'Fermentação muda sabor e conservação.',
+    'Microrganismos diferentes produzem resultados diferentes.',
+    'Controle de ambiente é fundamental.',
+  ],
+  whyItMatters:
+      'Fermentação conecta gastronomia a microbiologia e ajuda a entender alimentos presentes em praticamente todas as culturas.',
+  curiosity:
+      'Café, cacau e chá podem passar por etapas chamadas de fermentação ou processamento microbiano antes mesmo de chegarem à cozinha.',
+  connections: ['Pão', 'Vinho', 'Microbioma', 'Queijo'],
+);
+const chocolateTopic = KnowledgeTopic(
+  id: 'chocolate',
+  eyebrow: 'GASTRONOMIA / PROCESSO',
+  title: 'POR QUE CHOCOLATE NÃO TEM GOSTO DE CACAU CRU?',
+  summary:
+      'Fermentação, secagem, torra, moagem, mistura e cristalização transformam sementes de cacau intensamente amargas em chocolate.',
+  minutes: 8,
+  tags: ['gastronomia', 'ciência'],
+  quickTake:
+      'O sabor de chocolate não existe pronto dentro da fruta: ele é construído em várias etapas químicas e sensoriais.',
+  simpleExplanation:
+      'É parecido com café: a matéria-prima crua não tem o mesmo aroma da bebida final porque fermentação e calor criam novos compostos.',
+  example:
+      'Durante a torra, reações entre açúcares e aminoácidos geram centenas de moléculas aromáticas associadas ao sabor de chocolate.',
+  body: [
+    'Sementes de cacau são retiradas de frutos cercadas por polpa rica em açúcares.',
+    'A fermentação altera a semente e cria precursores importantes para aroma e sabor.',
+    'Após secagem, as amêndoas são torradas, etapa que intensifica aromas por reações químicas complexas.',
+    'Moagem transforma nibs em uma pasta rica em gordura chamada liquor ou massa de cacau.',
+    'Chocolate combina proporções diferentes de sólidos de cacau, manteiga de cacau, açúcar e, em alguns tipos, leite.',
+    'Temperagem controla formas cristalinas da manteiga de cacau para obter brilho, textura firme e boa quebra.',
+  ],
+  remember: [
+    'Fermentação começa a construir o sabor.',
+    'Torra cria muitos aromas.',
+    'Temperagem controla textura e brilho.',
+  ],
+  whyItMatters:
+      'O chocolate mostra como processamento transforma completamente uma matéria-prima e como química aparece em experiências sensoriais cotidianas.',
+  curiosity:
+      'A manteiga de cacau pode cristalizar em diferentes formas; apenas algumas produzem o acabamento desejado em um bom chocolate.',
+  connections: ['Fermentação', 'Cacau', 'Torra', 'Cristalização'],
+);
+const paoTopic = KnowledgeTopic(
+  id: 'pao',
+  eyebrow: 'GASTRONOMIA / CIÊNCIA',
+  title: 'POR QUE O PÃO CRESCE?',
+  summary:
+      'Fermentação produz gás, e uma rede de proteínas e amido ajuda a prender essas bolhas enquanto a massa se expande e depois se fixa no forno.',
+  minutes: 7,
+  tags: ['gastronomia', 'ciência'],
+  quickTake:
+      'Fermento produz gás, mas o crescimento só funciona porque a estrutura da massa consegue reter esse gás.',
+  simpleExplanation:
+      'Pense num balão microscópico dentro da massa: levedura produz dióxido de carbono e a rede formada principalmente por glúten ajuda a impedir que ele escape imediatamente.',
+  example:
+      'Ao sovar uma massa de trigo, proteínas se organizam numa rede mais elástica capaz de segurar bolhas durante a fermentação.',
+  body: [
+    'Farinha de trigo contém proteínas que podem formar glúten quando hidratadas e trabalhadas.',
+    'Leveduras metabolizam açúcares e liberam dióxido de carbono e outros compostos.',
+    'As bolhas de gás ficam presas na estrutura da massa e aumentam de volume.',
+    'Durante o forno, gases se expandem e a atividade da levedura aumenta por um curto período antes de cessar pelo calor.',
+    'Proteínas se fixam e amidos gelatinizam, estabilizando a estrutura do miolo.',
+    'Na superfície, perda de água e reações de escurecimento formam crosta e aromas.',
+  ],
+  remember: [
+    'Gás sozinho não basta: precisa ser retido.',
+    'Glúten ajuda a criar estrutura em pães de trigo.',
+    'Calor fixa o formato final.',
+  ],
+  whyItMatters:
+      'Pão é um laboratório cotidiano de microbiologia, química de proteínas, gases e transferência de calor.',
+  curiosity:
+      'Pães de fermentação natural usam comunidades de leveduras e bactérias, por isso acidez e aroma diferem de massas feitas apenas com fermento comercial.',
+  connections: ['Fermentação', 'Glúten', 'Levedura', 'Reação de Maillard'],
+);
+const umamiTopic = KnowledgeTopic(
+  id: 'umami',
+  eyebrow: 'GASTRONOMIA / SENTIDOS',
+  title: 'O QUE É UMAMI?',
+  summary:
+      'Umami é um gosto básico associado especialmente ao glutamato e a nucleotídeos presentes naturalmente em alimentos como tomate, queijo curado, cogumelos e carnes.',
+  minutes: 7,
+  tags: ['gastronomia', 'ciência'],
+  quickTake:
+      'Umami não é simplesmente “comida gostosa” nem sinônimo de salgado. É uma modalidade de gosto detectada por receptores específicos.',
+  simpleExplanation:
+      'Assim como açúcar ativa receptores ligados ao doce, certas moléculas como glutamato ativam receptores associados ao umami.',
+  example:
+      'Parmesão, tomate maduro e cogumelos podem intensificar sensação de profundidade e sabor mesmo sem grande quantidade de sal.',
+  body: [
+    'O químico japonês Kikunae Ikeda identificou no início do século XX um gosto associado ao glutamato presente no kombu.',
+    'Glutamato é um aminoácido encontrado naturalmente em muitos alimentos.',
+    'Nucleotídeos como inosinado e guanilato podem reforçar fortemente a percepção de umami quando combinados com glutamato.',
+    'Receptores gustativos específicos participam da detecção dessas moléculas.',
+    'Cozimento, maturação, fermentação e secagem podem aumentar disponibilidade de compostos associados ao umami.',
+    'Glutamato monossódico é um sal do glutamato e ativa o mesmo sistema sensorial básico.',
+  ],
+  remember: [
+    'Umami é um gosto básico.',
+    'Glutamato ocorre naturalmente em alimentos.',
+    'Certas combinações produzem efeito sinérgico.',
+  ],
+  whyItMatters:
+      'Entender umami ajuda a perceber como cozinheiros constroem intensidade de sabor sem depender apenas de sal, açúcar ou gordura.',
+  curiosity:
+      'Combinar glutamato e certos nucleotídeos pode produzir uma sensação de umami maior que a soma simples dos dois componentes separados.',
+  connections: ['Glutamato', 'Fermentação', 'Queijo', 'Tomate'],
+);
 const alfabetoTopic=KnowledgeTopic(id:'alfabeto',eyebrow:'LINGUAGEM / REPERTÓRIO',title:'COMO POUCAS LETRAS ESCREVEM TANTAS PALAVRAS?',summary:'Uma introdução clara ao tema como poucas letras escrevem tantas palavras, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['linguagem','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema como poucas letras escrevem tantas palavras, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema como poucas letras escrevem tantas palavras, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
 
 const etimologiaTopic=KnowledgeTopic(id:'etimologia',eyebrow:'LINGUAGEM / REPERTÓRIO',title:'POR QUE PALAVRAS CARREGAM FÓSSEIS DA HISTÓRIA?',summary:'Uma introdução clara ao tema por que palavras carregam fósseis da história, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['linguagem','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema por que palavras carregam fósseis da história, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema por que palavras carregam fósseis da história, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
