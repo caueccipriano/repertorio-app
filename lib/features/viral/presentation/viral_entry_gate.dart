@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../app/app_shell.dart';
+import '../data/viral_score_content.dart';
 import 'viral_palette.dart';
 import 'viral_theme_toggle.dart';
 import '../../../core/share/knowledge_card_share.dart';
@@ -105,89 +106,21 @@ class _ViralEntryExperienceState extends State<ViralEntryExperience> {
   int _questionIndex = 0;
   final List<int> _answers = [];
 
-  static const _questions = <_ScoreQuestion>[
-    _ScoreQuestion(
-      category: 'PSICOLOGIA',
-      question: 'O efeito placebo acontece quando…',
-      answers: [
-        'uma expectativa pode influenciar a percepção de sintomas',
-        'o cérebro para de produzir dopamina',
-        'um remédio funciona apenas durante o sono',
-        'a memória apaga uma sensação desagradável',
-      ],
-      correctIndex: 0,
-    ),
-    _ScoreQuestion(
-      category: 'HISTÓRIA',
-      question: 'O Renascimento europeu começou primeiro com maior força em…',
-      answers: ['Escandinávia', 'cidades italianas', 'Rússia', 'Península Ibérica'],
-      correctIndex: 1,
-    ),
-    _ScoreQuestion(
-      category: 'CIÊNCIA',
-      question: 'Por que vemos o céu azul durante boa parte do dia?',
-      answers: [
-        'por causa do reflexo dos oceanos',
-        'pela dispersão da luz solar na atmosfera',
-        'porque o oxigênio é naturalmente azul',
-        'por causa do campo magnético da Terra',
-      ],
-      correctIndex: 1,
-    ),
-    _ScoreQuestion(
-      category: 'ECONOMIA',
-      question: 'Inflação significa, de forma geral…',
-      answers: [
-        'queda contínua dos salários',
-        'aumento generalizado do nível de preços',
-        'alta automática do dólar',
-        'crescimento da bolsa de valores',
-      ],
-      correctIndex: 1,
-    ),
-    _ScoreQuestion(
-      category: 'ARTE',
-      question: 'A Bauhaus ficou conhecida principalmente por aproximar…',
-      answers: [
-        'arte, design e função',
-        'religião e pintura medieval',
-        'ópera e cinema',
-        'fotografia e jornalismo esportivo',
-      ],
-      correctIndex: 0,
-    ),
-    _ScoreQuestion(
-      category: 'TECNOLOGIA',
-      question: 'Quando um site usa HTTPS, o principal ganho é…',
-      answers: [
-        'carregar sem internet',
-        'criptografar a comunicação com o site',
-        'eliminar todos os rastreadores',
-        'dispensar senhas',
-      ],
-      correctIndex: 1,
-    ),
-    _ScoreQuestion(
-      category: 'MUNDO',
-      question: 'Qual destes países não faz parte da União Europeia?',
-      answers: ['Portugal', 'Croácia', 'Noruega', 'Espanha'],
-      correctIndex: 2,
-    ),
-    _ScoreQuestion(
-      category: 'CULTURA',
-      question: 'Em narrativa, um narrador não confiável é aquele que…',
-      answers: [
-        'sempre fala em terceira pessoa',
-        'pode distorcer ou limitar o que o leitor entende',
-        'aparece apenas no final da história',
-        'não possui nome',
-      ],
-      correctIndex: 1,
-    ),
-  ];
+  late List<ViralScoreQuestion> _questions;
+
+  @override
+  void initState() {
+    super.initState();
+    _questions = buildViralRound(
+      seed: DateTime.now().microsecondsSinceEpoch,
+    );
+  }
 
   void _start() {
     setState(() {
+      _questions = buildViralRound(
+        seed: DateTime.now().microsecondsSinceEpoch,
+      );
       _stage = 1;
       _questionIndex = 0;
       _answers.clear();
@@ -210,56 +143,40 @@ class _ViralEntryExperienceState extends State<ViralEntryExperience> {
 
   ViralScoreResult get _result {
     var correct = 0;
-    final strengths = <String>[];
+    final hitsByCategory = <String, int>{};
+
     for (var i = 0; i < _answers.length && i < _questions.length; i++) {
       if (_answers[i] == _questions[i].correctIndex) {
         correct++;
-        strengths.add(_questions[i].category);
+        hitsByCategory.update(
+          _questions[i].category,
+          (value) => value + 1,
+          ifAbsent: () => 1,
+        );
       }
     }
 
-    final score = 390 + correct * 55;
-    if (score >= 775) {
-      return ViralScoreResult(
-        score: score,
-        correct: correct,
-        total: _questions.length,
-        archetype: 'ENCICLOPÉDIA AMBULANTE',
-        description:
-            'Você conecta assuntos com facilidade e já chega nas conversas com munição cultural.',
-        strengths: strengths.take(3).toList(),
-      );
-    }
-    if (score >= 665) {
-      return ViralScoreResult(
-        score: score,
-        correct: correct,
-        total: _questions.length,
-        archetype: 'CABEÇA DE WIKIPEDIA',
-        description:
-            'Seu repertório já é forte — e sua curiosidade costuma abrir mais abas do que você fecha.',
-        strengths: strengths.take(3).toList(),
-      );
-    }
-    if (score >= 555) {
-      return ViralScoreResult(
-        score: score,
-        correct: correct,
-        total: _questions.length,
-        archetype: 'CURIOSO CAÓTICO',
-        description:
-            'Você sabe coisas muito específicas sobre assuntos aleatórios. Isso é um ótimo começo.',
-        strengths: strengths.take(3).toList(),
-      );
-    }
+    final ratio = _questions.isEmpty ? 0.0 : correct / _questions.length;
+    final score = 390 + (ratio * 440).round();
+
+    final rankedStrengths = hitsByCategory.entries.toList()
+      ..sort((a, b) {
+        final byHits = b.value.compareTo(a.value);
+        return byHits != 0 ? byHits : a.key.compareTo(b.key);
+      });
+
+    final profile = resolveViralProfile(
+      score: score,
+      breadth: hitsByCategory.length,
+    );
+
     return ViralScoreResult(
       score: score,
       correct: correct,
       total: _questions.length,
-      archetype: 'RADAR LIGADO',
-      description:
-          'Você tem curiosidade e espaço para crescer rápido. Um assunto por dia muda esse placar.',
-      strengths: strengths.take(3).toList(),
+      archetype: profile.archetype,
+      description: profile.description,
+      strengths: rankedStrengths.take(3).map((entry) => entry.key).toList(),
     );
   }
 
@@ -392,7 +309,7 @@ class _LandingStage extends StatelessWidget {
                       runSpacing: 12,
                       children: [
                         _MiniProof('2 MIN', 'para descobrir'),
-                        _MiniProof('8', 'perguntas rápidas'),
+                        _MiniProof('10', 'perguntas por rodada'),
                         _MiniProof('0 CADASTRO', 'para começar'),
                         _MiniProof('1 SCORE', 'feito para compartilhar'),
                       ],
@@ -599,7 +516,7 @@ class _QuizStage extends StatelessWidget {
     required this.onBack,
   });
 
-  final _ScoreQuestion question;
+  final ViralScoreQuestion question;
   final int index;
   final int total;
   final int? selectedAnswer;
@@ -1064,7 +981,7 @@ class _ResultStage extends StatelessWidget {
               TextButton(onPressed: onRestart, child: const Text('refazer o teste')),
               const SizedBox(height: 18),
               Text(
-                'Score inicial experimental calculado a partir destas 8 questões. Não é uma medida de inteligência nem comparação científica entre pessoas.',
+                'Score experimental calculado a partir das 10 questões desta rodada. Não é uma medida de inteligência nem comparação científica entre pessoas.',
                 textAlign: TextAlign.center,
                 style: textTheme.bodySmall?.copyWith(color: palette.muted, height: 1.35),
               ),
@@ -1256,19 +1173,6 @@ class _ResultMetric extends StatelessWidget {
       ],
     );
   }
-}
-
-class _ScoreQuestion {
-  const _ScoreQuestion({
-    required this.category,
-    required this.question,
-    required this.answers,
-    required this.correctIndex,
-  });
-  final String category;
-  final String question;
-  final List<String> answers;
-  final int correctIndex;
 }
 
 class ViralScoreResult {
