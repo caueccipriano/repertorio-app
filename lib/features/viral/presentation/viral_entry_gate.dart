@@ -5,6 +5,7 @@ import '../../../app/app_shell.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../../core/share/knowledge_card_share.dart';
 import '../../../core/widgets/paper_texture.dart';
+import 'shared_score_landing.dart';
 
 class ViralEntryGate extends StatefulWidget {
   const ViralEntryGate({super.key});
@@ -19,6 +20,7 @@ class _ViralEntryGateState extends State<ViralEntryGate> {
   static const _archetypeKey = 'viral_archetype_v1';
 
   bool? _entryComplete;
+  int? _sharedScore;
 
   @override
   void initState() {
@@ -28,8 +30,22 @@ class _ViralEntryGateState extends State<ViralEntryGate> {
 
   Future<void> _load() async {
     final prefs = await SharedPreferences.getInstance();
+    final rawScore = int.tryParse(Uri.base.queryParameters['score'] ?? '');
+    final sharedScore =
+        rawScore != null && rawScore >= 390 && rawScore <= 830 ? rawScore : null;
+
     if (!mounted) return;
-    setState(() => _entryComplete = prefs.getBool(_entryKey) ?? false);
+    setState(() {
+      _entryComplete = prefs.getBool(_entryKey) ?? false;
+      _sharedScore = sharedScore;
+    });
+  }
+
+  void _startFromSharedScore() {
+    setState(() {
+      _sharedScore = null;
+      _entryComplete = false;
+    });
   }
 
   Future<void> _enterApp([ViralScoreResult? result]) async {
@@ -59,6 +75,13 @@ class _ViralEntryGateState extends State<ViralEntryGate> {
             ),
           ),
         ),
+      );
+    }
+    if (_sharedScore != null) {
+      return SharedScoreLanding(
+        score: _sharedScore!,
+        onStart: _startFromSharedScore,
+        onEnterApp: () => _enterApp(null),
       );
     }
     if (_entryComplete!) return const AppShell();
@@ -713,9 +736,13 @@ class _ResultStage extends StatelessWidget {
     final strengths = result.strengths.isEmpty
         ? 'curiosidade em construção'
         : result.strengths.map((item) => item.toLowerCase()).join(' · ');
+    final shareUri = Uri.base.replace(
+      queryParameters: {'score': result.score.toString()},
+    );
     final shared = await shareKnowledgeCard(
       title: '${result.score} · ${result.archetype}',
-      body: 'Meu Repertório Score: ${result.score}. $strengths. E o seu?',
+      body:
+          'Meu Repertório Score: ${result.score}. $strengths. Descubra o seu: $shareUri',
     );
     if (!context.mounted || shared) return;
     ScaffoldMessenger.of(context).showSnackBar(
