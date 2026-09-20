@@ -8,11 +8,13 @@ class CulturalMap extends StatelessWidget {
     required this.counts,
     required this.strengths,
     required this.weakCategories,
+    this.onCategoryTap,
   });
 
   final Map<String, int> counts;
   final List<String> strengths;
   final List<String> weakCategories;
+  final ValueChanged<String>? onCategoryTap;
 
   static const categories = <String>[
     'PSICOLOGIA',
@@ -86,19 +88,39 @@ class CulturalMap extends StatelessWidget {
           const SizedBox(height: 16),
           AspectRatio(
             aspectRatio: 1.22,
-            child: CustomPaint(
-              painter: _CulturalMapPainter(
-                counts: counts,
-                maxCount: maxCount,
-                strengths: strengths.toSet(),
-                weakCategories: weakCategories.toSet(),
-                primary: colors.primary,
-                onSurface: colors.onSurface,
-                muted: colors.onSurfaceVariant,
-                line: colors.outline,
-                soft: colors.primaryContainer,
-              ),
-              child: const SizedBox.expand(),
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                final size = Size(
+                  constraints.maxWidth,
+                  constraints.maxHeight,
+                );
+                return GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTapDown: onCategoryTap == null
+                      ? null
+                      : (details) {
+                          final category = _categoryAtTap(
+                            size,
+                            details.localPosition,
+                          );
+                          if (category != null) onCategoryTap!(category);
+                        },
+                  child: CustomPaint(
+                    painter: _CulturalMapPainter(
+                      counts: counts,
+                      maxCount: maxCount,
+                      strengths: strengths.toSet(),
+                      weakCategories: weakCategories.toSet(),
+                      primary: colors.primary,
+                      onSurface: colors.onSurface,
+                      muted: colors.onSurfaceVariant,
+                      line: colors.outline,
+                      soft: colors.primaryContainer,
+                    ),
+                    child: const SizedBox.expand(),
+                  ),
+                );
+              },
             ),
           ),
           const SizedBox(height: 14),
@@ -126,6 +148,9 @@ class CulturalMap extends StatelessWidget {
                       count: count,
                       strong: strong,
                       weak: weak,
+                      onTap: onCategoryTap == null
+                          ? null
+                          : () => onCategoryTap!(category),
                     ),
                   );
                 }).toList(),
@@ -155,18 +180,23 @@ class _AreaLegendRow extends StatelessWidget {
     required this.count,
     required this.strong,
     required this.weak,
+    this.onTap,
   });
 
   final String category;
   final int count;
   final bool strong;
   final bool weak;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
 
-    return Container(
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(10),
+      child: Container(
       padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 8),
       decoration: BoxDecoration(
         color: strong
@@ -215,8 +245,38 @@ class _AreaLegendRow extends StatelessWidget {
           ),
         ],
       ),
+      ),
     );
   }
+}
+
+String? _categoryAtTap(Size size, Offset tap) {
+  final center = Offset(size.width / 2, size.height / 2);
+  final radius = math.min(size.width, size.height) * .34;
+  const angles = <double>[
+    -1.57,
+    -0.78,
+    -0.10,
+    0.72,
+    1.55,
+    2.37,
+    3.05,
+    3.84,
+  ];
+
+  String? nearest;
+  var nearestDistance = double.infinity;
+  for (var i = 0; i < CulturalMap.categories.length; i++) {
+    final point = center +
+        Offset(math.cos(angles[i]), math.sin(angles[i])) * radius;
+    final distance = (tap - point).distance;
+    if (distance < nearestDistance) {
+      nearestDistance = distance;
+      nearest = CulturalMap.categories[i];
+    }
+  }
+
+  return nearestDistance <= 46 ? nearest : null;
 }
 
 class _CulturalMapPainter extends CustomPainter {
