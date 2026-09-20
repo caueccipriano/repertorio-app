@@ -157,13 +157,27 @@ abstract final class AppTheme {
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: AppColors.paperWhite,
         indicatorColor: AppColors.softBlue,
-        height: 72,
-        labelTextStyle: WidgetStatePropertyAll(
-          GoogleFonts.manrope(
-            fontSize: 12,
-            fontWeight: FontWeight.w700,
-          ),
+        indicatorShape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: const BorderSide(color: AppColors.line),
         ),
+        height: 70,
+        iconTheme: WidgetStateProperty.resolveWith<IconThemeData>((states) {
+          final selected = states.contains(WidgetState.selected);
+          return IconThemeData(
+            color: selected ? AppColors.blue : AppColors.muted,
+            size: selected ? 24 : 22,
+          );
+        }),
+        labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>((states) {
+          final selected = states.contains(WidgetState.selected);
+          return GoogleFonts.manrope(
+            color: selected ? AppColors.ink : AppColors.muted,
+            fontSize: 11,
+            fontWeight: selected ? FontWeight.w800 : FontWeight.w600,
+            letterSpacing: -.15,
+          );
+        }),
       ),
       dividerColor: AppColors.line,
     );
@@ -238,17 +252,27 @@ abstract final class AppTheme {
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: const Color(0xFF15171D),
         indicatorColor: const Color(0xFF26365E),
-        height: 72,
-        iconTheme: const WidgetStatePropertyAll(
-          IconThemeData(color: darkText),
+        indicatorShape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: const BorderSide(color: darkLine),
         ),
-        labelTextStyle: WidgetStatePropertyAll(
-          GoogleFonts.manrope(
-            color: darkText,
-            fontSize: 12,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
+        height: 70,
+        iconTheme: WidgetStateProperty.resolveWith<IconThemeData>((states) {
+          final selected = states.contains(WidgetState.selected);
+          return IconThemeData(
+            color: selected ? darkBlue : darkMuted,
+            size: selected ? 24 : 22,
+          );
+        }),
+        labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>((states) {
+          final selected = states.contains(WidgetState.selected);
+          return GoogleFonts.manrope(
+            color: selected ? darkText : darkMuted,
+            fontSize: 11,
+            fontWeight: selected ? FontWeight.w800 : FontWeight.w600,
+            letterSpacing: -.15,
+          );
+        }),
       ),
       dividerColor: darkLine,
     );
