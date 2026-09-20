@@ -468,13 +468,27 @@
             ctx.fillText(String(title || 'Repertório').slice(0, 42), 90, 570);
             ctx.fillStyle = '#575752';
             ctx.font = '400 34px Arial';
-            ctx.fillText(String(body || 'aprendi hoje').slice(0, 54), 90, 660);
+            const cleanBody = String(body || 'aprendi hoje').replace(/https?:\\/\\/\\S+/g, '').trim();
+            ctx.fillText(cleanBody.slice(0, 54), 90, 660);
+            ctx.fillStyle = '#173B91';
+            ctx.font = '700 30px Arial';
+            ctx.fillText('FAÇA O SEU SCORE →', 90, 1160);
+            ctx.fillStyle = '#575752';
+            ctx.font = '400 25px Arial';
+            ctx.fillText('repertório* · saiba um pouco sobre tudo', 90, 1210);
             const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
             if (!blob) return false;
-            const file = new File([blob], 'repertorio-card.png', { type: 'image/png' });
+            const file = new File([blob], 'repertorio-score.png', { type: 'image/png' });
             if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-              await navigator.share({ files: [file], title: 'Repertório', text: title });
+              await navigator.share({
+                files: [file],
+                title: 'Repertório Score',
+                text: body || title
+              });
               return true;
+            }
+            if (navigator.clipboard && body) {
+              try { await navigator.clipboard.writeText(body); } catch (_) {}
             }
             const objectUrl = URL.createObjectURL(blob);
             const anchor = document.createElement('a');
