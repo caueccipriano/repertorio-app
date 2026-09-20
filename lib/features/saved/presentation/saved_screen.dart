@@ -28,7 +28,28 @@ class _SavedScreenState extends State<SavedScreen> {
     final allSavedTopics = state.savedTopicIds
         .map(topicById)
         .whereType<KnowledgeTopic>()
-        .toList();
+        .toList()
+      ..sort((a, b) {
+        final aProgress = state.progressFor(a.id);
+        final bProgress = state.progressFor(b.id);
+        final aReading = aProgress > 0 && aProgress < .92;
+        final bReading = bProgress > 0 && bProgress < .92;
+
+        if (aReading != bReading) {
+          return aReading ? -1 : 1;
+        }
+
+        final aOpened = state.lastOpenedByTopic[a.id];
+        final bOpened = state.lastOpenedByTopic[b.id];
+        if (aOpened != null || bOpened != null) {
+          if (aOpened == null) return 1;
+          if (bOpened == null) return -1;
+          final recent = bOpened.compareTo(aOpened);
+          if (recent != 0) return recent;
+        }
+
+        return a.title.compareTo(b.title);
+      });
     final readingCount = allSavedTopics.where((topic) {
       final progress = state.progressFor(topic.id);
       return progress > 0 && progress < .92;
