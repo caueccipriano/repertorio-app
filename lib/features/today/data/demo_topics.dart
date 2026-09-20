@@ -1823,18 +1823,204 @@ const supplyChainTopic = KnowledgeTopic(
       'Uma peça de baixo valor pode ter impacto enorme se for o único componente que impede a conclusão de um produto caro.',
   connections: ['Logística', 'Estoque', 'Forecast', 'Produção'],
 );
-const criptografiaTopic=KnowledgeTopic(id:'criptografia',eyebrow:'TECNOLOGIA / REPERTÓRIO',title:'COMO A CRIPTOGRAFIA PROTEGE UMA MENSAGEM?',summary:'Uma introdução clara ao tema como a criptografia protege uma mensagem, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['tecnologia','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema como a criptografia protege uma mensagem, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema como a criptografia protege uma mensagem, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const cloudTopic=KnowledgeTopic(id:'cloud',eyebrow:'TECNOLOGIA / REPERTÓRIO',title:'O QUE É A NUVEM DE VERDADE?',summary:'Uma introdução clara ao tema o que é a nuvem de verdade, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['tecnologia','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema o que é a nuvem de verdade, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema o que é a nuvem de verdade, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const gpsTopic=KnowledgeTopic(id:'gps',eyebrow:'TECNOLOGIA / REPERTÓRIO',title:'COMO O GPS SABE ONDE VOCÊ ESTÁ?',summary:'Uma introdução clara ao tema como o gps sabe onde você está, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['tecnologia','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema como o gps sabe onde você está, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema como o gps sabe onde você está, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const semicondutoresTopic=KnowledgeTopic(id:'semicondutores',eyebrow:'TECNOLOGIA / REPERTÓRIO',title:'POR QUE CHIPS SÃO FEITOS DE SEMICONDUTORES?',summary:'Uma introdução clara ao tema por que chips são feitos de semicondutores, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['tecnologia','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema por que chips são feitos de semicondutores, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema por que chips são feitos de semicondutores, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const algoritmosTopic=KnowledgeTopic(id:'algoritmos',eyebrow:'TECNOLOGIA / REPERTÓRIO',title:'O QUE É UM ALGORITMO?',summary:'Uma introdução clara ao tema o que é um algoritmo, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['tecnologia','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema o que é um algoritmo, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema o que é um algoritmo, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const openSourceTopic=KnowledgeTopic(id:'open-source',eyebrow:'TECNOLOGIA / REPERTÓRIO',title:'O QUE SIGNIFICA SOFTWARE OPEN SOURCE?',summary:'Uma introdução clara ao tema o que significa software open source, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['tecnologia','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema o que significa software open source, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema o que significa software open source, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
+const criptografiaTopic = KnowledgeTopic(
+  id: 'criptografia',
+  eyebrow: 'TECNOLOGIA / SEGURANÇA',
+  title: 'COMO A CRIPTOGRAFIA PROTEGE UMA MENSAGEM?',
+  summary:
+      'Criptografia transforma dados usando algoritmos e chaves para que apenas quem possui a informação correta consiga recuperar ou verificar o conteúdo.',
+  minutes: 8,
+  tags: ['tecnologia', 'segurança'],
+  quickTake:
+      'Segurança moderna não depende de esconder o algoritmo. Ela depende principalmente de chaves difíceis de descobrir e de métodos matemáticos bem analisados.',
+  simpleExplanation:
+      'Pense numa caixa com uma fechadura. O algoritmo define como a fechadura funciona; a chave define quem consegue abrir. Mesmo conhecendo o mecanismo, um invasor ainda precisa da chave correta.',
+  example:
+      'Em uma conexão HTTPS, criptografia ajuda a impedir que alguém no caminho leia ou altere facilmente os dados trocados entre seu navegador e o servidor.',
+  body: [
+    'Criptografia simétrica usa a mesma chave, ou chaves diretamente relacionadas, para cifrar e decifrar dados.',
+    'Criptografia assimétrica utiliza pares de chaves com propriedades matemáticas diferentes, permitindo funções como troca segura de chaves e assinaturas digitais.',
+    'Funções hash produzem resumos de tamanho fixo e são usadas para verificar integridade, armazenar senhas de forma apropriada e construir várias estruturas de segurança.',
+    'Protocolos modernos combinam várias técnicas em vez de depender de um único algoritmo.',
+    'A força de um sistema depende também de implementação, geração de chaves, armazenamento seguro e comportamento do usuário.',
+    'Criptografia protege conteúdo e autenticidade, mas não resolve sozinha todos os problemas de privacidade e segurança.',
+  ],
+  remember: [
+    'Algoritmo público pode continuar seguro.',
+    'Chaves são centrais para o sistema.',
+    'Hash, cifra e assinatura têm funções diferentes.',
+  ],
+  whyItMatters:
+      'Mensagens, bancos, atualizações de software e compras online dependem de criptografia para funcionar com confiança em redes públicas.',
+  curiosity:
+      'Muitos sistemas modernos usam criptografia assimétrica apenas para estabelecer uma chave temporária e depois usam criptografia simétrica, que é mais eficiente para grandes volumes de dados.',
+  connections: ['HTTPS', 'Assinatura digital', 'Senhas', 'Blockchain'],
+);
+const cloudTopic = KnowledgeTopic(
+  id: 'cloud',
+  eyebrow: 'TECNOLOGIA / INFRAESTRUTURA',
+  title: 'O QUE É A NUVEM DE VERDADE?',
+  summary:
+      'Computação em nuvem é o uso sob demanda de servidores, armazenamento, bancos de dados e outros recursos operados em data centers acessados por rede.',
+  minutes: 7,
+  tags: ['tecnologia', 'computação'],
+  quickTake:
+      'A nuvem não elimina computadores físicos: ela muda quem opera a infraestrutura e como recursos são contratados, escalados e distribuídos.',
+  simpleExplanation:
+      'Em vez de comprar um servidor para ficar anos numa sala da empresa, você pode alugar capacidade computacional por minutos ou horas e aumentar ou reduzir conforme a demanda.',
+  example:
+      'Um aplicativo pode executar em várias máquinas virtuais em um data center e criar novas instâncias automaticamente quando recebe mais acessos.',
+  body: [
+    'Provedores de nuvem mantêm grandes data centers com servidores, redes e sistemas de armazenamento.',
+    'Virtualização e containers permitem compartilhar hardware físico entre muitas cargas de trabalho com isolamento lógico.',
+    'Serviços de infraestrutura oferecem máquinas, redes e discos; plataformas gerenciadas também podem cuidar de bancos de dados, filas, funções e outras camadas.',
+    'Elasticidade significa ajustar recursos conforme a necessidade, evitando comprar capacidade máxima o tempo todo.',
+    'Regiões e zonas de disponibilidade ajudam a distribuir sistemas para reduzir impacto de falhas localizadas.',
+    'Migrar para nuvem não elimina custos nem riscos: arquitetura, segurança e governança continuam sendo necessários.',
+  ],
+  remember: [
+    'Nuvem continua sendo hardware físico.',
+    'Elasticidade é uma vantagem central.',
+    'Serviço gerenciado troca controle por conveniência.',
+  ],
+  whyItMatters:
+      'Grande parte dos aplicativos modernos depende de infraestrutura em nuvem; entendê-la ajuda a enxergar o que existe por trás de serviços aparentemente “imateriais”.',
+  curiosity:
+      'Muitos aplicativos que você usa todos os dias podem mudar de servidor físico sem que você perceba.',
+  connections: ['Data centers', 'Containers', 'Internet', 'Escalabilidade'],
+);
+const gpsTopic = KnowledgeTopic(
+  id: 'gps',
+  eyebrow: 'TECNOLOGIA / ESPAÇO',
+  title: 'COMO O GPS SABE ONDE VOCÊ ESTÁ?',
+  summary:
+      'Receptores calculam posição medindo o tempo de chegada de sinais de vários satélites cujas órbitas e relógios são conhecidos com grande precisão.',
+  minutes: 8,
+  tags: ['tecnologia', 'geografia'],
+  quickTake:
+      'Seu celular não precisa enviar um pedido aos satélites para receber localização GPS. Ele escuta sinais e calcula distâncias.',
+  simpleExplanation:
+      'Se você souber sua distância até vários pontos conhecidos, consegue descobrir onde está. O GPS faz algo parecido usando o tempo que sinais de rádio levam para chegar.',
+  example:
+      'Um erro de apenas microssegundos na medição do tempo representa centenas de metros de erro na distância, por isso sincronização precisa é essencial.',
+  body: [
+    'Satélites GPS transmitem continuamente dados sobre tempo e posição orbital.',
+    'O receptor compara o horário de transmissão com o horário de chegada do sinal para estimar distância até cada satélite.',
+    'Com sinais de pelo menos quatro satélites, pode estimar latitude, longitude, altitude e corrigir o erro do próprio relógio.',
+    'Relógios atômicos nos satélites fornecem referência extremamente estável.',
+    'Efeitos previstos pelas teorias da relatividade alteram a marcha desses relógios e precisam ser corrigidos.',
+    'Prédios, relevo e atmosfera podem degradar o sinal; celulares combinam GPS com outras fontes como Wi-Fi e sensores.',
+  ],
+  remember: [
+    'GPS mede tempo de viagem de sinais.',
+    'Quatro satélites permitem corrigir também o relógio do receptor.',
+    'Relatividade é relevante para a precisão.',
+  ],
+  whyItMatters:
+      'GPS sustenta navegação, agricultura, logística, sincronização de redes e muitas infraestruturas que vão muito além de mapas no celular.',
+  curiosity:
+      'Além do GPS americano, existem outros sistemas globais de navegação por satélite, como Galileo, GLONASS e BeiDou.',
+  connections: ['Satélites', 'Relatividade', 'Mapas', 'Navegação'],
+);
+const semicondutoresTopic = KnowledgeTopic(
+  id: 'semicondutores',
+  eyebrow: 'TECNOLOGIA / HARDWARE',
+  title: 'POR QUE CHIPS SÃO FEITOS DE SEMICONDUTORES?',
+  summary:
+      'Semicondutores permitem controlar o fluxo de corrente elétrica de forma precisa, tornando possível criar transistores e circuitos com bilhões de componentes.',
+  minutes: 8,
+  tags: ['tecnologia', 'computação'],
+  quickTake:
+      'Silício não é usado porque conduz muito bem, mas porque sua condutividade pode ser controlada por materiais adicionados e por campos elétricos.',
+  simpleExplanation:
+      'Um transistor funciona como uma chave minúscula controlada eletricamente. Milhões ou bilhões dessas chaves combinadas executam operações lógicas e armazenam informação.',
+  example:
+      'Ao aplicar tensão numa região de um transistor, o circuito pode permitir ou bloquear a passagem de corrente e representar estados usados em lógica digital.',
+  body: [
+    'Materiais semicondutores possuem propriedades elétricas intermediárias entre bons condutores e bons isolantes.',
+    'Dopagem adiciona pequenas quantidades de outros elementos para modificar a quantidade e o tipo de portadores de carga.',
+    'Junções entre regiões diferentes permitem criar diodos e transistores com comportamento controlável.',
+    'Transistores MOSFET tornaram-se a base de grande parte da eletrônica digital moderna.',
+    'Litografia projeta padrões extremamente pequenos sobre wafers para fabricar muitas camadas de circuitos integrados.',
+    'Produzir chips avançados exige equipamentos, materiais e processos de altíssima precisão distribuídos por uma cadeia global complexa.',
+  ],
+  remember: [
+    'Semicondutor tem condutividade controlável.',
+    'Transistor funciona como elemento de chaveamento e amplificação.',
+    'Chips combinam bilhões de transistores.',
+  ],
+  whyItMatters:
+      'Quase toda tecnologia digital depende de semicondutores, por isso fabricação de chips se tornou questão econômica, industrial e geopolítica.',
+  curiosity:
+      'Um chip moderno pode conter bilhões de transistores numa área menor que uma unha.',
+  connections: ['Transistores', 'Litografia', 'Computadores', 'Supply chain'],
+);
+const algoritmosTopic = KnowledgeTopic(
+  id: 'algoritmos',
+  eyebrow: 'TECNOLOGIA / LÓGICA',
+  title: 'O QUE É UM ALGORITMO?',
+  summary:
+      'Um algoritmo é uma sequência finita e bem definida de passos para transformar entradas em saídas ou resolver uma classe de problemas.',
+  minutes: 7,
+  tags: ['tecnologia', 'computação'],
+  quickTake:
+      'Algoritmo não é sinônimo de inteligência artificial nem de rede social. Receitas, ordenação de listas e rotas de navegação também podem ser descritas algoritmicamente.',
+  simpleExplanation:
+      'Imagine instruções de cozinha suficientemente claras para que outra pessoa execute o processo e chegue ao mesmo tipo de resultado. Um algoritmo formaliza esse princípio.',
+  example:
+      'Para encontrar o maior número numa lista, você pode começar pelo primeiro valor, compará-lo com cada próximo item e guardar sempre o maior encontrado.',
+  body: [
+    'Algoritmos definem passos e regras aplicados a dados de entrada.',
+    'Um mesmo problema pode ter vários algoritmos com custos muito diferentes de tempo e memória.',
+    'Complexidade computacional estuda como esses custos crescem conforme o tamanho da entrada aumenta.',
+    'Estruturas de dados e algoritmos trabalham juntos: a forma de armazenar informação influencia a eficiência das operações.',
+    'Algoritmos podem ser determinísticos, probabilísticos, aproximados ou adaptativos dependendo do problema.',
+    'Quando algoritmos influenciam decisões sobre pessoas, critérios, dados e vieses também se tornam questões sociais importantes.',
+  ],
+  remember: [
+    'Algoritmo é procedimento, não necessariamente IA.',
+    'Soluções diferentes podem ter eficiências muito diferentes.',
+    'Dados e objetivos influenciam resultados.',
+  ],
+  whyItMatters:
+      'Entender algoritmos ajuda a enxergar tecnologia como escolhas de regras e prioridades, não como uma caixa mágica neutra.',
+  curiosity:
+      'Alguns problemas fáceis de descrever se tornam impraticáveis de resolver exatamente quando a quantidade de dados cresce.',
+  connections: ['Programação', 'Complexidade', 'IA', 'Dados'],
+);
+const openSourceTopic = KnowledgeTopic(
+  id: 'open-source',
+  eyebrow: 'TECNOLOGIA / CULTURA',
+  title: 'O QUE SIGNIFICA SOFTWARE OPEN SOURCE?',
+  summary:
+      'Software open source disponibiliza seu código-fonte sob licenças que permitem estudar, modificar e redistribuir o programa dentro de condições definidas.',
+  minutes: 7,
+  tags: ['tecnologia', 'computação'],
+  quickTake:
+      'Open source não significa automaticamente gratuito, sem dono ou sem regras. Licenças determinam o que pode ser feito com o código.',
+  simpleExplanation:
+      'Em software fechado, você recebe o produto pronto. Em open source, além de usar o programa, desenvolvedores podem examinar como ele funciona e criar versões modificadas conforme a licença.',
+  example:
+      'Linux pode ser estudado e alterado por empresas, universidades e indivíduos, mas distribuições e serviços comerciais podem cobrar por suporte, integração ou infraestrutura.',
+  body: [
+    'Código-fonte é a forma legível por humanos usada por desenvolvedores para criar software.',
+    'Licenças open source concedem direitos de uso, estudo, modificação e redistribuição.',
+    'Licenças permissivas, como MIT e Apache, impõem poucas restrições; licenças copyleft, como GPL, exigem condições específicas ao redistribuir derivados.',
+    'Projetos podem ser mantidos por voluntários, fundações, empresas ou combinações desses grupos.',
+    'Empresas constroem negócios em torno de open source por suporte, hospedagem, serviços gerenciados e produtos complementares.',
+    'Código aberto permite auditoria, mas não garante automaticamente segurança, qualidade ou manutenção ativa.',
+  ],
+  remember: [
+    'Open source depende de licença.',
+    'Aberto não significa necessariamente grátis.',
+    'Projetos podem ter modelos comerciais.',
+  ],
+  whyItMatters:
+      'Grande parte da infraestrutura digital mundial utiliza software open source, muitas vezes sem que o usuário final perceba.',
+  curiosity:
+      'Servidores, celulares, navegadores e linguagens modernas dependem amplamente de componentes open source.',
+  connections: ['Linux', 'GitHub', 'Licenças', 'Comunidades de software'],
+);
 const arquiteturaGoticaTopic=KnowledgeTopic(id:'arquitetura-gotica',eyebrow:'ARQUITETURA / REPERTÓRIO',title:'COMO CATEDRAIS GÓTICAS FICARAM TÃO ALTAS?',summary:'Uma introdução clara ao tema como catedrais góticas ficaram tão altas, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['arquitetura','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema como catedrais góticas ficaram tão altas, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema como catedrais góticas ficaram tão altas, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
 
 const artDecoTopic=KnowledgeTopic(id:'art-deco',eyebrow:'DESIGN / REPERTÓRIO',title:'POR QUE ART DÉCO PARECE LUXUOSO E MODERNO?',summary:'Uma introdução clara ao tema por que art déco parece luxuoso e moderno, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['design','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema por que art déco parece luxuoso e moderno, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema por que art déco parece luxuoso e moderno, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
