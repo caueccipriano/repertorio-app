@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'viral_palette.dart';
+import 'viral_theme_toggle.dart';
 import '../../../core/widgets/paper_texture.dart';
 
 class SharedScoreLanding extends StatelessWidget {
@@ -64,6 +65,8 @@ class SharedScoreLanding extends StatelessWidget {
                           ),
                         ),
                         Spacer(),
+                        ViralThemeToggle(),
+                        SizedBox(width: 10),
                         Text('SCORE COMPARTILHADO'),
                       ],
                     ),
