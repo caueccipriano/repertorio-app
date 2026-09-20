@@ -130,26 +130,15 @@ class ProfileScreen extends StatelessWidget {
                   subtitle: 'notas, aparência, leitura e dados',
                 ),
                 const SizedBox(height: 12),
-                _NotesPreferences(count: state.notesByTopic.length),
-                const SizedBox(height: 14),
-                const _BackupPreferences(),
-                const SizedBox(height: 14),
-                _NotificationPreferences(
-                  enabled: state.studyRemindersEnabled,
-                  hour: state.reminderHour,
-                  minute: state.reminderMinute,
-                ),
-                const SizedBox(height: 14),
-                _AppearancePreferences(
+                _PreferenceGrid(
+                  notes: state.notesByTopic.length,
+                  remindersEnabled: state.studyRemindersEnabled,
+                  reminderHour: state.reminderHour,
+                  reminderMinute: state.reminderMinute,
                   dark: state.appAppearance == AppAppearance.dark,
-                ),
-                const SizedBox(height: 14),
-                const _AccessibilityPreferences(),
-                const SizedBox(height: 14),
-                _ReaderPreferences(
-                  fontSize: state.readerFontSize,
-                  theme: state.readerTheme.name,
-                  flow: state.readerFlow.name,
+                  readerFontSize: state.readerFontSize,
+                  readerTheme: state.readerTheme.name,
+                  readerFlow: state.readerFlow.name,
                 ),
               ],
             ),
@@ -581,6 +570,198 @@ class _ReadingRecord extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _PreferenceGrid extends StatelessWidget {
+  const _PreferenceGrid({
+    required this.notes,
+    required this.remindersEnabled,
+    required this.reminderHour,
+    required this.reminderMinute,
+    required this.dark,
+    required this.readerFontSize,
+    required this.readerTheme,
+    required this.readerFlow,
+  });
+
+  final int notes;
+  final bool remindersEnabled;
+  final int reminderHour;
+  final int reminderMinute;
+  final bool dark;
+  final double readerFontSize;
+  final String readerTheme;
+  final String readerFlow;
+
+  @override
+  Widget build(BuildContext context) {
+    final reminderTime =
+        '${reminderHour.toString().padLeft(2, '0')}:${reminderMinute.toString().padLeft(2, '0')}';
+
+    final items = <_PreferenceShortcutData>[
+      _PreferenceShortcutData(
+        title: 'notas',
+        subtitle: notes == 0 ? 'nenhuma ainda' : '$notes salvas',
+        icon: Icons.sticky_note_2_outlined,
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(builder: (_) => const NotesScreen()),
+        ),
+      ),
+      _PreferenceShortcutData(
+        title: 'lembretes',
+        subtitle: remindersEnabled ? reminderTime : 'desativados',
+        icon: remindersEnabled
+            ? Icons.notifications_active_outlined
+            : Icons.notifications_none,
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => const NotificationSettingsScreen(),
+          ),
+        ),
+      ),
+      _PreferenceShortcutData(
+        title: 'aparência',
+        subtitle: dark ? 'escuro' : 'claro',
+        icon: dark ? Icons.dark_mode_outlined : Icons.light_mode_outlined,
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(builder: (_) => const AppearanceScreen()),
+        ),
+      ),
+      _PreferenceShortcutData(
+        title: 'acessibilidade',
+        subtitle: 'toque e contraste',
+        icon: Icons.accessibility_new_outlined,
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(builder: (_) => const AccessibilityScreen()),
+        ),
+      ),
+      _PreferenceShortcutData(
+        title: 'backup',
+        subtitle: 'dados locais',
+        icon: Icons.shield_outlined,
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(builder: (_) => const BackupScreen()),
+        ),
+      ),
+      _PreferenceShortcutData(
+        title: 'leitor',
+        subtitle:
+            '${readerFontSize.round()} pt · ${_readerLabel(readerTheme, readerFlow)}',
+        icon: Icons.text_fields_rounded,
+      ),
+    ];
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final columns = constraints.maxWidth >= 350 ? 2 : 1;
+        const gap = 10.0;
+        final width =
+            (constraints.maxWidth - gap * (columns - 1)) / columns;
+
+        return Wrap(
+          spacing: gap,
+          runSpacing: gap,
+          children: items
+              .map(
+                (item) => SizedBox(
+                  width: width,
+                  child: _PreferenceShortcut(data: item),
+                ),
+              )
+              .toList(),
+        );
+      },
+    );
+  }
+
+  String _readerLabel(String theme, String flow) {
+    final themeLabel = switch (theme) {
+      'paper' => 'papel',
+      'sepia' => 'sépia',
+      'dark' => 'escuro',
+      _ => theme,
+    };
+    final flowLabel = flow == 'paged' ? 'páginas' : 'contínuo';
+    return '$themeLabel · $flowLabel';
+  }
+}
+
+class _PreferenceShortcutData {
+  const _PreferenceShortcutData({
+    required this.title,
+    required this.subtitle,
+    required this.icon,
+    this.onTap,
+  });
+
+  final String title;
+  final String subtitle;
+  final IconData icon;
+  final VoidCallback? onTap;
+}
+
+class _PreferenceShortcut extends StatelessWidget {
+  const _PreferenceShortcut({required this.data});
+
+  final _PreferenceShortcutData data;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
+    final content = Container(
+      minHeight: 92,
+      padding: const EdgeInsets.all(13),
+      decoration: BoxDecoration(
+        color: colors.surface,
+        border: Border.all(color: colors.outline),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(data.icon, size: 20, color: colors.primary),
+              const Spacer(),
+              if (data.onTap != null)
+                Icon(
+                  Icons.arrow_outward_rounded,
+                  size: 16,
+                  color: colors.onSurfaceVariant,
+                ),
+            ],
+          ),
+          const SizedBox(height: 13),
+          Text(
+            data.title,
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w800,
+                ),
+          ),
+          const SizedBox(height: 2),
+          Text(
+            data.subtitle,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: colors.onSurfaceVariant,
+                ),
+          ),
+        ],
+      ),
+    );
+
+    if (data.onTap == null) return content;
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: data.onTap,
+        child: content,
       ),
     );
   }
