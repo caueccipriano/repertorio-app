@@ -951,17 +951,46 @@ class _ResultStage extends StatelessWidget {
                     ),
                     const SizedBox(height: 12),
                     _AnimatedScoreNumber(score: result.score),
-                    const SizedBox(height: 12),
-                    Text(
-                      result.archetype,
-                      style: textTheme.headlineMedium?.copyWith(
-                        fontWeight: FontWeight.w900,
-                        letterSpacing: -1.1,
-                        height: .98,
+                    const SizedBox(height: 16),
+                    Transform.rotate(
+                      angle: -.008,
+                      child: Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.fromLTRB(18, 14, 18, 16),
+                        decoration: BoxDecoration(
+                          color: palette.accent,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'SEU ARQUÉTIPO',
+                              style: textTheme.labelSmall?.copyWith(
+                                color: palette.onAccent.withValues(alpha: .78),
+                                fontWeight: FontWeight.w900,
+                                letterSpacing: 1.15,
+                              ),
+                            ),
+                            const SizedBox(height: 5),
+                            Text(
+                              result.archetype,
+                              style: textTheme.headlineMedium?.copyWith(
+                                color: palette.onAccent,
+                                fontWeight: FontWeight.w900,
+                                letterSpacing: -1.1,
+                                height: .98,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     const SizedBox(height: 18),
-                    Text(result.description, style: textTheme.bodyLarge?.copyWith(height: 1.45)),
+                    Text(
+                      result.description,
+                      style: textTheme.bodyLarge?.copyWith(height: 1.45),
+                    ),
                     const SizedBox(height: 24),
                     _ScoreBand(score: result.score),
                     const SizedBox(height: 24),
@@ -1010,7 +1039,7 @@ class _ResultStage extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 18),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 ),
-                icon: const Icon(Icons.ios_share_rounded),
+                icon: const Icon(Icons.auto_awesome_rounded),
                 label: const Text(
                   'COMPARTILHAR MEU SCORE',
                   style: TextStyle(fontWeight: FontWeight.w900, letterSpacing: .45),
