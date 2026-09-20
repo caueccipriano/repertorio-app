@@ -38,7 +38,7 @@ class _SearchScreenState extends State<SearchScreen> {
     final state = AppStateScope.of(context);
     final q = _query.trim().toLowerCase();
 
-    return allDemoTopics.where((topic) {
+    final results = allDemoTopics.where((topic) {
       final haystack = [
         topic.title,
         topic.summary,
@@ -78,12 +78,55 @@ class _SearchScreenState extends State<SearchScreen> {
       }
       return true;
     }).toList();
+
+    if (q.isNotEmpty) {
+      results.sort((a, b) {
+        final byScore = _searchScore(b, q).compareTo(_searchScore(a, q));
+        if (byScore != 0) return byScore;
+        return a.title.compareTo(b.title);
+      });
+      return results;
+    }
+
+    if (_filters.isNotEmpty) {
+      return results;
+    }
+
+    final unseen = results
+        .where((topic) => !state.historyTopicIds.contains(topic.id))
+        .toList();
+    final pool = unseen.length >= 8 ? unseen : results;
+    if (pool.isEmpty) return const [];
+
+    final start = DateTime.now().day % pool.length;
+    return List.generate(
+      pool.length >= 8 ? 8 : pool.length,
+      (index) => pool[(start + index) % pool.length],
+    );
+  }
+
+  int _searchScore(KnowledgeTopic topic, String query) {
+    var score = 0;
+    final title = topic.title.toLowerCase();
+    final summary = topic.summary.toLowerCase();
+    final quickTake = topic.quickTake.toLowerCase();
+    final tags = topic.tags.map((tag) => tag.toLowerCase()).toList();
+
+    if (title == query) score += 10;
+    if (title.contains(query)) score += 6;
+    if (tags.contains(query)) score += 5;
+    if (tags.any((tag) => tag.contains(query))) score += 4;
+    if (summary.contains(query)) score += 2;
+    if (quickTake.contains(query)) score += 1;
+
+    return score;
   }
 
   @override
   Widget build(BuildContext context) {
     final state = AppStateScope.of(context);
     final results = _results(context);
+    final idle = _query.trim().isEmpty && _filters.isEmpty;
 
     return Scaffold(
       appBar: AppBar(
@@ -93,7 +136,11 @@ class _SearchScreenState extends State<SearchScreen> {
             tooltip: 'Surpreenda-me',
             onPressed: () {
               final candidates = allDemoTopics
-                  .where((topic) => !state.completedTopicIds.contains(topic.id))
+                  .where(
+                    (topic) =>
+                        !state.completedTopicIds.contains(topic.id) &&
+                        !state.historyTopicIds.contains(topic.id),
+                  )
                   .toList();
               final pool = candidates.isEmpty ? allDemoTopics : candidates;
               final topic =
@@ -171,7 +218,9 @@ class _SearchScreenState extends State<SearchScreen> {
             Row(
               children: [
                 Text(
-                  '${results.length} RESULTADO${results.length == 1 ? '' : 'S'}',
+                  idle
+                      ? '8 IDEIAS PARA COMEÇAR'
+                      : '${results.length} RESULTADO${results.length == 1 ? '' : 'S'}',
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
                         color: Theme.of(context).colorScheme.onSurfaceVariant,
                         fontSize: 10,
