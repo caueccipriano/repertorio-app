@@ -1289,12 +1289,106 @@ const revolucaoIndustrialTopic = KnowledgeTopic(
       'O termo “Revolução Industrial” se popularizou depois que muitas das mudanças que ele descreve já estavam em andamento havia décadas.',
   connections: ['Máquina a vapor', 'Urbanização', 'Capitalismo industrial', 'Ferrovias'],
 );
-const primeiraGuerraTopic=KnowledgeTopic(id:'primeira-guerra',eyebrow:'HISTÓRIA / REPERTÓRIO',title:'POR QUE A PRIMEIRA GUERRA VIROU GUERRA DE TRINCHEIRAS?',summary:'Uma introdução clara ao tema por que a primeira guerra virou guerra de trincheiras, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['história','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema por que a primeira guerra virou guerra de trincheiras, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema por que a primeira guerra virou guerra de trincheiras, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const segundaGuerraTopic=KnowledgeTopic(id:'segunda-guerra',eyebrow:'HISTÓRIA / REPERTÓRIO',title:'POR QUE A SEGUNDA GUERRA FOI REALMENTE MUNDIAL?',summary:'Uma introdução clara ao tema por que a segunda guerra foi realmente mundial, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['história','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema por que a segunda guerra foi realmente mundial, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema por que a segunda guerra foi realmente mundial, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const direitosHumanosTopic=KnowledgeTopic(id:'direitos-humanos',eyebrow:'HISTÓRIA / REPERTÓRIO',title:'DE ONDE VEIO A IDEIA MODERNA DE DIREITOS HUMANOS?',summary:'Uma introdução clara ao tema de onde veio a ideia moderna de direitos humanos, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['história','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema de onde veio a ideia moderna de direitos humanos, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema de onde veio a ideia moderna de direitos humanos, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
+const primeiraGuerraTopic = KnowledgeTopic(
+  id: 'primeira-guerra',
+  eyebrow: 'HISTÓRIA / GUERRAS',
+  title: 'POR QUE A PRIMEIRA GUERRA VIROU GUERRA DE TRINCHEIRAS?',
+  summary:
+      'No front ocidental, armas defensivas muito eficientes e exércitos enormes tornaram ataques frontais caros e ajudaram a criar um impasse de trincheiras.',
+  minutes: 8,
+  tags: ['história', 'geopolítica'],
+  quickTake:
+      'Trincheiras não foram falta de criatividade: elas eram resposta racional a metralhadoras, artilharia, arame farpado e dificuldade de avançar sem proteção.',
+  simpleExplanation:
+      'Atacar em campo aberto ficou muito mais perigoso do que defender uma posição preparada. Quando os dois lados perceberam isso, começaram a cavar e fortificar linhas cada vez mais extensas.',
+  example:
+      'Na Frente Ocidental, uma ofensiva podia conquistar poucos quilômetros ao custo de dezenas de milhares de baixas porque defensores tinham armas, abrigos e linhas sucessivas de proteção.',
+  body: [
+    'A guerra começou em 1914 após uma crise política desencadeada pelo assassinato do arquiduque Francisco Ferdinando, dentro de um sistema de alianças e tensões já existente.',
+    'Planos iniciais apostavam em campanhas rápidas, mas o avanço alemão no oeste foi interrompido e os exércitos passaram a fortificar posições.',
+    'Metralhadoras e artilharia aumentaram enormemente o poder defensivo.',
+    'Trincheiras eram conectadas a abrigos, comunicações e linhas de suprimento, formando sistemas profundos em vez de simples valas.',
+    'Novas tecnologias como gás, tanques e aviões tentaram romper o impasse com resultados variados.',
+    'A guerra terminou em 1918 após esgotamento econômico, entrada dos Estados Unidos e colapso de impérios centrais.',
+  ],
+  remember: [
+    'Trincheiras foram resposta ao poder defensivo.',
+    'A guerra envolveu muito mais que a Frente Ocidental.',
+    'Tecnologia mudou combate e escala de destruição.',
+  ],
+  whyItMatters:
+      'A Primeira Guerra redesenhou fronteiras, derrubou impérios e criou condições políticas que influenciaram profundamente o século XX.',
+  curiosity:
+      'A linha de trincheiras na Frente Ocidental se estendia por centenas de quilômetros entre o Mar do Norte e a fronteira suíça.',
+  connections: ['Segunda Guerra', 'Império Otomano', 'Nacionalismo', 'Tratado de Versalhes'],
+);
+const segundaGuerraTopic = KnowledgeTopic(
+  id: 'segunda-guerra',
+  eyebrow: 'HISTÓRIA / GUERRAS',
+  title: 'POR QUE A SEGUNDA GUERRA FOI REALMENTE MUNDIAL?',
+  summary:
+      'Conflitos conectados na Europa, Ásia, África, oceanos e colônias mobilizaram dezenas de países e transformaram economias e populações civis em escala sem precedentes.',
+  minutes: 9,
+  tags: ['história', 'geopolítica'],
+  quickTake:
+      'A guerra não foi apenas Alemanha contra Aliados na Europa: Japão, China, União Soviética, impérios coloniais e frentes marítimas tornaram o conflito verdadeiramente global.',
+  simpleExplanation:
+      'Uma decisão militar numa região alterava produção, transporte e estratégia em outras partes do planeta. Combustível, alimentos, navios e soldados circulavam por uma rede mundial de guerra.',
+  example:
+      'Recursos e tropas de territórios coloniais foram mobilizados para campanhas no Norte da África, Europa, Ásia e Pacífico.',
+  body: [
+    'Na Europa, a invasão da Polônia pela Alemanha em 1939 levou Reino Unido e França a declarar guerra.',
+    'Na Ásia, Japão já travava uma guerra de larga escala contra a China desde 1937.',
+    'A invasão alemã da União Soviética em 1941 abriu uma frente gigantesca no leste europeu.',
+    'O ataque japonês a Pearl Harbor levou os Estados Unidos diretamente ao conflito.',
+    'A guerra mobilizou indústrias, ciência, propaganda e populações civis em escala extraordinária.',
+    'O Holocausto e outros crimes em massa fizeram parte do caráter genocida e brutal do conflito.',
+    'A rendição alemã ocorreu em maio de 1945; o Japão se rendeu em setembro após as bombas atômicas e a entrada soviética na guerra contra o Japão.',
+  ],
+  remember: [
+    'Europa e Ásia já tinham conflitos conectados antes de 1941.',
+    'Civis foram alvos e participantes centrais da guerra total.',
+    'Holocausto foi um genocídio sistemático conduzido pela Alemanha nazista e seus colaboradores.',
+  ],
+  whyItMatters:
+      'A guerra redefiniu fronteiras, acelerou a descolonização, criou novas instituições internacionais e estabeleceu bases da ordem mundial da Guerra Fria.',
+  curiosity:
+      'A Segunda Guerra foi o conflito mais letal da história, com dezenas de milhões de mortos militares e civis.',
+  connections: ['Holocausto', 'Guerra Fria', 'ONU', 'Direitos Humanos'],
+);
+const direitosHumanosTopic = KnowledgeTopic(
+  id: 'direitos-humanos',
+  eyebrow: 'HISTÓRIA / DIREITO',
+  title: 'DE ONDE VEIO A IDEIA MODERNA DE DIREITOS HUMANOS?',
+  summary:
+      'Ideias sobre dignidade e limites ao poder têm raízes antigas, mas o sistema internacional moderno ganhou forma sobretudo após as atrocidades da Segunda Guerra Mundial.',
+  minutes: 8,
+  tags: ['história', 'direito'],
+  quickTake:
+      'Direitos humanos modernos não nasceram de um único documento nem de uma única cultura; são resultado de longas disputas políticas, filosóficas e jurídicas.',
+  simpleExplanation:
+      'A ideia central é que certos direitos pertencem às pessoas por sua condição humana e não deveriam depender apenas da vontade de um governo.',
+  example:
+      'A Declaração Universal de 1948 afirma direitos civis, políticos, econômicos, sociais e culturais como referência comum para todos os povos.',
+  body: [
+    'Tradições religiosas, filosóficas e jurídicas de muitas sociedades discutiram deveres, dignidade e limites ao poder.',
+    'Iluminismo, revoluções atlânticas e movimentos abolicionistas ajudaram a formular linguagens modernas de direitos individuais e cidadania.',
+    'Essas declarações iniciais eram frequentemente excludentes na prática, especialmente em relação a mulheres, povos colonizados e pessoas escravizadas.',
+    'Após a Segunda Guerra e o Holocausto, a criação da ONU abriu espaço para um sistema internacional mais explícito de proteção de direitos.',
+    'A Declaração Universal dos Direitos Humanos foi adotada em 1948 como referência política e moral, embora não seja um tratado por si só.',
+    'Tratados posteriores transformaram muitos princípios em obrigações jurídicas para Estados que os ratificaram.',
+  ],
+  remember: [
+    'Direitos humanos têm história longa e disputada.',
+    '1948 é um marco, não o começo absoluto.',
+    'Declarações e tratados têm funções jurídicas diferentes.',
+  ],
+  whyItMatters:
+      'A linguagem de direitos humanos estrutura debates atuais sobre liberdade, igualdade, trabalho, discriminação, migração e responsabilidade estatal.',
+  curiosity:
+      'A Declaração Universal foi elaborada por representantes de diferentes regiões e tradições jurídicas, não apenas por países europeus.',
+  connections: ['ONU', 'Segunda Guerra', 'Abolicionismo', 'Direito internacional'],
+);
 const placasTectonicasTopic = KnowledgeTopic(
   id: 'placas-tectonicas',
   eyebrow: 'CIÊNCIA / PLANETA',
@@ -2549,18 +2643,204 @@ const umamiTopic = KnowledgeTopic(
       'Combinar glutamato e certos nucleotídeos pode produzir uma sensação de umami maior que a soma simples dos dois componentes separados.',
   connections: ['Glutamato', 'Fermentação', 'Queijo', 'Tomate'],
 );
-const alfabetoTopic=KnowledgeTopic(id:'alfabeto',eyebrow:'LINGUAGEM / REPERTÓRIO',title:'COMO POUCAS LETRAS ESCREVEM TANTAS PALAVRAS?',summary:'Uma introdução clara ao tema como poucas letras escrevem tantas palavras, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['linguagem','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema como poucas letras escrevem tantas palavras, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema como poucas letras escrevem tantas palavras, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const etimologiaTopic=KnowledgeTopic(id:'etimologia',eyebrow:'LINGUAGEM / REPERTÓRIO',title:'POR QUE PALAVRAS CARREGAM FÓSSEIS DA HISTÓRIA?',summary:'Uma introdução clara ao tema por que palavras carregam fósseis da história, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['linguagem','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema por que palavras carregam fósseis da história, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema por que palavras carregam fósseis da história, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const tempoFusosTopic=KnowledgeTopic(id:'tempo-fusos',eyebrow:'GEOGRAFIA / REPERTÓRIO',title:'POR QUE O MUNDO TEM FUSOS HORÁRIOS?',summary:'Uma introdução clara ao tema por que o mundo tem fusos horários, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['geografia','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema por que o mundo tem fusos horários, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema por que o mundo tem fusos horários, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const cidadesTopic=KnowledgeTopic(id:'cidades',eyebrow:'GEOGRAFIA / REPERTÓRIO',title:'POR QUE AS CIDADES EXISTEM?',summary:'Uma introdução clara ao tema por que as cidades existem, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['geografia','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema por que as cidades existem, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema por que as cidades existem, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const metroTopic=KnowledgeTopic(id:'metro',eyebrow:'CIDADE / REPERTÓRIO',title:'COMO UM METRÔ MOVE TANTA GENTE?',summary:'Uma introdução clara ao tema como um metrô move tanta gente, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['cidade','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema como um metrô move tanta gente, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema como um metrô move tanta gente, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const aviacaoTopic=KnowledgeTopic(id:'aviacao',eyebrow:'TECNOLOGIA / REPERTÓRIO',title:'COMO UM AVIÃO CONSEGUE VOAR?',summary:'Uma introdução clara ao tema como um avião consegue voar, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['tecnologia','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema como um avião consegue voar, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema como um avião consegue voar, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
+const alfabetoTopic = KnowledgeTopic(
+  id: 'alfabeto',
+  eyebrow: 'LINGUAGEM / ESCRITA',
+  title: 'COMO POUCAS LETRAS ESCREVEM TANTAS PALAVRAS?',
+  summary:
+      'Alfabetos representam unidades sonoras com um conjunto relativamente pequeno de sinais que podem ser combinados em inúmeras sequências.',
+  minutes: 7,
+  tags: ['linguagem', 'escrita'],
+  quickTake:
+      'Um alfabeto não precisa ter um símbolo para cada palavra: ele reutiliza letras para representar partes menores da fala.',
+  simpleExplanation:
+      'Com poucas dezenas de letras você consegue combinar sons em milhares de palavras, do mesmo modo que poucas notas musicais formam inúmeras melodias.',
+  example:
+      'As letras c, a, s e o podem ser reorganizadas e combinadas com outras para formar palavras diferentes sem criar um novo símbolo para cada ideia.',
+  body: [
+    'Sistemas de escrita podem representar palavras, sílabas, consoantes ou unidades sonoras menores.',
+    'Os alfabetos grego e latino fazem parte de uma longa história que inclui sistemas semíticos anteriores.',
+    'No alfabeto latino, letras representam sons de maneira imperfeita porque línguas mudam e reaproveitam a mesma escrita.',
+    'Ortografia preserva história e convenções, por isso a relação entre letra e som nem sempre é direta.',
+    'Novos símbolos, acentos e combinações surgiram conforme o alfabeto foi adaptado a diferentes idiomas.',
+    'A eficiência do sistema vem da capacidade combinatória de um inventário pequeno de sinais.',
+  ],
+  remember: [
+    'Alfabeto representa unidades menores que palavras.',
+    'Escrita e pronúncia não evoluem no mesmo ritmo.',
+    'O alfabeto latino é resultado de adaptações históricas.',
+  ],
+  whyItMatters:
+      'Entender como alfabetos funcionam ajuda a perceber escrita como tecnologia cultural, e não como reflexo perfeito da fala.',
+  curiosity:
+      'As formas e nomes de várias letras latinas descendem de sinais muito mais antigos que passaram por alfabetos fenício, grego e etrusco.',
+  connections: ['Escrita', 'Etimologia', 'Linguística', 'Imprensa'],
+);
+const etimologiaTopic = KnowledgeTopic(
+  id: 'etimologia',
+  eyebrow: 'LINGUAGEM / HISTÓRIA',
+  title: 'POR QUE PALAVRAS CARREGAM FÓSSEIS DA HISTÓRIA?',
+  summary:
+      'Etimologia investiga como palavras surgiram, mudaram de forma e sentido e viajaram entre línguas ao longo do tempo.',
+  minutes: 7,
+  tags: ['linguagem', 'história'],
+  quickTake:
+      'A origem de uma palavra não determina seu significado atual. Etimologia explica história, não uma suposta “verdade escondida” do vocabulário.',
+  simpleExplanation:
+      'Palavras mudam como cidades: novas camadas aparecem sobre estruturas antigas. A forma atual pode guardar marcas de pronúncias e significados anteriores.',
+  example:
+      '“Janela” e “window” significam a mesma coisa hoje, mas têm histórias diferentes porque português e inglês herdaram e criaram vocabulário por caminhos distintos.',
+  body: [
+    'Línguas mudam continuamente em som, gramática e vocabulário.',
+    'Palavras podem ser herdadas de ancestrais linguísticos ou emprestadas de outras línguas.',
+    'Empréstimos mudam pronúncia e significado para se adaptar ao novo contexto.',
+    'Mudanças semânticas podem ampliar, restringir ou transformar completamente o sentido original.',
+    'Linguistas comparam padrões sistemáticos entre palavras para reconstruir relações históricas.',
+    'Etimologias populares surgem quando semelhanças ocasionais são tratadas como parentesco sem evidência histórica.',
+  ],
+  remember: [
+    'Palavras mudam de forma e significado.',
+    'Empréstimos são parte normal das línguas.',
+    'Origem não determina uso atual.',
+  ],
+  whyItMatters:
+      'Etimologia revela contatos culturais, migrações e mudanças sociais escondidas em palavras usadas todos os dias.',
+  curiosity:
+      'Muitas palavras portuguesas de origem árabe preservam o artigo “al-”, como algoritmo, álcool e alfândega, embora suas histórias específicas sejam diferentes.',
+  connections: ['Alfabeto', 'Latim', 'Árabe', 'Linguística'],
+);
+const tempoFusosTopic = KnowledgeTopic(
+  id: 'tempo-fusos',
+  eyebrow: 'GEOGRAFIA / TEMPO',
+  title: 'POR QUE O MUNDO TEM FUSOS HORÁRIOS?',
+  summary:
+      'A rotação da Terra faz o meio-dia solar acontecer em momentos diferentes, e a expansão de ferrovias e telecomunicações levou países a padronizar horários regionais.',
+  minutes: 7,
+  tags: ['geografia', 'história'],
+  quickTake:
+      'Fusos horários não são divisões naturais perfeitas de 15 graus: fronteiras políticas e decisões econômicas deformam bastante o mapa.',
+  simpleExplanation:
+      'Antes de horários padronizados, cidades podiam ajustar relógios pelo Sol local. Isso ficava impraticável quando trens precisavam seguir tabelas entre muitas cidades.',
+  example:
+      'Duas cidades relativamente próximas podiam usar minutos diferentes de horário local até redes ferroviárias pressionarem por padrões comuns.',
+  body: [
+    'A Terra gira aproximadamente 360 graus em 24 horas, sugerindo uma diferença média de uma hora a cada 15 graus de longitude.',
+    'Durante séculos, muitas comunidades usaram o meio-dia solar local como referência.',
+    'Ferrovias do século XIX transformaram pequenas diferenças locais em problemas de operação e segurança.',
+    'Empresas e governos passaram a adotar horários padronizados por regiões.',
+    'O meridiano de Greenwich tornou-se uma referência internacional importante no fim do século XIX.',
+    'Hoje fronteiras de fusos seguem decisões políticas e podem incluir meia hora ou 45 minutos de diferença, além das horas inteiras.',
+  ],
+  remember: [
+    'Rotação da Terra cria a base astronômica.',
+    'Ferrovias aceleraram padronização.',
+    'Fusos reais seguem política, não apenas geometria.',
+  ],
+  whyItMatters:
+      'Fusos mostram como uma realidade física — rotação da Terra — vira uma convenção social necessária para coordenar uma economia global.',
+  curiosity:
+      'Alguns países usam um único horário em territórios que geograficamente poderiam ocupar vários fusos.',
+  connections: ['Longitude', 'Greenwich', 'Ferrovias', 'Calendário'],
+);
+const cidadesTopic = KnowledgeTopic(
+  id: 'cidades',
+  eyebrow: 'GEOGRAFIA / SOCIEDADE',
+  title: 'POR QUE AS CIDADES EXISTEM?',
+  summary:
+      'Cidades concentram pessoas, infraestrutura e atividades porque proximidade facilita troca, especialização, serviços e circulação de conhecimento.',
+  minutes: 8,
+  tags: ['geografia', 'cidade'],
+  quickTake:
+      'Cidades geram vantagens de proximidade, mas também concentram problemas como congestionamento, custo de moradia, poluição e desigualdade.',
+  simpleExplanation:
+      'Quando muitas pessoas e empresas estão próximas, fica mais fácil encontrar clientes, trabalhadores, fornecedores e serviços especializados.',
+  example:
+      'Um hospital de alta complexidade precisa de muitos profissionais e pacientes; uma grande cidade oferece densidade suficiente para sustentar esse tipo de serviço.',
+  body: [
+    'As primeiras grandes cidades surgiram ligadas a agricultura excedente, poder político, comércio e organização religiosa.',
+    'Proximidade reduz certos custos de transporte e comunicação e facilita mercados especializados.',
+    'Economistas chamam de economias de aglomeração os ganhos produzidos quando pessoas e empresas se concentram.',
+    'Infraestrutura compartilhada — água, transporte, energia e serviços públicos — torna densidade possível.',
+    'Ao mesmo tempo, solo urbano disputado eleva preços e pode intensificar segregação.',
+    'Tecnologia muda funções urbanas, mas não eliminou a vantagem de encontros, redes e serviços concentrados.',
+  ],
+  remember: [
+    'Densidade cria ganhos e custos.',
+    'Infraestrutura sustenta concentração.',
+    'Cidades são sistemas econômicos e sociais, não só conjuntos de prédios.',
+  ],
+  whyItMatters:
+      'Mais da metade da população mundial vive em áreas urbanas, então entender cidades ajuda a pensar moradia, transporte, clima e desigualdade.',
+  curiosity:
+      'Algumas das maiores cidades do mundo funcionam hoje como regiões metropolitanas formadas por vários municípios conectados.',
+  connections: ['Urbanismo', 'Metrô', 'Habitação', 'Infraestrutura'],
+);
+const metroTopic = KnowledgeTopic(
+  id: 'metro',
+  eyebrow: 'CIDADE / MOBILIDADE',
+  title: 'COMO UM METRÔ MOVE TANTA GENTE?',
+  summary:
+      'Trens grandes, vias exclusivas, estações frequentes e operação coordenada permitem transportar milhares de passageiros por hora sem disputar espaço com carros.',
+  minutes: 8,
+  tags: ['cidade', 'tecnologia'],
+  quickTake:
+      'A força do metrô não é velocidade máxima: é capacidade de mover muita gente de forma repetível num corredor de alta demanda.',
+  simpleExplanation:
+      'Um trem leva centenas ou milhares de pessoas de uma vez e outro pode chegar poucos minutos depois, usando uma faixa de infraestrutura dedicada.',
+  example:
+      'Uma linha movimentada consegue oferecer dezenas de trens por hora em cada direção quando sinalização, estações e operação suportam intervalos curtos.',
+  body: [
+    'Metrôs usam direito de passagem segregado, evitando cruzamentos e congestionamentos do trânsito comum.',
+    'A capacidade depende do tamanho dos trens, frequência, sinalização e tempo de parada nas estações.',
+    'Sistemas modernos controlam distância entre trens para manter segurança com intervalos menores.',
+    'Estações precisam escoar rapidamente passageiros para evitar que plataformas virem gargalos.',
+    'Integração com ônibus, caminhada e outros modos determina quantas pessoas conseguem acessar a rede.',
+    'Construção é cara, por isso metrôs fazem mais sentido em corredores com demanda alta e persistente.',
+  ],
+  remember: [
+    'Capacidade depende muito da frequência.',
+    'Via exclusiva evita congestionamento externo.',
+    'Estação também pode ser gargalo.',
+  ],
+  whyItMatters:
+      'Metrôs mostram como infraestrutura e operação precisam funcionar juntas para transformar densidade urbana em mobilidade eficiente.',
+  curiosity:
+      'Algumas redes usam operação automática para reduzir variação entre trens e permitir intervalos muito curtos.',
+  connections: ['Cidades', 'Urbanismo', 'Sinalização', 'Transporte público'],
+);
+const aviacaoTopic = KnowledgeTopic(
+  id: 'aviacao',
+  eyebrow: 'TECNOLOGIA / FÍSICA',
+  title: 'COMO UM AVIÃO CONSEGUE VOAR?',
+  summary:
+      'As asas desviam ar e criam uma diferença de pressão que gera sustentação; motores fornecem empuxo para manter velocidade suficiente contra o arrasto.',
+  minutes: 8,
+  tags: ['tecnologia', 'ciência'],
+  quickTake:
+      'A sustentação não vem de uma única explicação simples sobre ar “percorrer distâncias iguais” sobre a asa. Pressão, circulação e desvio do fluxo fazem parte do mesmo fenômeno aerodinâmico.',
+  simpleExplanation:
+      'Ao avançar, a asa encontra o ar com um formato e ângulo que fazem o fluxo ser desviado para baixo. A interação produz uma força resultante para cima.',
+  example:
+      'Ao aumentar o ângulo de ataque até certo ponto, a asa pode gerar mais sustentação; acima de um limite, o fluxo se separa e ocorre estol.',
+  body: [
+    'Quatro forças principais aparecem no voo: peso, sustentação, empuxo e arrasto.',
+    'O formato da asa e seu ângulo em relação ao fluxo criam distribuição de pressão e desviam ar para baixo.',
+    'A sustentação cresce com velocidade, densidade do ar, área da asa e coeficiente aerodinâmico.',
+    'Motores não “seguram” o avião no ar diretamente; fornecem empuxo para vencer arrasto e manter movimento.',
+    'Flaps alteram a geometria da asa para gerar mais sustentação em velocidades menores durante decolagem e pouso.',
+    'Pilotos controlam atitude e trajetória usando superfícies móveis e potência.',
+  ],
+  remember: [
+    'Voo envolve quatro forças principais.',
+    'Asas geram sustentação pela interação com o fluxo de ar.',
+    'Estol ocorre quando o fluxo se separa demais da asa.',
+  ],
+  whyItMatters:
+      'Aviação combina física, materiais, motores, meteorologia e sistemas de controle numa das tecnologias de transporte mais complexas do cotidiano.',
+  curiosity:
+      'Um avião comercial pode continuar planando por uma distância considerável mesmo sem empuxo dos motores, porque suas asas continuam produzindo sustentação enquanto houver velocidade.',
+  connections: ['Aerodinâmica', 'Motores', 'Meteorologia', 'GPS'],
+);
 const psicanaliseTopic = KnowledgeTopic(
  id:'psicanalise', eyebrow:'PSICOLOGIA / IDEIAS', title:'O QUE FREUD MUDOU NA FORMA DE PENSAR A MENTE?', summary:'A psicanálise colocou conflitos inconscientes, infância e interpretação no centro de uma nova teoria da vida psíquica.', minutes:7, tags:['psicologia', 'história'],
  quickTake:'Freud não descobriu simplesmente uma parte escondida do cérebro; ele propôs um modelo teórico da mente que teve enorme influência cultural.', simpleExplanation:'Pense em uma decisão para a qual você inventa uma explicação racional depois: a psicanálise popularizou a ideia de que nem todos os motivos estão disponíveis à consciência.', example:'Pense em uma decisão para a qual você inventa uma explicação racional depois: a psicanálise popularizou a ideia de que nem todos os motivos estão disponíveis à consciência.', body:['No fim do século XIX, Freud desenvolveu métodos baseados em fala, associação e interpretação.', 'O conceito de inconsciente já existia, mas ganhou uma formulação nova em sua obra.', 'Sonhos, lapsos e sintomas eram interpretados como possíveis expressões de conflitos.', 'Muitas proposições freudianas são controversas ou difíceis de testar pelos padrões científicos atuais.', 'A influência da psicanálise permanece forte em clínica, literatura, cinema e crítica cultural.'], remember:['Psicanálise é teoria e prática clínica.', 'Freud não inventou sozinho a ideia de inconsciente.', 'Influência cultural e validação científica são questões diferentes.'],
