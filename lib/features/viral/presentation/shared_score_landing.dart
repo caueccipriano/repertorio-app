@@ -67,7 +67,7 @@ class SharedScoreLanding extends StatelessWidget {
                         Spacer(),
                         ViralThemeToggle(),
                         SizedBox(width: 10),
-                        Text('SCORE COMPARTILHADO'),
+                        Text('SCORE'),
                       ],
                     ),
                     const SizedBox(height: 46),
