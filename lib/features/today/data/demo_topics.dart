@@ -1295,22 +1295,270 @@ const segundaGuerraTopic=KnowledgeTopic(id:'segunda-guerra',eyebrow:'HISTÓRIA /
 
 const direitosHumanosTopic=KnowledgeTopic(id:'direitos-humanos',eyebrow:'HISTÓRIA / REPERTÓRIO',title:'DE ONDE VEIO A IDEIA MODERNA DE DIREITOS HUMANOS?',summary:'Uma introdução clara ao tema de onde veio a ideia moderna de direitos humanos, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['história','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema de onde veio a ideia moderna de direitos humanos, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema de onde veio a ideia moderna de direitos humanos, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
 
-const placasTectonicasTopic=KnowledgeTopic(id:'placas-tectonicas',eyebrow:'CIÊNCIA / REPERTÓRIO',title:'OS CONTINENTES REALMENTE SE MOVEM?',summary:'Uma introdução clara ao tema os continentes realmente se movem, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['ciência','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema os continentes realmente se movem, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema os continentes realmente se movem, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const terremotosTopic=KnowledgeTopic(id:'terremotos',eyebrow:'CIÊNCIA / REPERTÓRIO',title:'POR QUE A TERRA TREME?',summary:'Uma introdução clara ao tema por que a terra treme, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['ciência','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema por que a terra treme, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema por que a terra treme, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const auroraTopic=KnowledgeTopic(id:'aurora',eyebrow:'CIÊNCIA / REPERTÓRIO',title:'POR QUE O CÉU FICA VERDE NAS AURORAS?',summary:'Uma introdução clara ao tema por que o céu fica verde nas auroras, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['ciência','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema por que o céu fica verde nas auroras, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema por que o céu fica verde nas auroras, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const estrelasTopic=KnowledgeTopic(id:'estrelas',eyebrow:'CIÊNCIA / REPERTÓRIO',title:'COMO NASCE E MORRE UMA ESTRELA?',summary:'Uma introdução clara ao tema como nasce e morre uma estrela, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['ciência','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema como nasce e morre uma estrela, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema como nasce e morre uma estrela, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const elementosTopic=KnowledgeTopic(id:'elementos',eyebrow:'CIÊNCIA / REPERTÓRIO',title:'DE ONDE VÊM OS ÁTOMOS DO SEU CORPO?',summary:'Uma introdução clara ao tema de onde vêm os átomos do seu corpo, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['ciência','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema de onde vêm os átomos do seu corpo, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema de onde vêm os átomos do seu corpo, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const antibioticosTopic=KnowledgeTopic(id:'antibioticos',eyebrow:'CIÊNCIA / REPERTÓRIO',title:'POR QUE ANTIBIÓTICO NÃO FUNCIONA CONTRA VÍRUS?',summary:'Uma introdução clara ao tema por que antibiótico não funciona contra vírus, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['ciência','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema por que antibiótico não funciona contra vírus, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema por que antibiótico não funciona contra vírus, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const microbiomaTopic=KnowledgeTopic(id:'microbioma',eyebrow:'CIÊNCIA / REPERTÓRIO',title:'VOCÊ É UM ECOSSISTEMA?',summary:'Uma introdução clara ao tema você é um ecossistema, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['ciência','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema você é um ecossistema, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema você é um ecossistema, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
-const memoriaTopic=KnowledgeTopic(id:'memoria',eyebrow:'PSICOLOGIA / REPERTÓRIO',title:'POR QUE NOSSA MEMÓRIA NÃO É UMA GRAVAÇÃO?',summary:'Uma introdução clara ao tema por que nossa memória não é uma gravação, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['psicologia','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema por que nossa memória não é uma gravação, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema por que nossa memória não é uma gravação, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
-
+const placasTectonicasTopic = KnowledgeTopic(
+  id: 'placas-tectonicas',
+  eyebrow: 'CIÊNCIA / PLANETA',
+  title: 'OS CONTINENTES REALMENTE SE MOVEM?',
+  summary:
+      'A superfície sólida da Terra é dividida em placas que se deslocam alguns centímetros por ano sobre regiões mais quentes e deformáveis do manto.',
+  minutes: 7,
+  tags: ['ciência', 'geologia'],
+  quickTake:
+      'Continentes não deslizam sozinhos: eles fazem parte de grandes placas tectônicas que carregam crosta continental e oceânica.',
+  simpleExplanation:
+      'Imagine a casca de um ovo quebrada em grandes pedaços que se movem muito lentamente. Na Terra, esses pedaços podem se afastar, colidir ou deslizar lateralmente.',
+  example:
+      'O oceano Atlântico cresce lentamente porque nova crosta oceânica se forma ao longo da dorsal mesoatlântica enquanto as placas se afastam.',
+  body: [
+    'A litosfera terrestre é fragmentada em placas rígidas que se movem em escalas de milhões de anos.',
+    'Em limites divergentes, placas se afastam e magma pode formar nova crosta.',
+    'Em limites convergentes, uma placa pode mergulhar sob outra ou continentes podem colidir e formar cadeias de montanhas.',
+    'Em limites transformantes, placas deslizam lateralmente e acumulam tensão que pode ser liberada em terremotos.',
+    'O movimento está relacionado à dinâmica térmica do interior da Terra e às forças associadas à própria litosfera.',
+    'A teoria da tectônica de placas unificou evidências antes separadas sobre vulcões, terremotos, montanhas e distribuição de fósseis.',
+  ],
+  remember: [
+    'Placas carregam continentes e fundo oceânico.',
+    'Elas se movem poucos centímetros por ano.',
+    'Limites de placas concentram muitos terremotos e vulcões.',
+  ],
+  whyItMatters:
+      'A tectônica de placas explica por que continentes, oceanos, terremotos e cadeias de montanhas estão ligados por um mesmo sistema planetário.',
+  curiosity:
+      'A velocidade de algumas placas é comparável ao crescimento de unhas humanas.',
+  connections: ['Terremotos', 'Vulcões', 'Oceanos', 'Montanhas'],
+);
+const terremotosTopic = KnowledgeTopic(
+  id: 'terremotos',
+  eyebrow: 'CIÊNCIA / PLANETA',
+  title: 'POR QUE A TERRA TREME?',
+  summary:
+      'Terremotos acontecem quando tensão acumulada nas rochas é liberada rapidamente, gerando ondas sísmicas que atravessam o planeta.',
+  minutes: 7,
+  tags: ['ciência', 'geologia'],
+  quickTake:
+      'O tremor não é causado pela placa inteira “batendo” de uma vez; normalmente ocorre quando uma falha geológica rompe após acumular tensão.',
+  simpleExplanation:
+      'Dobre lentamente uma régua: ela aguenta deformação até certo ponto. Quando a tensão supera a resistência, a energia é liberada de repente. Rochas podem se comportar de modo parecido.',
+  example:
+      'Na falha de San Andreas, placas deslizam lateralmente, mas partes da falha podem ficar travadas por anos antes de se moverem abruptamente.',
+  body: [
+    'Movimentos tectônicos deformam rochas e acumulam energia elástica em zonas de falha.',
+    'Quando a resistência das rochas é superada, ocorre ruptura ou deslizamento súbito.',
+    'Esse movimento produz ondas sísmicas que se propagam pelo interior e pela superfície da Terra.',
+    'O hipocentro é o ponto no interior onde a ruptura começa; o epicentro é sua projeção na superfície.',
+    'Magnitude descreve a energia liberada, enquanto intensidade descreve os efeitos observados em diferentes locais.',
+    'Construção adequada, planejamento urbano e sistemas de alerta podem reduzir impactos, mas não é possível prever com precisão o momento exato de um grande terremoto.',
+  ],
+  remember: [
+    'Terremotos liberam tensão acumulada em falhas.',
+    'Magnitude e intensidade não são a mesma coisa.',
+    'Risco depende também de construção e localização.',
+  ],
+  whyItMatters:
+      'Entender terremotos ajuda a separar o fenômeno geológico do desastre social: a mesma energia pode causar impactos muito diferentes dependendo de infraestrutura e preparação.',
+  curiosity:
+      'Ondas sísmicas também ajudam cientistas a investigar o interior da Terra, porque mudam de velocidade e direção ao atravessar diferentes camadas.',
+  connections: ['Placas tectônicas', 'Falhas', 'Tsunamis', 'Geologia'],
+);
+const auroraTopic = KnowledgeTopic(
+  id: 'aurora',
+  eyebrow: 'CIÊNCIA / CÉU',
+  title: 'POR QUE O CÉU FICA VERDE NAS AURORAS?',
+  summary:
+      'Partículas carregadas vindas do Sol interagem com o campo magnético terrestre e excitam gases da alta atmosfera, que emitem luz.',
+  minutes: 7,
+  tags: ['ciência', 'astronomia'],
+  quickTake:
+      'O verde mais comum vem principalmente de oxigênio excitado em certas altitudes; outras condições podem produzir vermelho, azul ou violeta.',
+  simpleExplanation:
+      'É parecido com um letreiro de gás: energia entra nos átomos e, quando eles voltam a um estado de menor energia, liberam luz com cores características.',
+  example:
+      'Durante atividade solar intensa, mais partículas chegam à Terra e auroras podem aparecer em latitudes mais baixas do que o habitual.',
+  body: [
+    'O Sol emite continuamente partículas carregadas no chamado vento solar.',
+    'O campo magnético da Terra desvia grande parte dessas partículas, mas canaliza algumas em direção às regiões polares.',
+    'Ao colidir com oxigênio e nitrogênio na alta atmosfera, as partículas transferem energia para esses gases.',
+    'Quando os átomos e moléculas liberam essa energia, emitem luz em comprimentos de onda específicos.',
+    'Oxigênio costuma produzir o verde mais familiar e, em outras altitudes, vermelho; nitrogênio pode contribuir com azul e violeta.',
+    'Auroras boreais e austrais são o mesmo fenômeno visto nos hemisférios norte e sul.',
+  ],
+  remember: [
+    'Auroras ligam atividade solar e atmosfera terrestre.',
+    'O campo magnético concentra partículas perto dos polos.',
+    'A cor depende do gás e da altitude.',
+  ],
+  whyItMatters:
+      'Auroras são uma manifestação visível do clima espacial, que também pode afetar satélites, comunicações e redes elétricas.',
+  curiosity:
+      'Tempestades geomagnéticas muito fortes já permitiram observar auroras a milhares de quilômetros das regiões polares.',
+  connections: ['Sol', 'Campo magnético', 'Atmosfera', 'Clima espacial'],
+);
+const estrelasTopic = KnowledgeTopic(
+  id: 'estrelas',
+  eyebrow: 'CIÊNCIA / UNIVERSO',
+  title: 'COMO NASCE E MORRE UMA ESTRELA?',
+  summary:
+      'Estrelas surgem quando nuvens de gás colapsam pela gravidade, acendem fusão nuclear e evoluem conforme sua massa inicial.',
+  minutes: 8,
+  tags: ['ciência', 'astronomia'],
+  quickTake:
+      'Massa é o fator central: estrelas parecidas com o Sol terminam de forma muito diferente das estrelas muito massivas.',
+  simpleExplanation:
+      'Uma estrela passa grande parte da vida equilibrando duas forças: gravidade puxando matéria para dentro e pressão gerada pela fusão empurrando para fora.',
+  example:
+      'O Sol transforma hidrogênio em hélio no núcleo. Quando esse combustível central mudar, ele se expandirá e entrará em uma nova fase de sua evolução.',
+  body: [
+    'Estrelas nascem em regiões de gás e poeira onde a gravidade concentra matéria em estruturas cada vez mais densas.',
+    'Quando o núcleo fica quente e comprimido o suficiente, começa a fusão de hidrogênio, marcando uma fase estável chamada sequência principal.',
+    'A massa inicial determina temperatura, luminosidade, duração e destino da estrela.',
+    'Estrelas com massas próximas à do Sol podem se tornar gigantes vermelhas e terminar como anãs brancas.',
+    'Estrelas muito mais massivas podem fundir elementos mais pesados e terminar em explosões de supernova.',
+    'Após certas supernovas, o remanescente pode virar uma estrela de nêutrons ou, em casos extremos, um buraco negro.',
+  ],
+  remember: [
+    'Estrelas nascem por colapso gravitacional.',
+    'Fusão sustenta a maior parte de sua vida.',
+    'A massa determina o destino final.',
+  ],
+  whyItMatters:
+      'A evolução estelar explica de onde vêm muitos elementos químicos e conecta a história das estrelas à formação de planetas e da própria vida.',
+  curiosity:
+      'O Sol está aproximadamente no meio de sua fase estável de sequência principal.',
+  connections: ['Fusão nuclear', 'Supernovas', 'Buracos negros', 'Elementos'],
+);
+const elementosTopic = KnowledgeTopic(
+  id: 'elementos',
+  eyebrow: 'CIÊNCIA / MATÉRIA',
+  title: 'DE ONDE VÊM OS ÁTOMOS DO SEU CORPO?',
+  summary:
+      'Hidrogênio surgiu principalmente no universo primordial; muitos elementos mais pesados foram produzidos no interior de estrelas e em eventos estelares extremos.',
+  minutes: 8,
+  tags: ['ciência', 'química'],
+  quickTake:
+      'A frase “somos poeira de estrelas” é uma simplificação poética, mas tem base física: carbono, oxigênio e muitos outros elementos foram forjados por gerações anteriores de estrelas.',
+  simpleExplanation:
+      'O universo começou com poucos tipos de núcleos leves. Estrelas funcionam como fornos capazes de combinar núcleos e formar elementos mais pesados.',
+  example:
+      'O carbono presente em células e moléculas orgânicas foi produzido por reações nucleares em estrelas antes de entrar no material que formou o Sistema Solar.',
+  body: [
+    'Após o Big Bang, o universo era dominado por hidrogênio e hélio, com pequenas quantidades de outros núcleos leves.',
+    'No interior das estrelas, fusão nuclear transforma elementos leves em outros mais pesados durante diferentes fases estelares.',
+    'Estrelas massivas conseguem formar uma cadeia de elementos até regiões próximas ao ferro.',
+    'Parte dos elementos mais pesados que o ferro surge em processos ricos em nêutrons associados a eventos como explosões estelares e fusões de estrelas de nêutrons.',
+    'Quando estrelas perdem matéria ou explodem, enriquecem o gás interestelar com esses elementos.',
+    'O Sistema Solar se formou a partir de material que já havia sido processado por gerações anteriores de estrelas.',
+  ],
+  remember: [
+    'Hidrogênio é principalmente primordial.',
+    'Estrelas produzem muitos elementos mais pesados.',
+    'Eventos estelares espalham esse material pelo espaço.',
+  ],
+  whyItMatters:
+      'A química do seu corpo faz parte da história cósmica: elementos biológicos só existem porque o universo passou por bilhões de anos de evolução estelar.',
+  curiosity:
+      'O ferro do sangue e o cálcio dos ossos não foram produzidos na Terra; seus átomos já existiam antes da formação do planeta.',
+  connections: ['Estrelas', 'Supernovas', 'Química', 'Origem da vida'],
+);
+const antibioticosTopic = KnowledgeTopic(
+  id: 'antibioticos',
+  eyebrow: 'CIÊNCIA / SAÚDE',
+  title: 'POR QUE ANTIBIÓTICO NÃO FUNCIONA CONTRA VÍRUS?',
+  summary:
+      'Antibióticos atuam em estruturas ou processos de bactérias. Vírus usam a maquinaria das células hospedeiras e não possuem muitos desses alvos.',
+  minutes: 7,
+  tags: ['ciência', 'saúde'],
+  quickTake:
+      'Antibióticos tratam infecções bacterianas específicas; tomar antibiótico contra resfriado ou gripe não ataca o vírus e ainda pode favorecer resistência bacteriana.',
+  simpleExplanation:
+      'É como usar uma chave para uma fechadura que não existe. Um antibiótico que bloqueia a parede bacteriana não consegue agir num vírus que nem possui essa parede.',
+  example:
+      'Penicilinas interferem na construção da parede celular de muitas bactérias. Vírus influenza não têm parede celular e, portanto, esse mecanismo não serve contra eles.',
+  body: [
+    'Bactérias são células completas, com estruturas e processos próprios para crescer e se dividir.',
+    'Vírus são muito menores e dependem de células hospedeiras para produzir novas partículas virais.',
+    'Diferentes classes de antibióticos atacam alvos como parede celular, ribossomos bacterianos ou certas enzimas.',
+    'Como vírus não apresentam esses mesmos alvos, antibióticos não são tratamentos antivirais.',
+    'Uso inadequado de antibióticos cria pressão seletiva que favorece bactérias resistentes.',
+    'Algumas infecções virais podem ser tratadas com antivirais específicos, que usam mecanismos completamente diferentes.',
+  ],
+  remember: [
+    'Antibiótico não é antiviral.',
+    'O alvo do medicamento precisa existir no microrganismo.',
+    'Uso inadequado favorece resistência bacteriana.',
+  ],
+  whyItMatters:
+      'Entender essa diferença ajuda a evitar uso desnecessário de medicamentos e a compreender por que resistência antimicrobiana é um problema coletivo.',
+  curiosity:
+      'A descoberta da penicilina transformou a medicina, mas bactérias resistentes começaram a ser observadas poucos anos após sua introdução ampla.',
+  connections: ['Bactérias', 'Vírus', 'Penicilina', 'Resistência antimicrobiana'],
+);
+const microbiomaTopic = KnowledgeTopic(
+  id: 'microbioma',
+  eyebrow: 'CIÊNCIA / CORPO',
+  title: 'VOCÊ É UM ECOSSISTEMA?',
+  summary:
+      'O corpo humano abriga comunidades de microrganismos que variam entre pele, boca, intestino e outros ambientes e interagem com nossa fisiologia.',
+  minutes: 8,
+  tags: ['ciência', 'saúde'],
+  quickTake:
+      'Microbioma não é um único conjunto de “bactérias boas”. É uma comunidade diversa cuja composição muda com dieta, ambiente, idade, medicamentos e muitos outros fatores.',
+  simpleExplanation:
+      'Seu intestino funciona como um habitat. Diferentes microrganismos competem por recursos, produzem moléculas e interagem com células humanas.',
+  example:
+      'Algumas bactérias intestinais fermentam fibras que o corpo humano não digere diretamente e produzem compostos usados pelas células do intestino.',
+  body: [
+    'Microbiota é o conjunto de microrganismos de um ambiente; microbioma pode incluir também seus genes e o ecossistema associado.',
+    'Diferentes partes do corpo oferecem condições distintas de oxigênio, acidez, umidade e nutrientes.',
+    'No intestino, microrganismos participam da transformação de componentes da dieta e da produção de diversas moléculas.',
+    'O sistema imune interage constantemente com essas comunidades e precisa distinguir relações toleráveis de ameaças reais.',
+    'Antibióticos, dieta e doenças podem alterar a composição da microbiota, mas isso não significa que exista um único perfil “perfeito”.',
+    'Pesquisas associam o microbioma a muitos aspectos da saúde, porém associação não é automaticamente prova de causa.',
+  ],
+  remember: [
+    'Existem vários microbiomas no corpo.',
+    'Diversidade e função importam mais que rótulos simples de “bom” ou “ruim”.',
+    'Muitas relações ainda estão sendo estudadas.',
+  ],
+  whyItMatters:
+      'O microbioma muda a visão do corpo humano de organismo isolado para sistema que convive continuamente com comunidades microbianas.',
+  curiosity:
+      'O conjunto de genes dos microrganismos intestinais supera em variedade o número de genes presentes no genoma humano.',
+  connections: ['Imunidade', 'Antibióticos', 'Digestão', 'Fermentação'],
+);
+const memoriaTopic = KnowledgeTopic(
+  id: 'memoria',
+  eyebrow: 'PSICOLOGIA / CÉREBRO',
+  title: 'POR QUE NOSSA MEMÓRIA NÃO É UMA GRAVAÇÃO?',
+  summary:
+      'Lembrar envolve reconstruir informações usando pistas, conhecimentos prévios e contexto — por isso memórias podem mudar sem que a pessoa perceba.',
+  minutes: 8,
+  tags: ['psicologia', 'neurociência'],
+  quickTake:
+      'Memória é útil justamente porque organiza e reconstrói experiências; o preço dessa flexibilidade é que detalhes podem ser distorcidos.',
+  simpleExplanation:
+      'Ao lembrar de uma cena, o cérebro não abre um arquivo de vídeo intacto. Ele recompõe partes do acontecimento usando traços armazenados e o que faz sentido no presente.',
+  example:
+      'Duas pessoas podem lembrar da mesma conversa com detalhes diferentes, especialmente quando a lembrança é evocada muitas vezes ou recebe informações novas depois.',
+  body: [
+    'Memória inclui sistemas diferentes para fatos, experiências, habilidades e informações mantidas por poucos segundos.',
+    'Para uma experiência ser lembrada depois, ela precisa ser codificada, consolidada e recuperada.',
+    'A recuperação depende de pistas e do contexto, o que explica por que certas lembranças aparecem diante de cheiros, lugares ou palavras específicas.',
+    'Cada ato de lembrar pode tornar uma memória temporariamente maleável antes de ela ser armazenada novamente.',
+    'Sugestões, expectativas e conhecimento prévio podem preencher lacunas e gerar lembranças sinceras, porém imprecisas.',
+    'Isso não torna toda memória falsa; significa que recordar é um processo ativo e sujeito a erro.',
+  ],
+  remember: [
+    'Memória possui vários sistemas.',
+    'Recordar é reconstruir, não reproduzir um vídeo.',
+    'Confiança numa lembrança não garante precisão absoluta.',
+  ],
+  whyItMatters:
+      'Entender a natureza reconstrutiva da memória ajuda em aprendizagem, relações pessoais e interpretação de depoimentos e testemunhos.',
+  curiosity:
+      'Pesquisas de psicologia mostraram que a forma como uma pergunta é feita pode alterar detalhes que participantes relatam lembrar de um evento.',
+  connections: ['Aprendizagem', 'Neuroplasticidade', 'Vieses', 'Sono'],
+);
 const dopaminaTopic=KnowledgeTopic(id:'dopamina',eyebrow:'PSICOLOGIA / REPERTÓRIO',title:'DOPAMINA É O HORMÔNIO DO PRAZER?',summary:'Uma introdução clara ao tema dopamina é o hormônio do prazer, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['psicologia','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema dopamina é o hormônio do prazer, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema dopamina é o hormônio do prazer, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
 
 const habitosTopic=KnowledgeTopic(id:'habitos',eyebrow:'PSICOLOGIA / REPERTÓRIO',title:'COMO UM HÁBITO VIRA AUTOMÁTICO?',summary:'Uma introdução clara ao tema como um hábito vira automático, conectando contexto, mecanismo e impacto no mundo atual.',minutes:7,tags:['psicologia','repertório'],quickTake:'A ideia central é separar a explicação simples dos detalhes e entender por que o assunto se tornou relevante.',simpleExplanation:'Uma introdução clara ao tema como um hábito vira automático, conectando contexto, mecanismo e impacto no mundo atual. O primeiro passo é identificar o fenômeno principal sem depender de jargão.',example:'Pense em um exemplo cotidiano ou histórico: ele permite enxergar o mecanismo antes de aprofundar os detalhes.',body:['Uma introdução clara ao tema como um hábito vira automático, conectando contexto, mecanismo e impacto no mundo atual.','O assunto ganhou importância porque reúne causas, consequências e mudanças que não aparecem quando olhamos apenas para uma definição.','Uma boa forma de compreendê-lo é separar origem, funcionamento e efeitos, observando o que mudou ao longo do tempo.','Também vale evitar explicações de causa única: contexto, tecnologia, instituições, ambiente ou cultura podem atuar ao mesmo tempo.','Ao conectar este tema aos demais assuntos do Repertório, ele deixa de ser uma curiosidade isolada e passa a formar uma rede de conhecimento.'],remember:['Entenda primeiro o mecanismo central.','Contexto muda a interpretação.','Conexões com outros temas ajudam a fixar o conteúdo.'],whyItMatters:'Amplia repertório geral e oferece uma base para reconhecer este tema em notícias, conversas, livros, filmes e situações do cotidiano.',curiosity:'Este tópico foi incluído na expansão para transformar o Repertório em uma enciclopédia conectada de conhecimentos essenciais.',connections:['História','Ciência','Cultura','Repertório']);
