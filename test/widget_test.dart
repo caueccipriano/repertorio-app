@@ -14,13 +14,19 @@ void main() {
     SharedPreferences.setMockInitialValues({});
   });
 
-  testWidgets('opens the library directly without onboarding lockout',
+  testWidgets('opens viral score entry and lets existing users skip',
       (tester) async {
     await tester.pumpWidget(const RepertorioApp());
     await tester.pumpAndSettle();
 
-    expect(find.text('pular'), findsNothing);
-    expect(find.text('repertório*'), findsOneWidget);
+    expect(find.text('VOCÊ TEM\nASSUNTO?'), findsOneWidget);
+    expect(find.text('DESCOBRIR MEU SCORE'), findsOneWidget);
+    expect(find.text('já uso o repertório →'), findsOneWidget);
+    expect(find.text('DESTAQUE DE HOJE'), findsNothing);
+
+    await tester.tap(find.text('já uso o repertório →'));
+    await tester.pumpAndSettle();
+
     expect(find.text('DESTAQUE DE HOJE'), findsOneWidget);
     expect(find.text('ME SURPREENDA'), findsOneWidget);
     expect(find.text('Hoje'), findsOneWidget);
