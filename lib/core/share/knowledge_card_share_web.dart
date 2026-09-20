@@ -50,3 +50,36 @@ Future<bool> shareViralScore({
   ).toDart;
   return result.toDart;
 }
+
+
+@JS('repertorioProfileCard.supported')
+external JSBoolean _profileShareSupported();
+
+@JS('repertorioProfileCard.share')
+external JSPromise<JSBoolean> _shareProfile(
+  JSNumber score,
+  JSString archetype,
+  JSString strengths,
+  JSString countsJson,
+  JSString shareUrl,
+);
+
+bool get repertoryProfileShareSupported => _profileShareSupported().toDart;
+
+Future<bool> shareRepertoryProfile({
+  required int score,
+  required String archetype,
+  required String strengths,
+  required String countsJson,
+  required String shareUrl,
+}) async {
+  if (!repertoryProfileShareSupported) return false;
+  final result = await _shareProfile(
+    score.toJS,
+    archetype.toJS,
+    strengths.toJS,
+    countsJson.toJS,
+    shareUrl.toJS,
+  ).toDart;
+  return result.toDart;
+}
