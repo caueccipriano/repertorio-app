@@ -477,8 +477,9 @@ class _ArticleScreenState extends State<ArticleScreen> {
             palette: palette,
             completed: state.completedTopicIds.contains(topic.id),
             onPressed: () async {
-              await state.updateProgress(topic.id, 1);
+              // Give immediate feedback before waiting for local persistence.
               if (mounted) setState(() => _progress = 1);
+              await state.updateProgress(topic.id, 1);
             },
           ),
         ),
@@ -552,10 +553,9 @@ class _ArticleScreenState extends State<ArticleScreen> {
 
     return Stack(
       children: [
-        GestureDetector(
-          behavior: HitTestBehavior.translucent,
-          onDoubleTap: () => showReaderControls(context),
-          child: PageView.builder(
+        // Keep the app-bar Aa control for reader settings here. A parent
+        // double-tap recognizer can interfere with action buttons on pages.
+        PageView.builder(
             controller: _pageController,
             itemCount: pages.length,
             onPageChanged: (index) {
@@ -578,7 +578,6 @@ class _ArticleScreenState extends State<ArticleScreen> {
             },
             itemBuilder: (_, index) => pages[index],
           ),
-        ),
         if (!state.readerFocusMode)
           Positioned(
             left: 0,
