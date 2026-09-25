@@ -372,6 +372,66 @@ const quizByTopic = <String, List<QuizQuestion>>{
       explanation: "O teste não elimina todas as questões sobre entendimento e consciência.",
     ),
   ],
+  'evolucao-internet': [
+    QuizQuestion(
+      prompt: "Qual a relação entre internet e World Wide Web?",
+      options: ["São dois nomes para a mesma coisa", "A web é um serviço que utiliza a internet", "A internet funciona apenas em navegadores", "A web inventou todas as redes de computadores"],
+      correctIndex: 1,
+      explanation: "A internet conecta redes e suporta muitos serviços, incluindo a web.",
+    ),
+    QuizQuestion(
+      prompt: "Qual foi uma dificuldade central para o crescimento da internet?",
+      options: ["Exigir equipamentos de um único fabricante", "Interligar redes de tecnologias distintas por regras compartilhadas", "Eliminar qualquer infraestrutura física", "Permitir acesso somente a computadores militares"],
+      correctIndex: 1,
+      explanation: "Protocolos compartilhados ajudaram redes diferentes a trocar dados.",
+    ),
+    QuizQuestion(
+      prompt: "Por que o ícone de Wi-Fi ativo não garante que um site abra?",
+      options: ["A conexão local é apenas uma parte de todo o caminho até o site", "Navegadores não usam redes", "O DNS funciona apenas por Bluetooth", "Páginas web nunca dependem de servidores"],
+      correctIndex: 0,
+      explanation: "Resolução de nomes, rotas e disponibilidade dos servidores são outras etapas.",
+    ),
+  ],
+  'neuroplasticidade': [
+    QuizQuestion(
+      prompt: "Qual definição corresponde à neuroplasticidade?",
+      options: ["A formação obrigatória de novos neurônios a cada atividade", "A capacidade de redes neurais mudarem associada a experiência e outros processos", "A impossibilidade de aprender depois da infância", "Uma técnica específica de leitura rápida"],
+      correctIndex: 1,
+      explanation: "A plasticidade reúne diferentes mecanismos de mudança neural.",
+    ),
+    QuizQuestion(
+      prompt: "Qual interpretação de um exame cerebral exige cuidado?",
+      options: ["A aprendizagem envolve diversos processos", "Uma mudança medida demonstra automaticamente a formação de neurônios", "A experiência pode estar associada a adaptações neurais", "Um estudo precisa considerar o método"],
+      correctIndex: 1,
+      explanation: "Os sinais de neuroimagem dependem dos métodos e não provam um mecanismo único.",
+    ),
+    QuizQuestion(
+      prompt: "Qual aplicação da ideia é mais adequada?",
+      options: ["Esperar transformação ilimitada em um único dia", "Treinar uma habilidade concreta com prática, feedback e metas realistas", "Substituir qualquer reabilitação por um aplicativo", "Considerar toda mudança cerebral necessariamente positiva"],
+      correctIndex: 1,
+      explanation: "A compreensão científica da plasticidade não justifica promessas ilimitadas.",
+    ),
+  ],
+  'linguistica': [
+    QuizQuestion(
+      prompt: "O que distingue a descrição linguística do julgamento sobre a fala?",
+      options: ["A linguística investiga padrões existentes em comunidades, sem começar rotulando falantes", "A linguística proíbe diferenças regionais", "Toda língua tem apenas a gramática de um livro", "Toda variedade precisa ser usada em qualquer contexto"],
+      correctIndex: 0,
+      explanation: "A descrição analisa como as pessoas realmente usam e organizam línguas.",
+    ),
+    QuizQuestion(
+      prompt: "O que significa dizer que uma variedade tem menor prestígio social?",
+      options: ["Ela não possui regras consistentes", "Ela recebe avaliações sociais diferentes, apesar de ter organização linguística", "Seus falantes não conseguem expressar ideias complexas", "Ela não muda ao longo das gerações"],
+      correctIndex: 1,
+      explanation: "Prestígio é avaliação social, não uma medida de capacidade gramatical.",
+    ),
+    QuizQuestion(
+      prompt: "Por que uma ferramenta de reconhecimento de voz pode errar mais com alguns sotaques?",
+      options: ["Porque só existe uma pronúncia correta", "Porque dados e modelos podem não abranger bem toda a variação linguística", "Porque a língua falada não tem estrutura", "Porque todos os falantes usam palavras idênticas"],
+      correctIndex: 1,
+      explanation: "A diversidade representada nos dados afeta o desempenho de sistemas linguísticos.",
+    ),
+  ],
   'helvetica': [
     QuizQuestion(
       prompt: 'Qual era o nome original da Helvetica?',
