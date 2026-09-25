@@ -16,6 +16,33 @@ void main() {
     SharedPreferences.setMockInitialValues({});
   });
 
+  testWidgets('quick reading never marks a full article as completed',
+      (tester) async {
+    final state = await AppState.load();
+    await state.updateReaderSettings(depth: ContentDepth.quick);
+    await tester.pumpWidget(
+      AppStateScope(
+        state: state,
+        child: const MaterialApp(home: ArticleScreen(topic: bauhausTopic)),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(
+      find.text('PRÓXIMA CONEXÃO'),
+      450,
+      scrollable: find.byType(Scrollable),
+    );
+    await tester.pumpAndSettle();
+
+    expect(state.progressFor('bauhaus'), 0);
+    expect(state.completedTopicIds, isNot(contains('bauhaus')));
+
+    await state.updateReaderSettings(depth: ContentDepth.standard);
+    await tester.pumpAndSettle();
+    expect(find.text('em 30 segundos'), findsOneWidget);
+    expect(state.progressFor('bauhaus'), 0);
+  });
+
   test('reading time tracks text and mode instead of static labels', () {
     const expanded = bauhausTopic;
     expect(expanded.estimatedReadingMinutes(), greaterThan(1));
