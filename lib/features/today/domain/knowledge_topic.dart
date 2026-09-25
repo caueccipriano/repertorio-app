@@ -18,6 +18,15 @@ class KnowledgeMedia {
   final String? sourceUrl;
 }
 
+/// An editorial chapter provides context beyond the introductory article.
+/// Optional so legacy topics remain compatible while their content is reviewed.
+class KnowledgeChapter {
+  const KnowledgeChapter({required this.title, required this.paragraphs});
+
+  final String title;
+  final List<String> paragraphs;
+}
+
 class KnowledgeTopic {
   const KnowledgeTopic({
     required this.id,
@@ -30,6 +39,7 @@ class KnowledgeTopic {
     this.simpleExplanation,
     this.example,
     required this.body,
+    this.chapters = const [],
     required this.remember,
     required this.whyItMatters,
     required this.curiosity,
@@ -47,6 +57,7 @@ class KnowledgeTopic {
   final String? simpleExplanation;
   final String? example;
   final List<String> body;
+  final List<KnowledgeChapter> chapters;
   final List<String> remember;
   final String whyItMatters;
   final String curiosity;
