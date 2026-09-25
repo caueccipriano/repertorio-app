@@ -432,6 +432,16 @@ const quizByTopic = <String, List<QuizQuestion>>{
       explanation: "A diversidade representada nos dados afeta o desempenho de sistemas linguísticos.",
     ),
   ],
+  'dna': [
+    QuizQuestion(prompt: "Como a informação contida no DNA pode participar da produção de proteínas?", options: ["As células leem todas as regiões continuamente", "Determinadas sequências são transcritas para RNA e podem orientar a síntese de proteínas", "As proteínas escrevem diretamente todas as bases do genoma", "Toda base do DNA representa uma proteína inteira"], correctIndex: 1, explanation: "Parte das informações do DNA passa por moléculas de RNA antes de participar da produção de proteínas."),
+    QuizQuestion(prompt: "É correto afirmar que um gene isolado determina inevitavelmente todos os resultados associados a ele?", options: ["Sim, ambiente e regulação nunca importam", "Não, fatores genéticos e ambientais podem interagir", "Sim, desde que exista um cromossomo", "Não, porque o DNA não possui informação"], correctIndex: 1, explanation: "Regulação, desenvolvimento, ambiente e outras variações influenciam resultados biológicos."),
+    QuizQuestion(prompt: "Por que um estudo que encontra associação entre variante genética e característica exige cuidado?", options: ["Porque correlação estatística não demonstra determinação inevitável", "Porque nenhum estudo usa populações", "Porque genes nunca variam", "Porque todas as pessoas têm DNA idêntico"], correctIndex: 0, explanation: "A magnitude, a população e as possíveis explicações alternativas precisam ser consideradas."),
+  ],
+  'ia-generativa': [
+    QuizQuestion(prompt: "Como modelos de linguagem autorregressivos aprendem uma habilidade central durante o pré-treinamento?", options: ["Armazenando uma resposta fixa para qualquer pergunta", "Ajustando parâmetros para prever tokens seguintes a partir do contexto", "Fazendo pesquisas na internet obrigatoriamente em cada exemplo", "Verificando todas as respostas com especialistas em tempo real"], correctIndex: 1, explanation: "Prever unidades seguintes é um objetivo de treinamento relevante de muitos modelos generativos."),
+    QuizQuestion(prompt: "O que distingue inferência e treinamento?", options: ["São sempre o mesmo processo", "Inferência usa parâmetros treinados para produzir saídas diante de um contexto", "Inferência necessariamente altera todos os parâmetros do modelo", "Treinamento nunca usa dados"], correctIndex: 1, explanation: "Na inferência normal, o modelo produz respostas usando parâmetros existentes."),
+    QuizQuestion(prompt: "Uma resposta de IA parece convincente. O que isso prova?", options: ["Que todos os fatos estão corretos", "Que nenhuma referência precisa ser consultada", "Nada sobre precisão, que depende de evidências e verificação", "Que qualquer número mencionado é reproduzível"], correctIndex: 2, explanation: "Fluência e precisão factual são propriedades diferentes."),
+  ],
   'helvetica': [
     QuizQuestion(
       prompt: 'Qual era o nome original da Helvetica?',
@@ -459,6 +469,8 @@ const quizByTopic = <String, List<QuizQuestion>>{
       explanation:
           'Uma alta isolada não basta; inflação envolve movimento amplo e persistente de preços.',
     ),
+    QuizQuestion(prompt: "Se a inflação caiu de 10% para 5%, os preços voltaram automaticamente ao nível anterior?", options: ["Sim, todos diminuíram 5%", "Não, o nível geral ainda pode estar subindo em ritmo menor", "Sim, pois qualquer desinflação é deflação", "Não, porque o índice deixa de medir preços"], correctIndex: 1, explanation: "Uma taxa positiva menor significa desaceleração da alta, não reversão automática dos preços."),
+    QuizQuestion(prompt: "Uma alta isolada no preço do tomate é suficiente para medir toda a inflação?", options: ["Sim, pois basta escolher um produto representativo", "Não, índices acompanham cestas de bens e serviços", "Sim, quando a safra é afetada", "Não, porque alimentos nunca entram em índices"], correctIndex: 1, explanation: "Índices de preços acompanham diferentes itens e pesos de consumo."),
   ],
   'vinho': [
     QuizQuestion(
