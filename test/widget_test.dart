@@ -7,6 +7,7 @@ import 'package:repertorio_app/features/article/presentation/article_screen.dart
 import 'package:repertorio_app/features/explore/presentation/topic_collection_screen.dart';
 import 'package:repertorio_app/features/study/data/personal_library_engine.dart';
 import 'package:repertorio_app/features/study/data/study_content.dart';
+import 'package:repertorio_app/features/study/presentation/weekly_report_screen.dart';
 import 'package:repertorio_app/features/today/data/demo_topics.dart';
 import 'package:repertorio_app/features/today/domain/knowledge_topic.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -114,6 +115,25 @@ void main() {
     expect(state.progressFor('gps'), 0);
     expect(state.completedTopicIds, isNot(contains('gps')));
     expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('weekly reading estimate uses actual article size, not old labels',
+      (tester) async {
+    final state = await AppState.load();
+    await state.openTopic('bauhaus');
+    await state.updateProgress('bauhaus', 1);
+    await tester.pumpWidget(
+      AppStateScope(
+        state: state,
+        child: const MaterialApp(home: WeeklyReportScreen()),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('min estimados'), findsOneWidget);
+    expect(find.text(bauhausTopic.estimatedReadingMinutes().toString()),
+        findsWidgets);
+    expect(find.textContaining('não é um cronômetro'), findsOneWidget);
   });
 
   test('audio narration includes expanded chapters at the chosen depth', () {
