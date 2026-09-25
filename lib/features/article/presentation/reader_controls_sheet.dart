@@ -73,6 +73,14 @@ class ReaderControlsSheet extends StatelessWidget {
                 depth: value.first,
               ),
             ),
+            const SizedBox(height: 10),
+            Text(
+              '30 s: resumo · ler: artigo completo · extras: curiosidade e conexões · fundo: pessoas, obras e contexto',
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: AppColors.muted,
+                    height: 1.45,
+                  ),
+            ),
             const SizedBox(height: 20),
             const _Label('TAMANHO'),
             Row(
