@@ -362,19 +362,20 @@ const glossaryByTopic = <String, List<GlossaryEntry>>{
 const sourcesByTopic = <String, List<SourceEntry>>{
   'bauhaus': [
     SourceEntry(
-      label: 'Bauhaus Dessau Foundation',
-      url: 'https://www.bauhaus-dessau.de/',
-      note: 'Instituição dedicada ao legado da Bauhaus em Dessau.',
+      label: 'UNESCO — Patrimônio Bauhaus',
+      url: 'https://whc.unesco.org/en/list/729',
+      note: 'História, arquitetura e alcance do movimento.',
     ),
     SourceEntry(
-      label: 'The Metropolitan Museum of Art — Bauhaus',
-      url: 'https://www.metmuseum.org/toah/hd/bauh/hd_bauh.htm',
+      label: 'MoMA — Walter Gropius',
+      url: 'https://www.moma.org/artists/2359-walter-gropius',
+      note: 'A escola e suas relações com a arquitetura moderna.',
     ),
   ],
   'modernismo': [
     SourceEntry(
-      label: 'MoMA — Architecture and Design',
-      url: 'https://www.moma.org/',
+      label: 'MoMA — Walter Gropius e o movimento moderno',
+      url: 'https://www.moma.org/artists/2359-walter-gropius',
     ),
     SourceEntry(
       label: 'Encyclopaedia Britannica — Modernism',
@@ -383,24 +384,33 @@ const sourcesByTopic = <String, List<SourceEntry>>{
   ],
   'fermi': [
     SourceEntry(
-      label: 'NASA Exoplanet Exploration',
-      url: 'https://exoplanets.nasa.gov/',
+      label: 'NASA — Are We Alone?',
+      url: 'https://science.nasa.gov/exoplanets/search-for-life/',
+      note: 'As observações, a Equação de Drake e o paradoxo.',
     ),
     SourceEntry(
-      label: 'SETI Institute',
-      url: 'https://www.seti.org/',
+      label: 'NASA — Life in the Universe',
+      url: 'https://science.nasa.gov/universe/exoplanets/life-in-the-universe-what-are-the-odds/',
+      note: 'Sinais tecnológicos e limites das buscas atuais.',
     ),
   ],
   'roma': [
     SourceEntry(
-      label: 'Encyclopaedia Britannica — Roman Empire',
-      url: 'https://www.britannica.com/place/Roman-Empire',
+      label: 'World History Encyclopedia — Queda de Roma',
+      url: 'https://www.worldhistory.org/article/835/fall-of-the-western-roman-empire/',
+      note: 'Uma introdução às explicações históricas em debate.',
+    ),
+    SourceEntry(
+      label: 'World History Encyclopedia — Império Ocidental',
+      url: 'https://www.worldhistory.org/trans/pt/1-696/imperio-romano-ocidental/',
+      note: 'Leitura em português sobre eventos e continuidade.',
     ),
   ],
   'brutalismo': [
     SourceEntry(
-      label: 'RIBA — Brutalism',
-      url: 'https://www.architecture.com/',
+      label: 'RIBA — Brutalism in architecture',
+      url: 'https://www.riba.org/explore/riba-collections/architectural-styles/brutalism-movement/',
+      note: 'Materialidade, origem do termo e obras.',
     ),
   ],
   'helvetica': [
@@ -419,6 +429,13 @@ const sourcesByTopic = <String, List<SourceEntry>>{
     SourceEntry(
       label: 'UC Davis — Viticulture and Enology',
       url: 'https://wineserver.ucdavis.edu/',
+    ),
+  ],
+  'contabilidade': [
+    SourceEntry(
+      label: 'OpenStax — Partidas dobradas',
+      url: 'https://openstax.org/books/principles-financial-accounting/pages/3-1-describe-principles-assumptions-and-concepts-of-accounting-and-their-relationship-to-financial-statements',
+      note: 'Equação contábil, débitos, créditos e saldos normais.',
     ),
   ],
 };
