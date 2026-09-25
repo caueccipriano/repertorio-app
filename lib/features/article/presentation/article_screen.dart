@@ -275,16 +275,31 @@ class _ArticleScreenState extends State<ArticleScreen> {
           ),
         ),
       );
+      if (topic.chapters.isNotEmpty) {
+        sections.add(
+          _Section(
+            number: '04',
+            title: 'vá além',
+            palette: palette,
+            child: _EditorialChapters(
+              topic: topic,
+              palette: palette,
+              bodyStyle: bodyStyle,
+            ),
+          ),
+        );
+      }
       sections.add(
         _RememberSection(
           topic: topic,
           palette: palette,
           bodyStyle: bodyStyle,
+          number: topic.chapters.isNotEmpty ? '05' : '04',
         ),
       );
       sections.add(
         _Section(
-          number: '05',
+          number: topic.chapters.isNotEmpty ? '06' : '05',
           title: 'por que isso importa',
           palette: palette,
           child: _PassageBlock(
@@ -301,7 +316,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
     if (deep) {
       sections.add(
         _Section(
-          number: '06',
+          number: topic.chapters.isNotEmpty ? '07' : '06',
           title: 'uma coisa interessante',
           palette: palette,
           child: _PassageBlock(
@@ -318,7 +333,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
       if (glossary.isNotEmpty) {
         sections.add(
           _Section(
-            number: '07',
+            number: topic.chapters.isNotEmpty ? '08' : '07',
             title: 'glossário',
             palette: palette,
             child: _GlossarySection(
@@ -331,7 +346,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
 
       sections.add(
         _Section(
-          number: '08',
+          number: topic.chapters.isNotEmpty ? '09' : '08',
           title: 'conecte os pontos',
           palette: palette,
           child: _Connections(
@@ -347,7 +362,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
       if (entities.isNotEmpty) {
         sections.add(
           _Section(
-            number: '09',
+            number: topic.chapters.isNotEmpty ? '10' : '09',
             title: 'pessoas · lugares · ideias',
             palette: palette,
             child: _EntitySection(
@@ -358,20 +373,6 @@ class _ArticleScreenState extends State<ArticleScreen> {
         );
       }
 
-      final sources = sourcesFor(topic.id);
-      if (sources.isNotEmpty) {
-        sections.add(
-          _Section(
-            number: '10',
-            title: 'fontes e aprofundamento',
-            palette: palette,
-            child: _SourcesSection(
-              sources: sources,
-              palette: palette,
-            ),
-          ),
-        );
-      }
     }
 
     if (standard) {
@@ -407,6 +408,20 @@ class _ArticleScreenState extends State<ArticleScreen> {
       ),
     );
     sections.add(const SizedBox(height: 18));
+    // Show editorial sources in every full-reading mode, not just immersion.
+    if (standard && sourcesFor(topic.id).isNotEmpty) {
+      sections.add(
+        _Section(
+          number: '↗',
+          title: 'fontes para continuar',
+          palette: palette,
+          child: _SourcesSection(
+            sources: sourcesFor(topic.id),
+            palette: palette,
+          ),
+        ),
+      );
+    }
     sections.add(
       _AboutContent(
         topic: topic,
@@ -912,6 +927,57 @@ class _SimpleExplanationBlock extends StatelessWidget {
           ],
         ],
       ),
+    );
+  }
+}
+
+class _EditorialChapters extends StatelessWidget {
+  const _EditorialChapters({
+    required this.topic,
+    required this.palette,
+    required this.bodyStyle,
+  });
+
+  final KnowledgeTopic topic;
+  final _ReaderPalette palette;
+  final TextStyle bodyStyle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: topic.chapters.indexed.map((item) {
+        final index = item.$1;
+        final chapter = item.$2;
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: index == topic.chapters.length - 1 ? 0 : 28,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                chapter.title,
+                style: GoogleFonts.manrope(
+                  color: palette.text,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+              const SizedBox(height: 12),
+              ...chapter.paragraphs.indexed.map((passage) =>
+                _PassageBlock(
+                  topicId: topic.id,
+                  passageId: 'chapter:$index:${passage.$1}',
+                  text: passage.$2,
+                  palette: palette,
+                  bodyStyle: bodyStyle,
+                ),
+              ),
+            ],
+          ),
+        );
+      }).toList(),
     );
   }
 }
@@ -1545,7 +1611,12 @@ class _AboutContent extends StatelessWidget {
         spacing: 12,
         runSpacing: 8,
         children: [
-          _Meta('revisão editorial · 2026', palette),
+          _Meta(
+            topic.chapters.isNotEmpty
+                ? 'edição aprofundada · 2026'
+                : 'edição essencial · revisão em andamento',
+            palette,
+          ),
           _Meta('nível · essencial → profundo', palette),
           _Meta(
             offline ? 'texto offline · ativo' : 'texto offline · disponível',
