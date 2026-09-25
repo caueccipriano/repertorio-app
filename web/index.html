@@ -489,26 +489,32 @@
         }
       };
 
+      // Flutter runs without a service worker. Check a stamped release ID
+      // rather than waiting for a worker that is intentionally unregistered.
+      const runtimeBuildId = '__APP_BUILD_ID__';
       window.repertorioUpdates = {
         check: async function () {
-          if (!('serviceWorker' in navigator)) return false;
+          if (!/^[a-f0-9]{40}$/i.test(runtimeBuildId)) return false;
           try {
-            const registration = await navigator.serviceWorker.getRegistration();
-            if (!registration) return false;
-            await registration.update();
-            return !!registration.waiting;
+            const url = new URL('version.json', document.baseURI);
+            url.searchParams.set('_v', Date.now().toString());
+            const response = await fetch(url.toString(), { cache: 'no-store' });
+            if (!response.ok) return false;
+            const latest = (await response.json()).version;
+            return typeof latest === 'string' &&
+              /^[a-f0-9]{40}$/i.test(latest) && latest !== runtimeBuildId;
           } catch (_) { return false; }
         },
         apply: async function () {
-          if (!('serviceWorker' in navigator)) {
-            location.reload();
-            return;
-          }
           try {
-            const registrations = await navigator.serviceWorker.getRegistrations();
-            await Promise.all(registrations.map(r => r.unregister()));
+            if ('serviceWorker' in navigator) {
+              const registrations = await navigator.serviceWorker.getRegistrations();
+              await Promise.all(registrations.map(r => r.unregister()));
+            }
           } finally {
-            location.reload();
+            const url = new URL(window.location.href);
+            url.searchParams.set('_updated', Date.now().toString());
+            window.location.replace(url.toString());
           }
         }
       };

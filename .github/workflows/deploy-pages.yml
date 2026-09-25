@@ -38,14 +38,24 @@ jobs:
       - name: Test
         run: flutter test
 
+      - name: Test PWA update flow
+        run: node --test test/web_update.test.mjs
+
+      - name: Stamp web release identity
+        run: |
+          sed -i "s/__APP_BUILD_ID__/${GITHUB_SHA}/g" web/index.html
+          printf '{"version":"%s"}\n' "${GITHUB_SHA}" > web/version.json
+
       - name: Build web
         run: flutter build web --release --base-href "/repertorio-app/"
 
-      - name: Validate published app icon
+      - name: Validate release identity and published app icon
         run: |
+          grep -Fq "${GITHUB_SHA}" build/web/index.html
+          grep -Fq "${GITHUB_SHA}" build/web/version.json
           python3 - <<'PY'
           import pathlib, struct
-          p = pathlib.Path('build/web/app-icon-v5.png')
+          p = pathlib.Path('build/web/app-icon-v6.png')
           data = p.read_bytes()
           assert data[:8] == b'\x89PNG\r\n\x1a\n', 'app icon is not a valid PNG'
           width, height = struct.unpack('>II', data[16:24])

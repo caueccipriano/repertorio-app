@@ -33,8 +33,21 @@ jobs:
       - name: Test
         run: flutter test
 
+      - name: Test PWA update flow
+        run: node --test test/web_update.test.mjs
+
+      - name: Stamp web release identity
+        run: |
+          sed -i "s/__APP_BUILD_ID__/${GITHUB_SHA}/g" web/index.html
+          printf '{"version":"%s"}\n' "${GITHUB_SHA}" > web/version.json
+
       - name: Build web for release parity
         run: flutter build web --release --base-href "/repertorio-app/"
 
       - name: Check generated web bundle
-        run: test -s build/web/index.html && test -s build/web/main.dart.js
+        run: |
+          test -s build/web/index.html
+          test -s build/web/main.dart.js
+          test -s build/web/app-icon-v6.png
+          grep -Fq "${GITHUB_SHA}" build/web/index.html
+          grep -Fq "${GITHUB_SHA}" build/web/version.json
