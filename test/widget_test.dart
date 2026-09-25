@@ -43,6 +43,17 @@ void main() {
     expect(state.progressFor('bauhaus'), 0);
   });
 
+  test('audio narration includes expanded chapters at the chosen depth', () {
+    final fullScript = bauhausTopic.readingScript();
+    final quickScript = bauhausTopic.readingScript(quick: true);
+    expect(fullScript, contains('Uma escola nascida de uma crise'));
+    expect(fullScript, contains(bauhausTopic.chapters.first.paragraphs.first));
+    expect(quickScript, isNot(contains('Uma escola nascida de uma crise')));
+    expect(quickScript, contains(bauhausTopic.quickTake));
+    expect(bauhausTopic.readingScript(deep: true),
+        contains(bauhausTopic.curiosity));
+  });
+
   test('reading time tracks text and mode instead of static labels', () {
     const expanded = bauhausTopic;
     expect(expanded.estimatedReadingMinutes(), greaterThan(1));
