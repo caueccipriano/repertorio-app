@@ -92,9 +92,13 @@ class _ArticleScreenState extends State<ArticleScreen> {
     final bodyStyle = _bodyStyle(state, palette);
     final nextTopic = _nextTopic(widget.topic);
     final audioMedia = _audioFor(widget.topic);
-    final remaining = ((1 - _progress) * widget.topic.minutes)
+    final readingMinutes = widget.topic.estimatedReadingMinutes(
+      quick: state.readerDepth == ContentDepth.quick,
+      deep: state.readerDepth.index >= ContentDepth.deep.index,
+    );
+    final remaining = ((1 - _progress) * readingMinutes)
         .ceil()
-        .clamp(0, widget.topic.minutes);
+        .clamp(0, readingMinutes);
 
     final sections = _buildSections(
       context,
@@ -129,7 +133,9 @@ class _ArticleScreenState extends State<ArticleScreen> {
           ),
           title: Center(
             child: Text(
-              '${(_progress * 100).round()}% · $remaining min',
+              state.readerDepth == ContentDepth.quick
+                  ? '${(_progress * 100).round()}% · leitura rápida'
+                  : '${(_progress * 100).round()}% · ~ $remaining min',
               style: TextStyle(color: palette.muted, fontSize: 11, fontWeight: FontWeight.w700, letterSpacing: .7),
             ),
           ),
@@ -759,8 +765,8 @@ class _Header extends StatelessWidget {
   Widget build(BuildContext context) {
     final depthLabel = switch (depth) {
       ContentDepth.quick => '30 SEGUNDOS',
-      ContentDepth.standard => '5 MIN',
-      ContentDepth.deep => '15 MIN',
+      ContentDepth.standard => 'LEITURA COMPLETA',
+      ContentDepth.deep => 'COM EXTRAS',
       ContentDepth.immersion => 'MERGULHO FUNDO',
     };
 
@@ -1695,7 +1701,7 @@ class _NextConnection extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      '${nextTopic.minutes} min · ${nextTopic.tags.first}',
+                      '~${nextTopic.estimatedReadingMinutes()} min · ${nextTopic.tags.first}',
                       style: const TextStyle(
                         color: Colors.white70,
                         fontSize: 9,
