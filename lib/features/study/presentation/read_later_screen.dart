@@ -231,8 +231,8 @@ class _QueueItem extends StatelessWidget {
         ),
         subtitle: Text(
           progress > 0
-              ? '${(progress * 100).round()}% · ${topic.minutes} min'
-              : '${topic.minutes} min · ${topic.tags.first}',
+              ? '${(progress * 100).round()}% · ${topic.estimatedReadingMinutes()} min'
+              : '${topic.estimatedReadingMinutes()} min · ${topic.tags.first}',
         ),
         trailing: ReorderableDragStartListener(
           index: index,
