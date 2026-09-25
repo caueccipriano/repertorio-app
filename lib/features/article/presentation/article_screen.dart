@@ -34,6 +34,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
   PageController? _pageController;
   double _progress = 0;
   bool _bootstrapped = false;
+  ContentDepth? _displayedDepth;
 
   @override
   void initState() {
@@ -48,7 +49,10 @@ class _ArticleScreenState extends State<ArticleScreen> {
     _bootstrapped = true;
 
     final state = AppStateScope.read(context);
-    _progress = state.progressFor(widget.topic.id);
+    _displayedDepth = state.readerDepth;
+    _progress = state.readerDepth == ContentDepth.quick
+        ? 0
+        : state.progressFor(widget.topic.id);
     state.openTopic(widget.topic.id);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -70,7 +74,10 @@ class _ArticleScreenState extends State<ArticleScreen> {
     if ((next - _progress).abs() >= .01) {
       setState(() => _progress = next);
     }
-    AppStateScope.read(context).updateProgress(widget.topic.id, next);
+    final state = AppStateScope.read(context);
+    if (state.readerDepth != ContentDepth.quick) {
+      state.updateProgress(widget.topic.id, next);
+    }
   }
 
   @override
@@ -85,6 +92,14 @@ class _ArticleScreenState extends State<ArticleScreen> {
   @override
   Widget build(BuildContext context) {
     final state = AppStateScope.of(context);
+    final depthChanged = _displayedDepth != null &&
+        _displayedDepth != state.readerDepth;
+    if (depthChanged) {
+      _displayedDepth = state.readerDepth;
+      _progress = state.readerDepth == ContentDepth.quick
+          ? 0
+          : state.progressFor(widget.topic.id);
+    }
     final palette = _ReaderPalette.fromMode(
       state.readerTheme,
       highContrast: state.highContrast,
@@ -107,6 +122,22 @@ class _ArticleScreenState extends State<ArticleScreen> {
       bodyStyle,
       nextTopic,
     );
+    if (depthChanged) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        if (state.readerFlow == ReaderFlow.paged) {
+          final pages = sections.where((section) => section is! SizedBox).length;
+          if ((_pageController?.hasClients ?? false) && pages > 0) {
+            final index = (_progress * (pages - 1)).round()
+                .clamp(0, pages - 1);
+            _pageController!.jumpToPage(index);
+          }
+        } else if (_scrollController.hasClients) {
+          final extent = _scrollController.position.maxScrollExtent;
+          _scrollController.jumpTo(extent * _progress.clamp(0.0, 1.0));
+        }
+      });
+    }
 
     return Theme(
       data: Theme.of(context).copyWith(
@@ -513,7 +544,9 @@ class _ArticleScreenState extends State<ArticleScreen> {
             onPageChanged: (index) {
               final next = (index + 1) / pages.length;
               setState(() => _progress = next);
-              state.updateProgress(widget.topic.id, next);
+              if (state.readerDepth != ContentDepth.quick) {
+                state.updateProgress(widget.topic.id, next);
+              }
             },
             itemBuilder: (_, index) => pages[index],
           ),
