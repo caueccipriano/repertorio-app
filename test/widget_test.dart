@@ -111,6 +111,8 @@ void main() {
       helveticaTopic,
       internetTopic,
       gpsTopic,
+      fotografiaTopic,
+      criptografiaTopic,
       contabilidadeTopic,
       sambaTopic,
       imunidadeTopic,
