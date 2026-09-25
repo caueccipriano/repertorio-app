@@ -830,9 +830,9 @@ const sourcesByTopic = <String, List<SourceEntry>>{
       note: 'Desenho, tecnologias de composição, difusão e debates sobre seu uso.',
     ),
     SourceEntry(
-      label: 'Monotype — História da família Helvetica',
-      url: 'https://www.monotype.com/fonts/library',
-      note: 'Família original e redesenho Neue Helvetica de 1983.',
+      label: 'Monotype — Da Neue à Helvetica Now',
+      url: 'https://www.monotype.com/resources/font-stories/neue-now',
+      note: 'A Neue Helvetica de 1983 e o redesenho para novos meios.'
     ),
   ],
   'internet': [
