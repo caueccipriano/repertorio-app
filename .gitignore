@@ -15,3 +15,20 @@ coverage/
 # OS
 .DS_Store
 Thumbs.db
+
+# Local credentials and signing (never commit)
+.env
+.env.*
+!.env.example
+.secrets/
+secrets/
+*.pem
+*.key
+*.p12
+*.p8
+*.jks
+*.keystore
+key.properties
+service-account*.json
+google-services*.json
+GoogleService-Info.plist
