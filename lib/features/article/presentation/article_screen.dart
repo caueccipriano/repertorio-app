@@ -620,17 +620,16 @@ class _ArticleScreenState extends State<ArticleScreen> {
       if (opened) return;
     }
 
-    final topic = widget.topic;
-    final text = <String>[
-      topic.title,
-      topic.quickTake,
-      ...topic.body,
-      ...topic.remember,
-      topic.whyItMatters,
-      topic.curiosity,
-    ].join('. ');
+    final state = AppStateScope.read(context);
+    final text = widget.topic.readingScript(
+      quick: state.readerDepth == ContentDepth.quick,
+      deep: state.readerDepth.index >= ContentDepth.deep.index,
+    );
 
-    final started = await speakReaderText(text: text);
+    final started = await speakReaderText(
+      text: text,
+      rate: state.voiceRate,
+    );
     if (!mounted || started) return;
 
     ScaffoldMessenger.of(context).showSnackBar(
