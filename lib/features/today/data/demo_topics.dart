@@ -22,6 +22,29 @@ const bauhausTopic = KnowledgeTopic(
     'A escola mudou de Weimar para Dessau e depois para Berlim. Em Dessau, o próprio edifício da escola virou um manifesto arquitetônico: vidro, volumes claros e espaços pensados de acordo com suas funções.',
     'Ela fechou em 1933 sob pressão do regime nazista. Muitos professores e ex-alunos migraram para outros países e ajudaram a espalhar essas ideias internacionalmente.',
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Uma escola nascida de uma crise',
+      paragraphs: [
+        'A Bauhaus nasceu em Weimar, em 1919, quando a Alemanha tentava se reorganizar depois da Primeira Guerra Mundial. Walter Gropius reuniu uma escola de belas-artes e outra de artes aplicadas porque via um problema no ensino tradicional: artistas criavam em um lugar, artesãos produziam em outro e a indústria transformava os objetos do cotidiano sem que esses mundos conversassem o suficiente.',
+        'A proposta era ambiciosa: formar pessoas capazes de pensar o projeto inteiro, da ideia inicial até o material e a fabricação. Isso não significava que todos deveriam produzir cadeiras idênticas ou abandonar a expressão artística. Pintura, teatro, fotografia, tecelagem, mobiliário e arquitetura coexistiam em experiências bastante diferentes.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'O método era tão importante quanto a aparência',
+      paragraphs: [
+        'Imagine uma aula em que, antes de projetar qualquer produto, você precisa investigar como papel, metal, tecido e vidro se comportam. O curso preliminar da Bauhaus explorava cor, forma, textura e percepção. Depois, as oficinas colocavam os estudantes diante de problemas concretos: uma luminária ilumina bem? Uma cadeira pode ser fabricada e utilizada com conforto? Um cartaz comunica sua mensagem rapidamente?',
+        'Essa combinação ajudou a popularizar a ideia de que design não é só enfeitar um produto pronto. Ao mesmo tempo, vale observar uma contradição histórica: embora a escola defendesse novas formas de trabalho, mulheres ainda encontraram barreiras de acesso a determinadas oficinas. Artistas como Anni Albers mostram que as contribuições femininas foram centrais, mesmo quando nem sempre receberam o mesmo reconhecimento.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Como reconhecer a influência sem enxergá-la em tudo',
+      paragraphs: [
+        'Abra um aplicativo, observe o mapa do metrô ou olhe uma cadeira de tubos metálicos. Pergunte quais escolhas facilitam o uso: a hierarquia visual, o material, a proporção ou a eliminação de detalhes que atrapalhariam a função. Esse jeito de investigar um objeto é uma boa conexão com os debates da Bauhaus, embora não prove que aquele objeto tenha sido desenhado diretamente a partir da escola.',
+        'Há uma pegadinha frequente: Bauhaus não é sinônimo de minimalismo, nem inventou sozinha o design moderno. A escola teve fases, professores e posições distintas. Sua contribuição duradoura está também no ensino interdisciplinar, na experimentação e na pergunta sobre como arte, técnica e necessidades sociais podem se encontrar.',
+      ],
+    ),
+  ],
   remember: [
     '1919: a escola foi fundada na Alemanha.',
     'Arte, função e produção industrial deveriam conversar.',
@@ -77,6 +100,29 @@ const modernismTopic = KnowledgeTopic(
     'No Brasil, arquitetos reinterpretaram essas ideias considerando clima, luz, paisagem e vida social. Brasília é um dos exemplos mais conhecidos, mas o modernismo brasileiro vai muito além da capital.',
     'Com o tempo, algumas soluções modernistas foram criticadas por produzir espaços impessoais ou por tratar problemas sociais complexos como se pudessem ser resolvidos apenas por desenho e planejamento.',
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'O mundo industrial precisava de outras respostas',
+      paragraphs: [
+        'Entre o fim do século XIX e o século XX, cidades cresceram, novas máquinas mudaram o trabalho e tecnologias como eletricidade e elevadores alteraram a experiência urbana. Muitos artistas e arquitetos passaram a perguntar se bastava copiar fachadas de palácios antigos para atender a escolas, fábricas, apartamentos e transportes de uma sociedade em transformação.',
+        'Foi nesse cenário que diferentes correntes modernistas experimentaram geometrias, estruturas e linguagens menos dependentes do repertório histórico. Não existiu um manifesto único seguido por todos. Na arquitetura, por exemplo, a produção de Le Corbusier e a de arquitetos brasileiros compartilham algumas questões, mas oferecem soluções diferentes para clima, cultura e cidade.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Uma promessa social, não apenas visual',
+      paragraphs: [
+        'Concreto armado, aço e vidro ajudaram a abrir plantas, vencer vãos e modificar fachadas. Mas a discussão também era sobre como construir moradias, escolas e equipamentos coletivos para mais pessoas. Padronizar componentes podia reduzir certas dificuldades de produção; aproveitar luz e ventilação podia melhorar a experiência dos espaços. O desenho passou a ser pensado como parte da organização da vida cotidiana.',
+        'Essas promessas não garantiam bons resultados. Alguns projetos modernistas foram criticados quando priorizaram o planejamento abstrato e deixaram em segundo plano as relações já existentes nos bairros, a escala humana ou a diversidade de usos das ruas. Entender o movimento exige olhar tanto suas inovações quanto seus limites.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Um exercício para observar sua cidade',
+      paragraphs: [
+        'Compare dois edifícios de épocas distintas. Em vez de escolher imediatamente o mais bonito, investigue como entram luz e ar, onde ficam os elementos estruturais, como as pessoas circulam e que materiais estão aparentes. Um prédio ornamentado também pode funcionar muito bem; uma fachada de vidro moderna pode criar problemas térmicos se for inadequada ao clima.',
+        'Outra distinção útil: modernismo é um conjunto amplo de movimentos; Bauhaus foi uma escola específica que participou dessa transformação. Brutalismo é uma linguagem posterior associada a parte da arquitetura moderna, mas nem todo edifício modernista é brutalista.',
+      ],
+    ),
+  ],
   remember: [
     'Modernismo é mais amplo que Bauhaus.',
     'Materiais industriais viraram parte da linguagem estética.',
@@ -119,6 +165,29 @@ const fermiTopic = KnowledgeTopic(
     'Isso não significa que “ninguém existe”. Talvez vida inteligente seja extremamente rara. Talvez civilizações durem pouco. Talvez usem tecnologias que não sabemos detectar. Talvez estejam longe demais ou simplesmente não emitam sinais óbvios.',
     'Outra possibilidade é que nossas buscas ainda sejam minúsculas diante do tamanho do problema. Procurar sinais em uma pequena faixa de frequências durante algumas décadas é pouco quando comparado à idade e à escala da galáxia.',
     'Por isso, o paradoxo funciona melhor como uma pergunta organizadora do que como uma conclusão. Ele força astrônomos, biólogos e filósofos a explicitar o que estamos supondo sobre vida, inteligência e tecnologia.',
+  ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'De onde vem a aparente contradição',
+      paragraphs: [
+        'Olhar para um céu cheio de estrelas pode sugerir que exista vida em outros lugares, mas transformar essa sensação em uma previsão exige várias suposições. Quantos planetas têm condições adequadas? Com que frequência a vida começa? Ela costuma evoluir para inteligência? Uma civilização desenvolve tecnologia detectável e continua usando-a por quanto tempo? Conhecemos cada vez mais planetas, mas quase todas essas outras respostas continuam incertas.',
+        'O paradoxo de Fermi organiza essa distância entre expectativa e observação. Ele não diz que o universo deveria estar obrigatoriamente repleto de civilizações. Diz que, sob certas hipóteses, seria razoável esperar sinais; como não encontramos evidências confirmadas, precisamos examinar melhor as hipóteses e os métodos de busca.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'O problema não é simplesmente olhar mais longe',
+      paragraphs: [
+        'Uma mensagem de rádio viaja à velocidade da luz. Se uma civilização estivesse a mil anos-luz e transmitisse hoje, uma resposta imediata nossa ainda levaria mil anos para chegar até ela. Além da distância, existe a questão do tempo: duas sociedades podem desenvolver tecnologia em épocas completamente diferentes e nunca coincidir em uma janela detectável.',
+        'As buscas também dependem de instrumentos, frequências e padrões de sinal. É como tentar descobrir se alguém conversa em uma cidade enorme ouvindo apenas uma estação de rádio por alguns segundos. Essa comparação ajuda a entender por que a ausência de um sinal encontrado não equivale a uma busca exaustiva.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Hipóteses interessantes não são descobertas',
+      paragraphs: [
+        'Você talvez encontre explicações populares como o Grande Filtro, a hipótese do zoológico ou a ideia de civilizações silenciosas. São cenários usados para pensar o problema, não evidências de que qualquer um deles aconteceu. A Equação de Drake também organiza perguntas importantes, mas seus parâmetros mais decisivos ainda carregam grandes incertezas.',
+        'O que fazer com essa informação? Ao ler uma manchete sobre vida extraterrestre, diferencie três coisas: um planeta potencialmente habitável, um possível indício de atividade biológica e uma evidência confirmada de tecnologia. Cada uma exigiria testes e interpretações muito diferentes.',
+      ],
+    ),
   ],
   remember: [
     'Não é uma prova de que estamos sozinhos.',
@@ -177,6 +246,29 @@ const romeTopic = KnowledgeTopic(
     'Ao mesmo tempo, o Oriente romano era economicamente mais forte e tinha Constantinopla como centro político. O Império Romano do Oriente continuou existindo por muitos séculos depois do desaparecimento da autoridade imperial no Ocidente.',
     'A deposição de Rômulo Augústulo em 476 virou um marco simbólico porque oferece uma data simples para um processo que, na realidade, levou muito tempo.',
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Uma crise que se alimentava de outras crises',
+      paragraphs: [
+        'O Império Romano não dependia apenas de legiões. Sua administração precisava cobrar tributos, manter alianças, movimentar alimentos, pagar soldados e negociar com elites regionais. Quando disputas internas consumiam recursos e certos territórios deixavam de contribuir com a mesma intensidade, financiar a defesa se tornava mais difícil. A dificuldade militar, por sua vez, podia reduzir ainda mais a arrecadação.',
+        'Esses processos não aconteceram da mesma maneira em todas as províncias. Alguns centros econômicos resistiram melhor que outros. Por isso, explicar o fim do Ocidente romano por uma única causa, como impostos, religião ou invasões, apaga interações e diferenças regionais importantes.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Os anos que os livros costumam destacar',
+      paragraphs: [
+        'Em 378, tropas romanas foram derrotadas em Adrianópolis, episódio que expôs desafios de comando, recrutamento e relações com grupos godos. Em 410, Roma foi saqueada por forças lideradas por Alarico: um choque simbólico para uma cidade que representava séculos de poder, ainda que já não fosse o centro exclusivo do governo imperial.',
+        'Em 476, Odoacro depôs Rômulo Augústulo. Essa data funciona como um marco didático para o desaparecimento do cargo de imperador no Ocidente, não como o instante em que todas as instituições e todas as populações deixaram de ser romanas. O Império do Oriente, com centro em Constantinopla, continuou existindo por muitos séculos.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'O que caiu, afinal?',
+      paragraphs: [
+        'Imagine um mapa em que a mesma língua administrativa, rotas comerciais, leis e hábitos atravessam regiões governadas por autoridades diferentes. Uma estrutura política pode desaparecer sem que toda a cultura de seus habitantes seja apagada imediatamente. No antigo Ocidente, reinos sucessores preservaram, adaptaram ou transformaram elementos romanos em ritmos distintos.',
+        'Essa distinção é útil fora da história antiga: quando uma instituição muda, devemos separar ruptura política, continuidade cultural e reorganização econômica. Ela também evita outra confusão comum: chamar todo o período seguinte de uma longa fase sem conhecimento ou atividade urbana não representa adequadamente a diversidade da chamada Antiguidade Tardia.',
+      ],
+    ),
+  ],
   remember: [
     'Não existe uma causa única.',
     '476 é uma convenção útil, não um interruptor histórico.',
@@ -219,6 +311,22 @@ const brutalismTopic = KnowledgeTopic(
     'Le Corbusier foi uma referência importante, especialmente por obras em concreto aparente. Depois, arquitetos britânicos e de vários outros países desenvolveram caminhos próprios.',
     'No Brasil, arquitetos associados à chamada Escola Paulista exploraram concreto, grandes vãos e soluções estruturais expressivas, embora nem toda arquitetura de concreto brasileira deva ser resumida ao rótulo brutalista.',
     'Hoje o brutalismo voltou ao imaginário popular em fotografia, design gráfico e interfaces, em parte porque sua aparência é muito reconhecível e contrasta com estilos mais polidos.',
+  ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'O material vira parte da linguagem',
+      paragraphs: [
+        'Em um prédio tradicional, revestimentos muitas vezes escondem como a construção se sustenta. Na arquitetura brutalista, a estrutura pode se tornar protagonista: vigas, pilares, escadas e superfícies de concreto são deixados evidentes. A discussão não é apenas sobre aparência pesada, mas sobre tornar legíveis materiais, espaços e a forma como um edifício funciona.',
+        'O brutalismo ganhou destaque em diferentes países após a Segunda Guerra Mundial, num momento de reconstrução, ampliação de universidades e investimento em edifícios públicos. Mesmo assim, reduzir o movimento a concreto barato é um erro: houve soluções caras, projetos expressivos e debates sobre valores sociais muito distintos.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Concreto não é um diagnóstico',
+      paragraphs: [
+        'Imagine duas construções de concreto. A primeira tem estrutura escondida e segue uma composição clássica; a segunda organiza circulação e grandes vãos deixando a construção explícita. Só o material não resolve a classificação. O contexto, a intenção e a linguagem importam tanto quanto a superfície.',
+        'A expressão francesa béton brut, associada ao concreto aparente, ajuda a entender parte da história do termo. Também vale separar arquitetura brutalista de interfaces digitais chamadas de brutalistas: no design de telas, a palavra costuma ser usada de maneira mais livre para descrever composições deliberadamente cruas ou pouco polidas.',
+      ],
+    ),
   ],
   remember: [
     'Béton brut significa concreto cru.',
@@ -1882,6 +1990,22 @@ const contabilidadeTopic = KnowledgeTopic(
     'O equilíbrio fundamental pode ser resumido pela relação entre ativos, passivos e patrimônio líquido.',
     'Esse sistema cria rastreabilidade e facilita detectar registros incompletos, embora equilíbrio matemático sozinho não garanta ausência de erro.',
     'Demonstrações como balanço patrimonial, DRE e fluxo de caixa organizam perspectivas diferentes da mesma realidade econômica.',
+  ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Por que existem dois lados em cada lançamento',
+      paragraphs: [
+        'Uma empresa compra uma máquina por dez mil reais e paga à vista. O imobilizado aumenta em dez mil e o caixa diminui no mesmo valor. O patrimônio total não cresce por causa dessa troca: mudou apenas a composição dos ativos. As partidas dobradas registram esses efeitos de forma conectada, permitindo acompanhar de onde veio cada movimentação.',
+        'Agora imagine uma compra a prazo. A máquina entra no ativo e surge uma obrigação com o fornecedor. O dinheiro ainda não saiu do caixa, mas o fato econômico já aconteceu. Esse segundo exemplo mostra por que contabilidade não é uma simples lista de entradas e saídas de dinheiro.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'O truque que evita confundir débito e crédito',
+      paragraphs: [
+        'Em contas do ativo, o débito costuma representar aumento; em contas do passivo e do patrimônio líquido, o crédito costuma representar aumento. Receitas geralmente aumentam por crédito e despesas, por débito. Essas regras descrevem a mecânica contábil, não um julgamento positivo ou negativo sobre a transação.',
+        'Equilíbrio entre débitos e créditos é necessário, mas não suficiente para garantir demonstrações corretas. Se uma despesa for lançada na conta errada com a contrapartida certa, a soma ainda fechará. Por isso, classificação, documentos, competência e conciliações continuam indispensáveis.',
+      ],
+    ),
   ],
   remember: [
     'Débito e crédito não significam bom e ruim.',
