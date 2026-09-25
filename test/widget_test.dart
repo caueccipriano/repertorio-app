@@ -171,16 +171,26 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(state.completedTopicIds, isNot(contains('helvetica')));
-    for (var i = 0;
-        i < 12 &&
-            find.byKey(const ValueKey('reader-mark-complete')).evaluate().isEmpty;
-        i++) {
+    final complete = find.byKey(const ValueKey('reader-mark-complete'));
+    // PageView prebuilds adjacent pages: a finder can see the button while it
+    // remains horizontally off-screen. Navigate to its actual visible page.
+    var buttonOnScreen = false;
+    for (var i = 0; i < 16; i++) {
+      if (complete.evaluate().isNotEmpty) {
+        final rect = tester.getRect(complete);
+        if (rect.center.dx > 10 && rect.center.dx < 350) {
+          buttonOnScreen = true;
+          break;
+        }
+      }
       await tester.drag(find.byType(PageView), const Offset(-310, 0));
       await tester.pumpAndSettle();
     }
-    expect(find.byKey(const ValueKey('reader-mark-complete')), findsOneWidget);
+    expect(buttonOnScreen, isTrue);
+    await tester.ensureVisible(complete);
+    await tester.pumpAndSettle();
     expect(state.completedTopicIds, isNot(contains('helvetica')));
-    await tester.tap(find.byKey(const ValueKey('reader-mark-complete')));
+    await tester.tap(complete);
     await tester.pumpAndSettle();
     expect(state.completedTopicIds, contains('helvetica'));
     expect(state.progressFor('helvetica'), 1);
