@@ -792,6 +792,21 @@ const quizByTopic = <String, List<QuizQuestion>>{
       explanation: 'Meios de reprodução podem multiplicar tanto ideias fundamentadas quanto erros e propaganda.',
     ),
   ],
+  'evolucao': [
+    QuizQuestion(prompt: 'Em seleção natural, o que pode mudar ao longo de várias gerações?', options: ['A intenção individual de todos os organismos','A frequência de características herdáveis numa população','A idade da espécie sem reprodução','A vontade do ambiente'], correctIndex: 1, explanation: 'A seleção pode alterar frequências herdáveis quando indivíduos deixam proporções diferentes de descendentes.'),
+    QuizQuestion(prompt: 'Qual processo também pode mudar frequências genéticas, mesmo sem favorecer uma adaptação?', options: ['Somente a seleção natural','O desejo dos indivíduos','A deriva genética','A lembrança adquirida na infância'], correctIndex: 2, explanation: 'A deriva genética envolve alterações por acaso, relevantes especialmente em populações pequenas.'),
+    QuizQuestion(prompt: 'No exemplo de resistência bacteriana, o antibiótico normalmente...', options: ['Seleciona organismos resistentes que conseguem sobreviver e se reproduzir','Ensina instantaneamente todas as bactérias a criar resistência','Elimina qualquer possibilidade de evolução','Transforma as bactérias individualmente em organismos planejados'], correctIndex: 0, explanation: 'A pressão seletiva altera a composição da população; resistência também pode envolver transferência de genes.'),
+  ],
+  'memoria': [
+    QuizQuestion(prompt: 'Qual afirmação descreve melhor o processo de recordar uma cena?', options: ['Abrimos uma gravação literal que nunca muda','Recuperamos e reconstruímos traços com pistas e conhecimentos existentes','Toda lembrança é obrigatoriamente falsa','Memórias dependem somente da idade'], correctIndex: 1, explanation: 'A recuperação é ativa e pode ser influenciada por pistas, contexto e informações posteriores.'),
+    QuizQuestion(prompt: 'Por que perguntas sugestivas podem afetar um testemunho?', options: ['Elas impedem a pessoa de ouvir palavras','Elas tornam todas as lembranças mais precisas','Informações posteriores podem ser incorporadas a detalhes reconstruídos','Elas eliminam o processo de consolidação'], correctIndex: 2, explanation: 'Estudos sobre desinformação demonstram como detalhes apresentados depois podem alterar relatos.'),
+    QuizQuestion(prompt: 'Como verificar melhor se um conteúdo foi aprendido?', options: ['Tentar explicá-lo e recuperar ideias sem consultar o texto','Somente reler até ficar familiar','Medir quantas páginas são coloridas','Ignorar erros nas respostas'], correctIndex: 0, explanation: 'A recuperação ativa revela lacunas que a familiaridade da releitura pode esconder.'),
+  ],
+  'dopamina': [
+    QuizQuestion(prompt: 'Qual descrição da dopamina é mais adequada?', options: ['Um hormônio que explica sozinho toda felicidade','Um neurotransmissor com funções em movimento, motivação e aprendizagem','Uma substância dispensável para o cérebro','Um remédio usado exclusivamente para dormir'], correctIndex: 1, explanation: 'Diferentes vias dopaminérgicas participam de várias funções; não existe uma equivalência universal com prazer.'),
+    QuizQuestion(prompt: 'O que é um erro de previsão de recompensa?', options: ['Um defeito em todos os receptores do corpo','Um método de eliminar dopamina','A diferença entre o que era esperado e o que aconteceu','Uma medida única de personalidade'], correctIndex: 2, explanation: 'Em certos circuitos, sinais dopaminérgicos carregam informação relacionada à discrepância entre expectativa e resultado.'),
+    QuizQuestion(prompt: 'Por que um detox de dopamina não descreve literalmente um reinício químico?', options: ['Porque dopamina não existe no cérebro','Porque qualquer comportamento pode ser controlado por uma única molécula','Porque dormir apaga todos os neurotransmissores','Porque a dopamina continua necessária e hábitos envolvem vários sistemas'], correctIndex: 3, explanation: 'Reduzir distrações pode fazer sentido como estratégia comportamental, sem justificar alegações de reinício químico.'),
+  ],
   'inflacao': [
     QuizQuestion(
       prompt: 'Inflação significa…',
@@ -1164,6 +1179,17 @@ const sourcesByTopic = <String, List<SourceEntry>>{
   ],
   'imprensa': [
     SourceEntry(label: 'Museu Gutenberg — Impressão na Ásia Oriental', url: 'https://www.mainz.de/en/microsite/gutenberg-museum/Forschung_Sammlung_/Ostasien_und_Islam', note: 'Impressão anterior a Gutenberg e trajetórias culturais distintas.'),
+  ],
+  'evolucao': [
+    SourceEntry(label: 'OpenStax — Understanding Evolution', url: 'https://openstax.org/books/biology-2e/pages/18-1-understanding-evolution', note: 'Seleção natural, deriva, evidências e erros de interpretação.'),
+  ],
+  'memoria': [
+    SourceEntry(label: 'PubMed — Protegendo memórias da desinformação', url: 'https://pubmed.ncbi.nlm.nih.gov/32868423/', note: 'Pesquisa experimental sobre reconstrução e informações posteriores.'),
+    SourceEntry(label: 'PubMed — Reconstrução de lembranças verdadeiras e falsas', url: 'https://pubmed.ncbi.nlm.nih.gov/20861170/', note: 'Estudo de pistas sensoriais durante a recuperação.'),
+  ],
+  'dopamina': [
+    SourceEntry(label: 'PubMed — Dopamine Prediction Error and Beyond', url: 'https://pubmed.ncbi.nlm.nih.gov/33197709/', note: 'Revisão científica sobre funções dopaminérgicas e aprendizagem.'),
+    SourceEntry(label: 'Nature — Prediction Errors Beyond Value', url: 'https://www.nature.com/articles/s41583-024-00898-8', note: 'Perspectivas recentes sobre diversidade dos sinais de aprendizagem.'),
   ],
   'inflacao': [
     SourceEntry(

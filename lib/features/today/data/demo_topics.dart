@@ -625,6 +625,30 @@ const evolutionTopic = KnowledgeTopic(
       sourceUrl: 'https://open.spotify.com/episode/4XzJEEC1rkAzxpE128Wtw7',
     ),
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'A seleção atua sobre diferenças que já existem',
+      paragraphs: [
+        'Imagine uma população de besouros com variações herdáveis de cor. Se, naquele ambiente, predadores enxergam com mais facilidade parte dos indivíduos, os sobreviventes podem deixar descendentes em proporções diferentes. Ao longo de gerações, a frequência de variantes genéticas pode mudar. Nenhum besouro precisa desejar outra cor para isso acontecer, e o ambiente não fabrica automaticamente a mutação mais conveniente.',
+        'Darwin e Alfred Russel Wallace elaboraram independentemente a ideia da seleção natural. Eles não conheciam a estrutura do DNA: a genética moderna viria depois e explicaria mecanismos de herança e de formação da diversidade. A formulação atual reúne observações de campo, experimentos, fósseis e genética, fazendo da seleção um mecanismo testável de mudança das populações, não uma metáfora sobre a sobrevivência das pessoas mais fortes.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Seleção não é a única forma de evoluir',
+      paragraphs: [
+        'Mutações geram novas variantes genéticas e a recombinação organiza parte da variação em diferentes combinações. Além da seleção, a deriva genética pode modificar frequências por acaso, especialmente em populações pequenas. A migração pode introduzir variantes já existentes em outras populações. Por isso, encontrar uma característica comum hoje não prova, sozinho, que ela se espalhou porque era a melhor solução possível.',
+        'A adaptação sempre depende do contexto. Uma característica útil em ambiente seco pode se tornar desvantajosa depois de mudanças climáticas; outras podem ter custos que só aparecem em certas situações. A evolução não trabalha em direção a um objetivo final e não transforma necessariamente organismos em seres maiores, mais complexos ou inteligentes. Ela descreve como populações mudam e se diversificam ao longo do tempo.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Resistência bacteriana torna a seleção visível',
+      paragraphs: [
+        'Em uma população de bactérias pode haver indivíduos com mecanismos herdáveis de resistência a determinado antibiótico. Quando o medicamento elimina organismos suscetíveis, os resistentes podem sobreviver e se reproduzir, aumentando sua participação entre os que restam. O tratamento funciona como pressão seletiva: não é preciso supor que cada bactéria percebeu o perigo e decidiu desenvolver uma adaptação adequada.',
+        'Esse mecanismo demonstra por que o uso responsável de medicamentos e a vigilância microbiológica são importantes. Ao mesmo tempo, resistência envolve processos específicos, inclusive transferência de genes entre bactérias; não basta reduzir toda a questão a uma única mutação. O exemplo conecta a teoria evolutiva a decisões concretas de saúde, agricultura e pesquisa sem confundir evolução de populações com mudanças intencionais de um indivíduo.',
+      ],
+    ),
+  ],
+
 );
 
 const quantumTopic = KnowledgeTopic(
@@ -2094,6 +2118,30 @@ const memoriaTopic = KnowledgeTopic(
   curiosity:
       'Pesquisas de psicologia mostraram que a forma como uma pergunta é feita pode alterar detalhes que participantes relatam lembrar de um evento.',
   connections: ['Aprendizagem', 'Neuroplasticidade', 'Vieses', 'Sono'],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Existem várias maneiras de guardar informação',
+      paragraphs: [
+        'Recordar um aniversário, manter um número na cabeça por alguns segundos e aprender a andar de bicicleta envolvem sistemas parcialmente diferentes. A memória de trabalho sustenta informações necessárias numa tarefa imediata, enquanto lembranças de experiências pessoais e conhecimentos gerais dependem de processos de longo prazo. Habilidades praticadas também podem ser recuperadas sem que a pessoa consiga explicar conscientemente cada movimento.',
+        'Para lembrar de algo depois, não basta que o acontecimento tenha passado diante dos olhos. Atenção e codificação influenciam quais aspectos serão registrados; a consolidação e as pistas disponíveis afetam a recuperação. Dormir e revisar um assunto podem ajudar na aprendizagem, mas nenhum método consegue garantir que cada detalhe seja preservado como num arquivo de vídeo.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Uma lembrança é reconstruída no presente',
+      paragraphs: [
+        'Quando tentamos recuperar uma experiência, combinamos traços armazenados com pistas do momento, expectativas e conhecimentos anteriores. Esse processo costuma funcionar bem para conservar o sentido de acontecimentos, porém pode deixar detalhes vulneráveis a enganos. Em experimentos de desinformação, informações enganosas apresentadas depois de uma cena podem afetar aquilo que algumas pessoas relatam lembrar.',
+        'Imagine assistir a uma conversa rápida e ouvir, mais tarde, outra pessoa descrevê-la com palavras diferentes. Se a descrição parecer plausível, você poderá incorporar parte dela à lembrança original sem perceber. Isso não transforma todo testemunho em invenção: mostra que honestidade e confiança pessoal não asseguram exatidão em cada detalhe. Perguntas neutras e registro próximo dos acontecimentos podem ajudar a preservar pistas independentes.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Aprender melhor não é reler infinitamente',
+      paragraphs: [
+        'Uma leitura repetida pode criar sensação de familiaridade sem demonstrar que o conhecimento será recuperado depois. Práticas como tentar explicar o conteúdo sem olhar, responder perguntas e revisitar o assunto em momentos espaçados permitem observar o que ainda falta compreender. Erros durante a recuperação também fornecem pistas sobre conceitos que precisam de estudo adicional.',
+        'Essas técnicas não funcionam igualmente em qualquer tarefa e não dispensam compreensão inicial. Uma data histórica, uma habilidade motora e um raciocínio matemático exigem formas de prática diferentes. O objetivo é transformar estudo em recuperação ativa e aplicação contextual, evitando a armadilha de confundir reconhecer uma frase familiar com conseguir ensiná-la a outra pessoa.',
+      ],
+    ),
+  ],
+
 );
 const dopaminaTopic = KnowledgeTopic(
   id: 'dopamina',
@@ -2127,6 +2175,30 @@ const dopaminaTopic = KnowledgeTopic(
   curiosity:
       'Uma recompensa totalmente previsível pode gerar resposta diferente daquela provocada por uma recompensa inesperada.',
   connections: ['Hábitos', 'Recompensa', 'Parkinson', 'Aprendizagem'],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Uma molécula, circuitos e funções diferentes',
+      paragraphs: [
+        'Dopamina é um neurotransmissor, isto é, uma das substâncias usadas na comunicação entre certas células nervosas. Ela participa de circuitos que influenciam movimento, motivação e diferentes formas de aprendizagem. A palavra prazer aparece com frequência nos conteúdos populares, mas reduzir a dopamina a um medidor universal de felicidade ignora a diversidade de áreas, receptores e padrões de atividade envolvidos.',
+        'Algumas vias dopaminérgicas ajudam a coordenar movimentos; alterações importantes nesses sistemas estão associadas a manifestações da doença de Parkinson. Outras participam de comportamentos dirigidos a objetivos e aprendizado por reforço. Não faz sentido concluir que uma única medida de dopamina revelaria como uma pessoa se sente, nem que qualquer hábito pudesse ser explicado exclusivamente por níveis altos ou baixos dessa molécula.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'O cérebro também aprende com a surpresa',
+      paragraphs: [
+        'Em certas situações experimentais, a atividade transitória de neurônios dopaminérgicos acompanha diferenças entre uma recompensa esperada e aquilo que de fato aconteceu. Receber algo melhor que o previsto pode fornecer um sinal de erro de previsão; com a aprendizagem, parte da resposta pode se deslocar para pistas que anunciam a recompensa. O cérebro usa essas relações para ajustar expectativas e comportamentos futuros.',
+        'O modelo é poderoso, mas não esgota o assunto. Pesquisas também investigam como sinais dopaminérgicos participam de atenção, características da recompensa e relações entre estímulos. Por isso, a explicação de que dopamina é sempre uma descarga de prazer ao receber algo positivo simplifica resultados científicos que dependem do circuito, da tarefa e do momento da observação.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'O problema dos conselhos sobre detox de dopamina',
+      paragraphs: [
+        'A ideia de eliminar dopamina durante alguns dias não descreve corretamente o funcionamento do organismo: o neurotransmissor é necessário para atividades normais. Reduzir estímulos, organizar notificações ou mudar uma rotina pode ser útil por razões comportamentais e ambientais, mas isso é diferente de afirmar que uma abstinência reinicia quimicamente o cérebro de maneira simples e universal.',
+        'Antes de adotar explicações virais sobre procrastinação ou dependência, vale perguntar o que foi medido, em quais pessoas, durante quanto tempo e com qual comparação. Motivação envolve sono, contexto, aprendizagem, saúde, relações sociais e outros sistemas biológicos. A ciência da dopamina é fascinante justamente porque revela uma peça relevante de uma rede muito maior, em vez de oferecer uma tecla única para controlar a mente.',
+      ],
+    ),
+  ],
+
 );
 const habitosTopic = KnowledgeTopic(
   id: 'habitos',

@@ -27,9 +27,9 @@ Objetivo: cada assunto deve deixar o leitor capaz de **explicar a ideia a outra 
 
 ## Lotes aprofundados neste ramo
 
-**38 de 125 temas** incluem 2–3 capítulos editoriais, fontes e pelo menos 3 perguntas de fixação. Os temas cobrem design, história, arte, astronomia, ciência, tecnologia, economia e cultura: Bauhaus, Modernismo, Fermi, Queda de Roma, Brutalismo, Contabilidade, Samba, Imunidade, Turing, Internet, Neuroplasticidade, Linguística, Inflação, DNA, IA generativa, Mapas, Teoria dos Jogos, Origem da Vida, Renascimento, Perspectiva, Impressionismo, Rococó, Barroco, Helvetica, funcionamento da web, GPS, fotografia, criptografia, estoicismo, sono, vieses cognitivos, juros compostos, buracos negros, física quântica, computação em nuvem, semicondutores, fermentação e imprensa.
+**41 de 125 temas** incluem 2–3 capítulos editoriais, fontes e pelo menos 3 perguntas de fixação. Os temas cobrem design, história, arte, astronomia, ciência, tecnologia, economia e cultura: Bauhaus, Modernismo, Fermi, Queda de Roma, Brutalismo, Contabilidade, Samba, Imunidade, Turing, Internet, Neuroplasticidade, Linguística, Inflação, DNA, IA generativa, Mapas, Teoria dos Jogos, Origem da Vida, Renascimento, Perspectiva, Impressionismo, Rococó, Barroco, Helvetica, funcionamento da web, GPS, fotografia, criptografia, estoicismo, sono, vieses cognitivos, juros compostos, buracos negros, física quântica, computação em nuvem, semicondutores, fermentação, imprensa, evolução, memória e dopamina.
 
-Os **87 temas restantes** preservam sua versão essencial enquanto aguardam revisão individual; não apresentar como se todos fossem igualmente aprofundados.
+Os **84 temas restantes** preservam sua versão essencial enquanto aguardam revisão individual; não apresentar como se todos fossem igualmente aprofundados.
 
 **Tempo de leitura:** o aplicativo estima duração a partir das palavras efetivamente exibidas na leitura rápida, completa ou com extras. As antigas etiquetas fixas de 5 e 15 minutos foram substituídas por nomes de níveis. O cálculo é aproximado; elementos externos e testes interativos não entram na estimativa.
 
@@ -51,4 +51,4 @@ O comando `dart run tool/editorial_audit.dart --strict` verifica todo o catálog
 
 ## Validação deste lote
 
-Os testes cobrem presença e estrutura dos 38 artigos expandidos, suas fontes e três perguntas por tema; renderização no modo padrão, estimativa de minutos baseada no texto, separação entre prévia rápida e conclusão do artigo, além da prevenção de exemplos idênticos e fechamentos genéricos no catálogo. A execução pelo CI do GitHub continua sendo a autoridade para declarar o código validado. Também é necessária revisão visual em tela pequena antes de lançar uma versão pública.
+Os testes cobrem presença e estrutura dos 41 artigos expandidos, suas fontes e três perguntas por tema; renderização no modo padrão, estimativa de minutos baseada no texto, separação entre prévia rápida e conclusão do artigo, além da prevenção de exemplos idênticos e fechamentos genéricos no catálogo. A execução pelo CI do GitHub continua sendo a autoridade para declarar o código validado. Também é necessária revisão visual em tela pequena antes de lançar uma versão pública.
