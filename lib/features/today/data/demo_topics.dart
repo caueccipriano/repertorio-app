@@ -408,7 +408,21 @@ const inflationTopic = KnowledgeTopic(
     'Bancos centrais costumam usar a taxa de juros como uma ferramenta para influenciar crédito, consumo, investimento e expectativas. Juros mais altos tendem a reduzir parte da demanda, mas também podem desacelerar a atividade econômica.',
     'Quando a inflação desacelera, isso não significa necessariamente que os preços voltaram ao nível antigo. Muitas vezes significa apenas que continuam subindo mais devagar.',
   ],
-  remember: [
+  chapters: [
+  KnowledgeChapter(title: 'Preço mais alto não é sempre inflação', paragraphs: [
+    'Imagine que o tomate encareceu porque uma safra foi prejudicada. Esse é um aumento de preço importante para quem compra tomate, mas não basta, sozinho, para caracterizar a inflação da economia. Para estudar a variação geral dos preços, pesquisadores acompanham cestas de bens e serviços e calculam índices que representam determinados grupos de consumidores.',
+    'No Brasil, o IBGE produz índices como o IPCA e o INPC. As famílias não consomem exatamente os mesmos produtos nem gastam a mesma proporção com alimentação, aluguel ou transporte. Por isso, a inflação calculada para uma cesta de referência não precisa ser igual à variação efetivamente sentida por cada pessoa.',
+  ]),
+  KnowledgeChapter(title: 'De onde vem a pressão e como ela se espalha', paragraphs: [
+    'Preços podem subir por pressões de demanda, dificuldades de oferta, custos mais altos, expectativas e mecanismos de reajuste. Quando muitos compradores competem por bens que não aumentam na mesma velocidade, uma pressão pode surgir. Um choque de custos, por sua vez, pode afetar transportes, energia e produtos que utilizam esses insumos.',
+    'Esses mecanismos podem ocorrer ao mesmo tempo e atingir setores de maneira desigual. Políticas monetárias e decisões de empresas interagem com oferta, crédito e expectativas. Uma explicação que atribui toda a inflação a um único preço ou agente provavelmente está deixando variáveis relevantes de fora.',
+  ]),
+  KnowledgeChapter(title: 'A diferença entre desaceleração e queda de preços', paragraphs: [
+    'Se a inflação anual passa de dez por cento para cinco por cento, os preços em geral continuam subindo, apenas a um ritmo menor. É a desinflação. Já uma variação geral negativa recebe o nome de deflação. Distinguir os termos evita interpretar uma queda da taxa de inflação como retorno automático aos preços anteriores.',
+    'Para a vida cotidiana, vale acompanhar tanto a variação média divulgada quanto o comportamento dos itens que mais pesam no seu próprio orçamento. O índice é uma ferramenta estatística; a experiência financeira de uma família depende também de renda, dívidas, consumo e capacidade de adaptação.',
+  ]),
+ ],
+ remember: [
     'Inflação não é qualquer aumento de preço.',
     'Ela reduz poder de compra.',
     'A inflação percebida por uma pessoa pode diferir do índice oficial.',
@@ -579,7 +593,21 @@ const dnaTopic = KnowledgeTopic(
   simpleExplanation: 'Trechos de DNA podem orientar a produção de moléculas, especialmente proteínas e RNAs, enquanto células regulam quando e como essa informação é usada.',
   example: 'Quase todas as células do corpo têm o mesmo DNA, mas uma célula da pele e um neurônio ativam conjuntos diferentes de genes.',
   body: ['O DNA é formado por nucleotídeos organizados em uma dupla hélice.','A sequência das bases carrega informação que pode ser copiada e transmitida.','Genes representam apenas parte do genoma e sua expressão é regulada.','Ambiente e desenvolvimento interagem com a genética, por isso muitos traços não têm uma causa genética simples.','Mutações podem ser neutras, prejudiciais ou vantajosas dependendo do contexto.'],
-  remember: ['Mesmo DNA, usos diferentes em células diferentes.','Gene não é destino.','Mutações geram variação.'],
+  chapters: [
+  KnowledgeChapter(title: 'Informação biológica escrita em moléculas', paragraphs: [
+    'O DNA é formado por uma sequência de unidades químicas que inclui quatro bases, representadas pelas letras A, T, C e G. A sequência guarda informações biológicas, mas não funciona como uma frase comum que qualquer célula lê integralmente de uma vez. Diferentes regiões têm funções e condições de uso distintas.',
+    'Nos organismos celulares, parte das informações pode ser transcrita para moléculas de RNA. Algumas dessas mensagens participam da produção de proteínas, cujas estruturas e atividades ajudam a construir e manter as células. Outras regiões do DNA influenciam como, quando ou em quais condições determinadas informações serão utilizadas.',
+  ]),
+  KnowledgeChapter(title: 'Ter um gene não determina uma vida inteira', paragraphs: [
+    'É tentador imaginar o genoma como um manual pronto que decide sozinho aparência, saúde e comportamento. Na prática, muitos resultados dependem da interação entre variações genéticas, regulação, desenvolvimento, ambiente e acaso biológico. Nem toda característica segue uma relação simples entre um gene e um resultado.',
+    'Uma maneira de visualizar isso é pensar em uma receita que contém instruções, mas precisa de ingredientes, condições de preparo e mecanismos que decidam quais etapas serão executadas. A analogia é útil até certo ponto: células não são cozinheiros conscientes, e a biologia trabalha com redes de interações muito complexas.',
+  ]),
+  KnowledgeChapter(title: 'Como examinar uma manchete genética', paragraphs: [
+    'Se um estudo encontra uma associação entre determinada variante genética e uma característica, pergunte qual população foi analisada, como a característica foi medida e quão forte é a associação. Associação estatística não significa que um único gene cause inevitavelmente aquele resultado em todas as pessoas.',
+    'Conhecer DNA também ajuda a distinguir genética de genômica. O estudo de genes individuais é importante, mas compreender o conjunto do genoma e suas interações abre perguntas muito mais amplas sobre evolução, desenvolvimento e funcionamento dos organismos.',
+  ]),
+ ],
+ remember: ['Mesmo DNA, usos diferentes em células diferentes.','Gene não é destino.','Mutações geram variação.'],
   whyItMatters: 'Ajuda a interpretar notícias sobre hereditariedade, testes genéticos, medicina e biotecnologia.', curiosity: 'Se esticado, o DNA de uma única célula humana teria aproximadamente dois metros.',
   connections: ['Genética', 'Evolução', 'RNA', 'CRISPR'],  media: [
     KnowledgeMedia(
@@ -600,7 +628,21 @@ const aiTopic = KnowledgeTopic(
   simpleExplanation: 'Durante o treinamento, o modelo aprende relações entre palavras, ideias e estruturas. Na geração, usa o contexto recebido para estimar o próximo token repetidamente.',
   example: 'Ao receber “o céu está”, o modelo distribui probabilidades entre continuações possíveis e escolhe uma delas conforme sua configuração.',
   body: ['Texto é dividido em unidades chamadas tokens.','Redes do tipo transformer usam mecanismos de atenção para relacionar partes do contexto.','Treinamento ajusta muitos parâmetros para reduzir erros de previsão.','A geração pode produzir respostas convincentes e ainda assim factualmente erradas, porque plausibilidade linguística não garante verdade.','Ferramentas externas, recuperação de documentos e verificações podem melhorar a fundamentação.'],
-  remember: ['Geração acontece token por token.','Plausível não significa verdadeiro.','Contexto muda a resposta.'],
+  chapters: [
+  KnowledgeChapter(title: 'Texto entra em partes menores, não em frases prontas', paragraphs: [
+    'Muitos sistemas de inteligência artificial generativa baseados em grandes modelos de linguagem processam texto como sequências de unidades chamadas tokens. Durante o pré-treinamento de modelos autorregressivos, os parâmetros são ajustados repetidamente para melhorar a previsão de unidades seguintes com base no contexto anterior.',
+    'Essa tarefa aparentemente simples permite aprender representações e relações complexas presentes nos dados de treinamento. Na geração, o modelo recebe o contexto da conversa e produz novas unidades sucessivamente. Isso não equivale a procurar uma frase pronta num banco de respostas; também não garante que tudo que pareça convincente seja correto.',
+  ]),
+  KnowledgeChapter(title: 'Treinar, adaptar e responder são etapas diferentes', paragraphs: [
+    'O pré-treinamento costuma envolver grande quantidade de dados e recursos computacionais. Etapas posteriores de ajuste e alinhamento podem alterar o comportamento de um sistema em tarefas ou formatos específicos. Já produzir uma resposta em uma conversa normalmente é uma etapa de inferência: usar os parâmetros disponíveis com o contexto fornecido naquele momento.',
+    'Ferramentas adicionais podem mudar bastante a experiência. Um sistema que consulta documentos ou executa cálculos dispõe de informações e verificações que um modelo isolado não teria. Por isso, vale distinguir a capacidade do modelo, a qualidade do material consultado e os resultados realmente confirmados por ferramentas.',
+  ]),
+  KnowledgeChapter(title: 'Fluência não substitui evidência', paragraphs: [
+    'Uma resposta clara e bem escrita pode conter um número inventado, uma interpretação frágil ou uma referência inexistente. O usuário atento procura sinais de sustentação: fontes confiáveis, cálculos reprodutíveis, dados do próprio documento e delimitação do que o sistema sabe ou está estimando.',
+    'O melhor exercício é pedir uma explicação de um assunto que você já domina e verificar cada etapa. Depois, faça o mesmo com um tema desconhecido, consultando pelo menos uma fonte independente. Assim, você aprende a aproveitar a produtividade da tecnologia sem delegar a ela toda a responsabilidade pelas conclusões.',
+  ]),
+ ],
+ remember: ['Geração acontece token por token.','Plausível não significa verdadeiro.','Contexto muda a resposta.'],
   whyItMatters: 'Entender o mecanismo ajuda a usar IA com expectativas melhores e verificar respostas quando precisão importa.', curiosity: 'Transformers foram apresentados em 2017 e rapidamente se tornaram uma arquitetura central para modelos de linguagem.',
   connections: ['Machine learning', 'Transformer', 'Tokens', 'Redes neurais'],  media: [
     KnowledgeMedia(
@@ -747,7 +789,21 @@ const mapsTopic = KnowledgeTopic(
   simpleExplanation: 'Tente abrir a casca de uma laranja e deixá-la perfeitamente plana sem rasgar ou esticar. O mesmo problema aparece ao representar a Terra.',
   example: 'Na projeção de Mercator, regiões próximas aos polos parecem muito maiores em relação às áreas equatoriais.',
   body: ['Projeções cartográficas são métodos matemáticos para representar uma superfície curva em um plano.','Mercator preserva ângulos locais, característica útil historicamente para navegação.','Projeções equivalentes priorizam proporções de área, mas alteram formas.','Escala e objetivo determinam qual projeção é mais adequada.','Mapas também envolvem escolhas sobre centro, orientação, fronteiras, nomes e dados.'],
-  remember: ['Todo mapa plano distorce algo.','Mercator não foi criada para comparar áreas.','Escolher uma projeção é escolher prioridades.'],
+  chapters: [
+  KnowledgeChapter(title: 'Uma superfície curva não cabe numa folha sem perdas', paragraphs: [
+    'Um globo preserva a geometria de uma esfera de maneira aproximada; já um mapa plano precisa transformar coordenadas de uma superfície curva em posições no papel ou na tela. Essa transformação é uma projeção cartográfica. Não existe maneira de preservar simultaneamente todas as distâncias, áreas, ângulos e formas em um mapa-múndi plano.',
+    'Cada método escolhe quais propriedades priorizar. Projeções conformes procuram preservar ângulos locais, enquanto projeções equivalentes preservam áreas relativas. Escolhas assim não são truques escondidos: são compromissos matemáticos, adequados a tarefas diferentes.',
+  ]),
+  KnowledgeChapter(title: 'O famoso mapa não é a única forma possível', paragraphs: [
+    'A projeção de Mercator é útil para determinadas aplicações ligadas a direções e navegação, mas exagera visualmente regiões de latitudes altas em um mapa-múndi. Por isso, a Groenlândia pode parecer muito maior em relação a territórios próximos do Equador do que realmente é.',
+    'Uma projeção que representa áreas com maior fidelidade pode, em compensação, distorcer formatos. Antes de discutir qual mapa parece mais correto, pergunte qual propriedade importa para o objetivo: comparar territórios, navegar, ensinar geografia ou visualizar uma distribuição.',
+  ]),
+  KnowledgeChapter(title: 'Todo mapa também é uma seleção editorial', paragraphs: [
+    'Além da projeção, o cartógrafo escolhe escala, orientação, cores, símbolos, limites e quais informações omitir. Um mapa de metrô pode distorcer distâncias para tornar conexões mais fáceis de seguir. Isso pode melhorar muito sua utilidade sem pretender reproduzir com exatidão cada curva dos trilhos.',
+    'Quando encontrar um mapa em uma reportagem, leia a legenda e procure sua fonte de dados. Cores intensas e limites bem desenhados podem passar uma sensação de precisão que a base cartográfica, a amostragem ou a escala não justificam.',
+  ]),
+ ],
+ remember: ['Todo mapa plano distorce algo.','Mercator não foi criada para comparar áreas.','Escolher uma projeção é escolher prioridades.'],
   whyItMatters: 'Ajuda a ler mapas criticamente e perceber como representação influencia nossa imagem mental do mundo.', curiosity: 'A Groenlândia parece gigantesca em muitos mapas Mercator, embora a África seja cerca de 14 vezes maior em área.',
   connections: ['Mercator', 'Cartografia', 'Geopolítica', 'Escala'],  media: [
     KnowledgeMedia(
@@ -3059,7 +3115,21 @@ const antropologiaTopic = KnowledgeTopic(
 
 const origemVidaTopic = KnowledgeTopic(
  id:'origem-vida', eyebrow:'CIÊNCIA / GRANDES QUESTÕES', title:'COMO A VIDA PODE TER COMEÇADO?', summary:'Pesquisadores investigam caminhos químicos pelos quais moléculas simples poderiam formar sistemas capazes de replicação e evolução.', minutes:7, tags:['ciência', 'biologia'],
- quickTake:'A origem da vida ainda é uma questão aberta; evolução explica como populações mudam depois que sistemas replicadores existem.', simpleExplanation:'Moléculas capazes de copiar informação com erros ocasionais criariam condições para seleção natural agir.', example: 'Pesquisadores podem testar em laboratório se certas moléculas se formam em condições que simulam ambientes antigos. Um resultado positivo mostra uma etapa possível, não uma recriação demonstrada da origem da vida.', body:['A Terra formou-se há cerca de 4,5 bilhões de anos.', 'Evidências indicam vida muito antiga, mas os primeiros sistemas não foram preservados de forma completa.', 'Hipóteses investigam ambientes como fontes hidrotermais e superfícies minerais.', 'RNA é interessante porque pode carregar informação e também catalisar certas reações.', 'Nenhum cenário único é hoje uma explicação completa e confirmada.'], remember:['É uma questão em aberto.', 'Origem da vida e evolução são perguntas diferentes.', 'Química prebiótica oferece pistas, não uma resposta final.'],
+ quickTake:'A origem da vida ainda é uma questão aberta; evolução explica como populações mudam depois que sistemas replicadores existem.', simpleExplanation:'Moléculas capazes de copiar informação com erros ocasionais criariam condições para seleção natural agir.', example: 'Pesquisadores podem testar em laboratório se certas moléculas se formam em condições que simulam ambientes antigos. Um resultado positivo mostra uma etapa possível, não uma recriação demonstrada da origem da vida.', body:['A Terra formou-se há cerca de 4,5 bilhões de anos.', 'Evidências indicam vida muito antiga, mas os primeiros sistemas não foram preservados de forma completa.', 'Hipóteses investigam ambientes como fontes hidrotermais e superfícies minerais.', 'RNA é interessante porque pode carregar informação e também catalisar certas reações.', 'Nenhum cenário único é hoje uma explicação completa e confirmada.'], chapters: [
+  KnowledgeChapter(title: 'O problema começa antes dos primeiros organismos', paragraphs: [
+    'Investigar a origem da vida é perguntar como sistemas químicos passaram a apresentar características associadas a organismos: armazenamento de informação, manutenção de processos e capacidade de produzir descendentes sujeitos à evolução. Como não há registro completo desse período distante, pesquisadores combinam geologia, química, biologia e experimentos.',
+    'Uma hipótese importante envolve moléculas capazes de armazenar informação e participar de reações antes das células modernas. Outra pergunta envolve membranas e compartimentos que permitiriam concentrar substâncias e manter condições internas. Não há motivo para supor que todos esses componentes tenham surgido de uma vez ou na ordem exata das células atuais.',
+  ]),
+  KnowledgeChapter(title: 'Uma hipótese precisa produzir previsões testáveis', paragraphs: [
+    'Experimentos podem investigar se moléculas relevantes se formam em ambientes que lembram determinados cenários antigos. Estudos de meteoritos, ambientes hidrotermais e organismos atuais oferecem pistas complementares. Cada linha de evidência tem limitações; obter uma molécula em laboratório não equivale a demonstrar como surgiram os primeiros seres vivos.',
+    'É importante distinguir duas perguntas: como a vida começou e como seres vivos passaram a se diversificar depois que sistemas capazes de evolução já existiam. A seleção natural explica muito da evolução biológica, mas não substitui toda a investigação sobre a etapa pré-biológica.',
+  ]),
+  KnowledgeChapter(title: 'O que ainda não sabemos é parte da história', paragraphs: [
+    'A astrobiologia procura entender condições de habitabilidade e possíveis sinais biológicos dentro e fora do Sistema Solar. Descobrir água, moléculas orgânicas ou um ambiente potencialmente habitável é interessante, mas nenhuma dessas observações isoladas confirma a existência de vida.',
+    'A pergunta sobre a origem da vida permanece aberta porque cenários distintos podem explicar partes dos dados. Uma boa leitura científica separa achados reproduzíveis, hipóteses em investigação e narrativas atraentes que ainda carecem de comprovação.',
+  ]),
+ ],
+ remember:['É uma questão em aberto.', 'Origem da vida e evolução são perguntas diferentes.', 'Química prebiótica oferece pistas, não uma resposta final.'],
  whyItMatters: 'Estudar a origem da vida ensina a separar hipóteses sobre os primeiros sistemas vivos da evolução biológica posterior. Também mostra como pesquisas combinam química, geologia e biologia sem fingir que o problema já foi resolvido.', curiosity:'Experimentos já mostraram que moléculas orgânicas podem surgir em condições não biológicas, mas isso não resolve toda a origem da vida.', connections:['Evolução', 'DNA', 'Oceanos', 'Fermi'],
 ,media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/4LHl7iXkD7vHjEgbpis17H',title:'Origem da Vida',caption:'8 min · Pílulas de Biologia',sourceLabel:'Spotify · Pílulas de Biologia',sourceUrl:'https://open.spotify.com/episode/4LHl7iXkD7vHjEgbpis17H'),]);
 
@@ -3109,7 +3179,21 @@ const neuroplasticidadeTopic = KnowledgeTopic(
 
 const teoriaJogosTopic = KnowledgeTopic(
  id:'teoria-jogos', eyebrow:'ECONOMIA / ESTRATÉGIA', title:'O QUE A TEORIA DOS JOGOS TEM A VER COM DECISÕES REAIS?', summary:'Ela estuda situações em que o resultado de cada participante depende também das escolhas dos outros.', minutes:7, tags:['economia', 'matemática'],
- quickTake:'Um jogo, nesse contexto, pode ser uma negociação, competição de preços ou acordo internacional — não precisa ser entretenimento.', simpleExplanation:'Se duas empresas escolhem preços sabendo que cada decisão afeta a reação da concorrente, existe interdependência estratégica.', example: 'Duas cafeterias na mesma rua decidem se fazem uma promoção. O resultado para cada uma depende não só de sua escolha, mas também do que a concorrente decidir.', body:['Modelos especificam participantes, estratégias, informações e resultados.', 'John von Neumann e Oskar Morgenstern foram fundamentais na formalização moderna.', 'John Nash desenvolveu um conceito de equilíbrio para estratégias mutuamente consistentes.', 'Jogos repetidos podem criar incentivos diferentes de interações únicas.', 'A teoria é usada em economia, biologia, ciência política e computação.'], remember:['Decisões são interdependentes.', 'Equilíbrio não significa melhor resultado.', 'Repetição muda incentivos.'],
+ quickTake:'Um jogo, nesse contexto, pode ser uma negociação, competição de preços ou acordo internacional — não precisa ser entretenimento.', simpleExplanation:'Se duas empresas escolhem preços sabendo que cada decisão afeta a reação da concorrente, existe interdependência estratégica.', example: 'Duas cafeterias na mesma rua decidem se fazem uma promoção. O resultado para cada uma depende não só de sua escolha, mas também do que a concorrente decidir.', body:['Modelos especificam participantes, estratégias, informações e resultados.', 'John von Neumann e Oskar Morgenstern foram fundamentais na formalização moderna.', 'John Nash desenvolveu um conceito de equilíbrio para estratégias mutuamente consistentes.', 'Jogos repetidos podem criar incentivos diferentes de interações únicas.', 'A teoria é usada em economia, biologia, ciência política e computação.'], chapters: [
+  KnowledgeChapter(title: 'O resultado depende das escolhas alheias', paragraphs: [
+    'Imagine duas empresas que decidem seus preços sem conhecer antecipadamente a decisão da concorrente. O ganho de cada uma depende do preço que ela escolher e também da reação da outra. A teoria dos jogos estuda situações assim, nas quais ações de participantes diferentes são estrategicamente interdependentes.',
+    'Um modelo descreve jogadores, alternativas disponíveis, informações e resultados associados a combinações de escolhas. Ele simplifica a realidade de propósito. A utilidade vem de deixar explícitas hipóteses que poderiam ficar escondidas em frases vagas sobre competição ou colaboração.',
+  ]),
+  KnowledgeChapter(title: 'Por que a cooperação às vezes falha', paragraphs: [
+    'No dilema do prisioneiro, o arranjo de incentivos pode levar participantes a escolher individualmente uma alternativa que produz um resultado coletivo inferior ao da cooperação. O exemplo não prova que as pessoas sejam sempre egoístas; mostra o que pode acontecer sob determinadas regras e informações.',
+    'Mudar as regras ou a possibilidade de interação futura pode alterar as decisões. Confiança, repetição, contratos e reputação são alguns dos elementos que podem modificar incentivos, dependendo do contexto. Essa é uma razão para desconfiar de análises que tratam um jogo isolado como explicação universal de todo comportamento humano.',
+  ]),
+  KnowledgeChapter(title: 'Use uma matriz para organizar uma decisão', paragraphs: [
+    'Desenhe uma tabela de duas empresas, cada uma com a escolha de manter ou reduzir preços. Em cada combinação, anote resultados plausíveis para ambas. Sem precisar adivinhar exatamente o mercado, esse exercício já mostra quais decisões exigem considerar a concorrência.',
+    'Na prática, decisões também envolvem incerteza, informação incompleta, leis, restrições operacionais e vários participantes. O conceito de equilíbrio ajuda a analisar situações em que nenhum jogador tem incentivo para mudar unilateralmente sua escolha, mas não significa que o resultado seja necessariamente justo ou socialmente desejável.',
+  ]),
+ ],
+ remember:['Decisões são interdependentes.', 'Equilíbrio não significa melhor resultado.', 'Repetição muda incentivos.'],
  whyItMatters:'Amplia o repertório e conecta este assunto a temas históricos, científicos e culturais já presentes no app.', curiosity:'O famoso dilema do prisioneiro mostra como decisões individualmente racionais podem produzir um resultado coletivo ruim.', connections:['Probabilidade', 'Economia', 'Xadrez', 'Algoritmos'],
 ,media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/5HtIgdor3blsJdckLMN0qa',title:'Como você ganha: Teoria dos Jogos',caption:'14 min · LABORATÓRIO Podcast',sourceLabel:'Spotify · LABORATÓRIO Podcast',sourceUrl:'https://open.spotify.com/episode/5HtIgdor3blsJdckLMN0qa'),]);
 
