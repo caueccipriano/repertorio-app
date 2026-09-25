@@ -27,7 +27,7 @@ Objetivo: cada assunto deve deixar o leitor capaz de **explicar a ideia a outra 
 
 ## Lote de referência implementado neste ramo
 
-Bauhaus, Modernismo, Paradoxo de Fermi e Queda de Roma: 3 capítulos cada. Brutalismo e Débito/Crédito: 2 capítulos cada. Todos com fontes específicas. Os **outros 119 temas** continuam com o texto legado até revisão própria; não tratá-los como atualizados.
+Bauhaus, Modernismo, Paradoxo de Fermi e Queda de Roma: 3 capítulos cada. Brutalismo e Débito/Crédito: 2 capítulos cada. Todos com fontes específicas e pelo menos três perguntas de fixação, incluindo questões de aplicação e equívocos frequentes. Os **outros 119 temas** continuam com o texto legado até revisão própria; não tratá-los como atualizados.
 
 ## Backlog editorial de qualidade
 
@@ -39,4 +39,4 @@ Bauhaus, Modernismo, Paradoxo de Fermi e Queda de Roma: 3 capítulos cada. Bruta
 
 ## Validação deste lote
 
-Os testes cobrem presença e estrutura dos capítulos de referência, suas fontes, a renderização no modo de leitura padrão e regras de não repetição em todo o catálogo. A execução pelo CI do GitHub continua sendo a autoridade para declarar o código validado. Também é necessária revisão visual em tela pequena antes de lançar uma versão pública.
+Os testes cobrem presença e estrutura dos capítulos de referência, suas fontes e três perguntas por tema, a renderização no modo de leitura padrão e regras de não repetição em todo o catálogo. A execução pelo CI do GitHub continua sendo a autoridade para declarar o código validado. Também é necessária revisão visual em tela pequena antes de lançar uma versão pública.
