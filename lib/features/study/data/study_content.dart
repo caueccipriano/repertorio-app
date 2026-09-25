@@ -692,6 +692,106 @@ const quizByTopic = <String, List<QuizQuestion>>{
       explanation: 'A relatividade fornece previsões, mas certas condições extremas ainda desafiam a descrição física completa.',
     ),
   ],
+  'quantica': [
+    QuizQuestion(
+      prompt: 'Por que os estados de energia de um elétron ligado lembram degraus?',
+      options: ['Toda quantidade física tem sempre qualquer valor', 'Certos estados de energia do sistema são discretos', 'O elétron é literalmente uma escada', 'A observação humana cria a energia do átomo'],
+      correctIndex: 1,
+      explanation: 'A quantização permite apenas determinados estados de energia em sistemas como átomos.',
+    ),
+    QuizQuestion(
+      prompt: 'Na física quântica, medir um sistema significa...',
+      options: ['Imaginar um resultado com bastante força', 'Transformar a teoria numa crença pessoal', 'Realizar uma interação física que permite obter resultados', 'Interromper todas as leis matemáticas'],
+      correctIndex: 2,
+      explanation: 'Medições são interações físicas; a teoria usa amplitudes para calcular probabilidades dos resultados.',
+    ),
+    QuizQuestion(
+      prompt: 'Qual tecnologia existente depende de princípios quânticos?',
+      options: ['Somente computadores quânticos experimentais', 'Somente relógios mecânicos', 'Apenas lentes de aumento comuns', 'Transistores semicondutores e lasers'],
+      correctIndex: 3,
+      explanation: 'Bandas eletrônicas e transições de energia explicam tecnologias já amplamente utilizadas.',
+    ),
+  ],
+  'cloud': [
+    QuizQuestion(
+      prompt: 'Qual característica do modelo de nuvem permite ajustar recursos conforme a demanda?',
+      options: ['Elasticidade rápida', 'Um único servidor fixo', 'A ausência de redes físicas', 'A eliminação de custos operacionais'],
+      correctIndex: 0,
+      explanation: 'Elasticidade permite aumentar e reduzir capacidade sem substituir manualmente toda a infraestrutura.',
+    ),
+    QuizQuestion(
+      prompt: 'Em um banco de dados gerenciado, o cliente pode ignorar permissões e proteção de dados?',
+      options: ['Sim, o provedor assume todos os riscos', 'Não; a divisão de responsabilidades precisa ser definida e aplicada', 'Sim, desde que tenha CDN', 'Somente se o aplicativo estiver num celular'],
+      correctIndex: 1,
+      explanation: 'Serviços gerenciados não eliminam decisões sobre acesso, informações e configuração.',
+    ),
+    QuizQuestion(
+      prompt: 'O que pode aumentar inesperadamente a conta de um serviço em nuvem?',
+      options: ['Usar um serviço medido de maneira eficiente', 'Reduzir máquinas durante horários ociosos', 'Criar recursos sem limites e transferir muitos dados entre regiões', 'Medir consumo e configurar alertas'],
+      correctIndex: 2,
+      explanation: 'Elasticidade e cobrança por uso exigem monitoramento e limites bem planejados.',
+    ),
+  ],
+  'semicondutores': [
+    QuizQuestion(
+      prompt: 'Por que o silício é útil na fabricação de circuitos?',
+      options: ['Sua condutividade pode ser modificada e controlada', 'É sempre o melhor condutor possível', 'Dispensa processos industriais', 'Seus transistores não produzem calor'],
+      correctIndex: 0,
+      explanation: 'Dopagem e campos elétricos permitem controlar o comportamento eletrônico do silício.',
+    ),
+    QuizQuestion(
+      prompt: 'Uma porta lógica digital pode ser construída com...',
+      options: ['Somente ímãs permanentes', 'Apenas um cabo de rede', 'Combinações de transistores', 'Papel fotossensível isolado'],
+      correctIndex: 2,
+      explanation: 'Transistores conectados formam portas lógicas e blocos funcionais de circuitos.',
+    ),
+    QuizQuestion(
+      prompt: 'Qual é a função da litografia na produção de microchips?',
+      options: ['Refrescar os servidores da nuvem', 'Projetar padrões minúsculos sobre camadas de um wafer', 'Traduzir todo software para texto', 'Substituir todos os testes de fabricação'],
+      correctIndex: 1,
+      explanation: 'A litografia transfere padrões que orientam várias etapas da fabricação por camadas.',
+    ),
+  ],
+  'fermentacao': [
+    QuizQuestion(
+      prompt: 'Qual processo ajuda uma massa de pão a crescer?',
+      options: ['O congelamento de toda a água', 'Gás carbônico produzido por leveduras fica retido na massa', 'Aumento automático da quantidade de sal', 'Desaparecimento de todos os microrganismos'],
+      correctIndex: 1,
+      explanation: 'Leveduras podem gerar gás carbônico ao metabolizar açúcares, formando bolhas na massa.',
+    ),
+    QuizQuestion(
+      prompt: 'Por que receitas testadas importam para conservas fermentadas?',
+      options: ['Qualquer pote fechado é sempre seguro', 'A acidez não influencia os microrganismos', 'Condições como acidez, sal e temperatura interferem na segurança', 'Fermentação dispensa higiene'],
+      correctIndex: 2,
+      explanation: 'Conservação depende de controle adequado; sinais visuais sozinhos não garantem segurança.',
+    ),
+    QuizQuestion(
+      prompt: 'Todo alimento fermentado usa exatamente o mesmo microrganismo?',
+      options: ['Sim, todos usam a mesma espécie de levedura', 'Não; matéria-prima, comunidades e processos podem ser diferentes', 'Sim, desde que tenha açúcar', 'Não, porque nenhum alimento fermentado contém microrganismos'],
+      correctIndex: 1,
+      explanation: 'Leveduras e bactérias diferentes participam de processos e tradições distintos.',
+    ),
+  ],
+  'imprensa': [
+    QuizQuestion(
+      prompt: 'Por que a história da impressão não pode começar somente na Europa do século XV?',
+      options: ['A Ásia já possuía tradições de impressão e tipos móveis antes de Gutenberg', 'Todos os livros foram inventados em 1900', 'Gutenberg criou a escrita', 'Não existiam textos antes da prensa europeia'],
+      correctIndex: 0,
+      explanation: 'China e Coreia desenvolveram diferentes técnicas de impressão antes da difusão europeia.',
+    ),
+    QuizQuestion(
+      prompt: 'Qual foi uma transformação importante das oficinas de tipos móveis na Europa?',
+      options: ['Proibir automaticamente a cópia de manuscritos', 'Impedir toda circulação de textos', 'Reproduzir mais cópias após preparar uma composição reutilizável', 'Tornar toda pessoa imediatamente alfabetizada'],
+      correctIndex: 2,
+      explanation: 'A composição reutilizável ajudou a ampliar a escala e a circulação de textos.',
+    ),
+    QuizQuestion(
+      prompt: 'Maior circulação de textos significa que toda informação impressa é verdadeira?',
+      options: ['Sim, impressão elimina erros', 'Não; revisão, produção e distribuição também precisam ser examinadas', 'Sim, desde que existam muitas cópias', 'Não, porque livros nunca trazem informação confiável'],
+      correctIndex: 1,
+      explanation: 'Meios de reprodução podem multiplicar tanto ideias fundamentadas quanto erros e propaganda.',
+    ),
+  ],
   'inflacao': [
     QuizQuestion(
       prompt: 'Inflação significa…',
@@ -1047,6 +1147,23 @@ const sourcesByTopic = <String, List<SourceEntry>>{
       url: 'https://www.nasa.gov/universe/what-are-black-holes/',
       note: 'Formação e descobertas observacionais.',
     ),
+  ],
+  'quantica': [
+    SourceEntry(label: 'IBM — Fundamentos de computação quântica', url: 'https://www.ibm.com/think/topics/quantum-computing', note: 'Superposição, medição, interferência e limites tecnológicos.'),
+    SourceEntry(label: 'NIST — Quantum Information Science', url: 'https://www.nist.gov/quantum-information-science', note: 'Pesquisa e aplicações em física quântica.'),
+  ],
+  'cloud': [
+    SourceEntry(label: 'NIST — Definição de computação em nuvem', url: 'https://www.nist.gov/publications/nist-definition-cloud-computing', note: 'Características essenciais, modelos de serviço e implantação.'),
+  ],
+  'semicondutores': [
+    SourceEntry(label: 'ASML — Como são fabricados os microchips', url: 'https://www.asml.com/en/technology/all-about-microchips/how-microchips-are-made', note: 'Camadas, litografia e fabricação industrial.'),
+    SourceEntry(label: 'ASML — Princípios da litografia', url: 'https://www.asml.com/en/technology/lithography-principles', note: 'Óptica e projeção de padrões sobre wafers.'),
+  ],
+  'fermentacao': [
+    SourceEntry(label: 'University of Minnesota — Fermentação e conservação', url: 'https://extension.umn.edu/es/node/172346', note: 'Tipos de fermentação, acidez e segurança alimentar.'),
+  ],
+  'imprensa': [
+    SourceEntry(label: 'Museu Gutenberg — Impressão na Ásia Oriental', url: 'https://www.mainz.de/en/microsite/gutenberg-museum/Forschung_Sammlung_/Ostasien_und_Islam', note: 'Impressão anterior a Gutenberg e trajetórias culturais distintas.'),
   ],
   'inflacao': [
     SourceEntry(

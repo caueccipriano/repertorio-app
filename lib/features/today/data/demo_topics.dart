@@ -646,6 +646,30 @@ const quantumTopic = KnowledgeTopic(
       sourceUrl: 'https://open.spotify.com/episode/0T0JHwjFiwmFHimDgZnxBA',
     ),
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Os fenômenos que a física clássica não explicava',
+      paragraphs: [
+        'No começo do século XX, alguns resultados experimentais resistiam às teorias disponíveis. O estudo da radiação emitida por objetos aquecidos levou Max Planck a trabalhar com trocas discretas de energia. Ao investigar o efeito fotoelétrico, Einstein ajudou a mostrar que a luz também apresenta comportamento que não cabe inteiramente na imagem de uma onda clássica contínua. A física quântica nasceu de problemas concretos medidos em laboratórios, e não de uma preferência por explicações misteriosas.',
+        'Em átomos, elétrons ligados não podem simplesmente assumir qualquer energia imaginável. Modelos quânticos descrevem estados permitidos e transições entre eles. É tentador imaginar um pequeno sistema solar com elétrons girando em trajetórias bem definidas, mas essa figura tem limites importantes: a descrição moderna trabalha com estados, amplitudes e distribuições de probabilidade. A analogia dos degraus ajuda a entender valores discretos de energia, sem precisar acreditar que todas as propriedades físicas sejam quantizadas do mesmo jeito.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Superposição não significa magia nem pensamento criador',
+      paragraphs: [
+        'Um estado quântico pode combinar diferentes possibilidades matemáticas. Essas combinações carregam amplitudes, que interferem entre si e determinam probabilidades dos resultados possíveis de uma medida. Isso não autoriza concluir que uma pessoa consiga alterar a matéria somente por observar ou desejar algo. Medir significa produzir uma interação física adequada com um sistema, e há debates interpretativos legítimos sobre como compreender a descrição matemática, não uma permissão para abandonar a experimentação.',
+        'O princípio da incerteza é outra ideia frequentemente distorcida. Ele estabelece relações fundamentais entre a dispersão de certas grandezas, como posição e momento, nos estados quânticos. Não é simplesmente a reclamação de que nossos microscópios ainda são ruins. A teoria fornece previsões extremamente precisas para conjuntos de observações, embora não atribua a todas as propriedades o comportamento determinista que a intuição cotidiana espera.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'A teoria está dentro dos objetos que você usa',
+      paragraphs: [
+        'Sem os princípios quânticos, seria difícil explicar por que materiais sólidos conduzem ou bloqueiam eletricidade de maneiras diferentes. A estrutura de bandas ajuda a compreender o comportamento dos semicondutores empregados nos transistores. Lasers também dependem de transições entre estados de energia e de fenômenos associados à emissão estimulada. Quântica não é só um assunto sobre computadores experimentais: muitos de seus efeitos já são fundamentais na indústria e nos laboratórios.',
+        'Computadores quânticos procuram controlar estados quânticos delicados para executar algoritmos específicos. Eles não são substitutos universais de notebooks e não tornam toda conta automaticamente mais rápida. Preparar, proteger e medir esses estados traz desafios de ruído e correção de erros. Separar tecnologias maduras, aplicações de pesquisa e promessas ainda em teste é uma forma de compreender a área sem transformá-la numa coleção de manchetes futuristas.',
+      ],
+    ),
+  ],
+
 );
 
 const dnaTopic = KnowledgeTopic(
@@ -1373,6 +1397,30 @@ const imprensaTopic = KnowledgeTopic(
       sourceUrl: 'https://open.spotify.com/episode/0qHp073h6tfBPAxJ02Aozi',
     ),
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'A história começa antes de Gutenberg',
+      paragraphs: [
+        'Livros e textos já eram reproduzidos por diferentes técnicas na Ásia muitos séculos antes da oficina de Gutenberg. A impressão por blocos de madeira permitia reproduzir páginas inteiras; sistemas de tipos móveis também apareceram na China, e a Coreia desenvolveu tradições próprias de impressão, inclusive com tipos de metal. As circunstâncias de escrita, materiais, instituições e usos sociais variavam de uma região para outra, por isso é enganoso imaginar uma única linha de invenções saindo da Europa para o resto do planeta.',
+        'Johannes Gutenberg, na Europa do século XV, combinou soluções técnicas que ajudaram a transformar a escala de reprodução no contexto europeu: tipos metálicos reutilizáveis, procedimentos de composição, tinta e um sistema de prensagem. Reconhecer esse papel não exige apagar histórias anteriores da impressão. Um modo melhor de estudar a inovação é perguntar que peças já existiam, como foram combinadas e quais condições permitiram que se espalhassem.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Uma página passou a existir em muitos lugares',
+      paragraphs: [
+        'Copiar um manuscrito à mão exigia trabalho especializado e tempo. Numa oficina tipográfica, depois de preparar a composição, produzir outra cópia podia ser muito mais rápido. A difusão de oficinas criou redes de impressores, comerciantes, autores, revisores e leitores, mas a mudança não aconteceu de um dia para o outro. Os primeiros livros impressos muitas vezes imitavam a aparência visual dos manuscritos que o público já conhecia.',
+        'O ganho de escala tornou mais fácil comparar exemplares de um mesmo texto em locais distintos. Ao mesmo tempo, erros podiam ser multiplicados em muitas cópias antes de serem corrigidos. Impressão não significava acesso igualitário imediato: preços, alfabetização, idiomas, censura e distribuição continuaram influenciando quem podia produzir e ler. A revolução técnica precisa ser entendida junto com a organização social da leitura.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Mais informação também traz mais disputas',
+      paragraphs: [
+        'Quando textos religiosos, científicos, literários e políticos começaram a circular mais amplamente, diferentes públicos passaram a compartilhar argumentos e a contestar interpretações. A imprensa participou de mudanças culturais importantes, mas não agiu como causa única de movimentos complexos. Historiadores estudam também comércio, educação, instituições e relações de poder para explicar por que certos impressos produziram impacto em cada lugar.',
+        'A comparação com a internet é útil quando feita com cuidado. Ambos os meios reduziram barreiras para reproduzir e distribuir mensagens, porém operam com custos, velocidade e formas de participação muito diferentes. O aumento da circulação não garante que tudo o que circula seja correto. Tanto diante de um panfleto histórico quanto de uma postagem contemporânea, vale perguntar quem produziu a informação, quem a revisou e como ela foi distribuída.',
+      ],
+    ),
+  ],
+
 );
 
 const oceanosTopic = KnowledgeTopic(
@@ -2416,6 +2464,30 @@ const cloudTopic = KnowledgeTopic(
   curiosity:
       'Muitos aplicativos que você usa todos os dias podem mudar de servidor físico sem que você perceba.',
   connections: ['Data centers', 'Containers', 'Internet', 'Escalabilidade'],
+  chapters: [
+    KnowledgeChapter(
+      title: 'A nuvem continua ocupando espaço na Terra',
+      paragraphs: [
+        'Quando um aplicativo guarda fotos na nuvem, os arquivos não flutuam em lugar nenhum. Eles ficam em sistemas de armazenamento operados em instalações físicas, ligados a redes e sustentados por eletricidade, refrigeração e equipes técnicas. A diferença está na forma de acesso e contratação: clientes usam recursos de um conjunto compartilhado, enquanto o provedor administra grande parte da infraestrutura. Esse compartilhamento precisa ser acompanhado de isolamento entre aplicações e usuários.',
+        'A definição clássica do NIST destaca cinco características: autosserviço sob demanda, acesso amplo pela rede, agrupamento de recursos, elasticidade rápida e serviço medido. Isso ajuda a separar uma nuvem genuína de um simples computador remoto vendido com um nome moderno. O usuário normalmente escolhe regiões ou serviços, mas não precisa saber em qual servidor físico específico sua aplicação vai executar a cada instante.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Alugar infraestrutura não elimina responsabilidades',
+      paragraphs: [
+        'Em IaaS, um cliente recebe recursos próximos de máquinas virtuais, redes e armazenamento, assumindo mais decisões sobre sistema operacional e configuração. Em PaaS, parte desse trabalho é abstraída por uma plataforma gerenciada. Em SaaS, o serviço completo chega ao usuário como uma aplicação pronta. Essas categorias não são caixas perfeitas, mas ajudam a visualizar quanto controle e trabalho operacional ficam em cada lado.',
+        'Uma responsabilidade não desaparece apenas porque outra empresa cuida dos servidores. Identidades, permissões, cópias de segurança, custos, configuração dos dados e decisões sobre privacidade continuam exigindo atenção. Um banco de dados gerenciado pode receber atualizações automáticas, mas conceder acesso excessivo a ele ainda pode expor informações. Escolher nuvem significa distribuir responsabilidades de forma explícita, e não terceirizar toda a segurança.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Elasticidade é uma ferramenta, não um orçamento ilimitado',
+      paragraphs: [
+        'Imagine uma loja virtual que recebe muitos acessos durante uma promoção. Uma arquitetura elástica pode acrescentar capacidade em momentos de pico e reduzi-la quando a demanda cai. Caches, filas e distribuição de carga também ajudam a controlar esse movimento. Entretanto, se o aplicativo criar recursos sem limites ou transferir quantidades imensas de dados entre regiões, a flexibilidade pode produzir contas inesperadas.',
+        'A disponibilidade exige decisões semelhantes. Distribuir serviços por zonas diferentes reduz a dependência de uma única instalação, mas envolve testes de recuperação, replicação e custos extras. Nem toda aplicação precisa da arquitetura mais complexa. Antes de multiplicar servidores, vale estimar o impacto de uma interrupção, definir o que deve ser preservado e observar o comportamento real do sistema. Boa infraestrutura combina confiabilidade com simplicidade suficiente para ser operada.',
+      ],
+    ),
+  ],
+
 );
 const gpsTopic = KnowledgeTopic(
   id: 'gps',
@@ -2506,6 +2578,30 @@ const semicondutoresTopic = KnowledgeTopic(
   curiosity:
       'Um chip moderno pode conter bilhões de transistores numa área menor que uma unha.',
   connections: ['Transistores', 'Litografia', 'Computadores', 'Supply chain'],
+  chapters: [
+    KnowledgeChapter(
+      title: 'O segredo é conseguir controlar a corrente',
+      paragraphs: [
+        'Materiais como o silício não são escolhidos por conduzirem eletricidade melhor que o cobre. Seu comportamento eletrônico permite construir regiões que respondem de modo controlado à presença de impurezas e campos elétricos. A chamada dopagem introduz pequenas quantidades de determinados átomos no cristal, alterando a disponibilidade de portadores de carga. O resultado não é uma chave mecânica escondida no chip, mas uma estrutura de material cuidadosamente projetada.',
+        'Ao combinar regiões de tipos diferentes, engenheiros criam componentes como diodos, que favorecem a passagem de corrente em determinadas condições. Nos transistores modernos, o controle pode ocorrer pelo campo elétrico de um terminal chamado porta. Um computador funciona porque enormes conjuntos desses dispositivos alteram o fluxo de sinais de forma previsível, respeitando limites reais de calor, consumo e variabilidade entre componentes.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Bilhões de interruptores precisam conversar',
+      paragraphs: [
+        'Um transistor MOSFET pode atuar como chave eletrônica. Quando determinados sinais são aplicados, sua estrutura permite ou restringe o transporte de cargas por um canal. Em circuitos digitais, combinações de transistores formam portas lógicas capazes de representar operações como E, OU e NÃO. O que parece uma animação complexa na tela se apoia, em última instância, em muitos estados elétricos organizados por projetos de hardware e software.',
+        'Reduzir o tamanho dos componentes permite colocar mais funções numa área limitada, mas não basta encolher tudo indefinidamente. Dissipação de calor, vazamentos de corrente, variações de fabricação e dificuldade de interligar componentes tornam o projeto cada vez mais exigente. Diferentes tipos de chips fazem escolhas distintas: alguns priorizam consumo e sensores, outros velocidade, memória ou tarefas de inteligência artificial.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'A fabricação é uma cidade construída em camadas',
+      paragraphs: [
+        'Um chip começa como um projeto de circuitos que precisa ser traduzido em padrões extremamente precisos sobre uma lâmina de material, chamada wafer. Camadas são depositadas, cobertas por materiais sensíveis à luz, expostas em equipamentos de litografia e gravadas ou modificadas conforme o processo. A sequência pode envolver muitas repetições dessas etapas. Pequenos erros de alinhamento ou partículas contaminantes podem inutilizar partes do circuito.',
+        'Por isso, fabricar chips exige muito mais do que possuir um único equipamento sofisticado. Há especialistas em materiais, óptica, química, projetos eletrônicos, metrologia e controle de qualidade. Algumas empresas desenham circuitos sem possuir fábricas; outras produzem projetos de terceiros. A cadeia reúne competências distintas e demonstra como a precisão física transforma uma ideia matemática num objeto que efetivamente funciona.',
+      ],
+    ),
+  ],
+
 );
 const algoritmosTopic = KnowledgeTopic(
   id: 'algoritmos',
@@ -3001,6 +3097,30 @@ const fermentacaoTopic = KnowledgeTopic(
   curiosity:
       'Café, cacau e chá podem passar por etapas chamadas de fermentação ou processamento microbiano antes mesmo de chegarem à cozinha.',
   connections: ['Pão', 'Vinho', 'Microbioma', 'Queijo'],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Os microrganismos produzem receitas muito diferentes',
+      paragraphs: [
+        'Fermentação é uma família de transformações metabólicas, não uma fórmula única para qualquer alimento. Leveduras usadas em massas e bebidas podem liberar gás carbônico e álcool ao consumir açúcares. Certas bactérias produzem ácido lático e modificam sabor e acidez de produtos como iogurtes e vegetais fermentados. Em outros processos, diferentes comunidades microbianas ou etapas sucessivas produzem resultados próprios. A matéria-prima também importa: leite, repolho, uva e farinha oferecem nutrientes e condições muito diferentes.',
+        'Um pão cresce porque parte do gás produzido fica retida numa rede formada pela massa. Já em muitos vegetais fermentados, os ácidos alteram o ambiente e o perfil de sabor. Não basta dizer que ambos são alimentos com bactérias: a espécie microbiana, o substrato e o processo mudam o mecanismo. Existem ainda transformações alimentares chamadas fermentação na linguagem culinária que envolvem misturas de reações químicas e atividades biológicas.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Conservação depende de condições controladas',
+      paragraphs: [
+        'Algumas fermentações ajudam a conservar alimentos porque a acidez, o sal e a competição entre microrganismos criam condições menos favoráveis a certos organismos indesejados. Isso não significa que qualquer pote deixado sobre a bancada se torne seguro com o passar dos dias. Temperatura, matéria-prima, concentração de sal, acidez e exposição ao oxigênio interferem no resultado; erros podem permitir deterioração ou riscos sanitários.',
+        'Se o objetivo for preparar alimentos fermentados em casa, instruções de extensão universitária e receitas testadas são mais confiáveis do que proporções improvisadas. É importante distinguir fermentação controlada de comida estragando. O conhecimento científico acrescenta uma camada prática a tradições antigas: observar sabor e bolhas pode ser interessante, mas não substitui critérios validados de segurança alimentar.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Cada cultura ensina um jeito de transformar ingredientes',
+      paragraphs: [
+        'O mesmo princípio geral aparece em produtos culinários que parecem não ter parentesco: pães de fermentação natural, iogurtes, vegetais ácidos, algumas bebidas e etapas de processamento de cacau ou café. Ainda assim, a composição das comunidades microbianas, a duração e o ambiente tornam os produtos muito diferentes. Muitas técnicas evoluíram antes de sabermos da existência de microrganismos e hoje podem ser estudadas por microbiologia, química e história da alimentação.',
+        'Pense num fermento natural alimentado ao longo do tempo. Ele é um pequeno ecossistema, cuja atividade depende dos microrganismos presentes, da farinha, da temperatura e do manejo. Reproduzir exatamente um sabor pode ser mais difícil do que repetir uma lista de ingredientes, porque processos vivos respondem ao ambiente. Essa é uma das razões pelas quais fermentação se tornou, ao mesmo tempo, uma técnica industrial rigorosa e uma expressão de tradições locais.',
+      ],
+    ),
+  ],
+
 );
 const chocolateTopic = KnowledgeTopic(
   id: 'chocolate',
