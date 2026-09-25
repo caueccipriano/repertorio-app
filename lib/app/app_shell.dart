@@ -95,7 +95,7 @@ class _AppShellState extends State<AppShell> {
                       ),
                       const TextButton(
                         onPressed: applyAppUpdate,
-                        child: const Text('atualizar'),
+                        child: Text('atualizar'),
                       ),
                       IconButton(
                         tooltip: 'Depois',
