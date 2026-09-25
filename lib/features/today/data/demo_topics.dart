@@ -521,6 +521,30 @@ const stoicismTopic = KnowledgeTopic(
       sourceUrl: 'https://open.spotify.com/episode/3zkEpGjfFCsCV2NDb42yK6',
     ),
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Uma filosofia maior que uma frase motivacional',
+      paragraphs: [
+        'A escola estoica começou por volta de 300 a.C., com Zenão de Cítio em Atenas, e seu nome veio do pórtico onde os primeiros pensadores se reuniam. No mundo romano, Sêneca, Epicteto e Marco Aurélio se tornaram seus representantes mais conhecidos. Mas não se tratava apenas de frases sobre manter a calma: a tradição incluía lógica, investigação da natureza e uma ética dedicada a compreender como viver bem.',
+        'Os estoicos sustentavam que a virtude, entendida como excelência do caráter e do julgamento, é o elemento decisivo de uma vida boa. Riqueza e saúde podem ser preferíveis, mas não substituem justiça, coragem, moderação e sabedoria. Isso permite uma pergunta prática diante de uma oportunidade: ela é agradável ou vantajosa, mas também é compatível com o tipo de pessoa que escolho ser?',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'O que depende de você não é o mundo inteiro',
+      paragraphs: [
+        'Na tradição associada a Epicteto, nossas escolhas e julgamentos são diferentes de resultados como reputação, clima ou decisões de outras pessoas. A distinção não manda abandonar tudo o que está fora de controle. Você pode preparar uma entrevista, estudar e comunicar-se com respeito; não pode obrigar outra pessoa a contratá-lo. A responsabilidade está em agir de modo razoável sem transformar o resultado em medida absoluta do próprio valor.',
+        'A distinção exige cuidado com um equívoco moderno: controle e influência não são sinônimos. Problemas coletivos, injustiças e necessidades alheias continuam merecendo ação. Os estoicos discutiam deveres e convivência humana; usar a filosofia para justificar indiferença ou tolerar qualquer abuso seria empobrecer uma tradição que fazia da justiça uma virtude central.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Sentir emoções e examinar julgamentos',
+      paragraphs: [
+        'O ideal estoico não pode ser resumido a fingir que nada dói. Seus filósofos investigavam a relação entre acontecimentos, interpretações, desejos e reações emocionais. A palavra antiga para certas paixões envolvia julgamentos considerados equivocados ou excessivos; isso não significa que seres humanos tenham um botão para desligar tristeza, medo ou reações involuntárias.',
+        'Imagine receber uma crítica. O primeiro desconforto pode aparecer antes de qualquer reflexão. Depois, é possível examinar se a crítica contém algo útil, se é injusta e qual resposta preserva o respeito por você e pelos outros. A prática filosófica está nesse trabalho de julgamento e conduta, não na promessa irrealista de viver sem emoções difíceis.',
+      ],
+    ),
+  ],
+
 );
 
 const renaissanceTopic = KnowledgeTopic(
@@ -995,6 +1019,30 @@ const buracosNegrosTopic = KnowledgeTopic(
       sourceUrl: 'https://open.spotify.com/episode/3yP1xcoqxHjx7p1Wh2M6ha',
     ),
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'O horizonte não é uma parede preta',
+      paragraphs: [
+        'Um buraco negro é definido por uma região do espaço-tempo delimitada por um horizonte de eventos, além do qual sinais não conseguem chegar a observadores distantes. Esse limite não é uma casca sólida que uma nave pudesse tocar. A imagem popular de um redemoinho sugador também engana: longe do horizonte, a atração gravitacional de um objeto depende de sua massa e distância, como acontece com outros corpos.',
+        'Se, num experimento puramente imaginário, o Sol fosse substituído por um buraco negro de exatamente a mesma massa, a órbita da Terra não mudaria por essa troca isolada. A iluminação e as condições de vida mudariam drasticamente, é claro. O exemplo separa a gravidade da ideia incorreta de que buracos negros atraem tudo no universo como aspiradores cósmicos.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Como fotografar algo que não emite luz para fora',
+      paragraphs: [
+        'Os registros astronômicos não mostram uma superfície sólida do buraco negro. Gás muito quente ao redor dele pode produzir radiação intensa antes de cruzar o horizonte, e a gravidade altera os caminhos percorridos pela luz. O Event Horizon Telescope combinou observações de radiotelescópios espalhados pela Terra para reconstruir, em 2019, a primeira imagem divulgada da região próxima ao buraco negro de M87.',
+        'Além das imagens, os cientistas estudam movimentos de estrelas e de gás nas proximidades e detectam ondas gravitacionais produzidas por fusões. Cada técnica acessa uma peça diferente do fenômeno. Dizer que os buracos negros são inteiramente invisíveis confunde duas coisas: não recebemos sinais emitidos de dentro do horizonte, mas podemos observar claramente muitos efeitos externos.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'O que sabemos e o que continua sem resposta',
+      paragraphs: [
+        'A relatividade geral descreve com enorme sucesso muitos efeitos gravitacionais observados. Algumas soluções matemáticas preveem singularidades em condições extremas, onde a descrição clássica deixa de oferecer um quadro físico completo. Isso não equivale a uma fotografia do que existe lá dentro: as leis necessárias para unir gravitação e física quântica ainda são objeto de pesquisa.',
+        'Perguntas sobre informação, radiação de Hawking e a natureza física do interior são campos de investigação, não descobertas encerradas. Um bom leitor distingue três camadas: medidas externas feitas com instrumentos, previsões matemáticas testáveis e hipóteses ainda em debate. Essa separação permite acompanhar notícias sobre buracos negros sem confundir ilustração artística com observação direta.',
+      ],
+    ),
+  ],
+
 );
 
 const vacinasTopic = KnowledgeTopic(
@@ -1029,6 +1077,30 @@ const sonoTopic = KnowledgeTopic(
       sourceUrl: 'https://open.spotify.com/episode/5wNPPxo2IyyS3kpfI7qq4a',
     ),
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Dois relógios organizam suas noites',
+      paragraphs: [
+        'Uma parte importante da vontade de dormir vem da pressão de sono: durante a vigília, processos biológicos associados a substâncias como a adenosina sinalizam a necessidade de descanso. Outro componente é o ritmo circadiano, coordenado por relógios internos que respondem sobretudo à alternância entre luz e escuridão. Você pode estar cansado após muitas horas acordado e, ao mesmo tempo, sentir um pico passageiro de alerta por causa do horário biológico.',
+        'A cafeína interfere na sinalização da adenosina e pode mascarar parte da sonolência sem resolver integralmente a necessidade de sono. Já a luz intensa à noite pode alterar pistas ambientais importantes para o relógio circadiano. Os dois mecanismos ajudam a entender por que uma noite irregular não se conserta simplesmente com força de vontade ou com mais uma xícara de café.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Dormir não é permanecer no mesmo estado',
+      paragraphs: [
+        'Ao longo da noite, o cérebro alterna entre estágios NREM e REM. No NREM há fases de transição, sono estabelecido e sono profundo; no REM, a atividade cerebral e os movimentos rápidos dos olhos compõem outro padrão. As proporções variam ao longo dos ciclos, e despertares breves podem acontecer sem que você se lembre deles. Nenhum estágio isolado consegue representar todos os benefícios do sono.',
+        'O sono participa da consolidação de diferentes tipos de memória, da regulação metabólica e da manutenção de funções físicas. Entretanto, dizer que todo aprendizado é automaticamente memorizado durante uma noite seria exagero: a qualidade do estudo, as revisões e outros fatores também contam. O descanso integra o processo de aprendizagem; ele não substitui a prática.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Qualidade é diferente de tempo na cama',
+      paragraphs: [
+        'Passar muitas horas deitado não garante sono contínuo nem restauração adequada. Rotina, ambiente, interrupções e condições médicas podem interferir na experiência. A falta persistente de sono pode afetar atenção, tempo de reação e decisões cotidianas, além de se relacionar com a saúde em longo prazo. Pessoas têm diferenças individuais; comparações simplistas sobre quantas horas todos precisam podem induzir conclusões ruins.',
+        'Uma observação útil é separar três perguntas: por quanto tempo você tentou dormir, por quanto tempo de fato dormiu e como se sente durante o dia. Aplicativos e relógios domésticos podem sugerir padrões, mas não diagnosticam distúrbios só com uma estimativa de estágios. Quando há sintomas persistentes, avaliação clínica é diferente de seguir dicas gerais de higiene do sono.',
+      ],
+    ),
+  ],
+
 );
 
 const viesesTopic = KnowledgeTopic(
@@ -1046,6 +1118,30 @@ const viesesTopic = KnowledgeTopic(
       sourceUrl: 'https://open.spotify.com/episode/6BrwFwmI3lfmIudeyexwiz',
     ),
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Heurística não é sinônimo de erro',
+      paragraphs: [
+        'Não temos tempo de calcular todas as alternativas em cada pequena decisão. Uma heurística é uma estratégia simplificada que economiza atenção: reconhecer rapidamente uma situação familiar, usar uma referência aproximada ou buscar padrões na experiência. Muitas vezes isso é útil. O problema aparece quando uma estratégia que funciona num ambiente produz erros sistemáticos em outro.',
+        'Imagine estimar o risco de viajar depois de assistir a várias notícias sobre acidentes. Os episódios estão frescos na memória e podem parecer mais frequentes do que realmente são. A disponibilidade mental de um exemplo não mede sua prevalência estatística. Comparar impressões com dados de uma população relevante ajuda a perceber quando uma lembrança marcante tomou o lugar de uma boa estimativa.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'O cérebro encontra o que estava procurando',
+      paragraphs: [
+        'O viés de confirmação aparece quando damos mais atenção a informações compatíveis com aquilo em que já acreditamos, ou procuramos evidências que reforcem uma hipótese sem buscar testes capazes de contrariá-la. Não é preciso agir de má-fé: o processo pode acontecer mesmo entre pessoas bem-intencionadas e experientes. Em discussões, repetir apenas casos favoráveis pode criar uma convicção que parece apoiada por muitas provas, embora a amostra tenha sido selecionada.',
+        'Uma técnica prática é formular antecipadamente a pergunta contrária. Se você acredita que uma estratégia de estudo funciona, o que teria de acontecer para considerar que ela não está ajudando? Definir um critério antes de observar o resultado dificulta mudar as regras sempre que um fato inconveniente aparece. Esse cuidado não elimina vieses, mas torna o processo de decisão mais verificável.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Uma âncora pode mudar uma negociação',
+      paragraphs: [
+        'Na ancoragem, um valor inicial pode influenciar avaliações seguintes, mesmo quando não deveria ter tanta importância. Uma etiqueta com um preço original elevado faz um desconto parecer enorme, mas isso não diz se o preço final é adequado. Em uma negociação salarial, a primeira cifra mencionada pode orientar a faixa imaginada pelas pessoas envolvidas.',
+        'Conhecer o nome do viés não é vacina contra ele. Antes de aceitar uma âncora, reúna referências independentes, compare alternativas reais e registre seus critérios de decisão. Em situações relevantes, ter outra pessoa revisando a análise ou usar dados preparados antes da negociação pode ser mais eficaz que confiar apenas na sensação de estar pensando com clareza.',
+      ],
+    ),
+  ],
+
 );
 
 const jurosCompostosTopic = KnowledgeTopic(
@@ -1063,6 +1159,30 @@ const jurosCompostosTopic = KnowledgeTopic(
       sourceUrl: 'https://open.spotify.com/episode/4JWqfzykw0OnQlO9DdMgNC',
     ),
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'O dinheiro novo vira parte da base',
+      paragraphs: [
+        'Imagine começar com R\$ 1.000 e receber 5% ao ano, sem depósitos nem retiradas. Depois do primeiro ano, o saldo seria R\$ 1.050. No segundo, se a mesma taxa incidir sobre o saldo acumulado, o ganho será de R\$ 52,50 e o total chegará a R\$ 1.102,50. O rendimento anterior começa a produzir rendimento adicional; essa é a diferença essencial em relação aos juros simples.',
+        'O exemplo pressupõe taxa fixa e ausência de tributos, taxas, resgates ou variações do investimento. Na vida real, rentabilidades podem oscilar e custos reduzir o resultado. Por isso, uma projeção matemática serve para entender o mecanismo, não para prometer que determinado produto renderá a mesma porcentagem todos os meses ou anos.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Tempo, taxa e capitalização têm papéis distintos',
+      paragraphs: [
+        'O crescimento composto depende do capital inicial, da taxa por período, da frequência com que os rendimentos entram na base e da duração. Taxa mensal não pode ser simplesmente tratada como taxa anual. Para comparar alternativas, as taxas precisam estar na mesma unidade de tempo e usar hipóteses compatíveis; contribuições periódicas também alteram o resultado.',
+        'Compare duas trajetórias hipotéticas com o mesmo dinheiro inicial e taxas diferentes. No primeiro mês, a distância entre os resultados pode parecer pequena. Depois de muitos períodos, a diferença acumulada se amplia porque cada base cresce em ritmo próprio. Isso ajuda a explicar o valor do horizonte de tempo, mas não elimina riscos, inflação nem possíveis perdas.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'A mesma conta também aumenta dívidas',
+      paragraphs: [
+        'Na dívida, a matemática opera na direção contrária ao seu patrimônio. Se os encargos são incorporados ao saldo e não pagos, períodos seguintes podem incidir sobre valores maiores. Taxa contratada, atrasos, tarifas, amortizações e regras do produto definem como isso ocorre; não se deve aplicar automaticamente um exemplo de poupança a qualquer financiamento.',
+        'Outra distinção importante é a diferença entre crescer nominalmente e ganhar poder de compra. Um saldo pode aumentar em reais enquanto os preços de bens e serviços também sobem. Ao avaliar alternativas, considere rendimento líquido, inflação e prazo, em vez de olhar só o número final na calculadora. Juros compostos são um mecanismo financeiro, não uma garantia de enriquecimento.',
+      ],
+    ),
+  ],
+
 );
 
 const bolhasTopic = KnowledgeTopic(

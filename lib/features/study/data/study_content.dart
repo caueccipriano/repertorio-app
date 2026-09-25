@@ -592,6 +592,106 @@ const quizByTopic = <String, List<QuizQuestion>>{
       explanation: 'O protocolo combina mecanismos com responsabilidades diferentes, inclusive troca de chaves e cifragem autenticada.',
     ),
   ],
+  'estoicismo': [
+    QuizQuestion(
+      prompt: 'Para os estoicos, quais áreas faziam parte do sistema filosófico?',
+      options: ['Somente conselhos motivacionais', 'Lógica, investigação da natureza e ética', 'Apenas treinamento militar', 'Somente exercícios de respiração'],
+      correctIndex: 1,
+      explanation: 'A tradição estoica reunia lógica, física e ética, não apenas frases sobre tranquilidade.',
+    ),
+    QuizQuestion(
+      prompt: 'Você se prepara para uma entrevista, mas não controla a decisão final. Qual atitude combina com a distinção estoica?',
+      options: ['Não estudar, pois o resultado é incerto', 'Exigir um resultado específico', 'Preparar-se bem, agir de modo justo e aceitar que a decisão final não é sua', 'Considerar todas as emoções uma falha moral'],
+      correctIndex: 2,
+      explanation: 'A distinção separa escolhas e ações responsáveis de resultados que não dependem exclusivamente de nós.',
+    ),
+    QuizQuestion(
+      prompt: 'Aceitação estoica significa ignorar injustiças e nunca sentir tristeza?',
+      options: ['Não; justiça e exame dos julgamentos fazem parte da tradição', 'Sim, porque toda emoção é proibida', 'Sim, porque o futuro já está decidido', 'Somente para filósofos romanos'],
+      correctIndex: 0,
+      explanation: 'A tradição enfatiza o caráter, os deveres e a reflexão sobre as reações, não passividade ou repressão mecânica.',
+    ),
+  ],
+  'sono': [
+    QuizQuestion(
+      prompt: 'Qual dupla ajuda a regular quando sentimos sono?',
+      options: ['Apenas vontade e idade', 'Pressão de sono e ritmos circadianos', 'Memória e preferência musical', 'Somente a temperatura externa'],
+      correctIndex: 1,
+      explanation: 'A necessidade acumulada de descanso interage com relógios biológicos que respondem a pistas ambientais.',
+    ),
+    QuizQuestion(
+      prompt: 'Uma noite normal costuma envolver...',
+      options: ['Somente sono REM', 'Um único estágio do começo ao fim', 'Alternância entre diferentes estágios NREM e REM', 'O cérebro totalmente desligado'],
+      correctIndex: 2,
+      explanation: 'O sono percorre ciclos com estados de atividade cerebral distintos.',
+    ),
+    QuizQuestion(
+      prompt: 'Por que usar um relógio de consumo para diagnosticar uma doença do sono é inadequado?',
+      options: ['Porque os relógios impedem todos os sonhos', 'Porque só médicos podem contar horas', 'Porque todas as pessoas precisam de oito horas exatas', 'Porque estimativas do dispositivo não substituem avaliação clínica'],
+      correctIndex: 3,
+      explanation: 'Informações de wearables podem sugerir tendências, mas sintomas persistentes exigem métodos diagnósticos adequados.',
+    ),
+  ],
+  'vieses': [
+    QuizQuestion(
+      prompt: 'O que diferencia um viés de uma heurística útil?',
+      options: ['Todo atalho é necessariamente um erro', 'Uma heurística simplifica; em alguns contextos pode produzir erros sistemáticos', 'Vieses só afetam pessoas sem formação', 'Heurísticas exigem sempre cálculos complexos'],
+      correctIndex: 1,
+      explanation: 'Os atalhos de decisão economizam esforço, mas podem gerar padrões de erro dependendo do ambiente.',
+    ),
+    QuizQuestion(
+      prompt: 'Ao testar uma hipótese, qual estratégia enfrenta melhor o viés de confirmação?',
+      options: ['Buscar apenas os exemplos favoráveis', 'Ignorar toda evidência quantitativa', 'Definir o que poderia contrariar a hipótese e procurar esses dados', 'Trocar de opinião a cada comentário isolado'],
+      correctIndex: 2,
+      explanation: 'A disposição de encontrar evidências contrárias torna uma hipótese mais testável.',
+    ),
+    QuizQuestion(
+      prompt: 'Um preço inicial exagerado muda sua avaliação de uma promoção. Qual fenômeno pode estar presente?',
+      options: ['Ancoragem', 'Sono REM', 'Dilatação temporal', 'Seleção natural'],
+      correctIndex: 0,
+      explanation: 'O primeiro número apresentado pode deslocar estimativas seguintes, mesmo sendo pouco informativo.',
+    ),
+  ],
+  'juros-compostos': [
+    QuizQuestion(
+      prompt: 'R\$ 1.000 rendem 5% ao ano com capitalização anual. Sem movimentações, qual o saldo após dois anos?',
+      options: ['R\$ 1.100,00', 'R\$ 1.102,50', 'R\$ 1.050,00', 'R\$ 1.500,00'],
+      correctIndex: 1,
+      explanation: 'O segundo rendimento é 5% de R\$ 1.050, ou seja, R\$ 52,50; o total vai para R\$ 1.102,50.',
+    ),
+    QuizQuestion(
+      prompt: 'Por que comparar diretamente uma taxa mensal com outra anual é enganoso?',
+      options: ['Porque o calendário não influencia investimentos', 'Porque toda taxa anual é menor', 'Porque períodos diferentes exigem conversão para bases compatíveis', 'Porque juros só existem em meses'],
+      correctIndex: 2,
+      explanation: 'É necessário compatibilizar os períodos, a capitalização e as hipóteses antes da comparação.',
+    ),
+    QuizQuestion(
+      prompt: 'Saldo nominal maior significa obrigatoriamente mais poder de compra?',
+      options: ['Sim, em qualquer cenário', 'Apenas em dívidas', 'Apenas com taxas anuais', 'Não; inflação, custos e tributos afetam o resultado real'],
+      correctIndex: 3,
+      explanation: 'O ganho real depende do rendimento líquido em relação ao comportamento dos preços.',
+    ),
+  ],
+  'buracos-negros': [
+    QuizQuestion(
+      prompt: 'O horizonte de eventos de um buraco negro é...',
+      options: ['Uma casca sólida feita de gás', 'Um limite a partir do qual sinais não chegam a observadores distantes', 'Um telescópio situado dentro da galáxia', 'Uma parede de matéria escura'],
+      correctIndex: 1,
+      explanation: 'O horizonte é um limite causal do espaço-tempo, não uma superfície sólida.',
+    ),
+    QuizQuestion(
+      prompt: 'Como astrônomos estudam regiões próximas a buracos negros?',
+      options: ['Somente por imagens do interior', 'Medindo a luz emitida de dentro do horizonte', 'Observando matéria ao redor, movimentos e ondas gravitacionais', 'Acompanhando fotografias de estrelas vistas a olho nu'],
+      correctIndex: 2,
+      explanation: 'Os instrumentos registram efeitos externos, inclusive radiação de gás quente e ondas gravitacionais.',
+    ),
+    QuizQuestion(
+      prompt: 'Qual afirmação sobre o interior dos buracos negros é mais cuidadosa?',
+      options: ['Já fotografamos diretamente sua singularidade', 'A física do interior está completamente resolvida', 'Eles são aspiradores que sugam todo o universo', 'Há previsões matemáticas e perguntas físicas ainda em debate'],
+      correctIndex: 3,
+      explanation: 'A relatividade fornece previsões, mas certas condições extremas ainda desafiam a descrição física completa.',
+    ),
+  ],
   'inflacao': [
     QuizQuestion(
       prompt: 'Inflação significa…',
@@ -896,6 +996,56 @@ const sourcesByTopic = <String, List<SourceEntry>>{
       label: 'NIST — Assinatura digital',
       url: 'https://csrc.nist.gov/glossary/term/digital_signature',
       note: 'Autenticidade da origem e integridade, não sigilo.',
+    ),
+  ],
+  'estoicismo': [
+    SourceEntry(
+      label: 'Stanford Encyclopedia of Philosophy — Stoicism',
+      url: 'https://plato.stanford.edu/entries/stoicism/',
+      note: 'História e estrutura da escola: lógica, física e ética.',
+    ),
+  ],
+  'sono': [
+    SourceEntry(
+      label: 'NIH / NHLBI — Por que o sono é importante',
+      url: 'https://www.nhlbi.nih.gov/health/sleep/why-sleep-important',
+      note: 'Aprendizagem, funções físicas e saúde.',
+    ),
+    SourceEntry(
+      label: 'NIH / NHLBI — Fases do sono',
+      url: 'https://www.nhlbi.nih.gov/health/sleep/stages-of-sleep',
+      note: 'NREM, REM e ciclos.',
+    ),
+  ],
+  'vieses': [
+    SourceEntry(
+      label: 'APA Dictionary — Confirmation bias',
+      url: 'https://dictionary.apa.org/confirmation-bias',
+      note: 'Definição de viés de confirmação.',
+    ),
+    SourceEntry(
+      label: 'APA Dictionary — Anchoring bias',
+      url: 'https://dictionary.apa.org/anchoring-bias',
+      note: 'Termos associados a heurísticas e julgamentos.',
+    ),
+  ],
+  'juros-compostos': [
+    SourceEntry(
+      label: 'CFPB — Como funcionam os juros compostos',
+      url: 'https://www.consumerfinance.gov/ask-cfpb/how-does-compound-interest-work-en-1683/',
+      note: 'Exemplo numérico com capitalização anual.',
+    ),
+  ],
+  'buracos-negros': [
+    SourceEntry(
+      label: 'NASA — Anatomia dos buracos negros',
+      url: 'https://science.nasa.gov/universe/black-holes/anatomy/',
+      note: 'Horizonte de eventos, acreção e observações externas.',
+    ),
+    SourceEntry(
+      label: 'NASA — Buracos negros em perspectiva',
+      url: 'https://www.nasa.gov/universe/what-are-black-holes/',
+      note: 'Formação e descobertas observacionais.',
     ),
   ],
   'inflacao': [
