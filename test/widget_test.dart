@@ -53,6 +53,11 @@ void main() {
       mapsTopic,
       teoriaJogosTopic,
       origemVidaTopic,
+      renaissanceTopic,
+      perspectivaTopic,
+      impressionismoTopic,
+      rococoTopic,
+      barrocoTopic,
     ];
     for (final topic in expanded) {
       expect(topic.chapters.length, greaterThanOrEqualTo(2), reason: topic.id);
