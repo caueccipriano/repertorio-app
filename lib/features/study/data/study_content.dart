@@ -645,6 +645,21 @@ const sourcesByTopic = <String, List<SourceEntry>>{
   'linguistica': [
     SourceEntry(label: "Open Textbook Library — Essentials of Linguistics", url: "https://open.umn.edu/opentextbooks/textbooks/599", note: "Livro aberto sobre diversidade e fundamentos linguísticos."),
   ],
+  'dna': [
+    SourceEntry(label: "NHGRI — DNA Fact Sheet", url: "https://www.genome.gov/about-genomics/fact-sheets/Deoxyribonucleic-Acid-Fact-Sheet", note: "Papel do DNA, genes e regulação."),
+  ],
+  'ia-generativa': [
+    SourceEntry(label: "Google — Introdução aos modelos de linguagem", url: "https://developers.google.com/machine-learning/crash-course/llm?hl=pt-br", note: "Tokens, modelos de linguagem e geração de texto."),
+  ],
+  'mapas': [
+    SourceEntry(label: "USGS — Map Projections", url: "https://store.usgs.gov/product/16573", note: "Por que diferentes projeções distorcem propriedades diferentes."),
+  ],
+  'teoria-jogos': [
+    SourceEntry(label: "OpenStax — Oligopoly e teoria dos jogos", url: "https://openstax.org/books/principles-economics-2e/pages/10-2-oligopoly", note: "Interdependência estratégica e o dilema do prisioneiro."),
+  ],
+  'origem-vida': [
+    SourceEntry(label: "NASA — Astrobiology", url: "https://www.nasa.gov/missions/nasas-search-for-life-astrobiology-in-the-solar-system-and-beyond/", note: "Perguntas, métodos e limites da busca por vida."),
+  ],
   'helvetica': [
     SourceEntry(
       label: 'MoMA — Design Collection',
@@ -656,6 +671,7 @@ const sourcesByTopic = <String, List<SourceEntry>>{
       label: 'Banco Central do Brasil — Inflação',
       url: 'https://www.bcb.gov.br/controleinflacao',
     ),
+    SourceEntry(label: "IBGE — Entenda inflação, IPCA e INPC", url: "https://www.ibge.gov.br/explica/inflacao.php", note: "Como as cestas de consumo entram nos índices."),
   ],
   'vinho': [
     SourceEntry(
