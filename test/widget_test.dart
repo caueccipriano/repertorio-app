@@ -41,6 +41,12 @@ void main() {
       romeTopic,
       brutalismTopic,
       contabilidadeTopic,
+      sambaTopic,
+      imunidadeTopic,
+      turingTopic,
+      evolucaoInternetTopic,
+      neuroplasticidadeTopic,
+      linguisticaTopic,
     ];
     for (final topic in expanded) {
       expect(topic.chapters.length, greaterThanOrEqualTo(2), reason: topic.id);
