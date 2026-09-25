@@ -687,6 +687,21 @@ const sourcesByTopic = <String, List<SourceEntry>>{
   'origem-vida': [
     SourceEntry(label: "NASA — Astrobiology", url: "https://www.nasa.gov/missions/nasas-search-for-life-astrobiology-in-the-solar-system-and-beyond/", note: "Perguntas, métodos e limites da busca por vida."),
   ],
+  'renascimento': [
+    SourceEntry(label: "The Met — The Renaissance Portrait", url: "https://www.metmuseum.org/pt/met-publications/the-renaissance-portrait-from-donatello-to-bellini", note: "Retrato, patronato e transformações visuais renascentistas."),
+  ],
+  'perspectiva': [
+    SourceEntry(label: "Smarthistory — Linear Perspective Explained", url: "https://smarthistory.org/linear-perspective-explained/", note: "Perspectiva linear com demonstração visual."),
+  ],
+  'impressionismo': [
+    SourceEntry(label: "The Met — Impressionism, Art and Modernity", url: "https://www.metmuseum.org/pt/essays/impressionism-art-and-modernity", note: "Modernidade, estética e história das exposições."),
+  ],
+  'rococo': [
+    SourceEntry(label: "The Met — American Rococo", url: "https://www.metmuseum.org/pt/essays/american-rococo", note: "Características e difusão internacional da ornamentação rococó."),
+  ],
+  'barroco': [
+    SourceEntry(label: "The Met — Art in Naples", url: "https://www.metmuseum.org/es/essays/art-of-the-seventeenth-and-eighteenth-centuries-in-naples", note: "Naturalismo, expressão e claro-escuro na arte barroca."),
+  ],
   'helvetica': [
     SourceEntry(
       label: 'MoMA — Design Collection',
