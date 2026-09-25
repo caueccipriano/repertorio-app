@@ -57,11 +57,11 @@ class ReaderControlsSheet extends StatelessWidget {
                 ),
                 ButtonSegment(
                   value: ContentDepth.standard,
-                  label: Text('5 min'),
+                  label: Text('ler'),
                 ),
                 ButtonSegment(
                   value: ContentDepth.deep,
-                  label: Text('15 min'),
+                  label: Text('extras'),
                 ),
                 ButtonSegment(
                   value: ContentDepth.immersion,
