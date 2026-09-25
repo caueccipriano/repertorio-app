@@ -807,6 +807,16 @@ const quizByTopic = <String, List<QuizQuestion>>{
     QuizQuestion(prompt: 'O que é um erro de previsão de recompensa?', options: ['Um defeito em todos os receptores do corpo','Um método de eliminar dopamina','A diferença entre o que era esperado e o que aconteceu','Uma medida única de personalidade'], correctIndex: 2, explanation: 'Em certos circuitos, sinais dopaminérgicos carregam informação relacionada à discrepância entre expectativa e resultado.'),
     QuizQuestion(prompt: 'Por que um detox de dopamina não descreve literalmente um reinício químico?', options: ['Porque dopamina não existe no cérebro','Porque qualquer comportamento pode ser controlado por uma única molécula','Porque dormir apaga todos os neurotransmissores','Porque a dopamina continua necessária e hábitos envolvem vários sistemas'], correctIndex: 3, explanation: 'Reduzir distrações pode fazer sentido como estratégia comportamental, sem justificar alegações de reinício químico.'),
   ],
+  'oceanos': [
+    QuizQuestion(prompt: 'Qual propriedade ajuda o oceano a moderar temperaturas?', options: ['Alta capacidade de armazenar calor', 'Ausência completa de evaporação', 'Temperatura igual em todas as profundidades', 'Imobilidade total das correntes'], correctIndex: 0, explanation: 'A água pode absorver muita energia e redistribuí-la ao longo do tempo e espaço.'),
+    QuizQuestion(prompt: 'Correntes oceânicas profundas são influenciadas, entre outros fatores, por...', options: ['Somente a luz da Lua', 'Diferenças de temperatura e salinidade que afetam a densidade', 'A ausência de gravidade no oceano', 'Um único vento idêntico em toda a Terra'], correctIndex: 1, explanation: 'Variações de densidade ajudam a mover águas profundas em um sistema complexo.'),
+    QuizQuestion(prompt: 'El Niño e La Niña mostram que...', options: ['O oceano não tem efeito na atmosfera', 'Toda região recebe sempre a mesma quantidade de chuva', 'Oceano e atmosfera interagem e geram efeitos que variam por região', 'Qualquer tempestade pode ser prevista somente pela temperatura do mar'], correctIndex: 2, explanation: 'As alterações do Pacífico tropical afetam circulação e chuvas, com resultados dependentes do contexto.'),
+  ],
+  'placas-tectonicas': [
+    QuizQuestion(prompt: 'Qual conjunto de evidências ajudou a fundamentar a teoria da tectônica?', options: ['Somente o formato de uma praia', 'Fósseis, rochas e padrões magnéticos nos fundos oceânicos', 'A cor das nuvens', 'A ausência de terremotos em qualquer limite'], correctIndex: 1, explanation: 'Múltiplos tipos de evidências independentes apoiam o movimento das placas.'),
+    QuizQuestion(prompt: 'O que costuma acontecer em um limite transformante?', options: ['Continentes param permanentemente', 'Oceano evapora de imediato', 'Placas deslizam lateralmente e podem gerar terremotos', 'Uma nova estrela se forma'], correctIndex: 2, explanation: 'Atrito e deformação podem acumular energia que é liberada em eventos sísmicos.'),
+    QuizQuestion(prompt: 'Qual afirmação sobre o movimento das placas é mais correta?', options: ['Ocorre em centímetros por ano e envolve diversas forças geológicas', 'Placas flutuam em um oceano de lava líquida', 'Continentes viajam separados das placas', 'Permite prever exatamente a data do próximo terremoto'], correctIndex: 0, explanation: 'A litosfera se move lentamente sobre material rochoso deformável e a previsão exata de sismos continua indisponível.'),
+  ],
   'inflacao': [
     QuizQuestion(
       prompt: 'Inflação significa…',
@@ -1190,6 +1200,14 @@ const sourcesByTopic = <String, List<SourceEntry>>{
   'dopamina': [
     SourceEntry(label: 'PubMed — Dopamine Prediction Error and Beyond', url: 'https://pubmed.ncbi.nlm.nih.gov/33197709/', note: 'Revisão científica sobre funções dopaminérgicas e aprendizagem.'),
     SourceEntry(label: 'Nature — Prediction Errors Beyond Value', url: 'https://www.nature.com/articles/s41583-024-00898-8', note: 'Perspectivas recentes sobre diversidade dos sinais de aprendizagem.'),
+  ],
+  'oceanos': [
+    SourceEntry(label: 'NOAA — Conteúdo de calor nos oceanos', url: 'https://www.climate.gov/news-features/understanding-climate/climate-change-ocean-heat-content', note: 'Armazenamento de energia e mudanças no sistema climático.'),
+    SourceEntry(label: 'NOAA — Oceano e clima em terra', url: 'https://oceanexplorer.noaa.gov/ocean-fact/climate/', note: 'Redistribuição de calor e umidade pela circulação.'),
+  ],
+  'placas-tectonicas': [
+    SourceEntry(label: 'USGS — This Dynamic Earth', url: 'https://www.usgs.gov/publications/dynamic-earth-story-plate-tectonics', note: 'Evidências e formação da teoria das placas.'),
+    SourceEntry(label: 'USGS — Tectônica de placas em resumo', url: 'https://volcanoes.usgs.gov/about/edu/dynamicplanet/nutshell.php', note: 'Tipos de limites, velocidades e atividade geológica.'),
   ],
   'inflacao': [
     SourceEntry(

@@ -304,6 +304,8 @@ void main() {
       evolutionTopic,
       memoriaTopic,
       dopaminaTopic,
+      oceanosTopic,
+      placasTectonicasTopic,
       stoicismTopic,
       sonoTopic,
       viesesTopic,

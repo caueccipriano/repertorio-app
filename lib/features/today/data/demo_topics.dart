@@ -1462,6 +1462,30 @@ const oceanosTopic = KnowledgeTopic(
       sourceUrl: 'https://open.spotify.com/episode/4AZCH66FmHX6yfnxz6logm',
     ),
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Um enorme reservatório térmico',
+      paragraphs: [
+        'Os oceanos cobrem a maior parte da superfície terrestre e a água é capaz de armazenar muita energia antes de sofrer grandes mudanças de temperatura. Isso ajuda a explicar por que regiões costeiras frequentemente têm variações térmicas diferentes das observadas em áreas continentais. A água recebe energia solar, interage continuamente com o ar e libera calor em ritmos que dependem de ventos, correntes, profundidade e estações do ano.',
+        'Além de influenciar o clima natural, os oceanos vêm absorvendo a maior parte do excesso de calor acumulado no sistema terrestre durante o aquecimento global moderno. O calor não desaparece ao entrar na água: pode ser transportado, alcançar camadas profundas e retornar mais tarde às interações com a atmosfera, o gelo e as costas. Aumentos de temperatura também podem produzir expansão térmica, contribuindo para a elevação do nível do mar.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'As correntes ligam regiões muito distantes',
+      paragraphs: [
+        'Ventos impulsionam correntes de superfície, cuja trajetória também é influenciada pela rotação da Terra e pelo formato dos continentes. Nas profundezas, variações de densidade ligadas principalmente a temperatura e salinidade participam de outros movimentos. Essa circulação complexa redistribui calor e substâncias, mas não é uma esteira simples com velocidade idêntica em todos os oceanos.',
+        'Imagine uma massa de água aquecida nos trópicos que se move para latitudes maiores. Durante o percurso ela troca energia e umidade com o ar, contribuindo para diferenças de temperatura e chuva em diversas regiões. A circulação muda com os ventos, a mistura vertical e a formação de águas profundas; por isso, compreender o clima exige observar oceano e atmosfera como partes de um sistema interligado.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'O clima responde a uma conversa de duas vias',
+      paragraphs: [
+        'O El Niño e a La Niña exemplificam como alterações de ventos e da distribuição de temperaturas no Pacífico tropical afetam padrões de chuva e de circulação atmosférica em regiões distantes. O oceano não decide sozinho onde haverá tempestades: continentes, topografia, atmosfera e variabilidade natural também importam. Seus efeitos variam entre anos e lugares, o que torna inadequado prometer o mesmo resultado em todas as ocorrências.',
+        'Oceanos também participam do ciclo do carbono e de ecossistemas marinhos complexos. A absorção de dióxido de carbono altera a química da água, enquanto o aquecimento afeta espécies e habitats. Um indicador isolado de temperatura superficial não conta toda a história; cientistas acompanham conteúdo de calor, correntes, salinidade e dados biológicos para compreender mudanças de longo prazo e seus impactos.',
+      ],
+    ),
+  ],
+
 );
 
 const vulcoesTopic = KnowledgeTopic(
@@ -1887,6 +1911,30 @@ const placasTectonicasTopic = KnowledgeTopic(
   curiosity:
       'A velocidade de algumas placas é comparável ao crescimento de unhas humanas.',
   connections: ['Terremotos', 'Vulcões', 'Oceanos', 'Montanhas'],
+  chapters: [
+    KnowledgeChapter(
+      title: 'A evidência vem de continentes e fundos oceânicos',
+      paragraphs: [
+        'A semelhança entre contornos de continentes motivou hipóteses antigas, mas o encaixe visual não seria suficiente para explicar seu movimento. Distribuição de fósseis semelhantes em continentes hoje separados, formações rochosas e indícios de climas passados ajudaram a fortalecer a proposta de deriva continental associada a Alfred Wegener. Mais tarde, o mapeamento dos fundos oceânicos e estudos do magnetismo das rochas revelaram padrões que transformaram a discussão.',
+        'Faixas magnéticas formadas em rochas oceânicas registram mudanças antigas do campo magnético terrestre e mostram padrões em lados opostos de certas dorsais. Com medidas geológicas e geofísicas, ficou evidente que nova crosta pode se formar onde placas se afastam e que outras regiões reciclam parte da litosfera. A tectônica de placas se consolidou como uma explicação integrada de fenômenos antes estudados separadamente.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Três encontros entre placas, três consequências',
+      paragraphs: [
+        'Em limites divergentes, placas se separam e material do interior da Terra pode produzir nova crosta; a dorsal mesoatlântica é um exemplo conhecido. Em limites convergentes, uma placa pode mergulhar sob outra em zonas de subducção, ou massas continentais podem colidir e elevar cadeias de montanhas. Em limites transformantes, segmentos deslizam lateralmente, acumulam deformação e podem produzir terremotos.',
+        'As placas não carregam apenas continentes: muitas incluem tanto crosta continental quanto fundo oceânico. Sua velocidade costuma ser medida em centímetros por ano, mas as tensões acumuladas nas bordas podem ser liberadas rapidamente em terremotos. A maior parte da atividade sísmica e vulcânica se concentra perto desses limites, embora existam fenômenos também no interior de placas e em pontos quentes.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'O planeta se move sem precisar de um motor único',
+      paragraphs: [
+        'O interior quente da Terra perde energia lentamente, e o movimento das placas envolve várias forças. Entre elas estão o peso de partes frias e densas que afundam em zonas de subducção e efeitos relacionados ao relevo das dorsais oceânicas. O manto rochoso pode se deformar ao longo de escalas geológicas, sem ser um oceano de lava líquida sobre o qual os continentes flutuam.',
+        'Satélites e redes geodésicas permitem medir deslocamentos atuais muito pequenos. Esses dados complementam fósseis, rochas e mapas do fundo oceânico para reconstruir processos de milhões de anos. Conhecer a dinâmica das placas não permite prever com precisão o dia de um grande terremoto, mas fundamenta pesquisas sobre perigos geológicos, planejamento e preparação em áreas sujeitas a eventos naturais.',
+      ],
+    ),
+  ],
+
 );
 const terremotosTopic = KnowledgeTopic(
   id: 'terremotos',
