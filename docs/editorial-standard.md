@@ -31,12 +31,12 @@ Bauhaus, Modernismo, Paradoxo de Fermi e Queda de Roma: 3 capítulos cada. Bruta
 
 ## Backlog editorial de qualidade
 
-- Corrigir exemplos que repetem integralmente a explicação (há múltiplas ocorrências na base compacta).
-- Substituir conclusões genéricas que poderiam aparecer em qualquer artigo.
+- Manter auditoria automatizada contra exemplos que repetem a explicação (24 ocorrências corrigidas neste ramo).
+- Impedir regressão de conclusões genéricas (10 ocorrências reescritas neste ramo).
 - Reavaliar os minutos exibidos em cada artigo usando texto real e o modo de profundidade.
 - Acrescentar fontes específicas e perguntas de fixação aos temas restantes.
 - Expandir os próximos lotes sem alterar indiscriminadamente os 125 assuntos com texto artificial ou redundante.
 
 ## Validação deste lote
 
-O teste automatizado cobre presença e estrutura dos capítulos de referência, suas fontes e a renderização no modo de leitura padrão. A execução pelo CI do GitHub continua sendo a autoridade para declarar o código validado. Também é necessária revisão visual em tela pequena antes de lançar uma versão pública.
+Os testes cobrem presença e estrutura dos capítulos de referência, suas fontes, a renderização no modo de leitura padrão e regras de não repetição em todo o catálogo. A execução pelo CI do GitHub continua sendo a autoridade para declarar o código validado. Também é necessária revisão visual em tela pequena antes de lançar uma versão pública.
