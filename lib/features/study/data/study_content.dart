@@ -152,6 +152,18 @@ const quizByTopic = <String, List<QuizQuestion>>{
       explanation:
           'Concreto, aço e vidro permitiram novas estruturas e novas linguagens.',
     ),
+    QuizQuestion(
+      prompt: 'Uma fachada inteiramente de vidro é automaticamente um bom exemplo de projeto modernista bem resolvido?',
+      options: [
+        'Sim, porque parece contemporânea',
+        'Sim, se tiver linhas retas',
+        'Não: função, conforto e adequação ao clima também precisam ser analisados',
+        'Não, porque o modernismo proibia vidro',
+      ],
+      correctIndex: 2,
+      explanation: 'Materiais e linguagem não dispensam a análise da função e das condições concretas de uso.',
+    ),
+
   ],
   'fermi': [
     QuizQuestion(
@@ -178,6 +190,18 @@ const quizByTopic = <String, List<QuizQuestion>>{
       explanation:
           'O paradoxo parte da aparente abundância de oportunidades para vida e da falta de evidência confirmada.',
     ),
+    QuizQuestion(
+      prompt: 'A descoberta de milhares de exoplanetas resolve o paradoxo de Fermi?',
+      options: [
+        'Sim, porque prova que existe vida inteligente',
+        'Não: sabemos mais sobre planetas, mas pouco sobre surgimento de vida e civilizações detectáveis',
+        'Sim, se alguns estiverem em zonas habitáveis',
+        'Não, porque planetas fora do Sistema Solar não podem ter vida',
+      ],
+      correctIndex: 1,
+      explanation: 'Contar planetas informa apenas parte do problema; as variáveis ligadas à vida e à tecnologia seguem incertas.',
+    ),
+
   ],
   'roma': [
     QuizQuestion(
@@ -204,6 +228,53 @@ const quizByTopic = <String, List<QuizQuestion>>{
       explanation:
           '476 é uma convenção histórica útil, não um interruptor que apagou Roma.',
     ),
+    QuizQuestion(
+      prompt: 'O fim do governo imperial no Ocidente significou que a cultura romana desapareceu imediatamente?',
+      options: [
+        'Sim, toda lei e língua romanas sumiram em 476',
+        'Sim, tanto no Ocidente quanto no Oriente',
+        'Não, instituições e práticas tiveram continuidades e mudanças em ritmos diferentes',
+        'Não, porque o Ocidente nunca mudou de autoridade',
+      ],
+      correctIndex: 2,
+      explanation: '476 é um marco político; cultura, leis, redes econômicas e o Império do Oriente tiveram trajetórias distintas.',
+    ),
+
+  ],
+  'contabilidade': [
+    QuizQuestion(
+      prompt: 'Uma empresa compra uma máquina à vista. Qual é o efeito inicial desse lançamento?',
+      options: [
+        'Ativo aumenta e receita aumenta',
+        'Imobilizado aumenta e caixa diminui',
+        'Passivo aumenta e caixa aumenta',
+        'Despesa aumenta e imobilizado diminui',
+      ],
+      correctIndex: 1,
+      explanation: 'A aquisição troca um tipo de ativo por outro; o caixa sai e o imobilizado entra.',
+    ),
+    QuizQuestion(
+      prompt: 'Qual grupo de contas normalmente aumenta por débito?',
+      options: [
+        'Passivo e receitas',
+        'Patrimônio líquido e receitas',
+        'Ativo e despesas',
+        'Todas as contas sem exceção',
+      ],
+      correctIndex: 2,
+      explanation: 'Ativo e despesas geralmente aumentam no lado do débito; passivo, patrimônio e receitas costumam aumentar por crédito.',
+    ),
+    QuizQuestion(
+      prompt: 'Débitos e créditos de um lançamento se equilibram. Isso prova que a classificação está correta?',
+      options: [
+        'Sim, o equilíbrio elimina qualquer erro',
+        'Não, a conta escolhida ainda pode estar incorreta',
+        'Sim, desde que o valor seja alto',
+        'Não, pois partidas dobradas nunca se equilibram',
+      ],
+      correctIndex: 1,
+      explanation: 'O equilíbrio é indispensável, mas uma despesa lançada na conta errada pode manter a mesma soma.',
+    ),
   ],
   'brutalismo': [
     QuizQuestion(
@@ -217,6 +288,29 @@ const quizByTopic = <String, List<QuizQuestion>>{
       correctIndex: 1,
       explanation: 'Béton brut significa concreto cru em francês.',
     ),
+    QuizQuestion(
+      prompt: 'Qual análise é mais útil para reconhecer arquitetura brutalista?',
+      options: [
+        'Verificar se há qualquer elemento de concreto',
+        'Observar materialidade, estrutura aparente e contexto do projeto',
+        'Confirmar que o edifício foi construído antes de 1900',
+        'Verificar se o arquiteto evitou totalmente formas monumentais',
+      ],
+      correctIndex: 1,
+      explanation: 'O movimento é relacionado à exposição de materiais e estrutura; concreto por si só não basta.',
+    ),
+    QuizQuestion(
+      prompt: 'Qual afirmação evita uma simplificação sobre o nome brutalismo?',
+      options: [
+        'O termo foi inventado por fabricantes de concreto',
+        'Béton brut é relevante, mas o Novo Brutalismo também tem uma história ligada aos Smithson e ao debate arquitetônico',
+        'O movimento exigia obrigatoriamente concreto em todos os projetos',
+        'Brutalismo é sempre sinônimo de arquitetura abandonada',
+      ],
+      correctIndex: 1,
+      explanation: 'A história do termo inclui a discussão sobre o Novo Brutalismo e sua valorização de materiais e estruturas visíveis.',
+    ),
+
   ],
   'helvetica': [
     QuizQuestion(
