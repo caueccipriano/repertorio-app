@@ -129,7 +129,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
           final pages = sections.where((section) => section is! SizedBox).length;
           if ((_pageController?.hasClients ?? false) && pages > 0) {
             final index = (_progress * (pages - 1)).round()
-                .clamp(0, pages - 1);
+                .clamp(0, pages - 1).toInt();
             _pageController!.jumpToPage(index);
           }
         } else if (_scrollController.hasClients) {
