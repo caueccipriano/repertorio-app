@@ -382,7 +382,7 @@ class _FeaturedKnowledge extends StatelessWidget {
                             borderRadius: BorderRadius.circular(99),
                           ),
                           child: Text(
-                            '${topic.minutes} MIN',
+                            '${topic.estimatedReadingMinutes()} MIN',
                             style:
                                 Theme.of(context).textTheme.labelLarge?.copyWith(
                                       fontSize: 9,
@@ -419,7 +419,7 @@ class _QuickActions extends StatelessWidget {
     final state = AppStateScope.of(context);
     final quickTopic = allDemoTopics.firstWhere(
       (topic) =>
-          topic.minutes <= 5 &&
+          topic.estimatedReadingMinutes() <= 5 &&
           !state.completedTopicIds.contains(topic.id),
       orElse: () => allDemoTopics.first,
     );
@@ -927,7 +927,7 @@ class _ShelfBook extends StatelessWidget {
           ),
           const SizedBox(height: 2),
           Text(
-            '${topic.minutes} min',
+            '${topic.estimatedReadingMinutes()} min',
             style: Theme.of(context).textTheme.labelLarge?.copyWith(
                   fontSize: 9,
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
@@ -1001,7 +1001,7 @@ class _ContinueShelf extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          '${topic.tags.join(' · ')} · ${topic.minutes} min',
+                          '${topic.tags.join(' · ')} · ${topic.estimatedReadingMinutes()} min',
                           style:
                               Theme.of(context).textTheme.labelLarge?.copyWith(
                                     color: Theme.of(context).colorScheme.onSurfaceVariant,
