@@ -278,15 +278,15 @@ const quizByTopic = <String, List<QuizQuestion>>{
   ],
   'brutalismo': [
     QuizQuestion(
-      prompt: 'De onde vem o termo associado ao brutalismo?',
+      prompt: 'Qual expressão francesa se relaciona ao concreto aparente de muitas obras brutalistas?',
       options: [
-        'Brutal force',
+        'Art nouveau',
         'Béton brut',
-        'Bella struttura',
-        'Bau Kunst',
+        'Belle époque',
+        'Déjà vu',
       ],
       correctIndex: 1,
-      explanation: 'Béton brut significa concreto cru em francês.',
+      explanation: 'Béton brut significa concreto cru. Materialidade é importante, mas nem toda obra brutalista precisa ser de concreto.',
     ),
     QuizQuestion(
       prompt: 'Qual análise é mais útil para reconhecer arquitetura brutalista?',
