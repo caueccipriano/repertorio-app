@@ -506,7 +506,21 @@ const renaissanceTopic = KnowledgeTopic(
   simpleExplanation: 'Artistas e estudiosos passaram a observar com intensidade o corpo, a natureza, a perspectiva e textos clássicos, enquanto cidades ricas financiavam novas obras.',
   example: 'A perspectiva linear permitiu organizar uma pintura como se o espaço continuasse para dentro da parede.',
   body: ['O movimento ganhou força em cidades italianas como Florença, Veneza e Roma.','Humanistas estudaram autores gregos e romanos e colocaram grande atenção na experiência humana, sem que isso significasse abandonar a religião.','Artistas exploraram anatomia, luz, proporção e perspectiva com métodos cada vez mais sistemáticos.','Mecenas, cortes, Igreja e famílias de comerciantes financiaram obras que também funcionavam como símbolos de poder.','A imprensa ajudou ideias e textos a circular em escala muito maior.'],
-  remember: ['Florença foi um centro decisivo.','Humanismo não significa ateísmo.','Arte, dinheiro, política e conhecimento estavam conectados.'],
+  chapters: [
+  KnowledgeChapter(title: 'Uma mudança construída entre cidades, oficinas e livros', paragraphs: [
+    'O Renascimento teve ritmos e manifestações diferentes entre os séculos XIV e XVI. Em cidades e cortes italianas, comerciantes, instituições religiosas e governantes financiaram obras e estudos, enquanto artistas experimentavam modos de representar pessoas, edifícios e paisagens. A redescoberta e releitura de autores clássicos participou desse processo, mas os criadores também responderam aos problemas de seu próprio tempo.',
+    'Chamar o período de renascimento não significa que a Idade Média tenha sido culturalmente vazia ou que todas as transformações tenham começado de repente. Técnicas medievais, redes comerciais e instituições anteriores continuaram importantes. A história é mais interessante quando identificamos continuidades junto com as novidades.',
+  ]),
+  KnowledgeChapter(title: 'O humanismo não era uma campanha contra a religião', paragraphs: [
+    'O estudo de textos antigos em línguas originais estimulou perguntas sobre retórica, história, filosofia e condição humana. Humanistas tiveram posições religiosas diferentes; muitos trabalharam para instituições e patronos cristãos. O foco em textos e experiências humanas não implica que fossem necessariamente ateus ou que rejeitassem toda tradição.',
+    'Na arte, o estudo da anatomia, da luz e do espaço ofereceu recursos para composições mais variadas. Artistas podiam combinar observação do mundo, temas religiosos e referências à Antiguidade em uma mesma obra. Por trás de uma pintura famosa havia também aprendizes, fornecedores, encomendas e oficinas organizadas.',
+  ]),
+  KnowledgeChapter(title: 'Aprenda a observar um retrato renascentista', paragraphs: [
+    'Escolha uma pintura de retrato e note postura, vestuário, objetos, paisagem e direção do olhar. Essas escolhas podem comunicar status, identidade, virtudes ou ligações políticas. Retratos não são fotografias neutras: resultam de negociações entre o artista, o retratado e as expectativas do público.',
+    'Compare depois com uma pintura religiosa do mesmo período. Observe se as figuras ocupam um espaço coerente, como a iluminação organiza a cena e que elementos direcionam a atenção. O exercício permite perceber que técnicas são recursos expressivos, não uma escala universal de progresso artístico.',
+  ]),
+ ],
+ remember: ['Florença foi um centro decisivo.','Humanismo não significa ateísmo.','Arte, dinheiro, política e conhecimento estavam conectados.'],
   whyItMatters: 'Muitas ideias modernas sobre artista, perspectiva, educação e cultura visual foram moldadas nesse período.', curiosity: 'Leonardo da Vinci deixou milhares de páginas de cadernos com estudos de anatomia, máquinas, água e desenho.',
   connections: ['Humanismo', 'Leonardo da Vinci', 'Perspectiva', 'Imprensa'],
 );
@@ -1032,7 +1046,21 @@ const perspectivaTopic = KnowledgeTopic(
   id: 'perspectiva', eyebrow: 'ARTE / PERCEPÇÃO', title: 'COMO UM DESENHO CRIA PROFUNDIDADE NUM PAPEL PLANO?',
   summary: 'Perspectiva usa relações geométricas e pistas visuais para representar espaço tridimensional.', minutes: 7, tags: ['arte', 'design'],
   quickTake: 'Linhas convergentes, escala e sobreposição fazem o cérebro interpretar profundidade.', simpleExplanation: 'Trilhos paralelos parecem se aproximar à distância; a perspectiva linear organiza esse efeito usando pontos de fuga.', example: 'Pintores renascentistas sistematizaram métodos geométricos para criar interiores e cidades convincentes.',
-  body: ['A perspectiva linear foi sistematizada na Itália do século XV, embora culturas anteriores já usassem várias formas de representar profundidade.', 'Um ponto de fuga organiza linhas paralelas numa determinada direção.', 'Objetos mais distantes costumam ser representados menores.', 'Perspectiva atmosférica usa contraste e cor para sugerir grandes distâncias.', 'Fotografia herdou muitas convenções espaciais que hoje parecem naturais aos nossos olhos.'], remember: ['Ponto de fuga organiza direção.', 'Tamanho relativo sugere distância.', 'Existem várias perspectivas possíveis.'],
+  body: ['A perspectiva linear foi sistematizada na Itália do século XV, embora culturas anteriores já usassem várias formas de representar profundidade.', 'Um ponto de fuga organiza linhas paralelas numa determinada direção.', 'Objetos mais distantes costumam ser representados menores.', 'Perspectiva atmosférica usa contraste e cor para sugerir grandes distâncias.', 'Fotografia herdou muitas convenções espaciais que hoje parecem naturais aos nossos olhos.'], chapters: [
+  KnowledgeChapter(title: 'Por que linhas paralelas parecem se encontrar', paragraphs: [
+    'Quando olhamos para trilhos retos que se afastam, eles podem parecer aproximar-se em direção ao horizonte, apesar de sua distância real permanecer constante. A perspectiva linear organiza esse efeito numa superfície plana, usando uma linha do horizonte e pontos de fuga para construir uma representação coerente a partir de determinado ponto de vista.',
+    'O procedimento não copia automaticamente a visão humana inteira. Ele pressupõe escolhas geométricas e funciona melhor quando entendemos a posição do observador. Há obras que rejeitam deliberadamente esse recurso para expressar ideias, organizar narrativas ou mostrar vários pontos de vista.',
+  ]),
+  KnowledgeChapter(title: 'Uma invenção visual com história', paragraphs: [
+    'Experimentos associados a Filippo Brunelleschi, no início do século XV, ajudaram a demonstrar maneiras de representar espaço por regras geométricas. Leon Battista Alberti posteriormente sistematizou princípios importantes para pintores. Esses desenvolvimentos ocorreram em diálogo com outros conhecimentos e tradições de representação espacial.',
+    'Desenhar uma sala com perspectiva de um ponto pode ser um teste simples: trace uma linha de horizonte, marque um ponto de fuga e conduza até ele as linhas de profundidade do piso e do teto. Manter verticais e horizontais coerentes facilita ver como a ilusão se forma.',
+  ]),
+  KnowledgeChapter(title: 'Profundidade não depende só da perspectiva linear', paragraphs: [
+    'Um objeto pode parecer mais distante porque está parcialmente encoberto por outro, ocupa menos espaço na imagem ou apresenta contraste reduzido. Artistas combinam várias pistas visuais; perspectiva atmosférica, escala e sobreposição não são a mesma técnica, mas podem trabalhar juntas.',
+    'A fotografia também registra efeitos de perspectiva conforme posição da câmera e distância aos objetos. Trocar o ponto de observação pode mudar bastante a percepção das proporções. Isso explica por que imagens com aparência objetiva ainda são resultados de escolhas de enquadramento.',
+  ]),
+ ],
+ remember: ['Ponto de fuga organiza direção.', 'Tamanho relativo sugere distância.', 'Existem várias perspectivas possíveis.'],
   whyItMatters: 'Mostra que imagens aparentemente realistas dependem de convenções e matemática.', curiosity: 'Brunelleschi é associado a experimentos decisivos para a perspectiva linear no início do Renascimento.', connections: ['Renascimento', 'Fotografia', 'Geometria', 'Percepção'],  media: [
     KnowledgeMedia(
       type: KnowledgeMediaType.audio,
@@ -3077,7 +3105,21 @@ const evolucaoInternetTopic = KnowledgeTopic(
 
 const impressionismoTopic = KnowledgeTopic(
  id:'impressionismo', eyebrow:'ARTE / HISTÓRIA', title:'POR QUE OS IMPRESSIONISTAS PARECIAM TÃO RADICAIS?', summary:'Pinceladas visíveis, cenas modernas e atenção à luz desafiaram convenções acadêmicas da pintura do século XIX.', minutes:7, tags:['arte', 'cultura'],
- quickTake:'Impressionismo não era apenas pintar paisagens bonitas; também mudou temas, técnica e a própria ideia de acabamento.', simpleExplanation:'Em vez de esconder cada pincelada, artistas deixavam marcas de tinta perceptíveis para sugerir luz e movimento.', example: 'De perto, uma pintura pode parecer feita de manchas soltas. Ao se afastar, as pinceladas se combinam visualmente e sugerem o reflexo mutável da luz sobre a água.', body:['O primeiro salão impressionista independente ocorreu em Paris em 1874.', 'Monet, Renoir, Degas, Morisot e Pissarro estiveram entre figuras importantes, com trajetórias distintas.', 'Tintas em tubos facilitaram trabalhar fora do ateliê.', 'Fotografia e gravuras japonesas influenciaram novas composições.', 'Cenas de lazer, ruas e vida moderna apareceram com frequência.'], remember:['1874 é um marco.', 'O grupo não tinha um estilo único.', 'Tecnologia dos materiais ajudou novas práticas.'],
+ quickTake:'Impressionismo não era apenas pintar paisagens bonitas; também mudou temas, técnica e a própria ideia de acabamento.', simpleExplanation:'Em vez de esconder cada pincelada, artistas deixavam marcas de tinta perceptíveis para sugerir luz e movimento.', example: 'De perto, uma pintura pode parecer feita de manchas soltas. Ao se afastar, as pinceladas se combinam visualmente e sugerem o reflexo mutável da luz sobre a água.', body:['O primeiro salão impressionista independente ocorreu em Paris em 1874.', 'Monet, Renoir, Degas, Morisot e Pissarro estiveram entre figuras importantes, com trajetórias distintas.', 'Tintas em tubos facilitaram trabalhar fora do ateliê.', 'Fotografia e gravuras japonesas influenciaram novas composições.', 'Cenas de lazer, ruas e vida moderna apareceram com frequência.'], chapters: [
+  KnowledgeChapter(title: 'Uma outra maneira de retratar a modernidade', paragraphs: [
+    'Parte dos artistas associados ao impressionismo procurou representar cenas da vida urbana e paisagens sem reproduzir necessariamente o acabamento minucioso valorizado por instituições acadêmicas. Mudanças na vida das cidades, novos espaços de lazer e interesse em efeitos fugazes de luz ofereceram temas e problemas visuais.',
+    'Nas exposições coletivas organizadas a partir de 1874, participantes tinham trajetórias e abordagens diferentes. A palavra impressionismo tornou-se um rótulo conveniente, mas não descreve um conjunto de regras obrigatórias seguido de maneira idêntica por todos.',
+  ]),
+  KnowledgeChapter(title: 'A pincelada pode ser parte da informação', paragraphs: [
+    'Em vez de esconder todo o processo de pintura sob superfícies perfeitamente uniformes, muitos artistas deixavam marcas rápidas e perceptíveis. Cores próximas e contrastes eram utilizados para sugerir mudanças de luz e atmosfera. O efeito pode mudar muito conforme a distância do observador até a tela.',
+    'Isso não quer dizer que os pintores simplesmente trabalhavam sem planejamento. Composição, séries de estudos e atenção às condições de observação faziam parte de diversas obras. A aparente espontaneidade podia ser fruto de escolhas cuidadosas.',
+  ]),
+  KnowledgeChapter(title: 'Quem aparece numa cena cotidiana também importa', paragraphs: [
+    'Observe uma pintura de estação ferroviária, jardim, café ou ambiente doméstico. Pergunte o que ela revela sobre lazer, trabalho, classe social ou papéis de gênero no período. Uma cena aparentemente comum pode guardar marcas da modernização das cidades e dos hábitos das pessoas.',
+    'Também vale comparar quais artistas receberam prestígio histórico e quem ficou menos visível. A participação de pintoras como Berthe Morisot e Mary Cassatt ajuda a evitar uma narrativa composta exclusivamente por poucos nomes masculinos.',
+  ]),
+ ],
+ remember:['1874 é um marco.', 'O grupo não tinha um estilo único.', 'Tecnologia dos materiais ajudou novas práticas.'],
  whyItMatters: 'O impressionismo oferece uma forma de observar como luz, cor e percepção mudam a representação de uma mesma cena. Ele também mostra por que movimentos artísticos podem desafiar os critérios dominantes de sua época.', curiosity:'O nome do movimento veio de uma crítica ao quadro Impression, soleil levant, de Claude Monet.', connections:['Fotografia', 'Perspectiva', 'Modernismo', 'Paris'],
 ,media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/5q9fOah2rdZ1NgLnWRXSUe',title:'Claude Monet: O Pintor da Luz e das Cores',caption:'6 min · Loucos por Biografias',sourceLabel:'Spotify · Loucos por Biografias',sourceUrl:'https://open.spotify.com/episode/5q9fOah2rdZ1NgLnWRXSUe'),]);
 
@@ -3211,7 +3253,21 @@ const reggaeTopic = KnowledgeTopic(
 
 const rococoTopic = KnowledgeTopic(
  id:'rococo', eyebrow:'ARTE / HISTÓRIA', title:'POR QUE O ROCOCÓ PARECE TÃO EXAGERADAMENTE DELICADO?', summary:'Curvas, cores claras, ornamentação e cenas de lazer criaram uma linguagem associada às elites europeias do século XVIII.', minutes:7, tags:['arte', 'design'],
- quickTake:'Rococó não é simplesmente barroco mais decorado; desenvolveu escala, temas e atmosferas próprias.', simpleExplanation:'Interiores podiam combinar espelhos, douramento, curvas assimétricas e tons pastéis para dissolver visualmente paredes e teto.', example: 'Em um salão rococó, um espelho pode prolongar visualmente uma parede curva e refletir adornos dourados, fazendo a decoração parecer continuar além do espaço físico.', body:['O estilo floresceu especialmente na França do início do século XVIII.', 'Salões privados substituíram parte da monumentalidade de palácios anteriores.', 'Pintores como Watteau e Fragonard exploraram cenas de lazer e sedução.', 'Ornamentos assimétricos inspirados na natureza eram frequentes.', 'O neoclassicismo depois reagiu contra aspectos associados ao excesso rococó.'], remember:['Século XVIII foi central.', 'Interiores eram fundamentais.', 'Neoclassicismo reagiu ao estilo.'],
+ quickTake:'Rococó não é simplesmente barroco mais decorado; desenvolveu escala, temas e atmosferas próprias.', simpleExplanation:'Interiores podiam combinar espelhos, douramento, curvas assimétricas e tons pastéis para dissolver visualmente paredes e teto.', example: 'Em um salão rococó, um espelho pode prolongar visualmente uma parede curva e refletir adornos dourados, fazendo a decoração parecer continuar além do espaço físico.', body:['O estilo floresceu especialmente na França do início do século XVIII.', 'Salões privados substituíram parte da monumentalidade de palácios anteriores.', 'Pintores como Watteau e Fragonard exploraram cenas de lazer e sedução.', 'Ornamentos assimétricos inspirados na natureza eram frequentes.', 'O neoclassicismo depois reagiu contra aspectos associados ao excesso rococó.'], chapters: [
+  KnowledgeChapter(title: 'Leveza visual não significa simplicidade técnica', paragraphs: [
+    'O rococó se associou a interiores, objetos e pinturas de ornamentação dinâmica, curvas e efeitos assimétricos. Conchas estilizadas, folhagens, superfícies brilhantes e composições delicadas podiam exigir artesãos de grande habilidade. Sua aparência leve muitas vezes escondia trabalho intenso de projeto e execução.',
+    'O estilo circulou por ambientes e regiões distintos ao longo do século XVIII. Não foi somente a pintura de uma corte específica; móveis, talheres, espelhos, gravuras e espaços interiores também carregavam elementos dessa linguagem.',
+  ]),
+  KnowledgeChapter(title: 'Como um estilo viaja entre sociedades', paragraphs: [
+    'Gravuras, livros de desenho, mercadorias importadas e trabalhadores especializados ajudaram motivos rococós a atravessar fronteiras. Ao chegar a outro contexto, uma forma decorativa podia ser reinterpretada conforme materiais, recursos econômicos e preferências locais. A circulação não produziu réplicas idênticas em todos os lugares.',
+    'Uma cadeira e uma parede decorada podem compartilhar curvas e motivos ornamentais sem cumprir a mesma função. Compará-las ajuda a observar como uma linguagem visual pode existir em escalas e técnicas diferentes.',
+  ]),
+  KnowledgeChapter(title: 'Um olhar além do rótulo exagerado', paragraphs: [
+    'Escolha um ambiente rococó e acompanhe as linhas que atravessam molduras, espelhos e elementos esculpidos. Observe como elas produzem movimento e como a luz amplia a decoração. Depois compare o espaço a um interior de formas mais geométricas e simétricas.',
+    'Evite a ideia de que um estilo substituiu outro em todas as regiões ao mesmo tempo. Barroco, rococó, classicismos e tradições locais coexistiram e se transformaram em calendários diferentes; rótulos históricos organizam a observação, mas não eliminam as sobreposições.',
+  ]),
+ ],
+ remember:['Século XVIII foi central.', 'Interiores eram fundamentais.', 'Neoclassicismo reagiu ao estilo.'],
  whyItMatters:'Amplia o repertório e conecta este assunto a temas históricos, científicos e culturais já presentes no app.', curiosity:'O nome rococó está ligado à palavra francesa rocaille, associada à ornamentação com pedras e conchas.', connections:['Barroco', 'Iluminismo', 'Moda', 'Art Déco'],
 );
 
@@ -3222,7 +3278,21 @@ const urbanismoTopic = KnowledgeTopic(
 );
 
 const barrocoTopic = KnowledgeTopic(
- id:'barroco', eyebrow:'ARTE / HISTÓRIA', title:'POR QUE O BARROCO É TÃO DRAMÁTICO?', summary:'Contrastes, movimento e teatralidade transformaram arte e arquitetura dos séculos XVII e XVIII.', minutes:7, tags:['arte', 'história'], quickTake:'Barroco não é apenas excesso decorativo: luz, escala e composição eram usados para produzir emoção e presença.', simpleExplanation:'Uma igreja barroca pode dirigir o olhar com curvas, douramento e luz para transformar o espaço numa experiência quase teatral.', example: 'Diante de uma pintura com forte contraste entre luz e sombra, observe como seu olhar é conduzido até o rosto ou gesto principal. A encenação visual é uma forma de produzir intensidade dramática.', body:['O estilo desenvolveu-se na Europa a partir do fim do século XVI.', 'Contrastes intensos de luz marcaram parte importante da pintura barroca.', 'Arquitetura explorou curvas, eixos e efeitos espaciais.', 'Igreja, monarquias e elites financiaram muitas obras.', 'Nas Américas, tradições locais transformaram modelos europeus.'], remember:['Drama é estrutural, não só decorativo.', 'Houve vários barrocos.', 'O Brasil criou expressões próprias.'], whyItMatters:'Amplia o repertório e cria novas conexões com assuntos já existentes no app.', curiosity:'O barroco ganhou linguagens próprias no Brasil, especialmente em Minas Gerais.', connections:['Rococó', 'Renascimento', 'Minas Gerais', 'Arquitetura'],
+ id:'barroco', eyebrow:'ARTE / HISTÓRIA', title:'POR QUE O BARROCO É TÃO DRAMÁTICO?', summary:'Contrastes, movimento e teatralidade transformaram arte e arquitetura dos séculos XVII e XVIII.', minutes:7, tags:['arte', 'história'], quickTake:'Barroco não é apenas excesso decorativo: luz, escala e composição eram usados para produzir emoção e presença.', simpleExplanation:'Uma igreja barroca pode dirigir o olhar com curvas, douramento e luz para transformar o espaço numa experiência quase teatral.', example: 'Diante de uma pintura com forte contraste entre luz e sombra, observe como seu olhar é conduzido até o rosto ou gesto principal. A encenação visual é uma forma de produzir intensidade dramática.', body:['O estilo desenvolveu-se na Europa a partir do fim do século XVI.', 'Contrastes intensos de luz marcaram parte importante da pintura barroca.', 'Arquitetura explorou curvas, eixos e efeitos espaciais.', 'Igreja, monarquias e elites financiaram muitas obras.', 'Nas Américas, tradições locais transformaram modelos europeus.'], chapters: [
+  KnowledgeChapter(title: 'Movimento e dramatização são técnicas', paragraphs: [
+    'O barroco reúne práticas diversas desenvolvidas a partir do fim do século XVI em contextos religiosos, políticos e culturais variados. Pintura, arquitetura, música e escultura exploraram recursos próprios para criar presença e intensidade. Uma pintura de contraste luminoso extremo não produz o mesmo tipo de efeito que uma igreja cheia de curvas, embora ambas possam dirigir fortemente a atenção.',
+    'Em muitas obras, a organização da cena conduz o olhar até um gesto, rosto ou acontecimento central. Esse recurso não é simplesmente decoração excessiva: composição, iluminação, materiais e posição do observador participam da experiência.',
+  ]),
+  KnowledgeChapter(title: 'Não existe um único barroco', paragraphs: [
+    'Na pintura, a linguagem naturalista e a luz dramática associadas a Caravaggio influenciaram numerosos artistas. Ao mesmo tempo, outras correntes barrocas mantiveram maior equilíbrio compositivo ou desenvolveram soluções distintas. Não é preciso escolher um único exemplo como definição de todas as manifestações.',
+    'Nas Américas, materiais, oficinas e tradições regionais transformaram linguagens vindas da Europa. No Brasil, obras ligadas a igrejas e centros urbanos oferecem perspectivas próprias sobre a circulação e a adaptação dessas formas.',
+  ]),
+  KnowledgeChapter(title: 'Como perceber a intenção de uma obra', paragraphs: [
+    'Repare onde fica a área mais iluminada, para onde as figuras olham, como os corpos se movimentam e qual parte da composição parece convidar sua atenção. Esse exercício ajuda a reconhecer a teatralidade visual sem reduzir a análise ao gosto pessoal.',
+    'Depois compare dois objetos barrocos de regiões e funções distintas. A diferença entre eles pode ser tão informativa quanto a semelhança: estilos são convenções históricas úteis, não receitas de aparência obrigatória.',
+  ]),
+ ],
+ remember:['Drama é estrutural, não só decorativo.', 'Houve vários barrocos.', 'O Brasil criou expressões próprias.'], whyItMatters:'Amplia o repertório e cria novas conexões com assuntos já existentes no app.', curiosity:'O barroco ganhou linguagens próprias no Brasil, especialmente em Minas Gerais.', connections:['Rococó', 'Renascimento', 'Minas Gerais', 'Arquitetura'],
 );
 
 const turingTopic = KnowledgeTopic(
