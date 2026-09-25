@@ -35,6 +35,8 @@ Os **102 temas restantes** preservam sua versão essencial enquanto aguardam rev
 
 **Progresso:** a leitura rápida funciona como prévia. Ela não substitui o progresso da leitura completa, nem concede conclusão automática ao usuário que chega ao fim do resumo.
 
+**Narração:** na leitura pelo sintetizador de voz, o roteiro agora inclui exemplos e capítulos expandidos visíveis no modo selecionado e respeita a velocidade definida pelo leitor. Se houver um podcast disponível e aberto com sucesso, o aplicativo continua priorizando esse material externo.
+
 ## Backlog editorial de qualidade
 
 - Manter auditoria automatizada contra exemplos que repetem a explicação (24 ocorrências corrigidas neste ramo).
