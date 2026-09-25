@@ -637,25 +637,6 @@ class _ArticleScreenState extends State<ArticleScreen> {
     );
   }
 
-  Future<void> _openAudio(KnowledgeMedia media) async {
-    final opened = await openPodcastAudio(
-      url: media.url,
-      title: media.title,
-      source: media.sourceLabel ?? 'Podcast',
-    );
-    if (!mounted || opened) {
-      return;
-    }
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text(
-          'Não consegui abrir o áudio dentro do Repertório.',
-        ),
-      ),
-    );
-  }
-
   void _goBack() {
     final navigator = Navigator.of(context);
     if (navigator.canPop()) {
