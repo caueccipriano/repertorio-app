@@ -552,6 +552,46 @@ const quizByTopic = <String, List<QuizQuestion>>{
       explanation: 'Obstáculos, reflexões e geometria dos satélites alteram a precisão recebida.',
     ),
   ],
+  'fotografia': [
+    QuizQuestion(
+      prompt: 'Para congelar um corredor em movimento, qual ajuste costuma ser mais decisivo?',
+      options: ['Obturador mais rápido', 'Balanço de branco mais quente', 'Lente sempre no modo manual', 'Maior compressão do arquivo'],
+      correctIndex: 0,
+      explanation: 'Reduzir o tempo de exposição limita quanto o objeto se move durante o registro.',
+    ),
+    QuizQuestion(
+      prompt: 'Ao manter abertura e tempo constantes numa câmera digital, elevar ISO significa...',
+      options: ['Que a lente recebeu mais luz', 'Que a velocidade da luz aumentou', 'Alterar o ganho ou processamento, sem criar mais luz capturada', 'Que a profundidade de campo aumenta obrigatoriamente'],
+      correctIndex: 2,
+      explanation: 'ISO ajuda a entregar uma imagem mais clara, mas não aumenta o número de fótons capturados nessas condições.',
+    ),
+    QuizQuestion(
+      prompt: 'Duas pessoas fotografam a mesma rua de posições diferentes. Por que as fotos contam histórias distintas?',
+      options: ['Fotografias mostram tudo o que acontece fora do enquadramento', 'Posição e enquadramento selecionam relações visuais e excluem partes da cena', 'ISO determina sozinho o sentido da cena', 'Toda lente muda o horário em que a foto foi tirada'],
+      correctIndex: 1,
+      explanation: 'Enquadrar e escolher o ponto de vista já são decisões expressivas antes de qualquer filtro.',
+    ),
+  ],
+  'criptografia': [
+    QuizQuestion(
+      prompt: 'Qual técnica é feita para produzir um resumo, e não para permitir recuperação direta do conteúdo?',
+      options: ['Criptografia simétrica', 'Função hash criptográfica', 'Decifragem com chave privada', 'Transporte HTTP sem TLS'],
+      correctIndex: 1,
+      explanation: 'Hash produz um resumo não reversível por um procedimento geral de decifragem.',
+    ),
+    QuizQuestion(
+      prompt: 'Uma assinatura digital válida tem como objetivo principal...',
+      options: ['Esconder o conteúdo do documento', 'Garantir que a senha nunca será roubada', 'Verificar origem vinculada à chave e integridade da mensagem', 'Apagar a necessidade de verificar identidades'],
+      correctIndex: 2,
+      explanation: 'Assinaturas ajudam na autenticidade da origem e integridade; não proporcionam sigilo sozinhas.',
+    ),
+    QuizQuestion(
+      prompt: 'Por que sistemas HTTPS combinam mecanismos criptográficos?',
+      options: ['Porque nenhuma operação criptográfica tem função específica', 'Para negociar segredos, conferir identidade e proteger eficientemente os dados', 'Porque todas as mensagens devem ficar públicas', 'Para dispensar a gestão de chaves'],
+      correctIndex: 1,
+      explanation: 'O protocolo combina mecanismos com responsabilidades diferentes, inclusive troca de chaves e cifragem autenticada.',
+    ),
+  ],
   'inflacao': [
     QuizQuestion(
       prompt: 'Inflação significa…',
@@ -822,6 +862,40 @@ const sourcesByTopic = <String, List<SourceEntry>>{
       label: 'GPS.gov — Precisão e suas limitações',
       url: 'https://www.gps.gov/gps-accuracy',
       note: 'Geometria, atmosfera, obstáculos e qualidade do receptor.',
+    ),
+  ],
+  'fotografia': [
+    SourceEntry(
+      label: 'Nikon — Fundamentos de exposição',
+      url: 'https://en.nikon.ca/learn-and-explore/c/tips-and-techniques/a-basic-look-at-the-basics-of-exposure',
+      note: 'Abertura, tempo de exposição e ISO.',
+    ),
+    SourceEntry(
+      label: 'Nikon — Controle de ISO',
+      url: 'https://www.nikonusa.com/learn-and-explore/c/products-and-innovation/iso-control',
+      note: 'Sensibilidade e ganho de sinal na fotografia digital.',
+    ),
+  ],
+  'criptografia': [
+    SourceEntry(
+      label: 'NIST — Criptografia simétrica',
+      url: 'https://csrc.nist.gov/glossary/term/Symmetric_Cryptography',
+      note: 'Definição de cifra com chave compartilhada.',
+    ),
+    SourceEntry(
+      label: 'NIST — Criptografia assimétrica',
+      url: 'https://csrc.nist.gov/glossary/term/asymmetric_cryptography',
+      note: 'Pares de chaves e seus usos.',
+    ),
+    SourceEntry(
+      label: 'NIST — Hash criptográfico',
+      url: 'https://csrc.nist.gov/glossary/term/Cryptographic_hash_function',
+      note: 'Resumo de tamanho fixo, resistência e limitações.',
+    ),
+    SourceEntry(
+      label: 'NIST — Assinatura digital',
+      url: 'https://csrc.nist.gov/glossary/term/digital_signature',
+      note: 'Autenticidade da origem e integridade, não sigilo.',
     ),
   ],
   'inflacao': [
