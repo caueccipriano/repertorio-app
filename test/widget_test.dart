@@ -53,6 +53,7 @@ void main() {
         reason: topic.id,
       );
       expect(sourcesFor(topic.id), isNotEmpty, reason: topic.id);
+      expect(quizFor(topic.id).length, greaterThanOrEqualTo(3), reason: topic.id);
     }
     expect(modernismTopic.chapters.first.title,
         'O mundo industrial precisava de outras respostas');
