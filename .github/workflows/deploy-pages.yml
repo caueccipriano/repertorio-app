@@ -32,11 +32,6 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Sanitize generated topic media syntax
-        run: |
-          perl -0pi -e 's/\n,media:/\n media:/g' lib/features/today/data/demo_topics.dart
-          perl -0pi -e 's/\n  Future<void> _openAudio\(KnowledgeMedia media\) async \{.*?\n  \}\n\n  void _goBack/\n  void _goBack/s' lib/features/article/presentation/article_screen.dart
-
       - name: Analyze
         run: flutter analyze --no-fatal-infos --no-fatal-warnings
 
