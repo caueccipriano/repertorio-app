@@ -485,15 +485,71 @@ const quizByTopic = <String, List<QuizQuestion>>{
   'helvetica': [
     QuizQuestion(
       prompt: 'Qual era o nome original da Helvetica?',
-      options: [
-        'Neue Haas Grotesk',
-        'Univers Serif',
-        'Akzidenz Roman',
-        'Swiss Modern',
-      ],
+      options: ['Neue Haas Grotesk', 'Univers Serif', 'Akzidenz Roman', 'Swiss Modern'],
       correctIndex: 0,
-      explanation:
-          'A fonte nasceu como Neue Haas Grotesk e depois foi rebatizada.',
+      explanation: 'A fonte foi criada como Neue Haas Grotesk e rebatizada na expansão internacional.',
+    ),
+    QuizQuestion(
+      prompt: 'Qual decisão aumenta a clareza de uma página além de escolher Helvetica?',
+      options: [
+        'Eliminar todo espaço vazio',
+        'Aplicar grade, hierarquia e espaçamento adequados ao contexto',
+        'Escrever tudo em letras maiúsculas',
+        'Usar o maior número possível de estilos',
+      ],
+      correctIndex: 1,
+      explanation: 'Tipografia funciona junto da organização visual; nenhuma fonte resolve sozinha a hierarquia.',
+    ),
+    QuizQuestion(
+      prompt: 'Uma interface escrita em Helvetica é automaticamente acessível?',
+      options: [
+        'Sim, porque a fonte é considerada neutra',
+        'Sim, desde que o fundo seja branco',
+        'Não; tamanho, contraste, espaçamento e testes de uso também importam',
+        'Não; Helvetica só funciona em cartazes impressos',
+      ],
+      correctIndex: 2,
+      explanation: 'A reputação de legibilidade não substitui testes com tamanhos, contextos e leitores diferentes.',
+    ),
+  ],
+  'internet': [
+    QuizQuestion(
+      prompt: 'Depois de encontrar o endereço de um site, qual etapa pode proteger a troca de dados?',
+      options: ['A negociação TLS numa conexão HTTPS', 'Aumentar o brilho da tela', 'Escolher uma fonte serifada', 'Desligar o cache DNS'],
+      correctIndex: 0,
+      explanation: 'TLS protege o transporte da conexão; DNS tem outra função: ajudar a encontrar o destino.',
+    ),
+    QuizQuestion(
+      prompt: 'Um cadeado HTTPS prova que o vendedor online é confiável?',
+      options: ['Sim, é um certificado de honestidade', 'Não: protege a conexão, mas não valida as promessas comerciais da página', 'Sim, desde que use CDN', 'Não, porque HTTPS não usa criptografia'],
+      correctIndex: 1,
+      explanation: 'O certificado vincula uma identidade técnica ao domínio; golpes também podem ocorrer em conexões cifradas.',
+    ),
+    QuizQuestion(
+      prompt: 'HTML chegou rapidamente, mas a página ainda demora a parecer pronta. Uma hipótese possível é:',
+      options: ['O DNS apaga automaticamente o HTML', 'A internet não suporta imagens', 'Fontes, CSS, scripts e imagens ainda estão sendo processados', 'O navegador só recebe um arquivo por dia'],
+      correctIndex: 2,
+      explanation: 'Renderização envolve vários recursos e processamento além do download do HTML inicial.',
+    ),
+  ],
+  'gps': [
+    QuizQuestion(
+      prompt: 'Como o celular usa um sinal de satélite para estimar sua distância?',
+      options: ['Lê o mapa desenhado no satélite', 'Compara o instante transmitido com o recebimento do sinal', 'Envia uma foto da rua ao satélite', 'Mede diretamente o volume do sinal'],
+      correctIndex: 1,
+      explanation: 'Tempo de propagação e velocidade conhecida do sinal permitem estimar a distância.',
+    ),
+    QuizQuestion(
+      prompt: 'Por que são usados pelo menos quatro sinais no posicionamento 3D convencional?',
+      options: ['O quarto transmite nomes de ruas', 'Três sinais corrigem automaticamente todos os relógios', 'Eles permitem resolver as três coordenadas e o erro do relógio do receptor', 'Sem o quarto satélite o celular não recebe nenhum sinal'],
+      correctIndex: 2,
+      explanation: 'O relógio do aparelho não é atômico; seu desajuste é uma incógnita adicional.',
+    ),
+    QuizQuestion(
+      prompt: 'Por que a posição pode piorar entre prédios altos?',
+      options: ['Sinais podem sofrer bloqueio e reflexões, gerando estimativas imprecisas', 'A relatividade deixa de existir na cidade', 'O satélite precisa de Wi-Fi do edifício', 'O aplicativo apaga a constelação à noite'],
+      correctIndex: 0,
+      explanation: 'Obstáculos, reflexões e geometria dos satélites alteram a precisão recebida.',
     ),
   ],
   'inflacao': [
@@ -729,8 +785,43 @@ const sourcesByTopic = <String, List<SourceEntry>>{
   ],
   'helvetica': [
     SourceEntry(
-      label: 'MoMA — Design Collection',
-      url: 'https://www.moma.org/collection/',
+      label: 'Monotype — O legado complexo da Helvetica',
+      url: 'https://www.monotype.com/resources/articles/complicated-legacy-helvetica',
+      note: 'Desenho, tecnologias de composição, difusão e debates sobre seu uso.',
+    ),
+    SourceEntry(
+      label: 'Monotype — História da família Helvetica',
+      url: 'https://www.monotype.com/fonts/library',
+      note: 'Família original e redesenho Neue Helvetica de 1983.',
+    ),
+  ],
+  'internet': [
+    SourceEntry(
+      label: 'MDN — Como a web funciona',
+      url: 'https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/How_the_web_works',
+      note: 'DNS, HTTP, clientes e servidores.',
+    ),
+    SourceEntry(
+      label: 'MDN — Como navegadores carregam sites',
+      url: 'https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/How_browsers_load_websites',
+      note: 'HTML, CSS, scripts, recursos e renderização.',
+    ),
+  ],
+  'gps': [
+    SourceEntry(
+      label: 'GPS.gov — Trilateração em quatro satélites',
+      url: 'https://www.gps.gov/trilateration',
+      note: 'Tempo de propagação, distâncias estimadas e posicionamento.',
+    ),
+    SourceEntry(
+      label: 'ESA — Correções relativísticas do relógio',
+      url: 'https://gssc.esa.int/navipedia/index.php/Relativistic_Clock_Correction',
+      note: 'Efeitos de velocidade e gravidade nos relógios de navegação.',
+    ),
+    SourceEntry(
+      label: 'GPS.gov — Precisão e suas limitações',
+      url: 'https://www.gps.gov/gps-accuracy',
+      note: 'Geometria, atmosfera, obstáculos e qualidade do receptor.',
     ),
   ],
   'inflacao': [
