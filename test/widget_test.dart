@@ -8,6 +8,7 @@ import 'package:repertorio_app/features/explore/presentation/topic_collection_sc
 import 'package:repertorio_app/features/study/data/personal_library_engine.dart';
 import 'package:repertorio_app/features/study/data/study_content.dart';
 import 'package:repertorio_app/features/study/presentation/weekly_report_screen.dart';
+import 'package:repertorio_app/features/profile/presentation/profile_screen.dart';
 import 'package:repertorio_app/features/today/data/demo_topics.dart';
 import 'package:repertorio_app/features/today/domain/knowledge_topic.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -117,6 +118,29 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
+  testWidgets('profile reader shortcut opens real reading controls',
+      (tester) async {
+    final state = await AppState.load();
+    await tester.pumpWidget(
+      AppStateScope(
+        state: state,
+        child: const MaterialApp(home: Scaffold(body: ProfileScreen())),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(
+      find.text('leitor'),
+      300,
+      scrollable: find.byType(Scrollable).first,
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('leitor'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('PROFUNDIDADE'), findsOneWidget);
+    expect(find.text('TAMANHO'), findsOneWidget);
+  });
+
   testWidgets('weekly reading estimate uses actual article size, not old labels',
       (tester) async {
     final state = await AppState.load();
@@ -192,7 +216,13 @@ void main() {
     expect(state.completedTopicIds, isNot(contains('helvetica')));
     await tester.tap(complete);
     await tester.pumpAndSettle();
-    expect(state.completedTopicIds, contains('helvetica'));
+    expect(
+      state.completedTopicIds,
+      contains('helvetica'),
+      reason: 'post-tap progress=${state.progressFor('helvetica')} '
+          'buttonEnabled=${tester.widget<OutlinedButton>(complete).onPressed != null} '
+          'buttonRect=${tester.getRect(complete)}',
+    );
     expect(state.progressFor('helvetica'), 1);
   });
 

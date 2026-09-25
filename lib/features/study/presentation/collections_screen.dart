@@ -369,7 +369,7 @@ class _CollectionHero extends StatelessWidget {
                   Text(
                     count == 0
                         ? 'ainda vazia'
-                        : '${count} assunto${count == 1 ? '' : 's'} guardado${count == 1 ? '' : 's'}',
+                        : '$count assunto${count == 1 ? '' : 's'} guardado${count == 1 ? '' : 's'}',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: colors.onSurfaceVariant,
                         ),

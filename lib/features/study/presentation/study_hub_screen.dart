@@ -34,7 +34,7 @@ class StudyHubScreen extends StatelessWidget {
         ? _StudyNextStepData(
             eyebrow: 'PRÓXIMO PASSO',
             title: 'revisar o que já viu',
-            subtitle: '${dueCount} revisão${dueCount == 1 ? '' : 'ões'} pronta${dueCount == 1 ? '' : 's'} para fortalecer sua memória.',
+            subtitle: '$dueCount revisão${dueCount == 1 ? '' : 'ões'} pronta${dueCount == 1 ? '' : 's'} para fortalecer sua memória.',
             icon: Icons.refresh_rounded,
             onTap: () => _push(context, const ReviewScreen()),
           )
@@ -42,7 +42,7 @@ class StudyHubScreen extends StatelessWidget {
             ? _StudyNextStepData(
                 eyebrow: 'PRÓXIMO PASSO',
                 title: 'continuar sua fila',
-                subtitle: '${queueCount} assunto${queueCount == 1 ? '' : 's'} esperando para virar repertório.',
+                subtitle: '$queueCount assunto${queueCount == 1 ? '' : 's'} esperando para virar repertório.',
                 icon: Icons.playlist_play_rounded,
                 onTap: () => _push(context, const ReadLaterScreen()),
               )
@@ -416,7 +416,6 @@ class _StudySummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
     final values = [
       (due, 'revisões'),
       (queue, 'na fila'),
