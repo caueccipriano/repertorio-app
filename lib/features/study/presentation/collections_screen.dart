@@ -490,7 +490,7 @@ class _CollectionTopicRow extends StatelessWidget {
                     ),
                     const SizedBox(height: 3),
                     Text(
-                      '${topic.tags.join(' · ')} · ${topic.minutes} min',
+                      '${topic.tags.join(' · ')} · ${topic.estimatedReadingMinutes()} min',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
