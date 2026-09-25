@@ -176,7 +176,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
               height: 56,
               child: IconButton(
                 key: const ValueKey('reader-audio'),
-                tooltip: audioMedia == null ? 'Ouvir leitura' : 'Ouvir áudio',
+                tooltip: 'Ouvir artigo',
                 onPressed: () => _playAudioOrSpeech(audioMedia),
                 icon: Icon(
                   Icons.headphones_rounded,
@@ -608,32 +608,32 @@ class _ArticleScreenState extends State<ArticleScreen> {
   }
 
   Future<void> _playAudioOrSpeech(KnowledgeMedia? media) async {
-    // The reader play button is always useful: use a curated podcast when the
-    // topic has one; otherwise read the article aloud. This also avoids a dead
-    // play button on topics such as Bauhaus that currently only have images.
+    // O botão do leitor deve ler o próprio texto. Os podcasts continuam
+    // disponíveis no artigo e entram como alternativa onde a voz não funciona.
+    final state = AppStateScope.read(context);
+    final script = widget.topic.readingScript(
+      quick: state.readerDepth == ContentDepth.quick,
+      deep: state.readerDepth.index >= ContentDepth.deep.index,
+    );
+    final started = await speakReaderText(
+      text: script,
+      rate: state.voiceRate,
+    );
+    if (!mounted || started) return;
+
     if (media != null) {
       final opened = await openPodcastAudio(
         url: media.url,
         title: media.title,
         source: media.sourceLabel ?? 'Podcast',
       );
-      if (opened) return;
+      if (!mounted || opened) return;
     }
 
-    final state = AppStateScope.read(context);
-    final text = widget.topic.readingScript(
-      quick: state.readerDepth == ContentDepth.quick,
-      deep: state.readerDepth.index >= ContentDepth.deep.index,
-    );
-
-    final started = await speakReaderText(
-      text: text,
-      rate: state.voiceRate,
-    );
-    if (!mounted || started) return;
-
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('O áudio não está disponível neste navegador.')),
+      const SnackBar(
+        content: Text('A narração não está disponível neste dispositivo.'),
+      ),
     );
   }
 
