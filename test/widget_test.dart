@@ -43,6 +43,79 @@ void main() {
     expect(state.progressFor('bauhaus'), 0);
   });
 
+  testWidgets('compact iPhone reader shows chapters at large text size',
+      (tester) async {
+    tester.view.physicalSize = const Size(320, 640);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(() {
+      tester.view.resetPhysicalSize();
+      tester.view.resetDevicePixelRatio();
+    });
+
+    final state = await AppState.load();
+    await state.updateReaderSettings(
+      depth: ContentDepth.standard,
+      theme: ReaderThemeMode.dark,
+      fontSize: 22,
+      margin: 12,
+    );
+
+    await tester.pumpWidget(
+      AppStateScope(
+        state: state,
+        child: const MaterialApp(home: ArticleScreen(topic: helveticaTopic)),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const ValueKey('reader-settings')), findsOneWidget);
+    expect(tester.takeException(), isNull);
+
+    await tester.scrollUntilVisible(
+      find.text('vá além'),
+      450,
+      scrollable: find.byType(Scrollable),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('A neutralidade também é uma escolha de design'),
+        findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('compact paged reader keeps previews separate from completion',
+      (tester) async {
+    tester.view.physicalSize = const Size(360, 740);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(() {
+      tester.view.resetPhysicalSize();
+      tester.view.resetDevicePixelRatio();
+    });
+
+    final state = await AppState.load();
+    await state.updateReaderSettings(
+      depth: ContentDepth.quick,
+      flow: ReaderFlow.paged,
+      fontSize: 20,
+    );
+    await tester.pumpWidget(
+      AppStateScope(
+        state: state,
+        child: const MaterialApp(home: ArticleScreen(topic: gpsTopic)),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.byType(PageView), findsOneWidget);
+    expect(tester.takeException(), isNull);
+    await tester.drag(find.byType(PageView), const Offset(-290, 0));
+    await tester.pumpAndSettle();
+
+    expect(state.progressFor('gps'), 0);
+    expect(state.completedTopicIds, isNot(contains('gps')));
+    expect(tester.takeException(), isNull);
+  });
+
   test('audio narration includes expanded chapters at the chosen depth', () {
     final fullScript = bauhausTopic.readingScript();
     final quickScript = bauhausTopic.readingScript(quick: true);
@@ -143,7 +216,27 @@ void main() {
         reason: topic.id,
       );
       expect(sourcesFor(topic.id), isNotEmpty, reason: topic.id);
+      expect(
+        sourcesFor(topic.id).every(
+          (source) =>
+              source.url.startsWith('https://') &&
+              source.label.trim().isNotEmpty,
+        ),
+        isTrue,
+        reason: topic.id,
+      );
       expect(quizFor(topic.id).length, greaterThanOrEqualTo(3), reason: topic.id);
+      expect(
+        quizFor(topic.id).every(
+          (question) =>
+              question.options.length == 4 &&
+              question.correctIndex >= 0 &&
+              question.correctIndex < question.options.length &&
+              question.explanation.isNotEmpty,
+        ),
+        isTrue,
+        reason: topic.id,
+      );
     }
     expect(modernismTopic.chapters.first.title,
         'O mundo industrial precisava de outras respostas');
