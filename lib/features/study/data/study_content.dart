@@ -507,6 +507,24 @@ const sourcesByTopic = <String, List<SourceEntry>>{
       note: 'Materialidade, origem do termo e obras.',
     ),
   ],
+  'samba': [
+    SourceEntry(label: "UNESCO — Samba de roda do Recôncavo Baiano", url: "https://ich.unesco.org/en/RL/samba-de-roda-of-the-recncavo-of-bahia-00101", note: "Tradição e transmissão comunitária."),
+  ],
+  'imunidade': [
+    SourceEntry(label: "OMS — Como funcionam as vacinas", url: "https://www.who.int/pt/news-room/feature-stories/detail/how-do-vaccines-work", note: "Barreiras, respostas imunológicas e memória."),
+  ],
+  'turing': [
+    SourceEntry(label: "Computer History Museum — Pilot ACE", url: "https://www.computerhistory.org/revolution/story/96", note: "Turing e a história da computação eletrônica."),
+  ],
+  'evolucao-internet': [
+    SourceEntry(label: "Computer History Museum — Internet History", url: "https://www.computerhistory.org/internethistory/", note: "Linha do tempo da interconexão de redes."),
+  ],
+  'neuroplasticidade': [
+    SourceEntry(label: "PubMed — The neuroplastic brain", url: "https://pubmed.ncbi.nlm.nih.gov/40280532/", note: "Revisão científica dos mecanismos de plasticidade."),
+  ],
+  'linguistica': [
+    SourceEntry(label: "Open Textbook Library — Essentials of Linguistics", url: "https://open.umn.edu/opentextbooks/textbooks/599", note: "Livro aberto sobre diversidade e fundamentos linguísticos."),
+  ],
   'helvetica': [
     SourceEntry(
       label: 'MoMA — Design Collection',
