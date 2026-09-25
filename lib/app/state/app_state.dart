@@ -484,7 +484,10 @@ class AppState extends ChangeNotifier {
   Future<void> updateProgress(String topicId, double progress) async {
     final normalized = progress.clamp(0.0, 1.0).toDouble();
     final previous = progressByTopic[topicId] ?? 0;
-    if ((normalized - previous).abs() < .025 && normalized < .96) {
+    // "Progress" represents the furthest point read. Scrolling backwards or
+    // visiting an earlier page must never erase a completed reading session.
+    if (normalized <= previous ||
+        (normalized - previous < .025 && normalized < .96)) {
       return;
     }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/state/app_state.dart';
+import '../../article/presentation/reader_controls_sheet.dart';
 import '../../../app/state/app_state_scope.dart';
 import '../../../core/widgets/editorial_frame.dart';
 import '../../../core/widgets/paper_texture.dart';
@@ -123,7 +124,7 @@ class ProfileScreen extends StatelessWidget {
                   completed: totalRead,
                 ),
                 const SizedBox(height: 30),
-                _SectionEyebrow(
+                const _SectionEyebrow(
                   title: 'ritmo de estudo',
                   subtitle: 'uma rotina leve para manter o repertório vivo',
                 ),
@@ -134,7 +135,7 @@ class ProfileScreen extends StatelessWidget {
                   week: state.studyWeek(),
                 ),
                 const SizedBox(height: 30),
-                _SectionEyebrow(
+                const _SectionEyebrow(
                   title: 'seu espaço',
                   subtitle: 'notas, aparência, leitura e dados',
                 ),
@@ -660,6 +661,7 @@ class _PreferenceGrid extends StatelessWidget {
         subtitle:
             '${readerFontSize.round()} pt · ${_readerLabel(readerTheme, readerFlow)}',
         icon: Icons.text_fields_rounded,
+        onTap: () => showReaderControls(context),
       ),
     ];
 
@@ -775,110 +777,6 @@ class _PreferenceShortcut extends StatelessWidget {
     );
   }
 }
-
-class _ReaderPreferences extends StatelessWidget {
-  const _ReaderPreferences({
-    required this.fontSize,
-    required this.theme,
-    required this.flow,
-  });
-
-  final double fontSize;
-  final String theme;
-  final String flow;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface,
-        border: Border.all(color: Theme.of(context).colorScheme.outline),
-      ),
-      child: Row(
-        children: [
-          const Icon(Icons.tune, size: 24),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Text(
-              'Leitor: fonte ${fontSize.round()} · $theme · $flow',
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-
-class _NotificationPreferences extends StatelessWidget {
-  const _NotificationPreferences({
-    required this.enabled,
-    required this.hour,
-    required this.minute,
-  });
-
-  final bool enabled;
-  final int hour;
-  final int minute;
-
-  @override
-  Widget build(BuildContext context) {
-    final formatted =
-        '${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}';
-
-    return Material(
-      color: Theme.of(context).colorScheme.surface,
-      child: InkWell(
-        onTap: () => Navigator.of(context).push(
-          MaterialPageRoute<void>(
-            builder: (_) => const NotificationSettingsScreen(),
-          ),
-        ),
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            border: Border.all(color: Theme.of(context).colorScheme.outline),
-          ),
-          child: Row(
-            children: [
-              Icon(
-                enabled
-                    ? Icons.notifications_active_outlined
-                    : Icons.notifications_none,
-                color: enabled ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.onSurface,
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'lembretes de estudo',
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontSize: 15,
-                          ),
-                    ),
-                    const SizedBox(height: 3),
-                    Text(
-                      enabled ? 'ativo às $formatted' : 'desativado',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Theme.of(context).colorScheme.onSurfaceVariant,
-                          ),
-                    ),
-                  ],
-                ),
-              ),
-              const Icon(Icons.chevron_right),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 
 class _StudyGoalCard extends StatelessWidget {
   const _StudyGoalCard({
@@ -1022,157 +920,5 @@ class _StudyGoalCard extends StatelessWidget {
       return;
     }
     await AppStateScope.read(context).updateWeeklyGoal(selected);
-  }
-}
-
-class _BackupPreferences extends StatelessWidget {
-  const _BackupPreferences();
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Theme.of(context).colorScheme.surface,
-      child: InkWell(
-        onTap: () => Navigator.of(context).push(
-          MaterialPageRoute<void>(
-            builder: (_) => const BackupScreen(),
-          ),
-        ),
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            border: Border.all(color: Theme.of(context).colorScheme.outline),
-          ),
-          child: const Row(
-            children: [
-              Icon(Icons.shield_outlined, size: 24),
-              SizedBox(width: 12),
-              Expanded(
-                child: Text('backup e dados locais'),
-              ),
-              Icon(Icons.chevron_right),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-
-class _NotesPreferences extends StatelessWidget {
-  const _NotesPreferences({required this.count});
-
-  final int count;
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Theme.of(context).colorScheme.surface,
-      child: InkWell(
-        onTap: () => Navigator.of(context).push(
-          MaterialPageRoute<void>(
-            builder: (_) => const NotesScreen(),
-          ),
-        ),
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            border: Border.all(color: Theme.of(context).colorScheme.outline),
-          ),
-          child: Row(
-            children: [
-              const Icon(Icons.sticky_note_2_outlined, size: 24),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  count == 0
-                      ? 'minhas notas'
-                      : 'minhas notas · $count',
-                ),
-              ),
-              const Icon(Icons.chevron_right),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-
-class _AccessibilityPreferences extends StatelessWidget {
-  const _AccessibilityPreferences();
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Theme.of(context).colorScheme.surface,
-      child: InkWell(
-        onTap: () => Navigator.of(context).push(
-          MaterialPageRoute<void>(
-            builder: (_) => const AccessibilityScreen(),
-          ),
-        ),
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            border: Border.all(color: Theme.of(context).colorScheme.outline),
-          ),
-          child: const Row(
-            children: [
-              Icon(Icons.accessibility_new_outlined, size: 24),
-              SizedBox(width: 12),
-              Expanded(child: Text('acessibilidade')),
-              Icon(Icons.chevron_right),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-
-class _AppearancePreferences extends StatelessWidget {
-  const _AppearancePreferences({required this.dark});
-
-  final bool dark;
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
-
-    return Material(
-      color: colors.surface,
-      child: InkWell(
-        onTap: () => Navigator.of(context).push(
-          MaterialPageRoute<void>(
-            builder: (_) => const AppearanceScreen(),
-          ),
-        ),
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            border: Border.all(color: colors.outline),
-          ),
-          child: Row(
-            children: [
-              Icon(
-                dark ? Icons.dark_mode_outlined : Icons.light_mode_outlined,
-                size: 24,
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  dark ? 'aparência · escuro' : 'aparência · claro',
-                ),
-              ),
-              const Icon(Icons.chevron_right),
-            ],
-          ),
-        ),
-      ),
-    );
   }
 }

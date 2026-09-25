@@ -51,7 +51,7 @@ class PersonalLibraryEngine {
     if (recent != null && remaining >= 3) {
       final neighbor = _bestNeighbor(state, recent, used);
       if (neighbor != null) {
-        final minutes = neighbor.minutes.clamp(3, remaining).toInt();
+        final minutes = neighbor.estimatedReadingMinutes().clamp(3, remaining).toInt();
         tasks.add(
           DailyTask(
             type: DailyTaskType.connection,
@@ -68,7 +68,7 @@ class PersonalLibraryEngine {
     if (remaining >= 3) {
       final discovery = _discovery(state, used);
       if (discovery != null) {
-        final minutes = discovery.minutes.clamp(3, remaining).toInt();
+        final minutes = discovery.estimatedReadingMinutes().clamp(3, remaining).toInt();
         tasks.add(
           DailyTask(
             type: DailyTaskType.discovery,
@@ -84,7 +84,7 @@ class PersonalLibraryEngine {
 
     if (remaining > 0) {
       final quick = allDemoTopics.where((topic) {
-        return topic.minutes <= 5 &&
+        return topic.estimatedReadingMinutes() <= 5 &&
             !used.contains(topic.id) &&
             state.masteryLevel(topic.id) != MasteryLevel.consolidated;
       }).toList();
@@ -100,7 +100,7 @@ class PersonalLibraryEngine {
             type: DailyTaskType.quick,
             topic: topic,
             reason: 'porque cabe no tempo que restou',
-            minutes: topic.minutes.clamp(1, remaining).toInt(),
+            minutes: topic.estimatedReadingMinutes().clamp(1, remaining).toInt(),
           ),
         );
       }
@@ -113,7 +113,7 @@ class PersonalLibraryEngine {
           type: DailyTaskType.discovery,
           topic: fallback,
           reason: reasonFor(state, fallback),
-          minutes: fallback.minutes,
+          minutes: fallback.estimatedReadingMinutes(),
         ),
       );
     }
@@ -152,7 +152,7 @@ class PersonalLibraryEngine {
       if (remaining <= 0) break;
       if (!used.add(topic.id)) continue;
       final estimate =
-          ((1 - state.progressFor(topic.id)) * topic.minutes).ceil().clamp(1, 30);
+          ((1 - state.progressFor(topic.id)) * topic.estimatedReadingMinutes()).ceil().clamp(1, 30);
       if (estimate <= remaining || result.isEmpty) {
         result.add(topic);
         remaining -= estimate;
@@ -163,9 +163,9 @@ class PersonalLibraryEngine {
       if (remaining <= 0) break;
       final topic = topicById(id);
       if (topic == null || !used.add(topic.id)) continue;
-      if (topic.minutes <= remaining || result.isEmpty) {
+      if (topic.estimatedReadingMinutes() <= remaining || result.isEmpty) {
         result.add(topic);
-        remaining -= topic.minutes;
+        remaining -= topic.estimatedReadingMinutes();
       }
     }
 
@@ -174,7 +174,7 @@ class PersonalLibraryEngine {
       if (topic == null) break;
       result.add(topic);
       used.add(topic.id);
-      remaining -= topic.minutes.clamp(3, remaining).toInt();
+      remaining -= topic.estimatedReadingMinutes().clamp(3, remaining).toInt();
     }
 
     return result;

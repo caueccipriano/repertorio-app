@@ -6,12 +6,412 @@ import 'package:repertorio_app/app/state/app_state_scope.dart';
 import 'package:repertorio_app/features/article/presentation/article_screen.dart';
 import 'package:repertorio_app/features/explore/presentation/topic_collection_screen.dart';
 import 'package:repertorio_app/features/study/data/personal_library_engine.dart';
+import 'package:repertorio_app/features/study/data/study_content.dart';
+import 'package:repertorio_app/features/study/presentation/weekly_report_screen.dart';
+import 'package:repertorio_app/features/profile/presentation/profile_screen.dart';
 import 'package:repertorio_app/features/today/data/demo_topics.dart';
+import 'package:repertorio_app/features/today/domain/knowledge_topic.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   setUp(() {
     SharedPreferences.setMockInitialValues({});
+  });
+
+  testWidgets('quick reading never marks a full article as completed',
+      (tester) async {
+    final state = await AppState.load();
+    await state.updateReaderSettings(depth: ContentDepth.quick);
+    await tester.pumpWidget(
+      AppStateScope(
+        state: state,
+        child: const MaterialApp(home: ArticleScreen(topic: bauhausTopic)),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(
+      find.text('PRÓXIMA CONEXÃO'),
+      450,
+      scrollable: find.byType(Scrollable),
+    );
+    await tester.pumpAndSettle();
+
+    expect(state.progressFor('bauhaus'), 0);
+    expect(state.completedTopicIds, isNot(contains('bauhaus')));
+
+    await state.updateReaderSettings(depth: ContentDepth.standard);
+    await tester.pumpAndSettle();
+    expect(find.text('em 30 segundos'), findsOneWidget);
+    expect(state.progressFor('bauhaus'), 0);
+  });
+
+  testWidgets('compact iPhone reader shows chapters at large text size',
+      (tester) async {
+    tester.view.physicalSize = const Size(320, 640);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(() {
+      tester.view.resetPhysicalSize();
+      tester.view.resetDevicePixelRatio();
+    });
+
+    final state = await AppState.load();
+    await state.updateReaderSettings(
+      depth: ContentDepth.standard,
+      theme: ReaderThemeMode.dark,
+      fontSize: 22,
+      margin: 12,
+    );
+
+    await tester.pumpWidget(
+      AppStateScope(
+        state: state,
+        child: const MaterialApp(home: ArticleScreen(topic: helveticaTopic)),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const ValueKey('reader-settings')), findsOneWidget);
+    expect(tester.takeException(), isNull);
+
+    await tester.scrollUntilVisible(
+      find.text('vá além'),
+      450,
+      scrollable: find.byType(Scrollable),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('A neutralidade também é uma escolha de design'),
+        findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('compact paged reader keeps previews separate from completion',
+      (tester) async {
+    tester.view.physicalSize = const Size(360, 740);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(() {
+      tester.view.resetPhysicalSize();
+      tester.view.resetDevicePixelRatio();
+    });
+
+    final state = await AppState.load();
+    await state.updateReaderSettings(
+      depth: ContentDepth.quick,
+      flow: ReaderFlow.paged,
+      fontSize: 20,
+    );
+    await tester.pumpWidget(
+      AppStateScope(
+        state: state,
+        child: const MaterialApp(home: ArticleScreen(topic: gpsTopic)),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.byType(PageView), findsOneWidget);
+    expect(tester.takeException(), isNull);
+    await tester.drag(find.byType(PageView), const Offset(-290, 0));
+    await tester.pumpAndSettle();
+
+    expect(state.progressFor('gps'), 0);
+    expect(state.completedTopicIds, isNot(contains('gps')));
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('profile reader shortcut opens real reading controls',
+      (tester) async {
+    final state = await AppState.load();
+    await tester.pumpWidget(
+      AppStateScope(
+        state: state,
+        child: const MaterialApp(home: Scaffold(body: ProfileScreen())),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(
+      find.text('leitor'),
+      300,
+      scrollable: find.byType(Scrollable).first,
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('leitor'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('PROFUNDIDADE'), findsOneWidget);
+    expect(find.text('TAMANHO'), findsOneWidget);
+  });
+
+  testWidgets('weekly reading estimate uses actual article size, not old labels',
+      (tester) async {
+    final state = await AppState.load();
+    await state.openTopic('bauhaus');
+    await state.updateProgress('bauhaus', 1);
+    await tester.pumpWidget(
+      AppStateScope(
+        state: state,
+        child: const MaterialApp(home: WeeklyReportScreen()),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('min estimados'), findsOneWidget);
+    expect(find.text(bauhausTopic.estimatedReadingMinutes().toString()),
+        findsWidgets);
+    expect(find.textContaining('não é um cronômetro'), findsOneWidget);
+  });
+
+  test('progress cannot regress when revisiting an earlier section', () async {
+    final state = await AppState.load();
+    await state.updateProgress('bauhaus', .64);
+    await state.updateProgress('bauhaus', .2);
+    expect(state.progressFor('bauhaus'), closeTo(.64, .001));
+    await state.updateProgress('bauhaus', 1);
+    await state.updateProgress('bauhaus', .3);
+    expect(state.progressFor('bauhaus'), 1);
+    expect(state.completedTopicIds, contains('bauhaus'));
+  });
+
+  testWidgets('paged reading requires explicit completion',
+      (tester) async {
+    tester.view.physicalSize = const Size(360, 740);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(() {
+      tester.view.resetPhysicalSize();
+      tester.view.resetDevicePixelRatio();
+    });
+
+    final state = await AppState.load();
+    await state.updateProgress('helvetica', .86);
+    await state.updateReaderSettings(
+      depth: ContentDepth.standard,
+      flow: ReaderFlow.paged,
+    );
+    await tester.pumpWidget(
+      AppStateScope(
+        state: state,
+        child: const MaterialApp(home: ArticleScreen(topic: helveticaTopic)),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(state.completedTopicIds, isNot(contains('helvetica')));
+    final complete = find.byKey(const ValueKey('reader-mark-complete'));
+    // PageView prebuilds adjacent pages: a finder can see the button while it
+    // remains horizontally off-screen. Navigate to its actual visible page.
+    var buttonOnScreen = false;
+    for (var i = 0; i < 16; i++) {
+      if (complete.evaluate().isNotEmpty) {
+        final rect = tester.getRect(complete);
+        if (rect.center.dx > 10 && rect.center.dx < 350) {
+          buttonOnScreen = true;
+          break;
+        }
+      }
+      await tester.drag(find.byType(PageView), const Offset(-310, 0));
+      await tester.pumpAndSettle();
+    }
+    expect(buttonOnScreen, isTrue);
+    await tester.ensureVisible(complete);
+    await tester.pumpAndSettle();
+    expect(state.completedTopicIds, isNot(contains('helvetica')));
+    await tester.tap(complete);
+    await tester.pumpAndSettle();
+    expect(
+      state.completedTopicIds,
+      contains('helvetica'),
+      reason: 'post-tap progress=${state.progressFor('helvetica')} '
+          'buttonEnabled=${tester.widget<OutlinedButton>(complete).onPressed != null} '
+          'buttonRect=${tester.getRect(complete)}',
+    );
+    expect(state.progressFor('helvetica'), 1);
+  });
+
+  test('audio narration includes expanded chapters at the chosen depth', () {
+    final fullScript = bauhausTopic.readingScript();
+    final quickScript = bauhausTopic.readingScript(quick: true);
+    expect(fullScript, contains('Uma escola nascida de uma crise'));
+    expect(fullScript, contains(bauhausTopic.chapters.first.paragraphs.first));
+    expect(quickScript, isNot(contains('Uma escola nascida de uma crise')));
+    expect(quickScript, contains(bauhausTopic.quickTake));
+    expect(bauhausTopic.readingScript(deep: true),
+        contains(bauhausTopic.curiosity));
+  });
+
+  test('reading time tracks text and mode instead of static labels', () {
+    const expanded = bauhausTopic;
+    expect(expanded.estimatedReadingMinutes(), greaterThan(1));
+    expect(
+      expanded.estimatedReadingMinutes(quick: true),
+      lessThan(expanded.estimatedReadingMinutes()),
+    );
+    expect(
+      expanded.estimatedReadingMinutes(deep: true),
+      greaterThanOrEqualTo(expanded.estimatedReadingMinutes()),
+    );
+
+    const shortTopic = KnowledgeTopic(
+      id: 'sample',
+      eyebrow: 'TEST',
+      title: 'A sample',
+      summary: 'A short summary',
+      minutes: 45,
+      tags: ['test'],
+      quickTake: 'A short takeaway',
+      body: ['A short body'],
+      remember: ['One fact'],
+      whyItMatters: 'Because it is a test',
+      curiosity: 'An extra fact',
+      connections: ['none'],
+    );
+    expect(shortTopic.estimatedReadingMinutes(), 1);
+  });
+
+  test('catalog has no duplicated examples or generic impact statements', () {
+    expect(allDemoTopics, hasLength(125));
+    for (final topic in allDemoTopics) {
+      if (topic.simpleExplanation case final explanation?) {
+        expect(
+          topic.example,
+          isNot(equals(explanation)),
+          reason: topic.id,
+        );
+      }
+      expect(
+        topic.whyItMatters,
+        isNot(contains('Amplia o repertório e cria conexões úteis')),
+        reason: topic.id,
+      );
+    }
+  });
+
+  test('expanded articles have real chapters and explicit reading sources', () {
+    const expanded = [
+      bauhausTopic,
+      modernismTopic,
+      fermiTopic,
+      romeTopic,
+      brutalismTopic,
+      helveticaTopic,
+      internetTopic,
+      gpsTopic,
+      fotografiaTopic,
+      criptografiaTopic,
+      quantumTopic,
+      cloudTopic,
+      semicondutoresTopic,
+      fermentacaoTopic,
+      imprensaTopic,
+      evolutionTopic,
+      memoriaTopic,
+      dopaminaTopic,
+      oceanosTopic,
+      placasTectonicasTopic,
+      stoicismTopic,
+      sonoTopic,
+      viesesTopic,
+      jurosCompostosTopic,
+      buracosNegrosTopic,
+      contabilidadeTopic,
+      sambaTopic,
+      imunidadeTopic,
+      turingTopic,
+      evolucaoInternetTopic,
+      neuroplasticidadeTopic,
+      linguisticaTopic,
+      inflationTopic,
+      dnaTopic,
+      aiTopic,
+      mapsTopic,
+      teoriaJogosTopic,
+      origemVidaTopic,
+      renaissanceTopic,
+      perspectivaTopic,
+      impressionismoTopic,
+      rococoTopic,
+      barrocoTopic,
+    ];
+    for (final topic in expanded) {
+      expect(topic.chapters.length, greaterThanOrEqualTo(2), reason: topic.id);
+      expect(
+        topic.chapters.every((chapter) =>
+            chapter.title.isNotEmpty &&
+            chapter.paragraphs.length >= 2 &&
+            chapter.paragraphs.every((paragraph) => paragraph.length >= 80)),
+        isTrue,
+        reason: topic.id,
+      );
+      expect(sourcesFor(topic.id), isNotEmpty, reason: topic.id);
+      expect(
+        sourcesFor(topic.id).every(
+          (source) =>
+              source.url.startsWith('https://') &&
+              source.label.trim().isNotEmpty,
+        ),
+        isTrue,
+        reason: topic.id,
+      );
+      expect(quizFor(topic.id).length, greaterThanOrEqualTo(3), reason: topic.id);
+      expect(
+        quizFor(topic.id).every(
+          (question) =>
+              question.options.length == 4 &&
+              question.correctIndex >= 0 &&
+              question.correctIndex < question.options.length &&
+              question.explanation.isNotEmpty,
+        ),
+        isTrue,
+        reason: topic.id,
+      );
+    }
+    expect(modernismTopic.chapters.first.title,
+        'O mundo industrial precisava de outras respostas');
+  });
+
+  testWidgets('standard reader shows expanded chapters and source links',
+      (tester) async {
+    final state = await AppState.load();
+    await tester.pumpWidget(
+      AppStateScope(
+        state: state,
+        child: const MaterialApp(home: ArticleScreen(topic: bauhausTopic)),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(
+      find.text('vá além'),
+      500,
+      scrollable: find.byType(Scrollable),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('Uma escola nascida de uma crise'), findsOneWidget);
+
+    await tester.scrollUntilVisible(
+      find.text('fontes para continuar'),
+      500,
+      scrollable: find.byType(Scrollable),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('UNESCO — Patrimônio Bauhaus'), findsOneWidget);
+  });
+
+  testWidgets('essential articles disclose unfinished references',
+      (tester) async {
+    final state = await AppState.load();
+    await tester.pumpWidget(
+      AppStateScope(
+        state: state,
+        child: const MaterialApp(home: ArticleScreen(topic: sushiTopic)),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(
+      find.text('fontes · em revisão'),
+      500,
+      scrollable: find.byType(Scrollable),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('nível · essencial'), findsOneWidget);
+    expect(tester.takeException(), isNull);
   });
 
   testWidgets('opens the library directly without onboarding lockout',

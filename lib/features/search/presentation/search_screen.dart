@@ -49,7 +49,7 @@ class _SearchScreenState extends State<SearchScreen> {
       ].join(' ').toLowerCase();
 
       if (q.isNotEmpty && !haystack.contains(q)) return false;
-      if (_filters.contains(_SearchFilter.quick) && topic.minutes > 5) {
+      if (_filters.contains(_SearchFilter.quick) && topic.estimatedReadingMinutes() > 5) {
         return false;
       }
       if (_filters.contains(_SearchFilter.unread) &&
@@ -395,7 +395,7 @@ class _SearchResult extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    topic.minutes.toString(),
+                    topic.estimatedReadingMinutes().toString(),
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           color: Colors.white,
                           fontSize: 18,
