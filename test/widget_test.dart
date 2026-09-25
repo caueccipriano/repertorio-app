@@ -8,11 +8,41 @@ import 'package:repertorio_app/features/explore/presentation/topic_collection_sc
 import 'package:repertorio_app/features/study/data/personal_library_engine.dart';
 import 'package:repertorio_app/features/study/data/study_content.dart';
 import 'package:repertorio_app/features/today/data/demo_topics.dart';
+import 'package:repertorio_app/features/today/domain/knowledge_topic.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   setUp(() {
     SharedPreferences.setMockInitialValues({});
+  });
+
+  test('reading time tracks text and mode instead of static labels', () {
+    const expanded = bauhausTopic;
+    expect(expanded.estimatedReadingMinutes(), greaterThan(1));
+    expect(
+      expanded.estimatedReadingMinutes(quick: true),
+      lessThan(expanded.estimatedReadingMinutes()),
+    );
+    expect(
+      expanded.estimatedReadingMinutes(deep: true),
+      greaterThanOrEqualTo(expanded.estimatedReadingMinutes()),
+    );
+
+    const shortTopic = KnowledgeTopic(
+      id: 'sample',
+      eyebrow: 'TEST',
+      title: 'A sample',
+      summary: 'A short summary',
+      minutes: 45,
+      tags: ['test'],
+      quickTake: 'A short takeaway',
+      body: ['A short body'],
+      remember: ['One fact'],
+      whyItMatters: 'Because it is a test',
+      curiosity: 'An extra fact',
+      connections: ['none'],
+    );
+    expect(shortTopic.estimatedReadingMinutes(), 1);
   });
 
   test('catalog has no duplicated examples or generic impact statements', () {
