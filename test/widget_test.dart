@@ -384,6 +384,26 @@ void main() {
     expect(find.text('UNESCO — Patrimônio Bauhaus'), findsOneWidget);
   });
 
+  testWidgets('essential articles disclose unfinished references',
+      (tester) async {
+    final state = await AppState.load();
+    await tester.pumpWidget(
+      AppStateScope(
+        state: state,
+        child: const MaterialApp(home: ArticleScreen(topic: sushiTopic)),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(
+      find.text('fontes · em revisão'),
+      500,
+      scrollable: find.byType(Scrollable),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('nível · essencial'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('opens the library directly without onboarding lockout',
       (tester) async {
     await tester.pumpWidget(const RepertorioApp());

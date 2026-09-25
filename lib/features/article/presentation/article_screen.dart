@@ -1663,12 +1663,22 @@ class _AboutContent extends StatelessWidget {
                 : 'edição essencial · revisão em andamento',
             palette,
           ),
-          _Meta('nível · essencial → profundo', palette),
+          _Meta(
+            topic.chapters.isNotEmpty
+                ? 'nível · essencial → profundo'
+                : 'nível · essencial',
+            palette,
+          ),
           _Meta(
             offline ? 'texto offline · ativo' : 'texto offline · disponível',
             palette,
           ),
-          _Meta('${sourcesFor(topic.id).length} fontes', palette),
+          _Meta(
+            sourcesFor(topic.id).isEmpty
+                ? 'fontes · em revisão'
+                : '${sourcesFor(topic.id).length} fontes',
+            palette,
+          ),
         ],
       ),
     );

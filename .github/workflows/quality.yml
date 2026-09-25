@@ -30,6 +30,9 @@ jobs:
       - name: Analyze
         run: flutter analyze
 
+      - name: Audit editorial catalog
+        run: dart run tool/editorial_audit.dart --strict
+
       - name: Test
         run: flutter test
 

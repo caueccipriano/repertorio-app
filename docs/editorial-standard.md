@@ -45,6 +45,10 @@ Os **92 temas restantes** preservam sua versão essencial enquanto aguardam revi
 - Acrescentar fontes específicas e perguntas de fixação aos temas restantes.
 - Expandir os próximos lotes sem alterar indiscriminadamente os 125 assuntos com texto artificial ou redundante.
 
+## Auditoria repetível
+
+O comando `dart run tool/editorial_audit.dart --strict` verifica todo o catálogo, IDs únicos, transparência das fontes e a integridade dos capítulos e quizzes dos temas já expandidos. Também relata quantos temas essenciais curtos continuam sem revisão.
+
 ## Validação deste lote
 
 Os testes cobrem presença e estrutura dos 33 artigos expandidos, suas fontes e três perguntas por tema; renderização no modo padrão, estimativa de minutos baseada no texto, separação entre prévia rápida e conclusão do artigo, além da prevenção de exemplos idênticos e fechamentos genéricos no catálogo. A execução pelo CI do GitHub continua sendo a autoridade para declarar o código validado. Também é necessária revisão visual em tela pequena antes de lançar uma versão pública.
