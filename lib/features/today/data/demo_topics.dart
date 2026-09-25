@@ -384,6 +384,30 @@ const helveticaTopic = KnowledgeTopic(
   curiosity:
       'O nome Helvetica vem de Helvetia, termo latino associado à Suíça.',
   connections: ['Swiss Style', 'Grid', 'Bauhaus', 'Sinalização'],
+  chapters: [
+    KnowledgeChapter(
+      title: 'A neutralidade também é uma escolha de design',
+      paragraphs: [
+        'A Helvetica não surgiu num vácuo. Na Suíça do pós-guerra, designers buscavam uma linguagem gráfica capaz de atravessar fronteiras e organizar informação por meio de alinhamento, contraste e hierarquia. A fonte criada na fundição Haas em 1957 se encaixava nesse repertório, mas não foi a única responsável por ele. Uma boa página de jornal depende tanto da grade e dos espaços quanto do desenho de cada letra.',
+        'Seu aspecto aparentemente discreto não é ausência de estilo: letras com baixo contraste entre traços, proporções regulares e terminações características produzem uma voz visual própria. Um teste interessante é escrever a mesma manchete com uma fonte serifada histórica, outra geométrica e a Helvetica. O texto permanece igual, mas o ritmo e o tom percebidos mudam porque tipografia é parte da mensagem.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Como uma fonte atravessou várias tecnologias',
+      paragraphs: [
+        'Max Miedinger desenvolveu a fonte com participação decisiva de Eduard Hoffmann, diretor da fundição. Primeiro chamada Neue Haas Grotesk, ela ganhou o nome Helvetica em 1960 durante a expansão comercial. Sua circulação coincidiu com a popularização de sistemas de composição fotográfica e, mais tarde, com a publicação digital, o que facilitou sua presença em marcas, impressos e interfaces.',
+        'A família também precisou de revisões para novos meios. A Neue Helvetica, publicada em 1983, reorganizou os estilos para funcionar de forma mais consistente. Isso mostra um detalhe pouco visível do design gráfico: uma tipografia não é somente um desenho famoso. Ela é um sistema técnico de letras, pesos, espaçamentos e versões, adaptado a máquinas e necessidades que evoluem.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Clareza não é garantia de acessibilidade',
+      paragraphs: [
+        'A escolha da fonte deve considerar tamanho, espaçamento, contraste, idioma, suporte digital e contexto. Um letreiro visto de longe e um parágrafo longo num celular têm necessidades diferentes. A identidade visual mais reconhecível nem sempre é a leitura mais confortável para todas as pessoas, e não há uma fonte universalmente perfeita.',
+        'A fama da Helvetica oferece uma lição útil: repetir uma solução conhecida não substitui testar o problema concreto. Antes de escolhê-la para uma interface, observe números parecidos, blocos densos de texto e tamanhos pequenos. A boa decisão vem de combinar a letra com uma hierarquia informativa, e não de confiar apenas na reputação de neutralidade.',
+      ],
+    ),
+  ],
+
 );
 
 const inflationTopic = KnowledgeTopic(
@@ -689,6 +713,30 @@ const internetTopic = KnowledgeTopic(
       sourceUrl: 'https://open.spotify.com/episode/69AKhXRdr6UshYKs0j5DQe',
     ),
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'O endereço é só o começo da viagem',
+      paragraphs: [
+        'Quando você digita o endereço de um site, o navegador precisa descobrir para onde mandar a solicitação. Em geral, ele consulta informações que podem já estar guardadas em cache; se não houver uma resposta útil, a resolução de DNS ajuda a encontrar endereços de rede. Um mesmo serviço pode responder por vários servidores, e um único servidor pode atender muitos nomes diferentes.',
+        'Encontrar um endereço não significa necessariamente falar com uma máquina distante. Redes de distribuição de conteúdo, conhecidas como CDNs, podem manter cópias de arquivos perto da sua região. Isso ajuda a explicar por que o mesmo site carrega rapidamente numa cidade e demora em outra: distância, qualidade da conexão, cache e capacidade do servidor influenciam o percurso.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'HTTPS é um acordo antes da conversa',
+      paragraphs: [
+        'Para uma conexão HTTPS, navegador e servidor normalmente negociam parâmetros criptográficos usando TLS antes de trocar o conteúdo protegido. O navegador também verifica o certificado apresentado pelo servidor e se ele é adequado ao endereço acessado. Só depois disso faz sentido enviar informações sensíveis por aquele canal.',
+        'O cadeado do navegador indica proteção do transporte e a validação da identidade associada ao certificado; não prova que o negócio por trás do site é honesto nem impede golpes dentro de uma página legítima. Esse é um equívoco importante: criptografia dificulta a interceptação da comunicação, mas não decide se o conteúdo recebido merece confiança.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Receber arquivos não é o mesmo que mostrar uma página',
+      paragraphs: [
+        'Após receber o HTML, o navegador interpreta sua estrutura e monta o documento na memória. CSS define regras de apresentação; scripts podem alterar elementos, disparar novas solicitações e responder aos seus toques. Imagens, fontes e outros recursos podem vir de endereços distintos e chegar em momentos diferentes. A tela que aparece é resultado de várias etapas, não um arquivo pronto enviado de uma vez.',
+        'Imagine que o texto principal chega rápido, mas a fonte personalizada e as fotos demoram. O conteúdo pode aparecer com uma aparência provisória antes de tudo terminar. Ao analisar um site lento, pergunte se o atraso acontece no DNS, na rede, no servidor, no download ou na montagem visual. Cada causa exige uma solução diferente, inclusive quando tudo acontece dentro do mesmo aplicativo.',
+      ],
+    ),
+  ],
+
 );
 
 const bitcoinTopic = KnowledgeTopic(
@@ -2233,6 +2281,30 @@ const gpsTopic = KnowledgeTopic(
   curiosity:
       'Além do GPS americano, existem outros sistemas globais de navegação por satélite, como Galileo, GLONASS e BeiDou.',
   connections: ['Satélites', 'Relatividade', 'Mapas', 'Navegação'],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Os satélites transmitem; o celular faz a conta',
+      paragraphs: [
+        'Cada satélite de navegação transmite informações sobre sua posição orbital e o instante em que enviou o sinal. O receptor compara esse tempo com o instante de recebimento e estima a distância percorrida pela onda de rádio. Como o sinal viaja à velocidade da luz, diferenças minúsculas de tempo representam distâncias consideráveis. O celular não precisa perguntar ao satélite onde está: ele escuta mensagens transmitidas continuamente.',
+        'Uma medida isolada localiza o receptor em algum ponto de uma superfície possível ao redor de um satélite. Ao combinar medidas de vários satélites, essas possibilidades se cruzam. No posicionamento tridimensional convencional, pelo menos quatro sinais permitem estimar três coordenadas e o desajuste do relógio do aparelho. O processo é chamado trilateração, porque trabalha com distâncias estimadas, não com ângulos.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Por que relógios e relatividade importam',
+      paragraphs: [
+        'Satélites possuem relógios de grande estabilidade, mas o celular usa um relógio muito menos preciso. O cálculo de posição precisa resolver também essa diferença. Um erro de tempo de apenas um microssegundo equivale a cerca de trezentos metros percorridos pela luz, antes de considerar outros fatores. É por isso que o quarto satélite não é simplesmente um luxo para deixar o mapa mais bonito.',
+        'Os relógios em órbita também não marcam o tempo exatamente como relógios na superfície. Velocidade e diferença de campo gravitacional produzem efeitos previstos pela relatividade; os sistemas de navegação aplicam correções apropriadas para não acumular erros. Uma teoria que parece distante do cotidiano entra em ação quando alguém pede uma rota no celular.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'A precisão depende do mundo ao redor',
+      paragraphs: [
+        'Em céu aberto, sinais vindos de diferentes direções ajudam o cálculo. Entre prédios altos, parte deles pode ser bloqueada ou refletida antes de chegar ao receptor. A atmosfera e a geometria da constelação também influenciam o resultado. Por isso, a localização exibida pelo aplicativo é uma estimativa com incerteza, e não um ponto perfeito conhecido pelo satélite.',
+        'Celulares podem combinar sinais de diferentes constelações de navegação, redes móveis, Wi-Fi e sensores internos para melhorar a experiência. Um exemplo: dentro de um shopping, o aparelho pode continuar sugerindo seu deslocamento mesmo com pouca recepção dos satélites. Vale distinguir três coisas: o GPS calcula uma posição, o aplicativo escolhe como mostrá-la e uma base de mapas decide quais ruas existem.',
+      ],
+    ),
+  ],
+
 );
 const semicondutoresTopic = KnowledgeTopic(
   id: 'semicondutores',
