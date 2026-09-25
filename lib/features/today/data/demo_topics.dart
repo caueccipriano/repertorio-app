@@ -1077,7 +1077,7 @@ const fotografiaTopic = KnowledgeTopic(
   id: 'fotografia', eyebrow: 'ARTE / TECNOLOGIA', title: 'COMO UMA CÂMERA CONGELA A LUZ?',
   summary: 'Lente, abertura, obturador e sensor ou filme controlam a formação e o registro de uma imagem.', minutes: 7, tags: ['arte', 'tecnologia'],
   quickTake: 'Fotografia é literalmente administrar luz no espaço e no tempo.', simpleExplanation: 'A lente forma a imagem; a abertura controla quanto entra; o obturador controla por quanto tempo; o sensor registra o resultado.', example: 'Uma exposição longa pode transformar faróis de carros em rastros luminosos.',
-  body: ['Câmeras derivam do princípio da câmara escura, conhecido muito antes da fotografia moderna.', 'Aberturas maiores deixam entrar mais luz e também influenciam profundidade de campo.', 'Velocidade do obturador altera como movimento é registrado.', 'Sensibilidade do sensor, expressa como ISO, envolve compromissos de qualidade e ruído.', 'Composição e edição continuam sendo escolhas humanas mesmo quando a câmera automatiza exposição.'], remember: ['Abertura controla luz e profundidade.', 'Obturador controla tempo.', 'ISO altera sensibilidade e ruído.'],
+  body: ['Câmeras derivam do princípio da câmara escura, conhecido muito antes da fotografia moderna.', 'Aberturas maiores deixam entrar mais luz e também influenciam profundidade de campo.', 'Velocidade do obturador altera como movimento é registrado.', 'Sensibilidade do sensor, expressa como ISO, envolve compromissos de qualidade e ruído.', 'Composição e edição continuam sendo escolhas humanas mesmo quando a câmera automatiza exposição.'], remember: ['Abertura controla luz e profundidade.', 'Obturador controla tempo.', 'Em câmeras digitais, ISO ajusta o ganho e pode tornar o ruído mais visível.'],
   whyItMatters: 'Entender o triângulo de exposição melhora fotos mesmo em câmeras de celular.', curiosity: 'A primeira fotografia permanente conhecida exigiu uma exposição extremamente longa no século XIX.', connections: ['Cinema', 'Óptica', 'Luz', 'Composição'],  media: [
     KnowledgeMedia(
       type: KnowledgeMediaType.audio,
@@ -1088,6 +1088,30 @@ const fotografiaTopic = KnowledgeTopic(
       sourceUrl: 'https://open.spotify.com/episode/5uWIuQMlrVbKvDucC8IRvz',
     ),
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Uma imagem é uma negociação com a luz',
+      paragraphs: [
+        'Imagine fotografar alguém correndo ao entardecer. Uma abertura maior permite a entrada de mais luz e pode desfocar o fundo; um obturador rápido ajuda a congelar o movimento, mas deixa menos tempo para registrar a cena. Uma exposição longa faz o contrário: coleta luz por mais tempo e pode transformar pessoas em borrões ou faróis em trilhas. A decisão não é descobrir uma configuração perfeita, mas escolher quais informações visuais importam.',
+        'A abertura costuma aparecer como um número f. Um valor menor, como f/2,8, indica uma abertura relativamente ampla; f/11, uma abertura menor, considerando a mesma distância focal. A profundidade de campo depende também de distância, lente e tamanho do formato. É por isso que aumentar a abertura não produz sempre o mesmo desfoque em câmeras diferentes.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'ISO ilumina a imagem, não a cena',
+      paragraphs: [
+        'Em uma câmera digital, aumentar o ISO normalmente altera o ganho do sinal e o modo como a câmera entrega a imagem. Isso não faz mais fótons atravessarem a lente: quem controla a luz capturada são principalmente a abertura, o tempo de exposição e a iluminação disponível. Em pouca luz, elevar o ISO pode ajudar a obter uma imagem clara sem reduzir a velocidade do obturador, mas também pode revelar ruído e limitar detalhes.',
+        'Faça um experimento mental: duas fotos com mesma abertura e mesmo tempo recebem essencialmente a mesma quantidade de luz da cena. Se uma aparece mais clara ao elevar o ISO, isso não significa que a lente capturou mais luz. Entender essa diferença permite escolher entre movimento congelado, granulação aceitável e uma imagem escura que possa ser ajustada depois.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Fotografar também é editar a realidade',
+      paragraphs: [
+        'O enquadramento decide o que fica dentro e fora da imagem; a altura da câmera muda relações entre pessoas e objetos; a distância focal altera o campo de visão e, junto com a posição do fotógrafo, influencia a perspectiva. Mesmo sem filtros, toda fotografia envolve escolhas. Um retrato feito na altura dos olhos comunica algo diferente de outro registrado do alto ou muito de perto.',
+        'O processamento digital acrescenta outras decisões: balanço de branco, contraste, redução de ruído e compressão. Celulares frequentemente combinam várias exposições antes de entregar um único arquivo. Isso não torna a fotografia menos legítima, mas ajuda a questionar a crença de que uma imagem fotográfica seria um registro completamente neutro ou idêntico ao que os olhos enxergam.',
+      ],
+    ),
+  ],
+
 );
 
 const perspectivaTopic = KnowledgeTopic(
@@ -2215,6 +2239,30 @@ const criptografiaTopic = KnowledgeTopic(
   curiosity:
       'Muitos sistemas modernos usam criptografia assimétrica apenas para estabelecer uma chave temporária e depois usam criptografia simétrica, que é mais eficiente para grandes volumes de dados.',
   connections: ['HTTPS', 'Assinatura digital', 'Senhas', 'Blockchain'],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Sigilo, integridade e autoria são problemas distintos',
+      paragraphs: [
+        'Imagine enviar um contrato pela internet. Você talvez queira impedir que terceiros leiam o conteúdo, perceber se alguém alterou uma linha e confirmar quem autorizou o documento. Essas são propriedades diferentes. A cifragem busca confidencialidade; mecanismos de autenticação e integridade ajudam a detectar adulterações; assinaturas digitais podem vincular uma assinatura a uma chave privada e permitir a verificação com a chave pública correspondente.',
+        'Uma mensagem pode estar cifrada e ainda assim ter sido enviada pela pessoa errada se você não verificar com quem estabeleceu a conexão. Da mesma forma, uma assinatura digital pode ajudar a conferir a origem e a integridade de um documento sem esconder suas palavras. Saber formular o objetivo de segurança é tão importante quanto conhecer o nome de um algoritmo.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Por que misturamos técnicas diferentes',
+      paragraphs: [
+        'A criptografia simétrica usa uma chave secreta compartilhada e costuma ser eficiente para proteger grandes volumes de dados. Técnicas assimétricas trabalham com um par de chaves e podem ajudar a negociar segredos sem compartilhar antecipadamente a mesma chave por um canal inseguro. Protocolos modernos combinam essas peças, em vez de tentar fazer tudo com uma única fórmula.',
+        'Um navegador ao acessar um serviço HTTPS precisa conferir uma identidade técnica e negociar material criptográfico para a sessão. Depois, a transmissão dos dados pode usar cifragem simétrica autenticada. Esse encadeamento ilustra uma regra de projeto: algoritmos respeitados não bastam se as chaves, os certificados e a implementação forem tratados de modo inadequado.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Hash não é uma mensagem trancada',
+      paragraphs: [
+        'Uma função hash criptográfica produz um resumo de tamanho definido a partir de um conteúdo. Não é uma cifra que alguém possa simplesmente abrir com uma chave: não existe um procedimento geral de decifrar o hash e recuperar a mensagem. O resumo pode ser usado como parte de verificações de integridade e de assinaturas, sempre considerando as propriedades e as limitações da função escolhida.',
+        'Senhas exigem um cuidado adicional. Guardar apenas um hash rápido e comum costuma ser insuficiente quando um banco de dados vaza: atacantes podem testar muitas tentativas. Sistemas adequados usam técnicas de derivação deliberadamente custosas e sais individuais, além de outras defesas. Criptografia não apaga os riscos de golpes, dispositivos comprometidos nem falhas humanas; ela protege propriedades específicas dentro de um sistema maior.',
+      ],
+    ),
+  ],
+
 );
 const cloudTopic = KnowledgeTopic(
   id: 'cloud',
