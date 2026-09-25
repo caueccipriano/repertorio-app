@@ -33,7 +33,9 @@ class WeeklyReportScreen extends StatelessWidget {
     final weeklyMinutes = topics.fold<int>(
       0,
       (sum, topic) =>
-          sum + (topic.minutes * state.progressFor(topic.id)).round(),
+          sum +
+          (topic.estimatedReadingMinutes() * state.progressFor(topic.id))
+              .round(),
     );
 
     return Scaffold(
@@ -51,6 +53,13 @@ class WeeklyReportScreen extends StatelessWidget {
               days: state.studiedDaysThisWeek(),
               topics: topics.length,
               minutes: weeklyMinutes,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Minutos aproximados a partir do progresso atual dos artigos abertos nesta semana; não é um cronômetro de leitura.',
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
             ),
             const SizedBox(height: 28),
             Text(
