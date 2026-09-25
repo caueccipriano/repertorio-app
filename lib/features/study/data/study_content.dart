@@ -312,6 +312,66 @@ const quizByTopic = <String, List<QuizQuestion>>{
     ),
 
   ],
+  'samba': [
+    QuizQuestion(
+      prompt: "O samba tem uma origem única que explique todos os estilos?",
+      options: ["Sim, uma única gravação deu origem a tudo", "Não; tradições afro-brasileiras diversas contribuíram para a sua história", "Sim, nasceu exclusivamente nas emissoras de rádio", "Sim, todas as regiões adotaram o mesmo ritmo"],
+      correctIndex: 1,
+      explanation: "Há trajetórias regionais e comunitárias diversas, com contribuições afro-brasileiras decisivas.",
+    ),
+    QuizQuestion(
+      prompt: "O que a popularização do rádio modificou na história do samba?",
+      options: ["Acabou com rodas e encontros comunitários", "Ampliou a circulação de certas gravações e interpretações", "Fez todos os estilos terem a mesma batida", "Impossibilitou que músicos trabalhassem profissionalmente"],
+      correctIndex: 1,
+      explanation: "A circulação por meios de comunicação alcançou novos públicos, sem apagar outras práticas.",
+    ),
+    QuizQuestion(
+      prompt: "Qual manifestação recebeu o reconhecimento específico da UNESCO?",
+      options: ["Todo tipo de samba indiferenciadamente", "O samba-canção das emissoras de rádio", "O samba de roda do Recôncavo Baiano", "Todas as escolas de samba urbanas"],
+      correctIndex: 2,
+      explanation: "O registro da UNESCO refere-se à manifestação do Recôncavo Baiano.",
+    ),
+  ],
+  'imunidade': [
+    QuizQuestion(
+      prompt: "Qual é o papel inicial da pele e das mucosas?",
+      options: ["Impedir a entrada de diversos agentes antes de outras respostas imunes", "Produzir todos os anticorpos do corpo", "Garantir que nenhuma infecção seja possível", "Desligar a resposta inflamatória"],
+      correctIndex: 0,
+      explanation: "São barreiras de proteção, mas nenhuma defesa impede todas as infecções.",
+    ),
+    QuizQuestion(
+      prompt: "Como a imunidade inata e a adaptativa se relacionam?",
+      options: ["São sistemas inteiramente independentes", "A inata deixa de existir depois da infância", "Cooperam e influenciam as respostas do organismo", "A adaptativa atua somente sobre a pele"],
+      correctIndex: 2,
+      explanation: "A divisão ajuda a estudar funções distintas, mas os componentes cooperam.",
+    ),
+    QuizQuestion(
+      prompt: "Por que a vacinação não exige que a pessoa contraia a doença-alvo?",
+      options: ["Porque não envolve nenhuma reação biológica", "Porque estimula proteção com antígenos ou instruções, segundo a tecnologia utilizada", "Porque elimina imediatamente todos os agentes infecciosos", "Porque torna desnecessária a memória imunológica"],
+      correctIndex: 1,
+      explanation: "O objetivo é preparar respostas protetoras sem exigir a ocorrência da doença.",
+    ),
+  ],
+  'turing': [
+    QuizQuestion(
+      prompt: "Para que serve o modelo conhecido como máquina de Turing?",
+      options: ["Projetar o hardware exato dos notebooks modernos", "Investigar o que procedimentos computáveis podem realizar", "Garantir consciência artificial", "Operar todos os computadores da Segunda Guerra"],
+      correctIndex: 1,
+      explanation: "O modelo abstrato ajuda a estudar computabilidade e limites de procedimentos.",
+    ),
+    QuizQuestion(
+      prompt: "Qual frase descreve com mais precisão Bletchley Park?",
+      options: ["Turing realizou sozinho todos os trabalhos de criptoanálise", "A criptoanálise foi um esforço coletivo do qual Turing participou", "Todos os projetos foram comerciais e posteriores à guerra", "Os projetos não envolveram matemática ou engenharia"],
+      correctIndex: 1,
+      explanation: "A contribuição de Turing foi importante em um trabalho de equipe.",
+    ),
+    QuizQuestion(
+      prompt: "O teste associado a Turing prova definitivamente a consciência de uma máquina?",
+      options: ["Sim, sempre que ela imita respostas humanas", "Não; examina desempenho numa situação de imitação", "Sim, se o computador resolve contas rápidas", "Não, porque modelos teóricos não têm regras"],
+      correctIndex: 1,
+      explanation: "O teste não elimina todas as questões sobre entendimento e consciência.",
+    ),
+  ],
   'helvetica': [
     QuizQuestion(
       prompt: 'Qual era o nome original da Helvetica?',
