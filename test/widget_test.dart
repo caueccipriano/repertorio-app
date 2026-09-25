@@ -15,6 +15,24 @@ void main() {
     SharedPreferences.setMockInitialValues({});
   });
 
+  test('catalog has no duplicated examples or generic impact statements', () {
+    expect(allDemoTopics, hasLength(125));
+    for (final topic in allDemoTopics) {
+      if (topic.simpleExplanation case final explanation?) {
+        expect(
+          topic.example,
+          isNot(equals(explanation)),
+          reason: topic.id,
+        );
+      }
+      expect(
+        topic.whyItMatters,
+        isNot(contains('Amplia o repertório e cria conexões úteis')),
+        reason: topic.id,
+      );
+    }
+  });
+
   test('expanded articles have real chapters and explicit reading sources', () {
     const expanded = [
       bauhausTopic,
