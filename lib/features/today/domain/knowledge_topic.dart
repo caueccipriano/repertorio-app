@@ -64,6 +64,37 @@ class KnowledgeTopic {
   final List<String> connections;
   final List<KnowledgeMedia> _media;
 
+  /// A leitura estimada é derivada do texto apresentado, não do número legado.
+  /// O modo rápido mostra apenas o resumo e os pontos para lembrar.
+  int estimatedReadingMinutes({bool quick = false, bool deep = false}) {
+    final passages = quick
+        ? <String>[title, summary, quickTake, ...remember]
+        : <String>[
+            title,
+            summary,
+            quickTake,
+            if (simpleExplanation != null) simpleExplanation!,
+            if (example != null) example!,
+            ...body,
+            for (final chapter in chapters) ...[
+              chapter.title,
+              ...chapter.paragraphs,
+            ],
+            ...remember,
+            whyItMatters,
+            if (deep) curiosity,
+          ];
+    final words = passages
+        .join(' ')
+        .trim()
+        .split(RegExp(r'\s+'))
+        .where((word) => word.isNotEmpty)
+        .length;
+    // Uma estimativa conservadora para texto editorial em tela pequena.
+    final result = (words / 160).ceil();
+    return result < 1 ? 1 : result;
+  }
+
   /// Curated audio is preserved when a topic already has it.
   ///
   /// For every remaining theme, the app provides a topic-aware Spotify podcast
