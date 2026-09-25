@@ -95,6 +95,28 @@ class KnowledgeTopic {
     return result < 1 ? 1 : result;
   }
 
+  /// Build the actual article script for text-to-speech, including chapters.
+  /// Quick listening must not read material hidden in quick reading mode.
+  String readingScript({bool quick = false, bool deep = false}) {
+    if (quick) {
+      return <String>[title, quickTake, ...remember].join('. ');
+    }
+    return <String>[
+      title,
+      quickTake,
+      if (simpleExplanation != null) simpleExplanation!,
+      if (example != null) example!,
+      ...body,
+      for (final chapter in chapters) ...[
+        chapter.title,
+        ...chapter.paragraphs,
+      ],
+      ...remember,
+      whyItMatters,
+      if (deep) curiosity,
+    ].join('. ');
+  }
+
   /// Curated audio is preserved when a topic already has it.
   ///
   /// For every remaining theme, the app provides a topic-aware Spotify podcast
