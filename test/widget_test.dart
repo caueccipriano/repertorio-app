@@ -47,6 +47,12 @@ void main() {
       evolucaoInternetTopic,
       neuroplasticidadeTopic,
       linguisticaTopic,
+      inflationTopic,
+      dnaTopic,
+      aiTopic,
+      mapsTopic,
+      teoriaJogosTopic,
+      origemVidaTopic,
     ];
     for (final topic in expanded) {
       expect(topic.chapters.length, greaterThanOrEqualTo(2), reason: topic.id);
