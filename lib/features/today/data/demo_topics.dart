@@ -299,7 +299,7 @@ const brutalismTopic = KnowledgeTopic(
   minutes: 6,
   tags: ['arquitetura', 'design'],
   quickTake:
-      'Brutalismo não vem de “brutal” no sentido de violência, mas da expressão francesa béton brut: concreto cru.',
+      'O brutalismo valoriza materiais e estruturas expostos. O concreto cru se tornou uma de suas marcas, mas não define sozinho o movimento.',
   simpleExplanation:
       'Brutalismo é uma arquitetura que costuma mostrar do que o prédio é feito. Em vez de esconder concreto, vigas, pilares e instalações atrás de decoração, muitos projetos deixam esses elementos visíveis e fazem deles parte da estética.',
   example:
