@@ -33,7 +33,7 @@ Os **92 temas restantes** preservam sua versão essencial enquanto aguardam revi
 
 **Tempo de leitura:** o aplicativo estima duração a partir das palavras efetivamente exibidas na leitura rápida, completa ou com extras. As antigas etiquetas fixas de 5 e 15 minutos foram substituídas por nomes de níveis. O cálculo é aproximado; elementos externos e testes interativos não entram na estimativa.
 
-**Progresso:** a leitura rápida funciona como prévia. Ela não substitui o progresso da leitura completa, nem concede conclusão automática ao usuário que chega ao fim do resumo.
+**Progresso:** a leitura rápida funciona como prévia. Ela não substitui o progresso da leitura completa, nem concede conclusão automática ao usuário que chega ao fim do resumo. O progresso salvo nunca diminui ao voltar para uma seção anterior. No modo paginado, deslizar para a última página não conclui o artigo automaticamente: há um botão explícito **Marcar como lido** ao final da leitura completa.
 
 **Narração:** na leitura pelo sintetizador de voz, o roteiro agora inclui exemplos e capítulos expandidos visíveis no modo selecionado e respeita a velocidade definida pelo leitor. O botão superior dá preferência à leitura do próprio artigo; quando a síntese de voz não funciona no dispositivo, tenta abrir o podcast relacionado como alternativa.
 

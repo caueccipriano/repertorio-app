@@ -136,6 +136,56 @@ void main() {
     expect(find.textContaining('não é um cronômetro'), findsOneWidget);
   });
 
+  test('progress cannot regress when revisiting an earlier section', () async {
+    final state = await AppState.load();
+    await state.updateProgress('bauhaus', .64);
+    await state.updateProgress('bauhaus', .2);
+    expect(state.progressFor('bauhaus'), closeTo(.64, .001));
+    await state.updateProgress('bauhaus', 1);
+    await state.updateProgress('bauhaus', .3);
+    expect(state.progressFor('bauhaus'), 1);
+    expect(state.completedTopicIds, contains('bauhaus'));
+  });
+
+  testWidgets('paged reading requires explicit completion',
+      (tester) async {
+    tester.view.physicalSize = const Size(360, 740);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(() {
+      tester.view.resetPhysicalSize();
+      tester.view.resetDevicePixelRatio();
+    });
+
+    final state = await AppState.load();
+    await state.updateProgress('helvetica', .86);
+    await state.updateReaderSettings(
+      depth: ContentDepth.standard,
+      flow: ReaderFlow.paged,
+    );
+    await tester.pumpWidget(
+      AppStateScope(
+        state: state,
+        child: const MaterialApp(home: ArticleScreen(topic: helveticaTopic)),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(state.completedTopicIds, isNot(contains('helvetica')));
+    for (var i = 0;
+        i < 12 &&
+            find.byKey(const ValueKey('reader-mark-complete')).evaluate().isEmpty;
+        i++) {
+      await tester.drag(find.byType(PageView), const Offset(-310, 0));
+      await tester.pumpAndSettle();
+    }
+    expect(find.byKey(const ValueKey('reader-mark-complete')), findsOneWidget);
+    expect(state.completedTopicIds, isNot(contains('helvetica')));
+    await tester.tap(find.byKey(const ValueKey('reader-mark-complete')));
+    await tester.pumpAndSettle();
+    expect(state.completedTopicIds, contains('helvetica'));
+    expect(state.progressFor('helvetica'), 1);
+  });
+
   test('audio narration includes expanded chapters at the chosen depth', () {
     final fullScript = bauhausTopic.readingScript();
     final quickScript = bauhausTopic.readingScript(quick: true);

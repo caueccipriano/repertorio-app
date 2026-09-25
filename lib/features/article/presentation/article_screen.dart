@@ -467,6 +467,23 @@ class _ArticleScreenState extends State<ArticleScreen> {
       ),
     );
     sections.add(const SizedBox(height: 28));
+    if (standard && state.readerFlow == ReaderFlow.paged) {
+      sections.add(
+        _Section(
+          number: '✓',
+          title: 'concluir leitura',
+          palette: palette,
+          child: _FinishReadingCard(
+            palette: palette,
+            completed: state.completedTopicIds.contains(topic.id),
+            onPressed: () async {
+              await state.updateProgress(topic.id, 1);
+              if (mounted) setState(() => _progress = 1);
+            },
+          ),
+        ),
+      );
+    }
     sections.add(
       _NextConnection(
         nextTopic: nextTopic,
@@ -542,9 +559,20 @@ class _ArticleScreenState extends State<ArticleScreen> {
             controller: _pageController,
             itemCount: pages.length,
             onPageChanged: (index) {
-              final next = (index + 1) / pages.length;
-              setState(() => _progress = next);
-              if (state.readerDepth != ContentDepth.quick) {
+              // Paging indicates navigation, not proof that all text inside
+              // each vertically scrollable section has been read. Keep it
+              // below the automatic completion threshold; the final explicit
+              // action is available at the end of full paged readings.
+              final next = pages.length <= 1
+                  ? 0.0
+                  : .90 * index / (pages.length - 1);
+              if (state.readerDepth == ContentDepth.quick) {
+                setState(() => _progress = next);
+              } else {
+                final furthest = state.progressFor(widget.topic.id);
+                setState(
+                  () => _progress = furthest > next ? furthest : next,
+                );
                 state.updateProgress(widget.topic.id, next);
               }
             },
@@ -1662,6 +1690,55 @@ class _Meta extends StatelessWidget {
         color: palette.muted,
         fontSize: 9,
         fontWeight: FontWeight.w700,
+      ),
+    );
+  }
+}
+
+class _FinishReadingCard extends StatelessWidget {
+  const _FinishReadingCard({
+    required this.palette,
+    required this.completed,
+    required this.onPressed,
+  });
+
+  final _ReaderPalette palette;
+  final bool completed;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        border: Border.all(color: palette.line),
+        color: palette.surface,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            completed
+                ? 'Este artigo já está no seu repertório.'
+                : 'Terminou de ler? Registre essa conquista.',
+            style: TextStyle(
+              color: palette.text,
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(height: 14),
+          OutlinedButton.icon(
+            key: const ValueKey('reader-mark-complete'),
+            onPressed: completed ? null : onPressed,
+            icon: Icon(
+              completed ? Icons.check_circle : Icons.check_circle_outline,
+              color: completed ? palette.muted : palette.accent,
+            ),
+            label: Text(completed ? 'Leitura concluída' : 'Marcar como lido'),
+          ),
+        ],
       ),
     );
   }
