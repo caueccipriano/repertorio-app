@@ -25,18 +25,24 @@ Objetivo: cada assunto deve deixar o leitor capaz de **explicar a ideia a outra 
 9. Conferir interface com rolagem contínua e paginada, temas claro/escuro e tamanhos de fonte acessíveis.
 10. Não publicar um lote só porque atingiu a contagem de palavras: revisar consistência, precisão, ritmo e utilidade.
 
-## Lote de referência implementado neste ramo
+## Lotes aprofundados neste ramo
 
-Bauhaus, Modernismo, Paradoxo de Fermi e Queda de Roma: 3 capítulos cada. Brutalismo e Débito/Crédito: 2 capítulos cada. Todos com fontes específicas e pelo menos três perguntas de fixação, incluindo questões de aplicação e equívocos frequentes. Os **outros 119 temas** continuam com o texto legado até revisão própria; não tratá-los como atualizados.
+**23 de 125 temas** incluem 2–3 capítulos editoriais, fontes e pelo menos 3 perguntas de fixação. Os temas cobrem design, história, arte, astronomia, ciência, tecnologia, economia e cultura: Bauhaus, Modernismo, Fermi, Queda de Roma, Brutalismo, Contabilidade, Samba, Imunidade, Turing, Internet, Neuroplasticidade, Linguística, Inflação, DNA, IA generativa, Mapas, Teoria dos Jogos, Origem da Vida, Renascimento, Perspectiva, Impressionismo, Rococó e Barroco.
+
+Os **102 temas restantes** preservam sua versão essencial enquanto aguardam revisão individual; não apresentar como se todos fossem igualmente aprofundados.
+
+**Tempo de leitura:** o aplicativo estima duração a partir das palavras efetivamente exibidas na leitura rápida, completa ou com extras. As antigas etiquetas fixas de 5 e 15 minutos foram substituídas por nomes de níveis. O cálculo é aproximado; elementos externos e testes interativos não entram na estimativa.
+
+**Progresso:** a leitura rápida funciona como prévia. Ela não substitui o progresso da leitura completa, nem concede conclusão automática ao usuário que chega ao fim do resumo.
 
 ## Backlog editorial de qualidade
 
 - Manter auditoria automatizada contra exemplos que repetem a explicação (24 ocorrências corrigidas neste ramo).
 - Impedir regressão de conclusões genéricas (10 ocorrências reescritas neste ramo).
-- Reavaliar os minutos exibidos em cada artigo usando texto real e o modo de profundidade.
+- Ajustar a velocidade de leitura estimada com testes reais de usabilidade no celular, se necessário.
 - Acrescentar fontes específicas e perguntas de fixação aos temas restantes.
 - Expandir os próximos lotes sem alterar indiscriminadamente os 125 assuntos com texto artificial ou redundante.
 
 ## Validação deste lote
 
-Os testes cobrem presença e estrutura dos capítulos de referência, suas fontes e três perguntas por tema, a renderização no modo de leitura padrão e regras de não repetição em todo o catálogo. A execução pelo CI do GitHub continua sendo a autoridade para declarar o código validado. Também é necessária revisão visual em tela pequena antes de lançar uma versão pública.
+Os testes cobrem presença e estrutura dos 23 artigos expandidos, suas fontes e três perguntas por tema; renderização no modo padrão, estimativa de minutos baseada no texto, separação entre prévia rápida e conclusão do artigo, além da prevenção de exemplos idênticos e fechamentos genéricos no catálogo. A execução pelo CI do GitHub continua sendo a autoridade para declarar o código validado. Também é necessária revisão visual em tela pequena antes de lançar uma versão pública.
