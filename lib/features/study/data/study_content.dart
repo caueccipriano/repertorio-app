@@ -704,7 +704,7 @@ const sourcesByTopic = <String, List<SourceEntry>>{
     SourceEntry(label: "Google — Introdução aos modelos de linguagem", url: "https://developers.google.com/machine-learning/crash-course/llm?hl=pt-br", note: "Tokens, modelos de linguagem e geração de texto."),
   ],
   'mapas': [
-    SourceEntry(label: "USGS — Map Projections", url: "https://store.usgs.gov/product/16573", note: "Por que diferentes projeções distorcem propriedades diferentes."),
+    SourceEntry(label: "USGS — Map Projections", url: "https://www.usgs.gov/publications/map-projections-a-working-manual", note: "Por que diferentes projeções distorcem propriedades diferentes."),
   ],
   'teoria-jogos': [
     SourceEntry(label: "OpenStax — Oligopoly e teoria dos jogos", url: "https://openstax.org/books/principles-economics-2e/pages/10-2-oligopoly", note: "Interdependência estratégica e o dilema do prisioneiro."),
