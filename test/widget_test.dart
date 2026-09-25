@@ -6,12 +6,65 @@ import 'package:repertorio_app/app/state/app_state_scope.dart';
 import 'package:repertorio_app/features/article/presentation/article_screen.dart';
 import 'package:repertorio_app/features/explore/presentation/topic_collection_screen.dart';
 import 'package:repertorio_app/features/study/data/personal_library_engine.dart';
+import 'package:repertorio_app/features/study/data/study_content.dart';
 import 'package:repertorio_app/features/today/data/demo_topics.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   setUp(() {
     SharedPreferences.setMockInitialValues({});
+  });
+
+  test('expanded articles have real chapters and explicit reading sources', () {
+    const expanded = [
+      bauhausTopic,
+      modernismTopic,
+      fermiTopic,
+      romeTopic,
+      brutalismTopic,
+      contabilidadeTopic,
+    ];
+    for (final topic in expanded) {
+      expect(topic.chapters.length, greaterThanOrEqualTo(2), reason: topic.id);
+      expect(
+        topic.chapters.every((chapter) =>
+            chapter.title.isNotEmpty &&
+            chapter.paragraphs.length >= 2 &&
+            chapter.paragraphs.every((paragraph) => paragraph.length >= 80)),
+        isTrue,
+        reason: topic.id,
+      );
+      expect(sourcesFor(topic.id), isNotEmpty, reason: topic.id);
+    }
+    expect(modernismTopic.chapters.first.title,
+        'O mundo industrial precisava de outras respostas');
+  });
+
+  testWidgets('standard reader shows expanded chapters and source links',
+      (tester) async {
+    final state = await AppState.load();
+    await tester.pumpWidget(
+      AppStateScope(
+        state: state,
+        child: const MaterialApp(home: ArticleScreen(topic: bauhausTopic)),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(
+      find.text('vá além'),
+      500,
+      scrollable: find.byType(Scrollable),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('Uma escola nascida de uma crise'), findsOneWidget);
+
+    await tester.scrollUntilVisible(
+      find.text('fontes para continuar'),
+      500,
+      scrollable: find.byType(Scrollable),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('UNESCO — Patrimônio Bauhaus'), findsOneWidget);
   });
 
   testWidgets('opens the library directly without onboarding lockout',
