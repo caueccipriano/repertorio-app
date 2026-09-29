@@ -212,26 +212,9 @@ class AppState extends ChangeNotifier {
   final List<PersonalConnection> personalConnections = [];
 
   static Future<AppState> load() async {
+    // Never remove real user history as part of app initialization.
+    // Test fixtures must reset only their own mocked SharedPreferences.
     final prefs = await SharedPreferences.getInstance();
-    const resetMarker = 'testing_progress_reset_2026_09_18_v1';
-    if (!(prefs.getBool(resetMarker) ?? false)) {
-      const progressKeys = <String>[
-        _completedKey,
-        _historyKey,
-        _progressKey,
-        _reviewLevelKey,
-        _reviewDueKey,
-        _lastStudyAtKey,
-        _lastReminderAtKey,
-        _studyDaysKey,
-        _quizKey,
-        _lastOpenedKey,
-      ];
-      for (final key in progressKeys) {
-        await prefs.remove(key);
-      }
-      await prefs.setBool(resetMarker, true);
-    }
     return AppState._(prefs);
   }
 
