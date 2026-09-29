@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/state/app_state_scope.dart';
+import '../domain/review_session_progress.dart';
 import '../../today/data/demo_topics.dart';
 import '../../today/domain/knowledge_topic.dart';
 
@@ -14,21 +15,57 @@ class ReviewScreen extends StatefulWidget {
 class _ReviewScreenState extends State<ReviewScreen> {
   int _index = 0;
   bool _revealed = false;
+  bool _ready = false;
+  bool _submitting = false;
+  late List<_Flashcard> _sessionCards;
+  late ReviewSessionProgress _progress;
+
+  // Snapshot the session: rescheduling one topic must not remove or skip
+  // the remaining cards from today's practice.
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_ready) _prepareSession();
+  }
+
+  void _prepareSession() {
+    final state = AppStateScope.read(context);
+    final dueIds = state.dueReviewTopicIds();
+    final isDueSession = dueIds.isNotEmpty;
+    final ids =
+        isDueSession ? dueIds : state.historyTopicIds.take(5).toList();
+    _sessionCards = _cards(ids);
+    _progress = ReviewSessionProgress(isDueSession: isDueSession);
+    _ready = true;
+  }
+
+  void _restartSession() {
+    setState(() {
+      _index = 0;
+      _revealed = false;
+      _ready = false;
+      _prepareSession();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final state = AppStateScope.of(context);
-    final dueIds = state.dueReviewTopicIds();
-    final seedIds =
-        dueIds.isNotEmpty ? dueIds : state.historyTopicIds.take(5).toList();
-    final cards = _cards(seedIds);
-
-    if (cards.isEmpty) {
+    if (_sessionCards.isEmpty) {
       return const _NoReviewsYet();
     }
 
-    final card = cards[_index % cards.length];
-    final isDue = dueIds.contains(card.topic.id);
+    if (_index >= _sessionCards.length) {
+      return _ReviewSessionComplete(
+        isDueSession: _progress.isDueSession,
+        completedCards: _sessionCards.length,
+        completedTopics: _progress.completedTopics,
+        onRestart: _restartSession,
+      );
+    }
+
+    final card = _sessionCards[_index];
+    final isDue = _progress.isDueSession;
+    final cards = _sessionCards;
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -211,16 +248,39 @@ class _ReviewScreenState extends State<ReviewScreen> {
   }
 
   Future<void> _answer(String topicId, int quality, int total) async {
-    await AppStateScope.read(context).recordReview(
+    if (_submitting || _index >= total) return;
+    _submitting = true;
+    final lastForTopic = _index + 1 == total ||
+        _sessionCards[_index + 1].topic.id != topicId;
+    final grade = _progress.gradeForAnswer(
       topicId,
-      quality: quality,
+      quality,
+      isLastForTopic: lastForTopic,
     );
-    if (!mounted) return;
 
-    setState(() {
-      _revealed = false;
-      _index = (_index + 1) % total;
-    });
+    try {
+      // One grade per due TOPIC, using its weakest answer. Warm-up cards
+      // must not silently postpone a review that was scheduled for later.
+      if (grade != null) {
+        await AppStateScope.read(context).recordReview(
+          topicId,
+          quality: grade,
+        );
+      }
+      if (lastForTopic) _progress.completeTopic(topicId);
+      if (!mounted) return;
+      setState(() {
+        _revealed = false;
+        _index += 1;
+      });
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Não foi possível salvar a revisão. Tente novamente.')),
+      );
+    } finally {
+      _submitting = false;
+    }
   }
 }
 
@@ -307,6 +367,65 @@ class _NoReviewsYet extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
               const Spacer(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ReviewSessionComplete extends StatelessWidget {
+  const _ReviewSessionComplete({
+    required this.isDueSession,
+    required this.completedCards,
+    required this.completedTopics,
+    required this.onRestart,
+  });
+
+  final bool isDueSession;
+  final int completedCards;
+  final int completedTopics;
+  final VoidCallback onRestart;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Scaffold(
+      backgroundColor: theme.scaffoldBackgroundColor,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Spacer(),
+              Text(
+                isDueSession ? 'revisões concluídas.' : 'aquecimento concluído.',
+                style: theme.textTheme.headlineLarge,
+              ),
+              const SizedBox(height: 16),
+              Text(
+                '$completedCards cartões · $completedTopics assuntos',
+                style: theme.textTheme.bodyLarge?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                isDueSession
+                    ? 'O próximo encontro com esses assuntos já está programado.'
+                    : 'Você praticou sem alterar as próximas revisões agendadas.',
+                style: theme.textTheme.bodyLarge,
+              ),
+              const Spacer(),
+              SizedBox(
+                width: double.infinity,
+                child: FilledButton(
+                  onPressed: onRestart,
+                  child: const Text('ver revisões disponíveis'),
+                ),
+              ),
             ],
           ),
         ),
