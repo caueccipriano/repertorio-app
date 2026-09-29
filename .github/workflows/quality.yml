@@ -4,8 +4,11 @@ on:
   push:
     branches:
       - main
-      - "feat/**"
   pull_request:
+
+concurrency:
+  group: quality-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
 
 jobs:
   flutter:
@@ -24,13 +27,30 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Sanitize generated topic media syntax
-        run: |
-          perl -0pi -e 's/\n,media:/\n media:/g' lib/features/today/data/demo_topics.dart
-          perl -0pi -e 's/\n  Future<void> _openAudio\(KnowledgeMedia media\) async \{.*?\n  \}\n\n  void _goBack/\n  void _goBack/s' lib/features/article/presentation/article_screen.dart
-
       - name: Analyze
-        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+        run: flutter analyze
+
+      - name: Audit editorial catalog
+        run: dart run tool/editorial_audit.dart --strict
 
       - name: Test
         run: flutter test
+
+      - name: Test PWA update flow
+        run: node --test test/web_update.test.mjs
+
+      - name: Stamp web release identity
+        run: |
+          sed -i "s/__APP_BUILD_ID__/${GITHUB_SHA}/g" web/index.html
+          printf '{"version":"%s"}\n' "${GITHUB_SHA}" > web/version.json
+
+      - name: Build web for release parity
+        run: flutter build web --release --base-href "/repertorio-app/"
+
+      - name: Check generated web bundle
+        run: |
+          test -s build/web/index.html
+          test -s build/web/main.dart.js
+          test -s build/web/app-icon-v6.png
+          grep -Fq "${GITHUB_SHA}" build/web/index.html
+          grep -Fq "${GITHUB_SHA}" build/web/version.json

@@ -34,6 +34,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
   PageController? _pageController;
   double _progress = 0;
   bool _bootstrapped = false;
+  ContentDepth? _displayedDepth;
 
   @override
   void initState() {
@@ -48,7 +49,10 @@ class _ArticleScreenState extends State<ArticleScreen> {
     _bootstrapped = true;
 
     final state = AppStateScope.read(context);
-    _progress = state.progressFor(widget.topic.id);
+    _displayedDepth = state.readerDepth;
+    _progress = state.readerDepth == ContentDepth.quick
+        ? 0
+        : state.progressFor(widget.topic.id);
     state.openTopic(widget.topic.id);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -70,7 +74,10 @@ class _ArticleScreenState extends State<ArticleScreen> {
     if ((next - _progress).abs() >= .01) {
       setState(() => _progress = next);
     }
-    AppStateScope.read(context).updateProgress(widget.topic.id, next);
+    final state = AppStateScope.read(context);
+    if (state.readerDepth != ContentDepth.quick) {
+      state.updateProgress(widget.topic.id, next);
+    }
   }
 
   @override
@@ -85,6 +92,14 @@ class _ArticleScreenState extends State<ArticleScreen> {
   @override
   Widget build(BuildContext context) {
     final state = AppStateScope.of(context);
+    final depthChanged = _displayedDepth != null &&
+        _displayedDepth != state.readerDepth;
+    if (depthChanged) {
+      _displayedDepth = state.readerDepth;
+      _progress = state.readerDepth == ContentDepth.quick
+          ? 0
+          : state.progressFor(widget.topic.id);
+    }
     final palette = _ReaderPalette.fromMode(
       state.readerTheme,
       highContrast: state.highContrast,
@@ -92,9 +107,13 @@ class _ArticleScreenState extends State<ArticleScreen> {
     final bodyStyle = _bodyStyle(state, palette);
     final nextTopic = _nextTopic(widget.topic);
     final audioMedia = _audioFor(widget.topic);
-    final remaining = ((1 - _progress) * widget.topic.minutes)
+    final readingMinutes = widget.topic.estimatedReadingMinutes(
+      quick: state.readerDepth == ContentDepth.quick,
+      deep: state.readerDepth.index >= ContentDepth.deep.index,
+    );
+    final remaining = ((1 - _progress) * readingMinutes)
         .ceil()
-        .clamp(0, widget.topic.minutes);
+        .clamp(0, readingMinutes);
 
     final sections = _buildSections(
       context,
@@ -103,6 +122,22 @@ class _ArticleScreenState extends State<ArticleScreen> {
       bodyStyle,
       nextTopic,
     );
+    if (depthChanged) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        if (state.readerFlow == ReaderFlow.paged) {
+          final pages = sections.where((section) => section is! SizedBox).length;
+          if ((_pageController?.hasClients ?? false) && pages > 0) {
+            final index = (_progress * (pages - 1)).round()
+                .clamp(0, pages - 1).toInt();
+            _pageController!.jumpToPage(index);
+          }
+        } else if (_scrollController.hasClients) {
+          final extent = _scrollController.position.maxScrollExtent;
+          _scrollController.jumpTo(extent * _progress.clamp(0.0, 1.0));
+        }
+      });
+    }
 
     return Theme(
       data: Theme.of(context).copyWith(
@@ -129,7 +164,9 @@ class _ArticleScreenState extends State<ArticleScreen> {
           ),
           title: Center(
             child: Text(
-              '${(_progress * 100).round()}% · $remaining min',
+              state.readerDepth == ContentDepth.quick
+                  ? '${(_progress * 100).round()}% · leitura rápida'
+                  : '${(_progress * 100).round()}% · ~ $remaining min',
               style: TextStyle(color: palette.muted, fontSize: 11, fontWeight: FontWeight.w700, letterSpacing: .7),
             ),
           ),
@@ -139,7 +176,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
               height: 56,
               child: IconButton(
                 key: const ValueKey('reader-audio'),
-                tooltip: audioMedia == null ? 'Ouvir leitura' : 'Ouvir áudio',
+                tooltip: 'Ouvir artigo',
                 onPressed: () => _playAudioOrSpeech(audioMedia),
                 icon: Icon(
                   Icons.headphones_rounded,
@@ -275,16 +312,31 @@ class _ArticleScreenState extends State<ArticleScreen> {
           ),
         ),
       );
+      if (topic.chapters.isNotEmpty) {
+        sections.add(
+          _Section(
+            number: '04',
+            title: 'vá além',
+            palette: palette,
+            child: _EditorialChapters(
+              topic: topic,
+              palette: palette,
+              bodyStyle: bodyStyle,
+            ),
+          ),
+        );
+      }
       sections.add(
         _RememberSection(
           topic: topic,
           palette: palette,
           bodyStyle: bodyStyle,
+          number: topic.chapters.isNotEmpty ? '05' : '04',
         ),
       );
       sections.add(
         _Section(
-          number: '05',
+          number: topic.chapters.isNotEmpty ? '06' : '05',
           title: 'por que isso importa',
           palette: palette,
           child: _PassageBlock(
@@ -301,7 +353,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
     if (deep) {
       sections.add(
         _Section(
-          number: '06',
+          number: topic.chapters.isNotEmpty ? '07' : '06',
           title: 'uma coisa interessante',
           palette: palette,
           child: _PassageBlock(
@@ -318,7 +370,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
       if (glossary.isNotEmpty) {
         sections.add(
           _Section(
-            number: '07',
+            number: topic.chapters.isNotEmpty ? '08' : '07',
             title: 'glossário',
             palette: palette,
             child: _GlossarySection(
@@ -331,7 +383,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
 
       sections.add(
         _Section(
-          number: '08',
+          number: topic.chapters.isNotEmpty ? '09' : '08',
           title: 'conecte os pontos',
           palette: palette,
           child: _Connections(
@@ -347,7 +399,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
       if (entities.isNotEmpty) {
         sections.add(
           _Section(
-            number: '09',
+            number: topic.chapters.isNotEmpty ? '10' : '09',
             title: 'pessoas · lugares · ideias',
             palette: palette,
             child: _EntitySection(
@@ -358,20 +410,6 @@ class _ArticleScreenState extends State<ArticleScreen> {
         );
       }
 
-      final sources = sourcesFor(topic.id);
-      if (sources.isNotEmpty) {
-        sections.add(
-          _Section(
-            number: '10',
-            title: 'fontes e aprofundamento',
-            palette: palette,
-            child: _SourcesSection(
-              sources: sources,
-              palette: palette,
-            ),
-          ),
-        );
-      }
     }
 
     if (standard) {
@@ -407,6 +445,20 @@ class _ArticleScreenState extends State<ArticleScreen> {
       ),
     );
     sections.add(const SizedBox(height: 18));
+    // Show editorial sources in every full-reading mode, not just immersion.
+    if (standard && sourcesFor(topic.id).isNotEmpty) {
+      sections.add(
+        _Section(
+          number: '↗',
+          title: 'fontes para continuar',
+          palette: palette,
+          child: _SourcesSection(
+            sources: sourcesFor(topic.id),
+            palette: palette,
+          ),
+        ),
+      );
+    }
     sections.add(
       _AboutContent(
         topic: topic,
@@ -415,6 +467,24 @@ class _ArticleScreenState extends State<ArticleScreen> {
       ),
     );
     sections.add(const SizedBox(height: 28));
+    if (standard && state.readerFlow == ReaderFlow.paged) {
+      sections.add(
+        _Section(
+          number: '✓',
+          title: 'concluir leitura',
+          palette: palette,
+          child: _FinishReadingCard(
+            palette: palette,
+            completed: state.completedTopicIds.contains(topic.id),
+            onPressed: () async {
+              // Give immediate feedback before waiting for local persistence.
+              if (mounted) setState(() => _progress = 1);
+              await state.updateProgress(topic.id, 1);
+            },
+          ),
+        ),
+      );
+    }
     sections.add(
       _NextConnection(
         nextTopic: nextTopic,
@@ -483,20 +553,31 @@ class _ArticleScreenState extends State<ArticleScreen> {
 
     return Stack(
       children: [
-        GestureDetector(
-          behavior: HitTestBehavior.translucent,
-          onDoubleTap: () => showReaderControls(context),
-          child: PageView.builder(
+        // Keep the app-bar Aa control for reader settings here. A parent
+        // double-tap recognizer can interfere with action buttons on pages.
+        PageView.builder(
             controller: _pageController,
             itemCount: pages.length,
             onPageChanged: (index) {
-              final next = (index + 1) / pages.length;
-              setState(() => _progress = next);
-              state.updateProgress(widget.topic.id, next);
+              // Paging indicates navigation, not proof that all text inside
+              // each vertically scrollable section has been read. Keep it
+              // below the automatic completion threshold; the final explicit
+              // action is available at the end of full paged readings.
+              final next = pages.length <= 1
+                  ? 0.0
+                  : .90 * index / (pages.length - 1);
+              if (state.readerDepth == ContentDepth.quick) {
+                setState(() => _progress = next);
+              } else {
+                final furthest = state.progressFor(widget.topic.id);
+                setState(
+                  () => _progress = furthest > next ? furthest : next,
+                );
+                state.updateProgress(widget.topic.id, next);
+              }
             },
             itemBuilder: (_, index) => pages[index],
           ),
-        ),
         if (!state.readerFocusMode)
           Positioned(
             left: 0,
@@ -554,51 +635,31 @@ class _ArticleScreenState extends State<ArticleScreen> {
   }
 
   Future<void> _playAudioOrSpeech(KnowledgeMedia? media) async {
-    // The reader play button is always useful: use a curated podcast when the
-    // topic has one; otherwise read the article aloud. This also avoids a dead
-    // play button on topics such as Bauhaus that currently only have images.
+    // O botão do leitor deve ler o próprio texto. Os podcasts continuam
+    // disponíveis no artigo e entram como alternativa onde a voz não funciona.
+    final state = AppStateScope.read(context);
+    final script = widget.topic.readingScript(
+      quick: state.readerDepth == ContentDepth.quick,
+      deep: state.readerDepth.index >= ContentDepth.deep.index,
+    );
+    final started = await speakReaderText(
+      text: script,
+      rate: state.voiceRate,
+    );
+    if (!mounted || started) return;
+
     if (media != null) {
       final opened = await openPodcastAudio(
         url: media.url,
         title: media.title,
         source: media.sourceLabel ?? 'Podcast',
       );
-      if (opened) return;
-    }
-
-    final topic = widget.topic;
-    final text = <String>[
-      topic.title,
-      topic.quickTake,
-      ...topic.body,
-      ...topic.remember,
-      topic.whyItMatters,
-      topic.curiosity,
-    ].join('. ');
-
-    final started = await speakReaderText(text: text);
-    if (!mounted || started) return;
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('O áudio não está disponível neste navegador.')),
-    );
-  }
-
-  Future<void> _openAudio(KnowledgeMedia media) async {
-    final opened = await openPodcastAudio(
-      url: media.url,
-      title: media.title,
-      source: media.sourceLabel ?? 'Podcast',
-    );
-    if (!mounted || opened) {
-      return;
+      if (!mounted || opened) return;
     }
 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text(
-          'Não consegui abrir o áudio dentro do Repertório.',
-        ),
+        content: Text('A narração não está disponível neste dispositivo.'),
       ),
     );
   }
@@ -744,8 +805,8 @@ class _Header extends StatelessWidget {
   Widget build(BuildContext context) {
     final depthLabel = switch (depth) {
       ContentDepth.quick => '30 SEGUNDOS',
-      ContentDepth.standard => '5 MIN',
-      ContentDepth.deep => '15 MIN',
+      ContentDepth.standard => 'LEITURA COMPLETA',
+      ContentDepth.deep => 'COM EXTRAS',
       ContentDepth.immersion => 'MERGULHO FUNDO',
     };
 
@@ -912,6 +973,57 @@ class _SimpleExplanationBlock extends StatelessWidget {
           ],
         ],
       ),
+    );
+  }
+}
+
+class _EditorialChapters extends StatelessWidget {
+  const _EditorialChapters({
+    required this.topic,
+    required this.palette,
+    required this.bodyStyle,
+  });
+
+  final KnowledgeTopic topic;
+  final _ReaderPalette palette;
+  final TextStyle bodyStyle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: topic.chapters.indexed.map((item) {
+        final index = item.$1;
+        final chapter = item.$2;
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: index == topic.chapters.length - 1 ? 0 : 28,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                chapter.title,
+                style: GoogleFonts.manrope(
+                  color: palette.text,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+              const SizedBox(height: 12),
+              ...chapter.paragraphs.indexed.map((passage) =>
+                _PassageBlock(
+                  topicId: topic.id,
+                  passageId: 'chapter:$index:${passage.$1}',
+                  text: passage.$2,
+                  palette: palette,
+                  bodyStyle: bodyStyle,
+                ),
+              ),
+            ],
+          ),
+        );
+      }).toList(),
     );
   }
 }
@@ -1545,13 +1657,28 @@ class _AboutContent extends StatelessWidget {
         spacing: 12,
         runSpacing: 8,
         children: [
-          _Meta('revisão editorial · 2026', palette),
-          _Meta('nível · essencial → profundo', palette),
+          _Meta(
+            topic.chapters.isNotEmpty
+                ? 'edição aprofundada · 2026'
+                : 'edição essencial · revisão em andamento',
+            palette,
+          ),
+          _Meta(
+            topic.chapters.isNotEmpty
+                ? 'nível · essencial → profundo'
+                : 'nível · essencial',
+            palette,
+          ),
           _Meta(
             offline ? 'texto offline · ativo' : 'texto offline · disponível',
             palette,
           ),
-          _Meta('${sourcesFor(topic.id).length} fontes', palette),
+          _Meta(
+            sourcesFor(topic.id).isEmpty
+                ? 'fontes · em revisão'
+                : '${sourcesFor(topic.id).length} fontes',
+            palette,
+          ),
         ],
       ),
     );
@@ -1572,6 +1699,55 @@ class _Meta extends StatelessWidget {
         color: palette.muted,
         fontSize: 9,
         fontWeight: FontWeight.w700,
+      ),
+    );
+  }
+}
+
+class _FinishReadingCard extends StatelessWidget {
+  const _FinishReadingCard({
+    required this.palette,
+    required this.completed,
+    required this.onPressed,
+  });
+
+  final _ReaderPalette palette;
+  final bool completed;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        border: Border.all(color: palette.line),
+        color: palette.surface,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            completed
+                ? 'Este artigo já está no seu repertório.'
+                : 'Terminou de ler? Registre essa conquista.',
+            style: TextStyle(
+              color: palette.text,
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(height: 14),
+          OutlinedButton.icon(
+            key: const ValueKey('reader-mark-complete'),
+            onPressed: completed ? null : onPressed,
+            icon: Icon(
+              completed ? Icons.check_circle : Icons.check_circle_outline,
+              color: completed ? palette.muted : palette.accent,
+            ),
+            label: Text(completed ? 'Leitura concluída' : 'Marcar como lido'),
+          ),
+        ],
       ),
     );
   }
@@ -1624,7 +1800,7 @@ class _NextConnection extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      '${nextTopic.minutes} min · ${nextTopic.tags.first}',
+                      '~${nextTopic.estimatedReadingMinutes()} min · ${nextTopic.tags.first}',
                       style: const TextStyle(
                         color: Colors.white70,
                         fontSize: 9,

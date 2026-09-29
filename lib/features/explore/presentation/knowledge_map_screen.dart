@@ -209,7 +209,7 @@ class _TopicNode extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  '${topic.minutes} min',
+                  '${topic.estimatedReadingMinutes()} min',
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
                         color: emphasized
                             ? Colors.white70

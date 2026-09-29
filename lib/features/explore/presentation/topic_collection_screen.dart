@@ -233,7 +233,7 @@ class _TopicTile extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            '${topic.minutes} min · ${topic.tags.first}',
+            '${topic.estimatedReadingMinutes()} min · ${topic.tags.first}',
             style: Theme.of(context).textTheme.labelLarge?.copyWith(
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                   fontSize: 9,

@@ -18,6 +18,15 @@ class KnowledgeMedia {
   final String? sourceUrl;
 }
 
+/// An editorial chapter provides context beyond the introductory article.
+/// Optional so legacy topics remain compatible while their content is reviewed.
+class KnowledgeChapter {
+  const KnowledgeChapter({required this.title, required this.paragraphs});
+
+  final String title;
+  final List<String> paragraphs;
+}
+
 class KnowledgeTopic {
   const KnowledgeTopic({
     required this.id,
@@ -30,6 +39,7 @@ class KnowledgeTopic {
     this.simpleExplanation,
     this.example,
     required this.body,
+    this.chapters = const [],
     required this.remember,
     required this.whyItMatters,
     required this.curiosity,
@@ -47,11 +57,65 @@ class KnowledgeTopic {
   final String? simpleExplanation;
   final String? example;
   final List<String> body;
+  final List<KnowledgeChapter> chapters;
   final List<String> remember;
   final String whyItMatters;
   final String curiosity;
   final List<String> connections;
   final List<KnowledgeMedia> _media;
+
+  /// A leitura estimada é derivada do texto apresentado, não do número legado.
+  /// O modo rápido mostra apenas o resumo e os pontos para lembrar.
+  int estimatedReadingMinutes({bool quick = false, bool deep = false}) {
+    final passages = quick
+        ? <String>[title, summary, quickTake, ...remember]
+        : <String>[
+            title,
+            summary,
+            quickTake,
+            if (simpleExplanation != null) simpleExplanation!,
+            if (example != null) example!,
+            ...body,
+            for (final chapter in chapters) ...[
+              chapter.title,
+              ...chapter.paragraphs,
+            ],
+            ...remember,
+            whyItMatters,
+            if (deep) curiosity,
+          ];
+    final words = passages
+        .join(' ')
+        .trim()
+        .split(RegExp(r'\s+'))
+        .where((word) => word.isNotEmpty)
+        .length;
+    // Uma estimativa conservadora para texto editorial em tela pequena.
+    final result = (words / 160).ceil();
+    return result < 1 ? 1 : result;
+  }
+
+  /// Build the actual article script for text-to-speech, including chapters.
+  /// Quick listening must not read material hidden in quick reading mode.
+  String readingScript({bool quick = false, bool deep = false}) {
+    if (quick) {
+      return <String>[title, quickTake, ...remember].join('. ');
+    }
+    return <String>[
+      title,
+      quickTake,
+      if (simpleExplanation != null) simpleExplanation!,
+      if (example != null) example!,
+      ...body,
+      for (final chapter in chapters) ...[
+        chapter.title,
+        ...chapter.paragraphs,
+      ],
+      ...remember,
+      whyItMatters,
+      if (deep) curiosity,
+    ].join('. ');
+  }
 
   /// Curated audio is preserved when a topic already has it.
   ///

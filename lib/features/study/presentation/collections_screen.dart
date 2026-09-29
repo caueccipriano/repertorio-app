@@ -369,7 +369,7 @@ class _CollectionHero extends StatelessWidget {
                   Text(
                     count == 0
                         ? 'ainda vazia'
-                        : '${count} assunto${count == 1 ? '' : 's'} guardado${count == 1 ? '' : 's'}',
+                        : '$count assunto${count == 1 ? '' : 's'} guardado${count == 1 ? '' : 's'}',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: colors.onSurfaceVariant,
                         ),
@@ -490,7 +490,7 @@ class _CollectionTopicRow extends StatelessWidget {
                     ),
                     const SizedBox(height: 3),
                     Text(
-                      '${topic.tags.join(' · ')} · ${topic.minutes} min',
+                      '${topic.tags.join(' · ')} · ${topic.estimatedReadingMinutes()} min',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(

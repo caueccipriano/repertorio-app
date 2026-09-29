@@ -22,6 +22,29 @@ const bauhausTopic = KnowledgeTopic(
     'A escola mudou de Weimar para Dessau e depois para Berlim. Em Dessau, o próprio edifício da escola virou um manifesto arquitetônico: vidro, volumes claros e espaços pensados de acordo com suas funções.',
     'Ela fechou em 1933 sob pressão do regime nazista. Muitos professores e ex-alunos migraram para outros países e ajudaram a espalhar essas ideias internacionalmente.',
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Uma escola nascida de uma crise',
+      paragraphs: [
+        'A Bauhaus nasceu em Weimar, em 1919, quando a Alemanha tentava se reorganizar depois da Primeira Guerra Mundial. Walter Gropius reuniu uma escola de belas-artes e outra de artes aplicadas porque via um problema no ensino tradicional: artistas criavam em um lugar, artesãos produziam em outro e a indústria transformava os objetos do cotidiano sem que esses mundos conversassem o suficiente.',
+        'A proposta era ambiciosa: formar pessoas capazes de pensar o projeto inteiro, da ideia inicial até o material e a fabricação. Isso não significava que todos deveriam produzir cadeiras idênticas ou abandonar a expressão artística. Pintura, teatro, fotografia, tecelagem, mobiliário e arquitetura coexistiam em experiências bastante diferentes.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'O método era tão importante quanto a aparência',
+      paragraphs: [
+        'Imagine uma aula em que, antes de projetar qualquer produto, você precisa investigar como papel, metal, tecido e vidro se comportam. O curso preliminar da Bauhaus explorava cor, forma, textura e percepção. Depois, as oficinas colocavam os estudantes diante de problemas concretos: uma luminária ilumina bem? Uma cadeira pode ser fabricada e utilizada com conforto? Um cartaz comunica sua mensagem rapidamente?',
+        'Essa combinação ajudou a popularizar a ideia de que design não é só enfeitar um produto pronto. Ao mesmo tempo, vale observar uma contradição histórica: embora a escola defendesse novas formas de trabalho, mulheres ainda encontraram barreiras de acesso a determinadas oficinas. Artistas como Anni Albers mostram que as contribuições femininas foram centrais, mesmo quando nem sempre receberam o mesmo reconhecimento.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Como reconhecer a influência sem enxergá-la em tudo',
+      paragraphs: [
+        'Abra um aplicativo, observe o mapa do metrô ou olhe uma cadeira de tubos metálicos. Pergunte quais escolhas facilitam o uso: a hierarquia visual, o material, a proporção ou a eliminação de detalhes que atrapalhariam a função. Esse jeito de investigar um objeto é uma boa conexão com os debates da Bauhaus, embora não prove que aquele objeto tenha sido desenhado diretamente a partir da escola.',
+        'Há uma pegadinha frequente: Bauhaus não é sinônimo de minimalismo, nem inventou sozinha o design moderno. A escola teve fases, professores e posições distintas. Sua contribuição duradoura está também no ensino interdisciplinar, na experimentação e na pergunta sobre como arte, técnica e necessidades sociais podem se encontrar.',
+      ],
+    ),
+  ],
   remember: [
     '1919: a escola foi fundada na Alemanha.',
     'Arte, função e produção industrial deveriam conversar.',
@@ -77,6 +100,29 @@ const modernismTopic = KnowledgeTopic(
     'No Brasil, arquitetos reinterpretaram essas ideias considerando clima, luz, paisagem e vida social. Brasília é um dos exemplos mais conhecidos, mas o modernismo brasileiro vai muito além da capital.',
     'Com o tempo, algumas soluções modernistas foram criticadas por produzir espaços impessoais ou por tratar problemas sociais complexos como se pudessem ser resolvidos apenas por desenho e planejamento.',
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'O mundo industrial precisava de outras respostas',
+      paragraphs: [
+        'Entre o fim do século XIX e o século XX, cidades cresceram, novas máquinas mudaram o trabalho e tecnologias como eletricidade e elevadores alteraram a experiência urbana. Muitos artistas e arquitetos passaram a perguntar se bastava copiar fachadas de palácios antigos para atender a escolas, fábricas, apartamentos e transportes de uma sociedade em transformação.',
+        'Foi nesse cenário que diferentes correntes modernistas experimentaram geometrias, estruturas e linguagens menos dependentes do repertório histórico. Não existiu um manifesto único seguido por todos. Na arquitetura, por exemplo, a produção de Le Corbusier e a de arquitetos brasileiros compartilham algumas questões, mas oferecem soluções diferentes para clima, cultura e cidade.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Uma promessa social, não apenas visual',
+      paragraphs: [
+        'Concreto armado, aço e vidro ajudaram a abrir plantas, vencer vãos e modificar fachadas. Mas a discussão também era sobre como construir moradias, escolas e equipamentos coletivos para mais pessoas. Padronizar componentes podia reduzir certas dificuldades de produção; aproveitar luz e ventilação podia melhorar a experiência dos espaços. O desenho passou a ser pensado como parte da organização da vida cotidiana.',
+        'Essas promessas não garantiam bons resultados. Alguns projetos modernistas foram criticados quando priorizaram o planejamento abstrato e deixaram em segundo plano as relações já existentes nos bairros, a escala humana ou a diversidade de usos das ruas. Entender o movimento exige olhar tanto suas inovações quanto seus limites.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Um exercício para observar sua cidade',
+      paragraphs: [
+        'Compare dois edifícios de épocas distintas. Em vez de escolher imediatamente o mais bonito, investigue como entram luz e ar, onde ficam os elementos estruturais, como as pessoas circulam e que materiais estão aparentes. Um prédio ornamentado também pode funcionar muito bem; uma fachada de vidro moderna pode criar problemas térmicos se for inadequada ao clima.',
+        'Outra distinção útil: modernismo é um conjunto amplo de movimentos; Bauhaus foi uma escola específica que participou dessa transformação. Brutalismo é uma linguagem posterior associada a parte da arquitetura moderna, mas nem todo edifício modernista é brutalista.',
+      ],
+    ),
+  ],
   remember: [
     'Modernismo é mais amplo que Bauhaus.',
     'Materiais industriais viraram parte da linguagem estética.',
@@ -119,6 +165,29 @@ const fermiTopic = KnowledgeTopic(
     'Isso não significa que “ninguém existe”. Talvez vida inteligente seja extremamente rara. Talvez civilizações durem pouco. Talvez usem tecnologias que não sabemos detectar. Talvez estejam longe demais ou simplesmente não emitam sinais óbvios.',
     'Outra possibilidade é que nossas buscas ainda sejam minúsculas diante do tamanho do problema. Procurar sinais em uma pequena faixa de frequências durante algumas décadas é pouco quando comparado à idade e à escala da galáxia.',
     'Por isso, o paradoxo funciona melhor como uma pergunta organizadora do que como uma conclusão. Ele força astrônomos, biólogos e filósofos a explicitar o que estamos supondo sobre vida, inteligência e tecnologia.',
+  ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'De onde vem a aparente contradição',
+      paragraphs: [
+        'Olhar para um céu cheio de estrelas pode sugerir que exista vida em outros lugares, mas transformar essa sensação em uma previsão exige várias suposições. Quantos planetas têm condições adequadas? Com que frequência a vida começa? Ela costuma evoluir para inteligência? Uma civilização desenvolve tecnologia detectável e continua usando-a por quanto tempo? Conhecemos cada vez mais planetas, mas quase todas essas outras respostas continuam incertas.',
+        'O paradoxo de Fermi organiza essa distância entre expectativa e observação. Ele não diz que o universo deveria estar obrigatoriamente repleto de civilizações. Diz que, sob certas hipóteses, seria razoável esperar sinais; como não encontramos evidências confirmadas, precisamos examinar melhor as hipóteses e os métodos de busca.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'O problema não é simplesmente olhar mais longe',
+      paragraphs: [
+        'Uma mensagem de rádio viaja à velocidade da luz. Se uma civilização estivesse a mil anos-luz e transmitisse hoje, uma resposta imediata nossa ainda levaria mil anos para chegar até ela. Além da distância, existe a questão do tempo: duas sociedades podem desenvolver tecnologia em épocas completamente diferentes e nunca coincidir em uma janela detectável.',
+        'As buscas também dependem de instrumentos, frequências e padrões de sinal. É como tentar descobrir se alguém conversa em uma cidade enorme ouvindo apenas uma estação de rádio por alguns segundos. Essa comparação ajuda a entender por que a ausência de um sinal encontrado não equivale a uma busca exaustiva.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Hipóteses interessantes não são descobertas',
+      paragraphs: [
+        'Você talvez encontre explicações populares como o Grande Filtro, a hipótese do zoológico ou a ideia de civilizações silenciosas. São cenários usados para pensar o problema, não evidências de que qualquer um deles aconteceu. A Equação de Drake também organiza perguntas importantes, mas seus parâmetros mais decisivos ainda carregam grandes incertezas.',
+        'O que fazer com essa informação? Ao ler uma manchete sobre vida extraterrestre, diferencie três coisas: um planeta potencialmente habitável, um possível indício de atividade biológica e uma evidência confirmada de tecnologia. Cada uma exigiria testes e interpretações muito diferentes.',
+      ],
+    ),
   ],
   remember: [
     'Não é uma prova de que estamos sozinhos.',
@@ -177,6 +246,29 @@ const romeTopic = KnowledgeTopic(
     'Ao mesmo tempo, o Oriente romano era economicamente mais forte e tinha Constantinopla como centro político. O Império Romano do Oriente continuou existindo por muitos séculos depois do desaparecimento da autoridade imperial no Ocidente.',
     'A deposição de Rômulo Augústulo em 476 virou um marco simbólico porque oferece uma data simples para um processo que, na realidade, levou muito tempo.',
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Uma crise que se alimentava de outras crises',
+      paragraphs: [
+        'O Império Romano não dependia apenas de legiões. Sua administração precisava cobrar tributos, manter alianças, movimentar alimentos, pagar soldados e negociar com elites regionais. Quando disputas internas consumiam recursos e certos territórios deixavam de contribuir com a mesma intensidade, financiar a defesa se tornava mais difícil. A dificuldade militar, por sua vez, podia reduzir ainda mais a arrecadação.',
+        'Esses processos não aconteceram da mesma maneira em todas as províncias. Alguns centros econômicos resistiram melhor que outros. Por isso, explicar o fim do Ocidente romano por uma única causa, como impostos, religião ou invasões, apaga interações e diferenças regionais importantes.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Os anos que os livros costumam destacar',
+      paragraphs: [
+        'Em 378, tropas romanas foram derrotadas em Adrianópolis, episódio que expôs desafios de comando, recrutamento e relações com grupos godos. Em 410, Roma foi saqueada por forças lideradas por Alarico: um choque simbólico para uma cidade que representava séculos de poder, ainda que já não fosse o centro exclusivo do governo imperial.',
+        'Em 476, Odoacro depôs Rômulo Augústulo. Essa data funciona como um marco didático para o desaparecimento do cargo de imperador no Ocidente, não como o instante em que todas as instituições e todas as populações deixaram de ser romanas. O Império do Oriente, com centro em Constantinopla, continuou existindo por muitos séculos.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'O que caiu, afinal?',
+      paragraphs: [
+        'Imagine um mapa em que a mesma língua administrativa, rotas comerciais, leis e hábitos atravessam regiões governadas por autoridades diferentes. Uma estrutura política pode desaparecer sem que toda a cultura de seus habitantes seja apagada imediatamente. No antigo Ocidente, reinos sucessores preservaram, adaptaram ou transformaram elementos romanos em ritmos distintos.',
+        'Essa distinção é útil fora da história antiga: quando uma instituição muda, devemos separar ruptura política, continuidade cultural e reorganização econômica. Ela também evita outra confusão comum: chamar todo o período seguinte de uma longa fase sem conhecimento ou atividade urbana não representa adequadamente a diversidade da chamada Antiguidade Tardia.',
+      ],
+    ),
+  ],
   remember: [
     'Não existe uma causa única.',
     '476 é uma convenção útil, não um interruptor histórico.',
@@ -207,7 +299,7 @@ const brutalismTopic = KnowledgeTopic(
   minutes: 6,
   tags: ['arquitetura', 'design'],
   quickTake:
-      'Brutalismo não vem de “brutal” no sentido de violência, mas da expressão francesa béton brut: concreto cru.',
+      'O brutalismo valoriza materiais e estruturas expostos. O concreto cru se tornou uma de suas marcas, mas não define sozinho o movimento.',
   simpleExplanation:
       'Brutalismo é uma arquitetura que costuma mostrar do que o prédio é feito. Em vez de esconder concreto, vigas, pilares e instalações atrás de decoração, muitos projetos deixam esses elementos visíveis e fazem deles parte da estética.',
   example:
@@ -219,6 +311,22 @@ const brutalismTopic = KnowledgeTopic(
     'Le Corbusier foi uma referência importante, especialmente por obras em concreto aparente. Depois, arquitetos britânicos e de vários outros países desenvolveram caminhos próprios.',
     'No Brasil, arquitetos associados à chamada Escola Paulista exploraram concreto, grandes vãos e soluções estruturais expressivas, embora nem toda arquitetura de concreto brasileira deva ser resumida ao rótulo brutalista.',
     'Hoje o brutalismo voltou ao imaginário popular em fotografia, design gráfico e interfaces, em parte porque sua aparência é muito reconhecível e contrasta com estilos mais polidos.',
+  ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'O material vira parte da linguagem',
+      paragraphs: [
+        'Em um prédio tradicional, revestimentos muitas vezes escondem como a construção se sustenta. Na arquitetura brutalista, a estrutura pode se tornar protagonista: vigas, pilares, escadas e superfícies de concreto são deixados evidentes. A discussão não é apenas sobre aparência pesada, mas sobre tornar legíveis materiais, espaços e a forma como um edifício funciona.',
+        'O brutalismo ganhou destaque em diferentes países após a Segunda Guerra Mundial, num momento de reconstrução, ampliação de universidades e investimento em edifícios públicos. Mesmo assim, reduzir o movimento a concreto barato é um erro: houve soluções caras, projetos expressivos e debates sobre valores sociais muito distintos.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Concreto não é um diagnóstico',
+      paragraphs: [
+        'Imagine duas construções de concreto. A primeira tem estrutura escondida e segue uma composição clássica; a segunda organiza circulação e grandes vãos deixando a construção explícita. Só o material não resolve a classificação. O contexto, a intenção e a linguagem importam tanto quanto a superfície.',
+        'A expressão francesa béton brut, associada ao concreto aparente, ajuda a entender parte da história do termo. Também vale separar arquitetura brutalista de interfaces digitais chamadas de brutalistas: no design de telas, a palavra costuma ser usada de maneira mais livre para descrever composições deliberadamente cruas ou pouco polidas.',
+      ],
+    ),
   ],
   remember: [
     'Béton brut significa concreto cru.',
@@ -276,6 +384,30 @@ const helveticaTopic = KnowledgeTopic(
   curiosity:
       'O nome Helvetica vem de Helvetia, termo latino associado à Suíça.',
   connections: ['Swiss Style', 'Grid', 'Bauhaus', 'Sinalização'],
+  chapters: [
+    KnowledgeChapter(
+      title: 'A neutralidade também é uma escolha de design',
+      paragraphs: [
+        'A Helvetica não surgiu num vácuo. Na Suíça do pós-guerra, designers buscavam uma linguagem gráfica capaz de atravessar fronteiras e organizar informação por meio de alinhamento, contraste e hierarquia. A fonte criada na fundição Haas em 1957 se encaixava nesse repertório, mas não foi a única responsável por ele. Uma boa página de jornal depende tanto da grade e dos espaços quanto do desenho de cada letra.',
+        'Seu aspecto aparentemente discreto não é ausência de estilo: letras com baixo contraste entre traços, proporções regulares e terminações características produzem uma voz visual própria. Um teste interessante é escrever a mesma manchete com uma fonte serifada histórica, outra geométrica e a Helvetica. O texto permanece igual, mas o ritmo e o tom percebidos mudam porque tipografia é parte da mensagem.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Como uma fonte atravessou várias tecnologias',
+      paragraphs: [
+        'Max Miedinger desenvolveu a fonte com participação decisiva de Eduard Hoffmann, diretor da fundição. Primeiro chamada Neue Haas Grotesk, ela ganhou o nome Helvetica em 1960 durante a expansão comercial. Sua circulação coincidiu com a popularização de sistemas de composição fotográfica e, mais tarde, com a publicação digital, o que facilitou sua presença em marcas, impressos e interfaces.',
+        'A família também precisou de revisões para novos meios. A Neue Helvetica, publicada em 1983, reorganizou os estilos para funcionar de forma mais consistente. Isso mostra um detalhe pouco visível do design gráfico: uma tipografia não é somente um desenho famoso. Ela é um sistema técnico de letras, pesos, espaçamentos e versões, adaptado a máquinas e necessidades que evoluem.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Clareza não é garantia de acessibilidade',
+      paragraphs: [
+        'A escolha da fonte deve considerar tamanho, espaçamento, contraste, idioma, suporte digital e contexto. Um letreiro visto de longe e um parágrafo longo num celular têm necessidades diferentes. A identidade visual mais reconhecível nem sempre é a leitura mais confortável para todas as pessoas, e não há uma fonte universalmente perfeita.',
+        'A fama da Helvetica oferece uma lição útil: repetir uma solução conhecida não substitui testar o problema concreto. Antes de escolhê-la para uma interface, observe números parecidos, blocos densos de texto e tamanhos pequenos. A boa decisão vem de combinar a letra com uma hierarquia informativa, e não de confiar apenas na reputação de neutralidade.',
+      ],
+    ),
+  ],
+
 );
 
 const inflationTopic = KnowledgeTopic(
@@ -300,7 +432,21 @@ const inflationTopic = KnowledgeTopic(
     'Bancos centrais costumam usar a taxa de juros como uma ferramenta para influenciar crédito, consumo, investimento e expectativas. Juros mais altos tendem a reduzir parte da demanda, mas também podem desacelerar a atividade econômica.',
     'Quando a inflação desacelera, isso não significa necessariamente que os preços voltaram ao nível antigo. Muitas vezes significa apenas que continuam subindo mais devagar.',
   ],
-  remember: [
+  chapters: [
+  KnowledgeChapter(title: 'Preço mais alto não é sempre inflação', paragraphs: [
+    'Imagine que o tomate encareceu porque uma safra foi prejudicada. Esse é um aumento de preço importante para quem compra tomate, mas não basta, sozinho, para caracterizar a inflação da economia. Para estudar a variação geral dos preços, pesquisadores acompanham cestas de bens e serviços e calculam índices que representam determinados grupos de consumidores.',
+    'No Brasil, o IBGE produz índices como o IPCA e o INPC. As famílias não consomem exatamente os mesmos produtos nem gastam a mesma proporção com alimentação, aluguel ou transporte. Por isso, a inflação calculada para uma cesta de referência não precisa ser igual à variação efetivamente sentida por cada pessoa.',
+  ]),
+  KnowledgeChapter(title: 'De onde vem a pressão e como ela se espalha', paragraphs: [
+    'Preços podem subir por pressões de demanda, dificuldades de oferta, custos mais altos, expectativas e mecanismos de reajuste. Quando muitos compradores competem por bens que não aumentam na mesma velocidade, uma pressão pode surgir. Um choque de custos, por sua vez, pode afetar transportes, energia e produtos que utilizam esses insumos.',
+    'Esses mecanismos podem ocorrer ao mesmo tempo e atingir setores de maneira desigual. Políticas monetárias e decisões de empresas interagem com oferta, crédito e expectativas. Uma explicação que atribui toda a inflação a um único preço ou agente provavelmente está deixando variáveis relevantes de fora.',
+  ]),
+  KnowledgeChapter(title: 'A diferença entre desaceleração e queda de preços', paragraphs: [
+    'Se a inflação anual passa de dez por cento para cinco por cento, os preços em geral continuam subindo, apenas a um ritmo menor. É a desinflação. Já uma variação geral negativa recebe o nome de deflação. Distinguir os termos evita interpretar uma queda da taxa de inflação como retorno automático aos preços anteriores.',
+    'Para a vida cotidiana, vale acompanhar tanto a variação média divulgada quanto o comportamento dos itens que mais pesam no seu próprio orçamento. O índice é uma ferramenta estatística; a experiência financeira de uma família depende também de renda, dívidas, consumo e capacidade de adaptação.',
+  ]),
+ ],
+ remember: [
     'Inflação não é qualquer aumento de preço.',
     'Ela reduz poder de compra.',
     'A inflação percebida por uma pessoa pode diferir do índice oficial.',
@@ -375,6 +521,30 @@ const stoicismTopic = KnowledgeTopic(
       sourceUrl: 'https://open.spotify.com/episode/3zkEpGjfFCsCV2NDb42yK6',
     ),
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Uma filosofia maior que uma frase motivacional',
+      paragraphs: [
+        'A escola estoica começou por volta de 300 a.C., com Zenão de Cítio em Atenas, e seu nome veio do pórtico onde os primeiros pensadores se reuniam. No mundo romano, Sêneca, Epicteto e Marco Aurélio se tornaram seus representantes mais conhecidos. Mas não se tratava apenas de frases sobre manter a calma: a tradição incluía lógica, investigação da natureza e uma ética dedicada a compreender como viver bem.',
+        'Os estoicos sustentavam que a virtude, entendida como excelência do caráter e do julgamento, é o elemento decisivo de uma vida boa. Riqueza e saúde podem ser preferíveis, mas não substituem justiça, coragem, moderação e sabedoria. Isso permite uma pergunta prática diante de uma oportunidade: ela é agradável ou vantajosa, mas também é compatível com o tipo de pessoa que escolho ser?',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'O que depende de você não é o mundo inteiro',
+      paragraphs: [
+        'Na tradição associada a Epicteto, nossas escolhas e julgamentos são diferentes de resultados como reputação, clima ou decisões de outras pessoas. A distinção não manda abandonar tudo o que está fora de controle. Você pode preparar uma entrevista, estudar e comunicar-se com respeito; não pode obrigar outra pessoa a contratá-lo. A responsabilidade está em agir de modo razoável sem transformar o resultado em medida absoluta do próprio valor.',
+        'A distinção exige cuidado com um equívoco moderno: controle e influência não são sinônimos. Problemas coletivos, injustiças e necessidades alheias continuam merecendo ação. Os estoicos discutiam deveres e convivência humana; usar a filosofia para justificar indiferença ou tolerar qualquer abuso seria empobrecer uma tradição que fazia da justiça uma virtude central.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Sentir emoções e examinar julgamentos',
+      paragraphs: [
+        'O ideal estoico não pode ser resumido a fingir que nada dói. Seus filósofos investigavam a relação entre acontecimentos, interpretações, desejos e reações emocionais. A palavra antiga para certas paixões envolvia julgamentos considerados equivocados ou excessivos; isso não significa que seres humanos tenham um botão para desligar tristeza, medo ou reações involuntárias.',
+        'Imagine receber uma crítica. O primeiro desconforto pode aparecer antes de qualquer reflexão. Depois, é possível examinar se a crítica contém algo útil, se é injusta e qual resposta preserva o respeito por você e pelos outros. A prática filosófica está nesse trabalho de julgamento e conduta, não na promessa irrealista de viver sem emoções difíceis.',
+      ],
+    ),
+  ],
+
 );
 
 const renaissanceTopic = KnowledgeTopic(
@@ -384,7 +554,21 @@ const renaissanceTopic = KnowledgeTopic(
   simpleExplanation: 'Artistas e estudiosos passaram a observar com intensidade o corpo, a natureza, a perspectiva e textos clássicos, enquanto cidades ricas financiavam novas obras.',
   example: 'A perspectiva linear permitiu organizar uma pintura como se o espaço continuasse para dentro da parede.',
   body: ['O movimento ganhou força em cidades italianas como Florença, Veneza e Roma.','Humanistas estudaram autores gregos e romanos e colocaram grande atenção na experiência humana, sem que isso significasse abandonar a religião.','Artistas exploraram anatomia, luz, proporção e perspectiva com métodos cada vez mais sistemáticos.','Mecenas, cortes, Igreja e famílias de comerciantes financiaram obras que também funcionavam como símbolos de poder.','A imprensa ajudou ideias e textos a circular em escala muito maior.'],
-  remember: ['Florença foi um centro decisivo.','Humanismo não significa ateísmo.','Arte, dinheiro, política e conhecimento estavam conectados.'],
+  chapters: [
+  KnowledgeChapter(title: 'Uma mudança construída entre cidades, oficinas e livros', paragraphs: [
+    'O Renascimento teve ritmos e manifestações diferentes entre os séculos XIV e XVI. Em cidades e cortes italianas, comerciantes, instituições religiosas e governantes financiaram obras e estudos, enquanto artistas experimentavam modos de representar pessoas, edifícios e paisagens. A redescoberta e releitura de autores clássicos participou desse processo, mas os criadores também responderam aos problemas de seu próprio tempo.',
+    'Chamar o período de renascimento não significa que a Idade Média tenha sido culturalmente vazia ou que todas as transformações tenham começado de repente. Técnicas medievais, redes comerciais e instituições anteriores continuaram importantes. A história é mais interessante quando identificamos continuidades junto com as novidades.',
+  ]),
+  KnowledgeChapter(title: 'O humanismo não era uma campanha contra a religião', paragraphs: [
+    'O estudo de textos antigos em línguas originais estimulou perguntas sobre retórica, história, filosofia e condição humana. Humanistas tiveram posições religiosas diferentes; muitos trabalharam para instituições e patronos cristãos. O foco em textos e experiências humanas não implica que fossem necessariamente ateus ou que rejeitassem toda tradição.',
+    'Na arte, o estudo da anatomia, da luz e do espaço ofereceu recursos para composições mais variadas. Artistas podiam combinar observação do mundo, temas religiosos e referências à Antiguidade em uma mesma obra. Por trás de uma pintura famosa havia também aprendizes, fornecedores, encomendas e oficinas organizadas.',
+  ]),
+  KnowledgeChapter(title: 'Aprenda a observar um retrato renascentista', paragraphs: [
+    'Escolha uma pintura de retrato e note postura, vestuário, objetos, paisagem e direção do olhar. Essas escolhas podem comunicar status, identidade, virtudes ou ligações políticas. Retratos não são fotografias neutras: resultam de negociações entre o artista, o retratado e as expectativas do público.',
+    'Compare depois com uma pintura religiosa do mesmo período. Observe se as figuras ocupam um espaço coerente, como a iluminação organiza a cena e que elementos direcionam a atenção. O exercício permite perceber que técnicas são recursos expressivos, não uma escala universal de progresso artístico.',
+  ]),
+ ],
+ remember: ['Florença foi um centro decisivo.','Humanismo não significa ateísmo.','Arte, dinheiro, política e conhecimento estavam conectados.'],
   whyItMatters: 'Muitas ideias modernas sobre artista, perspectiva, educação e cultura visual foram moldadas nesse período.', curiosity: 'Leonardo da Vinci deixou milhares de páginas de cadernos com estudos de anatomia, máquinas, água e desenho.',
   connections: ['Humanismo', 'Leonardo da Vinci', 'Perspectiva', 'Imprensa'],
 );
@@ -441,6 +625,30 @@ const evolutionTopic = KnowledgeTopic(
       sourceUrl: 'https://open.spotify.com/episode/4XzJEEC1rkAzxpE128Wtw7',
     ),
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'A seleção atua sobre diferenças que já existem',
+      paragraphs: [
+        'Imagine uma população de besouros com variações herdáveis de cor. Se, naquele ambiente, predadores enxergam com mais facilidade parte dos indivíduos, os sobreviventes podem deixar descendentes em proporções diferentes. Ao longo de gerações, a frequência de variantes genéticas pode mudar. Nenhum besouro precisa desejar outra cor para isso acontecer, e o ambiente não fabrica automaticamente a mutação mais conveniente.',
+        'Darwin e Alfred Russel Wallace elaboraram independentemente a ideia da seleção natural. Eles não conheciam a estrutura do DNA: a genética moderna viria depois e explicaria mecanismos de herança e de formação da diversidade. A formulação atual reúne observações de campo, experimentos, fósseis e genética, fazendo da seleção um mecanismo testável de mudança das populações, não uma metáfora sobre a sobrevivência das pessoas mais fortes.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Seleção não é a única forma de evoluir',
+      paragraphs: [
+        'Mutações geram novas variantes genéticas e a recombinação organiza parte da variação em diferentes combinações. Além da seleção, a deriva genética pode modificar frequências por acaso, especialmente em populações pequenas. A migração pode introduzir variantes já existentes em outras populações. Por isso, encontrar uma característica comum hoje não prova, sozinho, que ela se espalhou porque era a melhor solução possível.',
+        'A adaptação sempre depende do contexto. Uma característica útil em ambiente seco pode se tornar desvantajosa depois de mudanças climáticas; outras podem ter custos que só aparecem em certas situações. A evolução não trabalha em direção a um objetivo final e não transforma necessariamente organismos em seres maiores, mais complexos ou inteligentes. Ela descreve como populações mudam e se diversificam ao longo do tempo.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Resistência bacteriana torna a seleção visível',
+      paragraphs: [
+        'Em uma população de bactérias pode haver indivíduos com mecanismos herdáveis de resistência a determinado antibiótico. Quando o medicamento elimina organismos suscetíveis, os resistentes podem sobreviver e se reproduzir, aumentando sua participação entre os que restam. O tratamento funciona como pressão seletiva: não é preciso supor que cada bactéria percebeu o perigo e decidiu desenvolver uma adaptação adequada.',
+        'Esse mecanismo demonstra por que o uso responsável de medicamentos e a vigilância microbiológica são importantes. Ao mesmo tempo, resistência envolve processos específicos, inclusive transferência de genes entre bactérias; não basta reduzir toda a questão a uma única mutação. O exemplo conecta a teoria evolutiva a decisões concretas de saúde, agricultura e pesquisa sem confundir evolução de populações com mudanças intencionais de um indivíduo.',
+      ],
+    ),
+  ],
+
 );
 
 const quantumTopic = KnowledgeTopic(
@@ -462,6 +670,30 @@ const quantumTopic = KnowledgeTopic(
       sourceUrl: 'https://open.spotify.com/episode/0T0JHwjFiwmFHimDgZnxBA',
     ),
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Os fenômenos que a física clássica não explicava',
+      paragraphs: [
+        'No começo do século XX, alguns resultados experimentais resistiam às teorias disponíveis. O estudo da radiação emitida por objetos aquecidos levou Max Planck a trabalhar com trocas discretas de energia. Ao investigar o efeito fotoelétrico, Einstein ajudou a mostrar que a luz também apresenta comportamento que não cabe inteiramente na imagem de uma onda clássica contínua. A física quântica nasceu de problemas concretos medidos em laboratórios, e não de uma preferência por explicações misteriosas.',
+        'Em átomos, elétrons ligados não podem simplesmente assumir qualquer energia imaginável. Modelos quânticos descrevem estados permitidos e transições entre eles. É tentador imaginar um pequeno sistema solar com elétrons girando em trajetórias bem definidas, mas essa figura tem limites importantes: a descrição moderna trabalha com estados, amplitudes e distribuições de probabilidade. A analogia dos degraus ajuda a entender valores discretos de energia, sem precisar acreditar que todas as propriedades físicas sejam quantizadas do mesmo jeito.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Superposição não significa magia nem pensamento criador',
+      paragraphs: [
+        'Um estado quântico pode combinar diferentes possibilidades matemáticas. Essas combinações carregam amplitudes, que interferem entre si e determinam probabilidades dos resultados possíveis de uma medida. Isso não autoriza concluir que uma pessoa consiga alterar a matéria somente por observar ou desejar algo. Medir significa produzir uma interação física adequada com um sistema, e há debates interpretativos legítimos sobre como compreender a descrição matemática, não uma permissão para abandonar a experimentação.',
+        'O princípio da incerteza é outra ideia frequentemente distorcida. Ele estabelece relações fundamentais entre a dispersão de certas grandezas, como posição e momento, nos estados quânticos. Não é simplesmente a reclamação de que nossos microscópios ainda são ruins. A teoria fornece previsões extremamente precisas para conjuntos de observações, embora não atribua a todas as propriedades o comportamento determinista que a intuição cotidiana espera.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'A teoria está dentro dos objetos que você usa',
+      paragraphs: [
+        'Sem os princípios quânticos, seria difícil explicar por que materiais sólidos conduzem ou bloqueiam eletricidade de maneiras diferentes. A estrutura de bandas ajuda a compreender o comportamento dos semicondutores empregados nos transistores. Lasers também dependem de transições entre estados de energia e de fenômenos associados à emissão estimulada. Quântica não é só um assunto sobre computadores experimentais: muitos de seus efeitos já são fundamentais na indústria e nos laboratórios.',
+        'Computadores quânticos procuram controlar estados quânticos delicados para executar algoritmos específicos. Eles não são substitutos universais de notebooks e não tornam toda conta automaticamente mais rápida. Preparar, proteger e medir esses estados traz desafios de ruído e correção de erros. Separar tecnologias maduras, aplicações de pesquisa e promessas ainda em teste é uma forma de compreender a área sem transformá-la numa coleção de manchetes futuristas.',
+      ],
+    ),
+  ],
+
 );
 
 const dnaTopic = KnowledgeTopic(
@@ -471,7 +703,21 @@ const dnaTopic = KnowledgeTopic(
   simpleExplanation: 'Trechos de DNA podem orientar a produção de moléculas, especialmente proteínas e RNAs, enquanto células regulam quando e como essa informação é usada.',
   example: 'Quase todas as células do corpo têm o mesmo DNA, mas uma célula da pele e um neurônio ativam conjuntos diferentes de genes.',
   body: ['O DNA é formado por nucleotídeos organizados em uma dupla hélice.','A sequência das bases carrega informação que pode ser copiada e transmitida.','Genes representam apenas parte do genoma e sua expressão é regulada.','Ambiente e desenvolvimento interagem com a genética, por isso muitos traços não têm uma causa genética simples.','Mutações podem ser neutras, prejudiciais ou vantajosas dependendo do contexto.'],
-  remember: ['Mesmo DNA, usos diferentes em células diferentes.','Gene não é destino.','Mutações geram variação.'],
+  chapters: [
+  KnowledgeChapter(title: 'Informação biológica escrita em moléculas', paragraphs: [
+    'O DNA é formado por uma sequência de unidades químicas que inclui quatro bases, representadas pelas letras A, T, C e G. A sequência guarda informações biológicas, mas não funciona como uma frase comum que qualquer célula lê integralmente de uma vez. Diferentes regiões têm funções e condições de uso distintas.',
+    'Nos organismos celulares, parte das informações pode ser transcrita para moléculas de RNA. Algumas dessas mensagens participam da produção de proteínas, cujas estruturas e atividades ajudam a construir e manter as células. Outras regiões do DNA influenciam como, quando ou em quais condições determinadas informações serão utilizadas.',
+  ]),
+  KnowledgeChapter(title: 'Ter um gene não determina uma vida inteira', paragraphs: [
+    'É tentador imaginar o genoma como um manual pronto que decide sozinho aparência, saúde e comportamento. Na prática, muitos resultados dependem da interação entre variações genéticas, regulação, desenvolvimento, ambiente e acaso biológico. Nem toda característica segue uma relação simples entre um gene e um resultado.',
+    'Uma maneira de visualizar isso é pensar em uma receita que contém instruções, mas precisa de ingredientes, condições de preparo e mecanismos que decidam quais etapas serão executadas. A analogia é útil até certo ponto: células não são cozinheiros conscientes, e a biologia trabalha com redes de interações muito complexas.',
+  ]),
+  KnowledgeChapter(title: 'Como examinar uma manchete genética', paragraphs: [
+    'Se um estudo encontra uma associação entre determinada variante genética e uma característica, pergunte qual população foi analisada, como a característica foi medida e quão forte é a associação. Associação estatística não significa que um único gene cause inevitavelmente aquele resultado em todas as pessoas.',
+    'Conhecer DNA também ajuda a distinguir genética de genômica. O estudo de genes individuais é importante, mas compreender o conjunto do genoma e suas interações abre perguntas muito mais amplas sobre evolução, desenvolvimento e funcionamento dos organismos.',
+  ]),
+ ],
+ remember: ['Mesmo DNA, usos diferentes em células diferentes.','Gene não é destino.','Mutações geram variação.'],
   whyItMatters: 'Ajuda a interpretar notícias sobre hereditariedade, testes genéticos, medicina e biotecnologia.', curiosity: 'Se esticado, o DNA de uma única célula humana teria aproximadamente dois metros.',
   connections: ['Genética', 'Evolução', 'RNA', 'CRISPR'],  media: [
     KnowledgeMedia(
@@ -492,7 +738,21 @@ const aiTopic = KnowledgeTopic(
   simpleExplanation: 'Durante o treinamento, o modelo aprende relações entre palavras, ideias e estruturas. Na geração, usa o contexto recebido para estimar o próximo token repetidamente.',
   example: 'Ao receber “o céu está”, o modelo distribui probabilidades entre continuações possíveis e escolhe uma delas conforme sua configuração.',
   body: ['Texto é dividido em unidades chamadas tokens.','Redes do tipo transformer usam mecanismos de atenção para relacionar partes do contexto.','Treinamento ajusta muitos parâmetros para reduzir erros de previsão.','A geração pode produzir respostas convincentes e ainda assim factualmente erradas, porque plausibilidade linguística não garante verdade.','Ferramentas externas, recuperação de documentos e verificações podem melhorar a fundamentação.'],
-  remember: ['Geração acontece token por token.','Plausível não significa verdadeiro.','Contexto muda a resposta.'],
+  chapters: [
+  KnowledgeChapter(title: 'Texto entra em partes menores, não em frases prontas', paragraphs: [
+    'Muitos sistemas de inteligência artificial generativa baseados em grandes modelos de linguagem processam texto como sequências de unidades chamadas tokens. Durante o pré-treinamento de modelos autorregressivos, os parâmetros são ajustados repetidamente para melhorar a previsão de unidades seguintes com base no contexto anterior.',
+    'Essa tarefa aparentemente simples permite aprender representações e relações complexas presentes nos dados de treinamento. Na geração, o modelo recebe o contexto da conversa e produz novas unidades sucessivamente. Isso não equivale a procurar uma frase pronta num banco de respostas; também não garante que tudo que pareça convincente seja correto.',
+  ]),
+  KnowledgeChapter(title: 'Treinar, adaptar e responder são etapas diferentes', paragraphs: [
+    'O pré-treinamento costuma envolver grande quantidade de dados e recursos computacionais. Etapas posteriores de ajuste e alinhamento podem alterar o comportamento de um sistema em tarefas ou formatos específicos. Já produzir uma resposta em uma conversa normalmente é uma etapa de inferência: usar os parâmetros disponíveis com o contexto fornecido naquele momento.',
+    'Ferramentas adicionais podem mudar bastante a experiência. Um sistema que consulta documentos ou executa cálculos dispõe de informações e verificações que um modelo isolado não teria. Por isso, vale distinguir a capacidade do modelo, a qualidade do material consultado e os resultados realmente confirmados por ferramentas.',
+  ]),
+  KnowledgeChapter(title: 'Fluência não substitui evidência', paragraphs: [
+    'Uma resposta clara e bem escrita pode conter um número inventado, uma interpretação frágil ou uma referência inexistente. O usuário atento procura sinais de sustentação: fontes confiáveis, cálculos reprodutíveis, dados do próprio documento e delimitação do que o sistema sabe ou está estimando.',
+    'O melhor exercício é pedir uma explicação de um assunto que você já domina e verificar cada etapa. Depois, faça o mesmo com um tema desconhecido, consultando pelo menos uma fonte independente. Assim, você aprende a aproveitar a produtividade da tecnologia sem delegar a ela toda a responsabilidade pelas conclusões.',
+  ]),
+ ],
+ remember: ['Geração acontece token por token.','Plausível não significa verdadeiro.','Contexto muda a resposta.'],
   whyItMatters: 'Entender o mecanismo ajuda a usar IA com expectativas melhores e verificar respostas quando precisão importa.', curiosity: 'Transformers foram apresentados em 2017 e rapidamente se tornaram uma arquitetura central para modelos de linguagem.',
   connections: ['Machine learning', 'Transformer', 'Tokens', 'Redes neurais'],  media: [
     KnowledgeMedia(
@@ -525,6 +785,30 @@ const internetTopic = KnowledgeTopic(
       sourceUrl: 'https://open.spotify.com/episode/69AKhXRdr6UshYKs0j5DQe',
     ),
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'O endereço é só o começo da viagem',
+      paragraphs: [
+        'Quando você digita o endereço de um site, o navegador precisa descobrir para onde mandar a solicitação. Em geral, ele consulta informações que podem já estar guardadas em cache; se não houver uma resposta útil, a resolução de DNS ajuda a encontrar endereços de rede. Um mesmo serviço pode responder por vários servidores, e um único servidor pode atender muitos nomes diferentes.',
+        'Encontrar um endereço não significa necessariamente falar com uma máquina distante. Redes de distribuição de conteúdo, conhecidas como CDNs, podem manter cópias de arquivos perto da sua região. Isso ajuda a explicar por que o mesmo site carrega rapidamente numa cidade e demora em outra: distância, qualidade da conexão, cache e capacidade do servidor influenciam o percurso.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'HTTPS é um acordo antes da conversa',
+      paragraphs: [
+        'Para uma conexão HTTPS, navegador e servidor normalmente negociam parâmetros criptográficos usando TLS antes de trocar o conteúdo protegido. O navegador também verifica o certificado apresentado pelo servidor e se ele é adequado ao endereço acessado. Só depois disso faz sentido enviar informações sensíveis por aquele canal.',
+        'O cadeado do navegador indica proteção do transporte e a validação da identidade associada ao certificado; não prova que o negócio por trás do site é honesto nem impede golpes dentro de uma página legítima. Esse é um equívoco importante: criptografia dificulta a interceptação da comunicação, mas não decide se o conteúdo recebido merece confiança.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Receber arquivos não é o mesmo que mostrar uma página',
+      paragraphs: [
+        'Após receber o HTML, o navegador interpreta sua estrutura e monta o documento na memória. CSS define regras de apresentação; scripts podem alterar elementos, disparar novas solicitações e responder aos seus toques. Imagens, fontes e outros recursos podem vir de endereços distintos e chegar em momentos diferentes. A tela que aparece é resultado de várias etapas, não um arquivo pronto enviado de uma vez.',
+        'Imagine que o texto principal chega rápido, mas a fonte personalizada e as fotos demoram. O conteúdo pode aparecer com uma aparência provisória antes de tudo terminar. Ao analisar um site lento, pergunte se o atraso acontece no DNS, na rede, no servidor, no download ou na montagem visual. Cada causa exige uma solução diferente, inclusive quando tudo acontece dentro do mesmo aplicativo.',
+      ],
+    ),
+  ],
+
 );
 
 const bitcoinTopic = KnowledgeTopic(
@@ -639,7 +923,21 @@ const mapsTopic = KnowledgeTopic(
   simpleExplanation: 'Tente abrir a casca de uma laranja e deixá-la perfeitamente plana sem rasgar ou esticar. O mesmo problema aparece ao representar a Terra.',
   example: 'Na projeção de Mercator, regiões próximas aos polos parecem muito maiores em relação às áreas equatoriais.',
   body: ['Projeções cartográficas são métodos matemáticos para representar uma superfície curva em um plano.','Mercator preserva ângulos locais, característica útil historicamente para navegação.','Projeções equivalentes priorizam proporções de área, mas alteram formas.','Escala e objetivo determinam qual projeção é mais adequada.','Mapas também envolvem escolhas sobre centro, orientação, fronteiras, nomes e dados.'],
-  remember: ['Todo mapa plano distorce algo.','Mercator não foi criada para comparar áreas.','Escolher uma projeção é escolher prioridades.'],
+  chapters: [
+  KnowledgeChapter(title: 'Uma superfície curva não cabe numa folha sem perdas', paragraphs: [
+    'Um globo preserva a geometria de uma esfera de maneira aproximada; já um mapa plano precisa transformar coordenadas de uma superfície curva em posições no papel ou na tela. Essa transformação é uma projeção cartográfica. Não existe maneira de preservar simultaneamente todas as distâncias, áreas, ângulos e formas em um mapa-múndi plano.',
+    'Cada método escolhe quais propriedades priorizar. Projeções conformes procuram preservar ângulos locais, enquanto projeções equivalentes preservam áreas relativas. Escolhas assim não são truques escondidos: são compromissos matemáticos, adequados a tarefas diferentes.',
+  ]),
+  KnowledgeChapter(title: 'O famoso mapa não é a única forma possível', paragraphs: [
+    'A projeção de Mercator é útil para determinadas aplicações ligadas a direções e navegação, mas exagera visualmente regiões de latitudes altas em um mapa-múndi. Por isso, a Groenlândia pode parecer muito maior em relação a territórios próximos do Equador do que realmente é.',
+    'Uma projeção que representa áreas com maior fidelidade pode, em compensação, distorcer formatos. Antes de discutir qual mapa parece mais correto, pergunte qual propriedade importa para o objetivo: comparar territórios, navegar, ensinar geografia ou visualizar uma distribuição.',
+  ]),
+  KnowledgeChapter(title: 'Todo mapa também é uma seleção editorial', paragraphs: [
+    'Além da projeção, o cartógrafo escolhe escala, orientação, cores, símbolos, limites e quais informações omitir. Um mapa de metrô pode distorcer distâncias para tornar conexões mais fáceis de seguir. Isso pode melhorar muito sua utilidade sem pretender reproduzir com exatidão cada curva dos trilhos.',
+    'Quando encontrar um mapa em uma reportagem, leia a legenda e procure sua fonte de dados. Cores intensas e limites bem desenhados podem passar uma sensação de precisão que a base cartográfica, a amostragem ou a escala não justificam.',
+  ]),
+ ],
+ remember: ['Todo mapa plano distorce algo.','Mercator não foi criada para comparar áreas.','Escolher uma projeção é escolher prioridades.'],
   whyItMatters: 'Ajuda a ler mapas criticamente e perceber como representação influencia nossa imagem mental do mundo.', curiosity: 'A Groenlândia parece gigantesca em muitos mapas Mercator, embora a África seja cerca de 14 vezes maior em área.',
   connections: ['Mercator', 'Cartografia', 'Geopolítica', 'Escala'],  media: [
     KnowledgeMedia(
@@ -769,6 +1067,30 @@ const buracosNegrosTopic = KnowledgeTopic(
       sourceUrl: 'https://open.spotify.com/episode/3yP1xcoqxHjx7p1Wh2M6ha',
     ),
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'O horizonte não é uma parede preta',
+      paragraphs: [
+        'Um buraco negro é definido por uma região do espaço-tempo delimitada por um horizonte de eventos, além do qual sinais não conseguem chegar a observadores distantes. Esse limite não é uma casca sólida que uma nave pudesse tocar. A imagem popular de um redemoinho sugador também engana: longe do horizonte, a atração gravitacional de um objeto depende de sua massa e distância, como acontece com outros corpos.',
+        'Se, num experimento puramente imaginário, o Sol fosse substituído por um buraco negro de exatamente a mesma massa, a órbita da Terra não mudaria por essa troca isolada. A iluminação e as condições de vida mudariam drasticamente, é claro. O exemplo separa a gravidade da ideia incorreta de que buracos negros atraem tudo no universo como aspiradores cósmicos.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Como fotografar algo que não emite luz para fora',
+      paragraphs: [
+        'Os registros astronômicos não mostram uma superfície sólida do buraco negro. Gás muito quente ao redor dele pode produzir radiação intensa antes de cruzar o horizonte, e a gravidade altera os caminhos percorridos pela luz. O Event Horizon Telescope combinou observações de radiotelescópios espalhados pela Terra para reconstruir, em 2019, a primeira imagem divulgada da região próxima ao buraco negro de M87.',
+        'Além das imagens, os cientistas estudam movimentos de estrelas e de gás nas proximidades e detectam ondas gravitacionais produzidas por fusões. Cada técnica acessa uma peça diferente do fenômeno. Dizer que os buracos negros são inteiramente invisíveis confunde duas coisas: não recebemos sinais emitidos de dentro do horizonte, mas podemos observar claramente muitos efeitos externos.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'O que sabemos e o que continua sem resposta',
+      paragraphs: [
+        'A relatividade geral descreve com enorme sucesso muitos efeitos gravitacionais observados. Algumas soluções matemáticas preveem singularidades em condições extremas, onde a descrição clássica deixa de oferecer um quadro físico completo. Isso não equivale a uma fotografia do que existe lá dentro: as leis necessárias para unir gravitação e física quântica ainda são objeto de pesquisa.',
+        'Perguntas sobre informação, radiação de Hawking e a natureza física do interior são campos de investigação, não descobertas encerradas. Um bom leitor distingue três camadas: medidas externas feitas com instrumentos, previsões matemáticas testáveis e hipóteses ainda em debate. Essa separação permite acompanhar notícias sobre buracos negros sem confundir ilustração artística com observação direta.',
+      ],
+    ),
+  ],
+
 );
 
 const vacinasTopic = KnowledgeTopic(
@@ -803,6 +1125,30 @@ const sonoTopic = KnowledgeTopic(
       sourceUrl: 'https://open.spotify.com/episode/5wNPPxo2IyyS3kpfI7qq4a',
     ),
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Dois relógios organizam suas noites',
+      paragraphs: [
+        'Uma parte importante da vontade de dormir vem da pressão de sono: durante a vigília, processos biológicos associados a substâncias como a adenosina sinalizam a necessidade de descanso. Outro componente é o ritmo circadiano, coordenado por relógios internos que respondem sobretudo à alternância entre luz e escuridão. Você pode estar cansado após muitas horas acordado e, ao mesmo tempo, sentir um pico passageiro de alerta por causa do horário biológico.',
+        'A cafeína interfere na sinalização da adenosina e pode mascarar parte da sonolência sem resolver integralmente a necessidade de sono. Já a luz intensa à noite pode alterar pistas ambientais importantes para o relógio circadiano. Os dois mecanismos ajudam a entender por que uma noite irregular não se conserta simplesmente com força de vontade ou com mais uma xícara de café.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Dormir não é permanecer no mesmo estado',
+      paragraphs: [
+        'Ao longo da noite, o cérebro alterna entre estágios NREM e REM. No NREM há fases de transição, sono estabelecido e sono profundo; no REM, a atividade cerebral e os movimentos rápidos dos olhos compõem outro padrão. As proporções variam ao longo dos ciclos, e despertares breves podem acontecer sem que você se lembre deles. Nenhum estágio isolado consegue representar todos os benefícios do sono.',
+        'O sono participa da consolidação de diferentes tipos de memória, da regulação metabólica e da manutenção de funções físicas. Entretanto, dizer que todo aprendizado é automaticamente memorizado durante uma noite seria exagero: a qualidade do estudo, as revisões e outros fatores também contam. O descanso integra o processo de aprendizagem; ele não substitui a prática.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Qualidade é diferente de tempo na cama',
+      paragraphs: [
+        'Passar muitas horas deitado não garante sono contínuo nem restauração adequada. Rotina, ambiente, interrupções e condições médicas podem interferir na experiência. A falta persistente de sono pode afetar atenção, tempo de reação e decisões cotidianas, além de se relacionar com a saúde em longo prazo. Pessoas têm diferenças individuais; comparações simplistas sobre quantas horas todos precisam podem induzir conclusões ruins.',
+        'Uma observação útil é separar três perguntas: por quanto tempo você tentou dormir, por quanto tempo de fato dormiu e como se sente durante o dia. Aplicativos e relógios domésticos podem sugerir padrões, mas não diagnosticam distúrbios só com uma estimativa de estágios. Quando há sintomas persistentes, avaliação clínica é diferente de seguir dicas gerais de higiene do sono.',
+      ],
+    ),
+  ],
+
 );
 
 const viesesTopic = KnowledgeTopic(
@@ -820,6 +1166,30 @@ const viesesTopic = KnowledgeTopic(
       sourceUrl: 'https://open.spotify.com/episode/6BrwFwmI3lfmIudeyexwiz',
     ),
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Heurística não é sinônimo de erro',
+      paragraphs: [
+        'Não temos tempo de calcular todas as alternativas em cada pequena decisão. Uma heurística é uma estratégia simplificada que economiza atenção: reconhecer rapidamente uma situação familiar, usar uma referência aproximada ou buscar padrões na experiência. Muitas vezes isso é útil. O problema aparece quando uma estratégia que funciona num ambiente produz erros sistemáticos em outro.',
+        'Imagine estimar o risco de viajar depois de assistir a várias notícias sobre acidentes. Os episódios estão frescos na memória e podem parecer mais frequentes do que realmente são. A disponibilidade mental de um exemplo não mede sua prevalência estatística. Comparar impressões com dados de uma população relevante ajuda a perceber quando uma lembrança marcante tomou o lugar de uma boa estimativa.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'O cérebro encontra o que estava procurando',
+      paragraphs: [
+        'O viés de confirmação aparece quando damos mais atenção a informações compatíveis com aquilo em que já acreditamos, ou procuramos evidências que reforcem uma hipótese sem buscar testes capazes de contrariá-la. Não é preciso agir de má-fé: o processo pode acontecer mesmo entre pessoas bem-intencionadas e experientes. Em discussões, repetir apenas casos favoráveis pode criar uma convicção que parece apoiada por muitas provas, embora a amostra tenha sido selecionada.',
+        'Uma técnica prática é formular antecipadamente a pergunta contrária. Se você acredita que uma estratégia de estudo funciona, o que teria de acontecer para considerar que ela não está ajudando? Definir um critério antes de observar o resultado dificulta mudar as regras sempre que um fato inconveniente aparece. Esse cuidado não elimina vieses, mas torna o processo de decisão mais verificável.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Uma âncora pode mudar uma negociação',
+      paragraphs: [
+        'Na ancoragem, um valor inicial pode influenciar avaliações seguintes, mesmo quando não deveria ter tanta importância. Uma etiqueta com um preço original elevado faz um desconto parecer enorme, mas isso não diz se o preço final é adequado. Em uma negociação salarial, a primeira cifra mencionada pode orientar a faixa imaginada pelas pessoas envolvidas.',
+        'Conhecer o nome do viés não é vacina contra ele. Antes de aceitar uma âncora, reúna referências independentes, compare alternativas reais e registre seus critérios de decisão. Em situações relevantes, ter outra pessoa revisando a análise ou usar dados preparados antes da negociação pode ser mais eficaz que confiar apenas na sensação de estar pensando com clareza.',
+      ],
+    ),
+  ],
+
 );
 
 const jurosCompostosTopic = KnowledgeTopic(
@@ -837,6 +1207,30 @@ const jurosCompostosTopic = KnowledgeTopic(
       sourceUrl: 'https://open.spotify.com/episode/4JWqfzykw0OnQlO9DdMgNC',
     ),
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'O dinheiro novo vira parte da base',
+      paragraphs: [
+        'Imagine começar com R\$ 1.000 e receber 5% ao ano, sem depósitos nem retiradas. Depois do primeiro ano, o saldo seria R\$ 1.050. No segundo, se a mesma taxa incidir sobre o saldo acumulado, o ganho será de R\$ 52,50 e o total chegará a R\$ 1.102,50. O rendimento anterior começa a produzir rendimento adicional; essa é a diferença essencial em relação aos juros simples.',
+        'O exemplo pressupõe taxa fixa e ausência de tributos, taxas, resgates ou variações do investimento. Na vida real, rentabilidades podem oscilar e custos reduzir o resultado. Por isso, uma projeção matemática serve para entender o mecanismo, não para prometer que determinado produto renderá a mesma porcentagem todos os meses ou anos.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Tempo, taxa e capitalização têm papéis distintos',
+      paragraphs: [
+        'O crescimento composto depende do capital inicial, da taxa por período, da frequência com que os rendimentos entram na base e da duração. Taxa mensal não pode ser simplesmente tratada como taxa anual. Para comparar alternativas, as taxas precisam estar na mesma unidade de tempo e usar hipóteses compatíveis; contribuições periódicas também alteram o resultado.',
+        'Compare duas trajetórias hipotéticas com o mesmo dinheiro inicial e taxas diferentes. No primeiro mês, a distância entre os resultados pode parecer pequena. Depois de muitos períodos, a diferença acumulada se amplia porque cada base cresce em ritmo próprio. Isso ajuda a explicar o valor do horizonte de tempo, mas não elimina riscos, inflação nem possíveis perdas.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'A mesma conta também aumenta dívidas',
+      paragraphs: [
+        'Na dívida, a matemática opera na direção contrária ao seu patrimônio. Se os encargos são incorporados ao saldo e não pagos, períodos seguintes podem incidir sobre valores maiores. Taxa contratada, atrasos, tarifas, amortizações e regras do produto definem como isso ocorre; não se deve aplicar automaticamente um exemplo de poupança a qualquer financiamento.',
+        'Outra distinção importante é a diferença entre crescer nominalmente e ganhar poder de compra. Um saldo pode aumentar em reais enquanto os preços de bens e serviços também sobem. Ao avaliar alternativas, considere rendimento líquido, inflação e prazo, em vez de olhar só o número final na calculadora. Juros compostos são um mecanismo financeiro, não uma garantia de enriquecimento.',
+      ],
+    ),
+  ],
+
 );
 
 const bolhasTopic = KnowledgeTopic(
@@ -851,7 +1245,7 @@ const fotografiaTopic = KnowledgeTopic(
   id: 'fotografia', eyebrow: 'ARTE / TECNOLOGIA', title: 'COMO UMA CÂMERA CONGELA A LUZ?',
   summary: 'Lente, abertura, obturador e sensor ou filme controlam a formação e o registro de uma imagem.', minutes: 7, tags: ['arte', 'tecnologia'],
   quickTake: 'Fotografia é literalmente administrar luz no espaço e no tempo.', simpleExplanation: 'A lente forma a imagem; a abertura controla quanto entra; o obturador controla por quanto tempo; o sensor registra o resultado.', example: 'Uma exposição longa pode transformar faróis de carros em rastros luminosos.',
-  body: ['Câmeras derivam do princípio da câmara escura, conhecido muito antes da fotografia moderna.', 'Aberturas maiores deixam entrar mais luz e também influenciam profundidade de campo.', 'Velocidade do obturador altera como movimento é registrado.', 'Sensibilidade do sensor, expressa como ISO, envolve compromissos de qualidade e ruído.', 'Composição e edição continuam sendo escolhas humanas mesmo quando a câmera automatiza exposição.'], remember: ['Abertura controla luz e profundidade.', 'Obturador controla tempo.', 'ISO altera sensibilidade e ruído.'],
+  body: ['Câmeras derivam do princípio da câmara escura, conhecido muito antes da fotografia moderna.', 'Aberturas maiores deixam entrar mais luz e também influenciam profundidade de campo.', 'Velocidade do obturador altera como movimento é registrado.', 'Sensibilidade do sensor, expressa como ISO, envolve compromissos de qualidade e ruído.', 'Composição e edição continuam sendo escolhas humanas mesmo quando a câmera automatiza exposição.'], remember: ['Abertura controla luz e profundidade.', 'Obturador controla tempo.', 'Em câmeras digitais, ISO ajusta o ganho e pode tornar o ruído mais visível.'],
   whyItMatters: 'Entender o triângulo de exposição melhora fotos mesmo em câmeras de celular.', curiosity: 'A primeira fotografia permanente conhecida exigiu uma exposição extremamente longa no século XIX.', connections: ['Cinema', 'Óptica', 'Luz', 'Composição'],  media: [
     KnowledgeMedia(
       type: KnowledgeMediaType.audio,
@@ -862,13 +1256,51 @@ const fotografiaTopic = KnowledgeTopic(
       sourceUrl: 'https://open.spotify.com/episode/5uWIuQMlrVbKvDucC8IRvz',
     ),
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Uma imagem é uma negociação com a luz',
+      paragraphs: [
+        'Imagine fotografar alguém correndo ao entardecer. Uma abertura maior permite a entrada de mais luz e pode desfocar o fundo; um obturador rápido ajuda a congelar o movimento, mas deixa menos tempo para registrar a cena. Uma exposição longa faz o contrário: coleta luz por mais tempo e pode transformar pessoas em borrões ou faróis em trilhas. A decisão não é descobrir uma configuração perfeita, mas escolher quais informações visuais importam.',
+        'A abertura costuma aparecer como um número f. Um valor menor, como f/2,8, indica uma abertura relativamente ampla; f/11, uma abertura menor, considerando a mesma distância focal. A profundidade de campo depende também de distância, lente e tamanho do formato. É por isso que aumentar a abertura não produz sempre o mesmo desfoque em câmeras diferentes.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'ISO ilumina a imagem, não a cena',
+      paragraphs: [
+        'Em uma câmera digital, aumentar o ISO normalmente altera o ganho do sinal e o modo como a câmera entrega a imagem. Isso não faz mais fótons atravessarem a lente: quem controla a luz capturada são principalmente a abertura, o tempo de exposição e a iluminação disponível. Em pouca luz, elevar o ISO pode ajudar a obter uma imagem clara sem reduzir a velocidade do obturador, mas também pode revelar ruído e limitar detalhes.',
+        'Faça um experimento mental: duas fotos com mesma abertura e mesmo tempo recebem essencialmente a mesma quantidade de luz da cena. Se uma aparece mais clara ao elevar o ISO, isso não significa que a lente capturou mais luz. Entender essa diferença permite escolher entre movimento congelado, granulação aceitável e uma imagem escura que possa ser ajustada depois.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Fotografar também é editar a realidade',
+      paragraphs: [
+        'O enquadramento decide o que fica dentro e fora da imagem; a altura da câmera muda relações entre pessoas e objetos; a distância focal altera o campo de visão e, junto com a posição do fotógrafo, influencia a perspectiva. Mesmo sem filtros, toda fotografia envolve escolhas. Um retrato feito na altura dos olhos comunica algo diferente de outro registrado do alto ou muito de perto.',
+        'O processamento digital acrescenta outras decisões: balanço de branco, contraste, redução de ruído e compressão. Celulares frequentemente combinam várias exposições antes de entregar um único arquivo. Isso não torna a fotografia menos legítima, mas ajuda a questionar a crença de que uma imagem fotográfica seria um registro completamente neutro ou idêntico ao que os olhos enxergam.',
+      ],
+    ),
+  ],
+
 );
 
 const perspectivaTopic = KnowledgeTopic(
   id: 'perspectiva', eyebrow: 'ARTE / PERCEPÇÃO', title: 'COMO UM DESENHO CRIA PROFUNDIDADE NUM PAPEL PLANO?',
   summary: 'Perspectiva usa relações geométricas e pistas visuais para representar espaço tridimensional.', minutes: 7, tags: ['arte', 'design'],
   quickTake: 'Linhas convergentes, escala e sobreposição fazem o cérebro interpretar profundidade.', simpleExplanation: 'Trilhos paralelos parecem se aproximar à distância; a perspectiva linear organiza esse efeito usando pontos de fuga.', example: 'Pintores renascentistas sistematizaram métodos geométricos para criar interiores e cidades convincentes.',
-  body: ['A perspectiva linear foi sistematizada na Itália do século XV, embora culturas anteriores já usassem várias formas de representar profundidade.', 'Um ponto de fuga organiza linhas paralelas numa determinada direção.', 'Objetos mais distantes costumam ser representados menores.', 'Perspectiva atmosférica usa contraste e cor para sugerir grandes distâncias.', 'Fotografia herdou muitas convenções espaciais que hoje parecem naturais aos nossos olhos.'], remember: ['Ponto de fuga organiza direção.', 'Tamanho relativo sugere distância.', 'Existem várias perspectivas possíveis.'],
+  body: ['A perspectiva linear foi sistematizada na Itália do século XV, embora culturas anteriores já usassem várias formas de representar profundidade.', 'Um ponto de fuga organiza linhas paralelas numa determinada direção.', 'Objetos mais distantes costumam ser representados menores.', 'Perspectiva atmosférica usa contraste e cor para sugerir grandes distâncias.', 'Fotografia herdou muitas convenções espaciais que hoje parecem naturais aos nossos olhos.'], chapters: [
+  KnowledgeChapter(title: 'Por que linhas paralelas parecem se encontrar', paragraphs: [
+    'Quando olhamos para trilhos retos que se afastam, eles podem parecer aproximar-se em direção ao horizonte, apesar de sua distância real permanecer constante. A perspectiva linear organiza esse efeito numa superfície plana, usando uma linha do horizonte e pontos de fuga para construir uma representação coerente a partir de determinado ponto de vista.',
+    'O procedimento não copia automaticamente a visão humana inteira. Ele pressupõe escolhas geométricas e funciona melhor quando entendemos a posição do observador. Há obras que rejeitam deliberadamente esse recurso para expressar ideias, organizar narrativas ou mostrar vários pontos de vista.',
+  ]),
+  KnowledgeChapter(title: 'Uma invenção visual com história', paragraphs: [
+    'Experimentos associados a Filippo Brunelleschi, no início do século XV, ajudaram a demonstrar maneiras de representar espaço por regras geométricas. Leon Battista Alberti posteriormente sistematizou princípios importantes para pintores. Esses desenvolvimentos ocorreram em diálogo com outros conhecimentos e tradições de representação espacial.',
+    'Desenhar uma sala com perspectiva de um ponto pode ser um teste simples: trace uma linha de horizonte, marque um ponto de fuga e conduza até ele as linhas de profundidade do piso e do teto. Manter verticais e horizontais coerentes facilita ver como a ilusão se forma.',
+  ]),
+  KnowledgeChapter(title: 'Profundidade não depende só da perspectiva linear', paragraphs: [
+    'Um objeto pode parecer mais distante porque está parcialmente encoberto por outro, ocupa menos espaço na imagem ou apresenta contraste reduzido. Artistas combinam várias pistas visuais; perspectiva atmosférica, escala e sobreposição não são a mesma técnica, mas podem trabalhar juntas.',
+    'A fotografia também registra efeitos de perspectiva conforme posição da câmera e distância aos objetos. Trocar o ponto de observação pode mudar bastante a percepção das proporções. Isso explica por que imagens com aparência objetiva ainda são resultados de escolhas de enquadramento.',
+  ]),
+ ],
+ remember: ['Ponto de fuga organiza direção.', 'Tamanho relativo sugere distância.', 'Existem várias perspectivas possíveis.'],
   whyItMatters: 'Mostra que imagens aparentemente realistas dependem de convenções e matemática.', curiosity: 'Brunelleschi é associado a experimentos decisivos para a perspectiva linear no início do Renascimento.', connections: ['Renascimento', 'Fotografia', 'Geometria', 'Percepção'],  media: [
     KnowledgeMedia(
       type: KnowledgeMediaType.audio,
@@ -989,6 +1421,30 @@ const imprensaTopic = KnowledgeTopic(
       sourceUrl: 'https://open.spotify.com/episode/0qHp073h6tfBPAxJ02Aozi',
     ),
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'A história começa antes de Gutenberg',
+      paragraphs: [
+        'Livros e textos já eram reproduzidos por diferentes técnicas na Ásia muitos séculos antes da oficina de Gutenberg. A impressão por blocos de madeira permitia reproduzir páginas inteiras; sistemas de tipos móveis também apareceram na China, e a Coreia desenvolveu tradições próprias de impressão, inclusive com tipos de metal. As circunstâncias de escrita, materiais, instituições e usos sociais variavam de uma região para outra, por isso é enganoso imaginar uma única linha de invenções saindo da Europa para o resto do planeta.',
+        'Johannes Gutenberg, na Europa do século XV, combinou soluções técnicas que ajudaram a transformar a escala de reprodução no contexto europeu: tipos metálicos reutilizáveis, procedimentos de composição, tinta e um sistema de prensagem. Reconhecer esse papel não exige apagar histórias anteriores da impressão. Um modo melhor de estudar a inovação é perguntar que peças já existiam, como foram combinadas e quais condições permitiram que se espalhassem.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Uma página passou a existir em muitos lugares',
+      paragraphs: [
+        'Copiar um manuscrito à mão exigia trabalho especializado e tempo. Numa oficina tipográfica, depois de preparar a composição, produzir outra cópia podia ser muito mais rápido. A difusão de oficinas criou redes de impressores, comerciantes, autores, revisores e leitores, mas a mudança não aconteceu de um dia para o outro. Os primeiros livros impressos muitas vezes imitavam a aparência visual dos manuscritos que o público já conhecia.',
+        'O ganho de escala tornou mais fácil comparar exemplares de um mesmo texto em locais distintos. Ao mesmo tempo, erros podiam ser multiplicados em muitas cópias antes de serem corrigidos. Impressão não significava acesso igualitário imediato: preços, alfabetização, idiomas, censura e distribuição continuaram influenciando quem podia produzir e ler. A revolução técnica precisa ser entendida junto com a organização social da leitura.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Mais informação também traz mais disputas',
+      paragraphs: [
+        'Quando textos religiosos, científicos, literários e políticos começaram a circular mais amplamente, diferentes públicos passaram a compartilhar argumentos e a contestar interpretações. A imprensa participou de mudanças culturais importantes, mas não agiu como causa única de movimentos complexos. Historiadores estudam também comércio, educação, instituições e relações de poder para explicar por que certos impressos produziram impacto em cada lugar.',
+        'A comparação com a internet é útil quando feita com cuidado. Ambos os meios reduziram barreiras para reproduzir e distribuir mensagens, porém operam com custos, velocidade e formas de participação muito diferentes. O aumento da circulação não garante que tudo o que circula seja correto. Tanto diante de um panfleto histórico quanto de uma postagem contemporânea, vale perguntar quem produziu a informação, quem a revisou e como ela foi distribuída.',
+      ],
+    ),
+  ],
+
 );
 
 const oceanosTopic = KnowledgeTopic(
@@ -1006,6 +1462,30 @@ const oceanosTopic = KnowledgeTopic(
       sourceUrl: 'https://open.spotify.com/episode/4AZCH66FmHX6yfnxz6logm',
     ),
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Um enorme reservatório térmico',
+      paragraphs: [
+        'Os oceanos cobrem a maior parte da superfície terrestre e a água é capaz de armazenar muita energia antes de sofrer grandes mudanças de temperatura. Isso ajuda a explicar por que regiões costeiras frequentemente têm variações térmicas diferentes das observadas em áreas continentais. A água recebe energia solar, interage continuamente com o ar e libera calor em ritmos que dependem de ventos, correntes, profundidade e estações do ano.',
+        'Além de influenciar o clima natural, os oceanos vêm absorvendo a maior parte do excesso de calor acumulado no sistema terrestre durante o aquecimento global moderno. O calor não desaparece ao entrar na água: pode ser transportado, alcançar camadas profundas e retornar mais tarde às interações com a atmosfera, o gelo e as costas. Aumentos de temperatura também podem produzir expansão térmica, contribuindo para a elevação do nível do mar.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'As correntes ligam regiões muito distantes',
+      paragraphs: [
+        'Ventos impulsionam correntes de superfície, cuja trajetória também é influenciada pela rotação da Terra e pelo formato dos continentes. Nas profundezas, variações de densidade ligadas principalmente a temperatura e salinidade participam de outros movimentos. Essa circulação complexa redistribui calor e substâncias, mas não é uma esteira simples com velocidade idêntica em todos os oceanos.',
+        'Imagine uma massa de água aquecida nos trópicos que se move para latitudes maiores. Durante o percurso ela troca energia e umidade com o ar, contribuindo para diferenças de temperatura e chuva em diversas regiões. A circulação muda com os ventos, a mistura vertical e a formação de águas profundas; por isso, compreender o clima exige observar oceano e atmosfera como partes de um sistema interligado.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'O clima responde a uma conversa de duas vias',
+      paragraphs: [
+        'O El Niño e a La Niña exemplificam como alterações de ventos e da distribuição de temperaturas no Pacífico tropical afetam padrões de chuva e de circulação atmosférica em regiões distantes. O oceano não decide sozinho onde haverá tempestades: continentes, topografia, atmosfera e variabilidade natural também importam. Seus efeitos variam entre anos e lugares, o que torna inadequado prometer o mesmo resultado em todas as ocorrências.',
+        'Oceanos também participam do ciclo do carbono e de ecossistemas marinhos complexos. A absorção de dióxido de carbono altera a química da água, enquanto o aquecimento afeta espécies e habitats. Um indicador isolado de temperatura superficial não conta toda a história; cientistas acompanham conteúdo de calor, correntes, salinidade e dados biológicos para compreender mudanças de longo prazo e seus impactos.',
+      ],
+    ),
+  ],
+
 );
 
 const vulcoesTopic = KnowledgeTopic(
@@ -1431,6 +1911,30 @@ const placasTectonicasTopic = KnowledgeTopic(
   curiosity:
       'A velocidade de algumas placas é comparável ao crescimento de unhas humanas.',
   connections: ['Terremotos', 'Vulcões', 'Oceanos', 'Montanhas'],
+  chapters: [
+    KnowledgeChapter(
+      title: 'A evidência vem de continentes e fundos oceânicos',
+      paragraphs: [
+        'A semelhança entre contornos de continentes motivou hipóteses antigas, mas o encaixe visual não seria suficiente para explicar seu movimento. Distribuição de fósseis semelhantes em continentes hoje separados, formações rochosas e indícios de climas passados ajudaram a fortalecer a proposta de deriva continental associada a Alfred Wegener. Mais tarde, o mapeamento dos fundos oceânicos e estudos do magnetismo das rochas revelaram padrões que transformaram a discussão.',
+        'Faixas magnéticas formadas em rochas oceânicas registram mudanças antigas do campo magnético terrestre e mostram padrões em lados opostos de certas dorsais. Com medidas geológicas e geofísicas, ficou evidente que nova crosta pode se formar onde placas se afastam e que outras regiões reciclam parte da litosfera. A tectônica de placas se consolidou como uma explicação integrada de fenômenos antes estudados separadamente.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Três encontros entre placas, três consequências',
+      paragraphs: [
+        'Em limites divergentes, placas se separam e material do interior da Terra pode produzir nova crosta; a dorsal mesoatlântica é um exemplo conhecido. Em limites convergentes, uma placa pode mergulhar sob outra em zonas de subducção, ou massas continentais podem colidir e elevar cadeias de montanhas. Em limites transformantes, segmentos deslizam lateralmente, acumulam deformação e podem produzir terremotos.',
+        'As placas não carregam apenas continentes: muitas incluem tanto crosta continental quanto fundo oceânico. Sua velocidade costuma ser medida em centímetros por ano, mas as tensões acumuladas nas bordas podem ser liberadas rapidamente em terremotos. A maior parte da atividade sísmica e vulcânica se concentra perto desses limites, embora existam fenômenos também no interior de placas e em pontos quentes.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'O planeta se move sem precisar de um motor único',
+      paragraphs: [
+        'O interior quente da Terra perde energia lentamente, e o movimento das placas envolve várias forças. Entre elas estão o peso de partes frias e densas que afundam em zonas de subducção e efeitos relacionados ao relevo das dorsais oceânicas. O manto rochoso pode se deformar ao longo de escalas geológicas, sem ser um oceano de lava líquida sobre o qual os continentes flutuam.',
+        'Satélites e redes geodésicas permitem medir deslocamentos atuais muito pequenos. Esses dados complementam fósseis, rochas e mapas do fundo oceânico para reconstruir processos de milhões de anos. Conhecer a dinâmica das placas não permite prever com precisão o dia de um grande terremoto, mas fundamenta pesquisas sobre perigos geológicos, planejamento e preparação em áreas sujeitas a eventos naturais.',
+      ],
+    ),
+  ],
+
 );
 const terremotosTopic = KnowledgeTopic(
   id: 'terremotos',
@@ -1662,6 +2166,30 @@ const memoriaTopic = KnowledgeTopic(
   curiosity:
       'Pesquisas de psicologia mostraram que a forma como uma pergunta é feita pode alterar detalhes que participantes relatam lembrar de um evento.',
   connections: ['Aprendizagem', 'Neuroplasticidade', 'Vieses', 'Sono'],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Existem várias maneiras de guardar informação',
+      paragraphs: [
+        'Recordar um aniversário, manter um número na cabeça por alguns segundos e aprender a andar de bicicleta envolvem sistemas parcialmente diferentes. A memória de trabalho sustenta informações necessárias numa tarefa imediata, enquanto lembranças de experiências pessoais e conhecimentos gerais dependem de processos de longo prazo. Habilidades praticadas também podem ser recuperadas sem que a pessoa consiga explicar conscientemente cada movimento.',
+        'Para lembrar de algo depois, não basta que o acontecimento tenha passado diante dos olhos. Atenção e codificação influenciam quais aspectos serão registrados; a consolidação e as pistas disponíveis afetam a recuperação. Dormir e revisar um assunto podem ajudar na aprendizagem, mas nenhum método consegue garantir que cada detalhe seja preservado como num arquivo de vídeo.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Uma lembrança é reconstruída no presente',
+      paragraphs: [
+        'Quando tentamos recuperar uma experiência, combinamos traços armazenados com pistas do momento, expectativas e conhecimentos anteriores. Esse processo costuma funcionar bem para conservar o sentido de acontecimentos, porém pode deixar detalhes vulneráveis a enganos. Em experimentos de desinformação, informações enganosas apresentadas depois de uma cena podem afetar aquilo que algumas pessoas relatam lembrar.',
+        'Imagine assistir a uma conversa rápida e ouvir, mais tarde, outra pessoa descrevê-la com palavras diferentes. Se a descrição parecer plausível, você poderá incorporar parte dela à lembrança original sem perceber. Isso não transforma todo testemunho em invenção: mostra que honestidade e confiança pessoal não asseguram exatidão em cada detalhe. Perguntas neutras e registro próximo dos acontecimentos podem ajudar a preservar pistas independentes.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Aprender melhor não é reler infinitamente',
+      paragraphs: [
+        'Uma leitura repetida pode criar sensação de familiaridade sem demonstrar que o conhecimento será recuperado depois. Práticas como tentar explicar o conteúdo sem olhar, responder perguntas e revisitar o assunto em momentos espaçados permitem observar o que ainda falta compreender. Erros durante a recuperação também fornecem pistas sobre conceitos que precisam de estudo adicional.',
+        'Essas técnicas não funcionam igualmente em qualquer tarefa e não dispensam compreensão inicial. Uma data histórica, uma habilidade motora e um raciocínio matemático exigem formas de prática diferentes. O objetivo é transformar estudo em recuperação ativa e aplicação contextual, evitando a armadilha de confundir reconhecer uma frase familiar com conseguir ensiná-la a outra pessoa.',
+      ],
+    ),
+  ],
+
 );
 const dopaminaTopic = KnowledgeTopic(
   id: 'dopamina',
@@ -1695,6 +2223,30 @@ const dopaminaTopic = KnowledgeTopic(
   curiosity:
       'Uma recompensa totalmente previsível pode gerar resposta diferente daquela provocada por uma recompensa inesperada.',
   connections: ['Hábitos', 'Recompensa', 'Parkinson', 'Aprendizagem'],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Uma molécula, circuitos e funções diferentes',
+      paragraphs: [
+        'Dopamina é um neurotransmissor, isto é, uma das substâncias usadas na comunicação entre certas células nervosas. Ela participa de circuitos que influenciam movimento, motivação e diferentes formas de aprendizagem. A palavra prazer aparece com frequência nos conteúdos populares, mas reduzir a dopamina a um medidor universal de felicidade ignora a diversidade de áreas, receptores e padrões de atividade envolvidos.',
+        'Algumas vias dopaminérgicas ajudam a coordenar movimentos; alterações importantes nesses sistemas estão associadas a manifestações da doença de Parkinson. Outras participam de comportamentos dirigidos a objetivos e aprendizado por reforço. Não faz sentido concluir que uma única medida de dopamina revelaria como uma pessoa se sente, nem que qualquer hábito pudesse ser explicado exclusivamente por níveis altos ou baixos dessa molécula.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'O cérebro também aprende com a surpresa',
+      paragraphs: [
+        'Em certas situações experimentais, a atividade transitória de neurônios dopaminérgicos acompanha diferenças entre uma recompensa esperada e aquilo que de fato aconteceu. Receber algo melhor que o previsto pode fornecer um sinal de erro de previsão; com a aprendizagem, parte da resposta pode se deslocar para pistas que anunciam a recompensa. O cérebro usa essas relações para ajustar expectativas e comportamentos futuros.',
+        'O modelo é poderoso, mas não esgota o assunto. Pesquisas também investigam como sinais dopaminérgicos participam de atenção, características da recompensa e relações entre estímulos. Por isso, a explicação de que dopamina é sempre uma descarga de prazer ao receber algo positivo simplifica resultados científicos que dependem do circuito, da tarefa e do momento da observação.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'O problema dos conselhos sobre detox de dopamina',
+      paragraphs: [
+        'A ideia de eliminar dopamina durante alguns dias não descreve corretamente o funcionamento do organismo: o neurotransmissor é necessário para atividades normais. Reduzir estímulos, organizar notificações ou mudar uma rotina pode ser útil por razões comportamentais e ambientais, mas isso é diferente de afirmar que uma abstinência reinicia quimicamente o cérebro de maneira simples e universal.',
+        'Antes de adotar explicações virais sobre procrastinação ou dependência, vale perguntar o que foi medido, em quais pessoas, durante quanto tempo e com qual comparação. Motivação envolve sono, contexto, aprendizagem, saúde, relações sociais e outros sistemas biológicos. A ciência da dopamina é fascinante justamente porque revela uma peça relevante de uma rede muito maior, em vez de oferecer uma tecla única para controlar a mente.',
+      ],
+    ),
+  ],
+
 );
 const habitosTopic = KnowledgeTopic(
   id: 'habitos',
@@ -1883,6 +2435,22 @@ const contabilidadeTopic = KnowledgeTopic(
     'Esse sistema cria rastreabilidade e facilita detectar registros incompletos, embora equilíbrio matemático sozinho não garanta ausência de erro.',
     'Demonstrações como balanço patrimonial, DRE e fluxo de caixa organizam perspectivas diferentes da mesma realidade econômica.',
   ],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Por que existem dois lados em cada lançamento',
+      paragraphs: [
+        'Uma empresa compra uma máquina por dez mil reais e paga à vista. O imobilizado aumenta em dez mil e o caixa diminui no mesmo valor. O patrimônio total não cresce por causa dessa troca: mudou apenas a composição dos ativos. As partidas dobradas registram esses efeitos de forma conectada, permitindo acompanhar de onde veio cada movimentação.',
+        'Agora imagine uma compra a prazo. A máquina entra no ativo e surge uma obrigação com o fornecedor. O dinheiro ainda não saiu do caixa, mas o fato econômico já aconteceu. Esse segundo exemplo mostra por que contabilidade não é uma simples lista de entradas e saídas de dinheiro.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'O truque que evita confundir débito e crédito',
+      paragraphs: [
+        'Em contas do ativo, o débito costuma representar aumento; em contas do passivo e do patrimônio líquido, o crédito costuma representar aumento. Receitas geralmente aumentam por crédito e despesas, por débito. Essas regras descrevem a mecânica contábil, não um julgamento positivo ou negativo sobre a transação.',
+        'Equilíbrio entre débitos e créditos é necessário, mas não suficiente para garantir demonstrações corretas. Se uma despesa for lançada na conta errada com a contrapartida certa, a soma ainda fechará. Por isso, classificação, documentos, competência e conciliações continuam indispensáveis.',
+      ],
+    ),
+  ],
   remember: [
     'Débito e crédito não significam bom e ruim.',
     'Toda transação afeta pelo menos duas contas.',
@@ -1959,6 +2527,30 @@ const criptografiaTopic = KnowledgeTopic(
   curiosity:
       'Muitos sistemas modernos usam criptografia assimétrica apenas para estabelecer uma chave temporária e depois usam criptografia simétrica, que é mais eficiente para grandes volumes de dados.',
   connections: ['HTTPS', 'Assinatura digital', 'Senhas', 'Blockchain'],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Sigilo, integridade e autoria são problemas distintos',
+      paragraphs: [
+        'Imagine enviar um contrato pela internet. Você talvez queira impedir que terceiros leiam o conteúdo, perceber se alguém alterou uma linha e confirmar quem autorizou o documento. Essas são propriedades diferentes. A cifragem busca confidencialidade; mecanismos de autenticação e integridade ajudam a detectar adulterações; assinaturas digitais podem vincular uma assinatura a uma chave privada e permitir a verificação com a chave pública correspondente.',
+        'Uma mensagem pode estar cifrada e ainda assim ter sido enviada pela pessoa errada se você não verificar com quem estabeleceu a conexão. Da mesma forma, uma assinatura digital pode ajudar a conferir a origem e a integridade de um documento sem esconder suas palavras. Saber formular o objetivo de segurança é tão importante quanto conhecer o nome de um algoritmo.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Por que misturamos técnicas diferentes',
+      paragraphs: [
+        'A criptografia simétrica usa uma chave secreta compartilhada e costuma ser eficiente para proteger grandes volumes de dados. Técnicas assimétricas trabalham com um par de chaves e podem ajudar a negociar segredos sem compartilhar antecipadamente a mesma chave por um canal inseguro. Protocolos modernos combinam essas peças, em vez de tentar fazer tudo com uma única fórmula.',
+        'Um navegador ao acessar um serviço HTTPS precisa conferir uma identidade técnica e negociar material criptográfico para a sessão. Depois, a transmissão dos dados pode usar cifragem simétrica autenticada. Esse encadeamento ilustra uma regra de projeto: algoritmos respeitados não bastam se as chaves, os certificados e a implementação forem tratados de modo inadequado.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Hash não é uma mensagem trancada',
+      paragraphs: [
+        'Uma função hash criptográfica produz um resumo de tamanho definido a partir de um conteúdo. Não é uma cifra que alguém possa simplesmente abrir com uma chave: não existe um procedimento geral de decifrar o hash e recuperar a mensagem. O resumo pode ser usado como parte de verificações de integridade e de assinaturas, sempre considerando as propriedades e as limitações da função escolhida.',
+        'Senhas exigem um cuidado adicional. Guardar apenas um hash rápido e comum costuma ser insuficiente quando um banco de dados vaza: atacantes podem testar muitas tentativas. Sistemas adequados usam técnicas de derivação deliberadamente custosas e sais individuais, além de outras defesas. Criptografia não apaga os riscos de golpes, dispositivos comprometidos nem falhas humanas; ela protege propriedades específicas dentro de um sistema maior.',
+      ],
+    ),
+  ],
+
 );
 const cloudTopic = KnowledgeTopic(
   id: 'cloud',
@@ -1992,6 +2584,30 @@ const cloudTopic = KnowledgeTopic(
   curiosity:
       'Muitos aplicativos que você usa todos os dias podem mudar de servidor físico sem que você perceba.',
   connections: ['Data centers', 'Containers', 'Internet', 'Escalabilidade'],
+  chapters: [
+    KnowledgeChapter(
+      title: 'A nuvem continua ocupando espaço na Terra',
+      paragraphs: [
+        'Quando um aplicativo guarda fotos na nuvem, os arquivos não flutuam em lugar nenhum. Eles ficam em sistemas de armazenamento operados em instalações físicas, ligados a redes e sustentados por eletricidade, refrigeração e equipes técnicas. A diferença está na forma de acesso e contratação: clientes usam recursos de um conjunto compartilhado, enquanto o provedor administra grande parte da infraestrutura. Esse compartilhamento precisa ser acompanhado de isolamento entre aplicações e usuários.',
+        'A definição clássica do NIST destaca cinco características: autosserviço sob demanda, acesso amplo pela rede, agrupamento de recursos, elasticidade rápida e serviço medido. Isso ajuda a separar uma nuvem genuína de um simples computador remoto vendido com um nome moderno. O usuário normalmente escolhe regiões ou serviços, mas não precisa saber em qual servidor físico específico sua aplicação vai executar a cada instante.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Alugar infraestrutura não elimina responsabilidades',
+      paragraphs: [
+        'Em IaaS, um cliente recebe recursos próximos de máquinas virtuais, redes e armazenamento, assumindo mais decisões sobre sistema operacional e configuração. Em PaaS, parte desse trabalho é abstraída por uma plataforma gerenciada. Em SaaS, o serviço completo chega ao usuário como uma aplicação pronta. Essas categorias não são caixas perfeitas, mas ajudam a visualizar quanto controle e trabalho operacional ficam em cada lado.',
+        'Uma responsabilidade não desaparece apenas porque outra empresa cuida dos servidores. Identidades, permissões, cópias de segurança, custos, configuração dos dados e decisões sobre privacidade continuam exigindo atenção. Um banco de dados gerenciado pode receber atualizações automáticas, mas conceder acesso excessivo a ele ainda pode expor informações. Escolher nuvem significa distribuir responsabilidades de forma explícita, e não terceirizar toda a segurança.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Elasticidade é uma ferramenta, não um orçamento ilimitado',
+      paragraphs: [
+        'Imagine uma loja virtual que recebe muitos acessos durante uma promoção. Uma arquitetura elástica pode acrescentar capacidade em momentos de pico e reduzi-la quando a demanda cai. Caches, filas e distribuição de carga também ajudam a controlar esse movimento. Entretanto, se o aplicativo criar recursos sem limites ou transferir quantidades imensas de dados entre regiões, a flexibilidade pode produzir contas inesperadas.',
+        'A disponibilidade exige decisões semelhantes. Distribuir serviços por zonas diferentes reduz a dependência de uma única instalação, mas envolve testes de recuperação, replicação e custos extras. Nem toda aplicação precisa da arquitetura mais complexa. Antes de multiplicar servidores, vale estimar o impacto de uma interrupção, definir o que deve ser preservado e observar o comportamento real do sistema. Boa infraestrutura combina confiabilidade com simplicidade suficiente para ser operada.',
+      ],
+    ),
+  ],
+
 );
 const gpsTopic = KnowledgeTopic(
   id: 'gps',
@@ -2025,6 +2641,30 @@ const gpsTopic = KnowledgeTopic(
   curiosity:
       'Além do GPS americano, existem outros sistemas globais de navegação por satélite, como Galileo, GLONASS e BeiDou.',
   connections: ['Satélites', 'Relatividade', 'Mapas', 'Navegação'],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Os satélites transmitem; o celular faz a conta',
+      paragraphs: [
+        'Cada satélite de navegação transmite informações sobre sua posição orbital e o instante em que enviou o sinal. O receptor compara esse tempo com o instante de recebimento e estima a distância percorrida pela onda de rádio. Como o sinal viaja à velocidade da luz, diferenças minúsculas de tempo representam distâncias consideráveis. O celular não precisa perguntar ao satélite onde está: ele escuta mensagens transmitidas continuamente.',
+        'Uma medida isolada localiza o receptor em algum ponto de uma superfície possível ao redor de um satélite. Ao combinar medidas de vários satélites, essas possibilidades se cruzam. No posicionamento tridimensional convencional, pelo menos quatro sinais permitem estimar três coordenadas e o desajuste do relógio do aparelho. O processo é chamado trilateração, porque trabalha com distâncias estimadas, não com ângulos.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Por que relógios e relatividade importam',
+      paragraphs: [
+        'Satélites possuem relógios de grande estabilidade, mas o celular usa um relógio muito menos preciso. O cálculo de posição precisa resolver também essa diferença. Um erro de tempo de apenas um microssegundo equivale a cerca de trezentos metros percorridos pela luz, antes de considerar outros fatores. É por isso que o quarto satélite não é simplesmente um luxo para deixar o mapa mais bonito.',
+        'Os relógios em órbita também não marcam o tempo exatamente como relógios na superfície. Velocidade e diferença de campo gravitacional produzem efeitos previstos pela relatividade; os sistemas de navegação aplicam correções apropriadas para não acumular erros. Uma teoria que parece distante do cotidiano entra em ação quando alguém pede uma rota no celular.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'A precisão depende do mundo ao redor',
+      paragraphs: [
+        'Em céu aberto, sinais vindos de diferentes direções ajudam o cálculo. Entre prédios altos, parte deles pode ser bloqueada ou refletida antes de chegar ao receptor. A atmosfera e a geometria da constelação também influenciam o resultado. Por isso, a localização exibida pelo aplicativo é uma estimativa com incerteza, e não um ponto perfeito conhecido pelo satélite.',
+        'Celulares podem combinar sinais de diferentes constelações de navegação, redes móveis, Wi-Fi e sensores internos para melhorar a experiência. Um exemplo: dentro de um shopping, o aparelho pode continuar sugerindo seu deslocamento mesmo com pouca recepção dos satélites. Vale distinguir três coisas: o GPS calcula uma posição, o aplicativo escolhe como mostrá-la e uma base de mapas decide quais ruas existem.',
+      ],
+    ),
+  ],
+
 );
 const semicondutoresTopic = KnowledgeTopic(
   id: 'semicondutores',
@@ -2058,6 +2698,30 @@ const semicondutoresTopic = KnowledgeTopic(
   curiosity:
       'Um chip moderno pode conter bilhões de transistores numa área menor que uma unha.',
   connections: ['Transistores', 'Litografia', 'Computadores', 'Supply chain'],
+  chapters: [
+    KnowledgeChapter(
+      title: 'O segredo é conseguir controlar a corrente',
+      paragraphs: [
+        'Materiais como o silício não são escolhidos por conduzirem eletricidade melhor que o cobre. Seu comportamento eletrônico permite construir regiões que respondem de modo controlado à presença de impurezas e campos elétricos. A chamada dopagem introduz pequenas quantidades de determinados átomos no cristal, alterando a disponibilidade de portadores de carga. O resultado não é uma chave mecânica escondida no chip, mas uma estrutura de material cuidadosamente projetada.',
+        'Ao combinar regiões de tipos diferentes, engenheiros criam componentes como diodos, que favorecem a passagem de corrente em determinadas condições. Nos transistores modernos, o controle pode ocorrer pelo campo elétrico de um terminal chamado porta. Um computador funciona porque enormes conjuntos desses dispositivos alteram o fluxo de sinais de forma previsível, respeitando limites reais de calor, consumo e variabilidade entre componentes.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Bilhões de interruptores precisam conversar',
+      paragraphs: [
+        'Um transistor MOSFET pode atuar como chave eletrônica. Quando determinados sinais são aplicados, sua estrutura permite ou restringe o transporte de cargas por um canal. Em circuitos digitais, combinações de transistores formam portas lógicas capazes de representar operações como E, OU e NÃO. O que parece uma animação complexa na tela se apoia, em última instância, em muitos estados elétricos organizados por projetos de hardware e software.',
+        'Reduzir o tamanho dos componentes permite colocar mais funções numa área limitada, mas não basta encolher tudo indefinidamente. Dissipação de calor, vazamentos de corrente, variações de fabricação e dificuldade de interligar componentes tornam o projeto cada vez mais exigente. Diferentes tipos de chips fazem escolhas distintas: alguns priorizam consumo e sensores, outros velocidade, memória ou tarefas de inteligência artificial.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'A fabricação é uma cidade construída em camadas',
+      paragraphs: [
+        'Um chip começa como um projeto de circuitos que precisa ser traduzido em padrões extremamente precisos sobre uma lâmina de material, chamada wafer. Camadas são depositadas, cobertas por materiais sensíveis à luz, expostas em equipamentos de litografia e gravadas ou modificadas conforme o processo. A sequência pode envolver muitas repetições dessas etapas. Pequenos erros de alinhamento ou partículas contaminantes podem inutilizar partes do circuito.',
+        'Por isso, fabricar chips exige muito mais do que possuir um único equipamento sofisticado. Há especialistas em materiais, óptica, química, projetos eletrônicos, metrologia e controle de qualidade. Algumas empresas desenham circuitos sem possuir fábricas; outras produzem projetos de terceiros. A cadeia reúne competências distintas e demonstra como a precisão física transforma uma ideia matemática num objeto que efetivamente funciona.',
+      ],
+    ),
+  ],
+
 );
 const algoritmosTopic = KnowledgeTopic(
   id: 'algoritmos',
@@ -2553,6 +3217,30 @@ const fermentacaoTopic = KnowledgeTopic(
   curiosity:
       'Café, cacau e chá podem passar por etapas chamadas de fermentação ou processamento microbiano antes mesmo de chegarem à cozinha.',
   connections: ['Pão', 'Vinho', 'Microbioma', 'Queijo'],
+  chapters: [
+    KnowledgeChapter(
+      title: 'Os microrganismos produzem receitas muito diferentes',
+      paragraphs: [
+        'Fermentação é uma família de transformações metabólicas, não uma fórmula única para qualquer alimento. Leveduras usadas em massas e bebidas podem liberar gás carbônico e álcool ao consumir açúcares. Certas bactérias produzem ácido lático e modificam sabor e acidez de produtos como iogurtes e vegetais fermentados. Em outros processos, diferentes comunidades microbianas ou etapas sucessivas produzem resultados próprios. A matéria-prima também importa: leite, repolho, uva e farinha oferecem nutrientes e condições muito diferentes.',
+        'Um pão cresce porque parte do gás produzido fica retida numa rede formada pela massa. Já em muitos vegetais fermentados, os ácidos alteram o ambiente e o perfil de sabor. Não basta dizer que ambos são alimentos com bactérias: a espécie microbiana, o substrato e o processo mudam o mecanismo. Existem ainda transformações alimentares chamadas fermentação na linguagem culinária que envolvem misturas de reações químicas e atividades biológicas.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Conservação depende de condições controladas',
+      paragraphs: [
+        'Algumas fermentações ajudam a conservar alimentos porque a acidez, o sal e a competição entre microrganismos criam condições menos favoráveis a certos organismos indesejados. Isso não significa que qualquer pote deixado sobre a bancada se torne seguro com o passar dos dias. Temperatura, matéria-prima, concentração de sal, acidez e exposição ao oxigênio interferem no resultado; erros podem permitir deterioração ou riscos sanitários.',
+        'Se o objetivo for preparar alimentos fermentados em casa, instruções de extensão universitária e receitas testadas são mais confiáveis do que proporções improvisadas. É importante distinguir fermentação controlada de comida estragando. O conhecimento científico acrescenta uma camada prática a tradições antigas: observar sabor e bolhas pode ser interessante, mas não substitui critérios validados de segurança alimentar.',
+      ],
+    ),
+    KnowledgeChapter(
+      title: 'Cada cultura ensina um jeito de transformar ingredientes',
+      paragraphs: [
+        'O mesmo princípio geral aparece em produtos culinários que parecem não ter parentesco: pães de fermentação natural, iogurtes, vegetais ácidos, algumas bebidas e etapas de processamento de cacau ou café. Ainda assim, a composição das comunidades microbianas, a duração e o ambiente tornam os produtos muito diferentes. Muitas técnicas evoluíram antes de sabermos da existência de microrganismos e hoje podem ser estudadas por microbiologia, química e história da alimentação.',
+        'Pense num fermento natural alimentado ao longo do tempo. Ele é um pequeno ecossistema, cuja atividade depende dos microrganismos presentes, da farinha, da temperatura e do manejo. Reproduzir exatamente um sabor pode ser mais difícil do que repetir uma lista de ingredientes, porque processos vivos respondem ao ambiente. Essa é uma das razões pelas quais fermentação se tornou, ao mesmo tempo, uma técnica industrial rigorosa e uma expressão de tradições locais.',
+      ],
+    ),
+  ],
+
 );
 const chocolateTopic = KnowledgeTopic(
   id: 'chocolate',
@@ -2853,138 +3541,292 @@ const aviacaoTopic = KnowledgeTopic(
 );
 const psicanaliseTopic = KnowledgeTopic(
  id:'psicanalise', eyebrow:'PSICOLOGIA / IDEIAS', title:'O QUE FREUD MUDOU NA FORMA DE PENSAR A MENTE?', summary:'A psicanálise colocou conflitos inconscientes, infância e interpretação no centro de uma nova teoria da vida psíquica.', minutes:7, tags:['psicologia', 'história'],
- quickTake:'Freud não descobriu simplesmente uma parte escondida do cérebro; ele propôs um modelo teórico da mente que teve enorme influência cultural.', simpleExplanation:'Pense em uma decisão para a qual você inventa uma explicação racional depois: a psicanálise popularizou a ideia de que nem todos os motivos estão disponíveis à consciência.', example:'Pense em uma decisão para a qual você inventa uma explicação racional depois: a psicanálise popularizou a ideia de que nem todos os motivos estão disponíveis à consciência.', body:['No fim do século XIX, Freud desenvolveu métodos baseados em fala, associação e interpretação.', 'O conceito de inconsciente já existia, mas ganhou uma formulação nova em sua obra.', 'Sonhos, lapsos e sintomas eram interpretados como possíveis expressões de conflitos.', 'Muitas proposições freudianas são controversas ou difíceis de testar pelos padrões científicos atuais.', 'A influência da psicanálise permanece forte em clínica, literatura, cinema e crítica cultural.'], remember:['Psicanálise é teoria e prática clínica.', 'Freud não inventou sozinho a ideia de inconsciente.', 'Influência cultural e validação científica são questões diferentes.'],
- whyItMatters:'Amplia o repertório e cria conexões úteis com história, ciência, cultura e situações do cotidiano.', curiosity:'Freud começou sua carreira como neurologista antes de desenvolver a psicanálise.', connections:['Vieses', 'Memória', 'Surrealismo', 'Sonhos'],
+ quickTake:'Freud não descobriu simplesmente uma parte escondida do cérebro; ele propôs um modelo teórico da mente que teve enorme influência cultural.', simpleExplanation:'Pense em uma decisão para a qual você inventa uma explicação racional depois: a psicanálise popularizou a ideia de que nem todos os motivos estão disponíveis à consciência.', example: 'Em uma obra de ficção, um personagem pode defender uma escolha com argumentos racionais enquanto a narrativa revela desejos que ele não reconhece. É uma forma de ilustrar a hipótese psicanalítica, não de comprová-la.', body:['No fim do século XIX, Freud desenvolveu métodos baseados em fala, associação e interpretação.', 'O conceito de inconsciente já existia, mas ganhou uma formulação nova em sua obra.', 'Sonhos, lapsos e sintomas eram interpretados como possíveis expressões de conflitos.', 'Muitas proposições freudianas são controversas ou difíceis de testar pelos padrões científicos atuais.', 'A influência da psicanálise permanece forte em clínica, literatura, cinema e crítica cultural.'], remember:['Psicanálise é teoria e prática clínica.', 'Freud não inventou sozinho a ideia de inconsciente.', 'Influência cultural e validação científica são questões diferentes.'],
+ whyItMatters: 'A psicanálise moldou a linguagem cotidiana sobre desejos, infância e conflitos internos. Conhecer seu contexto permite reconhecer essa influência em filmes e livros, sem confundir impacto cultural com comprovação científica de todas as teses freudianas.', curiosity:'Freud começou sua carreira como neurologista antes de desenvolver a psicanálise.', connections:['Vieses', 'Memória', 'Surrealismo', 'Sonhos'],
 );
 
 const existencialismoTopic = KnowledgeTopic(
  id:'existencialismo', eyebrow:'FILOSOFIA / VIDA', title:'O QUE SIGNIFICA DIZER QUE A EXISTÊNCIA VEM ANTES DA ESSÊNCIA?', summary:'Pensadores existencialistas exploraram liberdade, responsabilidade, absurdo e a construção de sentido numa vida sem roteiro pronto.', minutes:7, tags:['filosofia', 'cultura'],
- quickTake:'Existencialismo não é simplesmente pessimismo; muitas de suas ideias enfatizam liberdade e responsabilidade.', simpleExplanation:'Se não existe uma função humana totalmente determinada de antemão, escolhas ajudam a construir quem uma pessoa se torna.', example:'Se não existe uma função humana totalmente determinada de antemão, escolhas ajudam a construir quem uma pessoa se torna.', body:['O termo reúne autores que não concordavam em tudo.', 'Søren Kierkegaard e Nietzsche são frequentemente tratados como precursores.', 'Jean-Paul Sartre formulou a ideia de que a existência precede a essência.', 'Simone de Beauvoir aplicou questões de liberdade e situação à experiência social.', 'Albert Camus discutiu o absurdo, embora rejeitasse ser rotulado simplesmente como existencialista.'], remember:['Não é uma doutrina única.', 'Liberdade implica responsabilidade.', 'Camus tinha relação complexa com o rótulo.'],
- whyItMatters:'Amplia o repertório e cria conexões úteis com história, ciência, cultura e situações do cotidiano.', curiosity:'Sartre recusou o Prêmio Nobel de Literatura em 1964.', connections:['Estoicismo', 'Iluminismo', 'Psicologia', 'Literatura'],
-,media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/4wP3UFSdtmQqnH4am6QUFj',title:'O Existencialismo, o Absurdo e a Pedra de Sísifo',caption:'8 min · Filosofia em Meia Hora',sourceLabel:'Spotify · Filosofia em Meia Hora',sourceUrl:'https://open.spotify.com/episode/4wP3UFSdtmQqnH4am6QUFj'),]);
+ quickTake:'Existencialismo não é simplesmente pessimismo; muitas de suas ideias enfatizam liberdade e responsabilidade.', simpleExplanation:'Se não existe uma função humana totalmente determinada de antemão, escolhas ajudam a construir quem uma pessoa se torna.', example: 'Uma pessoa pode seguir a carreira esperada pela família ou escolher outro caminho. A reflexão existencialista pergunta como ela assume responsabilidade por essa decisão, reconhecendo também os limites de suas circunstâncias.', body:['O termo reúne autores que não concordavam em tudo.', 'Søren Kierkegaard e Nietzsche são frequentemente tratados como precursores.', 'Jean-Paul Sartre formulou a ideia de que a existência precede a essência.', 'Simone de Beauvoir aplicou questões de liberdade e situação à experiência social.', 'Albert Camus discutiu o absurdo, embora rejeitasse ser rotulado simplesmente como existencialista.'], remember:['Não é uma doutrina única.', 'Liberdade implica responsabilidade.', 'Camus tinha relação complexa com o rótulo.'],
+ whyItMatters: 'O existencialismo oferece uma linguagem para discutir escolhas, responsabilidade e busca de sentido. Também ajuda a perceber a diferença entre afirmar que nossas decisões importam e supor, incorretamente, que todos enfrentam as mesmas possibilidades.', curiosity:'Sartre recusou o Prêmio Nobel de Literatura em 1964.', connections:['Estoicismo', 'Iluminismo', 'Psicologia', 'Literatura'],
+  media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/4wP3UFSdtmQqnH4am6QUFj',title:'O Existencialismo, o Absurdo e a Pedra de Sísifo',caption:'8 min · Filosofia em Meia Hora',sourceLabel:'Spotify · Filosofia em Meia Hora',sourceUrl:'https://open.spotify.com/episode/4wP3UFSdtmQqnH4am6QUFj'),]);
 
 const romaTopic = KnowledgeTopic(
  id:'roma-imperio', eyebrow:'HISTÓRIA / IMPÉRIOS', title:'COMO ROMA PASSOU DE CIDADE A IMPÉRIO?', summary:'Alianças, exércitos, cidadania, estradas e instituições permitiram a Roma incorporar territórios durante séculos.', minutes:7, tags:['história', 'geopolítica'],
- quickTake:'Roma não conquistou o Mediterrâneo num único plano contínuo; expansão e instituições mudaram ao longo do tempo.', simpleExplanation:'Uma cidade derrotada podia ser destruída, aliada ou incorporada com diferentes graus de cidadania, criando uma rede política flexível.', example:'Uma cidade derrotada podia ser destruída, aliada ou incorporada com diferentes graus de cidadania, criando uma rede política flexível.', body:['Roma passou por monarquia, república e governo imperial.', 'A República expandiu-se primeiro pela península Itálica e depois pelo Mediterrâneo.', 'Estradas e portos ajudaram a mover exércitos, impostos e comércio.', 'A cidadania romana foi gradualmente ampliada a populações muito além da cidade.', 'O poder imperial no Ocidente terminou no século V, enquanto Constantinopla permaneceu como centro romano oriental.'], remember:['Roma teve várias formas de governo.', 'Cidadania foi instrumento político.', 'O fim de Roma não aconteceu numa única data para todo o império.'],
- whyItMatters:'Amplia o repertório e cria conexões úteis com história, ciência, cultura e situações do cotidiano.', curiosity:'O Império Romano do Oriente continuou por quase mil anos após o fim do império ocidental.', connections:['Democracia ateniense', 'Império Otomano', 'Alfabeto', 'Cristianismo'],
+ quickTake:'Roma não conquistou o Mediterrâneo num único plano contínuo; expansão e instituições mudaram ao longo do tempo.', simpleExplanation:'Uma cidade derrotada podia ser destruída, aliada ou incorporada com diferentes graus de cidadania, criando uma rede política flexível.', example: 'Uma cidade aliada podia fornecer soldados a Roma, manter parte de suas instituições locais e, ao longo do tempo, negociar novas formas de participação no sistema romano.', body:['Roma passou por monarquia, república e governo imperial.', 'A República expandiu-se primeiro pela península Itálica e depois pelo Mediterrâneo.', 'Estradas e portos ajudaram a mover exércitos, impostos e comércio.', 'A cidadania romana foi gradualmente ampliada a populações muito além da cidade.', 'O poder imperial no Ocidente terminou no século V, enquanto Constantinopla permaneceu como centro romano oriental.'], remember:['Roma teve várias formas de governo.', 'Cidadania foi instrumento político.', 'O fim de Roma não aconteceu numa única data para todo o império.'],
+ whyItMatters: 'A expansão romana ajuda a entender que impérios não crescem apenas por batalhas: alianças, cidadania, infraestrutura e negociações também alteram a integração política. Esse olhar torna comparações históricas menos simplistas.', curiosity:'O Império Romano do Oriente continuou por quase mil anos após o fim do império ocidental.', connections:['Democracia ateniense', 'Império Otomano', 'Alfabeto', 'Cristianismo'],
 );
 
 const renascimentoCientificoTopic = KnowledgeTopic(
  id:'renascimento-cientifico', eyebrow:'CIÊNCIA / HISTÓRIA', title:'COMO A CIÊNCIA MODERNA COMEÇOU A TOMAR FORMA?', summary:'Observação, matemática, instrumentos e novas comunidades de investigação transformaram o estudo da natureza entre os séculos XVI e XVII.', minutes:7, tags:['ciência', 'história'],
- quickTake:'A chamada Revolução Científica não foi um instante em que ciência substituiu ignorância; foi uma transformação gradual e disputada.', simpleExplanation:'Um telescópio permitiu observar fenômenos celestes que argumentos filosóficos sozinhos não conseguiam resolver.', example:'Um telescópio permitiu observar fenômenos celestes que argumentos filosóficos sozinhos não conseguiam resolver.', body:['Copérnico publicou um modelo heliocêntrico em 1543.', 'Kepler descreveu órbitas planetárias elípticas com relações matemáticas.', 'Galileu combinou experimentos, matemática e observações telescópicas.', 'Newton unificou fenômenos terrestres e celestes com leis do movimento e gravitação.', 'Sociedades científicas e impressão aceleraram comunicação e crítica de resultados.'], remember:['Foi gradual e coletiva.', 'Instrumentos mudaram o que podia ser observado.', 'Matemática tornou-se cada vez mais central.'],
- whyItMatters:'Amplia o repertório e cria conexões úteis com história, ciência, cultura e situações do cotidiano.', curiosity:'Galileu aperfeiçoou e usou telescópios para astronomia, mas não inventou o telescópio.', connections:['Renascimento', 'Imprensa', 'Relatividade', 'Iluminismo'],
-,media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/60dxhMsLkBLs3XKcVO8zHD',title:'Aristóteles - Revolução Científica 1/2',caption:'33 min · Filosofia',sourceLabel:'Spotify · Filosofia',sourceUrl:'https://open.spotify.com/episode/60dxhMsLkBLs3XKcVO8zHD'),]);
+ quickTake:'A chamada Revolução Científica não foi um instante em que ciência substituiu ignorância; foi uma transformação gradual e disputada.', simpleExplanation:'Um telescópio permitiu observar fenômenos celestes que argumentos filosóficos sozinhos não conseguiam resolver.', example: 'Imagine observar a trajetória de um planeta, registrar posições em datas diferentes e comparar o resultado com previsões rivais. A passagem da autoridade do argumento para o teste observável é parte importante dessa transformação.', body:['Copérnico publicou um modelo heliocêntrico em 1543.', 'Kepler descreveu órbitas planetárias elípticas com relações matemáticas.', 'Galileu combinou experimentos, matemática e observações telescópicas.', 'Newton unificou fenômenos terrestres e celestes com leis do movimento e gravitação.', 'Sociedades científicas e impressão aceleraram comunicação e crítica de resultados.'], remember:['Foi gradual e coletiva.', 'Instrumentos mudaram o que podia ser observado.', 'Matemática tornou-se cada vez mais central.'],
+ whyItMatters: 'Conhecer as mudanças nos métodos de investigação ajuda a diferenciar uma ideia plausível de uma conclusão sustentada por observações e testes. A ciência moderna se desenvolveu gradualmente, não com uma descoberta isolada.', curiosity:'Galileu aperfeiçoou e usou telescópios para astronomia, mas não inventou o telescópio.', connections:['Renascimento', 'Imprensa', 'Relatividade', 'Iluminismo'],
+  media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/60dxhMsLkBLs3XKcVO8zHD',title:'Aristóteles - Revolução Científica 1/2',caption:'33 min · Filosofia',sourceLabel:'Spotify · Filosofia',sourceUrl:'https://open.spotify.com/episode/60dxhMsLkBLs3XKcVO8zHD'),]);
 
 const evolucaoInternetTopic = KnowledgeTopic(
  id:'evolucao-internet', eyebrow:'TECNOLOGIA / HISTÓRIA', title:'COMO A INTERNET VIROU A REDE DO PLANETA?', summary:'Redes experimentais, protocolos abertos e infraestrutura comercial conectaram bilhões de dispositivos ao longo de décadas.', minutes:7, tags:['tecnologia', 'história'],
- quickTake:'Internet e Web não são a mesma coisa: a Web é um serviço que funciona sobre a infraestrutura da internet.', simpleExplanation:'Um e-mail e uma página web podem atravessar a mesma rede usando protocolos diferentes.', example:'Um e-mail e uma página web podem atravessar a mesma rede usando protocolos diferentes.', body:['ARPANET conectou computadores de pesquisa nos Estados Unidos a partir de 1969.', 'TCP/IP criou uma linguagem comum para interligar redes diferentes.', 'A adoção de TCP/IP em 1983 é um marco da internet moderna.', 'Tim Berners-Lee propôs a World Wide Web em 1989.', 'Comercialização, cabos submarinos, Wi‑Fi e redes móveis ampliaram o acesso global.'], remember:['Internet é infraestrutura de redes.', 'Web é um serviço sobre ela.', 'Protocolos abertos permitiram interoperabilidade.'],
- whyItMatters:'Amplia o repertório e cria conexões úteis com história, ciência, cultura e situações do cotidiano.', curiosity:'A primeira mensagem da ARPANET, em 1969, pretendia escrever LOGIN, mas a conexão caiu depois de LO.', connections:['Cloud', 'Criptografia', 'Open source', 'IA'],
-,media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/2KKNSHafRynRMcVHFNxQPG',title:'Historia de Internet: la red que lo cambió todo',caption:'39 min · DianaUribe.fm',sourceLabel:'Spotify · DianaUribe.fm',sourceUrl:'https://open.spotify.com/episode/2KKNSHafRynRMcVHFNxQPG'),]);
+ quickTake:'Internet e Web não são a mesma coisa: a Web é um serviço que funciona sobre a infraestrutura da internet.', simpleExplanation:'Um e-mail e uma página web podem atravessar a mesma rede usando protocolos diferentes.', example: 'Ao abrir uma página no celular, seu aparelho solicita dados pela rede usando protocolos compartilhados. Você pode estar conectado por Wi-Fi enquanto o servidor usa outro tipo de infraestrutura; a comunicação ainda funciona.', body:['ARPANET conectou computadores de pesquisa nos Estados Unidos a partir de 1969.', 'TCP/IP criou uma linguagem comum para interligar redes diferentes.', 'A adoção de TCP/IP em 1983 é um marco da internet moderna.', 'Tim Berners-Lee propôs a World Wide Web em 1989.', 'Comercialização, cabos submarinos, Wi‑Fi e redes móveis ampliaram o acesso global.'], chapters: [
+  KnowledgeChapter(title: 'O desafio inicial era conectar redes diferentes', paragraphs: [
+    'Antes de serviços populares como sites e aplicativos, pesquisadores buscavam formas de compartilhar recursos entre computadores distantes. A ARPANET foi uma etapa importante, mas não era a internet inteira. O desafio posterior foi fazer redes construídas com tecnologias diferentes trocarem informações seguindo regras comuns.',
+    'Essa dificuldade ajudou a orientar o desenvolvimento dos protocolos que fundamentam a internet. Em vez de exigir que todas as redes usem o mesmo equipamento, a arquitetura permite a troca de pacotes entre sistemas interconectados. Uma mensagem inteira pode atravessar vários equipamentos e enlaces até chegar ao destino.',
+  ]),
+  KnowledgeChapter(title: 'Internet e web são duas coisas diferentes', paragraphs: [
+    'A internet é a infraestrutura lógica que interliga redes; a World Wide Web é um dos serviços que usam essa infraestrutura. O correio eletrônico e outras aplicações também podem funcionar nela sem serem páginas web. Confundir essas camadas é um pouco como chamar toda uma rede de estradas de serviço de entregas.',
+    'A web ajudou a tornar conteúdos ligados por endereços e hiperlinks mais acessíveis a pessoas fora de comunidades técnicas. Mas o crescimento do uso público dependeu de muitos elementos em conjunto: computadores pessoais, telecomunicações, padrões compartilhados, navegadores e serviços comerciais.',
+  ]),
+  KnowledgeChapter(title: 'Siga os passos de uma mensagem', paragraphs: [
+    'Quando você abre um site, seu dispositivo normalmente precisa localizar o endereço de rede relacionado ao domínio, estabelecer uma conexão e solicitar os recursos da página. Cada etapa pode passar por equipamentos e prestadores diferentes. Por isso, uma falha de resolução de nomes pode impedir o acesso mesmo quando seu Wi-Fi parece conectado.',
+    'Esse mapa mental ajuda a distinguir problemas locais, indisponibilidade de um servidor e interrupções no caminho. Também explica por que a internet não é controlada por um único botão central: ela depende de cooperação técnica, infraestrutura física e decisões distribuídas, ainda que alguns serviços concentrem bastante tráfego.',
+  ]),
+ ],
+ remember:['Internet é infraestrutura de redes.', 'Web é um serviço sobre ela.', 'Protocolos abertos permitiram interoperabilidade.'],
+ whyItMatters: 'Entender que a internet é uma rede de redes ajuda a separar conexão, serviços e plataformas. Isso torna mais fáceis conversas sobre privacidade, interrupções, neutralidade e dependência de grandes provedores.', curiosity:'A primeira mensagem da ARPANET, em 1969, pretendia escrever LOGIN, mas a conexão caiu depois de LO.', connections:['Cloud', 'Criptografia', 'Open source', 'IA'],
+  media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/2KKNSHafRynRMcVHFNxQPG',title:'Historia de Internet: la red que lo cambió todo',caption:'39 min · DianaUribe.fm',sourceLabel:'Spotify · DianaUribe.fm',sourceUrl:'https://open.spotify.com/episode/2KKNSHafRynRMcVHFNxQPG'),]);
 
 const impressionismoTopic = KnowledgeTopic(
  id:'impressionismo', eyebrow:'ARTE / HISTÓRIA', title:'POR QUE OS IMPRESSIONISTAS PARECIAM TÃO RADICAIS?', summary:'Pinceladas visíveis, cenas modernas e atenção à luz desafiaram convenções acadêmicas da pintura do século XIX.', minutes:7, tags:['arte', 'cultura'],
- quickTake:'Impressionismo não era apenas pintar paisagens bonitas; também mudou temas, técnica e a própria ideia de acabamento.', simpleExplanation:'Em vez de esconder cada pincelada, artistas deixavam marcas de tinta perceptíveis para sugerir luz e movimento.', example:'Em vez de esconder cada pincelada, artistas deixavam marcas de tinta perceptíveis para sugerir luz e movimento.', body:['O primeiro salão impressionista independente ocorreu em Paris em 1874.', 'Monet, Renoir, Degas, Morisot e Pissarro estiveram entre figuras importantes, com trajetórias distintas.', 'Tintas em tubos facilitaram trabalhar fora do ateliê.', 'Fotografia e gravuras japonesas influenciaram novas composições.', 'Cenas de lazer, ruas e vida moderna apareceram com frequência.'], remember:['1874 é um marco.', 'O grupo não tinha um estilo único.', 'Tecnologia dos materiais ajudou novas práticas.'],
- whyItMatters:'Amplia o repertório e cria conexões úteis com história, ciência, cultura e situações do cotidiano.', curiosity:'O nome do movimento veio de uma crítica ao quadro Impression, soleil levant, de Claude Monet.', connections:['Fotografia', 'Perspectiva', 'Modernismo', 'Paris'],
-,media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/5q9fOah2rdZ1NgLnWRXSUe',title:'Claude Monet: O Pintor da Luz e das Cores',caption:'6 min · Loucos por Biografias',sourceLabel:'Spotify · Loucos por Biografias',sourceUrl:'https://open.spotify.com/episode/5q9fOah2rdZ1NgLnWRXSUe'),]);
+ quickTake:'Impressionismo não era apenas pintar paisagens bonitas; também mudou temas, técnica e a própria ideia de acabamento.', simpleExplanation:'Em vez de esconder cada pincelada, artistas deixavam marcas de tinta perceptíveis para sugerir luz e movimento.', example: 'De perto, uma pintura pode parecer feita de manchas soltas. Ao se afastar, as pinceladas se combinam visualmente e sugerem o reflexo mutável da luz sobre a água.', body:['O primeiro salão impressionista independente ocorreu em Paris em 1874.', 'Monet, Renoir, Degas, Morisot e Pissarro estiveram entre figuras importantes, com trajetórias distintas.', 'Tintas em tubos facilitaram trabalhar fora do ateliê.', 'Fotografia e gravuras japonesas influenciaram novas composições.', 'Cenas de lazer, ruas e vida moderna apareceram com frequência.'], chapters: [
+  KnowledgeChapter(title: 'Uma outra maneira de retratar a modernidade', paragraphs: [
+    'Parte dos artistas associados ao impressionismo procurou representar cenas da vida urbana e paisagens sem reproduzir necessariamente o acabamento minucioso valorizado por instituições acadêmicas. Mudanças na vida das cidades, novos espaços de lazer e interesse em efeitos fugazes de luz ofereceram temas e problemas visuais.',
+    'Nas exposições coletivas organizadas a partir de 1874, participantes tinham trajetórias e abordagens diferentes. A palavra impressionismo tornou-se um rótulo conveniente, mas não descreve um conjunto de regras obrigatórias seguido de maneira idêntica por todos.',
+  ]),
+  KnowledgeChapter(title: 'A pincelada pode ser parte da informação', paragraphs: [
+    'Em vez de esconder todo o processo de pintura sob superfícies perfeitamente uniformes, muitos artistas deixavam marcas rápidas e perceptíveis. Cores próximas e contrastes eram utilizados para sugerir mudanças de luz e atmosfera. O efeito pode mudar muito conforme a distância do observador até a tela.',
+    'Isso não quer dizer que os pintores simplesmente trabalhavam sem planejamento. Composição, séries de estudos e atenção às condições de observação faziam parte de diversas obras. A aparente espontaneidade podia ser fruto de escolhas cuidadosas.',
+  ]),
+  KnowledgeChapter(title: 'Quem aparece numa cena cotidiana também importa', paragraphs: [
+    'Observe uma pintura de estação ferroviária, jardim, café ou ambiente doméstico. Pergunte o que ela revela sobre lazer, trabalho, classe social ou papéis de gênero no período. Uma cena aparentemente comum pode guardar marcas da modernização das cidades e dos hábitos das pessoas.',
+    'Também vale comparar quais artistas receberam prestígio histórico e quem ficou menos visível. A participação de pintoras como Berthe Morisot e Mary Cassatt ajuda a evitar uma narrativa composta exclusivamente por poucos nomes masculinos.',
+  ]),
+ ],
+ remember:['1874 é um marco.', 'O grupo não tinha um estilo único.', 'Tecnologia dos materiais ajudou novas práticas.'],
+ whyItMatters: 'O impressionismo oferece uma forma de observar como luz, cor e percepção mudam a representação de uma mesma cena. Ele também mostra por que movimentos artísticos podem desafiar os critérios dominantes de sua época.', curiosity:'O nome do movimento veio de uma crítica ao quadro Impression, soleil levant, de Claude Monet.', connections:['Fotografia', 'Perspectiva', 'Modernismo', 'Paris'],
+  media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/5q9fOah2rdZ1NgLnWRXSUe',title:'Claude Monet: O Pintor da Luz e das Cores',caption:'6 min · Loucos por Biografias',sourceLabel:'Spotify · Loucos por Biografias',sourceUrl:'https://open.spotify.com/episode/5q9fOah2rdZ1NgLnWRXSUe'),]);
 
 const arquiteturaModernaTopic = KnowledgeTopic(
  id:'arquitetura-moderna', eyebrow:'ARQUITETURA / DESIGN', title:'POR QUE O MODERNISMO QUIS REINVENTAR OS EDIFÍCIOS?', summary:'Novos materiais, industrialização e mudanças sociais incentivaram arquitetos a abandonar parte da ornamentação histórica.', minutes:7, tags:['arquitetura', 'design'],
- quickTake:'Arquitetura moderna não significa apenas prédio novo; refere-se a movimentos históricos com ideias específicas sobre espaço e construção.', simpleExplanation:'Estruturas de aço e concreto permitem separar paredes de funções que antes eram necessariamente estruturais.', example:'Estruturas de aço e concreto permitem separar paredes de funções que antes eram necessariamente estruturais.', body:['Industrialização trouxe aço, concreto armado e vidro em novas escalas.', 'Arquitetos questionaram a cópia de estilos históricos.', 'Plantas mais livres tornaram-se possíveis com novas estruturas.', 'Bauhaus e Le Corbusier difundiram ideias modernistas internacionalmente.', 'O modernismo assumiu formas diferentes conforme clima, política e cultura local.'], remember:['Moderno não significa apenas contemporâneo.', 'Materiais mudaram possibilidades.', 'Houve muitos modernismos.'],
- whyItMatters:'Amplia o repertório e cria conexões úteis com história, ciência, cultura e situações do cotidiano.', curiosity:'A frase forma segue a função é anterior à Bauhaus e foi associada ao arquiteto Louis Sullivan.', connections:['Bauhaus', 'Brasília', 'Lina Bo Bardi', 'Brutalismo'],
-,media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/40rZc48u83PN4fzRd6xKap',title:'Arquicast 211 – Villa Savoye',caption:'1 h 25 min · Arquicast',sourceLabel:'Spotify · Arquicast',sourceUrl:'https://open.spotify.com/episode/40rZc48u83PN4fzRd6xKap'),]);
+ quickTake:'Arquitetura moderna não significa apenas prédio novo; refere-se a movimentos históricos com ideias específicas sobre espaço e construção.', simpleExplanation:'Estruturas de aço e concreto permitem separar paredes de funções que antes eram necessariamente estruturais.', example: 'Em um edifício com pilares estruturais independentes, divisórias internas podem ser reposicionadas com mais liberdade do que em uma construção na qual cada parede carrega o peso dos andares.', body:['Industrialização trouxe aço, concreto armado e vidro em novas escalas.', 'Arquitetos questionaram a cópia de estilos históricos.', 'Plantas mais livres tornaram-se possíveis com novas estruturas.', 'Bauhaus e Le Corbusier difundiram ideias modernistas internacionalmente.', 'O modernismo assumiu formas diferentes conforme clima, política e cultura local.'], remember:['Moderno não significa apenas contemporâneo.', 'Materiais mudaram possibilidades.', 'Houve muitos modernismos.'],
+ whyItMatters: 'Ao observar edifícios modernos, vale perguntar como materiais, estrutura, circulação e clima influenciam a experiência das pessoas. A história do movimento ajuda a avaliar suas propostas e críticas sem reduzi-lo a fachadas retas.', curiosity:'A frase forma segue a função é anterior à Bauhaus e foi associada ao arquiteto Louis Sullivan.', connections:['Bauhaus', 'Brasília', 'Lina Bo Bardi', 'Brutalismo'],
+  media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/40rZc48u83PN4fzRd6xKap',title:'Arquicast 211 – Villa Savoye',caption:'1 h 25 min · Arquicast',sourceLabel:'Spotify · Arquicast',sourceUrl:'https://open.spotify.com/episode/40rZc48u83PN4fzRd6xKap'),]);
 
 const linguisticaTopic = KnowledgeTopic(
  id:'linguistica', eyebrow:'LINGUAGEM / CIÊNCIA', title:'COMO OS LINGUISTAS ESTUDAM UMA LÍNGUA SEM DIZER O QUE É “CERTO”?', summary:'A linguística descreve padrões de sons, palavras, frases, significados e usos observados entre falantes.', minutes:7, tags:['linguagem', 'ciência'],
- quickTake:'Linguística descritiva pergunta como as pessoas realmente falam; gramáticas normativas definem convenções para certos contextos.', simpleExplanation:'Dizer nós vai pode ser socialmente estigmatizado em alguns contextos, mas ainda possui padrões linguísticos analisáveis.', example:'Dizer nós vai pode ser socialmente estigmatizado em alguns contextos, mas ainda possui padrões linguísticos analisáveis.', body:['Fonética e fonologia estudam sons sob perspectivas diferentes.', 'Morfologia investiga estrutura interna de palavras.', 'Sintaxe analisa como elementos formam frases.', 'Semântica e pragmática tratam de significado e contexto.', 'Sociolinguística mostra como variação se relaciona a região, grupo, identidade e situação.'], remember:['Descrever não é prescrever.', 'Variação tem padrões.', 'Fala e escrita são sistemas relacionados, mas diferentes.'],
- whyItMatters:'Amplia o repertório e cria conexões úteis com história, ciência, cultura e situações do cotidiano.', curiosity:'Todas as línguas naturais conhecidas possuem estruturas complexas, mesmo quando não têm tradição escrita.', connections:['Etimologia', 'Alfabeto', 'Evolução das línguas', 'Comunicação'],
-,media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/0Ysv78HC9HMqFgwtk3jj8V',title:'Variação linguística, uma conversa com Raquel Freitag',caption:'29 min · Linguística ON',sourceLabel:'Spotify · Linguística ON',sourceUrl:'https://open.spotify.com/episode/0Ysv78HC9HMqFgwtk3jj8V'),]);
+ quickTake:'Linguística descritiva pergunta como as pessoas realmente falam; gramáticas normativas definem convenções para certos contextos.', simpleExplanation:'Dizer nós vai pode ser socialmente estigmatizado em alguns contextos, mas ainda possui padrões linguísticos analisáveis.', example: 'Se um grupo usa a mesma construção gramatical de modo consistente em sua comunidade, o linguista descreve quando e como ela funciona. A escolha de usá-la em uma entrevista formal é outra questão.', body:['Fonética e fonologia estudam sons sob perspectivas diferentes.', 'Morfologia investiga estrutura interna de palavras.', 'Sintaxe analisa como elementos formam frases.', 'Semântica e pragmática tratam de significado e contexto.', 'Sociolinguística mostra como variação se relaciona a região, grupo, identidade e situação.'], chapters: [
+  KnowledgeChapter(title: 'Descrever primeiro, avaliar depois', paragraphs: [
+    'Quando uma comunidade utiliza uma língua, seus participantes empregam padrões compartilhados mesmo sem consultar gramáticas escolares. A linguística procura descobrir como esses padrões funcionam e variam: sons, formação de palavras, estrutura de frases, significados e usos em contextos específicos. Seu objetivo científico não é começar dizendo quais pessoas falam bem ou mal.',
+    'Uma regra de linguagem formal pode ser relevante em provas ou documentos profissionais, mas isso não torna variedades populares desprovidas de organização. Distinguir convenção social, adequação ao contexto e descrição científica é essencial para entender o trabalho de um linguista.',
+  ]),
+  KnowledgeChapter(title: 'Mudanças acontecem porque línguas estão vivas', paragraphs: [
+    'Pronúncias, palavras e construções circulam entre pessoas e gerações. Contato entre grupos, tecnologias, migração e hábitos cotidianos podem contribuir para mudanças. Quem estuda esse processo compara registros históricos, observações de comunidades e, quando possível, padrões encontrados em muitos falantes.',
+    'Uma variedade regional não é uma versão fracassada de outra: pode ter estruturas, vocabulário e trajetórias próprias. Ao mesmo tempo, sociedades atribuem prestígio desigual a certas maneiras de falar. A linguística investiga esses julgamentos sem pressupor que a variedade socialmente prestigiada seja intrinsecamente superior.',
+  ]),
+  KnowledgeChapter(title: 'A língua também revela relações de poder', paragraphs: [
+    'Considere uma entrevista de emprego, uma conversa entre amigos e uma mensagem enviada por aplicativo. A mesma pessoa pode variar vocabulário, pronúncia e construção de frases conforme interlocutores e objetivos. Esse ajuste contextual não representa necessariamente falsidade ou falta de conhecimento: faz parte da competência comunicativa.',
+    'Conhecer esses mecanismos ajuda a interpretar preconceito linguístico, ensino de idiomas, tradução e tecnologias de reconhecimento de fala. Um sistema treinado apenas com uma variedade pode funcionar pior para falantes de outras; a diversidade da linguagem é também uma questão prática de projeto.',
+  ]),
+ ],
+ remember:['Descrever não é prescrever.', 'Variação tem padrões.', 'Fala e escrita são sistemas relacionados, mas diferentes.'],
+ whyItMatters: 'A linguística ajuda a compreender variação regional, mudança histórica e preconceito linguístico. Uma forma de falar pode seguir regras consistentes e, ao mesmo tempo, receber avaliações sociais diferentes conforme o contexto.', curiosity:'Todas as línguas naturais conhecidas possuem estruturas complexas, mesmo quando não têm tradição escrita.', connections:['Etimologia', 'Alfabeto', 'Evolução das línguas', 'Comunicação'],
+  media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/0Ysv78HC9HMqFgwtk3jj8V',title:'Variação linguística, uma conversa com Raquel Freitag',caption:'29 min · Linguística ON',sourceLabel:'Spotify · Linguística ON',sourceUrl:'https://open.spotify.com/episode/0Ysv78HC9HMqFgwtk3jj8V'),]);
 
 const antropologiaTopic = KnowledgeTopic(
  id:'antropologia', eyebrow:'SOCIEDADE / CULTURA', title:'O QUE A ANTROPOLOGIA TENTA ENTENDER?', summary:'A disciplina compara formas humanas de viver, significar, organizar relações e transformar ambientes.', minutes:7, tags:['sociedade', 'cultura'],
- quickTake:'Antropologia não estuda apenas povos distantes; também investiga empresas, cidades, internet, ciência e cotidiano.', simpleExplanation:'Um pesquisador pode acompanhar durante meses a rotina de uma comunidade para entender práticas a partir do contexto de quem participa delas.', example:'Um pesquisador pode acompanhar durante meses a rotina de uma comunidade para entender práticas a partir do contexto de quem participa delas.', body:['Antropologia possui tradições culturais, sociais, biológicas, linguísticas e arqueológicas.', 'Trabalho de campo tornou-se central em muitas vertentes.', 'Etnografia combina observação, participação, entrevistas e interpretação.', 'A disciplina revisou criticamente vínculos históricos com colonialismo.', 'Comparação cultural ajuda a questionar aquilo que uma sociedade trata como natural ou óbvio.'], remember:['Não estuda apenas sociedades antigas.', 'Etnografia é um método central.', 'A disciplina também critica sua própria história.'],
- whyItMatters:'Amplia o repertório e cria conexões úteis com história, ciência, cultura e situações do cotidiano.', curiosity:'Etnografia tornou-se um método influente muito além da própria antropologia.', connections:['Cultura', 'Linguagem', 'Cidades', 'História'],
-,media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/0z2OK3gS8Mxp18iC2f87M6',title:'Antropologia Clássica: dos primórdios à Escola de Manchester',caption:'1 h 56 min · História FM',sourceLabel:'Spotify · História FM',sourceUrl:'https://open.spotify.com/episode/0z2OK3gS8Mxp18iC2f87M6'),]);
+ quickTake:'Antropologia não estuda apenas povos distantes; também investiga empresas, cidades, internet, ciência e cotidiano.', simpleExplanation:'Um pesquisador pode acompanhar durante meses a rotina de uma comunidade para entender práticas a partir do contexto de quem participa delas.', example: 'O significado de compartilhar uma refeição pode variar muito entre grupos. Observar quem serve, quem se reúne e em que ocasiões ajuda a entender o costume sem supor que exista uma explicação universal.', body:['Antropologia possui tradições culturais, sociais, biológicas, linguísticas e arqueológicas.', 'Trabalho de campo tornou-se central em muitas vertentes.', 'Etnografia combina observação, participação, entrevistas e interpretação.', 'A disciplina revisou criticamente vínculos históricos com colonialismo.', 'Comparação cultural ajuda a questionar aquilo que uma sociedade trata como natural ou óbvio.'], remember:['Não estuda apenas sociedades antigas.', 'Etnografia é um método central.', 'A disciplina também critica sua própria história.'],
+ whyItMatters: 'A antropologia oferece métodos para interpretar práticas sociais a partir do ponto de vista de seus participantes. Isso ajuda a questionar generalizações e distinguir diferenças culturais de julgamentos apressados.', curiosity:'Etnografia tornou-se um método influente muito além da própria antropologia.', connections:['Cultura', 'Linguagem', 'Cidades', 'História'],
+  media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/0z2OK3gS8Mxp18iC2f87M6',title:'Antropologia Clássica: dos primórdios à Escola de Manchester',caption:'1 h 56 min · História FM',sourceLabel:'Spotify · História FM',sourceUrl:'https://open.spotify.com/episode/0z2OK3gS8Mxp18iC2f87M6'),]);
 
 const origemVidaTopic = KnowledgeTopic(
  id:'origem-vida', eyebrow:'CIÊNCIA / GRANDES QUESTÕES', title:'COMO A VIDA PODE TER COMEÇADO?', summary:'Pesquisadores investigam caminhos químicos pelos quais moléculas simples poderiam formar sistemas capazes de replicação e evolução.', minutes:7, tags:['ciência', 'biologia'],
- quickTake:'A origem da vida ainda é uma questão aberta; evolução explica como populações mudam depois que sistemas replicadores existem.', simpleExplanation:'Moléculas capazes de copiar informação com erros ocasionais criariam condições para seleção natural agir.', example:'Moléculas capazes de copiar informação com erros ocasionais criariam condições para seleção natural agir.', body:['A Terra formou-se há cerca de 4,5 bilhões de anos.', 'Evidências indicam vida muito antiga, mas os primeiros sistemas não foram preservados de forma completa.', 'Hipóteses investigam ambientes como fontes hidrotermais e superfícies minerais.', 'RNA é interessante porque pode carregar informação e também catalisar certas reações.', 'Nenhum cenário único é hoje uma explicação completa e confirmada.'], remember:['É uma questão em aberto.', 'Origem da vida e evolução são perguntas diferentes.', 'Química prebiótica oferece pistas, não uma resposta final.'],
- whyItMatters:'Amplia o repertório e cria conexões úteis com história, ciência, cultura e situações do cotidiano.', curiosity:'Experimentos já mostraram que moléculas orgânicas podem surgir em condições não biológicas, mas isso não resolve toda a origem da vida.', connections:['Evolução', 'DNA', 'Oceanos', 'Fermi'],
-,media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/4LHl7iXkD7vHjEgbpis17H',title:'Origem da Vida',caption:'8 min · Pílulas de Biologia',sourceLabel:'Spotify · Pílulas de Biologia',sourceUrl:'https://open.spotify.com/episode/4LHl7iXkD7vHjEgbpis17H'),]);
+ quickTake:'A origem da vida ainda é uma questão aberta; evolução explica como populações mudam depois que sistemas replicadores existem.', simpleExplanation:'Moléculas capazes de copiar informação com erros ocasionais criariam condições para seleção natural agir.', example: 'Pesquisadores podem testar em laboratório se certas moléculas se formam em condições que simulam ambientes antigos. Um resultado positivo mostra uma etapa possível, não uma recriação demonstrada da origem da vida.', body:['A Terra formou-se há cerca de 4,5 bilhões de anos.', 'Evidências indicam vida muito antiga, mas os primeiros sistemas não foram preservados de forma completa.', 'Hipóteses investigam ambientes como fontes hidrotermais e superfícies minerais.', 'RNA é interessante porque pode carregar informação e também catalisar certas reações.', 'Nenhum cenário único é hoje uma explicação completa e confirmada.'], chapters: [
+  KnowledgeChapter(title: 'O problema começa antes dos primeiros organismos', paragraphs: [
+    'Investigar a origem da vida é perguntar como sistemas químicos passaram a apresentar características associadas a organismos: armazenamento de informação, manutenção de processos e capacidade de produzir descendentes sujeitos à evolução. Como não há registro completo desse período distante, pesquisadores combinam geologia, química, biologia e experimentos.',
+    'Uma hipótese importante envolve moléculas capazes de armazenar informação e participar de reações antes das células modernas. Outra pergunta envolve membranas e compartimentos que permitiriam concentrar substâncias e manter condições internas. Não há motivo para supor que todos esses componentes tenham surgido de uma vez ou na ordem exata das células atuais.',
+  ]),
+  KnowledgeChapter(title: 'Uma hipótese precisa produzir previsões testáveis', paragraphs: [
+    'Experimentos podem investigar se moléculas relevantes se formam em ambientes que lembram determinados cenários antigos. Estudos de meteoritos, ambientes hidrotermais e organismos atuais oferecem pistas complementares. Cada linha de evidência tem limitações; obter uma molécula em laboratório não equivale a demonstrar como surgiram os primeiros seres vivos.',
+    'É importante distinguir duas perguntas: como a vida começou e como seres vivos passaram a se diversificar depois que sistemas capazes de evolução já existiam. A seleção natural explica muito da evolução biológica, mas não substitui toda a investigação sobre a etapa pré-biológica.',
+  ]),
+  KnowledgeChapter(title: 'O que ainda não sabemos é parte da história', paragraphs: [
+    'A astrobiologia procura entender condições de habitabilidade e possíveis sinais biológicos dentro e fora do Sistema Solar. Descobrir água, moléculas orgânicas ou um ambiente potencialmente habitável é interessante, mas nenhuma dessas observações isoladas confirma a existência de vida.',
+    'A pergunta sobre a origem da vida permanece aberta porque cenários distintos podem explicar partes dos dados. Uma boa leitura científica separa achados reproduzíveis, hipóteses em investigação e narrativas atraentes que ainda carecem de comprovação.',
+  ]),
+ ],
+ remember:['É uma questão em aberto.', 'Origem da vida e evolução são perguntas diferentes.', 'Química prebiótica oferece pistas, não uma resposta final.'],
+ whyItMatters: 'Estudar a origem da vida ensina a separar hipóteses sobre os primeiros sistemas vivos da evolução biológica posterior. Também mostra como pesquisas combinam química, geologia e biologia sem fingir que o problema já foi resolvido.', curiosity:'Experimentos já mostraram que moléculas orgânicas podem surgir em condições não biológicas, mas isso não resolve toda a origem da vida.', connections:['Evolução', 'DNA', 'Oceanos', 'Fermi'],
+  media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/4LHl7iXkD7vHjEgbpis17H',title:'Origem da Vida',caption:'8 min · Pílulas de Biologia',sourceLabel:'Spotify · Pílulas de Biologia',sourceUrl:'https://open.spotify.com/episode/4LHl7iXkD7vHjEgbpis17H'),]);
 
 const mitologiaGregaTopic = KnowledgeTopic(
  id:'mitologia-grega', eyebrow:'HISTÓRIA / MITOLOGIA', title:'POR QUE OS MITOS GREGOS CONTINUAM EM TODO LUGAR?', summary:'Histórias de deuses e heróis foram reinterpretadas por séculos e continuam estruturando referências na arte, literatura e linguagem.', minutes:7, tags:['história', 'cultura'],
- quickTake:'Mitologia grega não era um livro único com uma versão oficial: histórias variavam conforme época, cidade e autor.', simpleExplanation:'Um mesmo herói podia aparecer de maneira diferente numa epopeia, numa peça teatral e numa tradição local.', example:'Um mesmo herói podia aparecer de maneira diferente numa epopeia, numa peça teatral e numa tradição local.', body:['Mitos ajudavam a explicar origens, rituais, relações sociais e fenômenos naturais.', 'Homero e Hesíodo registraram versões muito influentes, mas não exclusivas.', 'Deuses gregos possuíam poderes extraordinários e comportamentos profundamente humanos.', 'Roma reinterpretou muitas divindades e narrativas gregas.', 'Renascimento e neoclassicismo recuperaram intensamente esses temas.'], remember:['Não havia cânone único.', 'Mitos mudavam conforme contexto.', 'Roma ajudou a transmitir muitas histórias.'],
+ quickTake:'Mitologia grega não era um livro único com uma versão oficial: histórias variavam conforme época, cidade e autor.', simpleExplanation:'Um mesmo herói podia aparecer de maneira diferente numa epopeia, numa peça teatral e numa tradição local.', example: 'Compare duas narrativas sobre o mesmo deus ou herói escritas em épocas e regiões diferentes: detalhes, valores e personagens secundários podem mudar sem que uma versão precise ser a única válida.', body:['Mitos ajudavam a explicar origens, rituais, relações sociais e fenômenos naturais.', 'Homero e Hesíodo registraram versões muito influentes, mas não exclusivas.', 'Deuses gregos possuíam poderes extraordinários e comportamentos profundamente humanos.', 'Roma reinterpretou muitas divindades e narrativas gregas.', 'Renascimento e neoclassicismo recuperaram intensamente esses temas.'], remember:['Não havia cânone único.', 'Mitos mudavam conforme contexto.', 'Roma ajudou a transmitir muitas histórias.'],
  whyItMatters:'Amplia o repertório e conecta este assunto a temas históricos, científicos e culturais já presentes no app.', curiosity:'Muitos nomes de planetas e constelações que usamos hoje preservam tradições mitológicas greco-romanas.', connections:['Democracia ateniense', 'Roma', 'Renascimento', 'Literatura'],
-,media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/2kbRJwvpZjuuya51NWUHru',title:'Mitologia Grega: o Início do Mundo',caption:'21 min · Filosofatos',sourceLabel:'Spotify · Filosofatos',sourceUrl:'https://open.spotify.com/episode/2kbRJwvpZjuuya51NWUHru'),]);
+  media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/2kbRJwvpZjuuya51NWUHru',title:'Mitologia Grega: o Início do Mundo',caption:'21 min · Filosofatos',sourceLabel:'Spotify · Filosofatos',sourceUrl:'https://open.spotify.com/episode/2kbRJwvpZjuuya51NWUHru'),]);
 
 const reformaProtestanteTopic = KnowledgeTopic(
  id:'reforma-protestante', eyebrow:'HISTÓRIA / RELIGIÃO', title:'COMO A REFORMA PROTESTANTE TRANSFORMOU A EUROPA?', summary:'Críticas religiosas, imprensa e disputas políticas fragmentaram a cristandade ocidental no século XVI.', minutes:7, tags:['história', 'cultura'],
- quickTake:'A Reforma não foi obra de uma única pessoa nem teve apenas causas religiosas.', simpleExplanation:'As 95 teses associadas a Martinho Lutero entraram num ambiente em que textos podiam circular muito mais rapidamente graças à imprensa.', example:'As 95 teses associadas a Martinho Lutero entraram num ambiente em que textos podiam circular muito mais rapidamente graças à imprensa.', body:['Em 1517, Lutero tornou públicas críticas ligadas especialmente às indulgências.', 'Reformadores como Calvino e Zwinglio desenvolveram tradições distintas.', 'Governantes viram nas disputas religiosas também oportunidades e riscos políticos.', 'A Igreja Católica respondeu com reformas internas e o Concílio de Trento.', 'Guerras e acordos religiosos redesenharam partes da Europa.'], remember:['1517 é um marco simbólico.', 'Houve várias reformas protestantes.', 'Imprensa acelerou circulação de ideias.'],
+ quickTake:'A Reforma não foi obra de uma única pessoa nem teve apenas causas religiosas.', simpleExplanation:'As 95 teses associadas a Martinho Lutero entraram num ambiente em que textos podiam circular muito mais rapidamente graças à imprensa.', example: 'Um texto religioso impresso podia chegar a leitores de cidades diferentes muito mais rapidamente do que uma cópia manuscrita, ampliando o alcance das disputas sobre doutrina e autoridade.', body:['Em 1517, Lutero tornou públicas críticas ligadas especialmente às indulgências.', 'Reformadores como Calvino e Zwinglio desenvolveram tradições distintas.', 'Governantes viram nas disputas religiosas também oportunidades e riscos políticos.', 'A Igreja Católica respondeu com reformas internas e o Concílio de Trento.', 'Guerras e acordos religiosos redesenharam partes da Europa.'], remember:['1517 é um marco simbólico.', 'Houve várias reformas protestantes.', 'Imprensa acelerou circulação de ideias.'],
  whyItMatters:'Amplia o repertório e conecta este assunto a temas históricos, científicos e culturais já presentes no app.', curiosity:'A tradução da Bíblia para línguas locais também influenciou alfabetização e padronização linguística.', connections:['Imprensa', 'Iluminismo', 'Europa', 'Linguagem'],
-,media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/2ItxGh1gXSKsVeOtvsFOcc',title:'Reformas Protestantes: mudando os rumos do Cristianismo',caption:'1 h 7 min · História FM',sourceLabel:'Spotify · História FM',sourceUrl:'https://open.spotify.com/episode/2ItxGh1gXSKsVeOtvsFOcc'),]);
+  media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/2ItxGh1gXSKsVeOtvsFOcc',title:'Reformas Protestantes: mudando os rumos do Cristianismo',caption:'1 h 7 min · História FM',sourceLabel:'Spotify · História FM',sourceUrl:'https://open.spotify.com/episode/2ItxGh1gXSKsVeOtvsFOcc'),]);
 
 const revolucaoRussaTopic = KnowledgeTopic(
  id:'revolucao-russa', eyebrow:'HISTÓRIA / REVOLUÇÕES', title:'POR QUE HOUVE DUAS REVOLUÇÕES NA RÚSSIA EM 1917?', summary:'Guerra, crise econômica e perda de legitimidade derrubaram o czar e depois permitiram aos bolcheviques tomar o poder.', minutes:7, tags:['história', 'geopolítica'],
- quickTake:'A Revolução Russa de 1917 teve fases diferentes e não foi um único levante contínuo.', simpleExplanation:'Em fevereiro, o regime czarista caiu; meses depois, em outubro, os bolcheviques derrubaram o Governo Provisório.', example:'Em fevereiro, o regime czarista caiu; meses depois, em outubro, os bolcheviques derrubaram o Governo Provisório.', body:['A Primeira Guerra agravou escassez, inflação e desgaste militar.', 'Protestos e motins levaram à abdicação de Nicolau II.', 'Um Governo Provisório dividiu autoridade com sovietes de trabalhadores e soldados.', 'Lenin e os bolcheviques defenderam transferência de poder aos sovietes e saída da guerra.', 'Após outubro, uma guerra civil consolidou um novo regime que daria origem à URSS.'], remember:['Fevereiro e outubro foram fases distintas.', 'A Primeira Guerra foi decisiva.', 'A URSS surgiu depois, em 1922.'],
+ quickTake:'A Revolução Russa de 1917 teve fases diferentes e não foi um único levante contínuo.', simpleExplanation:'Em fevereiro, o regime czarista caiu; meses depois, em outubro, os bolcheviques derrubaram o Governo Provisório.', example: 'Uma pessoa que saiu às ruas contra o czar no início de 1917 não precisava apoiar a tomada de poder bolchevique que ocorreu meses depois. Os participantes e objetivos desses momentos não eram idênticos.', body:['A Primeira Guerra agravou escassez, inflação e desgaste militar.', 'Protestos e motins levaram à abdicação de Nicolau II.', 'Um Governo Provisório dividiu autoridade com sovietes de trabalhadores e soldados.', 'Lenin e os bolcheviques defenderam transferência de poder aos sovietes e saída da guerra.', 'Após outubro, uma guerra civil consolidou um novo regime que daria origem à URSS.'], remember:['Fevereiro e outubro foram fases distintas.', 'A Primeira Guerra foi decisiva.', 'A URSS surgiu depois, em 1922.'],
  whyItMatters:'Amplia o repertório e conecta este assunto a temas históricos, científicos e culturais já presentes no app.', curiosity:'A Rússia ainda utilizava o calendário juliano, por isso as datas históricas mudam quando convertidas ao calendário gregoriano.', connections:['Primeira Guerra', 'Guerra Fria', 'URSS', 'Revolução Francesa'],
-,media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/5EEQDyqXECl4zhY1m5O3pl',title:'Revolução Russa',caption:'37 min · História em Meia Hora',sourceLabel:'Spotify · História em Meia Hora',sourceUrl:'https://open.spotify.com/episode/5EEQDyqXECl4zhY1m5O3pl'),]);
+  media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/5EEQDyqXECl4zhY1m5O3pl',title:'Revolução Russa',caption:'37 min · História em Meia Hora',sourceLabel:'Spotify · História em Meia Hora',sourceUrl:'https://open.spotify.com/episode/5EEQDyqXECl4zhY1m5O3pl'),]);
 
 const penicilinaTopic = KnowledgeTopic(
  id:'penicilina', eyebrow:'CIÊNCIA / MEDICINA', title:'COMO UM FUNGO AJUDOU A REVOLUCIONAR A MEDICINA?', summary:'A descoberta da penicilina abriu caminho para antibióticos capazes de tratar muitas infecções bacterianas antes frequentemente fatais.', minutes:7, tags:['ciência', 'saúde'],
- quickTake:'Fleming observou o fenômeno, mas transformar penicilina em medicamento exigiu anos de trabalho de muitos pesquisadores.', simpleExplanation:'Uma contaminação por mofo numa placa bacteriana revelou uma zona onde bactérias não cresciam.', example:'Uma contaminação por mofo numa placa bacteriana revelou uma zona onde bactérias não cresciam.', body:['Alexander Fleming observou o efeito antibacteriano do Penicillium em 1928.', 'Ele publicou a descoberta, mas a substância era difícil de purificar e produzir.', 'Howard Florey, Ernst Chain e equipes posteriores desenvolveram métodos para transformá-la em terapia prática.', 'Produção industrial aumentou rapidamente nos anos 1940.', 'O uso de antibióticos também criou forte pressão evolutiva para resistência.'], remember:['1928 foi a descoberta inicial.', 'Medicamento exigiu trabalho coletivo.', 'Resistência é consequência evolutiva.'],
+ quickTake:'Fleming observou o fenômeno, mas transformar penicilina em medicamento exigiu anos de trabalho de muitos pesquisadores.', simpleExplanation:'Uma contaminação por mofo numa placa bacteriana revelou uma zona onde bactérias não cresciam.', example: 'Depois da descoberta do efeito antibacteriano, transformar a substância em medicamento útil exigiu pesquisa adicional sobre purificação, produção e testes. Observar algo promissor não é o mesmo que ter um tratamento pronto.', body:['Alexander Fleming observou o efeito antibacteriano do Penicillium em 1928.', 'Ele publicou a descoberta, mas a substância era difícil de purificar e produzir.', 'Howard Florey, Ernst Chain e equipes posteriores desenvolveram métodos para transformá-la em terapia prática.', 'Produção industrial aumentou rapidamente nos anos 1940.', 'O uso de antibióticos também criou forte pressão evolutiva para resistência.'], remember:['1928 foi a descoberta inicial.', 'Medicamento exigiu trabalho coletivo.', 'Resistência é consequência evolutiva.'],
  whyItMatters:'Amplia o repertório e conecta este assunto a temas históricos, científicos e culturais já presentes no app.', curiosity:'A produção em massa de penicilina ganhou escala durante a Segunda Guerra Mundial.', connections:['Antibióticos', 'Evolução', 'Segunda Guerra', 'Microbioma'],
 );
 
 const neuroplasticidadeTopic = KnowledgeTopic(
  id:'neuroplasticidade', eyebrow:'CIÊNCIA / CÉREBRO', title:'O CÉREBRO CONSEGUE SE REORGANIZAR?', summary:'Experiência, aprendizagem e lesões podem alterar conexões e funções de circuitos neurais ao longo da vida.', minutes:7, tags:['ciência', 'psicologia'],
- quickTake:'Neuroplasticidade não significa que o cérebro possa se transformar sem limites; mudanças dependem de biologia, idade, treino e contexto.', simpleExplanation:'Praticar uma habilidade repetidamente pode fortalecer e reorganizar redes envolvidas naquela tarefa.', example:'Praticar uma habilidade repetidamente pode fortalecer e reorganizar redes envolvidas naquela tarefa.', body:['Sinapses podem fortalecer ou enfraquecer com atividade.', 'Aprendizagem envolve alterações em redes distribuídas.', 'Após algumas lesões, outras áreas podem assumir parte de funções perdidas.', 'Plasticidade é maior em certos períodos do desenvolvimento, mas continua na vida adulta.', 'Mudanças plásticas podem ser úteis ou contribuir para problemas, como dor crônica.'], remember:['Plasticidade continua na vida adulta.', 'Não é ilimitada.', 'Aprendizagem altera redes.'],
+ quickTake:'Neuroplasticidade não significa que o cérebro possa se transformar sem limites; mudanças dependem de biologia, idade, treino e contexto.', simpleExplanation:'Praticar uma habilidade repetidamente pode fortalecer e reorganizar redes envolvidas naquela tarefa.', example: 'Ao aprender uma sequência musical, a pessoa corrige erros e repete movimentos. A experiência é um exemplo cotidiano de aprendizagem associada a mudanças na atividade e organização de circuitos neurais.', body:['Sinapses podem fortalecer ou enfraquecer com atividade.', 'Aprendizagem envolve alterações em redes distribuídas.', 'Após algumas lesões, outras áreas podem assumir parte de funções perdidas.', 'Plasticidade é maior em certos períodos do desenvolvimento, mas continua na vida adulta.', 'Mudanças plásticas podem ser úteis ou contribuir para problemas, como dor crônica.'], chapters: [
+  KnowledgeChapter(title: 'O cérebro se modifica com a experiência', paragraphs: [
+    'Neuroplasticidade é a capacidade de redes neurais apresentarem mudanças associadas a experiência, desenvolvimento, aprendizagem ou recuperação. Algumas alterações dizem respeito à eficácia da comunicação entre neurônios; outras envolvem organização de circuitos e respostas de regiões cerebrais. Não existe um único indicador que represente todas essas mudanças.',
+    'Aprender a tocar uma sequência musical ou praticar um movimento são exemplos úteis: repetição acompanhada de feedback pode mudar o desempenho e se associar a adaptações neurais. A melhora observada, entretanto, não mostra automaticamente qual mudança cerebral específica aconteceu naquela pessoa.',
+  ]),
+  KnowledgeChapter(title: 'Mudança não significa crescimento sem limites', paragraphs: [
+    'O termo aparece muito em promessas populares de que qualquer pessoa pode reprogramar inteiramente o cérebro em poucos dias. Isso vai além do que o conceito garante. Plasticidade ocorre sob diferentes condições e pode envolver também ajustes pouco benéficos; idade, contexto, saúde, prática e tipo de tarefa influenciam resultados.',
+    'Em estudos de neuroimagem, pesquisadores podem observar medidas que variam após experiências ou treinamento. Interpretar o que esses sinais representam exige cuidado com o método, a duração da observação e a possibilidade de outras explicações. Uma medida alterada não deve ser traduzida automaticamente como criação de neurônios.',
+  ]),
+  KnowledgeChapter(title: 'Como aplicar a ideia sem cair em milagres', paragraphs: [
+    'Em vez de procurar um exercício que supostamente ative todo o cérebro, escolha uma habilidade concreta, divida-a em tarefas treináveis e acompanhe erros e acertos. Aprendizagem e memória dependem de muitos processos; melhora gradual com prática é uma expectativa mais adequada do que transformação instantânea.',
+    'Há diferença entre estudar neuroplasticidade e prescrever tratamento para uma condição neurológica. Reabilitação clínica exige avaliação individual e acompanhamento profissional. Para o leitor, a ideia central é compreender que o cérebro é dinâmico, mas não infinitamente maleável.',
+  ]),
+ ],
+ remember:['Plasticidade continua na vida adulta.', 'Não é ilimitada.', 'Aprendizagem altera redes.'],
  whyItMatters:'Amplia o repertório e conecta este assunto a temas históricos, científicos e culturais já presentes no app.', curiosity:'Aprender a ler modifica a maneira como certas regiões visuais respondem a símbolos escritos.', connections:['Memória', 'Hábitos', 'Sono', 'Linguagem'],
-,media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/245I29JwNsHuxcO5slMIc1',title:'Dra. Patrícia Brocardo: Neuroplasticidade Cerebral',caption:'1 h 4 min · Eslen Podcast',sourceLabel:'Spotify · Eslen Podcast',sourceUrl:'https://open.spotify.com/episode/245I29JwNsHuxcO5slMIc1'),]);
+  media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/245I29JwNsHuxcO5slMIc1',title:'Dra. Patrícia Brocardo: Neuroplasticidade Cerebral',caption:'1 h 4 min · Eslen Podcast',sourceLabel:'Spotify · Eslen Podcast',sourceUrl:'https://open.spotify.com/episode/245I29JwNsHuxcO5slMIc1'),]);
 
 const teoriaJogosTopic = KnowledgeTopic(
  id:'teoria-jogos', eyebrow:'ECONOMIA / ESTRATÉGIA', title:'O QUE A TEORIA DOS JOGOS TEM A VER COM DECISÕES REAIS?', summary:'Ela estuda situações em que o resultado de cada participante depende também das escolhas dos outros.', minutes:7, tags:['economia', 'matemática'],
- quickTake:'Um jogo, nesse contexto, pode ser uma negociação, competição de preços ou acordo internacional — não precisa ser entretenimento.', simpleExplanation:'Se duas empresas escolhem preços sabendo que cada decisão afeta a reação da concorrente, existe interdependência estratégica.', example:'Se duas empresas escolhem preços sabendo que cada decisão afeta a reação da concorrente, existe interdependência estratégica.', body:['Modelos especificam participantes, estratégias, informações e resultados.', 'John von Neumann e Oskar Morgenstern foram fundamentais na formalização moderna.', 'John Nash desenvolveu um conceito de equilíbrio para estratégias mutuamente consistentes.', 'Jogos repetidos podem criar incentivos diferentes de interações únicas.', 'A teoria é usada em economia, biologia, ciência política e computação.'], remember:['Decisões são interdependentes.', 'Equilíbrio não significa melhor resultado.', 'Repetição muda incentivos.'],
+ quickTake:'Um jogo, nesse contexto, pode ser uma negociação, competição de preços ou acordo internacional — não precisa ser entretenimento.', simpleExplanation:'Se duas empresas escolhem preços sabendo que cada decisão afeta a reação da concorrente, existe interdependência estratégica.', example: 'Duas cafeterias na mesma rua decidem se fazem uma promoção. O resultado para cada uma depende não só de sua escolha, mas também do que a concorrente decidir.', body:['Modelos especificam participantes, estratégias, informações e resultados.', 'John von Neumann e Oskar Morgenstern foram fundamentais na formalização moderna.', 'John Nash desenvolveu um conceito de equilíbrio para estratégias mutuamente consistentes.', 'Jogos repetidos podem criar incentivos diferentes de interações únicas.', 'A teoria é usada em economia, biologia, ciência política e computação.'], chapters: [
+  KnowledgeChapter(title: 'O resultado depende das escolhas alheias', paragraphs: [
+    'Imagine duas empresas que decidem seus preços sem conhecer antecipadamente a decisão da concorrente. O ganho de cada uma depende do preço que ela escolher e também da reação da outra. A teoria dos jogos estuda situações assim, nas quais ações de participantes diferentes são estrategicamente interdependentes.',
+    'Um modelo descreve jogadores, alternativas disponíveis, informações e resultados associados a combinações de escolhas. Ele simplifica a realidade de propósito. A utilidade vem de deixar explícitas hipóteses que poderiam ficar escondidas em frases vagas sobre competição ou colaboração.',
+  ]),
+  KnowledgeChapter(title: 'Por que a cooperação às vezes falha', paragraphs: [
+    'No dilema do prisioneiro, o arranjo de incentivos pode levar participantes a escolher individualmente uma alternativa que produz um resultado coletivo inferior ao da cooperação. O exemplo não prova que as pessoas sejam sempre egoístas; mostra o que pode acontecer sob determinadas regras e informações.',
+    'Mudar as regras ou a possibilidade de interação futura pode alterar as decisões. Confiança, repetição, contratos e reputação são alguns dos elementos que podem modificar incentivos, dependendo do contexto. Essa é uma razão para desconfiar de análises que tratam um jogo isolado como explicação universal de todo comportamento humano.',
+  ]),
+  KnowledgeChapter(title: 'Use uma matriz para organizar uma decisão', paragraphs: [
+    'Desenhe uma tabela de duas empresas, cada uma com a escolha de manter ou reduzir preços. Em cada combinação, anote resultados plausíveis para ambas. Sem precisar adivinhar exatamente o mercado, esse exercício já mostra quais decisões exigem considerar a concorrência.',
+    'Na prática, decisões também envolvem incerteza, informação incompleta, leis, restrições operacionais e vários participantes. O conceito de equilíbrio ajuda a analisar situações em que nenhum jogador tem incentivo para mudar unilateralmente sua escolha, mas não significa que o resultado seja necessariamente justo ou socialmente desejável.',
+  ]),
+ ],
+ remember:['Decisões são interdependentes.', 'Equilíbrio não significa melhor resultado.', 'Repetição muda incentivos.'],
  whyItMatters:'Amplia o repertório e conecta este assunto a temas históricos, científicos e culturais já presentes no app.', curiosity:'O famoso dilema do prisioneiro mostra como decisões individualmente racionais podem produzir um resultado coletivo ruim.', connections:['Probabilidade', 'Economia', 'Xadrez', 'Algoritmos'],
-,media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/5HtIgdor3blsJdckLMN0qa',title:'Como você ganha: Teoria dos Jogos',caption:'14 min · LABORATÓRIO Podcast',sourceLabel:'Spotify · LABORATÓRIO Podcast',sourceUrl:'https://open.spotify.com/episode/5HtIgdor3blsJdckLMN0qa'),]);
+  media:[KnowledgeMedia(type:KnowledgeMediaType.audio,url:'https://open.spotify.com/episode/5HtIgdor3blsJdckLMN0qa',title:'Como você ganha: Teoria dos Jogos',caption:'14 min · LABORATÓRIO Podcast',sourceLabel:'Spotify · LABORATÓRIO Podcast',sourceUrl:'https://open.spotify.com/episode/5HtIgdor3blsJdckLMN0qa'),]);
 
 const blockchainTopic = KnowledgeTopic(
  id:'blockchain', eyebrow:'TECNOLOGIA / INTERNET', title:'O QUE UMA BLOCKCHAIN FAZ ALÉM DE CRIPTOMOEDAS?', summary:'Ela mantém um registro compartilhado cuja ordem e integridade são verificadas por regras criptográficas e mecanismos de consenso.', minutes:7, tags:['tecnologia', 'finanças'],
- quickTake:'Blockchain é um tipo específico de banco de dados distribuído; nem todo problema precisa dela.', simpleExplanation:'Vários participantes podem manter cópias de um histórico e concordar sobre novas entradas sem uma única base central controlando tudo.', example:'Vários participantes podem manter cópias de um histórico e concordar sobre novas entradas sem uma única base central controlando tudo.', body:['Blocos agrupam registros e referências criptográficas ao histórico anterior.', 'Hashes tornam alterações retroativas detectáveis.', 'Redes precisam de um mecanismo para concordar sobre o estado válido.', 'Blockchains públicas sacrificam algumas eficiências para reduzir dependência de uma autoridade central.', 'Contratos inteligentes permitem executar regras programadas em algumas redes.'], remember:['É um registro distribuído.', 'Consenso é essencial.', 'Descentralização traz custos e benefícios.'],
+ quickTake:'Blockchain é um tipo específico de banco de dados distribuído; nem todo problema precisa dela.', simpleExplanation:'Vários participantes podem manter cópias de um histórico e concordar sobre novas entradas sem uma única base central controlando tudo.', example: 'Duas organizações que compartilham registros de uma cadeia logística poderiam consultar um mesmo histórico distribuído. Isso ajuda a comparar alterações, mas não garante que a informação cadastrada inicialmente seja verdadeira.', body:['Blocos agrupam registros e referências criptográficas ao histórico anterior.', 'Hashes tornam alterações retroativas detectáveis.', 'Redes precisam de um mecanismo para concordar sobre o estado válido.', 'Blockchains públicas sacrificam algumas eficiências para reduzir dependência de uma autoridade central.', 'Contratos inteligentes permitem executar regras programadas em algumas redes.'], remember:['É um registro distribuído.', 'Consenso é essencial.', 'Descentralização traz custos e benefícios.'],
  whyItMatters:'Amplia o repertório e conecta este assunto a temas históricos, científicos e culturais já presentes no app.', curiosity:'Bitcoin popularizou a combinação de blockchain com prova de trabalho.', connections:['Bitcoin', 'Criptografia', 'Internet', 'Algoritmos'],
 );
 
 const reggaeTopic = KnowledgeTopic(
  id:'reggae', eyebrow:'MÚSICA / CULTURA', title:'COMO O REGGAE DA JAMAICA VIROU UMA VOZ GLOBAL?', summary:'Ritmos jamaicanos, sistemas de som e mensagens sociais transformaram um gênero local em influência mundial.', minutes:7, tags:['música', 'cultura'],
- quickTake:'Reggae é uma tradição diversa que nasceu de estilos jamaicanos anteriores, especialmente ska e rocksteady.', simpleExplanation:'A guitarra frequentemente acentua tempos fracos do compasso, criando a pulsação imediatamente reconhecível do gênero.', example:'A guitarra frequentemente acentua tempos fracos do compasso, criando a pulsação imediatamente reconhecível do gênero.', body:['Sistemas de som foram fundamentais na cultura musical jamaicana.', 'Ska surgiu antes, com andamento geralmente mais rápido.', 'Rocksteady desacelerou o pulso e destacou linhas de baixo.', 'Reggae consolidou-se no fim dos anos 1960.', 'Rastafári, desigualdade e política aparecem em parte importante de seu repertório.'], remember:['Veio de tradições anteriores.', 'Baixo e contratempo são marcantes.', 'Bob Marley popularizou, não inventou.'],
+ quickTake:'Reggae é uma tradição diversa que nasceu de estilos jamaicanos anteriores, especialmente ska e rocksteady.', simpleExplanation:'A guitarra frequentemente acentua tempos fracos do compasso, criando a pulsação imediatamente reconhecível do gênero.', example: 'Escute uma música de reggae e tente bater palmas com os acordes curtos que aparecem entre as batidas mais fortes: perceber os contratempos ajuda a reconhecer parte de sua identidade rítmica.', body:['Sistemas de som foram fundamentais na cultura musical jamaicana.', 'Ska surgiu antes, com andamento geralmente mais rápido.', 'Rocksteady desacelerou o pulso e destacou linhas de baixo.', 'Reggae consolidou-se no fim dos anos 1960.', 'Rastafári, desigualdade e política aparecem em parte importante de seu repertório.'], remember:['Veio de tradições anteriores.', 'Baixo e contratempo são marcantes.', 'Bob Marley popularizou, não inventou.'],
  whyItMatters:'Amplia o repertório e conecta este assunto a temas históricos, científicos e culturais já presentes no app.', curiosity:'Bob Marley ampliou enormemente a projeção internacional do reggae, mas não foi seu inventor.', connections:['Hip-hop', 'Jazz', 'Jamaica', 'Cultura'],
 );
 
 const rococoTopic = KnowledgeTopic(
  id:'rococo', eyebrow:'ARTE / HISTÓRIA', title:'POR QUE O ROCOCÓ PARECE TÃO EXAGERADAMENTE DELICADO?', summary:'Curvas, cores claras, ornamentação e cenas de lazer criaram uma linguagem associada às elites europeias do século XVIII.', minutes:7, tags:['arte', 'design'],
- quickTake:'Rococó não é simplesmente barroco mais decorado; desenvolveu escala, temas e atmosferas próprias.', simpleExplanation:'Interiores podiam combinar espelhos, douramento, curvas assimétricas e tons pastéis para dissolver visualmente paredes e teto.', example:'Interiores podiam combinar espelhos, douramento, curvas assimétricas e tons pastéis para dissolver visualmente paredes e teto.', body:['O estilo floresceu especialmente na França do início do século XVIII.', 'Salões privados substituíram parte da monumentalidade de palácios anteriores.', 'Pintores como Watteau e Fragonard exploraram cenas de lazer e sedução.', 'Ornamentos assimétricos inspirados na natureza eram frequentes.', 'O neoclassicismo depois reagiu contra aspectos associados ao excesso rococó.'], remember:['Século XVIII foi central.', 'Interiores eram fundamentais.', 'Neoclassicismo reagiu ao estilo.'],
+ quickTake:'Rococó não é simplesmente barroco mais decorado; desenvolveu escala, temas e atmosferas próprias.', simpleExplanation:'Interiores podiam combinar espelhos, douramento, curvas assimétricas e tons pastéis para dissolver visualmente paredes e teto.', example: 'Em um salão rococó, um espelho pode prolongar visualmente uma parede curva e refletir adornos dourados, fazendo a decoração parecer continuar além do espaço físico.', body:['O estilo floresceu especialmente na França do início do século XVIII.', 'Salões privados substituíram parte da monumentalidade de palácios anteriores.', 'Pintores como Watteau e Fragonard exploraram cenas de lazer e sedução.', 'Ornamentos assimétricos inspirados na natureza eram frequentes.', 'O neoclassicismo depois reagiu contra aspectos associados ao excesso rococó.'], chapters: [
+  KnowledgeChapter(title: 'Leveza visual não significa simplicidade técnica', paragraphs: [
+    'O rococó se associou a interiores, objetos e pinturas de ornamentação dinâmica, curvas e efeitos assimétricos. Conchas estilizadas, folhagens, superfícies brilhantes e composições delicadas podiam exigir artesãos de grande habilidade. Sua aparência leve muitas vezes escondia trabalho intenso de projeto e execução.',
+    'O estilo circulou por ambientes e regiões distintos ao longo do século XVIII. Não foi somente a pintura de uma corte específica; móveis, talheres, espelhos, gravuras e espaços interiores também carregavam elementos dessa linguagem.',
+  ]),
+  KnowledgeChapter(title: 'Como um estilo viaja entre sociedades', paragraphs: [
+    'Gravuras, livros de desenho, mercadorias importadas e trabalhadores especializados ajudaram motivos rococós a atravessar fronteiras. Ao chegar a outro contexto, uma forma decorativa podia ser reinterpretada conforme materiais, recursos econômicos e preferências locais. A circulação não produziu réplicas idênticas em todos os lugares.',
+    'Uma cadeira e uma parede decorada podem compartilhar curvas e motivos ornamentais sem cumprir a mesma função. Compará-las ajuda a observar como uma linguagem visual pode existir em escalas e técnicas diferentes.',
+  ]),
+  KnowledgeChapter(title: 'Um olhar além do rótulo exagerado', paragraphs: [
+    'Escolha um ambiente rococó e acompanhe as linhas que atravessam molduras, espelhos e elementos esculpidos. Observe como elas produzem movimento e como a luz amplia a decoração. Depois compare o espaço a um interior de formas mais geométricas e simétricas.',
+    'Evite a ideia de que um estilo substituiu outro em todas as regiões ao mesmo tempo. Barroco, rococó, classicismos e tradições locais coexistiram e se transformaram em calendários diferentes; rótulos históricos organizam a observação, mas não eliminam as sobreposições.',
+  ]),
+ ],
+ remember:['Século XVIII foi central.', 'Interiores eram fundamentais.', 'Neoclassicismo reagiu ao estilo.'],
  whyItMatters:'Amplia o repertório e conecta este assunto a temas históricos, científicos e culturais já presentes no app.', curiosity:'O nome rococó está ligado à palavra francesa rocaille, associada à ornamentação com pedras e conchas.', connections:['Barroco', 'Iluminismo', 'Moda', 'Art Déco'],
 );
 
 const urbanismoTopic = KnowledgeTopic(
  id:'urbanismo', eyebrow:'CIDADE / DESIGN', title:'QUEM DESENHA UMA CIDADE?', summary:'Ruas, leis, transportes, mercado imobiliário e decisões coletivas moldam cidades continuamente — muito além do trabalho de um único urbanista.', minutes:7, tags:['cidade', 'design'],
- quickTake:'Uma cidade não funciona como um prédio ampliado: milhões de decisões descentralizadas alteram o plano original.', simpleExplanation:'Abrir uma linha de metrô pode mudar onde empresas e moradores desejam se instalar, alterando preços e densidade.', example:'Abrir uma linha de metrô pode mudar onde empresas e moradores desejam se instalar, alterando preços e densidade.', body:['Urbanismo organiza relações entre uso do solo, mobilidade, infraestrutura e espaço público.', 'Zoneamento influencia onde diferentes atividades podem acontecer.', 'Redes de transporte alteram acessibilidade e valor da terra.', 'Espaços públicos dependem tanto de desenho quanto de uso e manutenção.', 'Planejamento contemporâneo precisa lidar com clima, desigualdade, habitação e crescimento metropolitano.'], remember:['Cidade é sistema dinâmico.', 'Transporte e uso do solo interagem.', 'Plano e realidade nunca são idênticos.'],
+ quickTake:'Uma cidade não funciona como um prédio ampliado: milhões de decisões descentralizadas alteram o plano original.', simpleExplanation:'Abrir uma linha de metrô pode mudar onde empresas e moradores desejam se instalar, alterando preços e densidade.', example: 'Ao planejar uma nova linha de ônibus, não basta desenhar o trajeto mais curto: é preciso observar horários de trabalho, acessibilidade, conexões e quem ficará sem atendimento.', body:['Urbanismo organiza relações entre uso do solo, mobilidade, infraestrutura e espaço público.', 'Zoneamento influencia onde diferentes atividades podem acontecer.', 'Redes de transporte alteram acessibilidade e valor da terra.', 'Espaços públicos dependem tanto de desenho quanto de uso e manutenção.', 'Planejamento contemporâneo precisa lidar com clima, desigualdade, habitação e crescimento metropolitano.'], remember:['Cidade é sistema dinâmico.', 'Transporte e uso do solo interagem.', 'Plano e realidade nunca são idênticos.'],
  whyItMatters:'Amplia o repertório e conecta este assunto a temas históricos, científicos e culturais já presentes no app.', curiosity:'Planos urbanos frequentemente produzem efeitos diferentes dos previstos décadas depois.', connections:['Cidades', 'Metrô', 'Brasília', 'Arquitetura moderna'],
 );
 
 const barrocoTopic = KnowledgeTopic(
- id:'barroco', eyebrow:'ARTE / HISTÓRIA', title:'POR QUE O BARROCO É TÃO DRAMÁTICO?', summary:'Contrastes, movimento e teatralidade transformaram arte e arquitetura dos séculos XVII e XVIII.', minutes:7, tags:['arte', 'história'], quickTake:'Barroco não é apenas excesso decorativo: luz, escala e composição eram usados para produzir emoção e presença.', simpleExplanation:'Uma igreja barroca pode dirigir o olhar com curvas, douramento e luz para transformar o espaço numa experiência quase teatral.', example:'Uma igreja barroca pode dirigir o olhar com curvas, douramento e luz para transformar o espaço numa experiência quase teatral.', body:['O estilo desenvolveu-se na Europa a partir do fim do século XVI.', 'Contrastes intensos de luz marcaram parte importante da pintura barroca.', 'Arquitetura explorou curvas, eixos e efeitos espaciais.', 'Igreja, monarquias e elites financiaram muitas obras.', 'Nas Américas, tradições locais transformaram modelos europeus.'], remember:['Drama é estrutural, não só decorativo.', 'Houve vários barrocos.', 'O Brasil criou expressões próprias.'], whyItMatters:'Amplia o repertório e cria novas conexões com assuntos já existentes no app.', curiosity:'O barroco ganhou linguagens próprias no Brasil, especialmente em Minas Gerais.', connections:['Rococó', 'Renascimento', 'Minas Gerais', 'Arquitetura'],
+ id:'barroco', eyebrow:'ARTE / HISTÓRIA', title:'POR QUE O BARROCO É TÃO DRAMÁTICO?', summary:'Contrastes, movimento e teatralidade transformaram arte e arquitetura dos séculos XVII e XVIII.', minutes:7, tags:['arte', 'história'], quickTake:'Barroco não é apenas excesso decorativo: luz, escala e composição eram usados para produzir emoção e presença.', simpleExplanation:'Uma igreja barroca pode dirigir o olhar com curvas, douramento e luz para transformar o espaço numa experiência quase teatral.', example: 'Diante de uma pintura com forte contraste entre luz e sombra, observe como seu olhar é conduzido até o rosto ou gesto principal. A encenação visual é uma forma de produzir intensidade dramática.', body:['O estilo desenvolveu-se na Europa a partir do fim do século XVI.', 'Contrastes intensos de luz marcaram parte importante da pintura barroca.', 'Arquitetura explorou curvas, eixos e efeitos espaciais.', 'Igreja, monarquias e elites financiaram muitas obras.', 'Nas Américas, tradições locais transformaram modelos europeus.'], chapters: [
+  KnowledgeChapter(title: 'Movimento e dramatização são técnicas', paragraphs: [
+    'O barroco reúne práticas diversas desenvolvidas a partir do fim do século XVI em contextos religiosos, políticos e culturais variados. Pintura, arquitetura, música e escultura exploraram recursos próprios para criar presença e intensidade. Uma pintura de contraste luminoso extremo não produz o mesmo tipo de efeito que uma igreja cheia de curvas, embora ambas possam dirigir fortemente a atenção.',
+    'Em muitas obras, a organização da cena conduz o olhar até um gesto, rosto ou acontecimento central. Esse recurso não é simplesmente decoração excessiva: composição, iluminação, materiais e posição do observador participam da experiência.',
+  ]),
+  KnowledgeChapter(title: 'Não existe um único barroco', paragraphs: [
+    'Na pintura, a linguagem naturalista e a luz dramática associadas a Caravaggio influenciaram numerosos artistas. Ao mesmo tempo, outras correntes barrocas mantiveram maior equilíbrio compositivo ou desenvolveram soluções distintas. Não é preciso escolher um único exemplo como definição de todas as manifestações.',
+    'Nas Américas, materiais, oficinas e tradições regionais transformaram linguagens vindas da Europa. No Brasil, obras ligadas a igrejas e centros urbanos oferecem perspectivas próprias sobre a circulação e a adaptação dessas formas.',
+  ]),
+  KnowledgeChapter(title: 'Como perceber a intenção de uma obra', paragraphs: [
+    'Repare onde fica a área mais iluminada, para onde as figuras olham, como os corpos se movimentam e qual parte da composição parece convidar sua atenção. Esse exercício ajuda a reconhecer a teatralidade visual sem reduzir a análise ao gosto pessoal.',
+    'Depois compare dois objetos barrocos de regiões e funções distintas. A diferença entre eles pode ser tão informativa quanto a semelhança: estilos são convenções históricas úteis, não receitas de aparência obrigatória.',
+  ]),
+ ],
+ remember:['Drama é estrutural, não só decorativo.', 'Houve vários barrocos.', 'O Brasil criou expressões próprias.'], whyItMatters:'Amplia o repertório e cria novas conexões com assuntos já existentes no app.', curiosity:'O barroco ganhou linguagens próprias no Brasil, especialmente em Minas Gerais.', connections:['Rococó', 'Renascimento', 'Minas Gerais', 'Arquitetura'],
 );
 
 const turingTopic = KnowledgeTopic(
- id:'turing', eyebrow:'TECNOLOGIA / HISTÓRIA', title:'QUEM FOI ALAN TURING E POR QUE ELE IMPORTA?', summary:'Suas ideias ajudaram a estabelecer fundamentos teóricos da computação e influenciaram criptografia e inteligência artificial.', minutes:7, tags:['tecnologia', 'ciência'], quickTake:'Turing não inventou sozinho o computador, mas formulou ideias fundamentais sobre o que significa computar.', simpleExplanation:'Uma máquina de Turing é um modelo abstrato extremamente simples capaz de representar a lógica de qualquer algoritmo computável.', example:'Uma máquina de Turing é um modelo abstrato extremamente simples capaz de representar a lógica de qualquer algoritmo computável.', body:['Em 1936, Turing publicou um trabalho fundamental sobre computabilidade.', 'Durante a Segunda Guerra, trabalhou em criptoanálise britânica em Bletchley Park.', 'Após a guerra, contribuiu para projetos de computadores eletrônicos.', 'Também pesquisou morfogênese matemática em biologia.', 'Foi perseguido pelo Estado britânico por sua homossexualidade e morreu em 1954.'], remember:['Computabilidade foi sua contribuição central.', 'Atuou também em criptografia e biologia.', 'Sua perseguição é parte importante de sua história.'], whyItMatters:'Amplia o repertório e cria novas conexões com assuntos já existentes no app.', curiosity:'O chamado Teste de Turing apareceu num artigo de 1950 sobre inteligência de máquinas.', connections:['Algoritmos', 'Criptografia', 'IA', 'Segunda Guerra'],
+ id:'turing', eyebrow:'TECNOLOGIA / HISTÓRIA', title:'QUEM FOI ALAN TURING E POR QUE ELE IMPORTA?', summary:'Suas ideias ajudaram a estabelecer fundamentos teóricos da computação e influenciaram criptografia e inteligência artificial.', minutes:7, tags:['tecnologia', 'ciência'], quickTake:'Turing não inventou sozinho o computador, mas formulou ideias fundamentais sobre o que significa computar.', simpleExplanation:'Uma máquina de Turing é um modelo abstrato extremamente simples capaz de representar a lógica de qualquer algoritmo computável.', example: 'Imagine uma máquina idealizada que lê um símbolo por vez, pode escrevê-lo ou apagá-lo e segue instruções precisas. Esse exercício abstrato ajuda a discutir o que significa executar um procedimento computável.', body:['Em 1936, Turing publicou um trabalho fundamental sobre computabilidade.', 'Durante a Segunda Guerra, trabalhou em criptoanálise britânica em Bletchley Park.', 'Após a guerra, contribuiu para projetos de computadores eletrônicos.', 'Também pesquisou morfogênese matemática em biologia.', 'Foi perseguido pelo Estado britânico por sua homossexualidade e morreu em 1954.'], chapters: [
+  KnowledgeChapter(title: 'Antes dos computadores como os conhecemos', paragraphs: [
+    'Na década de 1930, uma pergunta central da lógica era saber que problemas poderiam ser resolvidos por um procedimento mecânico, feito de instruções bem definidas. Alan Turing propôs um modelo abstrato de computação: uma máquina idealizada capaz de manipular símbolos segundo regras precisas. Ela não era um projeto de notebook, mas uma ferramenta para investigar os limites do cálculo.',
+    'Uma das ideias poderosas é a máquina universal: um mesmo dispositivo abstrato pode executar diferentes procedimentos quando recebe a descrição apropriada. Essa separação entre mecanismo e instruções é uma base conceitual para compreender computadores programáveis, embora muitas outras pessoas e avanços técnicos tenham participado do desenvolvimento das máquinas reais.',
+  ]),
+  KnowledgeChapter(title: 'Da teoria à história real', paragraphs: [
+    'Durante a Segunda Guerra Mundial, Turing trabalhou na criptoanálise britânica em Bletchley Park. A quebra de sistemas de comunicação criptografados foi um esforço coletivo que reuniu matemáticos, linguistas, engenheiros e operadores. Atribuir todo o trabalho a uma pessoa transforma uma história de colaboração em mito.',
+    'Depois da guerra, Turing esteve ligado a projetos de computação eletrônica, incluindo o trabalho com o Automatic Computing Engine, conhecido pela sigla ACE. Seu percurso atravessa matemática, engenharia, discussão sobre inteligência de máquinas e até modelos matemáticos de processos biológicos.',
+  ]),
+  KnowledgeChapter(title: 'Computar não é a mesma coisa que compreender', paragraphs: [
+    'Em um artigo de 1950, Turing propôs uma maneira de discutir o comportamento de máquinas em uma situação de imitação conversacional. A ideia ficou popularmente associada ao chamado teste de Turing. Conseguir produzir respostas que parecem humanas, entretanto, não resolve por si só todas as perguntas filosóficas e científicas sobre entendimento, consciência ou inteligência.',
+    'Sua biografia inclui também a perseguição legal que sofreu por ser homossexual, em um contexto no qual relações entre homens eram criminalizadas no Reino Unido. Estudar Turing sem esse aspecto deixaria de fora como instituições sociais podem prejudicar pessoas cuja obra transformou o conhecimento.',
+  ]),
+ ],
+ remember:['Computabilidade foi sua contribuição central.', 'Atuou também em criptografia e biologia.', 'Sua perseguição é parte importante de sua história.'], whyItMatters:'Amplia o repertório e cria novas conexões com assuntos já existentes no app.', curiosity:'O chamado Teste de Turing apareceu num artigo de 1950 sobre inteligência de máquinas.', connections:['Algoritmos', 'Criptografia', 'IA', 'Segunda Guerra'],
 );
 
 const sambaTopic = KnowledgeTopic(
- id:'samba', eyebrow:'MÚSICA / BRASIL', title:'COMO O SAMBA VIROU UM SÍMBOLO DO BRASIL?', summary:'Tradições afro-brasileiras, urbanização, rádio e carnaval transformaram práticas diversas numa linguagem musical nacional.', minutes:7, tags:['música', 'brasil'], quickTake:'Samba nunca foi um único ritmo imutável: existem tradições, estilos e contextos muito diferentes.', simpleExplanation:'Rodas, terreiros, casas e depois estúdios e rádios ajudaram a música a circular por redes sociais muito diferentes.', example:'Rodas, terreiros, casas e depois estúdios e rádios ajudaram a música a circular por redes sociais muito diferentes.', body:['O samba possui raízes profundas em culturas afro-brasileiras.', 'No Rio de Janeiro, comunidades negras foram decisivas para sua formação urbana.', 'Gravação e rádio ampliaram sua circulação no século XX.', 'Escolas de samba transformaram o carnaval carioca.', 'Partido-alto, samba-canção, pagode e outras vertentes mostram sua diversidade.'], remember:['Raízes afro-brasileiras são centrais.', 'Rádio ampliou alcance.', 'Samba possui muitas vertentes.'], whyItMatters:'Amplia o repertório e cria novas conexões com assuntos já existentes no app.', curiosity:'Pelo Telefone, registrado em 1916, costuma aparecer como marco da história fonográfica do samba.', connections:['Bossa Nova', 'Jazz', 'Brasil', 'Carnaval'],
+ id:'samba', eyebrow:'MÚSICA / BRASIL', title:'COMO O SAMBA VIROU UM SÍMBOLO DO BRASIL?', summary:'Tradições afro-brasileiras, urbanização, rádio e carnaval transformaram práticas diversas numa linguagem musical nacional.', minutes:7, tags:['música', 'brasil'], quickTake:'Samba nunca foi um único ritmo imutável: existem tradições, estilos e contextos muito diferentes.', simpleExplanation:'Rodas, terreiros, casas e depois estúdios e rádios ajudaram a música a circular por redes sociais muito diferentes.', example: 'Uma roda de samba combina canto, instrumentos e participação coletiva; ao passar para gravações e rádio, o gênero ganhou novas formas de produção e circulação sem perder toda a diversidade local.', body:['O samba possui raízes profundas em culturas afro-brasileiras.', 'No Rio de Janeiro, comunidades negras foram decisivas para sua formação urbana.', 'Gravação e rádio ampliaram sua circulação no século XX.', 'Escolas de samba transformaram o carnaval carioca.', 'Partido-alto, samba-canção, pagode e outras vertentes mostram sua diversidade.'], chapters: [
+  KnowledgeChapter(title: 'Muito antes de virar um rótulo nacional', paragraphs: [
+    'O samba não nasceu pronto, nem tem uma única origem pontual. Tradições musicais e corporais afro-brasileiras circularam por diferentes regiões; no Recôncavo Baiano, o samba de roda reúne canto, dança, instrumentos e participação coletiva. Seu desenvolvimento está ligado às comunidades que preservaram e transformaram práticas culturais apesar da escravidão e de suas consequências.',
+    'Com movimentos populacionais e trocas culturais, experiências musicais como as do samba de roda contribuíram para o desenvolvimento do samba urbano no Rio de Janeiro. Isso não significa que todos os tipos de samba tenham a mesma batida ou que a história possa ser resumida à trajetória de um compositor. Há participantes, lugares e tradições nem sempre igualmente lembrados.',
+  ]),
+  KnowledgeChapter(title: 'A cidade e a tecnologia mudam a música', paragraphs: [
+    'Com a expansão da gravação, do rádio e do carnaval urbano no século XX, o samba passou a circular por públicos mais amplos. A gravação fixa uma determinada interpretação, enquanto uma roda permite variações e respostas entre músicos e participantes. Essas formas de circulação coexistiram, influenciaram umas às outras e modificaram a ideia do que seria um samba.',
+    'A transformação também envolveu disputas por reconhecimento, trabalho profissional e representação nacional. Quando um estilo passa a simbolizar um país inteiro, vale perguntar quem é convidado a contar essa história e quais tradições recebem menos atenção. Chamar o samba de símbolo brasileiro não deve apagar suas raízes negras nem sua diversidade regional.',
+  ]),
+  KnowledgeChapter(title: 'Treine o ouvido e amplie a pergunta', paragraphs: [
+    'Compare um registro de samba de roda com um samba-canção e uma gravação de partido-alto. Observe andamento, resposta do coro, papel dos instrumentos e relação entre intérpretes. Nenhum exemplo sozinho representa todas as manifestações; é a comparação que torna audível a variedade interna desse universo.',
+    'A UNESCO reconhece especificamente o samba de roda do Recôncavo Baiano como patrimônio cultural imaterial, não todos os tipos de samba como uma manifestação idêntica. Essa distinção ajuda a entender por que preservar uma tradição exige atenção às comunidades, aos instrumentos e às práticas de transmissão entre gerações.',
+  ]),
+ ],
+ remember:['Raízes afro-brasileiras são centrais.', 'Rádio ampliou alcance.', 'Samba possui muitas vertentes.'], whyItMatters:'Amplia o repertório e cria novas conexões com assuntos já existentes no app.', curiosity:'Pelo Telefone, registrado em 1916, costuma aparecer como marco da história fonográfica do samba.', connections:['Bossa Nova', 'Jazz', 'Brasil', 'Carnaval'],
 );
 
 const imunidadeTopic = KnowledgeTopic(
- id:'imunidade', eyebrow:'CIÊNCIA / CORPO', title:'COMO O CORPO RECONHECE O QUE É PERIGOSO?', summary:'Barreiras, células e moléculas do sistema imune detectam padrões, coordenam respostas e constroem memória.', minutes:7, tags:['ciência', 'saúde'], quickTake:'Imunidade não é um exército que simplesmente ataca tudo que é estrangeiro; ela precisa distinguir contextos e regular a própria resposta.', simpleExplanation:'A pele impede muitas invasões antes que células especializadas sequer precisem agir.', example:'A pele impede muitas invasões antes que células especializadas sequer precisem agir.', body:['Barreiras físicas e químicas formam uma primeira linha de proteção.', 'Imunidade inata responde rapidamente a padrões de perigo e infecção.', 'Imunidade adaptativa cria respostas altamente específicas.', 'Células B podem produzir anticorpos e células T exercem diferentes funções.', 'Mecanismos regulatórios evitam que a resposta cause dano excessivo ao próprio corpo.'], remember:['Inata e adaptativa cooperam.', 'Anticorpos são apenas uma parte.', 'Regulação é tão importante quanto ataque.'], whyItMatters:'Amplia o repertório e cria novas conexões com assuntos já existentes no app.', curiosity:'Febre e inflamação são respostas do organismo, não microrganismos em si.', connections:['Vacinas', 'Antibióticos', 'Microbioma', 'DNA'],
+ id:'imunidade', eyebrow:'CIÊNCIA / CORPO', title:'COMO O CORPO RECONHECE O QUE É PERIGOSO?', summary:'Barreiras, células e moléculas do sistema imune detectam padrões, coordenam respostas e constroem memória.', minutes:7, tags:['ciência', 'saúde'], quickTake:'Imunidade não é um exército que simplesmente ataca tudo que é estrangeiro; ela precisa distinguir contextos e regular a própria resposta.', simpleExplanation:'A pele impede muitas invasões antes que células especializadas sequer precisem agir.', example: 'Ao entrar em contato com uma vacina, o sistema imune pode desenvolver respostas específicas e memória imunológica. Isso ilustra como reconhecer um agente e responder rapidamente são processos relacionados, mas diferentes.', body:['Barreiras físicas e químicas formam uma primeira linha de proteção.', 'Imunidade inata responde rapidamente a padrões de perigo e infecção.', 'Imunidade adaptativa cria respostas altamente específicas.', 'Células B podem produzir anticorpos e células T exercem diferentes funções.', 'Mecanismos regulatórios evitam que a resposta cause dano excessivo ao próprio corpo.'], chapters: [
+  KnowledgeChapter(title: 'A defesa começa antes do confronto', paragraphs: [
+    'Nosso organismo não depende de uma única célula heroica. Pele, mucosas e outras barreiras reduzem a entrada de diversos microrganismos. Se um agente ultrapassa essas barreiras, componentes da imunidade inata podem reconhecer padrões associados à infecção e iniciar respostas rápidas, como processos inflamatórios e recrutamento de células de defesa.',
+    'Inflamação não é sinônimo de doença nem de proteção perfeita. Ela é uma resposta que pode ser útil em determinadas situações, mas também causar danos quando excessiva ou inadequada. Por isso, um sistema imune saudável precisa de reconhecimento e de mecanismos que controlem a duração e a intensidade das próprias reações.',
+  ]),
+  KnowledgeChapter(title: 'Duas formas de responder que cooperam', paragraphs: [
+    'A imunidade adaptativa envolve respostas mais específicas. Linfócitos B podem produzir anticorpos, enquanto diferentes grupos de linfócitos T participam da coordenação das respostas ou do combate a células infectadas. A ação de um grupo influencia a do outro: a divisão entre imunidade inata e adaptativa é útil para estudar, mas não descreve equipes isoladas.',
+    'Parte das respostas específicas pode produzir memória imunológica. Assim, diante de uma nova exposição a um agente já reconhecido, o organismo pode responder de maneira mais rápida ou eficaz. Isso não significa que toda exposição gere proteção permanente: duração da memória, variações do agente e características individuais também importam.',
+  ]),
+  KnowledgeChapter(title: 'Por que vacinar não equivale a contrair a doença', paragraphs: [
+    'Uma vacina apresenta ao organismo antígenos, microrganismos preparados ou instruções para produzir determinados antígenos, dependendo da tecnologia. O objetivo é estimular respostas de proteção sem exigir que a pessoa passe pela doença contra a qual se busca proteção. Algumas vacinas usam doses adicionais para reforçar a resposta e a memória.',
+    'Uma pergunta importante é qual resultado está sendo medido: risco de infecção, de doença sintomática ou de desfechos graves não são medidas idênticas. A proteção pode variar conforme o agente e a vacina, e nenhuma resposta biológica dispensa o exame de evidências clínicas. Esse cuidado permite avaliar afirmações sobre imunidade com mais precisão.',
+  ]),
+ ],
+ remember:['Inata e adaptativa cooperam.', 'Anticorpos são apenas uma parte.', 'Regulação é tão importante quanto ataque.'], whyItMatters:'Amplia o repertório e cria novas conexões com assuntos já existentes no app.', curiosity:'Febre e inflamação são respostas do organismo, não microrganismos em si.', connections:['Vacinas', 'Antibióticos', 'Microbioma', 'DNA'],
 );
 
 const allDemoTopics = <KnowledgeTopic>[

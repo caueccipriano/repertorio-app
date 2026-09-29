@@ -43,7 +43,7 @@ Future<void> showQuickPeek(
             Row(
               children: [
                 Text(
-                  '${topic.minutes} min · ${topic.tags.join(' · ')}',
+                  '~${topic.estimatedReadingMinutes()} min · ${topic.tags.join(' · ')}',
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
                         color: AppColors.muted,
                         fontSize: 10,
