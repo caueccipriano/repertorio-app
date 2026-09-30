@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../app/state/app_state_scope.dart';
 import '../domain/review_session_progress.dart';
+import '../domain/upcoming_reviews.dart';
 import '../../today/data/demo_topics.dart';
 import '../../today/domain/knowledge_topic.dart';
 
@@ -391,45 +392,89 @@ class _ReviewSessionComplete extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final upcoming = upcomingReviews(
+      AppStateScope.of(context).reviewDueByTopic,
+      now: DateTime.now(),
+    ).where((entry) => topicById(entry.key) != null).take(3).toList();
+
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
       body: SafeArea(
-        child: Padding(
+        child: ListView(
           padding: const EdgeInsets.all(24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Spacer(),
-              Text(
-                isDueSession ? 'revisões concluídas.' : 'aquecimento concluído.',
-                style: theme.textTheme.headlineLarge,
+          children: [
+            const SizedBox(height: 56),
+            Text(
+              isDueSession ? 'revisões concluídas.' : 'aquecimento concluído.',
+              style: theme.textTheme.headlineLarge,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              '$completedCards cartões · $completedTopics assuntos',
+              style: theme.textTheme.bodyLarge?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
               ),
-              const SizedBox(height: 16),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              isDueSession
+                  ? 'A sua próxima revisão segue o calendário que você já criou.'
+                  : 'Você praticou sem alterar as próximas revisões agendadas.',
+              style: theme.textTheme.bodyLarge,
+            ),
+            if (upcoming.isNotEmpty) ...[
+              const SizedBox(height: 38),
               Text(
-                '$completedCards cartões · $completedTopics assuntos',
-                style: theme.textTheme.bodyLarge?.copyWith(
+                'PRÓXIMAS REVISÕES',
+                style: theme.textTheme.labelLarge?.copyWith(
+                  color: theme.colorScheme.primary,
+                  fontSize: 10,
+                  letterSpacing: 1.1,
+                ),
+              ),
+              const SizedBox(height: 12),
+              for (final entry in upcoming) ...[
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        topicById(entry.key)!.title,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.bodyMedium,
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Text(
+                      _formatReviewDate(entry.value),
+                      style: theme.textTheme.labelLarge,
+                    ),
+                  ],
+                ),
+                const Divider(height: 22),
+              ],
+              Text(
+                'Datas previstas, não notificações. Você pode revisar quando quiser.',
+                style: theme.textTheme.bodySmall?.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                 ),
               ),
-              const SizedBox(height: 10),
-              Text(
-                isDueSession
-                    ? 'O próximo encontro com esses assuntos já está programado.'
-                    : 'Você praticou sem alterar as próximas revisões agendadas.',
-                style: theme.textTheme.bodyLarge,
-              ),
-              const Spacer(),
-              SizedBox(
-                width: double.infinity,
-                child: FilledButton(
-                  onPressed: onRestart,
-                  child: const Text('ver revisões disponíveis'),
-                ),
-              ),
             ],
-          ),
+            const SizedBox(height: 64),
+            FilledButton(
+              onPressed: onRestart,
+              child: const Text('ver revisões disponíveis'),
+            ),
+          ],
         ),
       ),
     );
+  }
+
+  String _formatReviewDate(DateTime when) {
+    final local = when.toLocal();
+    final day = local.day.toString().padLeft(2, '0');
+    final month = local.month.toString().padLeft(2, '0');
+    return '$day/$month';
   }
 }
