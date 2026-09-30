@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../app/state/app_state_scope.dart';
 import '../domain/review_session_progress.dart';
+import '../domain/highlight_recall.dart';
 import '../domain/upcoming_reviews.dart';
 import '../../today/data/demo_topics.dart';
 import '../../today/domain/knowledge_topic.dart';
@@ -242,6 +243,21 @@ class _ReviewScreenState extends State<ReviewScreen> {
             answer: note,
           ),
         );
+      }
+
+      // Only passages intentionally marked by this reader. Up to two per
+      // topic keep review sessions finite and the existing one-grade-per-
+      // topic scheduling intact.
+      final selectedPassages = <String>{
+        ...?state.highlightedPassages[topic.id],
+        ...?state.starredPassages[topic.id],
+      };
+      for (final highlighted in highlightedRecallFor(topic, selectedPassages)) {
+        cards.add(_Flashcard(
+          topic: topic,
+          prompt: highlighted.prompt,
+          answer: highlighted.answer,
+        ));
       }
     }
 
