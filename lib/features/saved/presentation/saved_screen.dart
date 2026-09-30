@@ -6,11 +6,12 @@ import '../../../core/widgets/knowledge_cover.dart';
 import '../../../core/widgets/paper_texture.dart';
 import '../../article/presentation/article_screen.dart';
 import '../../article/presentation/quick_peek.dart';
+import '../domain/annotated_saved_topics.dart';
 import '../../search/presentation/search_screen.dart';
 import '../../today/data/demo_topics.dart';
 import '../../today/domain/knowledge_topic.dart';
 
-enum _SavedFilter { all, reading, completed }
+enum _SavedFilter { all, reading, annotated, completed }
 
 class SavedScreen extends StatefulWidget {
   const SavedScreen({super.key});
@@ -25,6 +26,12 @@ class _SavedScreenState extends State<SavedScreen> {
   @override
   Widget build(BuildContext context) {
     final state = AppStateScope.of(context);
+    final annotatedIds = annotatedSavedTopicIds(
+      state.savedTopicIds,
+      notesByTopic: state.notesByTopic,
+      highlightsByTopic: state.highlightedPassages,
+      starredByTopic: state.starredPassages,
+    );
     final allSavedTopics = state.savedTopicIds
         .map(topicById)
         .whereType<KnowledgeTopic>()
@@ -65,6 +72,8 @@ class _SavedScreenState extends State<SavedScreen> {
         case _SavedFilter.reading:
           final progress = state.progressFor(topic.id);
           return progress > 0 && progress < .92;
+        case _SavedFilter.annotated:
+          return annotatedIds.contains(topic.id);
         case _SavedFilter.completed:
           return state.completedTopicIds.contains(topic.id);
       }
@@ -118,6 +127,7 @@ class _SavedScreenState extends State<SavedScreen> {
                 total: allSavedTopics.length,
                 reading: readingCount,
                 completed: completedCount,
+                annotated: annotatedIds.length,
               ),
               const SizedBox(height: 16),
               _SavedTabs(
@@ -175,11 +185,13 @@ class _LibraryOverview extends StatelessWidget {
     required this.total,
     required this.reading,
     required this.completed,
+    required this.annotated,
   });
 
   final int total;
   final int reading;
   final int completed;
+  final int annotated;
 
   @override
   Widget build(BuildContext context) {
@@ -187,6 +199,7 @@ class _LibraryOverview extends StatelessWidget {
     final stats = [
       (total, 'guardados'),
       (reading, 'lendo'),
+      (annotated, 'anotados'),
       (completed, 'concluídos'),
     ];
 
@@ -250,6 +263,7 @@ class _SavedTabs extends StatelessWidget {
     const tabs = [
       (_SavedFilter.all, 'TODOS'),
       (_SavedFilter.reading, 'LENDO'),
+      (_SavedFilter.annotated, 'ANOTADOS'),
       (_SavedFilter.completed, 'CONCLUÍDOS'),
     ];
 
@@ -307,6 +321,7 @@ class _EmptyLibrary extends StatelessWidget {
     final title = switch (filter) {
       _SavedFilter.all => 'sua biblioteca começa vazia.',
       _SavedFilter.reading => 'nenhuma leitura em andamento.',
+      _SavedFilter.annotated => 'suas ideias guardadas aparecerão aqui.',
       _SavedFilter.completed => 'nenhum assunto concluído ainda.',
     };
 
@@ -315,6 +330,8 @@ class _EmptyLibrary extends StatelessWidget {
         'Salve apenas o que realmente quiser guardar. Nada entra aqui automaticamente.',
       _SavedFilter.reading =>
         'Quando você começar um assunto salvo, ele aparece nesta estante.',
+      _SavedFilter.annotated =>
+        'Grife ou escreva uma nota em um assunto salvo para vê-lo nesta estante.',
       _SavedFilter.completed =>
         'Ao terminar uma leitura salva, ela passa a fazer parte deste arquivo.',
     };
